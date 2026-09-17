@@ -1,3 +1,24 @@
+# eplyx-stock-transition-assurance
+
+Phase 1 of Eplyx Lifecycle Impact for Stocklana. This repository contains the
+existing Eplyx backend plus a minimal `ChangeScenario` abstraction.
+Program upgrades retain their existing execution behavior; `LifecycleChange`
+is a placeholder that explicitly refuses execution.
+
+See [Phase 1 architecture and validation](docs/lifecycle-phase-1-architecture.md)
+for provenance, exact changed files and the home test checklist.
+
+The website is not included. Generate the omitted test fixtures with
+`make fixtures` before running `make test`. Compilation and tests are pending.
+
+---
+
+## Original Eplyx backend reference
+
+The original README below describes the source project, including its website
+and later upgrade features; those website instructions do not apply to this
+backend-only repository.
+
 # Eplyx
 
 Upgrade Impact CI for Solana programs.
