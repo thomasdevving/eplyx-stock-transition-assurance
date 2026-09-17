@@ -250,6 +250,13 @@ fn exact_offline_replay_uses_fresh_state_and_detects_candidate_regression() {
         record.post_hash(&candidate).unwrap()
     );
     let report = compare(std::slice::from_ref(&record), &v1, &v2).unwrap();
+    let scenario_report = engine::ChangeScenario::program_upgrade(&v1, &v2)
+        .compare_replay(std::slice::from_ref(&record), &DependencyBundle::empty())
+        .unwrap();
+    assert_eq!(
+        serde_json::to_vec(&report).unwrap(),
+        serde_json::to_vec(&scenario_report).unwrap()
+    );
     assert_eq!(report.analysis.summary.critical, 1);
     assert_eq!(report.analysis.economics.newly_liquidatable.positions, 1);
     let repeat = compare(&[record], &v1, &v2).unwrap();
@@ -276,6 +283,11 @@ fn fidelity_mismatch_blocks_candidate_and_unknown_is_not_exact() {
         .unwrap_err()
         .to_string();
     assert!(error.contains("Mismatch") && error.contains("withheld"));
+    let scenario_error = engine::ChangeScenario::program_upgrade(&v1, &invalid_candidate)
+        .compare_replay(std::slice::from_ref(&record), &DependencyBundle::empty())
+        .unwrap_err()
+        .to_string();
+    assert_eq!(scenario_error, error);
     record.original = None;
     assert_eq!(record.fidelity(&original).unwrap(), ReplayFidelity::Unknown);
     record.state_source = ReplayStateSource::CurrentApproximation;

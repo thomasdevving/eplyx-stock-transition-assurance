@@ -1287,6 +1287,20 @@ pub fn compare_with_dependencies(
     v2: &ProgramVersion,
     dependencies: &DependencyBundle,
 ) -> Result<ReplayReport> {
+    crate::scenario::ChangeScenario::program_upgrade(v1, v2)
+        .compare_replay(records, dependencies)
+}
+
+/// The program-upgrade consequence model, reached through ChangeScenario.
+///
+/// Keep baseline verification, candidate execution and report construction in
+/// this existing model; the scenario layer only selects it.
+pub(crate) fn compare_program_upgrade_with_dependencies(
+    records: &[ReplayRecord],
+    v1: &ProgramVersion,
+    v2: &ProgramVersion,
+    dependencies: &DependencyBundle,
+) -> Result<ReplayReport> {
     anyhow::ensure!(!records.is_empty(), "empty replay corpus");
     let mut ids = BTreeSet::new();
     let mut fixtures = Vec::new();

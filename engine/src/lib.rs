@@ -1,4 +1,7 @@
-//! Deterministic differential execution for Solana program upgrades.
+//! Change impact analysis with deterministic execution for Solana program upgrades.
+//!
+//! `scenario::ChangeScenario` separates the proposed change from its state inputs.
+//! Program upgrades are executable; lifecycle changes are placeholders.
 //!
 //! The engine answers one question: *given identical initial state and an
 //! identical transaction, what changes solely because the program version
@@ -46,6 +49,7 @@ pub mod protocol;
 pub mod replay;
 pub mod report;
 pub mod review;
+pub mod scenario;
 pub mod screening;
 pub mod select;
 pub mod semantics;
@@ -64,6 +68,7 @@ pub use executor::{ExecutionResult, ProgramVersion};
 pub use impact::{EconomicConsequence, EconomicImpactSummary, FixtureEconomics};
 pub use money::{SignedUsd, Usd};
 pub use report::Report;
+pub use scenario::{ChangeScenario, LifecycleChange, ProgramUpgrade};
 pub use types::{AccountSnapshot, Category, Fixture, InstructionSpec};
 
 /// Program ID of the fixture protocol.
@@ -112,9 +117,7 @@ pub fn compare_fixture(
     v1: &ProgramVersion,
     v2: &ProgramVersion,
 ) -> Result<StateDiff> {
-    let result_v1 = executor::execute(fixture, program_id, v1)?;
-    let result_v2 = executor::execute(fixture, program_id, v2)?;
-    Ok(diff::compare(fixture, result_v1, result_v2))
+    ChangeScenario::program_upgrade(v1, v2).compare_fixture(fixture, program_id)
 }
 
 pub fn compare_all(
