@@ -1287,8 +1287,7 @@ pub fn compare_with_dependencies(
     v2: &ProgramVersion,
     dependencies: &DependencyBundle,
 ) -> Result<ReplayReport> {
-    crate::scenario::ChangeScenario::program_upgrade(v1, v2)
-        .compare_replay(records, dependencies)
+    crate::scenario::ChangeScenario::program_upgrade(v1, v2).compare_replay(records, dependencies)
 }
 
 /// The program-upgrade consequence model, reached through ChangeScenario.
