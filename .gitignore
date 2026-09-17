@@ -1,0 +1,29 @@
+# Rust build output
+/target/
+programs/fixture-lending/target/
+programs/fixture-memo-candidate/target/
+programs/fixture-token2022-candidate/target/
+programs/fixture-stake-pool-candidate/target/
+
+# Compiled program artefacts: reproduced by ./scripts/build-programs.sh
+/artifacts/
+
+# Node
+node_modules/
+/dist/
+
+.DS_Store
+
+# External data, local validators and credentials
+/data/
+.env
+.env.*
+!.env.example
+*-keypair.json
+*-wallet.json
+/test-ledger/
+/report.json
+private-setup.json
+
+# Browser modules generated from the pinned Three.js dependency
+/frontend/public/vendor/
