@@ -773,7 +773,8 @@ fn the_json_report_carries_the_economic_summary() {
 #[test]
 fn the_json_report_round_trips() {
     let json = report().to_json().expect("serialisable");
-    let restored: eplyx_lifecycle_impact::Report = serde_json::from_str(&json).expect("deserialisable");
+    let restored: eplyx_lifecycle_impact::Report =
+        serde_json::from_str(&json).expect("deserialisable");
     assert_eq!(&restored, report());
 }
 
@@ -1002,9 +1003,11 @@ fn minimized_cases_preserve_the_exact_regression_class() {
         let candidate =
             shrink::variant(base, case.collateral_lamports, case.debt_micro_usd).expect("variant");
         let candidate_diff =
-            eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).expect("execute");
+            eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2)
+                .expect("execute");
         let candidate_economics =
-            eplyx_lifecycle_impact::impact::evaluate(&candidate, &candidate_diff).expect("economics");
+            eplyx_lifecycle_impact::impact::evaluate(&candidate, &candidate_diff)
+                .expect("economics");
 
         assert_eq!(
             cluster::signature(&candidate, &candidate_diff, &candidate_economics),
@@ -1050,7 +1053,8 @@ fn reproducing_a_minimized_case_is_deterministic() {
 
     let candidate = shrink::variant(base, case.collateral_lamports, case.debt_micro_usd).unwrap();
     let first = eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
-    let second = eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
+    let second =
+        eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
     assert_eq!(first, second);
 
     // And the search itself is reproducible: re-running it from the same

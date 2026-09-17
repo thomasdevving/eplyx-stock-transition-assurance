@@ -1,0 +1,13 @@
+{
+  "name": "SpaceX PreStocks (SPACEX)",
+  "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "expected_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+  "verification": [
+    {
+      "url": "https://prestocks.com/spacex",
+      "observation": "Official PreStocks SpaceX product page links to https://solscan.io/token/PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh. On-chain TokenMetadata is checked separately from this off-chain identity evidence.",
+      "verified_at": "2026-09-17"
+    }
+  ]
+}

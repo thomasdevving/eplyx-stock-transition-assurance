@@ -28,7 +28,8 @@ fn program_upgrade_matches_direct_execution_and_the_legacy_api() {
     let scenario = ChangeScenario::program_upgrade(&baseline, &candidate);
     let actual = scenario.compare_fixture(&fixture, &program_id).unwrap();
     let legacy =
-        eplyx_lifecycle_impact::compare_fixture(&fixture, &program_id, &baseline, &candidate).unwrap();
+        eplyx_lifecycle_impact::compare_fixture(&fixture, &program_id, &baseline, &candidate)
+            .unwrap();
     assert_eq!(actual, expected);
     assert_eq!(legacy, expected);
 }
