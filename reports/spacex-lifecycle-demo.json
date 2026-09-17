@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "description": "Compact proof extracted from the complete deterministic impact reports. Protocol balances overlap entity holdings; they are not added. All dates are hypothetical policy evaluations of one frozen production artifact.",
+  "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "before": {
+    "at": "2026-09-17T19:59:59Z",
+    "status": "Active",
+    "classifications": {
+      "Unaffected": 17957
+    }
+  },
+  "transition": {
+    "at": "2026-09-17T20:00:00Z",
+    "status": "TransitionRequired",
+    "summary": {
+      "entities_evaluated": 17957,
+      "positive_balance_entities": 10155,
+      "zero_public_balance_entities": 7802,
+      "zero_public_balance_unresolved": 0,
+      "unknown_role_positive_entities": 2969,
+      "uncertain_role_positive_entities": 3036,
+      "classifications": {
+        "Unaffected": 7802,
+        "RequiresTransition": 10154,
+        "StaleExposure": 1,
+        "Unresolved": 0
+      },
+      "economic_meaning_changed_entities": 10155,
+      "phase2_public_raw_exposure": "8741534482051",
+      "phase2_affected_public_raw_exposure": "8741534482051",
+      "verified_liquidity_venues": 1,
+      "verified_protocol_target_vaults": 1,
+      "stale_protocol_exposures": 1,
+      "phase3_verified_vault_public_raw_exposure": "682216229"
+    },
+    "diff": {
+      "technical_state": "Unchanged",
+      "lifecycle_status_changed": true,
+      "economic_meaning_changed_entities": 10155,
+      "economic_meaning_changed_protocol_observations": 1
+    }
+  },
+  "post_deadline": {
+    "at": "2027-03-13T00:00:00Z",
+    "status": "NoIssuerEntitlement",
+    "summary": {
+      "entities_evaluated": 17957,
+      "positive_balance_entities": 10155,
+      "zero_public_balance_entities": 7802,
+      "zero_public_balance_unresolved": 0,
+      "unknown_role_positive_entities": 2969,
+      "uncertain_role_positive_entities": 3036,
+      "classifications": {
+        "Unaffected": 7802,
+        "RequiresTransition": 0,
+        "StaleExposure": 10155,
+        "Unresolved": 0
+      },
+      "economic_meaning_changed_entities": 10155,
+      "phase2_public_raw_exposure": "8741534482051",
+      "phase2_affected_public_raw_exposure": "8741534482051",
+      "verified_liquidity_venues": 1,
+      "verified_protocol_target_vaults": 1,
+      "stale_protocol_exposures": 1,
+      "phase3_verified_vault_public_raw_exposure": "682216229"
+    },
+    "diff": {
+      "technical_state": "Unchanged",
+      "lifecycle_status_changed": true,
+      "economic_meaning_changed_entities": 10155,
+      "economic_meaning_changed_protocol_observations": 1
+    }
+  },
+  "positive_wallet": {
+    "entity_id": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+    "token_account": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+    "entity_type": "WalletCompatible",
+    "verified_role": null,
+    "role_uncertain": false,
+    "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "balance": {
+      "raw": "60354",
+      "decimal_base_units": "0.000060354",
+      "basis": "Phase2TokenAccount",
+      "amount_definition": "Public SPL account amount / mint decimals; excludes withheld fees, encrypted balances and scaled display transforms"
+    },
+    "authority_observation": {
+      "is_on_curve": true,
+      "account_exists": true,
+      "runtime_owner": "11111111111111111111111111111111",
+      "executable": false,
+      "multisig": null
+    },
+    "authority_evidence": {
+      "rpc_id": 103,
+      "pointer": "/value/24",
+      "slot": 447865721
+    },
+    "pre_lifecycle_status": "Active",
+    "post_lifecycle_status": "TransitionRequired",
+    "pre_classification": "Unaffected",
+    "impact_classification": "RequiresTransition",
+    "economic_meaning_changed": true,
+    "onchain_evidence": [
+      {
+        "layer": "Lifecycle",
+        "account": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/20/account",
+          "slot": 447865621
+        },
+        "raw_data_sha256": "c7b5bc50cd91d9f1c058f949f291186118a0e8fa6811128dff29aa4ab421238b",
+        "decoder": "SPL token account / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": "Lifecycle",
+        "account": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 183,
+          "pointer": "/value",
+          "slot": 447865805
+        },
+        "raw_data_sha256": "1df7e241a88c158511a8c8073530201b78e47b9a22954884d208a5396334037d",
+        "decoder": "SPL mint / Token-2022 extensions 3.1.1"
+      }
+    ],
+    "lifecycle_evidence": [
+      {
+        "source_id": "demo-boundary-assumption",
+        "policy_fields": [
+          "/policy/before",
+          "/policy/deadline",
+          "/policy/effective_at"
+        ]
+      },
+      {
+        "source_id": "prestocks-official-notice",
+        "policy_fields": [
+          "/policy/after",
+          "/policy/deadline"
+        ]
+      }
+    ],
+    "reason": "Positive public token amount is subject to the scenario transition requirement; owner role and executable transition path are not inferred",
+    "execution_status": "NotTested"
+  },
+  "verified_protocol_vault": {
+    "exposure_id": "meteora-dlmm:v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+    "entity_id": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+    "entity_type": "ProgramOwnedAuthority",
+    "verified_role": "LiquidityVault",
+    "pool_address": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+    "token_account": "HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+    "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "balance": {
+      "raw": "682216229",
+      "decimal_base_units": "0.682216229",
+      "basis": "Phase3VerifiedVault",
+      "amount_definition": "Public SPL account amount / mint decimals; excludes withheld fees, encrypted balances and scaled display transforms"
+    },
+    "pre_lifecycle_status": "Active",
+    "post_lifecycle_status": "TransitionRequired",
+    "pre_classification": "Unaffected",
+    "impact_classification": "StaleExposure",
+    "economic_meaning_changed": true,
+    "onchain_evidence": [
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "runtime_owner": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/0",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "922a7d08af309d7c78f2bb77269a109770b5cd7b43722f5d09c6a8f3e8e93597",
+        "decoder": "meteora-dlmm/1:LbPair@576919e3e4368e542c402f000b4264724f7f23ec"
+      },
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/5",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "d8d9688b337f88c3b176ea68e5215fdc82ea709d68036a37cdca390c0d15ff79",
+        "decoder": "Solana runtime executable account"
+      },
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/1",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "5efbe6e383c9f901487a338502a0196030f8a209e0e7977aab6e228d320c3a69",
+        "decoder": "SPL token account / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/3",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "1df7e241a88c158511a8c8073530201b78e47b9a22954884d208a5396334037d",
+        "decoder": "SPL mint / Token-2022 extensions 3.1.1"
+      }
+    ],
+    "lifecycle_evidence": [
+      {
+        "source_id": "demo-boundary-assumption",
+        "policy_fields": [
+          "/policy/before",
+          "/policy/deadline",
+          "/policy/effective_at"
+        ]
+      },
+      {
+        "source_id": "prestocks-official-notice",
+        "policy_fields": [
+          "/policy/after",
+          "/policy/deadline"
+        ]
+      }
+    ],
+    "reason": "Verified liquidity vault retains the original asset while external policy requires transition; exit or transition is not tested",
+    "execution_status": "NotTested"
+  },
+  "earlier_entity_vault": {
+    "entity_id": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+    "token_account": "HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+    "entity_type": "ProgramOwnedAuthority",
+    "verified_role": "LiquidityVault",
+    "role_uncertain": false,
+    "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "balance": {
+      "raw": "678320992",
+      "decimal_base_units": "0.678320992",
+      "basis": "Phase2TokenAccount",
+      "amount_definition": "Public SPL account amount / mint decimals; excludes withheld fees, encrypted balances and scaled display transforms"
+    },
+    "authority_observation": {
+      "is_on_curve": false,
+      "account_exists": true,
+      "runtime_owner": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+      "executable": false,
+      "multisig": null
+    },
+    "authority_evidence": {
+      "rpc_id": 181,
+      "pointer": "/value/50",
+      "slot": 447865803
+    },
+    "pre_lifecycle_status": "Active",
+    "post_lifecycle_status": "TransitionRequired",
+    "pre_classification": "Unaffected",
+    "impact_classification": "StaleExposure",
+    "economic_meaning_changed": true,
+    "onchain_evidence": [
+      {
+        "layer": "Lifecycle",
+        "account": "HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/17350/account",
+          "slot": 447865621
+        },
+        "raw_data_sha256": "43963ec59d4166638b9bd64d6f08c906115ef0078e5558f1b37ac837983d391b",
+        "decoder": "SPL token account / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": "Lifecycle",
+        "account": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 183,
+          "pointer": "/value",
+          "slot": 447865805
+        },
+        "raw_data_sha256": "1df7e241a88c158511a8c8073530201b78e47b9a22954884d208a5396334037d",
+        "decoder": "SPL mint / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "runtime_owner": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/0",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "922a7d08af309d7c78f2bb77269a109770b5cd7b43722f5d09c6a8f3e8e93597",
+        "decoder": "meteora-dlmm/1:LbPair@576919e3e4368e542c402f000b4264724f7f23ec"
+      },
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/1",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "5efbe6e383c9f901487a338502a0196030f8a209e0e7977aab6e228d320c3a69",
+        "decoder": "SPL token account / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": {
+          "Adapter": {
+            "run": 0
+          }
+        },
+        "account": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/3",
+          "slot": 447877573
+        },
+        "raw_data_sha256": "1df7e241a88c158511a8c8073530201b78e47b9a22954884d208a5396334037d",
+        "decoder": "SPL mint / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": "Lifecycle",
+        "account": "HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "reference": {
+          "rpc_id": 2,
+          "pointer": "/value/17350/account",
+          "slot": 447865621
+        },
+        "raw_data_sha256": "43963ec59d4166638b9bd64d6f08c906115ef0078e5558f1b37ac837983d391b",
+        "decoder": "SPL token account / Token-2022 extensions 3.1.1"
+      },
+      {
+        "layer": "Lifecycle",
+        "account": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "runtime_owner": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "reference": {
+          "rpc_id": 181,
+          "pointer": "/value/50",
+          "slot": 447865803
+        },
+        "raw_data_sha256": "34116259d22a9c54ff04061f627d0ba45b7c9897cdf3eab9d7b934a41862e948",
+        "decoder": "meteora-dlmm/1:LbPair@576919e3e4368e542c402f000b4264724f7f23ec"
+      }
+    ],
+    "lifecycle_evidence": [
+      {
+        "source_id": "demo-boundary-assumption",
+        "policy_fields": [
+          "/policy/before",
+          "/policy/deadline",
+          "/policy/effective_at"
+        ]
+      },
+      {
+        "source_id": "prestocks-official-notice",
+        "policy_fields": [
+          "/policy/after",
+          "/policy/deadline"
+        ]
+      }
+    ],
+    "reason": "Verified liquidity vault retains the original asset while external policy requires transition; exit or transition is not tested",
+    "execution_status": "NotTested"
+  },
+  "complete_reports": [
+    "reports/spacex-transition-impact.json",
+    "reports/spacex-expired-impact.json"
+  ]
+}

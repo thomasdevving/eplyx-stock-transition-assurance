@@ -1,10 +1,16 @@
 //! Change descriptions and dispatch, separate from the state being evaluated.
 //!
 //! Program upgrades borrow the existing binaries and use the existing execution
-//! contract. Lifecycle changes are descriptions only:
-//! no consequence model is implemented in Phase 1.
+//! contract. Lifecycle changes use an external policy over frozen production state.
 
+use crate::lifecycle::{
+    consequence::{LifecycleConsequenceEvaluator, LifecycleImpactReport},
+    policy::LifecycleScenario,
+    LifecycleSnapshot,
+};
 use anyhow::{bail, Result};
+use chrono::{DateTime, Utc};
+use serde::{Deserialize, Serialize};
 use solana_address::Address;
 
 use crate::diff::StateDiff;
@@ -19,12 +25,12 @@ pub struct ProgramUpgrade<'a> {
     pub candidate: &'a ProgramVersion,
 }
 
-/// Placeholder for an asset lifecycle change.
+/// An asset lifecycle change description, independent of state and policy inputs.
 ///
 /// This description carries no executable semantics, entitlement rule or
-/// evidence claim. A later phase must define a consequence model and its state
-/// inputs before a lifecycle change can be evaluated.
-#[derive(Clone, Debug, PartialEq, Eq)]
+/// evidence claim. `compare_lifecycle` supplies an explicit policy and frozen world.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct LifecycleChange {
     pub description: String,
 }
@@ -40,6 +46,28 @@ pub enum ChangeScenario<'a> {
 }
 
 impl<'a> ChangeScenario<'a> {
+    /// Apply external lifecycle semantics to two time views of one frozen world.
+    pub fn compare_lifecycle(
+        &self,
+        snapshot: &LifecycleSnapshot,
+        scenario: &LifecycleScenario,
+        before: DateTime<Utc>,
+        at: DateTime<Utc>,
+    ) -> Result<LifecycleImpactReport> {
+        match self {
+            Self::LifecycleChange(change) => {
+                anyhow::ensure!(
+                    *change == scenario.change,
+                    "lifecycle change differs from scenario specification"
+                );
+                LifecycleConsequenceEvaluator::evaluate(snapshot, scenario, before, at)
+            }
+            Self::ProgramUpgrade(_) => {
+                bail!("ProgramUpgrade requires program execution, not lifecycle policy evaluation")
+            }
+        }
+    }
+
     pub fn program_upgrade(baseline: &'a ProgramVersion, candidate: &'a ProgramVersion) -> Self {
         Self::ProgramUpgrade(ProgramUpgrade {
             baseline,
@@ -58,7 +86,7 @@ impl<'a> ChangeScenario<'a> {
                 Ok(crate::diff::compare(fixture, baseline, candidate))
             }
             Self::LifecycleChange(_) => {
-                bail!("LifecycleChange is not supported: no consequence model is implemented")
+                bail!("LifecycleChange is not supported for synthetic fixture execution: supply frozen production state and an explicit lifecycle policy to compare_lifecycle")
             }
         }
     }

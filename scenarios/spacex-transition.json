@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "scenario_type": "lifecycle_change",
+  "id": "prestocks-spacex-transition-v1",
+  "scenario_version": "1.0.0",
+  "captured_at": "2026-09-17T20:00:13Z",
+  "change": {
+    "description": "Apply the issuer lifecycle transition notice to the frozen SPACEX world; simulate an explicit observation-time boundary and issuer-entitlement expiration."
+  },
+  "policy": {
+    "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "effective_at": "2026-09-17T20:00:00Z",
+    "before": "Active",
+    "after": "TransitionRequired",
+    "deadline": {
+      "at": "2027-03-12T23:59:00Z",
+      "after": "NoIssuerEntitlement"
+    },
+    "successor": null
+  },
+  "sources": [
+    {
+      "id": "prestocks-official-notice",
+      "kind": "ExternalPolicy",
+      "reference": "https://prestocks.com/spacex",
+      "description": "Issuer notice observed on 17 September 2026 says existing SpaceX PreStocks require swapping before 11:59pm UTC on 12 March 2027 or expire. This is an issuer policy assertion, not independent proof of an IPO, asset value, enforceable rights or a functioning conversion route. The linked successor is intentionally not integrated. Deadline precision is recorded separately.",
+      "captured_at": "2026-09-17T20:00:13Z",
+      "supports": [
+        "/policy/after",
+        "/policy/deadline"
+      ],
+      "artifact": "../evidence/lifecycle/prestocks-spacex-2026-09-17.html",
+      "content_sha256": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82"
+    },
+    {
+      "id": "demo-boundary-assumption",
+      "kind": "ScenarioAssumption",
+      "reference": "scenario:prestocks-spacex-transition-v1",
+      "description": "The demo assumes Active before 2026-09-17T20:00:00Z and TransitionRequired at that instant. This chosen semantic boundary isolates the proposed change; it is NOT the actual IPO time or a proven historical transition time. The issuer states before 11:59pm UTC; this specification conservatively interprets that as an exclusive cutoff at the start of that minute (2027-03-12T23:59:00Z), not an extra minute until midnight. NoIssuerEntitlement means issuer-policy expiration, not zero market value or technical inability to exit.",
+      "captured_at": "2026-09-17T20:00:13Z",
+      "supports": [
+        "/policy/before",
+        "/policy/effective_at",
+        "/policy/deadline"
+      ],
+      "artifact": null,
+      "content_sha256": null
+    }
+  ]
+}
