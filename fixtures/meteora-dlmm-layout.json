@@ -1,0 +1,664 @@
+{
+  "source": "https://github.com/MeteoraAg/dlmm-sdk/blob/576919e3e4368e542c402f000b4264724f7f23ec/idls/dlmm.json",
+  "revision": "576919e3e4368e542c402f000b4264724f7f23ec",
+  "address": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+  "account": {
+    "name": "LbPair",
+    "discriminator": [
+      33,
+      11,
+      49,
+      98,
+      181,
+      101,
+      177,
+      13
+    ]
+  },
+  "types": [
+    {
+      "name": "LbPair",
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "parameters",
+            "type": {
+              "defined": {
+                "name": "StaticParameters"
+              }
+            }
+          },
+          {
+            "name": "v_parameters",
+            "type": {
+              "defined": {
+                "name": "VariableParameters"
+              }
+            }
+          },
+          {
+            "name": "bump_seed",
+            "type": {
+              "array": [
+                "u8",
+                1
+              ]
+            }
+          },
+          {
+            "name": "bin_step_seed",
+            "docs": [
+              "Bin step signer seed"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                2
+              ]
+            }
+          },
+          {
+            "name": "pair_type",
+            "docs": [
+              "Type of the pair"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "active_id",
+            "docs": [
+              "Active bin id"
+            ],
+            "type": "i32"
+          },
+          {
+            "name": "bin_step",
+            "docs": [
+              "Bin step. Represent the price increment / decrement."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "status",
+            "docs": [
+              "Status of the pair. Check PairStatus enum."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "require_base_factor_seed",
+            "docs": [
+              "Require base factor seed"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "base_factor_seed",
+            "docs": [
+              "Base factor seed"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                2
+              ]
+            }
+          },
+          {
+            "name": "activation_type",
+            "docs": [
+              "Activation type"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "creator_pool_on_off_control",
+            "docs": [
+              "Allow pool creator to enable/disable pool with restricted validation. Only applicable for customizable permissionless pair type."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "token_x_mint",
+            "docs": [
+              "Token X mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "token_y_mint",
+            "docs": [
+              "Token Y mint"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "reserve_x",
+            "docs": [
+              "LB token X vault"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "reserve_y",
+            "docs": [
+              "LB token Y vault"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "protocol_fee",
+            "docs": [
+              "Uncollected protocol fee"
+            ],
+            "type": {
+              "defined": {
+                "name": "ProtocolFee"
+              }
+            }
+          },
+          {
+            "name": "_padding_1",
+            "docs": [
+              "padding 1"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "reward_infos",
+            "docs": [
+              "Farming reward information"
+            ],
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "RewardInfo"
+                  }
+                },
+                2
+              ]
+            }
+          },
+          {
+            "name": "oracle",
+            "docs": [
+              "Oracle pubkey"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bin_array_bitmap",
+            "docs": [
+              "Packed initialized bin array state"
+            ],
+            "type": {
+              "array": [
+                "u64",
+                16
+              ]
+            }
+          },
+          {
+            "name": "last_updated_at",
+            "docs": [
+              "Last time the pool fee parameter was updated"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "_padding_2",
+            "docs": [
+              "_padding_2"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "pre_activation_swap_address",
+            "docs": [
+              "Address allowed to swap when the current point is greater than or equal to the pre-activation point. The pre-activation point is calculated as `activation_point - pre_activation_duration`."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "base_key",
+            "docs": [
+              "Base keypair. Only required for permission pair"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "activation_point",
+            "docs": [
+              "Time point to enable the pair. Only applicable for permission pair."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "pre_activation_duration",
+            "docs": [
+              "Duration before activation activation_point. Used to calculate pre-activation time point for pre_activation_swap_address"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "_padding_3",
+            "docs": [
+              "_padding 3"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          },
+          {
+            "name": "_padding_4",
+            "docs": [
+              "_padding_4"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "docs": [
+              "Pool creator"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "token_mint_x_program_flag",
+            "docs": [
+              "token_mint_x_program_flag"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "token_mint_y_program_flag",
+            "docs": [
+              "token_mint_y_program_flag"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "version",
+            "docs": [
+              "version to know whether we have reset tombstone fields"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "_reserved",
+            "docs": [
+              "Reserved space for future use"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                21
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "PairStatus",
+      "docs": [
+        "Pair status. 0 = Enabled, 1 = Disabled. Putting 0 as enabled for backward compatibility."
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Enabled"
+          },
+          {
+            "name": "Disabled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PairType",
+      "docs": [
+        "Type of the Pair. 0 = Permissionless, 1 = Permission, 2 = CustomizablePermissionless. Putting 0 as permissionless for backward compatibility."
+      ],
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Permissionless"
+          },
+          {
+            "name": "Permission"
+          },
+          {
+            "name": "CustomizablePermissionless"
+          },
+          {
+            "name": "PermissionlessV2"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProtocolFee",
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "amount_x",
+            "type": "u64"
+          },
+          {
+            "name": "amount_y",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RewardInfo",
+      "docs": [
+        "Stores the state relevant for tracking liquidity mining rewards"
+      ],
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "mint",
+            "docs": [
+              "Reward token mint."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "vault",
+            "docs": [
+              "Reward vault token account."
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "funder",
+            "docs": [
+              "Authority account that allows to fund rewards"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "reward_duration",
+            "docs": [
+              "LM reward duration in seconds."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "reward_duration_end",
+            "docs": [
+              "LM reward duration end time."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "reward_rate",
+            "docs": [
+              "LM reward rate"
+            ],
+            "type": "u128"
+          },
+          {
+            "name": "last_update_time",
+            "docs": [
+              "The last time reward states were updated."
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "cumulative_seconds_with_empty_liquidity_reward",
+            "docs": [
+              "Accumulated seconds where when farm distribute rewards, but the bin is empty. The reward will be accumulated for next reward time window."
+            ],
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StaticParameters",
+      "docs": [
+        "Parameter that set by the protocol"
+      ],
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "base_factor",
+            "docs": [
+              "Used for base fee calculation. base_fee_rate = base_factor * bin_step * 10 * 10^base_fee_power_factor"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "filter_period",
+            "docs": [
+              "Filter period determine high frequency trading time window."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "decay_period",
+            "docs": [
+              "Decay period determine when the volatile fee start decay / decrease."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "reduction_factor",
+            "docs": [
+              "Reduction factor controls the volatile fee rate decrement rate."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "variable_fee_control",
+            "docs": [
+              "Used to scale the variable fee component depending on the dynamic of the market"
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "max_volatility_accumulator",
+            "docs": [
+              "Maximum number of bin crossed can be accumulated. Used to cap volatile fee rate."
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "min_bin_id",
+            "docs": [
+              "Min bin id supported by the pool based on the configured bin step."
+            ],
+            "type": "i32"
+          },
+          {
+            "name": "max_bin_id",
+            "docs": [
+              "Max bin id supported by the pool based on the configured bin step."
+            ],
+            "type": "i32"
+          },
+          {
+            "name": "protocol_share",
+            "docs": [
+              "Portion of swap fees retained by the protocol by controlling protocol_share parameter. protocol_swap_fee = protocol_share * total_swap_fee"
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "base_fee_power_factor",
+            "docs": [
+              "Base fee power factor"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "function_type",
+            "docs": [
+              "function type"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "collect_fee_mode",
+            "docs": [
+              "Collect fee mode"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "_padding",
+            "docs": [
+              "Padding for bytemuck safe alignment"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                3
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "TokenProgramFlags",
+      "repr": {
+        "kind": "rust"
+      },
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "TokenProgram"
+          },
+          {
+            "name": "TokenProgram2022"
+          }
+        ]
+      }
+    },
+    {
+      "name": "VariableParameters",
+      "docs": [
+        "Parameters that changes based on dynamic of the market"
+      ],
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "volatility_accumulator",
+            "docs": [
+              "Volatility accumulator measure the number of bin crossed since reference bin ID. Normally (without filter period taken into consideration), reference bin ID is the active bin of last swap.",
+              "It affects the variable fee rate"
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "volatility_reference",
+            "docs": [
+              "Volatility reference is decayed volatility accumulator. It is always <= volatility_accumulator"
+            ],
+            "type": "u32"
+          },
+          {
+            "name": "index_reference",
+            "docs": [
+              "Active bin id of last swap."
+            ],
+            "type": "i32"
+          },
+          {
+            "name": "_padding",
+            "docs": [
+              "Padding for bytemuck safe alignment"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                4
+              ]
+            }
+          },
+          {
+            "name": "last_update_timestamp",
+            "docs": [
+              "Last timestamp the variable parameters was updated"
+            ],
+            "type": "i64"
+          },
+          {
+            "name": "_padding_1",
+            "docs": [
+              "Padding for bytemuck safe alignment"
+            ],
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "reserve_pda_seeds": [
+    "lb_pair",
+    "token_mint"
+  ],
+  "pool_pda_seeds_for_permissionless_v2": [
+    "base_key (preset parameter key)",
+    "sorted token mint 1",
+    "sorted token mint 2"
+  ]
+}

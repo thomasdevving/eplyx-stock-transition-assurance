@@ -29,3 +29,11 @@ anyhow = { workspace = true }
 clap = { workspace = true }
 serde = { workspace = true }
 serde_json = { workspace = true }
+base64 = "0.22.1"
+chrono = { version = "0.4", default-features = false, features = ["clock", "serde"] }
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+solana-program-pack = "3.1"
+spl-token-2022-interface = { version = "3.1.1", features = ["serde"] }
+spl-token-group-interface = "0.7.2"
+spl-token-metadata-interface = "1.0"
+sha2 = "0.10.9"

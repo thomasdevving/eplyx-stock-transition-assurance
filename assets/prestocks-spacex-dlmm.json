@@ -1,0 +1,10 @@
+{
+  "adapter": "meteora-dlmm",
+  "pool_address": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+  "target_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "candidate_source": {
+    "url": "https://api.dexscreener.com/token-pairs/v1/solana/PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "observation": "Supplies an untrusted candidate address only. Protocol, paired mint, reserve PDAs and authority are proven independently from on-chain account data.",
+    "located_at": "2026-09-17"
+  }
+}
