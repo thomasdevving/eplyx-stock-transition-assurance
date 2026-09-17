@@ -1,61 +1,26 @@
-//! Change impact analysis with deterministic execution for Solana program upgrades.
+//! Eplyx Lifecycle Impact: state plus a proposed change and its consequences.
 //!
-//! `scenario::ChangeScenario` separates the proposed change from its state inputs.
-//! Program upgrades are executable; lifecycle changes are placeholders.
+//! Phase 1 supports program-upgrade execution and a lifecycle placeholder.
+//! ChangeScenario owns the change description; fixture accounts and transactions
+//! remain separate state inputs. Lifecycle execution is explicitly unsupported.
 //!
-//! The engine answers one question: *given identical initial state and an
-//! identical transaction, what changes solely because the program version
-//! changed?*
-//!
-//! Layering, outermost to innermost:
-//!
-//! ```text
-//!   corpus     protocol-specific: builds fixtures (state + transaction)
-//!   executor   protocol-agnostic: runs one fixture against one program build
-//!   diff       protocol-agnostic: structural comparison of two results
-//!   interpret  protocol-specific: turns byte deltas into economic meaning
-//!   impact     protocol-specific: aggregates economics across the corpus
-//!   cluster    protocol-specific: groups findings by shared trigger
-//!   shrink     protocol-specific: minimizes a counterexample by re-executing
-//!   money      protocol-agnostic: integer-only fixed-point USD
-//!   report     protocol-agnostic: text / JSON rendering
-//! ```
-//!
-//! Execution is bytecode-based; executor error naming and diff interpretation
-//! currently use the fixture protocol. The adapter seam is a module convention.
-//! Everything that understands what a health factor or a position *is* lives in
-//! `corpus`, `interpret` and `impact`, which is the seam a protocol adapter
-//! would plug into in a later phase.
+//! The execution and raw state diff primitives are reusable. The lending corpus,
+//! economic interpretation, reports and counterexample minimization are retained
+//! as a synthetic regression harness, not a lifecycle consequence model.
 
-pub mod bundle;
-pub mod ci;
-pub mod ci_markdown;
 pub mod cluster;
 pub mod corpus;
-pub mod corpus_store;
-pub mod dependencies;
 pub mod diff;
-pub mod discovery;
 pub mod executor;
-pub mod expectations;
 pub mod hexfmt;
-pub mod historical;
 pub mod impact;
-pub mod ingest;
 pub mod interpret;
 pub mod money;
 pub mod numfmt;
-pub mod protocol;
-pub mod replay;
 pub mod report;
-pub mod review;
 pub mod scenario;
-pub mod screening;
-pub mod select;
-pub mod semantics;
 pub mod shrink;
 pub mod types;
-pub mod versions;
 
 use std::path::{Path, PathBuf};
 

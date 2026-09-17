@@ -1,11 +1,8 @@
 [workspace]
 resolver = "2"
-members = ["interface", "engine", "server"]
-# The on-chain program is intentionally *not* a workspace member. It is compiled
-# for the SBF target by `cargo-build-sbf` with the platform-tools toolchain, and
-# its `solana-program` dependency tree does not co-resolve with litesvm's. Giving
-# it a separate lockfile keeps both graphs free to move independently.
-exclude = ["programs/fixture-lending", "programs/fixture-memo-candidate"]
+members = ["interface", "engine"]
+# The synthetic test program has its own SBF toolchain and lockfile.
+exclude = ["programs/fixture-lending"]
 
 [workspace.package]
 version = "0.1.0"
@@ -14,19 +11,9 @@ license = "MIT"
 
 [workspace.dependencies]
 fixture-lending-interface = { path = "interface" }
-
 borsh = { version = "1.5", features = ["derive"] }
 
-# Host-side execution. The `solana-*` pins below are deliberately identical to
-# litesvm 0.16's own requirements: these crates appear in litesvm's public API,
-# so if the engine and litesvm resolved different versions of them there would be
-# two distinct `Address`/`Instruction` types and the build would fail. That is
-# what the pins prevent, and what compiling proves.
-#
-# It does *not* mean `cargo tree -d` is empty. It is not: older copies of
-# solana-address, solana-pubkey and solana-loader-v3-interface exist deeper in
-# the graph, reached by crates that never exchange those types with us. Harmless,
-# but the guard is the build, not an empty duplicate list.
+# Match the types exposed by LiteSVM's public API.
 litesvm = "0.16"
 solana-account = "4.3.0"
 solana-address = "2.6.1"
@@ -35,30 +22,13 @@ solana-hash = "4.5.0"
 solana-instruction = "3.4.0"
 solana-keypair = "3.1.2"
 solana-message = "4.2.4"
-solana-native-token = "3.0.0"
 solana-rent = "4.3.0"
 solana-signer = "3.0.1"
-solana-system-interface = "3.2.0"
 solana-transaction = "4.1.5"
 solana-transaction-error = "3.3.1"
 solana-instruction-error = "2.4.0"
 
 anyhow = "1.0"
-# The expectation file is written and reviewed by hand, so it wants comments
-# and clean diffs. Read-only: `default-features = false` drops the TOML writer,
-# because nothing here generates an expectation file - a team writes it.
-# The seven crates this adds to `cargo tree -d` are all TOML parsing machinery;
-# no `solana-*` crate is duplicated, so the litesvm type-identity pin holds.
-toml = { version = "0.9", default-features = false, features = ["parse", "serde", "std"] }
-
-# Hosted CI API only. Confined to the `server` crate: the engine pulls no async
-# runtime, and nothing here may reach the analysis path. `rustls` rather than
-# native-tls so a container needs no system OpenSSL.
-axum = { version = "0.8", features = ["multipart"] }
-tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal", "sync", "fs"] }
-tower-http = { version = "0.6", features = ["cors", "limit", "trace"] }
-hex = "0.4"
-rand = "0.8"
 clap = { version = "4.5", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
@@ -66,7 +36,6 @@ serde_json = "1.0"
 [profile.release]
 overflow-checks = true
 
-# Keep SBF artefacts reproducible and small.
 [profile.release.build-override]
 opt-level = 3
 incremental = false

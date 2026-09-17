@@ -1,135 +1,152 @@
-# Eplyx Lifecycle Impact — Phase 1
+# Eplyx Lifecycle Impact — standalone Phase 1
 
-## Scope and provenance
+## Identity and model
 
-This repository starts from the backend of [thomasdevving/Eplyx](https://github.com/thomasdevving/Eplyx) at commit `dcfc36bad0c77b3971a92de59c1c1dd053f540d6`.
-The baseline import is commit `ee9a35d17c09bf481000b8ec80772f4e3ebca282`.
-The 109 imported files match their source Git blob hashes and file modes.
+This is the independent Stocklana hackathon repository. Its Rust package is
+`eplyx-lifecycle-impact`, library is `eplyx_lifecycle_impact` and CLI is
+`eplyx-lifecycle`. All project code lives on `main`. There are no submodules,
+external repository path dependencies, hosted endpoints or links needed to run
+the project.
 
-The baseline includes the Rust engine, interface, hosted API, existing tests,
-program sources, dependency test binary, build scripts and backend reference
-documents. It excludes the frontend, its root npm/pnpm configuration, visual
-prompt documents and generated `fixtures/states/` files. The original Eplyx
-repository is unchanged.
-
-The fixture seeds are deterministic test identities derived from public fixture
-IDs and roles in `engine/src/corpus.rs`. The automatic approval review rejected
-copying their generated files to GitHub. The generator and tests are retained;
-generate fixtures at home before running the suite.
-
-Phase 1 introduces only an in-memory change abstraction and dispatch. No new
-PreStocks logic, Token-2022 logic, UI, holder discovery or external integrations
-are added. Existing protocol adapters and hosted API code are inherited.
-
-## Existing architecture
-
-The fixture route is:
+Selected engine code originated in `thomasdevving/Eplyx` at
+`dcfc36bad0c77b3971a92de59c1c1dd053f540d6`. This is attribution, not a runtime
+or repository dependency. The original Eplyx repository is unchanged.
 
 ```text
-corpus → executor → diff → interpret → impact → cluster → shrink → report
+STATE₀ + ChangeScenario + execution/consequence model → STATE₁ → diff / impact
+                  ├─ ProgramUpgrade: executable
+                  └─ LifecycleChange: description only, execution unsupported
 ```
 
-Fixtures specify initial accounts and a transaction. Execution uses real SBF
-bytecode in a fresh LiteSVM for each side. The fixture economic interpretation,
-aggregation and minimization understand the fixture lending protocol.
+## Reusable boundary
 
-The historical route is:
+`ChangeScenario` is an in-memory enum. `ProgramUpgrade` borrows baseline and
+candidate binaries; the fixture and target program ID are separate inputs.
+The legacy `compare_fixture` and `compare_all` helpers retain their behavior and
+route through this scenario boundary.
+
+Execution constructs a fresh LiteSVM for each side. State, transaction and
+environment inputs remain the same; only the program bytes vary. The diff
+compares observable results, including account bytes, balances, errors, compute
+and invocation shape. Economic values use integer arithmetic.
+
+`LifecycleChange` contains a description, with no conversion ratio, deadline,
+entitlement rule or evidence claim. Evaluating it fails before VM execution or
+report construction. A later phase must define its state inputs, consequence
+model, evidence and result schema.
+
+The existing V1/V2 fixture/report schemas are retained for the upgrade model.
+They are not presented as a generic lifecycle report schema.
+
+## Regression harness, not lifecycle domain logic
+
+The retained offline pipeline is:
 
 ```text
-versions + dependencies + screening → historical → replay
-                                                   ↓
-                                        executor → diff → ProtocolAdapter
+synthetic corpus → executor → diff → interpretation → economic impact
+                                             → clusters → minimization → report
 ```
 
-Historical replay verifies the baseline byte hash and reproduces the recorded
-outcome before executing the candidate. Dependencies, transaction, clock and
-initial account state remain pinned. Protocol adapters interpret changes without
-teaching the raw diff layer new account layouts.
+The lending corpus, position decoding, liquidation math and collateral valuation
+are a synthetic harness proving differential execution and economic reporting.
+Clustering and minimization remain because the existing economic regression
+suite exercises them. They do not define what a lifecycle transition means.
 
-## Where change meant program upgrade
+`interface/` holds this harness's wire format and independent reference math.
+`programs/fixture-lending/` builds its V1/V2 SBF binaries under a separate
+workspace and lockfile. There is no production protocol integration.
 
-| Location | Existing assumption | Phase 1 treatment |
-| --- | --- | --- |
-| `engine/src/lib.rs` | Fixture comparison takes V1 and V2 binaries. | Preserve the public function; delegate to a ProgramUpgrade scenario. |
-| `engine/src/replay.rs` | Replay always compares two binaries. | Preserve the public functions; dispatch to the unchanged upgrade model. |
-| `engine/src/executor.rs` | One execution loads one program build. | Keep as the upgrade execution primitive. |
-| `engine/src/ci.rs` and `server/src/api.rs` | A candidate is a program artefact. | Keep the existing upgrade contract; it reaches scenario dispatch via replay. |
-| `engine/src/main.rs` | CLI comparison accepts V1 and V2 paths. | Preserve flags and behavior. |
-| `engine/src/diff.rs` and `engine/src/report.rs` | Results use V1/V2 and program artefact fields. | Preserve schemas; do not claim these are lifecycle result formats. |
-| `engine/src/versions.rs` | Discovery resolves binaries and upgrade boundaries. | Remain upgrade-specific; not a lifecycle discovery layer. |
+## Removed inherited product features
 
-## Minimal new boundary
+The old hosted API/server, expectation review and CI bundle system, archive and
+RPC ingestion, activity discovery/selection, historical replay orchestration,
+Token-2022/stake-pool adapters, extra candidate programs, hosted/mainnet demos,
+deployment/onboarding documents, TypeScript report checker and original agent
+instructions have been removed. There is no web UI.
+
+The former `compare_replay` scenario method and replay tests are removed with
+historical orchestration. Historical baseline fidelity is not a capability
+claimed by this trimmed Phase 1 project. No lifecycle or holder discovery was
+implemented.
+
+The CLI keeps only offline `compare`, `generate`, `reproduce` and `list`.
+Workspace members, direct dependencies and build/test commands cover only the
+retained engine and synthetic harness. Cargo.lock is reduced to the retained
+dependency graph, preserving existing resolved registry versions/checksums.
+Cargo must validate it during the deferred home checks.
+
+## Exact repository contents
+
+The current tree contains 37 relevant files:
 
 ```text
-state inputs + ChangeScenario
-                    ├─ ProgramUpgrade → existing execution/replay → existing diff/report
-                    └─ LifecycleChange → explicit unsupported error
+.gitignore
+AGENTS.md
+Cargo.lock
+Cargo.toml
+Makefile
+README.md
+docs/lifecycle-phase-1-architecture.md
+engine/Cargo.toml
+engine/src/cluster.rs
+engine/src/corpus.rs
+engine/src/diff.rs
+engine/src/executor.rs
+engine/src/hexfmt.rs
+engine/src/impact.rs
+engine/src/interpret.rs
+engine/src/lib.rs
+engine/src/main.rs
+engine/src/money.rs
+engine/src/numfmt.rs
+engine/src/report.rs
+engine/src/scenario.rs
+engine/src/shrink.rs
+engine/src/types.rs
+engine/tests/scenario.rs
+engine/tests/upgrade_diff.rs
+fixtures/program-id.txt
+interface/Cargo.toml
+interface/src/lib.rs
+programs/fixture-lending/Cargo.lock
+programs/fixture-lending/Cargo.toml
+programs/fixture-lending/src/error.rs
+programs/fixture-lending/src/lib.rs
+programs/fixture-lending/src/math.rs
+programs/fixture-lending/src/processor.rs
+rust-toolchain.toml
+scripts/build-programs.sh
+scripts/test-programs.sh
 ```
 
-`ChangeScenario::ProgramUpgrade` contains borrowed baseline and candidate
-`ProgramVersion` references. It does not copy binaries or own state. A fixture
-and program ID, or historical records and dependencies, are supplied separately.
+The cleanup replaces README/architecture/project instructions, renames the
+engine package and CLI, trims workspace/dependencies/lockfile and commands,
+removes replay dispatch, and updates test imports. The upgrade regression test
+assertions are retained; its precision-source scan now covers only files that
+remain in this repository. Scenario tests still compare direct VM execution
+with the new and legacy APIs and reject unsupported lifecycle execution.
 
-`LifecycleChange` contains a description only. Both comparison entry points
-reject it before any execution or report construction. It defines no conversion
-ratio, deadline, entitlement or economic consequence. Future work must supply
-appropriate state inputs, lifecycle semantics, evidence and result types.
+## Deferred home validation
 
-The legacy `compare_fixture`, `compare_all`, `replay::compare` and
-`replay::compare_with_dependencies` APIs keep their signatures. Fixture and
-replay comparisons now pass through scenario dispatch. The historical upgrade
-body remains in `replay::compare_program_upgrade_with_dependencies` with
-crate-only visibility.
+No local files were created or used for implementation. Compilation, tests,
+rustfmt and clippy have not been executed.
 
-This is not a generic VM, protocol-adapter rewrite or universal report schema.
-The existing fidelity gate and upgrade economic behavior remain in their
-existing model.
+Remote inspection checked module references, repository-relative paths, the
+retained lockfile dependency graph and the final GitHub file/branch state.
+These checks do not substitute for compilation.
 
-## Exact Phase 1 files
-
-These changes are relative to the imported backend baseline:
-
-| File | Change |
-| --- | --- |
-| `engine/src/scenario.rs` | Add change types and fixture/replay dispatch. |
-| `engine/src/lib.rs` | Export the scenario API and delegate legacy fixture comparison. |
-| `engine/src/replay.rs` | Delegate legacy replay comparison; retain the existing upgrade body as a crate-only function. |
-| `engine/tests/scenario.rs` | Compare scenario execution against direct VM execution and the legacy API; reject lifecycle execution. |
-| `engine/tests/replay.rs` | Extend existing tests with scenario report parity and baseline-mismatch rejection through the new API. |
-| `README.md` | Explain this backend-only Phase 1 repository and link this document. |
-| `docs/lifecycle-phase-1-architecture.md` | Record architecture, scope, provenance, changed files and validation. |
-
-No dependency versions, fixture format, report schema, CLI flags, protocol
-adapters, hosted API routes or on-chain program sources change in Phase 1.
-
-## Validation and home checklist
-
-Compilation, formatting tools, lint and tests have **not been run**. The user
-will run them at home. Remote checks verify imported blob hashes/modes and that
-the existing historical upgrade body is preserved verbatim.
-
-With Rust stable and the existing Solana/Anza SBF toolchain on PATH, use the
-Phase 1 branch:
+With Rust stable and the Solana/Anza SBF toolchain available, run on `main`:
 
 ```sh
-git switch phase-1-change-scenario
-make fixtures
 make test
 make fmt-check
 make lint
 ```
 
-`make fixtures` generates the omitted fixture states using the unchanged
-generator. `make test` builds the fixture V1/V2 and stake-pool candidate/reference
-programs, runs program unit tests, and runs the Rust workspace suite. Missing
-artefacts remain errors; tests are not skipped.
+`make test` generates the deterministic fixture states, builds V1/V2, runs
+program unit tests for both versions and runs the Rust workspace tests. Missing
+artefacts are failures, not silently skipped tests. The generator uses public
+fixture IDs and roles for synthetic signing identities. Generated fixture
+states are ignored rather than copied to GitHub.
 
-The existing upgrade suite asserts behavioral/economic classifications,
-determinism, serialization, account metadata and minimized counterexamples.
-The new scenario tests also check the known critical boundary fixture. The
-extended replay tests check identical serialized report output and that a
-baseline fidelity mismatch withholds candidate execution.
-
-Existing mainnet demonstration commands still need their original archive
-access and artefacts. They are outside Phase 1 and are not validation performed
-by this change.
+Lifecycle execution remains intentionally unsupported after successful checks.

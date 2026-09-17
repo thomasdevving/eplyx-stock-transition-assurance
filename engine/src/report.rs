@@ -393,7 +393,7 @@ fn render_cluster(index: usize, cluster: &RegressionCluster) -> String {
     out
 }
 
-/// Full detail for one cluster, used by `eplyx reproduce <cluster-id>`.
+/// Full detail for one cluster, used by `eplyx-lifecycle reproduce <cluster-id>`.
 pub fn render_cluster_reproduction(report: &Report, cluster: &RegressionCluster) -> String {
     let mut out = String::new();
     out.push_str(&format!("REGRESSION GROUP  {}\n", cluster.id));
@@ -668,7 +668,7 @@ pub fn render_text(report: &Report) -> String {
     out
 }
 
-/// Detailed single-fixture view, used by `eplyx reproduce`.
+/// Detailed single-fixture view, used by `eplyx-lifecycle reproduce`.
 pub fn render_reproduction(diff: &StateDiff) -> String {
     let mut out = String::new();
     out.push_str(&format!("FIXTURE  {}\n", diff.fixture_id));

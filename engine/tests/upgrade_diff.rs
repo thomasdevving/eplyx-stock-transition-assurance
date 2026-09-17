@@ -11,9 +11,9 @@
 
 use std::sync::OnceLock;
 
-use eplyx_engine::diff::{Classification, Difference, Severity};
-use eplyx_engine::interpret::{decode, Decoded};
-use eplyx_engine::{corpus, report, Report, StateDiff};
+use eplyx_lifecycle_impact::diff::{Classification, Difference, Severity};
+use eplyx_lifecycle_impact::interpret::{decode, Decoded};
+use eplyx_lifecycle_impact::{corpus, report, Report, StateDiff};
 use fixture_lending_interface::reference;
 
 /// The whole corpus is executed once and shared: 141 fixtures x 2 builds is
@@ -21,7 +21,7 @@ use fixture_lending_interface::reference;
 fn report() -> &'static Report {
     static REPORT: OnceLock<Report> = OnceLock::new();
     REPORT.get_or_init(|| {
-        eplyx_engine::compare_default_corpus().expect(
+        eplyx_lifecycle_impact::compare_default_corpus().expect(
             "could not run the corpus; run ./scripts/build-programs.sh to compile V1 and V2",
         )
     })
@@ -112,8 +112,8 @@ fn v2_disagrees_with_the_reference_somewhere() {
 /// measuring nothing.
 #[test]
 fn the_two_artifacts_differ() {
-    let v1 = std::fs::read(eplyx_engine::default_artifact("v1")).expect("v1 artefact");
-    let v2 = std::fs::read(eplyx_engine::default_artifact("v2")).expect("v2 artefact");
+    let v1 = std::fs::read(eplyx_lifecycle_impact::default_artifact("v1")).expect("v1 artefact");
+    let v2 = std::fs::read(eplyx_lifecycle_impact::default_artifact("v2")).expect("v2 artefact");
     assert_ne!(v1, v2, "V1 and V2 bytecode is identical");
 }
 
@@ -162,7 +162,7 @@ fn v2_accepts_the_same_instruction_encoding_and_layout() {
 /// interface" is a claim about the whole surface rather than one code path.
 #[test]
 fn the_corpus_exercises_the_instruction_surface() {
-    let fixtures = corpus::generate(&eplyx_engine::fixture_program_id());
+    let fixtures = corpus::generate(&eplyx_lifecycle_impact::fixture_program_id());
     let mut seen: Vec<u8> = fixtures
         .iter()
         .map(|f| f.instruction.data[0])
@@ -347,26 +347,26 @@ fn every_critical_finding_is_a_threshold_crossing_or_a_reverted_transaction() {
 
 #[test]
 fn repeated_execution_of_a_fixture_is_bit_identical() {
-    let program_id = eplyx_engine::fixture_program_id();
+    let program_id = eplyx_lifecycle_impact::fixture_program_id();
     let fixtures = corpus::generate(&program_id);
     let fixture = fixtures
         .iter()
         .find(|f| f.id == "boundary-position-017")
         .expect("flagship fixture");
-    let (v1, v2) = eplyx_engine::load_versions(
-        &eplyx_engine::default_artifact("v1"),
-        &eplyx_engine::default_artifact("v2"),
+    let (v1, v2) = eplyx_lifecycle_impact::load_versions(
+        &eplyx_lifecycle_impact::default_artifact("v1"),
+        &eplyx_lifecycle_impact::default_artifact("v2"),
     )
     .expect("artefacts");
 
-    let first = eplyx_engine::compare_fixture(fixture, &program_id, &v1, &v2).unwrap();
-    let second = eplyx_engine::compare_fixture(fixture, &program_id, &v1, &v2).unwrap();
+    let first = eplyx_lifecycle_impact::compare_fixture(fixture, &program_id, &v1, &v2).unwrap();
+    let second = eplyx_lifecycle_impact::compare_fixture(fixture, &program_id, &v1, &v2).unwrap();
     assert_eq!(first, second, "identical inputs produced different results");
 }
 
 #[test]
 fn corpus_generation_is_reproducible() {
-    let program_id = eplyx_engine::fixture_program_id();
+    let program_id = eplyx_lifecycle_impact::fixture_program_id();
     assert_eq!(corpus::generate(&program_id), corpus::generate(&program_id));
 }
 
@@ -423,16 +423,16 @@ fn reproduction_output_shows_both_sides() {
 /// generator is the source of truth. This test keeps them from drifting.
 #[test]
 fn checked_in_fixtures_match_the_generator() {
-    let dir = eplyx_engine::repo_root().join("fixtures/states");
+    let dir = eplyx_lifecycle_impact::repo_root().join("fixtures/states");
     assert!(
         dir.is_dir(),
         "fixtures/states is missing; run `make fixtures`"
     );
-    for fixture in corpus::generate(&eplyx_engine::fixture_program_id()) {
+    for fixture in corpus::generate(&eplyx_lifecycle_impact::fixture_program_id()) {
         let path = dir.join(format!("{}.json", fixture.id));
         let text = std::fs::read_to_string(&path)
             .unwrap_or_else(|e| panic!("reading {}: {e}", path.display()));
-        let on_disk: eplyx_engine::Fixture = serde_json::from_str(&text)
+        let on_disk: eplyx_lifecycle_impact::Fixture = serde_json::from_str(&text)
             .unwrap_or_else(|e| panic!("parsing {}: {e}", path.display()));
         assert_eq!(
             on_disk, fixture,
@@ -446,8 +446,8 @@ fn checked_in_fixtures_match_the_generator() {
 // Phase 2: economic impact aggregation
 // ---------------------------------------------------------------------------
 
-use eplyx_engine::impact::EconomicConsequence;
-use eplyx_engine::money::Usd;
+use eplyx_lifecycle_impact::impact::EconomicConsequence;
+use eplyx_lifecycle_impact::money::Usd;
 
 /// Source-of-truth valuation must be integer-only.
 ///
@@ -460,16 +460,13 @@ fn no_floating_point_in_the_valuation_or_reporting_path() {
     let sources = [
         "interface/src/lib.rs",
         "engine/src/money.rs",
-        "engine/src/protocol/mod.rs",
-        "engine/src/protocol/token2022.rs",
-        "engine/src/protocol/stake_pool.rs",
         "engine/src/interpret.rs",
         "engine/src/impact.rs",
         "engine/src/diff.rs",
         "engine/src/report.rs",
     ];
     for relative in sources {
-        let path = eplyx_engine::repo_root().join(relative);
+        let path = eplyx_lifecycle_impact::repo_root().join(relative);
         let text = std::fs::read_to_string(&path)
             .unwrap_or_else(|e| panic!("reading {}: {e}", path.display()));
         // Scan code only: tests demonstrate the precision f64 would lose, and
@@ -522,7 +519,7 @@ fn aggregates_equal_the_sum_of_their_member_positions() {
     let report = report();
     let entries = &report.fixture_economics;
 
-    let sum = |predicate: &dyn Fn(&eplyx_engine::FixtureEconomics) -> bool| -> (usize, u128, u128) {
+    let sum = |predicate: &dyn Fn(&eplyx_lifecycle_impact::FixtureEconomics) -> bool| -> (usize, u128, u128) {
         let selected: Vec<_> = entries.iter().filter(|e| predicate(e)).collect();
         (
             selected.len(),
@@ -776,7 +773,7 @@ fn the_json_report_carries_the_economic_summary() {
 #[test]
 fn the_json_report_round_trips() {
     let json = report().to_json().expect("serialisable");
-    let restored: eplyx_engine::Report = serde_json::from_str(&json).expect("deserialisable");
+    let restored: eplyx_lifecycle_impact::Report = serde_json::from_str(&json).expect("deserialisable");
     assert_eq!(&restored, report());
 }
 
@@ -784,8 +781,8 @@ fn the_json_report_round_trips() {
 // Phase 3: regression clustering and counterexample minimization
 // ---------------------------------------------------------------------------
 
-use eplyx_engine::cluster::{self, RegressionCluster};
-use eplyx_engine::shrink;
+use eplyx_lifecycle_impact::cluster::{self, RegressionCluster};
+use eplyx_lifecycle_impact::shrink;
 
 fn cluster_by_id(id: &str) -> &'static RegressionCluster {
     report()
@@ -797,7 +794,7 @@ fn cluster_by_id(id: &str) -> &'static RegressionCluster {
 fn minimized_report() -> &'static Report {
     static REPORT: OnceLock<Report> = OnceLock::new();
     REPORT.get_or_init(|| {
-        eplyx_engine::compare_default_corpus_minimized()
+        eplyx_lifecycle_impact::compare_default_corpus_minimized()
             .expect("minimized corpus run; build programs first")
     })
 }
@@ -914,7 +911,7 @@ fn ranges_describe_the_trigger_and_wide_ones_are_not_promoted() {
 
 #[test]
 fn representative_selection_is_deterministic_and_derived_from_data() {
-    let program_id = eplyx_engine::fixture_program_id();
+    let program_id = eplyx_lifecycle_impact::fixture_program_id();
     let fixtures = corpus::generate(&program_id);
     let first = cluster::build(&fixtures, &report().diffs, &report().fixture_economics);
     let second = cluster::build(&fixtures, &report().diffs, &report().fixture_economics);
@@ -980,11 +977,11 @@ fn every_critical_cluster_produces_a_smaller_counterexample() {
 #[test]
 fn minimized_cases_preserve_the_exact_regression_class() {
     let report = minimized_report();
-    let program_id = eplyx_engine::fixture_program_id();
+    let program_id = eplyx_lifecycle_impact::fixture_program_id();
     let fixtures = corpus::generate(&program_id);
-    let (v1, v2) = eplyx_engine::load_versions(
-        &eplyx_engine::default_artifact("v1"),
-        &eplyx_engine::default_artifact("v2"),
+    let (v1, v2) = eplyx_lifecycle_impact::load_versions(
+        &eplyx_lifecycle_impact::default_artifact("v1"),
+        &eplyx_lifecycle_impact::default_artifact("v2"),
     )
     .expect("artefacts");
 
@@ -998,16 +995,16 @@ fn minimized_cases_preserve_the_exact_regression_class() {
         // Signature of the original finding.
         let original_diff = report.diff_for(&base.id).expect("diff");
         let original_economics =
-            eplyx_engine::impact::evaluate(base, original_diff).expect("economics");
+            eplyx_lifecycle_impact::impact::evaluate(base, original_diff).expect("economics");
         let target = cluster::signature(base, original_diff, &original_economics);
 
         // Signature of the minimized case, recomputed from a fresh execution.
         let candidate =
             shrink::variant(base, case.collateral_lamports, case.debt_micro_usd).expect("variant");
         let candidate_diff =
-            eplyx_engine::compare_fixture(&candidate, &program_id, &v1, &v2).expect("execute");
+            eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).expect("execute");
         let candidate_economics =
-            eplyx_engine::impact::evaluate(&candidate, &candidate_diff).expect("economics");
+            eplyx_lifecycle_impact::impact::evaluate(&candidate, &candidate_diff).expect("economics");
 
         assert_eq!(
             cluster::signature(&candidate, &candidate_diff, &candidate_economics),
@@ -1036,11 +1033,11 @@ fn minimized_cases_preserve_the_exact_regression_class() {
 #[test]
 fn reproducing_a_minimized_case_is_deterministic() {
     let report = minimized_report();
-    let program_id = eplyx_engine::fixture_program_id();
+    let program_id = eplyx_lifecycle_impact::fixture_program_id();
     let fixtures = corpus::generate(&program_id);
-    let (v1, v2) = eplyx_engine::load_versions(
-        &eplyx_engine::default_artifact("v1"),
-        &eplyx_engine::default_artifact("v2"),
+    let (v1, v2) = eplyx_lifecycle_impact::load_versions(
+        &eplyx_lifecycle_impact::default_artifact("v1"),
+        &eplyx_lifecycle_impact::default_artifact("v2"),
     )
     .expect("artefacts");
 
@@ -1052,15 +1049,15 @@ fn reproducing_a_minimized_case_is_deterministic() {
         .expect("fixture");
 
     let candidate = shrink::variant(base, case.collateral_lamports, case.debt_micro_usd).unwrap();
-    let first = eplyx_engine::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
-    let second = eplyx_engine::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
+    let first = eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
+    let second = eplyx_lifecycle_impact::compare_fixture(&candidate, &program_id, &v1, &v2).unwrap();
     assert_eq!(first, second);
 
     // And the search itself is reproducible: re-running it from the same
     // starting fixture lands on exactly the same case.
     let original_diff = report.diff_for(&base.id).expect("diff");
     let original_economics =
-        eplyx_engine::impact::evaluate(base, original_diff).expect("economics");
+        eplyx_lifecycle_impact::impact::evaluate(base, original_diff).expect("economics");
     let target = cluster::signature(base, original_diff, &original_economics);
     let again = shrink::minimize(
         base,
@@ -1151,19 +1148,19 @@ fn the_json_report_carries_clusters_and_round_trips_with_minimized_cases() {
 
 #[test]
 fn audit_account_metadata_changes_are_not_silent() {
-    let fixture = corpus::generate(&eplyx_engine::fixture_program_id()).remove(0);
+    let fixture = corpus::generate(&eplyx_lifecycle_impact::fixture_program_id()).remove(0);
     let original = diff_for(&fixture.id).v1.clone();
     let mut altered = original.clone();
     let account = altered.accounts.values_mut().next().unwrap();
     account.owner = "11111111111111111111111111111111".into();
     account.executable = !account.executable;
-    let diff = eplyx_engine::diff::compare(&fixture, original, altered);
+    let diff = eplyx_lifecycle_impact::diff::compare(&fixture, original, altered);
     assert!(!diff.outcome_differences().is_empty());
 }
 
 #[test]
 fn audit_cluster_ids_are_unique_for_same_action_different_fields() {
-    let mut fixtures = corpus::generate(&eplyx_engine::fixture_program_id());
+    let mut fixtures = corpus::generate(&eplyx_lifecycle_impact::fixture_program_id());
     fixtures.truncate(2);
     let diffs: Vec<_> = fixtures
         .iter()
@@ -1181,31 +1178,31 @@ fn audit_cluster_ids_are_unique_for_same_action_different_fields() {
             diff
         })
         .collect();
-    let economics = eplyx_engine::impact::evaluate_all(&fixtures, &diffs);
-    let clusters = eplyx_engine::cluster::build(&fixtures, &diffs, &economics);
+    let economics = eplyx_lifecycle_impact::impact::evaluate_all(&fixtures, &diffs);
+    let clusters = eplyx_lifecycle_impact::cluster::build(&fixtures, &diffs, &economics);
     assert_eq!(clusters.len(), 2);
     assert_ne!(clusters[0].id, clusters[1].id);
 }
 
 #[test]
 fn audit_zero_granularity_is_rejected() {
-    let program_id = eplyx_engine::fixture_program_id();
+    let program_id = eplyx_lifecycle_impact::fixture_program_id();
     let fixture = corpus::generate(&program_id).remove(0);
     let diff = diff_for(&fixture.id);
-    let economics = eplyx_engine::impact::evaluate(&fixture, diff).unwrap();
-    let target = eplyx_engine::cluster::signature(&fixture, diff, &economics);
-    let (v1, v2) = eplyx_engine::load_versions(
-        &eplyx_engine::default_artifact("v1"),
-        &eplyx_engine::default_artifact("v2"),
+    let economics = eplyx_lifecycle_impact::impact::evaluate(&fixture, diff).unwrap();
+    let target = eplyx_lifecycle_impact::cluster::signature(&fixture, diff, &economics);
+    let (v1, v2) = eplyx_lifecycle_impact::load_versions(
+        &eplyx_lifecycle_impact::default_artifact("v1"),
+        &eplyx_lifecycle_impact::default_artifact("v2"),
     )
     .unwrap();
-    assert!(eplyx_engine::shrink::minimize(
+    assert!(eplyx_lifecycle_impact::shrink::minimize(
         &fixture,
         target,
         &program_id,
         &v1,
         &v2,
-        eplyx_engine::shrink::ShrinkConfig {
+        eplyx_lifecycle_impact::shrink::ShrinkConfig {
             collateral_granularity: 0,
             ..Default::default()
         }
