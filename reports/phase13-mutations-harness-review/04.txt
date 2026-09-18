@@ -1,0 +1,23 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.71s
+     Running tests/lifecycle_counterfactual.rs (target/debug/deps/lifecycle_counterfactual-280ef892982e7672)
+
+running 1 test
+test zero_balance_never_becomes_public_exposure has been running for over 60 seconds
+test zero_balance_never_becomes_public_exposure ... FAILED
+
+failures:
+
+---- zero_balance_never_becomes_public_exposure stdout ----
+
+thread 'zero_balance_never_becomes_public_exposure' (8118388) panicked at engine/tests/lifecycle_counterfactual.rs:206:13:
+zero_balance_has_no_public_economic_exposure: solana-token-account:121kjUW1jsJ5eLnkAEMm8NrNrW7VdVFiZhkuTBBrTCr5
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    zero_balance_never_becomes_public_exposure
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 18 filtered out; finished in 94.48s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test lifecycle_counterfactual`

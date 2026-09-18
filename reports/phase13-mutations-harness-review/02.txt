@@ -1,0 +1,25 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.76s
+     Running tests/lifecycle_counterfactual.rs (target/debug/deps/lifecycle_counterfactual-280ef892982e7672)
+
+running 1 test
+test vault_semantics_change_without_byte_changes has been running for over 60 seconds
+test vault_semantics_change_without_byte_changes ... FAILED
+
+failures:
+
+---- vault_semantics_change_without_byte_changes stdout ----
+
+thread 'vault_semantics_change_without_byte_changes' (8113030) panicked at engine/tests/lifecycle_counterfactual.rs:156:5:
+assertion failed: r.comparisons.iter().all(|d|
+        d.unchanged_onchain_state && !d.onchain_state_changed &&
+            !d.categories.contains(&DiffCategory::OnChainStateChanged))
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    vault_semantics_change_without_byte_changes
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 18 filtered out; finished in 100.11s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test lifecycle_counterfactual`

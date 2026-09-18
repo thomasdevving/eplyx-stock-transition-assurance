@@ -1,0 +1,71 @@
+SpaceX PreStocks (SPACEX) COUNTERFACTUAL LIFECYCLE ANALYSIS
+Production world: UNCHANGED
+Digest: c0cf207b91abd06e70f4a0e8b01a6614e941c4ff6709081e39d6d4880b3ebf78
+Direct holder: solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs
+Protocol position: solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN
+
+Before transition — 2026-09-17 19:59:59.999999999 UTC
+Lifecycle: Active
+Positive balances: 10155
+RequiresTransition: 0
+Stale entities: 0
+Stale protocol exposures: 0
+Unaffected zero balances: 7802
+Unknown-role affected: 0
+Verified integrations affected: 0
+Direct holder: 17621 raw / Unaffected
+Frozen LP principal: 21296808 raw / Unaffected
+Readiness: PreEvent
+Direct OfficialTransition: NotTested; lifecycle relevant=false
+Direct SecondaryMarketExit: Proven; lifecycle relevant=false
+Direct Transfer: Proven; lifecycle relevant=false
+Position OfficialTransition: NotTested; lifecycle relevant=false
+Position Withdrawal: Proven; lifecycle relevant=false
+
+Transition effective, before deadline — 2026-09-17 20:00:00 UTC
+Lifecycle: TransitionRequired
+Positive balances: 10155
+RequiresTransition: 10154
+Stale entities: 1
+Stale protocol exposures: 1
+Unaffected zero balances: 7802
+Unknown-role affected: 2969
+Verified integrations affected: 1
+Direct holder: 17621 raw / RequiresTransition
+Frozen LP principal: 21296808 raw / StaleExposure
+Readiness: Applicable / Incomplete
+Direct OfficialTransition: NotTested; lifecycle relevant=true
+Direct SecondaryMarketExit: Proven; lifecycle relevant=true
+Direct Transfer: Proven; lifecycle relevant=true
+Position OfficialTransition: NotTested; lifecycle relevant=true
+Position Withdrawal: Proven; lifecycle relevant=true
+
+Declared deadline effective — 2027-03-12 23:59:00 UTC
+Lifecycle: NoIssuerEntitlement
+Positive balances: 10155
+RequiresTransition: 0
+Stale entities: 10155
+Stale protocol exposures: 1
+Unaffected zero balances: 7802
+Unknown-role affected: 2969
+Verified integrations affected: 1
+Direct holder: 17621 raw / StaleExposure
+Frozen LP principal: 21296808 raw / StaleExposure
+Readiness: Applicable / Incomplete
+Direct OfficialTransition: NotTested; lifecycle relevant=true
+Direct SecondaryMarketExit: Proven; lifecycle relevant=true
+Direct Transfer: Proven; lifecycle relevant=true
+Position OfficialTransition: NotTested; lifecycle relevant=true
+Position Withdrawal: Proven; lifecycle relevant=true
+
+before_transition → after_transition: 10155 entity classifications changed
+Lifecycle meaning changed: YES
+On-chain state changed: NO
+Cause: ["/policy/effective_at"]
+
+after_transition → after_deadline: 10154 entity classifications changed
+Lifecycle meaning changed: YES
+On-chain state changed: NO
+Cause: ["/policy/deadline/at"]
+
+Frozen pre-execution observations; exact historical banks/signing assumptions retained. No capture or execution.

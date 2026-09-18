@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "phase": 13,
+  "checks": [
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/make-test.txt",
+      "log_sha256": "40d4c30eb52ca60ca26c6cd17d5a3a49e971e79515e9dbb9aceb314c8a39c1fd"
+    },
+    {
+      "command": "cargo test --locked -p eplyx-lifecycle-impact --test lifecycle_counterfactual",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/focused-tests-final.txt",
+      "log_sha256": "d2e204a89cde5e137f82f28beabbafc76d1e1c365eb0c48ee592be30f5744e2c"
+    },
+    {
+      "command": "make fmt-check",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/make-fmt-check-final.txt",
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239"
+    },
+    {
+      "command": "make lint",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/make-lint-final.txt",
+      "log_sha256": "a366020638287df7c05a081146f6bcebdf356362d3f4b05445a3d3db17688acb"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/git-diff-check-final.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "python3 scripts/test-phase13-mutations.py",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/mutations-command.txt",
+      "log_sha256": "63978c09be8d44e58aeb7f9b9760b9bd7cd002d436cfdd1acb52c1589b61c043"
+    },
+    {
+      "command": "cargo run --locked -q -p eplyx-lifecycle-impact -- compare-scenarios --out reports/phase13-validation/offline-replay.json",
+      "exit_code": 0,
+      "log_file": "reports/phase13-validation/offline-replay.txt",
+      "log_sha256": "81344c17de6278c76aba82fe48aad795314dba07e6e137e1719947e9ad1e8ca6"
+    }
+  ],
+  "full_suite": {
+    "passed": 332,
+    "failed": 0,
+    "ignored": 0,
+    "synthetic_sbf_versions_built": 2,
+    "counterfactual_source_sha256_at_full_suite": "9a94dc88574c60a522eb70e71633da9126eb767975aee5be76f5ba16e728937a",
+    "final_attribution_clarification": "Only new-module NotApplicable/Unknown path cause wording changed after the full suite. The regenerated final report, all 19 focused tests, fmt-check and lint passed afterward; original execution tests/semantics were unchanged."
+  },
+  "final_focused": {
+    "passed": 19,
+    "failed": 0,
+    "ignored": 0
+  },
+  "mutations": {
+    "injected": 8,
+    "caught_by_named_assertion": 8,
+    "compiler_failures_counted": 0,
+    "source_restored": true,
+    "artifact": "reports/spacex-phase13-mutation-results.json",
+    "artifact_sha256": "eb73400202c1268fa10c390e07d0ccf32eb88aa3a7bdc937d931758b15bf297d",
+    "source_sha256": "e132fa559829935181b3a7da28bb49d0e3c96aec8343b17864bbb66df60c8b46"
+  },
+  "historical_artifacts": {
+    "checked": 293,
+    "unchanged": 293,
+    "changed": [],
+    "baseline": "reports/phase13-validation/historical-inputs-before.json",
+    "baseline_sha256": "1b5d9f89022eee7e85fecfff4e9943549305017dc8b7abfac881a2c299593f1e",
+    "check": "reports/phase13-validation/historical-inputs-check.json",
+    "check_sha256": "1f72e95262f43144a5961fb43c66030b262291e204b40177b43e1eb3f73399ed"
+  },
+  "offline_replay": {
+    "exit_code": 0,
+    "saved_json_byte_identical": true,
+    "human_stdout_byte_identical": true,
+    "json_sha256": "268182e18bcce4b6dfba2b4dfcf785619033a13f01923cb01c98a35488926a47",
+    "text_sha256": "81344c17de6278c76aba82fe48aad795314dba07e6e137e1719947e9ad1e8ca6",
+    "integration_json_stdout_saved_published_identical": true,
+    "integration_portable_absolute_inputs": true,
+    "integration_protected_output_exit_code": 2
+  },
+  "artifacts": {
+    "reports/spacex-counterfactual-lifecycle.json": "268182e18bcce4b6dfba2b4dfcf785619033a13f01923cb01c98a35488926a47",
+    "reports/spacex-counterfactual-lifecycle.txt": "81344c17de6278c76aba82fe48aad795314dba07e6e137e1719947e9ad1e8ca6",
+    "reports/spacex-counterfactual-lifecycle.sha256": "0a652e924d8b4fb51d53d72fd927ba029e2a403797d8e1745bf002c4514d0dab"
+  },
+  "final_source_files_sha256": {
+    "AGENTS.md": "385df5028a8e8772fdf38fbc4515b685091c72ef313223c65c90d25ddbbb40ef",
+    "README.md": "b97b9ba49159f3ab9e69aed6ed8a06657020f7159e05dd011e2656f5e5ad8ef5",
+    "engine/src/lib.rs": "b215be27d3e69fd9c968d35454a386a0518c4f179540e40c88470402eac6f8ce",
+    "engine/src/main.rs": "d6fb9f8b929434981c982f213ca07dac4bacabc9d15553a57db3c674bac0afc5",
+    "engine/src/lifecycle/consequence.rs": "b212c6b3af945dea820c0575d3a49df38b7c3de1a61992279d3ae4300f73cc77",
+    "engine/src/counterfactual/mod.rs": "e132fa559829935181b3a7da28bb49d0e3c96aec8343b17864bbb66df60c8b46",
+    "engine/tests/lifecycle_counterfactual.rs": "85be87976ceb8448276caa24093d85a12e04f97f58f734289622757d782052a9",
+    "scripts/test-phase13-mutations.py": "c8da4e9989c356ab909b0ff28b08fdd861e3ef217ed27ae694a280897f622a9d",
+    "docs/lifecycle-phase-13-counterfactual.md": "ce6282de99329377e1a3539ddbaeed2f173c00c5c11b31a4db7242390ff5493b",
+    "docs/lifecycle-phase-13-production-report.md": "d8a3a0f01baaf266479b7c20aa9b17c78a051132ad5eea7c533ff28f96afa95e"
+  },
+  "scope": {
+    "new_rpc_capture": false,
+    "new_holder_or_pool_sampling": false,
+    "new_path_executions": false,
+    "ui_changes": false,
+    "next_phase_started": false
+  },
+  "note": "The pre-existing working tree contains earlier phases. The Phase 13 file list records this phase only; no commit or push performed."
+}

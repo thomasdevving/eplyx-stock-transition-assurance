@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "injected": 8,
+  "caught": 8,
+  "source_restored": true,
+  "source_sha256": "e132fa559829935181b3a7da28bb49d0e3c96aec8343b17864bbb66df60c8b46",
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Change captured holder balance only after the event",
+      "test": "balances_never_change",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "balances_never_change",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "a4ee5fb80e4ebc1e87db6ef7efda4a78034c254db67b368001569952ea36577f",
+      "log_file": "reports/phase13-mutations/01.txt",
+      "log_sha256": "ef479c7066325d105d469332f942444a5a2c395ee55e3560fb8d33238f5c74a8"
+    },
+    {
+      "mutation": 2,
+      "fault": "Report lifecycle meaning change as an on-chain mutation",
+      "test": "vault_semantics_change_without_byte_changes",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "vault_semantics_change_without_byte_changes",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "7124d697a67191a89e4cd9c56b6cd755b27f2b0197aa44917c0328ac30c58157",
+      "log_file": "reports/phase13-mutations/02.txt",
+      "log_sha256": "b4399e3034115a9d455ccb26de1b810942c605df2a6a8f8af68c6dcfc30dc2b0"
+    },
+    {
+      "mutation": 3,
+      "fault": "Keep selected holder Unaffected after transition",
+      "test": "holder_requires_transition_after_event",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "holder_requires_transition_after_event",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "edab2fa73643e1fd2f8a31a0613b0350b65cf46afc0a0e3509ca340587ffeb5b",
+      "log_file": "reports/phase13-mutations/03.txt",
+      "log_sha256": "ec72eb1b2c7114d1a7eeb1cada5b41950dd0b226337b8da4d8aec6afbda9a3f5"
+    },
+    {
+      "mutation": 4,
+      "fault": "Classify public zero-balance accounts as transition exposure",
+      "test": "zero_balance_never_becomes_public_exposure",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "zero_balance_never_becomes_public_exposure",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "42195d807bd388aa9fd79a95811c8084cb4c8dcd1724bc86c0bf8bcdc4c1a537",
+      "log_file": "reports/phase13-mutations/04.txt",
+      "log_sha256": "23f2af37e531738952fb5f5c910d7e1143940eae8c4979b71414a9abc6cb95a2"
+    },
+    {
+      "mutation": 5,
+      "fault": "Promote proven token movement to official transition proof after deadline",
+      "test": "official_transition_never_inherits_proof",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "official_transition_never_inherits_proof",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "681c6ecaa922be7fa638ec5dc8de0cbd87de36eadac289b75fb795a22c102ef8",
+      "log_file": "reports/phase13-mutations/05.txt",
+      "log_sha256": "8c25b36106389a04c9c5788e440060f1ee0be07902d1ee668217463f56ace76d"
+    },
+    {
+      "mutation": 6,
+      "fault": "Change readiness without assurance-policy justification",
+      "test": "readiness_changes_only_with_policy_and_applicability",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "readiness_changes_only_with_policy_and_applicability",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "06923627ab6f49c93581aaebd346381ee835dd9945cae5f1b8dcc3c53537fb7f",
+      "log_file": "reports/phase13-mutations/06.txt",
+      "log_sha256": "8c1791561331591cf285be324fa36439b86b0f35c062299ff350c3def2a553bc"
+    },
+    {
+      "mutation": 7,
+      "fault": "Accept distinct production-state digests as identical worlds",
+      "test": "different_worlds_are_non_comparable",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "different_worlds_are_non_comparable",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "b0725c60890dd0868a8910ca0aa924688534d49f45b3413d32a9df480253d9f2",
+      "log_file": "reports/phase13-mutations/07.txt",
+      "log_sha256": "4f9113ea250c728c84a852ed379ffa6cea1596a1ea8cdd8e68670df08c245eb2"
+    },
+    {
+      "mutation": 8,
+      "fault": "Let scenario evaluation rewrite stored historical execution matrix",
+      "test": "historical_execution_evidence_is_immutable",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "historical_execution_evidence_is_immutable",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "36f91fb0dac5cd1d1c0c1796c98bbc6c108d093c2d30e9cc0c5bb9409e02c4a8",
+      "log_file": "reports/phase13-mutations/08.txt",
+      "log_sha256": "53deaed7055ff051ac0341c68bd9159e19463fc483d90a6ca898f4f590dd723d"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "injected": 8,
+  "caught": 7,
+  "source_restored": true,
+  "source_sha256": "350ab525758f9354279c103eb6bdff08b0c63ee07213911ce2e179782e0b7fc1",
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Change captured holder balance only after the event",
+      "test": "balances_never_change",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "balances_never_change",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "d0d5c7b4d7990347117d8ee4de165cccb3459cda4163625c147785d205ccacd5",
+      "log_file": "reports/phase13-mutations-development/01.txt",
+      "log_sha256": "e71cac62263c7b419dd7a1ffa4599b43415021529e36b26bad7396ea2ff103f3"
+    },
+    {
+      "mutation": 2,
+      "fault": "Report lifecycle meaning change as an on-chain mutation",
+      "test": "vault_semantics_change_without_byte_changes",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "vault_semantics_change_without_byte_changes",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "66a8263ee04f224414c6ac4ef204ae0bb96d2fbc5ae3767df0d977f1bf983442",
+      "log_file": "reports/phase13-mutations-development/02.txt",
+      "log_sha256": "e25fdfe57fdcc546595d03a6060983015abd8574a142c130b83763fc8b8e8c5c"
+    },
+    {
+      "mutation": 3,
+      "fault": "Keep selected holder Unaffected after transition",
+      "test": "holder_requires_transition_after_event",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "holder_requires_transition_after_event",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "57c0a81fe7d30d0ec66272186802fa559c650846af4f9b74e36cf589c69efd4d",
+      "log_file": "reports/phase13-mutations-development/03.txt",
+      "log_sha256": "bb2fdc4310370fac71dae0ed2efe42e879d4121c793ae2f737cb1ee8ca9736c5"
+    },
+    {
+      "mutation": 4,
+      "fault": "Classify public zero-balance accounts as transition exposure",
+      "test": "zero_balance_never_becomes_public_exposure",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "zero_balance_never_becomes_public_exposure",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": false,
+      "mutated_source_sha256": "3a39e9c880405823a9f56bc51388128c83a8b173c79c29bf96183307e012102c",
+      "log_file": "reports/phase13-mutations-development/04.txt",
+      "log_sha256": "121d5c2a3fc0c4e8acceb9a909587dcc00cc005a0bb27d63ffba65322bd86dfe",
+      "caught_by_preliminary_panic_detector": true
+    },
+    {
+      "mutation": 5,
+      "fault": "Promote proven token movement to official transition proof after deadline",
+      "test": "official_transition_never_inherits_proof",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "official_transition_never_inherits_proof",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "ed902c09c896f89bbd5cf0273fb628e47233d164e314ad4917cb4e93f864525f",
+      "log_file": "reports/phase13-mutations-development/05.txt",
+      "log_sha256": "240143bbc91b43bc2dd4f035c5f8b895294d2989f27332f9e95504713e2123d2"
+    },
+    {
+      "mutation": 6,
+      "fault": "Change readiness without assurance-policy justification",
+      "test": "readiness_changes_only_with_policy_and_applicability",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "readiness_changes_only_with_policy_and_applicability",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "d76cede2f855da4b1e2e9e00b9ef0d92de88a4eee63d995a158791642aaf4e73",
+      "log_file": "reports/phase13-mutations-development/06.txt",
+      "log_sha256": "58be5748adff97021bfb364ecc97323613628350b94a491e6111cf78cf730694"
+    },
+    {
+      "mutation": 7,
+      "fault": "Accept distinct production-state digests as identical worlds",
+      "test": "different_worlds_are_non_comparable",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "different_worlds_are_non_comparable",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "fb8e8724d859d1b0a77d71cceaadf24244e2e01379750dd3e5d6118e1f3eb3f0",
+      "log_file": "reports/phase13-mutations-development/07.txt",
+      "log_sha256": "fb83dcddede96ccf08c43e824fd5d440b6c97561a400a3a9badc4ed37728f633"
+    },
+    {
+      "mutation": 8,
+      "fault": "Let scenario evaluation rewrite stored historical execution matrix",
+      "test": "historical_execution_evidence_is_immutable",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_counterfactual",
+        "historical_execution_evidence_is_immutable",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "b92881b47e12f5ce7af4d1d17259daccbaef3ba32b48bdf708b825b28e30d129",
+      "log_file": "reports/phase13-mutations-development/08.txt",
+      "log_sha256": "41332df07edb2942e11115c09319922da828621d91d297c38bf46d6ff233ab22"
+    }
+  ],
+  "development_only": true,
+  "note": "Preliminary detector accepted a lookup panic for case 4. Final campaign requires named assertions."
+}

@@ -1,0 +1,23 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.65s
+     Running tests/lifecycle_counterfactual.rs (target/debug/deps/lifecycle_counterfactual-280ef892982e7672)
+
+running 1 test
+test different_worlds_are_non_comparable has been running for over 60 seconds
+test different_worlds_are_non_comparable ... FAILED
+
+failures:
+
+---- different_worlds_are_non_comparable stdout ----
+
+thread 'different_worlds_are_non_comparable' (8133123) panicked at engine/tests/lifecycle_counterfactual.rs:365:5:
+different_production_digests_rejected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    different_worlds_are_non_comparable
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 18 filtered out; finished in 90.00s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test lifecycle_counterfactual`

@@ -1,0 +1,36 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.61s
+     Running tests/lifecycle_counterfactual.rs (target/debug/deps/lifecycle_counterfactual-280ef892982e7672)
+
+running 18 tests
+test altered_inputs_and_semantics_fail_regeneration has been running for over 60 seconds
+test balances_never_change has been running for over 60 seconds
+test canonical_json_roundtrip_is_byte_deterministic has been running for over 60 seconds
+test deadline_uses_exact_policy_status has been running for over 60 seconds
+test different_worlds_are_non_comparable has been running for over 60 seconds
+test historical_execution_evidence_is_immutable has been running for over 60 seconds
+test holder_requires_transition_after_event has been running for over 60 seconds
+test lifecycle_crosses_transition_boundary has been running for over 60 seconds
+test official_transition_never_inherits_proof has been running for over 60 seconds
+test offline_cli_reproduces_canonical_report has been running for over 60 seconds
+test lifecycle_crosses_transition_boundary ... ok
+test official_transition_never_inherits_proof ... ok
+test deadline_uses_exact_policy_status ... ok
+test holder_requires_transition_after_event ... ok
+test different_worlds_are_non_comparable ... ok
+test transfer_stays_proven ... ok
+test canonical_json_roundtrip_is_byte_deterministic ... ok
+test withdrawal_stays_proven ... ok
+test offline_cli_reproduces_canonical_report ... ok
+test vault_semantics_change_without_byte_changes ... ok
+test population_counts_are_derived_and_proof_scope_is_preserved ... ok
+test balances_never_change ... ok
+test zero_balance_never_becomes_public_exposure ... ok
+test same_production_digest_before_and_after ... ok
+test scenario_order_is_deterministic ... ok
+test historical_execution_evidence_is_immutable ... ok
+test readiness_changes_only_with_policy_and_applicability ... ok
+test altered_inputs_and_semantics_fail_regeneration ... ok
+
+test result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 188.24s
+

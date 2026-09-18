@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.28s
+     Running tests/lifecycle_counterfactual.rs (target/debug/deps/lifecycle_counterfactual-280ef892982e7672)
+
+running 1 test
+test readiness_changes_only_with_policy_and_applicability ... FAILED
+
+failures:
+
+---- readiness_changes_only_with_policy_and_applicability stdout ----
+
+thread 'readiness_changes_only_with_policy_and_applicability' (8048247) panicked at engine/tests/lifecycle_counterfactual.rs:327:9:
+assertion `left == right` failed
+  left: Some(Ready)
+ right: Some(Incomplete)
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    readiness_changes_only_with_policy_and_applicability
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 18 filtered out; finished in 50.19s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test lifecycle_counterfactual`

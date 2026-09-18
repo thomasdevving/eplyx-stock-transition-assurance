@@ -1,0 +1,8 @@
+1/8 balances_never_change: caught
+2/8 vault_semantics_change_without_byte_changes: caught
+3/8 holder_requires_transition_after_event: caught
+4/8 zero_balance_never_becomes_public_exposure: caught
+5/8 official_transition_never_inherits_proof: caught
+6/8 readiness_changes_only_with_policy_and_applicability: caught
+7/8 different_worlds_are_non_comparable: caught
+8/8 historical_execution_evidence_is_immutable: caught

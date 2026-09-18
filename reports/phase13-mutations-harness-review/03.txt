@@ -1,0 +1,25 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.43s
+     Running tests/lifecycle_counterfactual.rs (target/debug/deps/lifecycle_counterfactual-280ef892982e7672)
+
+running 1 test
+test holder_requires_transition_after_event has been running for over 60 seconds
+test holder_requires_transition_after_event ... FAILED
+
+failures:
+
+---- holder_requires_transition_after_event stdout ----
+
+thread 'holder_requires_transition_after_event' (8116083) panicked at engine/tests/lifecycle_counterfactual.rs:115:5:
+assertion `left == right` failed
+  left: Unaffected
+ right: RequiresTransition
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    holder_requires_transition_after_event
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 18 filtered out; finished in 81.39s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test lifecycle_counterfactual`
