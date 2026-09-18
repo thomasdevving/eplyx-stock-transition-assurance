@@ -1,0 +1,154 @@
+{
+  "phase": 15,
+  "final_engine": {
+    "passed": 354,
+    "failed": 0,
+    "ignored": 0
+  },
+  "final_service": {
+    "passed": 9,
+    "failed": 0
+  },
+  "final_browser": {
+    "passed": 10,
+    "failed": 0,
+    "original_tests_retained": 6,
+    "actual_engine_runs": 4
+  },
+  "checks": [
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-make-test.txt",
+      "log_sha256": "86e20c44807242c5170d3b8c1f339bde89adc9c469ea9cccaba4a34d632f15fb"
+    },
+    {
+      "command": "make fmt-check",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-make-fmt-check.txt",
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239"
+    },
+    {
+      "command": "make lint",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-make-lint.txt",
+      "log_sha256": "52b167f5ab34e7d06de11e895cf2718a6745786e5a64c2e22d628bc077cc95ca"
+    },
+    {
+      "command": "npm run check:frontend",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-frontend-check.txt",
+      "log_sha256": "18382232cfc9f1f2b117b1c8ba130e1a8e6e7264a5233c404d03b5d44b9fd6be"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-frontend-build.txt",
+      "log_sha256": "d4ff239568489d2c0f1b9e4dcefc3b472aeabd4a92e2c4d52d8aeea63cfaf22f"
+    },
+    {
+      "command": "npm run test:service",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-service-tests.txt",
+      "log_sha256": "a5841b093cb5199558eccdfb8cbcfdaf5c83c09e4317018fefb0fd9a3d8ab33e"
+    },
+    {
+      "command": "npm run test:frontend -- --workers=1",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-browser-tests.txt",
+      "log_sha256": "316e8a96937f37f64e4da3207e6f66565783869466cb715418afc01c24cee1e3"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "log_file": "reports/phase15-validation/final-git-diff-check.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "historical": {
+    "checked": 552,
+    "unchanged": 552,
+    "changed": []
+  },
+  "source": {
+    "bindings": 673,
+    "digest": "38420faf9195299d27706d7a6c0ae7b71ecbe06c65212b38861cef1bb037dfe8",
+    "identical_before_and_after": true
+  },
+  "worktree": {
+    "record": "reports/phase15-validation/final-worktree.json",
+    "digest": "77dae894eace2b02e2bb49aa00a6c599541466577c2f037ce5c967abff02ff30"
+  },
+  "actual_cases": [
+    {
+      "id": "bd9b8a11-4b83-4ba0-ba76-0f3b02a709e0",
+      "selection": {
+        "asset": "spacex",
+        "review": "overview",
+        "stage": "after_transition",
+        "check": null
+      },
+      "status": "Completed",
+      "engine_exit_code": 0,
+      "readiness": "Incomplete",
+      "scope": "PopulationRolloutReadiness",
+      "engine_sha256": "f3e29e5ed83f7549bb1d78098bacd6c418d3e455b1fe184d73fa021847d1c631",
+      "canonical_sha256": "268182e18bcce4b6dfba2b4dfcf785619033a13f01923cb01c98a35488926a47"
+    },
+    {
+      "id": "b167a212-ab6e-4402-b86b-b5892cb9feb5",
+      "selection": {
+        "asset": "spacex",
+        "review": "assumption",
+        "stage": "after_transition",
+        "check": "complete-exit"
+      },
+      "status": "Completed",
+      "engine_exit_code": 4,
+      "readiness": "Incomplete",
+      "scope": "PopulationRolloutReadiness",
+      "engine_sha256": "f3e29e5ed83f7549bb1d78098bacd6c418d3e455b1fe184d73fa021847d1c631",
+      "canonical_sha256": "52f6228523683450852e3890b96c1bd4a33734368d7dd8aa1f81f69cd9466826"
+    },
+    {
+      "id": "7fd49042-fee2-42c9-b696-9e19924185f6",
+      "selection": {
+        "asset": "spacex",
+        "review": "assumption",
+        "stage": "after_transition",
+        "check": "required-sale"
+      },
+      "status": "Completed",
+      "engine_exit_code": 3,
+      "readiness": "Blocked",
+      "scope": "PopulationRolloutReadiness",
+      "engine_sha256": "f3e29e5ed83f7549bb1d78098bacd6c418d3e455b1fe184d73fa021847d1c631",
+      "canonical_sha256": "2aaa2795670cc74db2620ce913a6f201483ee845f7fab6c3c970b155ba03eb6f"
+    },
+    {
+      "id": "34721dd4-c5c0-4b8a-a982-233cb7b8ddfa",
+      "selection": {
+        "asset": "spacex",
+        "review": "assumption",
+        "stage": "after_deadline",
+        "check": "principal-removal"
+      },
+      "status": "Completed",
+      "engine_exit_code": 0,
+      "readiness": "Ready",
+      "scope": "DemoEntityReadiness",
+      "engine_sha256": "f3e29e5ed83f7549bb1d78098bacd6c418d3e455b1fe184d73fa021847d1c631",
+      "canonical_sha256": "ca5226b3b207340a05fbc86efbfa40b921aa49c9634c23d5989440c38fc4eb5f"
+    }
+  ],
+  "screenshots_visually_inspected": true,
+  "stock_split_headline_preserved": true,
+  "new_capture": false,
+  "new_execution_replay": false,
+  "mainnet_transactions": false,
+  "authorization_granted": false,
+  "marker_action_invoked": false,
+  "committed_or_pushed": false,
+  "next_phase_started": false,
+  "note": "Entire final engine/browser/service validation ran after the last executable change. Completion docs/records finalized afterward; earlier development and interrupted runs are retained separately."
+}

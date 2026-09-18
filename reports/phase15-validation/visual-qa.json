@@ -1,0 +1,23 @@
+{
+  "method": "Actual rendered restored result from the final real engine run; no repository code changed. Instant positioning avoids capturing an intermediate smooth-scroll frame.",
+  "captures": [
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "conclusion_in_viewport": true,
+      "mode": "overview",
+      "run_id": "34721dd4-c5c0-4b8a-a982-233cb7b8ddfa"
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "conclusion_in_viewport": true,
+      "mode": "overview",
+      "run_id": "34721dd4-c5c0-4b8a-a982-233cb7b8ddfa"
+    }
+  ]
+}

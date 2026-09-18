@@ -1,0 +1,224 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --grep new visitor|unavailable backend|API rejects
+
+(node:85765) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:85812) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:85813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85813) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:85813) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (7.0s)
+(node:85870) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85870) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:85870) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly (1.8s)
+  ✓  3 frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies (94ms)
+
+
+  1) frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected substring: not [32m"NotTested"[39m
+    Received string:        [31m"Skip to content[39m
+    [31mEplyx[39m
+    [31mSTOCK TRANSITION[39m
+    [31mHow it works[39m
+    [31mCapabilities[39m
+    [31mExplore evidence[39m
+    [31m↗[39m
+    [31m[39m
+    [31mTOKENIZED STOCK LIFECYCLE INTELLIGENCE[39m
+    [31m[39m
+    [31mUnderstand the[39m
+    [31mtransition.[39m
+    [31mtransition.[39m
+    [31mIPO.[39m
+    [31mmerger.[39m
+    [31macquisition.[39m
+    [31mdelisting.[39m
+    [31mstock split.[39m
+    [31mshare-class conversion.[39m
+    [31mtoken expiry.[39m
+    [31mtransition.[39m
+    [31mKnow the impact.[39m
+    [31m[39m
+    [31mUnderstand what changes for holders, which actions passed earlier local checks, and what still needs checking.[39m
+    [31m[39m
+    [31mRun analysis[39m
+    [31m↗[39m
+    [31mHow it works[39m
+    [31m↓[39m
+    [31m[39m
+    [31mSaved SPACEX example · Earlier local simulations · No funds moved[39m
+    [31m[39m
+    [31mIssuer announcement. Available capability. Read the saved issuer announcement. The official conversion procedure still needs checking.[39m
+    [31mIssuer announcement[39m
+    [31mAVAILABLE[39m
+    [31mObserved holdings. Available capability. Review saved example token holdings and a liquidity position. A balance does not prove access to its signing key.[39m
+    [31mObserved holdings[39m
+    [31mAVAILABLE[39m
+    [31mTransition details. Available capability. Compare the same saved holdings before, during and after the example transition. Scenario dates do not predict future balances.[39m
+    [31mTransition details[39m
+    [31mAVAILABLE[39m
+    [31mImpact mapping. Available capability. Compare before and after policy views across frozen token accounts, keeping protocol exposure separate.[39m
+    [31mImpact mapping[39m
+    [31mAVAILABLE[39m
+    [31mLocal path probes. Available capability. Replay selected market exits, transfers and one native LP principal withdrawal in a local VM with assumed signing.[39m
+    [31mLocal path probes[39m
+    [31mAVAILABLE[39m
+    [31mReadiness gates. Available capability. Evaluate a demonstration assurance policy against pinned evidence. OfficialTransition remains [7mNotTested[27m.[39m
+    [31mReadiness gates[39m
+    [31mAVAILABLE[39m
+    [31mOverview[39m
+    [31mTechnical[39m
+    [31m[39m
+    [31mAn announcement, saved holdings and transition details[39m
+    [31m[39m
+    [31mSCROLL TO REVIEW THE EXAMPLE[39m
+    [31m[39m
+    [31mREVIEW THE SAVED EXAMPLE[39m
+    [31m[39m
+    [31mWhat changes[39m
+    [31mfor this holding?[39m
+    [31m[39m
+    [31mChoose an example and run the existing evidence checker. Currently available: SPACEX PreStocks example.[39m
+    [31m[39m
+    [31mAsset[39m
+    [31mSPACEX PreStocks example[39m
+    [31mWhat to review[39m
+    [31mThe transition overview[39m
+    [31mThe example token holding[39m
+    [31mThe example liquidity position[39m
+    [31mA rollout assumption[39m
+    [31mLifecycle stage[39m
+    [31mBefore the transition[39m
+    [31mDuring the transition[39m
+    [31mAfter the stated deadline[39m
+    [31mFocused check[39m
+    [31mHas the liquidity position been fully cleared?[39m
+    [31mDoes this exact sale route work?[39m
+    [31mDoes sending the token complete the official conversion?[39m
+    [31mDid the tested liquidity-principal withdrawal succeed?[39m
+    [31m[39m
+    [31mEach stage compares the same saved observations under a different scenario date. It does not predict future balances or trading conditions. The selected account is an example; no wallet is required.[39m
+    [31m[39m
+    [31mRun analysis using saved mainnet data[39m
+    [31m↗[39m
+    [31m[39m
+    [31mReady to review the saved example.[39m
+    [31m[39m
+    [31mSaved mainnet data · Earlier local simulations · No funds moved by this analysis[39m
+    [31m[39m
+    [31mThese are example holdings, not your own. Signing was assumed locally; actual signing access was not verified. Requirements and the effective transition time are demonstration choices, not an issuer’s internal policy. Observations were saved at different times. A later scenario date does not make earlier tests fresh or predict balances or trading conditions.[39m
+    [31m[39m
+    [31mYou can also read the saved report without running a new analysis. Use the existing toggle under the logo above to see technical detail.[39m
+    [31m[39m
+    [31mONE TRACEABLE SYSTEM[39m
+    [31m[39m
+    [31mFrom a lifecycle notice[39m
+    [31mto a measured consequence.[39m
+    [31m[39m
+    [31mChoose the saved example, compare scenario dates and review what passed and what still needs evidence.[39m
+    [31m[39m
+    [31m01[39m
+    [31mRead the announcement[39m
+    [31m[39m
+    [31mUnderstand what the issuer has stated and what remains unknown.[39m
+    [31m[39m
+    [31m02[39m
+    [31mReview saved holdings[39m
+    [31m[39m
+    [31mUse observed example holdings rather than a live blockchain scan.[39m
+    [31m[39m
+    [31m03[39m
+    [31mChoose a scenario[39m
+    [31m[39m
+    [31mCompare saved observations at the selected transition stage.[39m
+    [31m[39m
+    [31m04[39m
+    [31mRun the checker[39m
+    [31m[39m
+    [31mVerify saved inputs and evaluate the existing requirements.[39m
+    [31m[39m
+    [31m05[39m
+    [31mUnderstand the result[39m
+    [31m[39m
+    [31mSee the exact scope, evidence gaps and next checks needed.[39m
+    [31m[39m
+    [31mWHAT EPLYX CAN ESTABLISH[39m
+    [31m[39m
+    [31mUnderstand the change.[39m
+    [31mInspect the consequence.[39m
+    [31m[39m
+    [31mFour capabilities, demonstrated with SpaceX PreStocks on Solana.[39m
+    [31m[39m
+    [31m01 / ANNOUNCEMENT[39m
+    [31mWhat is changing?[39m
+    [31m[39m
+    [31mRead the saved issuer announcement. Identifying a replacement token does not prove conversion.[39m
+    [31m[39m
+    [31m02 / HOLDINGS[39m
+    [31mWhat does the stage mean?[39m
+    [31m[39m
+    [31mSee how the same saved example holdings are interpreted at each scenario date.[39m
+    [31m[39m
+    [31m03 / EARLIER CHECKS[39m
+    [31mWhat passed locally?[39m
+    [31m[39m
+    [31mInspect token movement and principal withdrawal separately. Signing access was assumed, not verified.[39m
+    [31m[39m
+    [31m04 / REQUIREMENTS[39m
+    [31mWhat still needs checking?[39m
+    [31m[39m
+    [31mReview the demonstration requirements. A narrow principal-removal result cannot establish broader rollout readiness.[39m
+    [31m[39m
+    [31mTHE PUBLISHED SPACEX DEMONSTRATION[39m
+    [31m[39m
+    [31mThe SPACEX[39m
+    [31mdemonstration.[39m
+    [31m[39m
+    [31mSaved published findings: more evidence is needed under the demonstration requirements. This section is a saved result, not a new analysis; use the form above to run the checker.[39m
+    [31m[39m
+    [31mMore evidence needed[39m
+    [31m[39m
+    [31mSelected token movements and liquidity-principal withdrawal passed earlier local checks. Official conversion, fee collection, position closure and most accounts still need verification.[39m
+    [31m[39m
+    [31mExplore the saved findings ↗[39m
+    [31m[39m
+    [31mSaved mainnet data · Earlier local simulations · No funds moved by this analysis[39m
+    [31m[39m
+    [31mThese are example holdings, not your own. Signing was assumed locally; actual signing access was not verified. Requirements and the effective transition time are demonstration choices, not an issuer’s internal policy. Observations were saved at different times. A later scenario date does not make earlier tests fresh or predict balances or trading conditions.[39m
+    [31m[39m
+    [31mEplyx[39m
+    [31mSTOCK TRANSITION[39m
+    [31m[39m
+    [31mLifecycle impact intelligence for tokenized stocks.[39m
+    [31m[39m
+    [31mSaved findings[39m
+    [31mDocumentation[39m
+    [31mStocklana example · Saved observations · Assumed local signing · Demonstration requirements"[39m
+
+      14 |  await expect(page.locator('.technical-only:visible')).toHaveCount(0);
+      15 |  await expect(page.locator('#analysis')).toContainText('actual signing access was not verified');
+    > 16 |  const text=await page.locator('body').innerText();for(const raw of ['NotTested','OfficialTransition','SHA-256','447865621','solana-token-account:','Phase 14'])expect(text).not.toContain(raw);
+         |                                                                                                                                                                                  ^
+      17 |  await page.setViewportSize({width:1440,height:1000});await page.evaluate(()=>window.scrollTo(0,0));await page.screenshot({path:'reports/phase15-screenshots/after-desktop.png'});
+      18 |  await page.setViewportSize({width:390,height:844});await page.screenshot({path:'reports/phase15-screenshots/after-mobile.png'});
+      19 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:16:178
+
+    Error Context: test-results/analysis-new-visitor-uses--b3b26-uests-CTA-focuses-real-form/error-context.md
+
+  1 failed
+    frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form 
+  2 passed (14.4s)

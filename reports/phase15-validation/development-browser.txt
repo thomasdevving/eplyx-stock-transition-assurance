@@ -1,0 +1,29 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test
+
+(node:84583) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+✔ allowlist rejects commands paths addresses endpoints unknown assets and decorative selections (0.91025ms)
+✔ completed policy outcomes 0 3 4 5 stay separate from processing errors (1.579708ms)
+
+Running 6 tests using 1 worker
+
+(node:84589) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ duplicate concurrent requests invoke one job and serialized jobs stay bounded (263.188042ms)
+✔ timeout verification failure and missing executable yield honest errors without result (111.639167ms)
+✔ actual child timeout and nonzero verification exit are errors (64.088042ms)
+✔ restart makes interrupted job an error rather than silently restarting it (1.51825ms)
+✔ integer formatting never loses large values or rounds small positives to zero (5.304334ms)
+(node:84589) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:84589) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (9.0s)
+  ✓  2 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (7.0s)
+  ✓  3 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (68ms)
+  ✓  4 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (4.2s)
+  ✓  5 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (799ms)
+  ✓  6 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (6.6s)
+
+  6 passed (1.2m)

@@ -1,0 +1,33 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test
+
+(node:89226) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:89252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 2 workers
+
+(node:89256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:89255) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:89256) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:89256) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:89255) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:89255) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (12.0s)
+(node:89315) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:89315) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:89315) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (14.9s)
+  ✓   4 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (9.9s)
+  ✓   5 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (195ms)
+  ✓   6 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (5.6s)
+  ✓   7 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (5.6s)
+  ✓   8 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (9.0s)

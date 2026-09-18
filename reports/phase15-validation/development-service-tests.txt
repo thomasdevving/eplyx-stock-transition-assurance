@@ -1,0 +1,15 @@
+✔ allowlist rejects commands paths addresses endpoints unknown assets and decorative selections (1.813708ms)
+✔ completed policy outcomes 0 3 4 5 stay separate from processing errors (2.397834ms)
+✔ duplicate concurrent requests invoke one job and serialized jobs stay bounded (250.498333ms)
+✔ timeout verification failure and missing executable yield honest errors without result (98.201ms)
+✔ actual child timeout and nonzero verification exit are errors (60.2205ms)
+✔ restart makes interrupted job an error rather than silently restarting it (1.204958ms)
+✔ integer formatting never loses large values or rounds small positives to zero (28.607625ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 495.403208

@@ -1,0 +1,64 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --grep new visitor|unavailable backend|API rejects
+
+(node:85269) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:85305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85305) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:85305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (30.1s)
+(node:85528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85528) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:85528) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly (1.0s)
+  ✘  3 frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies (56ms)
+
+
+  1) frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for getByRole('link', { name: 'Run analysis', exact: true })[22m
+
+
+       8 |  await page.goto('/');await expect(page.locator('html')).toHaveAttribute('data-mode','overview');
+       9 |  await expect(page.getByRole('button',{name:'Overview',exact:true})).toHaveAttribute('aria-pressed','true');
+    > 10 |  await page.getByRole('link',{name:/^Run analysis/}).click();await expect(page.locator('#analysis')).toBeInViewport();
+         |                                                                ^
+      11 |  await choose(page,'assumption','complete-exit');await page.locator('[name="stage"]').selectOption('after_deadline');
+      12 |  await page.getByRole('button',{name:'Technical',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-mode','technical');
+      13 |  await page.getByRole('button',{name:'Overview',exact:true}).click();await expect(page.locator('[name="stage"]')).toHaveValue('after_deadline');await expect(page.locator('[name="check"]')).toHaveValue('complete-exit');expect(submissions).toBe(0);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:10:64
+
+    Error Context: test-results/analysis-new-visitor-uses--b3b26-uests-CTA-focuses-real-form/error-context.md
+
+  2) frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m400[39m
+    Received: [31m405[39m
+
+      62 | test('API rejects unsupported caller commands, evidence and oversized bodies',async({request})=>{
+      63 |  for(const selection of [{asset:'OTHER',review:'overview',stage:'after_transition',check:null},{asset:'spacex',review:'overview',stage:'after_transition',check:null,command:'compare-scenarios'},{asset:'spacex',review:'assumption',stage:'after_transition',check:'/tmp/plan.json'}]){
+    > 64 |   const r=await request.post('/api/runs',{data:{selection,request_key:crypto.randomUUID()}});expect(r.status()).toBe(400);
+         |                                                                                                                 ^
+      65 |  }
+      66 |  expect((await request.post('/api/runs',{data:{selection:{},request_key:crypto.randomUUID()},headers:{Origin:'https://elsewhere.invalid'}})).status()).toBe(403);
+      67 |  expect((await request.post('/api/runs',{data:{padding:'a'.repeat(3000)}})).status()).toBe(413);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:64:113
+
+  2 failed
+    frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form 
+    frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies 
+  1 passed (39.1s)

@@ -1,0 +1,48 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --config /tmp/phase15-presentation.config.mjs --grep new visitor
+
+(node:89536) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:89589) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:89591) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:89591) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:89591) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (11.7s)
+
+
+  1) frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeFocused[2m([22m[2m)[22m failed
+
+    Locator:  locator('[name="review"]')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeFocused" with timeout 5000ms[22m
+    [2m  - waiting for locator('[name="review"]')[22m
+    [2m    9 × locator resolved to <select name="review">…</select>[22m
+    [2m      - unexpected value "inactive"[22m
+
+
+       8 |  await page.goto('/');await expect(page.locator('html')).toHaveAttribute('data-mode','overview');
+       9 |  await expect(page.getByRole('button',{name:'Overview',exact:true})).toHaveAttribute('aria-pressed','true');
+    > 10 |  await page.getByRole('link',{name:/^Run analysis/}).click();await expect(page.locator('#analysis')).toBeInViewport();await expect(page.locator('[name="review"]')).toBeFocused();
+         |                                                                                                                                                                     ^
+      11 |  await choose(page,'assumption','complete-exit');await page.locator('[name="stage"]').selectOption('after_deadline');
+      12 |  await page.getByRole('button',{name:'Technical',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-mode','technical');
+      13 |  await page.getByRole('button',{name:'Overview',exact:true}).click();await expect(page.locator('[name="stage"]')).toHaveValue('after_deadline');await expect(page.locator('[name="check"]')).toHaveValue('complete-exit');expect(submissions).toBe(0);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:10:165
+
+    Error Context: test-results/analysis-new-visitor-uses--b3b26-uests-CTA-focuses-real-form/error-context.md
+
+  1 failed
+    frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form 
