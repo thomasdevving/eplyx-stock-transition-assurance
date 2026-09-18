@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "revision": "576919e3e4368e542c402f000b4264724f7f23ec",
+  "sources": [
+    {
+      "file": "dlmm-idl.json",
+      "url": "https://raw.githubusercontent.com/MeteoraAg/dlmm-sdk/576919e3e4368e542c402f000b4264724f7f23ec/idls/dlmm.json",
+      "sha256": "045c0f4af044be046b6a14b350077e4242e8ac026b64a855803dab30fcdd8b35"
+    },
+    {
+      "file": "dlmm-sdk-index.ts",
+      "url": "https://raw.githubusercontent.com/MeteoraAg/dlmm-sdk/576919e3e4368e542c402f000b4264724f7f23ec/ts-client/src/dlmm/index.ts",
+      "sha256": "35fea3a4b0c132fb88571d5f6207a7f9e177c829cb48fc97b481596af5d75fc7"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "withdrawal_file": "reports/spacex-dlmm-withdrawal.json",
+  "withdrawal_sha256": "5f74a2b70946efbc937fba9e9bcd028ce6b6586184104424c8f28e7ba39ddff5",
+  "position_file": "probes/spacex-dlmm-position.json",
+  "position_sha256": "6507259b54a2da2109cb3381d19d522ee43fbe16b98b3519db548b603c656a72",
+  "comparison_file": "reports/spacex-lifecycle-state-shape-comparison.json",
+  "comparison_sha256": "1e213b4746720b76cdcc42c5ada610f74c5f6716d7ae4690451911d472180584",
+  "fixture_file": "evidence/withdrawal/phase10/execution-capture.json",
+  "fixture_sha256": "3d79ad5dcee2a9b7ecc74575fe9af7e025695e229471b7aab5288d69813c844f",
+  "checks": {
+    "make-test": {
+      "exit_code": 0,
+      "log_file": "reports/phase10-validation/make-test.txt",
+      "log_sha256": "7721e03aaae582397a3bf756b89c5e11a3d2c3f6a8365c408f865d0c27b4f760"
+    },
+    "make-fmt-check": {
+      "exit_code": 0,
+      "log_file": "reports/phase10-validation/make-fmt-check.txt",
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239"
+    },
+    "make-lint": {
+      "exit_code": 0,
+      "log_file": "reports/phase10-validation/make-lint.txt",
+      "log_sha256": "878023f2c1d53831f5309b3e78c60977423cf3dd2601973c2bf7fd853397e8bd"
+    },
+    "git-diff-check": {
+      "exit_code": 0,
+      "log_file": "reports/phase10-validation/git-diff-check.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "tests": {
+    "passed": 267,
+    "failed": 0,
+    "ignored": 0,
+    "phase10_unit_tests": 13,
+    "phase10_integration_tests": 10,
+    "prior_phase_assertions_weakened": false,
+    "both_synthetic_sbf_versions_built": true
+  },
+  "mutation_tests": {
+    "injected": 8,
+    "caught_by_specific_assertions": 8,
+    "source_restored": true,
+    "report_file": "reports/spacex-phase10-mutation-results.json",
+    "report_sha256": "0f5204d80995aae754fa8f9b69659e58ec78e7d922b49cc3e64352711cd0f573"
+  },
+  "canonical_saved_json_equals_json_stdout": true,
+  "offline_cli_checks": {
+    "test": "cli_is_portable_offline_byte_identical_and_protects_existing_outputs",
+    "absolute_inputs_from_other_working_directory": true,
+    "rpc_environment_unset": true,
+    "both_commands_canonical_stdout_equal_saved_and_published_json": true,
+    "existing_output_rejected_without_mutation": true
+  },
+  "actual_native_failure_control": {
+    "test": "failed_native_transaction_rolls_back_every_watched_production_account",
+    "compute_unit_limit": 1,
+    "status": "Failed",
+    "vm_execution_attempted": true,
+    "all_watched_external_accounts_rolled_back": true
+  },
+  "evidence_boundaries": {
+    "withdrawal_status": "Proven",
+    "exact_position_id": "BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+    "range": [
+      -102,
+      -53
+    ],
+    "bps_to_remove": 10000,
+    "captured_slot": 448082469,
+    "captured_epoch": 1037,
+    "signer_possession_known": false,
+    "signer_assumed_locally": true,
+    "principal_removed": true,
+    "fees_claimed": false,
+    "position_closed": false,
+    "official_transition_proven": false,
+    "mainnet_transaction_submitted": false,
+    "phase11_started": false
+  },
+  "independent_byte_checks": {
+    "all_22_account_hashes_verified": true,
+    "all_four_loaded_elf_hashes_verified": true,
+    "eight_complete_data_diffs_verified": true,
+    "token_and_share_integer_arithmetic_verified": true
+  },
+  "original_artifacts": {
+    "phase7_manifest_entries_unchanged": 79,
+    "phase7_shared_files_additively_updated": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ],
+    "phase8_manifest_entries_unchanged": 40,
+    "phase8_shared_files_additively_updated": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ],
+    "phase9_manifest_entries_unchanged": 45,
+    "phase9_shared_files_additively_updated": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ],
+    "historical_checksums_rewritten": false
+  }
+}

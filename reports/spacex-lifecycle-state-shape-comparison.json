@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "policy_evaluated_at": "2026-09-17T20:00:00Z",
+  "lifecycle_status": "TransitionRequired",
+  "direct_holder": {
+    "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "state_shape": "DirectTokenAccount",
+    "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+    "public_balance_raw": "17621",
+    "paths": [
+      {
+        "path_type": "OfficialTransition",
+        "status": "NotTested"
+      },
+      {
+        "path_type": "Redemption",
+        "status": "Unsupported"
+      },
+      {
+        "path_type": "SecondaryMarketExit",
+        "status": "Proven"
+      },
+      {
+        "path_type": "Transfer",
+        "status": "Proven"
+      },
+      {
+        "path_type": "Withdrawal",
+        "status": "NotApplicable"
+      }
+    ],
+    "evidence": {
+      "file": "spacex-lifecycle-path-resolution-phase9.json",
+      "sha256": "993989bcdad106d7eef79895e258f4ce14bad18ec810503932688e0ebeb8e06d"
+    }
+  },
+  "lp_position": {
+    "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+    "state_shape": "ProtocolPosition",
+    "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+    "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+    "principal_exposure_raw": [
+      "21296808",
+      "8132564"
+    ],
+    "paths": [
+      {
+        "path_type": "OfficialTransition",
+        "status": "NotTested",
+        "reason": "No official conversion execution for this position; withdrawal does not establish lifecycle completion."
+      },
+      {
+        "path_type": "Redemption",
+        "status": "Unsupported",
+        "reason": "No independent redemption adapter or issuer entitlement evidence."
+      },
+      {
+        "path_type": "SecondaryMarketExit",
+        "status": "NotApplicable",
+        "reason": "This LP position requires native unwind before a separate holder market-exit path; no sale is executed."
+      },
+      {
+        "path_type": "Transfer",
+        "status": "NotApplicable",
+        "reason": "Direct SPL token transfer is not this protocol-position unwind; position transfer is outside the tested path."
+      },
+      {
+        "path_type": "Withdrawal",
+        "status": "Proven",
+        "reason": "Native withdrawal evidence applies only to the exact position, pool, authority, fixture, range and fraction."
+      }
+    ],
+    "evidence": {
+      "file": "spacex-dlmm-withdrawal.json",
+      "sha256": "5f74a2b70946efbc937fba9e9bcd028ce6b6586184104424c8f28e7ba39ddff5"
+    }
+  },
+  "limitations": [
+    "Same external lifecycle policy and hypothetical policy time; execution evidence retains its distinct captured banks. These are not simultaneous bank or portfolio proceeds.",
+    "Native withdrawal converts LP principal into directly held tokens; it does not convert SPACEX to its official successor or prove redemption.",
+    "Full liquidity share removal leaves accrued fees and the position account; fee claim, reward claim and close-position execution remain untested.",
+    "No account, holder count, pool capital, USD valuation or execution coverage is added to prior portfolio artifacts."
+  ]
+}

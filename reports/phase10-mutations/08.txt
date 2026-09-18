@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.33s
+     Running tests/protocol_position.rs (target/debug/deps/protocol_position-5f6276af4b4db607)
+
+running 1 test
+test signer_assumption_never_claims_private_key_possession ... FAILED
+
+failures:
+
+---- signer_assumption_never_claims_private_key_possession stdout ----
+
+thread 'signer_assumption_never_claims_private_key_possession' (7549312) panicked at engine/tests/protocol_position.rs:197:5:
+assertion failed: !p.signer.signer_possession_known
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    signer_assumption_never_claims_private_key_possession
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.46s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test protocol_position`

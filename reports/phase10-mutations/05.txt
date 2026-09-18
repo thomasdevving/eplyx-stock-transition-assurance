@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.85s
+     Running tests/protocol_position.rs (target/debug/deps/protocol_position-5f6276af4b4db607)
+
+running 1 test
+test missing_bin_and_bitmap_state_are_explicitly_indeterminate ... FAILED
+
+failures:
+
+---- missing_bin_and_bitmap_state_are_explicitly_indeterminate stdout ----
+
+thread 'missing_bin_and_bitmap_state_are_explicitly_indeterminate' (7547693) panicked at engine/tests/protocol_position.rs:171:9:
+assertion `left == right` failed
+  left: Proven
+ right: Indeterminate
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    missing_bin_and_bitmap_state_are_explicitly_indeterminate
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 9 filtered out; finished in 1.98s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test protocol_position`

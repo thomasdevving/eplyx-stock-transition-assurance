@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "injected": 8,
+  "caught": 8,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/position/mod.rs": "01f9eea18ee55b81b8d90415a11cdeaeab16b84ab512e01340cd17a5af6ef1b9",
+    "engine/src/position/meteora_dlmm.rs": "0f39524dadc8a0a64f5c4ed7ea9ee56d28158f9ac72172e22fe257b18d7d0f05"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Treat pool vault authority as LP owner",
+      "test": "position::meteora_dlmm::tests::pool_vault_authority_cannot_grant_lp_ownership",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/01.txt",
+      "log_sha256": "467f109363b29841f8ab5760b371449d314001898e00e4ebb9fc7b7b5fdb13bc"
+    },
+    {
+      "mutation": 2,
+      "fault": "Allow direct-holder evidence to prove Withdrawal",
+      "test": "position::tests::direct_holder_evidence_cannot_prove_withdrawal",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/02.txt",
+      "log_sha256": "92bc580c715e86089c14c62bf519a0a6b63e330bfbedc96b868e35465e9c5c97"
+    },
+    {
+      "mutation": 3,
+      "fault": "Inherit one LP proof to positions sharing the pool",
+      "test": "position::tests::withdrawal_evidence_cannot_inherit_to_another_position",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/03.txt",
+      "log_sha256": "67d69eb405c820841fc757ba26674437ef619f0cef7b49a0c3c61a9fe0846be4"
+    },
+    {
+      "mutation": 4,
+      "fault": "Ignore wrong position authority",
+      "test": "position::meteora_dlmm::tests::wrong_position_authority_is_rejected",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/04.txt",
+      "log_sha256": "e07192fe926927b5abe6c6f680befb6474ecb34a10862cabcf27e0d8436903fe"
+    },
+    {
+      "mutation": 5,
+      "fault": "Ignore missing bin/bitmap public state and grant execution assurance",
+      "test": "missing_bin_and_bitmap_state_are_explicitly_indeterminate",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/05.txt",
+      "log_sha256": "174b80ee2fcb64b4ab55862ae4828cd7501f21bb30ea71ce0ffb40032198877c"
+    },
+    {
+      "mutation": 6,
+      "fault": "Mark failed withdrawal as Proven",
+      "test": "position::meteora_dlmm::tests::failed_withdrawal_never_becomes_proven",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/06.txt",
+      "log_sha256": "c94c05be801f8ceff8a1b9be0a80c43ecf35c6885d301257b66a6d6298a0138b"
+    },
+    {
+      "mutation": 7,
+      "fault": "Allow Withdrawal to prove OfficialTransition",
+      "test": "position::tests::withdrawal_never_proves_official_transition_or_redemption",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/07.txt",
+      "log_sha256": "8007b908a7f068ec49ca390d492ac88fa7891c656e4cee1f56a743495675e256"
+    },
+    {
+      "mutation": 8,
+      "fault": "Treat locally assumed signer as known key possession",
+      "test": "signer_assumption_never_claims_private_key_possession",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase10-mutations/08.txt",
+      "log_sha256": "ffd823ccad24d27409f913341a3140faac02878654f871d5cf29c4c2034fc98d"
+    }
+  ]
+}

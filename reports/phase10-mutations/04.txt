@@ -1,0 +1,31 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+warning: unused variable: `authority`
+   --> engine/src/position/meteora_dlmm.rs:231:53
+    |
+231 | fn bind_position(state: &PositionState, pool: &str, authority: &str) -> Result<()> {
+    |                                                     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_authority`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `eplyx-lifecycle-impact` (lib test) generated 1 warning (run `cargo fix --lib -p eplyx-lifecycle-impact --tests` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.72s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test position::meteora_dlmm::tests::wrong_position_authority_is_rejected ... FAILED
+
+failures:
+
+---- position::meteora_dlmm::tests::wrong_position_authority_is_rejected stdout ----
+
+thread 'position::meteora_dlmm::tests::wrong_position_authority_is_rejected' (7546860) panicked at engine/src/position/meteora_dlmm.rs:1210:9:
+assertion failed: bind_position(&state(), "pool-a", "other-owner").is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    position::meteora_dlmm::tests::wrong_position_authority_is_rejected
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 114 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`
