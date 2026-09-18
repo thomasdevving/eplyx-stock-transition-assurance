@@ -1,0 +1,1621 @@
+{
+  "schema_version": 1,
+  "selected_mechanism": {
+    "id": "official-transition-unestablished",
+    "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+    "mechanism_type": "Unknown",
+    "identity": {
+      "issuer_semantics_bound": false,
+      "observed_official_transaction": false,
+      "exact_account_plan_verified": false,
+      "source_destination_pair_observed": true
+    },
+    "programs": [],
+    "required_accounts": [],
+    "required_signers": [],
+    "eligibility_inputs": [
+      "Unknown"
+    ],
+    "onchain_evidence": [
+      "../evidence/transition/phase9/rpc-capture.json",
+      "../evidence/transition/phase9/rpc-retry-capture.json",
+      "../evidence/transition/phase9/rpc-account-reconstruction.json"
+    ],
+    "external_policy_evidence": [
+      "issuer-notice",
+      "issuer-faq",
+      "issuer-launch",
+      "original-policy"
+    ],
+    "blocking_requirements": [
+      "No independently bound official program/instruction/account plan, conversion terms or issuer completion criteria were established.",
+      "Private eligibility requirements remain unknown; administrative signing in sampled mint/fee operations must not be assumed for conversion."
+    ]
+  },
+  "candidate_mechanisms": [
+    {
+      "id": "observed-25iJ9x3S1gbR9zBhr6phCf2gQGWJjQReM4cV9XbQ9ChaT6dEcVTwhvcWns5Pa6vfwraQCEzpGctUShwMeyTt8j5x",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "9ddAJcviL47bkLw6XbNUQGmV3km5PdNwN7rWxxcihRTi",
+        "ETCo7rkcd8Fi6RbqxBHcWw9yXjHz5n1HhvWBsMd3XJD2",
+        "DFz3nLK7DHnGs2QTTPWbd6RSJ7Yam1uVNU9dYQ71u42n",
+        "SysvarRent111111111111111111111111111111111",
+        "11111111111111111111111111111111",
+        "C68a6RCGLiPskbPYtAcsCjhG8tfTWYcoB4JjCrXFdqyo",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ComputeBudget111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+      ],
+      "required_signers": [
+        {
+          "address": "9ddAJcviL47bkLw6XbNUQGmV3km5PdNwN7rWxxcihRTi",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/6/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-2ZHotoRrypaPJsgpkp3wNt967ghTXDygUbTDb2PTLL3q41n4W9FCiHx1B7Yec7AkDJ7GyGGVWpsMR3j8q3gu3vr5",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "29eV5LuZwwVaoufKr5ShBejYVP6N4JZ14U3M5rffXsjp",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "9QUBQH3gbTuSXLnmTkqfaQniaGoBedFqkQXXP1si29YT",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "29eV5LuZwwVaoufKr5ShBejYVP6N4JZ14U3M5rffXsjp",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/3/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Source burn/account closure is observed; no successor credit or official exchange is established.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-2cPKp8DZork3dWEKnoDD2MWpvX6wsqmsfuWbqXwkxTCXZDMtsNW4ih8nZaKVUXQQNFCDVx4NsGXkFHNdaAYMNuze",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      ],
+      "required_accounts": [
+        "BxUL34yyLjemNptSX9NRt8eeJ8K8nDmLFT7qminhf2ti",
+        "2Vy8XXjTb1SaFpYtbupu6GuS8urrSwyY1nTJi4TqMKz5",
+        "4QRBQXLhCh45dgzs3GrruXyYd7TkmKPHkRwrVw28tFt1",
+        "7c9fxDRnxE8jZFrZKZ1xh1raJu2fhoWu7T3b5E8daqqU",
+        "8BbSC4D45Ldbz1VnuYT3rw2ob8LepxhXnjuoJukJg2VQ",
+        "Chroid93DKzmgDYmCJELZ6CNC3SZ8WfRXzCkcqVtRy1r",
+        "ESEQ4k8U39d5xmu53GXT56Fvh3DPTAtVHau9MjuRFgNA",
+        "GM56syqs18fNYmVgQJjuGUtwxiWRrt6JyFJsmcqSAYqk",
+        "GnbC5qqSJfH9ARwuTSoY9yQaHPubFCdCfP8jEzfLqgkq",
+        "GVd9xrGwhxYQim8qkRtn6gY49JZ2zxoYoBuNchzzxqeG",
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BxUL34yyLjemNptSX9NRt8eeJ8K8nDmLFT7qminhf2ti",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/6/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-2n5JnnAY9U5Gb8XRGDH8vz49igmuCCPWqe4bQW9NmYpZCE3C1vTKp8gfsjcFN2971E4mpGiJrViaUF7fF31NngCw",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+        "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+        "DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL",
+        "AmnXQtoLcqKCWGkJsjiz3zByoLk8Rs8V67uk9117wDD8",
+        "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "3CTNNKEbss4fsoPQwGiND8urSnVUy7Lc8EEqS965pybv",
+        "Pre8AREmFPtoJFT8mQSXQLh56cwJmM7CFDRuoGBZiUP",
+        "ComputeBudget111111111111111111111111111111",
+        "11111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "53Ab3Rqx1a5uiV7qmsX4qbdbrqstVDpnH4LoJGfsZsU8",
+        "GKJa3BX9qgCEhVhgQXuXtgynu5HdMNnD5e7dYoxeJWNA",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/12/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Administrative withheld-fee withdrawal, not a holder conversion.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-2yJsCZHpTVMBuRPpu8VTXxdrk7FV3oCqXdyDSvKk1krj7APP2FUBmMTAQmsRfezFoULfauHXRY2XAFF4Yk5SHzUU",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      ],
+      "required_accounts": [
+        "BxUL34yyLjemNptSX9NRt8eeJ8K8nDmLFT7qminhf2ti",
+        "2Vy8XXjTb1SaFpYtbupu6GuS8urrSwyY1nTJi4TqMKz5",
+        "4QRBQXLhCh45dgzs3GrruXyYd7TkmKPHkRwrVw28tFt1",
+        "8BbSC4D45Ldbz1VnuYT3rw2ob8LepxhXnjuoJukJg2VQ",
+        "Chroid93DKzmgDYmCJELZ6CNC3SZ8WfRXzCkcqVtRy1r",
+        "ESEQ4k8U39d5xmu53GXT56Fvh3DPTAtVHau9MjuRFgNA",
+        "FfeasecR48Ay8V6VULZpFBbQfSosHL7cTUPSa799SiX4",
+        "GM56syqs18fNYmVgQJjuGUtwxiWRrt6JyFJsmcqSAYqk",
+        "GnbC5qqSJfH9ARwuTSoY9yQaHPubFCdCfP8jEzfLqgkq",
+        "HKiMqAWJFrQU3uqU6XinnYBxVkvmpDFd9B9Fuj4rdazd",
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BxUL34yyLjemNptSX9NRt8eeJ8K8nDmLFT7qminhf2ti",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/5/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-32L83wdKbEBhGytjvzK2utkKLdZ14waaf5TdSvrPhuGGZhfqqWraq5hx5roEu5ZkBfSXoLGddJToGcwgi8sQ8DQa",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Swap",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": true
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms",
+        "QuaNtZsgYRe5Z9Bk4LZ4cTD9tbkVoyCNf1R2BN9bBDv",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "AJoG7KFyXjPSxYrhFQN5KcEFjYri9gsNEVS2YgZ3U5WE",
+        "4YCL6ayuRZ3tGCWum3yFpnuRbtN468az57wNAtH8BWxb",
+        "6Wzuv7vLc6Vq8HJcHwwSCE9SKcdJiuoJmJm3EMFkWERN",
+        "91bUbswo6Di8235jAPwim1At4cPZLbG2pkpneyqKg4NQ",
+        "Eprwk3uFPVWfXDinRJoLo6HXULUShUcFW3grG3kq7cPe",
+        "GYa1dFxmFZjNTDx4KvNxqiwYbp6eWvPHRhkvrw6EYa92",
+        "Gjmjory7TWKJXD2Jc6hKzAG991wWutFhtbXudzJqgx3p",
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "CapuXNQoDviLvU1PxFiizLgPNQCxrsag1uMeyk6zLVps",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "GjCj8ZMPr13p5XTJJALa7QoRJ1NUWgNcnmhWVgLsQEDr",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "5C95imQzbVXQumZqFWAAQUNFtNRsPTmGgsmf9kGVSgMe",
+        "9RExWJFGfAviKHCSCQ59CqA6e7eZgmnfKuABqHn1jKG4",
+        "9wMYX58sVC7A6txq4nh1VUheWZKv8CP1VcFbAAjnG7LF",
+        "CF6HzkJ8X97yuSMTKk9aYq9cHNLbBjXRAHiwZdCHhA6Q",
+        "HxJzgogheSd1JwoBfqDVbQ1rpxjReFVVXQRfCSXvEmgW",
+        "2SixkjMjaLqXcEEJZfeth7qjH711R2uvp6TrUaHNMB65",
+        "9ZmnXr7WdFvx1Uv8HJ1sSv3J4Mxo6HrgvYx6fHQErXZr",
+        "Dtsi97xhNZ7aHCMiZEQbkKA57as93dMQ2kMJX4GKCvug",
+        "4SMRzaLXsuvTi2B5cSVs4LuCUUqQhB2uByTWUvbixjfF",
+        "6KzHa7L1MDTkaUb4qGiJqMvnmAy1qztGDeLvSHdS9ooU",
+        "8S2exJPiqunf9cqvdCrJip7NkSJQYPVpgGhVgnBzRdA4",
+        "ByZzakgSmSU5t33DbjPYoyLFB72AQyWkCkGuYhy1s4EG",
+        "DpLFcZVjWWfJpeg3o6yuf3Laszgj5uY49BoxMwcYJXAT",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "So11111111111111111111111111111111111111112",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "QuaNtZsgYRe5Z9Bk4LZ4cTD9tbkVoyCNf1R2BN9bBDv",
+        "Sysvar1nstructions1111111111111111111111111",
+        "SysvarC1ock11111111111111111111111111111111",
+        "3JumrbigQRj9TqEuy5fKGPHsQ6zCTwqqfVGhFhyoEMqH",
+        "MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms"
+      ],
+      "required_signers": [
+        {
+          "address": "AJoG7KFyXjPSxYrhFQN5KcEFjYri9gsNEVS2YgZ3U5WE",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/8/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Both assets appear in a routed token/market transaction; mint co-occurrence and token deltas alone do not identify an issuer-defined transition.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-3SF9s1B7eXjBSVsVqrE8sZxkyx5iMp5Rzf2SW5KM4YNP82WnmnTBnysbSW2FxiRdzhJLNVzpH8ET35MaqnQfCvNT",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc"
+      ],
+      "required_accounts": [
+        "shakRDxyKwaBbduqZTZt8Q4etTALbDLnAANStv9TLH3",
+        "qZGfSMBqqCK7jFUdBDCVk7uHHgP67WDRD6kTt84gGK2",
+        "tU3q46VCZk9Hign5JguZz3qYYo3fKZHdCSejhAHkpcU",
+        "3AVi9Tg9Uo68tJfuvoKvqKNWKkC5wPdSSdeBnizKZ6jT",
+        "4qJGGCmc2EuZFEY5N9mYK52pVLPnFNjAeDkzYYkARDVC",
+        "8Uz5Bz4wYkvAz4mMpg9a8K4kqGtS5JLMwdrE2z24eoXc",
+        "9UmAmvtBZrS1Er85MC2DzTyHR522XJqA1EpHQNPLhX5F",
+        "CUmkAhoMJKKkKzb9cELye6fBsLMhLM2B85W8qYxhk6Nd",
+        "EFfc3HXmgnKmvoLGKcNsGKs7zt3FdX4B6oZBLpCnbMcs",
+        "FufCsJBRWWmRcxWdPHubCYiRWtabn4vocgponPA69ADp",
+        "G74PsSpShiebnrbyZFfHdb1Rbesb9YMPhvuKsVnrNGVu",
+        "GD9m9zAaD4x5sbdx9BgzdcqrK6TzAL7vhEAtK5rD2NvT",
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "SysvarRecentB1ockHashes11111111111111111111",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "4cG31VNF9TzFinNc7BmnjhFvGjxkY3sCETVMtMgbrhPs",
+        "BAT1Ndpu5gbLTp2AZkSXP79LJBZfCH4B3zGhi6LtvdhK",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "HLixVmXdBqzP1sXT9au4BHcvUjDgx5ev16cEJdd9tUSM",
+        "7Kuo9yiK2NrQmQidnARV8tMwiEwKD53qCgiBuKJ9GUK6",
+        "CN32jwmQBFHM4NYrgkxefihRK8boR8M9n4RUBvgLe816",
+        "E5z6dbFUySh2MMaAL37P8WQ4pa8eBjs1pCpA1QD7dhst",
+        "FTgH4PBtCBvQzgBrCubP1mBJDyecYVUd4qBTQysQNAQQ",
+        "Gk2Qvcjgm1PdvkquoeuHZgr4QZC8x6oqbgEEAbAnBGzV",
+        "GwjyT3BaL6yFj4ses6SSMF4vgQBoWeJTHZZ8NCf9UoH2",
+        "5pVN5XZB8cYBjNLFrsBCPWkCQBan5K5Mq2dWGzwPgGJV",
+        "7sJf1SmKDDAFtBmMtg253rTbjG7zVFm3zTNounSgSNc9",
+        "Ci3HZCb6fr5YiYLG9R6XbxHcjm2mDb1R3ugQ3bPZ7oKZ",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "So11111111111111111111111111111111111111112",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc",
+        "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+        "8ekCy2jHHUbW2yeNGFWYJT9Hm9FW7SvZcZK66dSZCDiF"
+      ],
+      "required_signers": [
+        {
+          "address": "shakRDxyKwaBbduqZTZt8Q4etTALbDLnAANStv9TLH3",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/1/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-3TLp9Q6DH6FA5nHJbGJArkH8ZbYM7zYMwNHNmDsCEzti3631BF3oCHmoXKznRNRjP1akjhbNTMmVFCQLgU19vSGH",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      ],
+      "required_accounts": [
+        "BxUL34yyLjemNptSX9NRt8eeJ8K8nDmLFT7qminhf2ti",
+        "2Vy8XXjTb1SaFpYtbupu6GuS8urrSwyY1nTJi4TqMKz5",
+        "5KYB1e3G3nL4aFwKUpsecVYHYwyrLXePBdu52o4wHN4q",
+        "8BbSC4D45Ldbz1VnuYT3rw2ob8LepxhXnjuoJukJg2VQ",
+        "Chroid93DKzmgDYmCJELZ6CNC3SZ8WfRXzCkcqVtRy1r",
+        "ESEQ4k8U39d5xmu53GXT56Fvh3DPTAtVHau9MjuRFgNA",
+        "FfeasecR48Ay8V6VULZpFBbQfSosHL7cTUPSa799SiX4",
+        "GM56syqs18fNYmVgQJjuGUtwxiWRrt6JyFJsmcqSAYqk",
+        "GnbC5qqSJfH9ARwuTSoY9yQaHPubFCdCfP8jEzfLqgkq",
+        "GVd9xrGwhxYQim8qkRtn6gY49JZ2zxoYoBuNchzzxqeG",
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BxUL34yyLjemNptSX9NRt8eeJ8K8nDmLFT7qminhf2ti",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/7/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-3Wwh2tVTyHvQmNHbtsdwsF9mmNpRnQ436txAteQBsL29v5jdEjWcwnPPyUVJRZ5tKenRrmuwYBWrWNUtmqmeBMDW",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Swap",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": true
+      },
+      "programs": [
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms",
+        "REALQqNEomY6cQGZJUGwywTBD2UmDT32rZcNnfxQ5N2",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "BB3JLh2rLToqvaYovsLnFuBCZ7s9Qb2XfcHN7Dd7KQUK",
+        "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+        "83YX2MWPV1KrVedAWhzkXy8cqUfz25yofmC4x6HTJTfx",
+        "8bA5Q6Rz4eajLZ7aGUfLBRKqKiJuaGSeXG2cd9ywJ3Jw",
+        "9PnYDCTJ5B4mJJMPvjCZ97L6ZBcti48CYgxv5QU1mV5G",
+        "EG4sNHSueMGVUw9RZA1d5ZRfpkbQoWVPKxenTioSzzPz",
+        "FGt4wsL53KvciK4SVpr3U4Vobe8DRjDA22AsDEQpCWFA",
+        "FZkhmBnVpLg79u1JZZMG9724y23kukvGdfNx3SA65vdf",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "2UbS3CBQpxYxq9FnCoC9RMu5MHZ4c4BNfF9ymBbMsVfy",
+        "6KjSMWrMxsEi67f551oBtq9PzRGy2ifLS4UjBiPnbqH",
+        "Akoiq29JTXxCh6SDaeVwpzfWqzNrzF5CJLHmx7TEC1Rc",
+        "HC6tghmJ9WNHi75PN7WsJip7UEimouaD4JezzajSU8nd",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "LVcDubF4BFsEw8qmxupmw74bbZfiya99kor5c3Hh24r",
+        "5C95imQzbVXQumZqFWAAQUNFtNRsPTmGgsmf9kGVSgMe",
+        "9RExWJFGfAviKHCSCQ59CqA6e7eZgmnfKuABqHn1jKG4",
+        "9wMYX58sVC7A6txq4nh1VUheWZKv8CP1VcFbAAjnG7LF",
+        "CF6HzkJ8X97yuSMTKk9aYq9cHNLbBjXRAHiwZdCHhA6Q",
+        "HxJzgogheSd1JwoBfqDVbQ1rpxjReFVVXQRfCSXvEmgW",
+        "4SMRzaLXsuvTi2B5cSVs4LuCUUqQhB2uByTWUvbixjfF",
+        "6KzHa7L1MDTkaUb4qGiJqMvnmAy1qztGDeLvSHdS9ooU",
+        "8S2exJPiqunf9cqvdCrJip7NkSJQYPVpgGhVgnBzRdA4",
+        "ByZzakgSmSU5t33DbjPYoyLFB72AQyWkCkGuYhy1s4EG",
+        "DpLFcZVjWWfJpeg3o6yuf3Laszgj5uY49BoxMwcYJXAT",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "F5RXMszfuqrfBBVdZ15UYuTj2dWkTP8mbagLTXffBPed",
+        "G37RVgCrjfeUttKfPB6ivQVAhwMQNUA1xPojfjomkqPu",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "REALQqNEomY6cQGZJUGwywTBD2UmDT32rZcNnfxQ5N2",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "11111111111111111111111111111111",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "jitodontfront11111111111JustUseJupiterU1tra",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BB3JLh2rLToqvaYovsLnFuBCZ7s9Qb2XfcHN7Dd7KQUK",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "sighWH8KaiT7QhtV4w29ReVF8kG6D5yG3EQP1KYyGVF",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/2/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Both assets appear in a routed token/market transaction; mint co-occurrence and token deltas alone do not identify an issuer-defined transition.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-3Xm8zG3dr8eCR4fiyV5oJPygSXEuLWcRyFnw6bDDvE5wjLdETVHgSdKMHaSuSGgnXPvjhmPUJNZHGvT9fvMDPWzN",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc"
+      ],
+      "required_accounts": [
+        "UUAhspPgUdGuXUnokmxERH1VvNGNh1ouN3mfcbfV8yd",
+        "44GW6aFire4Fd72h4QqjenNKrQLjfnApHhWYXo3S1gvp",
+        "4qJGGCmc2EuZFEY5N9mYK52pVLPnFNjAeDkzYYkARDVC",
+        "7Kuo9yiK2NrQmQidnARV8tMwiEwKD53qCgiBuKJ9GUK6",
+        "85Etk23kFtyt265MQjyUgzJYZ7u5o2EVNdjDmuNySbGi",
+        "8a1ozhQR5EMmbkDRwvpPCTQCwHouS5mRmGBr7PcDokUa",
+        "9c5M3UfZyiK7Tkvg3nn3eJmYsRpkmZQCZPxxALrnCMEG",
+        "AhZDuxFu9uzMGYCGjBBCyctj4AZFTLxBJfhDxbAgqpZd",
+        "BuuSdnygrMe2sseSCcgzxHgRXP2Qya4b4NgwtV8LA2DK",
+        "CN32jwmQBFHM4NYrgkxefihRK8boR8M9n4RUBvgLe816",
+        "CUmkAhoMJKKkKzb9cELye6fBsLMhLM2B85W8qYxhk6Nd",
+        "E5z6dbFUySh2MMaAL37P8WQ4pa8eBjs1pCpA1QD7dhst",
+        "FTgH4PBtCBvQzgBrCubP1mBJDyecYVUd4qBTQysQNAQQ",
+        "Gk2Qvcjgm1PdvkquoeuHZgr4QZC8x6oqbgEEAbAnBGzV",
+        "GwjyT3BaL6yFj4ses6SSMF4vgQBoWeJTHZZ8NCf9UoH2",
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "SysvarRecentB1ockHashes11111111111111111111",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "9sxF1QqAqAknXweJTp53NMQnq1QVRFdrr9YAn8BEkS4t",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "So11111111111111111111111111111111111111112",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "jitodontfront1111111111111111JustUseJupiter",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "HLixVmXdBqzP1sXT9au4BHcvUjDgx5ev16cEJdd9tUSM"
+      ],
+      "required_signers": [
+        {
+          "address": "UUAhspPgUdGuXUnokmxERH1VvNGNh1ouN3mfcbfV8yd",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/2/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-3uDr3p5PxbBHdc4jnzf5Jk16HTTWXZqV1psAxo8zL4sUVd87d2LhxD6rTwjtQrGH764hCUJaZBEUTzQLgT6p4g9u",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "BiSoNHVpsVZW2F7rx2eQ59yQwKxzU5NvBcmKshCSUypi",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "swigypWHEksbC64pWKwah1WTeh9JXwx8H1rJHLdbQMB"
+      ],
+      "required_accounts": [
+        "E8nFdGKsRFzqkKPYkBToJpS7LMxDeEhA6mLYoNRGbSFu",
+        "J1RxcbDnMqRu1pVQWKr7EpwZh7tw7juQoVMzM9V2tTeo",
+        "Hngsf7qcpWX4HNJdWxXHG8zTRiFfBGzVUx99xknTQABt",
+        "8PT7Pb7XVKwLz27VyVnqtBCxbtvZzvwnCuoGSZciHapZ",
+        "Hjmxauet7a2d6po1KzJdnVcwaem8ncywdx38AVEJDCx8",
+        "GnXM5fYGt83YETwFkF4KVKzuw4KHQ89z8oKbkQ6f93Z4",
+        "A2tAwTixyt2PGVrAP4FMMj1e9wcRPtJ88FPuj87FL4NP",
+        "6zAcFYmxkaH25qWZW5ek4dk4SyQNpSza3ydSoUxjTudD",
+        "7vwjCmefE3GC8HqTcrhG6LrdzFtnbF7Zfp3HkakyKuVu",
+        "CF44fNqFBDVtinPTA8YknQYjciLyBJdvFSJv81h64QtV",
+        "m3BrPbv2TFmZZTPpyB9NgsCXqGNujpXvzvGqj8ksars",
+        "FfeasecR48Ay8V6VULZpFBbQfSosHL7cTUPSa799SiX4",
+        "ComputeBudget111111111111111111111111111111",
+        "swigypWHEksbC64pWKwah1WTeh9JXwx8H1rJHLdbQMB",
+        "11111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "4xDsmeTWPNjgSVSS1VTfzFq3iHZhp77ffPkAmkZkdu71",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "Chroid93DKzmgDYmCJELZ6CNC3SZ8WfRXzCkcqVtRy1r",
+        "GM56syqs18fNYmVgQJjuGUtwxiWRrt6JyFJsmcqSAYqk",
+        "ESEQ4k8U39d5xmu53GXT56Fvh3DPTAtVHau9MjuRFgNA",
+        "G974aXt5g12Qa3CFVNTCjMTpuKjT8ZYnb8fRrP5XPW8n",
+        "5KYB1e3G3nL4aFwKUpsecVYHYwyrLXePBdu52o4wHN4q",
+        "hYm9kqUeNs2oR8jZzFGHRJBwn73xWs3WGP92rhjZLXX",
+        "8FnX3xo2yYw3EUE6w3nQA4GfXGS9wpK6oj3veJpbFzLo",
+        "ATRsNGv2nDw7hSMfkUTBoVUDsFDwN7po7KbecyiGWNB4",
+        "2Y7HATmn9aJBcxCskE5V2U2epmjvkZmB51zTJBbhj4cU",
+        "CoqYNCGKpiGgLJJ6DntdbcvKmqTZBrxdvQDrxDCfb9GH",
+        "FaHEk1LERWayrFxTsootwLpFHQyJX9BVhhZ8k34hUSNw",
+        "8FBWLSsTXJxdPx1hfXdeb4ptupnLYft5XuHDpERKRrML",
+        "ECVneKRaA2w7FtzEN14JofnS7TkQMyqwHefVbHJ9fjgA",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "So11111111111111111111111111111111111111112",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "BiSoNHVpsVZW2F7rx2eQ59yQwKxzU5NvBcmKshCSUypi",
+        "Sysvar1nstructions1111111111111111111111111",
+        "J1to1yufRnoWn81KYg1XkTWzmKjnYSnmE2VY8DGUJ9Qv",
+        "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+      ],
+      "required_signers": [
+        {
+          "address": "E8nFdGKsRFzqkKPYkBToJpS7LMxDeEhA6mLYoNRGbSFu",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "J1RxcbDnMqRu1pVQWKr7EpwZh7tw7juQoVMzM9V2tTeo",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/4/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-488JEPp995mwiBpT8tHSv8FTZck6mADGGqCFpx9znXfqCAbdXkW4e5iQUAVpMWApexQhnZ7cGthDfLL6RwAEnrvb",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "6LY1JzAFVZsP2a2xKrtU6znQMQ5h4i7tocWdgrkZzkzF",
+        "4Jx1YHRSSDxAjY5QPnBZRKxYiuHKMps2qA41XuQEHmBF",
+        "DFz3nLK7DHnGs2QTTPWbd6RSJ7Yam1uVNU9dYQ71u42n",
+        "11111111111111111111111111111111",
+        "9ddAJcviL47bkLw6XbNUQGmV3km5PdNwN7rWxxcihRTi",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+      ],
+      "required_signers": [
+        {
+          "address": "6LY1JzAFVZsP2a2xKrtU6znQMQ5h4i7tocWdgrkZzkzF",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/7/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-4gu6HBKcZ4GWB6RcVbThZmMVmXXbeHfXJc7MozvJyLy96utKytAnd2WcDTNSRZMQ9SeG6MgYQSrW65i4Lvd4sfLg",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Swap",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": true
+      },
+      "programs": [
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms",
+        "REALQqNEomY6cQGZJUGwywTBD2UmDT32rZcNnfxQ5N2",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "swigypWHEksbC64pWKwah1WTeh9JXwx8H1rJHLdbQMB"
+      ],
+      "required_accounts": [
+        "E8nFdGKsRFzqkKPYkBToJpS7LMxDeEhA6mLYoNRGbSFu",
+        "J1RxcbDnMqRu1pVQWKr7EpwZh7tw7juQoVMzM9V2tTeo",
+        "GiFJPyC1eK9tMZcsMJecaj2VMy44PEiii37gG7z1w2Fw",
+        "6MwZa4hSuS6T91te3smuoB9uY4aVeuSCvV2ZPTqbBBjm",
+        "AAEGDsujHqNy8VqQvkYqN8idmScSPc18gFm7s7kxxkpb",
+        "CUadjAsDxdWAtRwmSyyWax7PC8j3DfVsiPtNLZ7GbDg5",
+        "EJD3UuMv4nQjNb9eD4qPZZdCwh18MPhhptKmDbHJfscK",
+        "44yeU6JP6bpQ1NEErZp2MtfZCybvsgJBZmBNR5d1Ezok",
+        "m3BrPbv2TFmZZTPpyB9NgsCXqGNujpXvzvGqj8ksars",
+        "FZkhmBnVpLg79u1JZZMG9724y23kukvGdfNx3SA65vdf",
+        "FGt4wsL53KvciK4SVpr3U4Vobe8DRjDA22AsDEQpCWFA",
+        "ComputeBudget111111111111111111111111111111",
+        "swigypWHEksbC64pWKwah1WTeh9JXwx8H1rJHLdbQMB",
+        "11111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "4xDsmeTWPNjgSVSS1VTfzFq3iHZhp77ffPkAmkZkdu71",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "LVcDubF4BFsEw8qmxupmw74bbZfiya99kor5c3Hh24r",
+        "2UbS3CBQpxYxq9FnCoC9RMu5MHZ4c4BNfF9ymBbMsVfy",
+        "HC6tghmJ9WNHi75PN7WsJip7UEimouaD4JezzajSU8nd",
+        "6KjSMWrMxsEi67f551oBtq9PzRGy2ifLS4UjBiPnbqH",
+        "Akoiq29JTXxCh6SDaeVwpzfWqzNrzF5CJLHmx7TEC1Rc",
+        "9RExWJFGfAviKHCSCQ59CqA6e7eZgmnfKuABqHn1jKG4",
+        "HxJzgogheSd1JwoBfqDVbQ1rpxjReFVVXQRfCSXvEmgW",
+        "5C95imQzbVXQumZqFWAAQUNFtNRsPTmGgsmf9kGVSgMe",
+        "CF6HzkJ8X97yuSMTKk9aYq9cHNLbBjXRAHiwZdCHhA6Q",
+        "9wMYX58sVC7A6txq4nh1VUheWZKv8CP1VcFbAAjnG7LF",
+        "BeUdSsTVpjHuYpMa8Zu8cwtRf6bLbFjkk13z2sGnh25G",
+        "7BrSXjkzup7uF5rJATnr8GWu7CyWqHqBS3rpqrig4uDd",
+        "98MELLrzicYDpeStJidE6mVsuM8TtyxzTzLTEwcY7nDB",
+        "4b5JUW7iTd1nutK2VoQgDew5D5NL3M9QbwNoTrJ2vgko",
+        "2R9TCnVDMUCqrdc9iqMxKDRuFhFkU5HKhZLR1uFRm9HR",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "REALQqNEomY6cQGZJUGwywTBD2UmDT32rZcNnfxQ5N2",
+        "G37RVgCrjfeUttKfPB6ivQVAhwMQNUA1xPojfjomkqPu",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "F5RXMszfuqrfBBVdZ15UYuTj2dWkTP8mbagLTXffBPed",
+        "MNFSTqtC93rEfYHB6hF82sKdZpUDFWkViLByLd1k1Ms",
+        "PresTj4Yc2bAR197Er7wz4UUKSfqt6FryBEdAriBoQB"
+      ],
+      "required_signers": [
+        {
+          "address": "E8nFdGKsRFzqkKPYkBToJpS7LMxDeEhA6mLYoNRGbSFu",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "J1RxcbDnMqRu1pVQWKr7EpwZh7tw7juQoVMzM9V2tTeo",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/9/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Both assets appear in a routed token/market transaction; mint co-occurrence and token deltas alone do not identify an issuer-defined transition.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-4wUtw17jFYcueEFSZ13pj9YEKtunogdnVtyEPKbgzNjLRcXL1zVPESu7TWAYPfmrQMKJuG6XEj4CxYc86Y4VxyfJ",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Swap",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": true
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "REALQqNEomY6cQGZJUGwywTBD2UmDT32rZcNnfxQ5N2",
+        "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "58xTfovqTLWQ4hbPvTSgRUFnT2Gvb5d4zVS8zUWxVMuP",
+        "4yXkHngD7kj4e6UXFg3GH2AA4nQ77JcNGmceb3Fk3hp9",
+        "7CBmuU1q5brhsEU9eRayGBZpmSpiMcFPWTtmeEXSiZg1",
+        "AhLqFmJ19f79NR1eJtDpGZAoDsEAuovhcj7uLJLmEpri",
+        "AjcRYtvoaTqX3bdqTkkPTyXmF3hHvoMFTL6Vasqo6Xs4",
+        "FGt4wsL53KvciK4SVpr3U4Vobe8DRjDA22AsDEQpCWFA",
+        "FZkhmBnVpLg79u1JZZMG9724y23kukvGdfNx3SA65vdf",
+        "4cG31VNF9TzFinNc7BmnjhFvGjxkY3sCETVMtMgbrhPs",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "BAT1Ndpu5gbLTp2AZkSXP79LJBZfCH4B3zGhi6LtvdhK",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "jitodontfront111111111111111111nopainnogain",
+        "2UbS3CBQpxYxq9FnCoC9RMu5MHZ4c4BNfF9ymBbMsVfy",
+        "6KjSMWrMxsEi67f551oBtq9PzRGy2ifLS4UjBiPnbqH",
+        "Akoiq29JTXxCh6SDaeVwpzfWqzNrzF5CJLHmx7TEC1Rc",
+        "HC6tghmJ9WNHi75PN7WsJip7UEimouaD4JezzajSU8nd",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "LVcDubF4BFsEw8qmxupmw74bbZfiya99kor5c3Hh24r",
+        "39FWQJxqTmUkFqHKjEs3CawQ1b1rqLcKmHfJ1FWMAWdu",
+        "5C95imQzbVXQumZqFWAAQUNFtNRsPTmGgsmf9kGVSgMe",
+        "9RExWJFGfAviKHCSCQ59CqA6e7eZgmnfKuABqHn1jKG4",
+        "9wMYX58sVC7A6txq4nh1VUheWZKv8CP1VcFbAAjnG7LF",
+        "CF6HzkJ8X97yuSMTKk9aYq9cHNLbBjXRAHiwZdCHhA6Q",
+        "HxJzgogheSd1JwoBfqDVbQ1rpxjReFVVXQRfCSXvEmgW",
+        "5pVN5XZB8cYBjNLFrsBCPWkCQBan5K5Mq2dWGzwPgGJV",
+        "9t4P5wMwfFkyn92Z7hf463qYKEZf8ERVZsGBEPNp8uJx",
+        "FLckHLGMJy5gEoXWwcE68Nprde1D4araK4TGLw4pQq2n",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "F5RXMszfuqrfBBVdZ15UYuTj2dWkTP8mbagLTXffBPed",
+        "G37RVgCrjfeUttKfPB6ivQVAhwMQNUA1xPojfjomkqPu",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "REALQqNEomY6cQGZJUGwywTBD2UmDT32rZcNnfxQ5N2",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "11111111111111111111111111111111",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "jitodontfront1111111111111111JustUseJupiter",
+        "So11111111111111111111111111111111111111112",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "8ekCy2jHHUbW2yeNGFWYJT9Hm9FW7SvZcZK66dSZCDiF",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH"
+      ],
+      "required_signers": [
+        {
+          "address": "58xTfovqTLWQ4hbPvTSgRUFnT2Gvb5d4zVS8zUWxVMuP",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/10/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Both assets appear in a routed token/market transaction; mint co-occurrence and token deltas alone do not identify an issuer-defined transition.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-5LNpFZ8yJX6f1pF4h895W6VeagtKP23nhSNc9H9DRjKRRpr9rktVhREvCVmtNyaX3ysXpZEoBZmHadJEXZamos2o",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch"
+      ],
+      "required_accounts": [
+        "9LXH9uZZvXvg6X35QZaAiVdHx2xrPUo84gRaZCXGDfAj",
+        "BYdbzgpZHHRPPvb4a9QotPSMb4TLuKwWhwSHTP1HB5Cz",
+        "F7XroAgtnAgK7DcofYVuKbGFNzLLokVKAUF8vg2NciWz",
+        "F9zL3re8uhtGXJWn2cPEJchh9KQKSG2qDpwm9eGgKwQh",
+        "FGWh7m7errJ7ALrFHWDt6T1rqyvexU3wXHdwQnb4mi9f",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "44GW6aFire4Fd72h4QqjenNKrQLjfnApHhWYXo3S1gvp",
+        "4qJGGCmc2EuZFEY5N9mYK52pVLPnFNjAeDkzYYkARDVC",
+        "85Etk23kFtyt265MQjyUgzJYZ7u5o2EVNdjDmuNySbGi",
+        "8a1ozhQR5EMmbkDRwvpPCTQCwHouS5mRmGBr7PcDokUa",
+        "CUmkAhoMJKKkKzb9cELye6fBsLMhLM2B85W8qYxhk6Nd",
+        "2x49iif19oPpvFfyt4p7xYsAJv4JoUdRArXbGpE462VL",
+        "9oWhHKQnfG3mKM3Z9pDzGoiWUpdmY7FfLr1YegxYX6Mc",
+        "B8QbcpcYdKczNP9QPZZacNwupZgeVht5wQH8fp4JHuLs",
+        "DcEgd7ESKZg9P32uEw1askE1JFGB5YDBZnKD6F4iVaNi",
+        "GTW4HKZMGsMzgp1KJZGUoufusfiJmKgoQdt7DMhH2pnE",
+        "H2jP69TafMb8zbWKmWsf22tkLPA8sjeZFS5hKDc3f2Rk",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "So11111111111111111111111111111111111111112",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK",
+        "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "HLixVmXdBqzP1sXT9au4BHcvUjDgx5ev16cEJdd9tUSM",
+        "A1BBtTYJd4i3xU8D6Tc2FzU6ZN4oXZWXKZnCxwbHXr8x"
+      ],
+      "required_signers": [
+        {
+          "address": "9LXH9uZZvXvg6X35QZaAiVdHx2xrPUo84gRaZCXGDfAj",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/0/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-5cABoh7fFgDMSF1oR7ymNEqmvLB95F5hRmg3rkKewYZGnxBiCoko58DSs733ivmfEBTFMwcZUeHjDqZjj595YNE8",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc"
+      ],
+      "required_accounts": [
+        "Db7sK3yB7RjaceCPDCJGaUnCcSA1ToRTEyaKpcGfmwEo",
+        "hKwcHKrZixD8k8uFxMpbpcSth9ayARd6yTUDf6obTww",
+        "5Fxtdj7CfH2CqNsm8gyKjVzE6eouFET1Ctk7uubP6MWo",
+        "B9bx9zfaUBoRZU8aXSgzxymSohbg4jCkkpMLBHUrgpWf",
+        "FTgH4PBtCBvQzgBrCubP1mBJDyecYVUd4qBTQysQNAQQ",
+        "Gk2Qvcjgm1PdvkquoeuHZgr4QZC8x6oqbgEEAbAnBGzV",
+        "ComputeBudget111111111111111111111111111111",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "4cG31VNF9TzFinNc7BmnjhFvGjxkY3sCETVMtMgbrhPs",
+        "BAT1Ndpu5gbLTp2AZkSXP79LJBZfCH4B3zGhi6LtvdhK",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "5pVN5XZB8cYBjNLFrsBCPWkCQBan5K5Mq2dWGzwPgGJV",
+        "9t4P5wMwfFkyn92Z7hf463qYKEZf8ERVZsGBEPNp8uJx",
+        "FLckHLGMJy5gEoXWwcE68Nprde1D4araK4TGLw4pQq2n",
+        "34WpFzQ1WE2nDLLEKJuvCXxapL7ak6CigJS8Ks5NDo5K",
+        "4qJGGCmc2EuZFEY5N9mYK52pVLPnFNjAeDkzYYkARDVC",
+        "CUmkAhoMJKKkKzb9cELye6fBsLMhLM2B85W8qYxhk6Nd",
+        "DmocjvFXp75asezCDKVNH2qaXbjrV7VeQk4aLZaPF88E",
+        "ESnmANEpQdBexSBSDL3LPNSxKbiA2jWTkm6SDP7xrt3V",
+        "7Kuo9yiK2NrQmQidnARV8tMwiEwKD53qCgiBuKJ9GUK6",
+        "9c5M3UfZyiK7Tkvg3nn3eJmYsRpkmZQCZPxxALrnCMEG",
+        "CN32jwmQBFHM4NYrgkxefihRK8boR8M9n4RUBvgLe816",
+        "E5z6dbFUySh2MMaAL37P8WQ4pa8eBjs1pCpA1QD7dhst",
+        "GwjyT3BaL6yFj4ses6SSMF4vgQBoWeJTHZZ8NCf9UoH2",
+        "So11111111111111111111111111111111111111112",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TessVdML9pBGgG9yGks7o4HewRaXVAMuoVj4x83GLQH",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "8ekCy2jHHUbW2yeNGFWYJT9Hm9FW7SvZcZK66dSZCDiF",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "HLixVmXdBqzP1sXT9au4BHcvUjDgx5ev16cEJdd9tUSM",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc"
+      ],
+      "required_signers": [
+        {
+          "address": "Db7sK3yB7RjaceCPDCJGaUnCcSA1ToRTEyaKpcGfmwEo",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/3/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-5sEDkyX8BGoVdg5Y2Q5uaW6Gr9wMSfjXYZ73h7tjrjYjWyQx6yPfdvg9NaRmDdUG6aUErveitTybEJkYKVy5WD7v",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+        "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+        "DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL",
+        "E9fN3UpxADM7nd2JspyaGRS9Y1hs1AYhEcLCzfDDBcxu",
+        "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "6VjCDB8cJUcH6JE5Wd3y9pcZw7trJG6bACheAWNic5yw",
+        "PreC1KtJ1sBPPqaeeqL6Qb15GTLCYVvyYEwxhdfTwfx",
+        "ComputeBudget111111111111111111111111111111",
+        "11111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "53Ab3Rqx1a5uiV7qmsX4qbdbrqstVDpnH4LoJGfsZsU8",
+        "E7MSfhXMj3D8MRmGdhJSCEmeD4yXojoWRCvvoAp8p75Z",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/10/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Administrative withheld-fee withdrawal, not a holder conversion.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-5sNMmnMcZRMRNcmPtRv8qFsDTMsnU6U4ZBpEz2gPFMiaxseMXHD57wZaqXsphy8YDiYLsKhJdcfUeT6vPvemx2d8",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+        "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+        "DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL",
+        "9iVMbjQCMnEgQK3UVkii1qt4GxiwsSJVaUmoYbGvUiC",
+        "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "BGoxoC3bR5KNVXJBYtAsz1WpXvNHnd8k525WGpHa8iQe",
+        "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "ComputeBudget111111111111111111111111111111",
+        "11111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "53Ab3Rqx1a5uiV7qmsX4qbdbrqstVDpnH4LoJGfsZsU8",
+        "Ft67UmXYFawKRpbAKqR6zsBYtp88RpkaP35wW34MyJPN",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/13/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Administrative withheld-fee withdrawal, not a holder conversion.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-62gwSLZ4YVTzxRhg6XboMn8YAe6R8iUep9eqjHoWY4QiTq6X6dQxuBkf7WyiPftB5JBV5XCqDyiRMmJgcK9ZvxTf",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "proVF4pMXVaYqmy4NjniPh4pqKNfMmsihgd4wdkCX3u",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc"
+      ],
+      "required_accounts": [
+        "H4arxkST9m8UaASkLxEKrAT7RrfvayBBWV9oYpVkXZDb",
+        "34ShVRXeNdkT9K3rVTCiffmDt9ihPfX1eMX7BeCTtQZq",
+        "96gYZGLnJYVFmbjzopPSU6QiEV5fGqZNyN9nmNhvrZU5",
+        "ARu4n5mFdZogZAravu7CcizaojWnS6oqka37gdLT5SZn",
+        "CSM3Y3YUowHLf39keT5GmegXqLj5RQ7yK1GUFSb6m1Pf",
+        "DT2krA8vSP96D68nH86eAztZHVM18YB5i4gDXjLBDXm7",
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "proVF4pMXVaYqmy4NjniPh4pqKNfMmsihgd4wdkCX3u",
+        "Ag3hiK9svNixH9Vu5sD2CmK5fyDWrx9a1iVSbZW22bUS",
+        "44GW6aFire4Fd72h4QqjenNKrQLjfnApHhWYXo3S1gvp",
+        "4qJGGCmc2EuZFEY5N9mYK52pVLPnFNjAeDkzYYkARDVC",
+        "7Kuo9yiK2NrQmQidnARV8tMwiEwKD53qCgiBuKJ9GUK6",
+        "85Etk23kFtyt265MQjyUgzJYZ7u5o2EVNdjDmuNySbGi",
+        "8a1ozhQR5EMmbkDRwvpPCTQCwHouS5mRmGBr7PcDokUa",
+        "9c5M3UfZyiK7Tkvg3nn3eJmYsRpkmZQCZPxxALrnCMEG",
+        "CN32jwmQBFHM4NYrgkxefihRK8boR8M9n4RUBvgLe816",
+        "CUmkAhoMJKKkKzb9cELye6fBsLMhLM2B85W8qYxhk6Nd",
+        "E5z6dbFUySh2MMaAL37P8WQ4pa8eBjs1pCpA1QD7dhst",
+        "FTgH4PBtCBvQzgBrCubP1mBJDyecYVUd4qBTQysQNAQQ",
+        "Gk2Qvcjgm1PdvkquoeuHZgr4QZC8x6oqbgEEAbAnBGzV",
+        "GwjyT3BaL6yFj4ses6SSMF4vgQBoWeJTHZZ8NCf9UoH2",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "So11111111111111111111111111111111111111112",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "HLixVmXdBqzP1sXT9au4BHcvUjDgx5ev16cEJdd9tUSM",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+      ],
+      "required_signers": [
+        {
+          "address": "H4arxkST9m8UaASkLxEKrAT7RrfvayBBWV9oYpVkXZDb",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/4/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Public transaction observation without independently established official conversion identity.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-h3vuqvvHY2muZgoeCTYonC8hqo3rCxancEiCuiH4bXzaj5XVJRGoZGm9W4kez4iwzQViHgBaxcJ37TTFKhfLdK8",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Swap",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": true
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "5VtQHnhs2pfVEr68qQsbTRwKh4JV5GTu9mBHgHFxpHeQ",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "D8C8iW6zmoKg5TRr8nQ7h14TMWqQX8FiBdj2ju5MF3wa",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mayan34VedncxdK2XobtvWFDXQASUTBXhUVzt2kKgny",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch"
+      ],
+      "required_accounts": [
+        "4mPYKWJgF2shp4wrAWP5abMJ4TL9Ls6AMbrk65xKzM2N",
+        "7xjqCuEQEZkEfj9g3sNEJptw59DWEJaNqdCqbNcwfiHq",
+        "AMvdV6SiXdEqn37SUTpczWEqUVG3BsM5R3gc3a7Du9cn",
+        "Db6VkaH6u1v7iYAYiENgyypusxPrJQHVAEzadavz2dLd",
+        "FDhXHGrsBtuxk1FbUuzx7u2ECR48koxtSGF41tV41ZXk",
+        "GL8z11f4vcEw8WBaPGkNgJKd9AX55vYdDyUbtnbfd78u",
+        "ComputeBudget111111111111111111111111111111",
+        "D8C8iW6zmoKg5TRr8nQ7h14TMWqQX8FiBdj2ju5MF3wa",
+        "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+        "5C95imQzbVXQumZqFWAAQUNFtNRsPTmGgsmf9kGVSgMe",
+        "9RExWJFGfAviKHCSCQ59CqA6e7eZgmnfKuABqHn1jKG4",
+        "9wMYX58sVC7A6txq4nh1VUheWZKv8CP1VcFbAAjnG7LF",
+        "CF6HzkJ8X97yuSMTKk9aYq9cHNLbBjXRAHiwZdCHhA6Q",
+        "HxJzgogheSd1JwoBfqDVbQ1rpxjReFVVXQRfCSXvEmgW",
+        "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "34WpFzQ1WE2nDLLEKJuvCXxapL7ak6CigJS8Ks5NDo5K",
+        "4qJGGCmc2EuZFEY5N9mYK52pVLPnFNjAeDkzYYkARDVC",
+        "CUmkAhoMJKKkKzb9cELye6fBsLMhLM2B85W8qYxhk6Nd",
+        "DmocjvFXp75asezCDKVNH2qaXbjrV7VeQk4aLZaPF88E",
+        "ESnmANEpQdBexSBSDL3LPNSxKbiA2jWTkm6SDP7xrt3V",
+        "D1ZN9Wj1fRSUQfCjhvnu1hqDMT7hzjzBBpi12nVniYD6",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+        "EHcege7dok1iYs7SxL2XzDPvhg6XzMVcx2V5SkMUurJP",
+        "HLixVmXdBqzP1sXT9au4BHcvUjDgx5ev16cEJdd9tUSM",
+        "ojh19ojaKduoJZuaJADhcVGp4xt1TcdAvZmpVsCorch",
+        "SCoRcH8c2dpjvcJD6FiPbCSQyQgu3PcUAWj2Xxx3mqn",
+        "11111111111111111111111111111111",
+        "5VtQHnhs2pfVEr68qQsbTRwKh4JV5GTu9mBHgHFxpHeQ",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "D8cy77BBepLMngZx6ZukaTff5hCt1HrWyKk3Hnd9oitf",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "mayan34VedncxdK2XobtvWFDXQASUTBXhUVzt2kKgny",
+        "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
+        "Sysvar1nstructions1111111111111111111111111",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "4mPYKWJgF2shp4wrAWP5abMJ4TL9Ls6AMbrk65xKzM2N",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-capture.json#/records/11/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Both assets appear in a routed token/market transaction; mint co-occurrence and token deltas alone do not identify an issuer-defined transition.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    },
+    {
+      "id": "observed-jVLJfreHbk6BgDqe9mtdx4cs8YcewgDzLrTEDLgmyT1t66gfYbydWExLNnnarfQee2hsnqiWRpij7HC5vR6Gvp5",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "mechanism_type": "Unknown",
+      "identity": {
+        "issuer_semantics_bound": false,
+        "observed_official_transaction": false,
+        "exact_account_plan_verified": false,
+        "source_destination_pair_observed": false
+      },
+      "programs": [
+        "11111111111111111111111111111111",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "ComputeBudget111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_accounts": [
+        "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+        "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+        "DttWaMuVvTiduZRnguLF7jNxTgiMBZ1hyAumKUiL2KRL",
+        "41u1xNnv4km5J4gGYhwJJNJookK3Z7h75jgTh5YC2PZ8",
+        "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "4f7kbHe17BZFSTUseb1X5sPHH988nxrwi3ecvib7Up7U",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "ComputeBudget111111111111111111111111111111",
+        "11111111111111111111111111111111",
+        "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
+        "53Ab3Rqx1a5uiV7qmsX4qbdbrqstVDpnH4LoJGfsZsU8",
+        "EBHH3WhG81nF7XMN7LQb3Gbb68rqriwy6tPmi1fGC2k5",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "required_signers": [
+        {
+          "address": "BCbd3oUietSbTaABjADub4RUXqwAUeRdUZCZiDK5NbE6",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        },
+        {
+          "address": "CwhmxAQzrj7v9njnoPzMLYRPDmx5MvnETe545fSt6sKB",
+          "role": "Unknown",
+          "possession_known": false,
+          "assumed_locally": false
+        }
+      ],
+      "eligibility_inputs": [
+        "Unknown"
+      ],
+      "onchain_evidence": [
+        "../evidence/transition/phase9/rpc-retry-capture.json#/records/11/response/result"
+      ],
+      "external_policy_evidence": [
+        "issuer-notice",
+        "issuer-faq",
+        "issuer-launch",
+        "original-policy"
+      ],
+      "blocking_requirements": [
+        "Administrative withheld-fee withdrawal, not a holder conversion.",
+        "Observed instruction/account list belongs to the sampled transaction, not an executable official plan for the canonical holder."
+      ]
+    }
+  ]
+}

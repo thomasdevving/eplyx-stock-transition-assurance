@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "investigation_file": "reports/spacex-official-transition.json",
+  "investigation_sha256": "fb7a79bd6f1a56daf09b34f3af49a0c5d11baa0b479b2922be200ff6b68e6d6d",
+  "resolution_file": "reports/spacex-lifecycle-path-resolution-phase9.json",
+  "resolution_sha256": "993989bcdad106d7eef79895e258f4ce14bad18ec810503932688e0ebeb8e06d",
+  "checks": {
+    "make-test": {
+      "exit_code": 0,
+      "log_file": "reports/phase9-validation/make-test.txt",
+      "log_sha256": "1c95fc056957a3f6bc53487f411d8cedb53ff41e17bbdabf15a3fdb528f8223a"
+    },
+    "make-fmt-check": {
+      "exit_code": 0,
+      "log_file": "reports/phase9-validation/make-fmt-check.txt",
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239"
+    },
+    "make-lint": {
+      "exit_code": 0,
+      "log_file": "reports/phase9-validation/make-lint.txt",
+      "log_sha256": "57c78ea67e0764cdf3b2258bff282b69764782e293769e8016390883ebb0ae66"
+    },
+    "git-diff-check": {
+      "exit_code": 0,
+      "log_file": "reports/phase9-validation/git-diff-check.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "tests": {
+    "passed": 244,
+    "failed": 0,
+    "ignored": 0,
+    "phase9_unit_tests": 15,
+    "phase9_integration_tests": 3,
+    "prior_phase_assertions_weakened": false,
+    "both_synthetic_sbf_versions_built": true
+  },
+  "mutation_tests": {
+    "injected": 7,
+    "caught_by_specific_assertions": 7,
+    "source_restored": true,
+    "report_file": "reports/spacex-phase9-mutation-results.json",
+    "report_sha256": "cc6260c7bdf91cfea0a87d66551b4978754faaf04a89d132dd00f841978a7ed1"
+  },
+  "canonical_saved_json_equals_json_stdout": true,
+  "offline_cli_checks": {
+    "test": "offline_cli_reproduces_report_and_matrix_with_protected_portable_outputs",
+    "absolute_inputs_from_other_working_directory": true,
+    "rpc_environment_unset": true,
+    "canonical_stdout_equals_saved_and_published_json": true,
+    "matrix_and_discovery_equal_published_artifacts": true,
+    "existing_output_rejected_without_mutation": true
+  },
+  "evidence_boundaries": {
+    "official_transition_status": "NotTested",
+    "official_execution_attempted": false,
+    "exact_tested_input_raw": null,
+    "transition_nonexistence_claimed": false,
+    "official_required_signers_unestablished": true,
+    "four_nonofficial_rows_exactly_equal_phase8": true,
+    "additional_holder_or_market_execution_added": false
+  },
+  "original_artifacts": {
+    "phase7_manifest_entries_unchanged": 79,
+    "phase7_shared_files_additively_updated": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ],
+    "phase8_manifest_entries_unchanged": 40,
+    "phase8_shared_files_additively_updated": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ],
+    "original_checksums_rewritten": false
+  }
+}

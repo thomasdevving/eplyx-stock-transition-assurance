@@ -1,0 +1,868 @@
+{
+  "schema_version": 1,
+  "resolver_version": "lifecycle-path-v1",
+  "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+  "token_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+  "owner_authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+  "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "entity_type": "WalletCompatible",
+  "verified_role": null,
+  "observed_onchain_evidence": [
+    {
+      "layer": "Lifecycle",
+      "account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "reference": {
+        "rpc_id": 2,
+        "pointer": "/value/6273/account",
+        "slot": 447865621
+      },
+      "raw_data_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+      "decoder": "SPL token account / Token-2022 extensions 3.1.1"
+    },
+    {
+      "layer": "Lifecycle",
+      "account": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "reference": {
+        "rpc_id": 183,
+        "pointer": "/value",
+        "slot": 447865805
+      },
+      "raw_data_sha256": "1df7e241a88c158511a8c8073530201b78e47b9a22954884d208a5396334037d",
+      "decoder": "SPL mint / Token-2022 extensions 3.1.1"
+    }
+  ],
+  "policy_evidence": [
+    {
+      "source_id": "demo-boundary-assumption",
+      "policy_fields": [
+        "/policy/before",
+        "/policy/deadline",
+        "/policy/effective_at"
+      ]
+    },
+    {
+      "source_id": "prestocks-official-notice",
+      "policy_fields": [
+        "/policy/after",
+        "/policy/deadline"
+      ]
+    }
+  ],
+  "observed_public_balance_raw": "17621",
+  "lifecycle_status": "TransitionRequired",
+  "impact_classification": "RequiresTransition",
+  "policy_evaluated_at": "2026-09-17T20:00:00Z",
+  "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "coverage_sha256": "79b78e877b63c9fa3fd5ef80755b0759c47ae8ac9771a56cc3046a387217e07f",
+  "discovery_sha256": "5767830a5e32f8931a888030f2bdab6619e902e1dbf3e4e5e4aa16cfd7fc3e6c",
+  "evidence_bundle_sha256": "7165811ebb44c8672c6b215c4cd98c9d7a2ae1cac96c3324c0657c7afc4bcdd2",
+  "baseline_execution_status": "NotTested",
+  "paths": [
+    {
+      "path_type": "OfficialTransition",
+      "status": "NotTested",
+      "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "contexts": [
+        {
+          "context_id": "issuer-successor:Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+          "status": "NotTested",
+          "attempts": []
+        }
+      ],
+      "discovery": {
+        "path_type": "OfficialTransition",
+        "boundary": "OnchainCandidateUnverified",
+        "requested_contexts": [
+          "issuer-successor:Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+        ],
+        "evidence_ids": [
+          "bounded-chain-research",
+          "issuer-faq",
+          "issuer-notice",
+          "original-policy",
+          "research-scope",
+          "transition-public-rpc-0",
+          "transition-public-rpc-1",
+          "transition-public-rpc-2"
+        ],
+        "facts": [
+          "Bounded investigation: 6 address queries, 90 returned signature entries, 31 unique transactions, 31 available, 18 retry requests. No official executor established.",
+          "Issuer FAQ describes post-IPO conversion as fully onchain without KYC.",
+          "Issuer notice links SPCXx mint Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8 and allows swapping into it or any other token before its stated deadline.",
+          "Sample source-authority transaction invokes Squads and withdraws withheld token fees; sample successor transaction contains token transfers. Neither sampled transaction establishes an official transition for this entity.",
+          "Source and published successor exist as non-executable Token-2022 mints at finalized slot 448024657. Source mint/freeze/permanent delegate authority is WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc; captured authority account is empty System-owned, not itself a conversion program."
+        ],
+        "reason": "No independently verifiable official transition mechanism was established within the bounded investigation.",
+        "limitations": [
+          "Bounded research cannot prove that no other onchain transition mechanism exists.",
+          "Generic Burn/MintTo and administrative authority or fee-withdrawal instructions do not establish successor exchange, issuer authorization or redemption.",
+          "No verified conversion instruction/account plan or successor execution fixture was supplied.",
+          "Observed DEX routes, source burn/closure, successor MintTo and fee administration are not independently bound official conversion evidence. Unknown eligibility is not evidence of an actual KYC/backend dependency.",
+          "The existing USDC swap is SecondaryMarketExit evidence only; issuer wording does not automatically reclassify it as OfficialTransition proof."
+        ]
+      },
+      "evidence": [
+        {
+          "id": "bounded-chain-research",
+          "kind": "ObservedOnchainState",
+          "reference": "https://api.mainnet-beta.solana.com",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/chain-investigation.json",
+            "sha256": "bb8709ea24e6677dc63d5fe099cc5f9254f759c176f88bede43a26f0bc646db8"
+          },
+          "description": "Finalized bytes of source/successor mints and source authority; five recent signatures and one transaction per authority/successor. Limited observations are not exhaustive absence or signed inclusion proofs."
+        },
+        {
+          "id": "issuer-faq",
+          "kind": "ExternalMechanism",
+          "reference": "https://prestocks.com/faq",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/issuer-faq-chunk-0.js",
+            "sha256": "2e62dd29b1c4c6d55ad1ee6b08bb49c8eac5958b33c98382bf544e7d628ac169"
+          },
+          "description": "Public first-party FAQ application data says post-IPO conversion can be onchain without KYC. It also describes offchain arbitrage; it supplies no concrete audited conversion instruction in this captured source."
+        },
+        {
+          "id": "issuer-notice",
+          "kind": "ExternalPolicy",
+          "reference": "https://prestocks.com/spacex",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/issuer-spacex.html",
+            "sha256": "cb7c0c835d4c9aa8824e74ea3e39297323407c4908aa23e5d9256b395bc6ab69"
+          },
+          "description": "Issuer names a successor and a conversion deadline; a policy assertion, not execution or entitlement evidence."
+        },
+        {
+          "id": "original-policy",
+          "kind": "ScenarioAssumption",
+          "reference": "scenario:prestocks-spacex-transition-v1",
+          "artifact": {
+            "file": "../scenarios/spacex-transition.json",
+            "sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+          },
+          "description": "Original external lifecycle policy and hypothetical semantic boundary remain unchanged; successor field remains null in that policy."
+        },
+        {
+          "id": "research-scope",
+          "kind": "ResearchInference",
+          "reference": "research:phase8-bounded-public-sources",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/http-capture.json",
+            "sha256": "c5af693cdb42619d118292349ace721f2157a1ef77a65a32b2a39ee6c34d68b2"
+          },
+          "description": "Issuer pages/FAQ captured read-only; X page returned 403 via browsing, syndication returned empty object; no post text is assumed. No issuer authentication, entitlement or backend access was obtained."
+        },
+        {
+          "id": "transition-public-rpc-0",
+          "kind": "ObservedOnchainState",
+          "reference": "rpc:bounded-official-transition-investigation",
+          "artifact": {
+            "file": "../evidence/transition/phase9/rpc-capture.json",
+            "sha256": "c6825a7dd387df416a71a9aca5a7b3ad7227b870a9e82535e2ae1cb89302cd61"
+          },
+          "description": "Bounded current public mint, program, administrative and transaction observations; no official execution proof."
+        },
+        {
+          "id": "transition-public-rpc-1",
+          "kind": "ObservedOnchainState",
+          "reference": "rpc:bounded-official-transition-investigation",
+          "artifact": {
+            "file": "../evidence/transition/phase9/rpc-retry-capture.json",
+            "sha256": "2678ec48a33f4d281bd6d89c18796cc8d65a51a239d7e6c4db04e509092ba9b8"
+          },
+          "description": "Bounded current public mint, program, administrative and transaction observations; no official execution proof."
+        },
+        {
+          "id": "transition-public-rpc-2",
+          "kind": "ObservedOnchainState",
+          "reference": "rpc:bounded-official-transition-investigation",
+          "artifact": {
+            "file": "../evidence/transition/phase9/rpc-account-reconstruction.json",
+            "sha256": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b"
+          },
+          "description": "Bounded current public mint, program, administrative and transaction observations; no official execution proof."
+        }
+      ],
+      "reason": "No independently verifiable official transition mechanism was established within the bounded investigation.",
+      "limitations": [
+        "Bounded research cannot prove that no other onchain transition mechanism exists.",
+        "Generic Burn/MintTo and administrative authority or fee-withdrawal instructions do not establish successor exchange, issuer authorization or redemption.",
+        "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+        "No verified conversion instruction/account plan or successor execution fixture was supplied.",
+        "Observed DEX routes, source burn/closure, successor MintTo and fee administration are not independently bound official conversion evidence. Unknown eligibility is not evidence of an actual KYC/backend dependency.",
+        "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+        "The existing USDC swap is SecondaryMarketExit evidence only; issuer wording does not automatically reclassify it as OfficialTransition proof.",
+        "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+      ]
+    },
+    {
+      "path_type": "Redemption",
+      "status": "Unsupported",
+      "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "contexts": [],
+      "discovery": {
+        "path_type": "Redemption",
+        "boundary": "IssuerMediatedOutsideExecutor",
+        "requested_contexts": [],
+        "evidence_ids": [
+          "bounded-chain-research",
+          "issuer-faq",
+          "issuer-launch",
+          "research-scope"
+        ],
+        "facts": [
+          "Current FAQ describes offchain exposure/arbitrage but supplies no holder-executable redemption instruction in the captured material.",
+          "Issuer historical launch communication says minting/redemption require KYC.",
+          "No verified redemption program, payout guarantee or holder entitlement was established by the bounded transaction sample."
+        ],
+        "reason": "Unsupported: no independently verified redemption executor is available in the supported evidence boundary; issuer onboarding/KYC, backend and offchain exposure/entitlement are unavailable.",
+        "limitations": [
+          "Historical generic issuer language is not proof of this holder current entitlement or eligibility.",
+          "Neither DEX output, Transfer nor a token Burn instruction proves redemption.",
+          "Unsupported means Eplyx cannot independently execute/verify the mechanism, not that redemption does not exist."
+        ]
+      },
+      "evidence": [
+        {
+          "id": "bounded-chain-research",
+          "kind": "ObservedOnchainState",
+          "reference": "https://api.mainnet-beta.solana.com",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/chain-investigation.json",
+            "sha256": "bb8709ea24e6677dc63d5fe099cc5f9254f759c176f88bede43a26f0bc646db8"
+          },
+          "description": "Finalized bytes of source/successor mints and source authority; five recent signatures and one transaction per authority/successor. Limited observations are not exhaustive absence or signed inclusion proofs."
+        },
+        {
+          "id": "issuer-faq",
+          "kind": "ExternalMechanism",
+          "reference": "https://prestocks.com/faq",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/issuer-faq-chunk-0.js",
+            "sha256": "2e62dd29b1c4c6d55ad1ee6b08bb49c8eac5958b33c98382bf544e7d628ac169"
+          },
+          "description": "Public first-party FAQ application data says post-IPO conversion can be onchain without KYC. It also describes offchain arbitrage; it supplies no concrete audited conversion instruction in this captured source."
+        },
+        {
+          "id": "issuer-launch",
+          "kind": "ExternalMechanism",
+          "reference": "https://newsletter.prestocks.com/p/prestocks-are-live-trade-spacex-openai",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/issuer-launch.html",
+            "sha256": "0558e465d80d4a630b0f7b6b7b65fb1211d13d7c14ae8e7299fa3f20034b4f93"
+          },
+          "description": "2025-08-07 issuer newsletter distinguishes KYC-gated mint/redemption from ordinary trading. General historical communication does not establish this holder eligibility or a currently functioning redemption flow."
+        },
+        {
+          "id": "research-scope",
+          "kind": "ResearchInference",
+          "reference": "research:phase8-bounded-public-sources",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/http-capture.json",
+            "sha256": "c5af693cdb42619d118292349ace721f2157a1ef77a65a32b2a39ee6c34d68b2"
+          },
+          "description": "Issuer pages/FAQ captured read-only; X page returned 403 via browsing, syndication returned empty object; no post text is assumed. No issuer authentication, entitlement or backend access was obtained."
+        }
+      ],
+      "reason": "Unsupported: no independently verified redemption executor is available in the supported evidence boundary; issuer onboarding/KYC, backend and offchain exposure/entitlement are unavailable.",
+      "limitations": [
+        "Historical generic issuer language is not proof of this holder current entitlement or eligibility.",
+        "Neither DEX output, Transfer nor a token Burn instruction proves redemption.",
+        "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+        "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+        "Unsupported describes the executor/evidence boundary, never non-existence or impossibility.",
+        "Unsupported means Eplyx cannot independently execute/verify the mechanism, not that redemption does not exist."
+      ]
+    },
+    {
+      "path_type": "SecondaryMarketExit",
+      "status": "Proven",
+      "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "contexts": [
+        {
+          "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+          "status": "Proven",
+          "attempts": [
+            {
+              "case_id": "group-3-raw-176",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "SecondaryMarketExit",
+              "status": "Proven",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "exact_input_raw": "176",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "94c5753df57d37ab8fff1556c21a3a34201cacbee908d3302581ce76bf81f045",
+              "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018537,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717192
+              },
+              "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+              "actual_output_raw": "105",
+              "token_transfer_withheld_raw": "1",
+              "dlmm_fee_raw": "4",
+              "dlmm_protocol_fee_raw": "0",
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original holder owner is retained. Signature verification is disabled locally; owner message signer privilege is assumed, not proof of key possession or authorization",
+                "Recent-blockhash validation is disabled locally. A deterministic synthetic fee payer funds fees and any real ATA creation; no protocol/token source state is funded or modified",
+                "Fresh LiteSVM 0.16 mainnet feature profile and default rent/epoch scheduling/syscall environment are used; this is not a full mainnet validator bank reproduction",
+                "Raw token units are canonical. Permanent delegate is not used; default account state and scaled UI display do not override captured initialized accounts or raw transfer amounts",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018537. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0.json",
+                "sha256": "429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0"
+              }
+            },
+            {
+              "case_id": "group-3-raw-17621",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "SecondaryMarketExit",
+              "status": "Proven",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "exact_input_raw": "17621",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "94c5753df57d37ab8fff1556c21a3a34201cacbee908d3302581ce76bf81f045",
+              "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018537,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717192
+              },
+              "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+              "actual_output_raw": "10567",
+              "token_transfer_withheld_raw": "89",
+              "dlmm_fee_raw": "351",
+              "dlmm_protocol_fee_raw": "35",
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original holder owner is retained. Signature verification is disabled locally; owner message signer privilege is assumed, not proof of key possession or authorization",
+                "Recent-blockhash validation is disabled locally. A deterministic synthetic fee payer funds fees and any real ATA creation; no protocol/token source state is funded or modified",
+                "Fresh LiteSVM 0.16 mainnet feature profile and default rent/epoch scheduling/syscall environment are used; this is not a full mainnet validator bank reproduction",
+                "Raw token units are canonical. Permanent delegate is not used; default account state and scaled UI display do not override captured initialized accounts or raw transfer amounts",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018537. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6.json",
+                "sha256": "697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6"
+              }
+            },
+            {
+              "case_id": "group-3-raw-17622",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "SecondaryMarketExit",
+              "status": "Indeterminate",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "exact_input_raw": "17622",
+              "invalid_control": true,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "94c5753df57d37ab8fff1556c21a3a34201cacbee908d3302581ce76bf81f045",
+              "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": null,
+              "output_mint": null,
+              "destination": null,
+              "actual_output_raw": null,
+              "token_transfer_withheld_raw": null,
+              "dlmm_fee_raw": null,
+              "dlmm_protocol_fee_raw": null,
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": false,
+              "error": "Execution precondition rejected before transaction: insufficient input token balance",
+              "rollback_verified": null,
+              "execution_assumptions": [],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7.json",
+                "sha256": "7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7"
+              }
+            },
+            {
+              "case_id": "group-3-raw-4405",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "SecondaryMarketExit",
+              "status": "Proven",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "exact_input_raw": "4405",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "94c5753df57d37ab8fff1556c21a3a34201cacbee908d3302581ce76bf81f045",
+              "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018537,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717192
+              },
+              "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+              "actual_output_raw": "2641",
+              "token_transfer_withheld_raw": "23",
+              "dlmm_fee_raw": "88",
+              "dlmm_protocol_fee_raw": "8",
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original holder owner is retained. Signature verification is disabled locally; owner message signer privilege is assumed, not proof of key possession or authorization",
+                "Recent-blockhash validation is disabled locally. A deterministic synthetic fee payer funds fees and any real ATA creation; no protocol/token source state is funded or modified",
+                "Fresh LiteSVM 0.16 mainnet feature profile and default rent/epoch scheduling/syscall environment are used; this is not a full mainnet validator bank reproduction",
+                "Raw token units are canonical. Permanent delegate is not used; default account state and scaled UI display do not override captured initialized accounts or raw transfer amounts",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018537. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f.json",
+                "sha256": "19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f"
+              }
+            },
+            {
+              "case_id": "group-3-raw-8810",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "SecondaryMarketExit",
+              "status": "Proven",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "exact_input_raw": "8810",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "94c5753df57d37ab8fff1556c21a3a34201cacbee908d3302581ce76bf81f045",
+              "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018537,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717192
+              },
+              "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+              "actual_output_raw": "5282",
+              "token_transfer_withheld_raw": "45",
+              "dlmm_fee_raw": "176",
+              "dlmm_protocol_fee_raw": "17",
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original holder owner is retained. Signature verification is disabled locally; owner message signer privilege is assumed, not proof of key possession or authorization",
+                "Recent-blockhash validation is disabled locally. A deterministic synthetic fee payer funds fees and any real ATA creation; no protocol/token source state is funded or modified",
+                "Fresh LiteSVM 0.16 mainnet feature profile and default rent/epoch scheduling/syscall environment are used; this is not a full mainnet validator bank reproduction",
+                "Raw token units are canonical. Permanent delegate is not used; default account state and scaled UI display do not override captured initialized accounts or raw transfer amounts",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018537. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d.json",
+                "sha256": "b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d"
+              }
+            }
+          ]
+        }
+      ],
+      "discovery": {
+        "path_type": "SecondaryMarketExit",
+        "boundary": "Unresolved",
+        "requested_contexts": [
+          "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg"
+        ],
+        "evidence_ids": [
+          "bounded-chain-research"
+        ],
+        "facts": [
+          "Execution proof comes exclusively from exact Phase 7 holder/pool/amount results, hash-checked and fresh-replayed."
+        ],
+        "reason": "No new market context is inferred without exact execution evidence.",
+        "limitations": [
+          "No continuous amount interval, future liquidity, other holder/venue, issuer transition or redemption is proven.",
+          "Only listed exact amounts, source state and pool are tested."
+        ]
+      },
+      "evidence": [
+        {
+          "id": "bounded-chain-research",
+          "kind": "ObservedOnchainState",
+          "reference": "https://api.mainnet-beta.solana.com",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/chain-investigation.json",
+            "sha256": "bb8709ea24e6677dc63d5fe099cc5f9254f759c176f88bede43a26f0bc646db8"
+          },
+          "description": "Finalized bytes of source/successor mints and source authority; five recent signatures and one transaction per authority/successor. Limited observations are not exhaustive absence or signed inclusion proofs."
+        }
+      ],
+      "reason": "At least one exact entity/path/context/amount execution was successful and reconciled after fresh offline replay. Proof applies only to listed successful points.",
+      "limitations": [
+        "No continuous amount interval, future liquidity, other holder/venue, issuer transition or redemption is proven.",
+        "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+        "Only listed exact amounts, source state and pool are tested.",
+        "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+        "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+      ]
+    },
+    {
+      "path_type": "Transfer",
+      "status": "Proven",
+      "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "contexts": [
+        {
+          "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+          "status": "Proven",
+          "attempts": [
+            {
+              "case_id": "group-0-raw-176",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "Transfer",
+              "status": "Proven",
+              "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "exact_input_raw": "176",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+              "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018365,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717146
+              },
+              "output_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "destination": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "actual_output_raw": "175",
+              "token_transfer_withheld_raw": "1",
+              "dlmm_fee_raw": null,
+              "dlmm_protocol_fee_raw": null,
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original owner locally assumed to sign; possession and authorization are unknown. Signature and recent-blockhash verification are disabled locally.",
+                "Actual deployed Token-2022 executes TransferChecked with captured epoch fees. Permanent delegate and active delegate remain unused; raw quantities exclude scaled display transforms.",
+                "Fresh existing LiteSVM 0.16 backend with pinned mainnet/default runtime profile and synthetic fee payer; not a full validator bank. No token account or token balance is fabricated.",
+                "Transfer is movement to a different actual observed recipient token account. No market sale, redemption, withdrawal, entitlement, or official successor transition is implied.",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018365. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9.json",
+                "sha256": "ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9"
+              }
+            },
+            {
+              "case_id": "group-0-raw-17621",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "Transfer",
+              "status": "Proven",
+              "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "exact_input_raw": "17621",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+              "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018365,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717146
+              },
+              "output_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "destination": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "actual_output_raw": "17532",
+              "token_transfer_withheld_raw": "89",
+              "dlmm_fee_raw": null,
+              "dlmm_protocol_fee_raw": null,
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original owner locally assumed to sign; possession and authorization are unknown. Signature and recent-blockhash verification are disabled locally.",
+                "Actual deployed Token-2022 executes TransferChecked with captured epoch fees. Permanent delegate and active delegate remain unused; raw quantities exclude scaled display transforms.",
+                "Fresh existing LiteSVM 0.16 backend with pinned mainnet/default runtime profile and synthetic fee payer; not a full validator bank. No token account or token balance is fabricated.",
+                "Transfer is movement to a different actual observed recipient token account. No market sale, redemption, withdrawal, entitlement, or official successor transition is implied.",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018365. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a.json",
+                "sha256": "85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a"
+              }
+            },
+            {
+              "case_id": "group-0-raw-17622",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "Transfer",
+              "status": "Indeterminate",
+              "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "exact_input_raw": "17622",
+              "invalid_control": true,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+              "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": null,
+              "output_mint": null,
+              "destination": null,
+              "actual_output_raw": null,
+              "token_transfer_withheld_raw": null,
+              "dlmm_fee_raw": null,
+              "dlmm_protocol_fee_raw": null,
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": false,
+              "error": "Execution precondition rejected before transaction: insufficient input token balance",
+              "rollback_verified": null,
+              "execution_assumptions": [],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463.json",
+                "sha256": "493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463"
+              }
+            },
+            {
+              "case_id": "group-0-raw-4405",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "Transfer",
+              "status": "Proven",
+              "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "exact_input_raw": "4405",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+              "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018365,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717146
+              },
+              "output_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "destination": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "actual_output_raw": "4382",
+              "token_transfer_withheld_raw": "23",
+              "dlmm_fee_raw": null,
+              "dlmm_protocol_fee_raw": null,
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original owner locally assumed to sign; possession and authorization are unknown. Signature and recent-blockhash verification are disabled locally.",
+                "Actual deployed Token-2022 executes TransferChecked with captured epoch fees. Permanent delegate and active delegate remain unused; raw quantities exclude scaled display transforms.",
+                "Fresh existing LiteSVM 0.16 backend with pinned mainnet/default runtime profile and synthetic fee payer; not a full validator bank. No token account or token balance is fabricated.",
+                "Transfer is movement to a different actual observed recipient token account. No market sale, redemption, withdrawal, entitlement, or official successor transition is implied.",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018365. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54.json",
+                "sha256": "8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54"
+              }
+            },
+            {
+              "case_id": "group-0-raw-8810",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "path_type": "Transfer",
+              "status": "Proven",
+              "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "exact_input_raw": "8810",
+              "invalid_control": false,
+              "source_before_raw": "17621",
+              "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+              "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+              "capture_context": "CurrentFinalizedProduction",
+              "clock": {
+                "slot": 448018365,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717146
+              },
+              "output_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "destination": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "actual_output_raw": "8765",
+              "token_transfer_withheld_raw": "45",
+              "dlmm_fee_raw": null,
+              "dlmm_protocol_fee_raw": null,
+              "signer": {
+                "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                "signer_possession_known": false,
+                "signer_assumed_locally": true,
+                "wording": "original owner locally assumed to sign"
+              },
+              "execution_attempted": true,
+              "error": null,
+              "rollback_verified": null,
+              "execution_assumptions": [
+                "Original owner locally assumed to sign; possession and authorization are unknown. Signature and recent-blockhash verification are disabled locally.",
+                "Actual deployed Token-2022 executes TransferChecked with captured epoch fees. Permanent delegate and active delegate remain unused; raw quantities exclude scaled display transforms.",
+                "Fresh existing LiteSVM 0.16 backend with pinned mainnet/default runtime profile and synthetic fee payer; not a full validator bank. No token account or token balance is fabricated.",
+                "Transfer is movement to a different actual observed recipient token account. No market sale, redemption, withdrawal, entitlement, or official successor transition is implied.",
+                "Independent reset at CurrentFinalizedProduction bank slot 448018365. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+              ],
+              "evidence": {
+                "file": "../reports/phase7-evidence/results/c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2.json",
+                "sha256": "c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2"
+              }
+            }
+          ]
+        }
+      ],
+      "discovery": {
+        "path_type": "Transfer",
+        "boundary": "Unresolved",
+        "requested_contexts": [
+          "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az"
+        ],
+        "evidence_ids": [
+          "bounded-chain-research"
+        ],
+        "facts": [
+          "Proof uses the real observed Phase 7 recipient and deployed Token-2022 program."
+        ],
+        "reason": "Only exact independently replayed transfer evidence can prove this path.",
+        "limitations": [
+          "Locally assumed original owner signing establishes no real-world authorization.",
+          "Transfer is token movement, not sale, redemption or official successor conversion."
+        ]
+      },
+      "evidence": [
+        {
+          "id": "bounded-chain-research",
+          "kind": "ObservedOnchainState",
+          "reference": "https://api.mainnet-beta.solana.com",
+          "artifact": {
+            "file": "../evidence/resolution/phase8/chain-investigation.json",
+            "sha256": "bb8709ea24e6677dc63d5fe099cc5f9254f759c176f88bede43a26f0bc646db8"
+          },
+          "description": "Finalized bytes of source/successor mints and source authority; five recent signatures and one transaction per authority/successor. Limited observations are not exhaustive absence or signed inclusion proofs."
+        }
+      ],
+      "reason": "At least one exact entity/path/context/amount execution was successful and reconciled after fresh offline replay. Proof applies only to listed successful points.",
+      "limitations": [
+        "Locally assumed original owner signing establishes no real-world authorization.",
+        "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+        "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+        "Transfer is token movement, not sale, redemption or official successor conversion.",
+        "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+      ]
+    },
+    {
+      "path_type": "Withdrawal",
+      "status": "NotApplicable",
+      "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "contexts": [],
+      "discovery": {
+        "path_type": "Withdrawal",
+        "boundary": "Unresolved",
+        "requested_contexts": [],
+        "evidence_ids": [
+          "original-policy"
+        ],
+        "facts": [
+          "Applicability depends on the selected entity context, not the existence of a venue vault."
+        ],
+        "reason": "Protocol/LP ownership and a withdrawal mechanism would require separate entity-level evidence.",
+        "limitations": [
+          "Direct wallet-compatible holder with no verified protocol/LP role has no applicable Withdrawal in this entity context.",
+          "Protocol vault existence does not establish LP ownership or holder withdrawal rights."
+        ]
+      },
+      "evidence": [
+        {
+          "id": "original-policy",
+          "kind": "ScenarioAssumption",
+          "reference": "scenario:prestocks-spacex-transition-v1",
+          "artifact": {
+            "file": "../scenarios/spacex-transition.json",
+            "sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+          },
+          "description": "Original external lifecycle policy and hypothetical semantic boundary remain unchanged; successor field remains null in that policy."
+        }
+      ],
+      "reason": "Direct wallet-compatible token account with no verified protocol/LP position in this entity context; a venue vault does not grant holder withdrawal rights.",
+      "limitations": [
+        "Direct wallet-compatible holder with no verified protocol/LP role has no applicable Withdrawal in this entity context.",
+        "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+        "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+        "Protocol vault existence does not establish LP ownership or holder withdrawal rights.",
+        "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+      ]
+    }
+  ],
+  "conclusion": "This entity has 2 independently replayed bounded successful paths: SecondaryMarketExit, Transfer. OfficialTransition and Redemption are not proven unless their own rows contain direct proof. Captured mobility does not prove completion of the issuer-defined lifecycle change.",
+  "limitations": [
+    "Observed population, external policy, current captured local execution and research inferences are separate evidence layers.",
+    "Only this requested entity is replayed; no new holder sampling, venue capture or amount campaign occurs.",
+    "Policy time does not set execution Clock. Each exact attempt retains its own bank/state identity, original-owner signer assumption and runtime limitations.",
+    "No independently established authorization, inclusion, future liquidity, issuer entitlement or legal conclusion follows."
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+  "slot": 448067723,
+  "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+  "raw_data_sha256": "08ecb23962c7e75f2c2152d8cea8caa4aad182a7c9035e1441c7df46de681e08",
+  "configuration": {
+    "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+    "is_token_2022": true,
+    "decimals": 8,
+    "raw_supply": "55999222847874",
+    "decimal_supply": "559992.22847874",
+    "mint_authority": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+    "freeze_authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+    "is_initialized": true,
+    "extensions": [
+      {
+        "extension_type": "ConfidentialTransferMint",
+        "type_id": 4,
+        "config": {
+          "auditorElgamalPubkey": null,
+          "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+          "autoApproveNewAccounts": false
+        }
+      },
+      {
+        "extension_type": "DefaultAccountState",
+        "type_id": 6,
+        "config": {
+          "rawState": 1,
+          "state": "Initialized"
+        }
+      },
+      {
+        "extension_type": "PermanentDelegate",
+        "type_id": 12,
+        "config": {
+          "delegate": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq"
+        }
+      },
+      {
+        "extension_type": "TransferHook",
+        "type_id": 14,
+        "config": {
+          "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+          "programId": null
+        }
+      },
+      {
+        "extension_type": "MetadataPointer",
+        "type_id": 18,
+        "config": {
+          "authority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+          "metadataAddress": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+        }
+      },
+      {
+        "extension_type": "TokenMetadata",
+        "type_id": 19,
+        "config": {
+          "additionalMetadata": [],
+          "mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+          "name": "SpaceX xStock",
+          "symbol": "SPCXx",
+          "updateAuthority": "5aMNNLQJwAEeoemTEMkv5NVjqKwvvefRYCQ5Z67HFvEq",
+          "uri": "https://xstocks-metadata.backed.fi/tokens/Solana/SPCXx/metadata.json"
+        }
+      },
+      {
+        "extension_type": "ScaledUiAmount",
+        "type_id": 25,
+        "config": {
+          "authority": "S7vYFFWH6BjJyEsdrPQpqpYTqLTrPRK6KW3VwsJuRaS",
+          "multiplier": 1.0,
+          "newMultiplier": 1.0,
+          "newMultiplierEffectiveTimestamp": 0
+        }
+      },
+      {
+        "extension_type": "Pausable",
+        "type_id": 26,
+        "config": {
+          "authority": "JDq14BWvqCRFNu1krb12bcRpbGtJZ1FLEakMw6FdxJNs",
+          "paused": false
+        }
+      }
+    ]
+  },
+  "evidence": {
+    "artifact": {
+      "file": "../evidence/transition/phase9/rpc-account-reconstruction.json",
+      "sha256": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b"
+    },
+    "pointer": "/records/4/response/result/value/47"
+  },
+  "creation_slot_established": null
+}

@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "destination_mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+  "queries": [
+    {
+      "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "signature_limit": 30,
+      "returned": 30,
+      "newest_slot": 448065130,
+      "oldest_slot": 447893357,
+      "signatures": [
+        "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"
+      ]
+    },
+    {
+      "address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "signature_limit": 30,
+      "returned": 30,
+      "newest_slot": 448066550,
+      "oldest_slot": 448065594,
+      "signatures": [
+        "5LNpFZ8yJX6f1pF4h895W6VeagtKP23nhSNc9H9DRjKRRpr9rktVhREvCVmtNyaX3ysXpZEoBZmHadJEXZamos2o",
+        "3SF9s1B7eXjBSVsVqrE8sZxkyx5iMp5Rzf2SW5KM4YNP82WnmnTBnysbSW2FxiRdzhJLNVzpH8ET35MaqnQfCvNT",
+        "3Xm8zG3dr8eCR4fiyV5oJPygSXEuLWcRyFnw6bDDvE5wjLdETVHgSdKMHaSuSGgnXPvjhmPUJNZHGvT9fvMDPWzN",
+        "5cABoh7fFgDMSF1oR7ymNEqmvLB95F5hRmg3rkKewYZGnxBiCoko58DSs733ivmfEBTFMwcZUeHjDqZjj595YNE8",
+        "62gwSLZ4YVTzxRhg6XboMn8YAe6R8iUep9eqjHoWY4QiTq6X6dQxuBkf7WyiPftB5JBV5XCqDyiRMmJgcK9ZvxTf",
+        "5WRwMARCEQq1Xbi1T6DXQmPmGH7KFgaLMLgfA7qde5tZbVK7AWUgy8NmXjmTFgTcWRfNwgqWtPBGaNLUzWF3t8Le",
+        "44LbtyHw3onqRhfMWMLQfWLngmf9UEHBGfz49D38FFcLcc6gw9N7uf7YwsHXMkLHS79byE8GmwHyTN3vTKiUJML",
+        "4aJ1PVW6mGkG5gLftw1nLHYANZSkcoMZi2vdXaPMYuUZk2CyukSjqAvxt7KxbiW2C7XbUPWBoYKA246jEj8tx4eC",
+        "4TugSdKgPzXb2YHrhFrUaQMTr1UwqPrR83RzV22fqfgQKbvy8aERq8ra9Eec7TuUY9iexNzg1z6xtdnpYATRNJkS",
+        "5o2iVmnGCu7KMP5vww5M7m51VAjLdKpDyjX44TQPVtTSWoiYFnS9pULPHsHKHQSyX7nVxNZ4ctvwYz81t1FGPW6t",
+        "hicbA4aP7AqkT1D1oQNhm1VgSXuEc6es9xbZmUE6TJmdkcstg2UwdUcqzfssLWdybeKBX2asxCjUJ8czmHgcW7s",
+        "3QeKB6vAmgssSgyHQC5k2BQjJeXadxeUio5KRHAVk4caLwxzGzQfvVqbrW1VdtX7ukYg51tnfSWWJiHb3AZxTeA3",
+        "2U3sZtRL4Ez1VUzfzBm3tJiDEL93m2jqJc3y9vbyox3Tn4tFmKRDPifPPFXN5sRfK3m9PACTT53jucfkF6o7287m",
+        "3dMNZzerD89jVn8R2xQ6BfPJMD8a9Au8u7EqEJEqTfokg84wD4opYEVPPWK6r3DTw7QHk52HRPxhcWChFx4sTWYX",
+        "44BtKLBB3wCcAJyZY72SkWxnaZGDREvXzTwq9amrNRU4q9GesgWmvrCjVWxN1Ek7mg7h9wsGwbg8LK2oxUfznSgT",
+        "3GtgUw8VnYrVmrQ3U2yjSsTmzZiuDbWrK9Wn9FPPNyFZzMohZE3eKsMyDNtBNoEgyqUSS96XPv5rnzmrvrdY8jDf",
+        "63oi4pgpSUkoFLpigLjX6uxy2ZWfqWjYXVdUUctfAJE5ndybLVMz6APvUSoHZoVFGethoR4DqirACPZ1wqNetqDn",
+        "5SyRUJnpuz7gMHJrqQooAxRvRDhZsaYSaoWeHaxFyrQQK8Tanx4pNTwFv3YeiEQ9HKo4nJBQArtBP265dbEq2b2x",
+        "38z5UJ91XogLPvtBccBnwJDSaXm7H6QcWnjYfPrzYvwp2zPKrWkaGZRArZeXbC9CiHCYeyECuRXw7PAgVXWzVv5S",
+        "2WLqMnECHeKZrC6rmthgHHv6ExapdnjhcMzkdq9ZcCStSUv2cEhuALcKiYUr9iTZsQQFP5qvjjKVN85H9faJdxoN",
+        "3cnWQeroRiZxjedaFmsnKq5Fwuq5uH5FPoGi1FdNUY49zcCUJ9AnUrBqWGdbNrz73L27GMDF9fmEvL2XdaQ76P1Z",
+        "5tPoy4Cc5Sw7xdCDTpsyrEsFJMhPPXEYbHx549CPKmSWgENYtE7KhwqG7b1W8oxMiwMR18Rygbwcw6GNgbzHbCoX",
+        "5sBd8zfd1TP6uTAvWpyWPmJS4KULHkYJP1TVw8YL4mPrxp7RzXxKVnd1kSTKKNdiimDwV87F39spfr93r2NAUMW1",
+        "3iVfd13NeD3zbGCDARYgyRn6NSbsCezHUssqxHpdgmyhz1TtLt2FT1kZf5v4CRy8cnM4qzZtZGJxRG1vuGqEmr49",
+        "2tR1dw3h9FXdrzsJ1gD6SjqGJZFGtiL6Gg1RzPW6XWn9J5u2kWMLjAuX43zW8DB4TeZXTbdxvyBR2tMT7JXSpbQd",
+        "2JM4uLFShJsNFTrEChHaGFbcqTyDiLVuDR1HBCHqhAP8rrEPt4brHgrWaS83F3FFsGcCFUdR3fxLWmbmcc5aGUK3",
+        "25iJ9x3S1gbR9zBhr6phCf2gQGWJjQReM4cV9XbQ9ChaT6dEcVTwhvcWns5Pa6vfwraQCEzpGctUShwMeyTt8j5x",
+        "488JEPp995mwiBpT8tHSv8FTZck6mADGGqCFpx9znXfqCAbdXkW4e5iQUAVpMWApexQhnZ7cGthDfLL6RwAEnrvb",
+        "5cW9yCDw9XuMUzmS7e5kJ29rgJw3FXbuEHFLkh2pXm66YH2YGgBy11XXb5GLemw8FhNNG2SokZsfjxXJbcfemyoG",
+        "eZe9TPYabBmAk5ubBn8Co7e6PTuw1WxUy6yKNMRMGvUfjfpBkxLmnbscRVQi3Ltxxou1cZ5yhP3NCsJbqAKVBVi"
+      ]
+    },
+    {
+      "address": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+      "role": "source-mint-authority",
+      "signature_limit": 10,
+      "returned": 10,
+      "newest_slot": 447186714,
+      "oldest_slot": 446570288,
+      "signatures": [
+        "5sEDkyX8BGoVdg5Y2Q5uaW6Gr9wMSfjXYZ73h7tjrjYjWyQx6yPfdvg9NaRmDdUG6aUErveitTybEJkYKVy5WD7v",
+        "jVLJfreHbk6BgDqe9mtdx4cs8YcewgDzLrTEDLgmyT1t66gfYbydWExLNnnarfQee2hsnqiWRpij7HC5vR6Gvp5",
+        "2n5JnnAY9U5Gb8XRGDH8vz49igmuCCPWqe4bQW9NmYpZCE3C1vTKp8gfsjcFN2971E4mpGiJrViaUF7fF31NngCw",
+        "5sNMmnMcZRMRNcmPtRv8qFsDTMsnU6U4ZBpEz2gPFMiaxseMXHD57wZaqXsphy8YDiYLsKhJdcfUeT6vPvemx2d8",
+        "Ms8VLBRNa3f68rzRfCc8vEYC8CLyPEZm5rwaHXJXXyRAmJvJd7vGqYW2EaDd5WhiNCyyR264NDuA3HtDSUHkdzv",
+        "2NNpYvHTWn5VPxUefbicDYDKA4hrKjLBwFRkJDP2FSc4PmEsccQvE8avyfG7ePh9Jo9rg1YmJSaTB2vXwinzM9XL",
+        "4bebR2EQrtgCPwgmFZosdrg4dh9opZ1omsxAojzc7Q8rowSzMMvtcL6vvFEMYTs79s6evvEZQGsXda3LfJdFhW5m",
+        "4LqPkrzdv5r7bGwsURZ3447TU6sXaHMfya9TcG1ab35iok6icm4ssBvxpLgzopSnVECHfrteBdHTiXgy9ZfX5zty",
+        "5hnZJiTvuXDbDKZ69qNwTxURfXwzoxkB14dcFSjcW43n1WZWfSbBp6Mea6etY78dSNE4sb2hE14JqKUo4zXaVhZy",
+        "4NWtSQJAt6qZxDBupzt98FNNqunZ4VufESvAeScDBF7UUGC77UnJCxQHm83iABMbbXRQwKiPBhkwi1Lf1bLjjM8D"
+      ]
+    },
+    {
+      "address": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+      "role": "successor-mint-authority",
+      "signature_limit": 10,
+      "returned": 10,
+      "newest_slot": 448040244,
+      "oldest_slot": 447213465,
+      "signatures": [
+        "3EbDDxHiC2nYovwRwLuRvfqyTsP8BsMsLu2UDfUwCqCWpquSYcDUuwhuuPgLhcQttnPPyfhFYKpVtxcVUPfkneQb",
+        "49cEf1ESZnGJMRqHhKdMAT43xgB4Si9TV4x82bnnXKkpBYLw1AkmMN1WqNov9QKUP2uqi54nULt2Az9fABZ6gTNt",
+        "WSUiqjJGUcoJ1J73sS7p8P7BqAY1RxCHvrX9iHKZ4spVNMaMxsa6AQPPS9WzZErRZXTBszpBAiHR4o3cLNDw4A3",
+        "3yYCwswrS41X2sL5B2eCgfG5MEP8ZZdwWyyZ9WjXvc29Nc7csXEXhYigP2AqBCh1Y3pUZoiZn9h5gzS2xeFp3n9Y",
+        "3heh97MHzyJs9u9hWN6YkTE7BbRBaggNECP59nAmRGr7EnddKYa5126nN5YYrtHjDrXU8oeH3XQDkaefHi1DGiJC",
+        "4TYLu2rUwng4S4GZq9HpV2xNcmqGUKGuHwLAdwpxsSuV5xSN2YaFnkBV44VyhCTWPsaodW2dF37buk7nftvuJpWP",
+        "5fpFWX9rFGxCMZXpu1nGhXRC82JFmymMqgyatMQfrzRNzbhCK7qEoJHnzM6JsQvCBeksa75NBWxvrNEBRrp6ouev",
+        "43frzr6GrPx3GntHeaQ8ovJBz43gpaC13ctyY5WefWBwmyuqCwADoJM4HaXfDMqBPhkE6PAbkymFM9voANb5wJgV",
+        "3wKRP5MRFzjUtfmAc2wVa9YCCMz9Znoppz1LFm6L5rbK4oRRaNoEdynUVqE19gnyn4qChzAzzCuJvNu9wgQTpZ2s",
+        "3tbBBs7NW1xQYcUVThFirUM8vwXhFQ1Jn7S5PrZ6qACWAsXJi9ctXwQmVxK8E1LoLdfdQhFpFTXfV68kw59Bgqt7"
+      ]
+    },
+    {
+      "address": "53Ab3Rqx1a5uiV7qmsX4qbdbrqstVDpnH4LoJGfsZsU8",
+      "role": "observed-squads-account",
+      "signature_limit": 5,
+      "returned": 5,
+      "newest_slot": 447186714,
+      "oldest_slot": 447186575,
+      "signatures": [
+        "5sEDkyX8BGoVdg5Y2Q5uaW6Gr9wMSfjXYZ73h7tjrjYjWyQx6yPfdvg9NaRmDdUG6aUErveitTybEJkYKVy5WD7v",
+        "jVLJfreHbk6BgDqe9mtdx4cs8YcewgDzLrTEDLgmyT1t66gfYbydWExLNnnarfQee2hsnqiWRpij7HC5vR6Gvp5",
+        "2n5JnnAY9U5Gb8XRGDH8vz49igmuCCPWqe4bQW9NmYpZCE3C1vTKp8gfsjcFN2971E4mpGiJrViaUF7fF31NngCw",
+        "5sNMmnMcZRMRNcmPtRv8qFsDTMsnU6U4ZBpEz2gPFMiaxseMXHD57wZaqXsphy8YDiYLsKhJdcfUeT6vPvemx2d8",
+        "Ms8VLBRNa3f68rzRfCc8vEYC8CLyPEZm5rwaHXJXXyRAmJvJd7vGqYW2EaDd5WhiNCyyR264NDuA3HtDSUHkdzv"
+      ]
+    }
+  ],
+  "transaction_samples": [
+    {
+      "signature": "3Wwh2tVTyHvQmNHbtsdwsF9mmNpRnQ436txAteQBsL29v5jdEjWcwnPPyUVJRZ5tKenRrmuwYBWrWNUtmqmeBMDW",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "2ZHotoRrypaPJsgpkp3wNt967ghTXDygUbTDb2PTLL3q41n4W9FCiHx1B7Yec7AkDJ7GyGGVWpsMR3j8q3gu3vr5",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "3uDr3p5PxbBHdc4jnzf5Jk16HTTWXZqV1psAxo8zL4sUVd87d2LhxD6rTwjtQrGH764hCUJaZBEUTzQLgT6p4g9u",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "2yJsCZHpTVMBuRPpu8VTXxdrk7FV3oCqXdyDSvKk1krj7APP2FUBmMTAQmsRfezFoULfauHXRY2XAFF4Yk5SHzUU",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "2cPKp8DZork3dWEKnoDD2MWpvX6wsqmsfuWbqXwkxTCXZDMtsNW4ih8nZaKVUXQQNFCDVx4NsGXkFHNdaAYMNuze",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "3TLp9Q6DH6FA5nHJbGJArkH8ZbYM7zYMwNHNmDsCEzti3631BF3oCHmoXKznRNRjP1akjhbNTMmVFCQLgU19vSGH",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "32L83wdKbEBhGytjvzK2utkKLdZ14waaf5TdSvrPhuGGZhfqqWraq5hx5roEu5ZkBfSXoLGddJToGcwgi8sQ8DQa",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "4gu6HBKcZ4GWB6RcVbThZmMVmXXbeHfXJc7MozvJyLy96utKytAnd2WcDTNSRZMQ9SeG6MgYQSrW65i4Lvd4sfLg",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "4wUtw17jFYcueEFSZ13pj9YEKtunogdnVtyEPKbgzNjLRcXL1zVPESu7TWAYPfmrQMKJuG6XEj4CxYc86Y4VxyfJ",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "h3vuqvvHY2muZgoeCTYonC8hqo3rCxancEiCuiH4bXzaj5XVJRGoZGm9W4kez4iwzQViHgBaxcJ37TTFKhfLdK8",
+      "queried_address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "role": "source-mint",
+      "available": true
+    },
+    {
+      "signature": "5LNpFZ8yJX6f1pF4h895W6VeagtKP23nhSNc9H9DRjKRRpr9rktVhREvCVmtNyaX3ysXpZEoBZmHadJEXZamos2o",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "3SF9s1B7eXjBSVsVqrE8sZxkyx5iMp5Rzf2SW5KM4YNP82WnmnTBnysbSW2FxiRdzhJLNVzpH8ET35MaqnQfCvNT",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "3Xm8zG3dr8eCR4fiyV5oJPygSXEuLWcRyFnw6bDDvE5wjLdETVHgSdKMHaSuSGgnXPvjhmPUJNZHGvT9fvMDPWzN",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "5cABoh7fFgDMSF1oR7ymNEqmvLB95F5hRmg3rkKewYZGnxBiCoko58DSs733ivmfEBTFMwcZUeHjDqZjj595YNE8",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "62gwSLZ4YVTzxRhg6XboMn8YAe6R8iUep9eqjHoWY4QiTq6X6dQxuBkf7WyiPftB5JBV5XCqDyiRMmJgcK9ZvxTf",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "5WRwMARCEQq1Xbi1T6DXQmPmGH7KFgaLMLgfA7qde5tZbVK7AWUgy8NmXjmTFgTcWRfNwgqWtPBGaNLUzWF3t8Le",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "25iJ9x3S1gbR9zBhr6phCf2gQGWJjQReM4cV9XbQ9ChaT6dEcVTwhvcWns5Pa6vfwraQCEzpGctUShwMeyTt8j5x",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "488JEPp995mwiBpT8tHSv8FTZck6mADGGqCFpx9znXfqCAbdXkW4e5iQUAVpMWApexQhnZ7cGthDfLL6RwAEnrvb",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "5cW9yCDw9XuMUzmS7e5kJ29rgJw3FXbuEHFLkh2pXm66YH2YGgBy11XXb5GLemw8FhNNG2SokZsfjxXJbcfemyoG",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "eZe9TPYabBmAk5ubBn8Co7e6PTuw1WxUy6yKNMRMGvUfjfpBkxLmnbscRVQi3Ltxxou1cZ5yhP3NCsJbqAKVBVi",
+      "queried_address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "role": "successor-mint",
+      "available": false
+    },
+    {
+      "signature": "5sEDkyX8BGoVdg5Y2Q5uaW6Gr9wMSfjXYZ73h7tjrjYjWyQx6yPfdvg9NaRmDdUG6aUErveitTybEJkYKVy5WD7v",
+      "queried_address": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+      "role": "source-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "jVLJfreHbk6BgDqe9mtdx4cs8YcewgDzLrTEDLgmyT1t66gfYbydWExLNnnarfQee2hsnqiWRpij7HC5vR6Gvp5",
+      "queried_address": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+      "role": "source-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "2n5JnnAY9U5Gb8XRGDH8vz49igmuCCPWqe4bQW9NmYpZCE3C1vTKp8gfsjcFN2971E4mpGiJrViaUF7fF31NngCw",
+      "queried_address": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+      "role": "source-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "5sNMmnMcZRMRNcmPtRv8qFsDTMsnU6U4ZBpEz2gPFMiaxseMXHD57wZaqXsphy8YDiYLsKhJdcfUeT6vPvemx2d8",
+      "queried_address": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+      "role": "source-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "3EbDDxHiC2nYovwRwLuRvfqyTsP8BsMsLu2UDfUwCqCWpquSYcDUuwhuuPgLhcQttnPPyfhFYKpVtxcVUPfkneQb",
+      "queried_address": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+      "role": "successor-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "49cEf1ESZnGJMRqHhKdMAT43xgB4Si9TV4x82bnnXKkpBYLw1AkmMN1WqNov9QKUP2uqi54nULt2Az9fABZ6gTNt",
+      "queried_address": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+      "role": "successor-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "WSUiqjJGUcoJ1J73sS7p8P7BqAY1RxCHvrX9iHKZ4spVNMaMxsa6AQPPS9WzZErRZXTBszpBAiHR4o3cLNDw4A3",
+      "queried_address": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+      "role": "successor-mint-authority",
+      "available": false
+    },
+    {
+      "signature": "3yYCwswrS41X2sL5B2eCgfG5MEP8ZZdwWyyZ9WjXvc29Nc7csXEXhYigP2AqBCh1Y3pUZoiZn9h5gzS2xeFp3n9Y",
+      "queried_address": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+      "role": "successor-mint-authority",
+      "available": false
+    }
+  ],
+  "limits": {
+    "mint_signature_limit": 30,
+    "authority_signature_limit": 10,
+    "squads_signature_limit": 5,
+    "maximum_unique_transaction_samples": 31,
+    "historical_exhaustiveness": false,
+    "creation_slot_not_assumed": true
+  }
+}

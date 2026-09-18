@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "requests": [
+    {
+      "file": "successor-metadata.json",
+      "url": "https://xstocks-metadata.backed.fi/tokens/Solana/SPCXx/metadata.json",
+      "retrieved_at": "2026-09-18T11:18:05.760492+00:00",
+      "http_status": "200",
+      "sha256": "18a8bc15a619951579f299b27d938759806ba6827f425b2618db60f83c8c873a",
+      "error": null,
+      "exit_code": 0
+    },
+    {
+      "file": "squads-pda.ts",
+      "url": "https://raw.githubusercontent.com/Squads-Protocol/v4/main/sdk/multisig/src/pda.ts",
+      "retrieved_at": "2026-09-18T11:18:05.983560+00:00",
+      "http_status": "200",
+      "sha256": "8b20dfa0e04a5d1fd0698b703c8e9c673e98bd3d09adea9b7cceaa857ecb3f99",
+      "error": null,
+      "exit_code": 0
+    },
+    {
+      "file": "squads-multisig.rs",
+      "url": "https://raw.githubusercontent.com/Squads-Protocol/v4/main/programs/squads_multisig_program/src/state/multisig.rs",
+      "retrieved_at": "2026-09-18T11:18:06.227427+00:00",
+      "http_status": "200",
+      "sha256": "4ad0764e559a0376ad39c9e4d84a106dd0ec8fc040cdf0bf223c55763f07c9a0",
+      "error": null,
+      "exit_code": 0
+    }
+  ]
+}

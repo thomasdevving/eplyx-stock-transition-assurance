@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+  "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "destination_asset": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+  "prior_resolution": {
+    "file": "../reports/spacex-lifecycle-path-resolution.json",
+    "sha256": "0e8d353464d6444a6436b5fc1cd3013e203b554bd53c215ecdb494c9119a3dc6"
+  },
+  "prior_discovery": {
+    "file": "../probes/spacex-lifecycle-path-discovery.json",
+    "sha256": "01d9a2a723dcea3969cc9e4db5168d9c99b7a1c6730a7197ffd0b1003fe16a2d"
+  },
+  "evidence_bundle": {
+    "file": "../probes/spacex-phase8-evidence-bundle.json",
+    "sha256": "7165811ebb44c8672c6b215c4cd98c9d7a2ae1cac96c3324c0657c7afc4bcdd2"
+  },
+  "coverage": {
+    "file": "../reports/spacex-lifecycle-coverage-phase7.json",
+    "sha256": "79b78e877b63c9fa3fd5ef80755b0759c47ae8ac9771a56cc3046a387217e07f"
+  },
+  "archives": [
+    {
+      "file": "../evidence/transition/phase9/rpc-capture.json",
+      "sha256": "c6825a7dd387df416a71a9aca5a7b3ad7227b870a9e82535e2ae1cb89302cd61"
+    },
+    {
+      "file": "../evidence/transition/phase9/rpc-retry-capture.json",
+      "sha256": "2678ec48a33f4d281bd6d89c18796cc8d65a51a239d7e6c4db04e509092ba9b8"
+    },
+    {
+      "file": "../evidence/transition/phase9/rpc-account-reconstruction.json",
+      "sha256": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b"
+    }
+  ],
+  "supplementary_artifacts": [
+    {
+      "file": "../evidence/transition/phase9/http-capture.json",
+      "sha256": "5930dcfd911930bbc9eb0245f44b1cb2daa13a103f5770fb578fe20cf7713166"
+    },
+    {
+      "file": "../evidence/transition/phase9/search-summary.json",
+      "sha256": "642bea81aa0c2355a53ae2b2045bf6fba5bda3cdd7ab6fd56f6925e5caf21833"
+    },
+    {
+      "file": "../evidence/transition/phase9/squads-multisig.rs",
+      "sha256": "4ad0764e559a0376ad39c9e4d84a106dd0ec8fc040cdf0bf223c55763f07c9a0"
+    },
+    {
+      "file": "../evidence/transition/phase9/squads-pda.ts",
+      "sha256": "8b20dfa0e04a5d1fd0698b703c8e9c673e98bd3d09adea9b7cceaa857ecb3f99"
+    },
+    {
+      "file": "../evidence/transition/phase9/successor-metadata.json",
+      "sha256": "18a8bc15a619951579f299b27d938759806ba6827f425b2618db60f83c8c873a"
+    }
+  ],
+  "external_sources": [
+    {
+      "id": "issuer-notice",
+      "kind": "ExternalPolicy",
+      "reference": "https://prestocks.com/spacex",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/issuer-spacex.html",
+        "sha256": "cb7c0c835d4c9aa8824e74ea3e39297323407c4908aa23e5d9256b395bc6ab69"
+      },
+      "description": "Issuer names a successor and a conversion deadline; a policy assertion, not execution or entitlement evidence."
+    },
+    {
+      "id": "issuer-faq",
+      "kind": "ExternalMechanism",
+      "reference": "https://prestocks.com/faq",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/issuer-faq-chunk-0.js",
+        "sha256": "2e62dd29b1c4c6d55ad1ee6b08bb49c8eac5958b33c98382bf544e7d628ac169"
+      },
+      "description": "Public first-party FAQ application data says post-IPO conversion can be onchain without KYC. It also describes offchain arbitrage; it supplies no concrete audited conversion instruction in this captured source."
+    },
+    {
+      "id": "issuer-launch",
+      "kind": "ExternalMechanism",
+      "reference": "https://newsletter.prestocks.com/p/prestocks-are-live-trade-spacex-openai",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/issuer-launch.html",
+        "sha256": "0558e465d80d4a630b0f7b6b7b65fb1211d13d7c14ae8e7299fa3f20034b4f93"
+      },
+      "description": "2025-08-07 issuer newsletter distinguishes KYC-gated mint/redemption from ordinary trading. General historical communication does not establish this holder eligibility or a currently functioning redemption flow."
+    },
+    {
+      "id": "original-policy",
+      "kind": "ScenarioAssumption",
+      "reference": "scenario:prestocks-spacex-transition-v1",
+      "artifact": {
+        "file": "../scenarios/spacex-transition.json",
+        "sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+      },
+      "description": "Original external lifecycle policy and hypothetical semantic boundary remain unchanged; successor field remains null in that policy."
+    }
+  ],
+  "issuer_semantics": {
+    "holder_action": "Issuer notice instructs holders to swap source tokens into SPCXx or any other token before its deadline.",
+    "successor_reference": "Issuer notice links Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8; separately verified current on-chain bytes do not by themselves prove issuer endorsement.",
+    "conversion_description": "Public FAQ describes post-IPO conversion into equivalent tokenized public stock; neither captured notice nor FAQ specifies a conversion program, instruction, account plan, fixed ratio or completion receipt.",
+    "kyc_conversion_claim": "Captured FAQ describes post-IPO conversion as fully onchain without KYC. Historical launch material treats minting/redemption separately; no conversion-specific KYC dependency is established.",
+    "deadline_claim": "Issuer SpaceX notice: 11:59pm UTC on 12 March 2027. Original hypothetical Phase 4 policy time/boundary are preserved separately.",
+    "conversion_ratio": null,
+    "onchain_claim": true,
+    "infrastructure_required": null,
+    "evidence_ids": [
+      "issuer-notice",
+      "issuer-faq",
+      "issuer-launch",
+      "original-policy"
+    ]
+  },
+  "limits": {
+    "maximum_signature_queries": 6,
+    "maximum_returned_signatures": 90,
+    "maximum_unique_transaction_samples": 31,
+    "maximum_transaction_retries": 18
+  },
+  "stop_condition": "C: bounded public mechanism reconstruction completed; no independently bound executable official conversion plan established. Stop without a substitute transaction."
+}

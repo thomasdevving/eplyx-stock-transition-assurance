@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "injected": 7,
+  "caught": 7,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/transition/mod.rs": "634ff54b30b9d6346989665089f625d590033e6fc2f214d479ae49970043aa54"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Treat successor discovery as Proven transition",
+      "test": "successor_mint_reference_alone_cannot_prove_transition",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/01.txt",
+      "log_sha256": "1e5d325209aa13836da8ecf7bb6d8ae85d72975c6fefd1916a59611b9fe0a18d"
+    },
+    {
+      "mutation": 2,
+      "fault": "Treat any source/successor token pair as official identity",
+      "test": "arbitrary_source_successor_pair_is_not_official_identity",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/02.txt",
+      "log_sha256": "0a1f7c810cf1e442cb856ad4dab51ffe7ba944c4934d40c5a727437052bb80fd"
+    },
+    {
+      "mutation": 3,
+      "fault": "Treat locally assumed issuer signing as independent authority",
+      "test": "issuer_assumed_private_signing_is_unsupported",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/03.txt",
+      "log_sha256": "a6f6978a352a15f16214cd4afb3cf91f4d28a6746af69887156057af717f0d80"
+    },
+    {
+      "mutation": 4,
+      "fault": "Treat KYC/backend dependency as independently executable",
+      "test": "kyc_backend_dependency_is_unsupported",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/04.txt",
+      "log_sha256": "9410da2722683be996a68c8ac46e09cf5f1c839e99b28c4ec7835463f904efe6"
+    },
+    {
+      "mutation": 5,
+      "fault": "Allow DEX execution to prove OfficialTransition",
+      "test": "dex_execution_cannot_be_relabelled_official",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/05.txt",
+      "log_sha256": "2605adbd13dbf20c0f7ce7f160c388029194b3457fb8e60dc2f382f6e6366e65"
+    },
+    {
+      "mutation": 6,
+      "fault": "Inherit transition execution to another holder",
+      "test": "transition_proof_does_not_inherit_to_another_holder",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/06.txt",
+      "log_sha256": "26407e42b9691f65a02a57dd237a0639a1a582812571fee821adcefbe493db99"
+    },
+    {
+      "mutation": 7,
+      "fault": "Treat a bounded unestablished mechanism as non-existence",
+      "test": "no_mechanism_is_not_nonexistence",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase9-mutations/07.txt",
+      "log_sha256": "3e686cbf75ccd9c69105329042eb8e1506f0ce61f66693a4b233c551cd59103a"
+    }
+  ]
+}
