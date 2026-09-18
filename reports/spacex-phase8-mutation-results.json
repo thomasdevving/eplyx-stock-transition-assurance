@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "injected": 7,
+  "caught": 7,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/resolution/mod.rs": "d07354ad92309e2fecd4c9dc307a0c06fa790abfa166eb75994f87293f7d9aa7",
+    "engine/src/resolution/phase7.rs": "864dbd6849cc5bbe9ac1fc4673fa0eca905e8c828233ae45815cc47e98935c29"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Allow Transfer to imply OfficialTransition",
+      "test": "transfer_cannot_prove_official_transition",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/01.txt",
+      "log_sha256": "5aafe543aa8005c6f2f5c2ef9c60a3ffaef6112ca86581cea00f784335a9c561"
+    },
+    {
+      "mutation": 2,
+      "fault": "Allow SecondaryMarketExit to imply Redemption",
+      "test": "market_exit_cannot_prove_redemption",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/02.txt",
+      "log_sha256": "6f18054bc58ebc4441088c7557f784e603ddace5594644ecc7a4dd0fcb4faa81"
+    },
+    {
+      "mutation": 3,
+      "fault": "Treat Unsupported as Failed",
+      "test": "unsupported_is_not_failed_or_nonexistent",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/03.txt",
+      "log_sha256": "2baa092b78ebcd6d352d19b0e0cc1778c8a5b2eccad598c8984053458a4a78fc"
+    },
+    {
+      "mutation": 4,
+      "fault": "Treat NotTested as Proven",
+      "test": "not_tested_never_becomes_proven",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/04.txt",
+      "log_sha256": "6cf66a441ed73b1b0e6dafea0cb08220334cd69e44e819f22d53988741331fdc"
+    },
+    {
+      "mutation": 5,
+      "fault": "Inherit one entity proof to another entity",
+      "test": "entity_proof_does_not_inherit",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/05.txt",
+      "log_sha256": "b81cb14bc14f0e6f0ccfa21349ef9b0685db7ccb9ab02944c39d740b80916e1f"
+    },
+    {
+      "mutation": 6,
+      "fault": "Inherit one venue proof to every requested venue",
+      "test": "venue_proof_does_not_inherit",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/06.txt",
+      "log_sha256": "48347adec61a74feb041086f4ecd7be7bbda338540b73c54d01a7f050bba7a02"
+    },
+    {
+      "mutation": 7,
+      "fault": "Treat assumed signer as real signature possession",
+      "test": "local_assumed_signer_never_becomes_possession",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase8-mutations/07.txt",
+      "log_sha256": "0abfb88225733a601b94db4c08ab36856d80fb1e9939f90c8d865fabf975f848"
+    }
+  ]
+}

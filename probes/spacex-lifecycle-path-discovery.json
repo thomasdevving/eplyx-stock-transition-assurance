@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "sources": [
+    {
+      "id": "issuer-notice",
+      "kind": "ExternalPolicy",
+      "reference": "https://prestocks.com/spacex",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/issuer-spacex.html",
+        "sha256": "cb7c0c835d4c9aa8824e74ea3e39297323407c4908aa23e5d9256b395bc6ab69"
+      },
+      "description": "Issuer names a successor and a conversion deadline; a policy assertion, not execution or entitlement evidence."
+    },
+    {
+      "id": "issuer-faq",
+      "kind": "ExternalMechanism",
+      "reference": "https://prestocks.com/faq",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/issuer-faq-chunk-0.js",
+        "sha256": "2e62dd29b1c4c6d55ad1ee6b08bb49c8eac5958b33c98382bf544e7d628ac169"
+      },
+      "description": "Public first-party FAQ application data says post-IPO conversion can be onchain without KYC. It also describes offchain arbitrage; it supplies no concrete audited conversion instruction in this captured source."
+    },
+    {
+      "id": "issuer-launch",
+      "kind": "ExternalMechanism",
+      "reference": "https://newsletter.prestocks.com/p/prestocks-are-live-trade-spacex-openai",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/issuer-launch.html",
+        "sha256": "0558e465d80d4a630b0f7b6b7b65fb1211d13d7c14ae8e7299fa3f20034b4f93"
+      },
+      "description": "2025-08-07 issuer newsletter distinguishes KYC-gated mint/redemption from ordinary trading. General historical communication does not establish this holder eligibility or a currently functioning redemption flow."
+    },
+    {
+      "id": "bounded-chain-research",
+      "kind": "ObservedOnchainState",
+      "reference": "https://api.mainnet-beta.solana.com",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/chain-investigation.json",
+        "sha256": "bb8709ea24e6677dc63d5fe099cc5f9254f759c176f88bede43a26f0bc646db8"
+      },
+      "description": "Finalized bytes of source/successor mints and source authority; five recent signatures and one transaction per authority/successor. Limited observations are not exhaustive absence or signed inclusion proofs."
+    },
+    {
+      "id": "research-scope",
+      "kind": "ResearchInference",
+      "reference": "research:phase8-bounded-public-sources",
+      "artifact": {
+        "file": "../evidence/resolution/phase8/http-capture.json",
+        "sha256": "c5af693cdb42619d118292349ace721f2157a1ef77a65a32b2a39ee6c34d68b2"
+      },
+      "description": "Issuer pages/FAQ captured read-only; X page returned 403 via browsing, syndication returned empty object; no post text is assumed. No issuer authentication, entitlement or backend access was obtained."
+    },
+    {
+      "id": "original-policy",
+      "kind": "ScenarioAssumption",
+      "reference": "scenario:prestocks-spacex-transition-v1",
+      "artifact": {
+        "file": "../scenarios/spacex-transition.json",
+        "sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+      },
+      "description": "Original external lifecycle policy and hypothetical semantic boundary remain unchanged; successor field remains null in that policy."
+    }
+  ],
+  "paths": [
+    {
+      "path_type": "OfficialTransition",
+      "boundary": "OnchainCandidateUnverified",
+      "requested_contexts": [
+        "issuer-successor:Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+      ],
+      "evidence_ids": [
+        "issuer-notice",
+        "issuer-faq",
+        "bounded-chain-research",
+        "research-scope",
+        "original-policy"
+      ],
+      "facts": [
+        "Issuer notice links SPCXx mint Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8 and allows swapping into it or any other token before its stated deadline.",
+        "Issuer FAQ describes post-IPO conversion as fully onchain without KYC.",
+        "Source and published successor exist as non-executable Token-2022 mints at finalized slot 448024657. Source mint/freeze/permanent delegate authority is WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc; captured authority account is empty System-owned, not itself a conversion program.",
+        "Sample source-authority transaction invokes Squads and withdraws withheld token fees; sample successor transaction contains token transfers. Neither sampled transaction establishes an official transition for this entity."
+      ],
+      "reason": "Issuer describes an onchain conversion candidate and names a real successor, but no exact official transition mechanism has been independently executed and reconciled for this entity. NotTested; no claim that the path is wholly offchain.",
+      "limitations": [
+        "No verified conversion instruction/account plan or successor execution fixture was supplied.",
+        "Generic Burn/MintTo and administrative authority or fee-withdrawal instructions do not establish successor exchange, issuer authorization or redemption.",
+        "Bounded research cannot prove that no other onchain transition mechanism exists.",
+        "The existing USDC swap is SecondaryMarketExit evidence only; issuer wording does not automatically reclassify it as OfficialTransition proof."
+      ]
+    },
+    {
+      "path_type": "Redemption",
+      "boundary": "IssuerMediatedOutsideExecutor",
+      "requested_contexts": [],
+      "evidence_ids": [
+        "issuer-launch",
+        "issuer-faq",
+        "bounded-chain-research",
+        "research-scope"
+      ],
+      "facts": [
+        "Issuer historical launch communication says minting/redemption require KYC.",
+        "Current FAQ describes offchain exposure/arbitrage but supplies no holder-executable redemption instruction in the captured material.",
+        "No verified redemption program, payout guarantee or holder entitlement was established by the bounded transaction sample."
+      ],
+      "reason": "Unsupported: no independently verified redemption executor is available in the supported evidence boundary; issuer onboarding/KYC, backend and offchain exposure/entitlement are unavailable.",
+      "limitations": [
+        "Unsupported means Eplyx cannot independently execute/verify the mechanism, not that redemption does not exist.",
+        "Historical generic issuer language is not proof of this holder current entitlement or eligibility.",
+        "Neither DEX output, Transfer nor a token Burn instruction proves redemption."
+      ]
+    },
+    {
+      "path_type": "SecondaryMarketExit",
+      "boundary": "Unresolved",
+      "requested_contexts": [
+        "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg"
+      ],
+      "evidence_ids": [
+        "bounded-chain-research"
+      ],
+      "facts": [
+        "Execution proof comes exclusively from exact Phase 7 holder/pool/amount results, hash-checked and fresh-replayed."
+      ],
+      "reason": "No new market context is inferred without exact execution evidence.",
+      "limitations": [
+        "Only listed exact amounts, source state and pool are tested.",
+        "No continuous amount interval, future liquidity, other holder/venue, issuer transition or redemption is proven."
+      ]
+    },
+    {
+      "path_type": "Transfer",
+      "boundary": "Unresolved",
+      "requested_contexts": [
+        "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az"
+      ],
+      "evidence_ids": [
+        "bounded-chain-research"
+      ],
+      "facts": [
+        "Proof uses the real observed Phase 7 recipient and deployed Token-2022 program."
+      ],
+      "reason": "Only exact independently replayed transfer evidence can prove this path.",
+      "limitations": [
+        "Locally assumed original owner signing establishes no real-world authorization.",
+        "Transfer is token movement, not sale, redemption or official successor conversion."
+      ]
+    },
+    {
+      "path_type": "Withdrawal",
+      "boundary": "Unresolved",
+      "requested_contexts": [],
+      "evidence_ids": [
+        "original-policy"
+      ],
+      "facts": [
+        "Applicability depends on the selected entity context, not the existence of a venue vault."
+      ],
+      "reason": "Protocol/LP ownership and a withdrawal mechanism would require separate entity-level evidence.",
+      "limitations": [
+        "Direct wallet-compatible holder with no verified protocol/LP role has no applicable Withdrawal in this entity context.",
+        "Protocol vault existence does not establish LP ownership or holder withdrawal rights."
+      ]
+    }
+  ],
+  "investigation_scope": [
+    "Exactly one Phase 7 source selected; no horizontal sampling or new venue execution.",
+    "First-party issuer notice, FAQ application chunk, historical launch newsletter and public metadata reviewed.",
+    "Three finalized accounts inspected; at most five signatures and one parsed transaction per source authority/successor.",
+    "No authenticated issuer workflow, legal entitlement, KYC/private state, full historical scan or successor execution obtained.",
+    "Absent discovery in this bounded scope is not evidence of global non-existence."
+  ]
+}

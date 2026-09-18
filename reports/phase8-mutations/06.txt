@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.73s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test resolution::tests::venue_proof_does_not_inherit ... FAILED
+
+failures:
+
+---- resolution::tests::venue_proof_does_not_inherit stdout ----
+
+thread 'resolution::tests::venue_proof_does_not_inherit' (7283383) panicked at engine/src/resolution/tests.rs:192:5:
+assertion `left == right` failed
+  left: Proven
+ right: NotTested
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    resolution::tests::venue_proof_does_not_inherit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 86 filtered out; finished in 0.57s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

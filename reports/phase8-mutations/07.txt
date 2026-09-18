@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.75s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test resolution::tests::local_assumed_signer_never_becomes_possession ... FAILED
+
+failures:
+
+---- resolution::tests::local_assumed_signer_never_becomes_possession stdout ----
+
+thread 'resolution::tests::local_assumed_signer_never_becomes_possession' (7283819) panicked at engine/src/resolution/tests.rs:199:9:
+assertion failed: !e.0.signer.signer_possession_known
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    resolution::tests::local_assumed_signer_never_becomes_possession
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 86 filtered out; finished in 0.62s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

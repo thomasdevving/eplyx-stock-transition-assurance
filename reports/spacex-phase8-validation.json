@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "resolution_file": "reports/spacex-lifecycle-path-resolution.json",
+  "resolution_sha256": "0e8d353464d6444a6436b5fc1cd3013e203b554bd53c215ecdb494c9119a3dc6",
+  "checks": {
+    "make-test": {
+      "exit_code": 0,
+      "log_file": "reports/phase8-validation/make-test.txt",
+      "log_sha256": "e903c1465a576c67beb8ae60388a92b7462e0d85b6738b53aba485d4570356b3"
+    },
+    "make-fmt-check": {
+      "exit_code": 0,
+      "log_file": "reports/phase8-validation/make-fmt-check.txt",
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239"
+    },
+    "make-lint": {
+      "exit_code": 0,
+      "log_file": "reports/phase8-validation/make-lint.txt",
+      "log_sha256": "a0b6a81e6dddfc86824b2b9478cba4c2cd5982a9676079dbcb851fdb4b055bab"
+    },
+    "git-diff-check": {
+      "exit_code": 0,
+      "log_file": "reports/phase8-validation/git-diff-check.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "tests": {
+    "passed": 226,
+    "failed": 0,
+    "ignored": 0,
+    "phase8_unit_tests": 16,
+    "phase8_integration_tests": 5,
+    "prior_phase_assertions_weakened": false,
+    "both_synthetic_sbf_versions_built": true
+  },
+  "mutation_tests": {
+    "injected": 7,
+    "caught_by_specific_assertions": 7,
+    "source_restored": true,
+    "report_file": "reports/spacex-phase8-mutation-results.json",
+    "report_sha256": "4409e52f2dfa3a828656fb0a7253c9a3a2c2501d07b82576f11af3cbdc1a8346"
+  },
+  "canonical_saved_json_equals_json_stdout": true,
+  "offline_cli_checks": {
+    "test": "cli_is_portable_canonical_offline_and_protects_outputs",
+    "absolute_inputs_from_other_working_directory": true,
+    "rpc_environment_unset": true,
+    "canonical_stdout_equals_saved_and_published_json": true,
+    "existing_output_rejected_without_mutation": true
+  },
+  "fresh_replay_rejects_rehashed_fabricated_results": {
+    "test": "replay_rejects_rehashed_fabricated_execution_before_resolution",
+    "passed": true
+  },
+  "original_artifacts": {
+    "phase7_manifest_entries_unchanged": 79,
+    "phase7_shared_files_additively_updated": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ],
+    "other_original_checksum_entries_verified": 17,
+    "original_checksums_rewritten": false
+  }
+}

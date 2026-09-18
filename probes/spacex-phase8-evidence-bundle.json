@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "baseline": {
+    "file": "../reports/spacex-lifecycle-coverage.json",
+    "sha256": "f3ff991165d23f9ff851b8e7d9c141a92aac4668bf26e2bc83926a12a2e4d920"
+  },
+  "impact": {
+    "file": "../reports/spacex-transition-impact.json",
+    "sha256": "0d9770ac8e360f37ae5e7cda7700feb20886af223904e027085d633f1c9e3e15"
+  },
+  "expansion_plan": {
+    "file": "../probes/spacex-lifecycle-expansion-plan.json",
+    "sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade"
+  },
+  "inventory": {
+    "file": "../probes/spacex-phase7-venues-verified.json",
+    "sha256": "3ab6a481cb2c87b241e3f4671c8cb1ac772dac5bcac39d035f26d90a58879c0d"
+  },
+  "captures": {
+    "file": "../probes/phase7-captures/capture-manifest.json",
+    "sha256": "5357ef0ff0436649e27c626f81f16be99022a48ce232a640d9114228d0befdc6"
+  },
+  "execution_index": {
+    "file": "../reports/phase7-evidence/execution-index.json",
+    "sha256": "e14c449199c972b91b5390b325b8ed8285f07efa70c5a41df960e2a142ee3c52"
+  },
+  "coverage": {
+    "file": "../reports/spacex-lifecycle-coverage-phase7.json",
+    "sha256": "79b78e877b63c9fa3fd5ef80755b0759c47ae8ac9771a56cc3046a387217e07f"
+  }
+}

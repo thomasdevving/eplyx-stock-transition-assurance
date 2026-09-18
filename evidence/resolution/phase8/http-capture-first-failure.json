@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "requests": [
+    {
+      "file": "issuer-spacex.html",
+      "url": "https://prestocks.com/spacex",
+      "retrieved_at": "2026-09-18T08:05:55.197880+00:00",
+      "http_status": null,
+      "sha256": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "file": "issuer-faq.html",
+      "url": "https://prestocks.com/faq",
+      "retrieved_at": "2026-09-18T08:05:55.198378+00:00",
+      "http_status": null,
+      "sha256": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "file": "issuer-launch.html",
+      "url": "https://newsletter.prestocks.com/p/prestocks-are-live-trade-spacex-openai",
+      "retrieved_at": "2026-09-18T08:05:55.198456+00:00",
+      "http_status": null,
+      "sha256": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "file": "issuer-spacex-post.json",
+      "url": "https://cdn.syndication.twimg.com/tweet-result?id=2063623768535363940&lang=en",
+      "retrieved_at": "2026-09-18T08:05:55.198504+00:00",
+      "http_status": null,
+      "sha256": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "file": "source-metadata.json",
+      "url": "https://prestocks.com/metadata/spacex.json",
+      "retrieved_at": "2026-09-18T08:05:55.250447+00:00",
+      "http_status": null,
+      "sha256": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    }
+  ]
+}

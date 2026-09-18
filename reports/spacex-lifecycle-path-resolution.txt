@@ -1,0 +1,37 @@
+Lifecycle path resolution
+Entity: solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs
+Owner: 2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj
+Public amount: 17621 raw
+Lifecycle: TransitionRequired / RequiresTransition
+Policy time: 2026-09-17 20:00:00 UTC
+
+OfficialTransition: NotTested
+Issuer describes an onchain conversion candidate and names a real successor, but no exact official transition mechanism has been independently executed and reconciled for this entity. NotTested; no claim that the path is wholly offchain.
+  Context issuer-successor:Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8: NotTested
+
+Redemption: Unsupported
+Unsupported: no independently verified redemption executor is available in the supported evidence boundary; issuer onboarding/KYC, backend and offchain exposure/entitlement are unavailable.
+
+SecondaryMarketExit: Proven
+At least one exact entity/path/context/amount execution was successful and reconciled after fresh offline replay. Proof applies only to listed successful points.
+  Context 22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg: Proven
+    176 raw: Proven; output 105 raw; withheld 1 raw; slot 448018537; evidence 429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0
+    17621 raw: Proven; output 10567 raw; withheld 89 raw; slot 448018537; evidence 697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6
+    17622 raw: Indeterminate; output unmeasured raw; withheld unmeasured raw; slot not executed; evidence 7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7
+    4405 raw: Proven; output 2641 raw; withheld 23 raw; slot 448018537; evidence 19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f
+    8810 raw: Proven; output 5282 raw; withheld 45 raw; slot 448018537; evidence b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d
+
+Transfer: Proven
+At least one exact entity/path/context/amount execution was successful and reconciled after fresh offline replay. Proof applies only to listed successful points.
+  Context token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az: Proven
+    176 raw: Proven; output 175 raw; withheld 1 raw; slot 448018365; evidence ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9
+    17621 raw: Proven; output 17532 raw; withheld 89 raw; slot 448018365; evidence 85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a
+    17622 raw: Indeterminate; output unmeasured raw; withheld unmeasured raw; slot not executed; evidence 493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463
+    4405 raw: Proven; output 4382 raw; withheld 23 raw; slot 448018365; evidence 8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54
+    8810 raw: Proven; output 8765 raw; withheld 45 raw; slot 448018365; evidence c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2
+
+Withdrawal: NotApplicable
+Direct wallet-compatible token account with no verified protocol/LP position in this entity context; a venue vault does not grant holder withdrawal rights.
+
+This entity has 2 independently replayed bounded successful paths: SecondaryMarketExit, Transfer. OfficialTransition and Redemption are not proven unless their own rows contain direct proof. Captured mobility does not prove completion of the issuer-defined lifecycle change.
+Signer possession unknown; original owner locally assumed to sign. No mainnet transaction.
