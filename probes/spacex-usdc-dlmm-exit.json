@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "dlmm-secondary-market-exit-v1",
+  "path_type": "SecondaryMarketExit",
+  "adapter": "MeteoraDlmm",
+  "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+  "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+  "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "input_amount_raw": "10000",
+  "minimum_output_raw": "1",
+  "amount_reason": "A bounded 10000 raw-unit input smaller than the selected captured holder amount, using mint precision. Not the full wallet; no claim of available depth beyond this amount. Minimum output is one raw paired-token unit, a test threshold rather than a production slippage recommendation.",
+  "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "fixture": "spacex-usdc-dlmm-fixture.json",
+  "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+}

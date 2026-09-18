@@ -70,6 +70,95 @@ pub struct LoadedProgram {
     pub bytes: Vec<u8>,
 }
 
+/// Actual inner instruction payloads for consequence probes (including event CPI).
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct ProbeInnerInstruction {
+    pub program: String,
+    pub stack_height: u8,
+    pub accounts: Vec<String>,
+    #[serde(with = "crate::hexfmt")]
+    pub data: Vec<u8>,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+pub struct ProbeTransactionExecution {
+    pub success: bool,
+    pub error: Option<String>,
+    pub compute_units: u64,
+    pub transaction_fee_lamports: u64,
+    pub logs: Vec<String>,
+    pub inner_instructions: Vec<ProbeInnerInstruction>,
+    pub post_accounts: BTreeMap<String, AccountSnapshot>,
+}
+
+/// The same fresh LiteSVM backend, for captured multi-instruction probe messages.
+/// Signature possession and blockhash freshness are explicit local assumptions;
+/// message signer privileges, program/account checks and deployed SBF CPIs execute.
+pub fn execute_probe_message(
+    accounts: &[crate::types::NamedAccount],
+    watch: &[String],
+    clock: Clock,
+    programs: &[LoadedProgram],
+    message: Message,
+) -> Result<ProbeTransactionExecution> {
+    let mut svm = LiteSVM::new()
+        .with_sigverify(false)
+        .with_blockhash_check(false);
+    svm.set_sysvar(&clock);
+    for program in programs {
+        svm.add_program_with_loader(program.program_id, &program.bytes, program.loader)
+            .map_err(|e| {
+                anyhow!(
+                    "cannot load captured executable {}: {e:?}",
+                    program.program_id
+                )
+            })?;
+    }
+    for named in accounts {
+        svm.set_account(
+            named.address.parse::<Address>()?,
+            to_account(&named.account)?,
+        )
+        .map_err(|e| anyhow!("cannot seed captured account {}: {e:?}", named.address))?;
+    }
+    let keys = message.account_keys.clone();
+    let (success, error, meta) = match svm.send_transaction(Transaction::new_unsigned(message)) {
+        Ok(meta) => (true, None, meta),
+        Err(failure) => (false, Some(format!("{:?}", failure.err)), failure.meta),
+    };
+    let mut inner_instructions = Vec::new();
+    for outer in &meta.inner_instructions {
+        for inner in outer {
+            let ix = &inner.instruction;
+            inner_instructions.push(ProbeInnerInstruction {
+                program: keys[usize::from(ix.program_id_index)].to_string(),
+                stack_height: inner.stack_height,
+                accounts: ix
+                    .accounts
+                    .iter()
+                    .map(|i| keys[usize::from(*i)].to_string())
+                    .collect(),
+                data: ix.data.clone(),
+            });
+        }
+    }
+    let mut post_accounts = BTreeMap::new();
+    for address in watch {
+        if let Some(account) = svm.get_account(&address.parse::<Address>()?) {
+            post_accounts.insert(address.clone(), from_account(&account));
+        }
+    }
+    Ok(ProbeTransactionExecution {
+        success,
+        error,
+        compute_units: meta.compute_units_consumed,
+        transaction_fee_lamports: meta.fee,
+        logs: meta.logs,
+        inner_instructions,
+        post_accounts,
+    })
+}
+
 /// A single cross-program invocation observed during execution.
 ///
 /// Carries enough of the invoked instruction to compare two graphs without

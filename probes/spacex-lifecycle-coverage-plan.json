@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "impact_sha256": "0d9770ac8e360f37ae5e7cda7700feb20886af223904e027085d633f1c9e3e15",
+  "requested_paths": [
+    "OfficialTransition",
+    "SecondaryMarketExit",
+    "Redemption",
+    "Withdrawal",
+    "Transfer"
+  ],
+  "cases": [
+    {
+      "id": "representative:solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy:OfficialTransition",
+      "target_entity": "solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy:Redemption",
+      "target_entity": "solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy:SecondaryMarketExit",
+      "target_entity": "solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy:Transfer",
+      "target_entity": "solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy:Withdrawal",
+      "target_entity": "solana-token-account:21sjkgJCbEmyYteXJyAq5W8piNNVvRpmLdMFdrASFPAy",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8:OfficialTransition",
+      "target_entity": "solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8:Redemption",
+      "target_entity": "solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8:SecondaryMarketExit",
+      "target_entity": "solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8:Transfer",
+      "target_entity": "solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8:Withdrawal",
+      "target_entity": "solana-token-account:2ui1ftnqLSvMejwZLDNX2MWXkCiKi7EddLCzGaycYpH8",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG:OfficialTransition",
+      "target_entity": "solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG:Redemption",
+      "target_entity": "solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG:SecondaryMarketExit",
+      "target_entity": "solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG:Transfer",
+      "target_entity": "solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG:Withdrawal",
+      "target_entity": "solana-token-account:7c46NcpbXXKHF2hZ5o5KQFJCcFKngHWgWnQPrbkhSKGG",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB:OfficialTransition",
+      "target_entity": "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB:Redemption",
+      "target_entity": "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB:SecondaryMarketExit",
+      "target_entity": "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB:Transfer",
+      "target_entity": "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB:Withdrawal",
+      "target_entity": "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp:OfficialTransition",
+      "target_entity": "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp:Redemption",
+      "target_entity": "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp:SecondaryMarketExit",
+      "target_entity": "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp:Transfer",
+      "target_entity": "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp:Withdrawal",
+      "target_entity": "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:OfficialTransition",
+      "target_entity": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Redemption",
+      "target_entity": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit",
+      "target_entity": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer",
+      "target_entity": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Withdrawal",
+      "target_entity": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa:OfficialTransition",
+      "target_entity": "solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa:Redemption",
+      "target_entity": "solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa:SecondaryMarketExit",
+      "target_entity": "solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa:Transfer",
+      "target_entity": "solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa:Withdrawal",
+      "target_entity": "solana-token-account:FbPatnRnaHkxhmNkVaHCoT1hDzSdwFrwrHjyKmCPByHa",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf:OfficialTransition",
+      "target_entity": "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf:Redemption",
+      "target_entity": "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf:SecondaryMarketExit",
+      "target_entity": "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf:Transfer",
+      "target_entity": "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf:Withdrawal",
+      "target_entity": "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv:OfficialTransition",
+      "target_entity": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+      "path_type": "OfficialTransition",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv:Redemption",
+      "target_entity": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+      "path_type": "Redemption",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv:SecondaryMarketExit",
+      "target_entity": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+      "path_type": "SecondaryMarketExit",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv:Transfer",
+      "target_entity": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+      "path_type": "Transfer",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "representative:solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv:Withdrawal",
+      "target_entity": "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv",
+      "path_type": "Withdrawal",
+      "venue": null,
+      "input_amount_raw": "1000",
+      "execution_probe": null,
+      "execution_report": null
+    },
+    {
+      "id": "seed-0-baseline",
+      "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "path_type": "SecondaryMarketExit",
+      "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+      "input_amount_raw": "10000",
+      "execution_probe": {
+        "schema_version": 1,
+        "id": "dlmm-secondary-market-exit-v1",
+        "path_type": "SecondaryMarketExit",
+        "adapter": "MeteoraDlmm",
+        "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "input_amount_raw": "10000",
+        "minimum_output_raw": "1",
+        "amount_reason": "A bounded 10000 raw-unit input smaller than the selected captured holder amount, using mint precision. Not the full wallet; no claim of available depth beyond this amount. Minimum output is one raw paired-token unit, a test threshold rather than a production slippage recommendation.",
+        "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+        "fixture": "spacex-usdc-dlmm-fixture.json",
+        "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+      },
+      "execution_report": "../reports/spacex-usdc-dlmm-exit-result.json"
+    },
+    {
+      "id": "seed-0-raw-1000",
+      "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "path_type": "SecondaryMarketExit",
+      "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+      "input_amount_raw": "1000",
+      "execution_probe": {
+        "schema_version": 1,
+        "id": "seed-0-raw-1000",
+        "path_type": "SecondaryMarketExit",
+        "adapter": "MeteoraDlmm",
+        "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "input_amount_raw": "1000",
+        "minimum_output_raw": "1",
+        "amount_reason": "Phase 6 independent real raw-unit amount matrix: 1000. Original captured state reset for every case; minimum output retained as a test threshold, no simultaneous capacity inference.",
+        "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+        "fixture": "spacex-usdc-dlmm-fixture.json",
+        "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+      },
+      "execution_report": null
+    },
+    {
+      "id": "seed-0-raw-10000",
+      "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "path_type": "SecondaryMarketExit",
+      "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+      "input_amount_raw": "10000",
+      "execution_probe": {
+        "schema_version": 1,
+        "id": "seed-0-raw-10000",
+        "path_type": "SecondaryMarketExit",
+        "adapter": "MeteoraDlmm",
+        "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "input_amount_raw": "10000",
+        "minimum_output_raw": "1",
+        "amount_reason": "Phase 6 independent real raw-unit amount matrix: 10000. Original captured state reset for every case; minimum output retained as a test threshold, no simultaneous capacity inference.",
+        "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+        "fixture": "spacex-usdc-dlmm-fixture.json",
+        "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+      },
+      "execution_report": null
+    },
+    {
+      "id": "seed-0-raw-30000",
+      "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "path_type": "SecondaryMarketExit",
+      "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+      "input_amount_raw": "30000",
+      "execution_probe": {
+        "schema_version": 1,
+        "id": "seed-0-raw-30000",
+        "path_type": "SecondaryMarketExit",
+        "adapter": "MeteoraDlmm",
+        "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "input_amount_raw": "30000",
+        "minimum_output_raw": "1",
+        "amount_reason": "Phase 6 independent real raw-unit amount matrix: 30000. Original captured state reset for every case; minimum output retained as a test threshold, no simultaneous capacity inference.",
+        "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+        "fixture": "spacex-usdc-dlmm-fixture.json",
+        "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+      },
+      "execution_report": null
+    },
+    {
+      "id": "seed-0-raw-60354",
+      "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "path_type": "SecondaryMarketExit",
+      "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+      "input_amount_raw": "60354",
+      "execution_probe": {
+        "schema_version": 1,
+        "id": "seed-0-raw-60354",
+        "path_type": "SecondaryMarketExit",
+        "adapter": "MeteoraDlmm",
+        "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "input_amount_raw": "60354",
+        "minimum_output_raw": "1",
+        "amount_reason": "Phase 6 independent real raw-unit amount matrix: 60354. Original captured state reset for every case; minimum output retained as a test threshold, no simultaneous capacity inference.",
+        "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+        "fixture": "spacex-usdc-dlmm-fixture.json",
+        "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+      },
+      "execution_report": null
+    },
+    {
+      "id": "seed-0-raw-60355",
+      "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "path_type": "SecondaryMarketExit",
+      "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+      "input_amount_raw": "60355",
+      "execution_probe": {
+        "schema_version": 1,
+        "id": "seed-0-raw-60355",
+        "path_type": "SecondaryMarketExit",
+        "adapter": "MeteoraDlmm",
+        "target_entity": "solana-token-account:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "pool": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "input_amount_raw": "60355",
+        "minimum_output_raw": "1",
+        "amount_reason": "Phase 6 independent real raw-unit amount matrix: 60355. Original captured state reset for every case; minimum output retained as a test threshold, no simultaneous capacity inference.",
+        "snapshot_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+        "fixture": "spacex-usdc-dlmm-fixture.json",
+        "fixture_sha256": "c523e3aa2d9d5fdbf2e38f890e037c868d1987a2fd3e42cd365ff0005b17f2ad"
+      },
+      "execution_report": null
+    }
+  ]
+}
