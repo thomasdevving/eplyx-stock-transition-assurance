@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.96s
+     Running tests/rollout_assumptions.rs (target/debug/deps/rollout_assumptions-ca50cc1b52db2105)
+
+running 1 test
+test transfer_never_establishes_official_conversion ... FAILED
+
+failures:
+
+---- transfer_never_establishes_official_conversion stdout ----
+
+thread 'transfer_never_establishes_official_conversion' (8348395) panicked at engine/tests/rollout_assumptions.rs:164:5:
+assertion `left == right` failed: transfer_is_not_official_conversion
+  left: Supported
+ right: EvidenceSubstitution
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    transfer_never_establishes_official_conversion
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 21 filtered out; finished in 43.39s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test rollout_assumptions`

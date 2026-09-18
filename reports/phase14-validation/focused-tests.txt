@@ -1,0 +1,40 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.21s
+     Running tests/rollout_assumptions.rs (target/debug/deps/rollout_assumptions-ca50cc1b52db2105)
+
+running 22 tests
+test historical_artifact_bytes_are_preserved ... ok
+test malformed_and_verification_failure_cli_inputs_never_run_stub ... ok
+test accrued_protocol_fees_and_destination_withheld_fees_are_distinct has been running for over 60 seconds
+test actual_analysis_cli_exit_zero_is_not_readiness_authorization has been running for over 60 seconds
+test analysis_completion_zero_never_authorizes_the_stub has been running for over 60 seconds
+test blocked_and_unaccepted_candidates_never_run_the_stub has been running for over 60 seconds
+test candidate_and_evidence_ordering_is_canonical has been running for over 60 seconds
+test demo_order_is_deterministic_and_only_positive_control_runs has been running for over 60 seconds
+test different_entity_amount_venue_bank_range_fraction_and_signer_never_inherit_proof has been running for over 60 seconds
+test exact_required_failed_route_is_blocked has been running for over 60 seconds
+test incomplete_assurance_never_runs_the_stub has been running for over 60 seconds
+test actual_analysis_cli_exit_zero_is_not_readiness_authorization ... ok
+test analysis_completion_zero_never_authorizes_the_stub ... ok
+test exact_required_failed_route_is_blocked ... ok
+test narrow_policy_never_authorizes_additional_supported_actions ... ok
+test incomplete_assurance_never_runs_the_stub ... ok
+test narrowly_ready_positive_control_creates_only_a_temporary_marker ... ok
+test accrued_protocol_fees_and_destination_withheld_fees_are_distinct ... ok
+test tampering_omitted_requirements_and_wrong_target_are_invalid ... ok
+test transfer_never_establishes_official_conversion ... ok
+test original_optional_route_policy_and_result_remain_identical ... ok
+test truthful_principal_removal_is_accepted_and_narrowly_ready ... ok
+test valid_claim_without_cited_execution_is_not_established ... ok
+test missing_official_execution_never_becomes_failed ... ok
+test principal_removal_never_establishes_complete_exit ... ok
+test different_entity_amount_venue_bank_range_fraction_and_signer_never_inherit_proof ... ok
+test blocked_and_unaccepted_candidates_never_run_the_stub ... ok
+test pre_event_never_bypasses_future_target_requirements ... ok
+test candidate_and_evidence_ordering_is_canonical ... ok
+test demo_order_is_deterministic_and_only_positive_control_runs ... ok
+test offline_candidate_cli_codes_portability_and_output_protection has been running for over 60 seconds
+test offline_candidate_cli_codes_portability_and_output_protection ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 352.20s
+

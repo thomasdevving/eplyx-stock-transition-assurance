@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "plans": [
+    {
+      "file": "phase14-plans/lp-complete-exit.json",
+      "sha256": "0753c64e304ccc631c2a36ac9a01face3bb407a35b96f49a51b781d89fb1df06"
+    },
+    {
+      "file": "phase14-plans/required-failed-route.json",
+      "sha256": "50051b3b0c333996515dcb61ab09feaad313cb3e58b8f75034484438886bfd00"
+    },
+    {
+      "file": "phase14-plans/transfer-official-conversion.json",
+      "sha256": "d9dd660f9710745ace0ce1c8d5860a6cb9d87a3df10cbb9c149aebb0217c233a"
+    },
+    {
+      "file": "phase14-plans/principal-removal-positive-control.json",
+      "sha256": "9aebaf797d911d6b98bb7c8150b8269eb49b5d7be7447a62f2111ae0bf269515"
+    }
+  ]
+}

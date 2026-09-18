@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "command_exit_code": 0,
+  "json_byte_identical": true,
+  "text_byte_identical": true,
+  "actual_marker_count": 1,
+  "marker_contents_sha256": "86c8ca4068fbd7ce3fb7a79753c8658f7d9ab2261476a79c18725f5b47f65aa9",
+  "cases": [
+    {
+      "plan_id": "lp-complete-exit-claim",
+      "candidate": "NotAccepted",
+      "readiness": "Incomplete",
+      "scope": "PopulationRolloutReadiness",
+      "readiness_exit_code": 4,
+      "disposition": "RefusedCandidate",
+      "marker_created": false
+    },
+    {
+      "plan_id": "principal-removal-positive-control",
+      "candidate": "Accepted",
+      "readiness": "Ready",
+      "scope": "DemoEntityReadiness",
+      "readiness_exit_code": 0,
+      "disposition": "Permitted",
+      "marker_created": true
+    },
+    {
+      "plan_id": "required-failed-route-claim",
+      "candidate": "NotAccepted",
+      "readiness": "Blocked",
+      "scope": "PopulationRolloutReadiness",
+      "readiness_exit_code": 3,
+      "disposition": "RefusedCandidate",
+      "marker_created": false
+    },
+    {
+      "plan_id": "transfer-official-conversion-claim",
+      "candidate": "NotAccepted",
+      "readiness": "Incomplete",
+      "scope": "PopulationRolloutReadiness",
+      "readiness_exit_code": 4,
+      "disposition": "RefusedCandidate",
+      "marker_created": false
+    }
+  ]
+}

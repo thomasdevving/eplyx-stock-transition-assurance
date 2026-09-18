@@ -1,0 +1,25 @@
+    Checking fixture-lending-interface v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/interface)
+    Checking eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+error: 11 positional arguments in format string, but there are 10 arguments
+   --> engine/src/rollout/mod.rs:283:65
+    |
+283 | ...n: {} v{} (demonstration; non-issuer)\nTarget: {} / {} / {:?}\nCandidate: {:?}\nAssurance: {:?} / {:?} / {}\nReadiness exit: {}\nLocal workflow: {:?}\n\n",r.candidate.id,r.candidate.version,r.candidate.target_view.id,r.candidate.target_view.evaluation_time,r.target_lifecycle_status,r.readiness.overall_status,r.readiness.evaluated_scope,r.readiness.policy.id,r.readiness_exit_code,r.guarded_workflow_disposition);
+    |       ^^  ^^                                      ^^   ^^   ^^^^             ^^^^             ^^^^   ^^^^   ^^                  ^^                  ^^^^      -------------- ------------------- -------------------------- --------------------------------------- ------------------------- -------------------------- --------------------------- --------------------- --------------------- ------------------------------
+
+error[E0277]: `GuardDisposition` doesn't implement `std::fmt::Display`
+   --> engine/src/rollout/mod.rs:283:444
+    |
+283 | ...t: {}\nLocal workflow: {:?}\n\n",r.candidate.id,r.candidate.version,r.candidate.target_view.id,r.candidate.target_view.evaluation_time,r.target_lifecycle_status,r.readiness.overall_status,r.readiness.evaluated_scope,r.readiness.policy.id,r.readiness_exit_code,r.guarded_workflow_disposition);
+    |       -- required by this formatting parameter                                                                                                                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `GuardDisposition` cannot be formatted with the default formatter
+    |
+help: the trait `std::fmt::Display` is not implemented for `GuardDisposition`
+   --> engine/src/rollout/mod.rs:215:1
+    |
+215 | pub enum GuardDisposition {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `eplyx-lifecycle-impact` (lib) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `eplyx-lifecycle-impact` (lib test) due to 2 previous errors

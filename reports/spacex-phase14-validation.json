@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "phase": 14,
+  "baseline": {
+    "schema_version": 1,
+    "engine_command": "make test",
+    "engine_exit_code": 0,
+    "passed": 332,
+    "failed": 0,
+    "ignored": 0,
+    "engine_log_sha256": "27456fb5184bb675f3105e271b08e314e01b469eab88a574942e1e58b8ee7cde",
+    "baseline_worktree_digest": "9ef06f321ed1b1d8e48f60def79b376f5f8c7250e90dfb9a250c0b6738bce256",
+    "baseline_record_sha256": "06e73f9acb15386e2335af7cbd29673fa6740a7573b6b7f3f57407d1a412a33f",
+    "original_worktree_files_unchanged": 489,
+    "changed": [],
+    "frontend": {
+      "check_exit_code": 0,
+      "build_exit_code": 0,
+      "browser_exit_code": 0,
+      "browser_passed": 5,
+      "browser_log": "reports/phase14-validation/baseline-frontend-tests-unsandboxed.txt",
+      "sandbox_first_attempt": "Localhost bind EPERM; browser suite rerun with approved escalation."
+    }
+  },
+  "final_checks": [
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "log_sha256": "3b34046661684e2181fef2b999f238226cc3f6659d77838c6ec1e61583404011",
+      "log_file": "reports/phase14-validation/final-make-test.txt"
+    },
+    {
+      "command": "make fmt-check",
+      "exit_code": 0,
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239",
+      "log_file": "reports/phase14-validation/final-make-fmt-check.txt"
+    },
+    {
+      "command": "make lint",
+      "exit_code": 0,
+      "log_sha256": "8a969b2eb11df5949476648cbf0ae1f945ff2282328940804f62984d91451fe4",
+      "log_file": "reports/phase14-validation/final-make-lint.txt"
+    },
+    {
+      "command": "npm run check:frontend",
+      "exit_code": 0,
+      "log_sha256": "18382232cfc9f1f2b117b1c8ba130e1a8e6e7264a5233c404d03b5d44b9fd6be",
+      "log_file": "reports/phase14-validation/final-frontend-check.txt"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "log_sha256": "d4ff239568489d2c0f1b9e4dcefc3b472aeabd4a92e2c4d52d8aeea63cfaf22f",
+      "log_file": "reports/phase14-validation/final-frontend-build.txt"
+    },
+    {
+      "command": "npm run test:frontend",
+      "exit_code": 0,
+      "log_sha256": "4929cfabd7a332f8d5e05e5a8d3ea50bdafa9c325ce5a5084a042975af9ee6c2",
+      "log_file": "reports/phase14-validation/final-frontend-tests.txt"
+    },
+    {
+      "command": "python3 scripts/test-phase14-mutations.py",
+      "exit_code": 0,
+      "log_sha256": "fa67eca07807d55e12ffec991c099c2955c8d3118336fecb720ffea8af3b6029",
+      "log_file": "reports/phase14-validation/mutations-command.txt"
+    },
+    {
+      "command": "cargo run --locked -q -p eplyx-lifecycle-impact -- demo-rollout --marker-directory <fresh temporary directory> --out reports/phase14-validation/final-offline-demo.json",
+      "exit_code": 0,
+      "log_sha256": "deb2db3a361413bcd874476d96f4098313a9cebd54caacea4758e9136829827e",
+      "log_file": "reports/phase14-validation/final-offline-demo.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_file": "reports/phase14-validation/final-git-diff-check.txt"
+    }
+  ],
+  "final_engine": {
+    "passed": 354,
+    "failed": 0,
+    "ignored": 0,
+    "original_tests_preserved": 332,
+    "new_rollout_tests": 22,
+    "both_sbf_versions_built": true
+  },
+  "final_frontend": {
+    "passed": 6,
+    "original_tests_preserved": 5,
+    "new_case_panel_test": 1,
+    "screenshots_visually_inspected": true,
+    "localhost_escalation_approved": true
+  },
+  "source": {
+    "before_record": "reports/phase14-validation/final-source-before-tests.json",
+    "after_record": "reports/phase14-validation/final-source-after-tests.json",
+    "before_sha256": "fe14a3a1388fdcc5ad2702da4b6daabe34d0fc8c198d4ef08f9b4f579719a064",
+    "after_sha256": "fe14a3a1388fdcc5ad2702da4b6daabe34d0fc8c198d4ef08f9b4f579719a064",
+    "digest": "6b303f2856a49247a20c2bcb0c160c43d453613665aa661c6b2ef105f75e658d",
+    "bindings": 613,
+    "identical_across_final_checks": true
+  },
+  "final_worktree": {
+    "record": "reports/phase14-validation/final-worktree.json",
+    "record_sha256": "fb576773b0d1504d5edf0f2d5af7cb9ae52be64f5c919f4b00379e5e494cd9e2",
+    "digest": "f545a16ea947f6b81ca1ceabfd7f047262b8cc31384a94eec24658ad81504886"
+  },
+  "historical": {
+    "schema_version": 1,
+    "checked": 490,
+    "unchanged": 490,
+    "changed": [],
+    "baseline_sha256": "b483ff85bfcb44e383f14e263cb20120a979c61ddb3ba8ef5335ed1fdf483bb0"
+  },
+  "mutations": {
+    "injected": 5,
+    "caught_by_named_assertion": 5,
+    "compiler_failures_counted": 0,
+    "source_restored": true,
+    "rollout_source_sha256": "84573450e70dbf3cb30c0637bbcab23e1bf7bf43db94c540f56b155e3c899568",
+    "record": "reports/spacex-phase14-mutation-results.json",
+    "record_sha256": "bd4c0d6b32ea7728db9cd999a3cae4167d7fe9281956d2d81a30ed911d54c158"
+  },
+  "offline_demonstrations": {
+    "schema_version": 1,
+    "command_exit_code": 0,
+    "json_byte_identical": true,
+    "text_byte_identical": true,
+    "actual_marker_count": 1,
+    "marker_contents_sha256": "86c8ca4068fbd7ce3fb7a79753c8658f7d9ab2261476a79c18725f5b47f65aa9",
+    "cases": [
+      {
+        "plan_id": "lp-complete-exit-claim",
+        "candidate": "NotAccepted",
+        "readiness": "Incomplete",
+        "scope": "PopulationRolloutReadiness",
+        "readiness_exit_code": 4,
+        "disposition": "RefusedCandidate",
+        "marker_created": false
+      },
+      {
+        "plan_id": "principal-removal-positive-control",
+        "candidate": "Accepted",
+        "readiness": "Ready",
+        "scope": "DemoEntityReadiness",
+        "readiness_exit_code": 0,
+        "disposition": "Permitted",
+        "marker_created": true
+      },
+      {
+        "plan_id": "required-failed-route-claim",
+        "candidate": "NotAccepted",
+        "readiness": "Blocked",
+        "scope": "PopulationRolloutReadiness",
+        "readiness_exit_code": 3,
+        "disposition": "RefusedCandidate",
+        "marker_created": false
+      },
+      {
+        "plan_id": "transfer-official-conversion-claim",
+        "candidate": "NotAccepted",
+        "readiness": "Incomplete",
+        "scope": "PopulationRolloutReadiness",
+        "readiness_exit_code": 4,
+        "disposition": "RefusedCandidate",
+        "marker_created": false
+      }
+    ]
+  },
+  "canonical_artifacts": {
+    "reports/spacex-rollout-assumptions.json": "f2bf9ffb52d742e2f36f0bae99a6916e90fd74d75c9d6a046e7d465d65039978",
+    "reports/spacex-rollout-assumptions.txt": "deb2db3a361413bcd874476d96f4098313a9cebd54caacea4758e9136829827e",
+    "reports/spacex-rollout-assumptions.sha256": "3ebe0a4eec0f2eba8e868fa12e2242ce6bf17c722b25328fcc9e76f75dae8550"
+  },
+  "original_parent_policy_sha256": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d",
+  "phase13_counterfactual_sha256": "268182e18bcce4b6dfba2b4dfcf785619033a13f01923cb01c98a35488926a47",
+  "scope": {
+    "new_captures": false,
+    "new_execution_campaign": false,
+    "official_retry": false,
+    "fee_or_closure_adapter": false,
+    "mainnet_actions": false,
+    "ui_redesign": false,
+    "next_phase_started": false
+  },
+  "note": "Final full-suite source is pinned after the last executable code change/restoration. Completion documentation and delivery metadata finalized afterward. Existing dirty work was preserved; no reset, commit or push."
+}

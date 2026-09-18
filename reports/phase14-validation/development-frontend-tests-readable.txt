@@ -1,0 +1,59 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test
+
+(node:74036) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:74037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74037) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (8.1s)
+  ✓  2 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (7.2s)
+  ✓  3 frontend/tests/browser.spec.js:76:1 › downloads are the exact pinned source bytes and missing assets fail clearly (73ms)
+  ✓  4 frontend/tests/browser.spec.js:89:1 › WebGL failure retains the original vector mark (4.1s)
+  ✓  5 frontend/tests/browser.spec.js:103:1 › tablet layout keeps navigation and content within the viewport (947ms)
+  ✘  6 frontend/tests/browser.spec.js:117:1 › published rollout cases keep assertions, policy and local guard observations separate (2.0s)
+
+
+  1) frontend/tests/browser.spec.js:117:1 › published rollout cases keep assertions, policy and local guard observations separate 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#rollout').locator('[data-plan="lp-complete-exit-claim"]').locator('.scope-table')
+    Expected substring: [32m"Incomplete"[39m
+    Error: strict mode violation: locator('#rollout').locator('[data-plan="lp-complete-exit-claim"]').locator('.scope-table') resolved to 10 elements:
+        1) <dl class="scope-table">…</dl> aka getByText('Target policy viewafter_transition · 2026-09-17T20:00:00ZPolicy').first()
+        2) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentContradictedReason codesComplete Exit Not Established;')
+        3) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentNotEstablishedReason codesFee Collection Not TestedEvidence')
+        4) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentEvidenceSubstitutionReason codesPath Evidence Substitution;').first()
+        5) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentContradictedReason codesProtocol Accrued Fees RemainEvidence')
+        6) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentEvidenceSubstitutionReason codesPath Evidence Substitution;').nth(1)
+        7) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentContradictedReason codesPosition Account Retained; Position')
+        8) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentSupportedReason codesExact Historical Path SupportedEvidence').first()
+        9) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentSupportedReason codesExact Principal Token Deltas').first()
+        10) <dl class="scope-table">…</dl> aka getByText('Evidence assessmentSupportedReason codesZero Liquidity Shares ObservedEvidence').first()
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('#rollout').locator('[data-plan="lp-complete-exit-claim"]').locator('.scope-table')[22m
+
+
+      128 |   const row=panel.locator(`[data-plan="${id}"]`);
+      129 |   await row.locator(':scope > summary').click();
+    > 130 |   await expect(row.locator(':scope > .scope-table')).toContainText(status);
+          |                                             ^
+      131 |   await expect(row.locator(':scope > .scope-table')).toContainText(scope);
+      132 |   await expect(row.locator(':scope > .scope-table')).toContainText(marker);
+      133 |   if (id==='lp-complete-exit-claim') {
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/browser.spec.js:130:45
+
+    Error Context: test-results/browser-published-rollout--798ec-guard-observations-separate/error-context.md
+
+  1 failed
+    frontend/tests/browser.spec.js:117:1 › published rollout cases keep assertions, policy and local guard observations separate 
+  5 passed (47.3s)

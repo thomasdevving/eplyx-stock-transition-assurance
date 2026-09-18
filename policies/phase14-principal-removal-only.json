@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "id": "stocklana-phase14-principal-removal-only-v1",
+  "policy_type": "DemoAssurancePolicy",
+  "not_issuer_policy": true,
+  "description": "Non-issuer entity/action demonstration assurance for exact historical principal removal only; not complete exit, conversion, population readiness or future availability.",
+  "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "evaluated_scope": "DemoEntityReadiness",
+  "evidence_manifest": {
+    "file": "../probes/spacex-readiness-evidence.json",
+    "sha256": "9154dda0427f70478a16dd144d37987d8f5c94bb2083778353bb8fa2ad3cc892"
+  },
+  "requirements": [
+    {
+      "id": "lp-principal-unwind",
+      "label": "Exact native full-range liquidity principal unwind",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN"
+      },
+      "required": true,
+      "condition": {
+        "kind": "Path",
+        "any_of": [
+          {
+            "path_type": "Withdrawal",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+              "state_shape": "ProtocolPosition",
+              "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+              "exact_amount_raw": "21296808",
+              "range": [
+                -102,
+                -53
+              ],
+              "bps_to_remove": 10000,
+              "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+              "context_id": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+              "captured_slot": 448082469,
+              "clock": {
+                "slot": 448082469,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789734213
+              },
+              "capture_context": "CurrentFinalizedProduction",
+              "captured_state_sha256": null,
+              "fixture_sha256": "3d79ad5dcee2a9b7ecc74575fe9af7e025695e229471b7aab5288d69813c844f",
+              "source_before_raw": null,
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          }
+        ]
+      },
+      "rollout_assumption": "The selected LP principal can be removed through its native owner-authorized path.",
+      "remediation_requirement": "Supply exact position/range/fraction/bank withdrawal evidence with reconciliation."
+    }
+  ]
+}

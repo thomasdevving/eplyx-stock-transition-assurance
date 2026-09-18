@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.66s
+     Running tests/rollout_assumptions.rs (target/debug/deps/rollout_assumptions-ca50cc1b52db2105)
+
+running 1 test
+test principal_removal_never_establishes_complete_exit ... FAILED
+
+failures:
+
+---- principal_removal_never_establishes_complete_exit stdout ----
+
+thread 'principal_removal_never_establishes_complete_exit' (8345225) panicked at engine/tests/rollout_assumptions.rs:75:5:
+assertion `left == right` failed: principal_withdrawal_is_not_complete_exit
+  left: Supported
+ right: Contradicted
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    principal_removal_never_establishes_complete_exit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 21 filtered out; finished in 45.61s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test rollout_assumptions`

@@ -1,0 +1,6 @@
+ROLLOUT ASSUMPTION DEMONSTRATIONS (local-only)
+lp-complete-exit-claim: candidate NotAccepted; readiness Incomplete (PopulationRolloutReadiness, exit 4); workflow RefusedCandidate; marker created false
+principal-removal-positive-control: candidate Accepted; readiness Ready (DemoEntityReadiness, exit 0); workflow Permitted; marker created true
+required-failed-route-claim: candidate NotAccepted; readiness Blocked (PopulationRolloutReadiness, exit 3); workflow RefusedCandidate; marker created false
+transfer-official-conversion-claim: candidate NotAccepted; readiness Incomplete (PopulationRolloutReadiness, exit 4); workflow RefusedCandidate; marker created false
+Demo command exit 0 is analysis completion, not population readiness or rollout authorization.

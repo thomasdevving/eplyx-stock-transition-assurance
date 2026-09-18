@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "engine_command": "make test",
+  "engine_exit_code": 0,
+  "passed": 332,
+  "failed": 0,
+  "ignored": 0,
+  "engine_log_sha256": "27456fb5184bb675f3105e271b08e314e01b469eab88a574942e1e58b8ee7cde",
+  "baseline_worktree_digest": "9ef06f321ed1b1d8e48f60def79b376f5f8c7250e90dfb9a250c0b6738bce256",
+  "baseline_record_sha256": "06e73f9acb15386e2335af7cbd29673fa6740a7573b6b7f3f57407d1a412a33f",
+  "original_worktree_files_unchanged": 489,
+  "changed": [],
+  "frontend": {
+    "check_exit_code": 0,
+    "build_exit_code": 0,
+    "browser_exit_code": 0,
+    "browser_passed": 5,
+    "browser_log": "reports/phase14-validation/baseline-frontend-tests-unsandboxed.txt",
+    "sandbox_first_attempt": "Localhost bind EPERM; browser suite rerun with approved escalation."
+  }
+}

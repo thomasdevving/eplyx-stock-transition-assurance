@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.72s
+     Running tests/rollout_assumptions.rs (target/debug/deps/rollout_assumptions-ca50cc1b52db2105)
+
+running 1 test
+test incomplete_assurance_never_runs_the_stub ... FAILED
+
+failures:
+
+---- incomplete_assurance_never_runs_the_stub stdout ----
+
+thread 'incomplete_assurance_never_runs_the_stub' (8353814) panicked at engine/tests/rollout_assumptions.rs:393:5:
+incomplete_never_authorizes_stub
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    incomplete_assurance_never_runs_the_stub
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 21 filtered out; finished in 51.85s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test rollout_assumptions`

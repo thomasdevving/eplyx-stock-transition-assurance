@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "injected": 5,
+  "caught": 5,
+  "source_restored": true,
+  "source_sha256": "84573450e70dbf3cb30c0637bbcab23e1bf7bf43db94c540f56b155e3c899568",
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Promote principal withdrawal to complete position exit",
+      "test": "principal_removal_never_establishes_complete_exit",
+      "named_assertion": "principal_withdrawal_is_not_complete_exit",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "rollout_assumptions",
+        "principal_removal_never_establishes_complete_exit",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "359be715eae6ab9a724132887c89751ececc1a88d8c11491e7fe7131fdb72c02",
+      "log_file": "reports/phase14-mutations/01.txt",
+      "log_sha256": "9c2cda1fed971ec47a28af3905e1bbc889fa1fd2bb52ecb1d761d9101e08b2e1"
+    },
+    {
+      "mutation": 2,
+      "fault": "Promote movement proof to official conversion",
+      "test": "transfer_never_establishes_official_conversion",
+      "named_assertion": "transfer_is_not_official_conversion",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "rollout_assumptions",
+        "transfer_never_establishes_official_conversion",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "eacf154bd3d1f176a78fe94c5b14f9bc7977864ee5ad1387fde867443e126f16",
+      "log_file": "reports/phase14-mutations/02.txt",
+      "log_sha256": "c0c7e266ee144eeafc2334d822a6ba3c2d0458d7e205d21d76e73925d728ffa0"
+    },
+    {
+      "mutation": 3,
+      "fault": "Ignore explicit optional-to-required policy variant",
+      "test": "exact_required_failed_route_is_blocked",
+      "named_assertion": "required_exact_failure_blocks",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "rollout_assumptions",
+        "exact_required_failed_route_is_blocked",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "2bfa22246500ae403555496b145f123332d1419b4d9a90358a0389afbfa638de",
+      "log_file": "reports/phase14-mutations/03.txt",
+      "log_sha256": "801c3282dd3c196bd4dea7d55f82a7a6006d02c18458f29089f4aaf7ade6e044"
+    },
+    {
+      "mutation": 4,
+      "fault": "Permit Incomplete assurance through the guard",
+      "test": "incomplete_assurance_never_runs_the_stub",
+      "named_assertion": "incomplete_never_authorizes_stub",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "rollout_assumptions",
+        "incomplete_assurance_never_runs_the_stub",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "1bcfb9db81db0b78f69bba6af8aa5166856c143f75a3ce8d1e5ffe417b327112",
+      "log_file": "reports/phase14-mutations/04.txt",
+      "log_sha256": "bfc7f7c84b0d1a42ca452ebf93b3d6ee4f484eb77db98d31286a1fc0cf752c64"
+    },
+    {
+      "mutation": 5,
+      "fault": "Treat generic analysis exit zero as assurance completion",
+      "test": "analysis_completion_zero_never_authorizes_the_stub",
+      "named_assertion": "analysis_success_is_not_assurance_approval",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "rollout_assumptions",
+        "analysis_completion_zero_never_authorizes_the_stub",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_named_assertion": true,
+      "mutated_source_sha256": "7026aeade91d8e74eec9ab1a8fe328cf232c8957ab0b909c65fe37456251c7b3",
+      "log_file": "reports/phase14-mutations/05.txt",
+      "log_sha256": "ab97d01eb5d93fac76ff7ea9eec3312ffef19289f5a918f8373ba7fce040ae8e"
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "id": "transfer-official-conversion-claim",
+  "version": 1,
+  "label": "Claim Transfer completed official conversion",
+  "provenance": "DemonstrationNonIssuer",
+  "target_view": {
+    "id": "after_transition",
+    "label": "Transition effective, before deadline",
+    "lifecycle_policy_sha256": "7cceb6802566d8bec105ad5314534f2b322d8690581c69a5eb9f8ca155a31556",
+    "evaluation_time": "2026-09-17T20:00:00Z"
+  },
+  "production_state_digest": "c0cf207b91abd06e70f4a0e8b01a6614e941c4ff6709081e39d6d4880b3ebf78",
+  "assurance_policy": {
+    "artifact": {
+      "file": "../../policies/stocklana-spacex-preflight-v1.json",
+      "sha256": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d"
+    },
+    "parent_policy_sha256": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d",
+    "derivation": {
+      "kind": "Original"
+    },
+    "rationale": "Use the unchanged original population assurance policy; unsupported assertions do not manufacture a Blocked result."
+  },
+  "requested_actions": [
+    {
+      "id": "token-movement",
+      "path_type": "Transfer",
+      "scope": {
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "state_shape": "DirectTokenAccount",
+        "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "exact_amount_raw": "17621",
+        "range": null,
+        "bps_to_remove": null,
+        "venue": null,
+        "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "captured_slot": 448018365,
+        "clock": {
+          "slot": 448018365,
+          "epoch_start_timestamp": 1789708003,
+          "epoch": 1037,
+          "leader_schedule_epoch": 1038,
+          "unix_timestamp": 1789717146
+        },
+        "capture_context": "CurrentFinalizedProduction",
+        "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+        "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+        "source_before_raw": "17621",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+      },
+      "signer": {
+        "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "signer_possession_known": false,
+        "signer_assumed_locally": true,
+        "wording": "original owner locally assumed to sign"
+      },
+      "runtime_assumption": "CapturedDeployedProgramsInLocalLiteSvm"
+    },
+    {
+      "id": "official-conversion",
+      "path_type": "OfficialTransition",
+      "scope": {
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "state_shape": "DirectTokenAccount",
+        "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "exact_amount_raw": "17621",
+        "range": null,
+        "bps_to_remove": null,
+        "venue": null,
+        "context_id": null,
+        "captured_slot": null,
+        "clock": null,
+        "capture_context": null,
+        "captured_state_sha256": null,
+        "fixture_sha256": null,
+        "source_before_raw": null,
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+      },
+      "signer": {
+        "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "signer_possession_known": false,
+        "signer_assumed_locally": true,
+        "wording": "original owner locally assumed to sign"
+      },
+      "runtime_assumption": "CapturedDeployedProgramsInLocalLiteSvm"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "transfer-operation",
+      "action_id": "token-movement",
+      "claim": {
+        "kind": "ExactPathSucceeded"
+      },
+      "evidence_ids": [
+        "measurement:group-0-raw-17621"
+      ],
+      "statement": "The original exact Transfer succeeded locally under its recorded holder signing assumptions."
+    },
+    {
+      "id": "official-from-transfer",
+      "action_id": "official-conversion",
+      "claim": {
+        "kind": "OfficialConversionCompleted"
+      },
+      "evidence_ids": [
+        "measurement:group-0-raw-17621"
+      ],
+      "statement": "The successful Transfer establishes official successor conversion completion."
+    }
+  ],
+  "referenced_evidence": [
+    {
+      "id": "measurement:group-0-raw-17621",
+      "artifact": {
+        "file": "../reports/phase7-evidence/results/85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a.json",
+        "sha256": "85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a"
+      },
+      "description": "Existing actual local transaction/precondition result; no fresh execution occurs in this gate."
+    }
+  ],
+  "required_assurance_conditions": [
+    "direct-mobility",
+    "direct-official-transition",
+    "evidence-isolation",
+    "lp-complete-exit",
+    "lp-official-transition",
+    "lp-principal-unwind",
+    "population-actionability"
+  ]
+}

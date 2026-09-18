@@ -1,0 +1,25 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 11.88s
+     Running tests/rollout_assumptions.rs (target/debug/deps/rollout_assumptions-ca50cc1b52db2105)
+
+running 1 test
+test analysis_completion_zero_never_authorizes_the_stub has been running for over 60 seconds
+test analysis_completion_zero_never_authorizes_the_stub ... FAILED
+
+failures:
+
+---- analysis_completion_zero_never_authorizes_the_stub stdout ----
+
+thread 'analysis_completion_zero_never_authorizes_the_stub' (8356783) panicked at engine/tests/rollout_assumptions.rs:458:5:
+assertion `left == right` failed: analysis_success_is_not_assurance_approval
+  left: Permitted
+ right: RefusedCommandContext
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    analysis_completion_zero_never_authorizes_the_stub
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 21 filtered out; finished in 107.74s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test rollout_assumptions`

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "required-failed-route-claim",
+  "version": 1,
+  "label": "Require the exact retained failed sale",
+  "provenance": "DemonstrationNonIssuer",
+  "target_view": {
+    "id": "after_transition",
+    "label": "Transition effective, before deadline",
+    "lifecycle_policy_sha256": "7cceb6802566d8bec105ad5314534f2b322d8690581c69a5eb9f8ca155a31556",
+    "evaluation_time": "2026-09-17T20:00:00Z"
+  },
+  "production_state_digest": "c0cf207b91abd06e70f4a0e8b01a6614e941c4ff6709081e39d6d4880b3ebf78",
+  "assurance_policy": {
+    "artifact": {
+      "file": "../../policies/phase14-required-exact-route.json",
+      "sha256": "d836cdd3f28a7a2a6bde7de5a716f0ebdcdb075d9de3807f23a14d2d39a20b32"
+    },
+    "parent_policy_sha256": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d",
+    "derivation": {
+      "kind": "RequireExistingExactRoute",
+      "requirement_id": "optional-failed-route"
+    },
+    "rationale": "The candidate explicitly relies on this exact sale, making the formerly optional observation mandatory; no other policy condition changes."
+  },
+  "requested_actions": [
+    {
+      "id": "required-sale",
+      "path_type": "SecondaryMarketExit",
+      "scope": {
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "entity_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "state_shape": "DirectTokenAccount",
+        "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "exact_amount_raw": "14577177576",
+        "range": null,
+        "bps_to_remove": null,
+        "venue": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+        "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+        "captured_slot": 448018480,
+        "clock": {
+          "slot": 448018480,
+          "epoch_start_timestamp": 1789708003,
+          "epoch": 1037,
+          "leader_schedule_epoch": 1038,
+          "unix_timestamp": 1789717176
+        },
+        "capture_context": "CurrentFinalizedProduction",
+        "captured_state_sha256": "19c4a4ab11d3f3eee6aad52d176b85ae157234737a39f1449c34de437d0ba04e",
+        "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+        "source_before_raw": "1457717757690",
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+      },
+      "signer": {
+        "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "signer_possession_known": false,
+        "signer_assumed_locally": true,
+        "wording": "original owner locally assumed to sign"
+      },
+      "runtime_assumption": "CapturedDeployedProgramsInLocalLiteSvm"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "route-success",
+      "action_id": "required-sale",
+      "claim": {
+        "kind": "ExactPathSucceeded"
+      },
+      "evidence_ids": [
+        "measurement:group-2-raw-14577177576"
+      ],
+      "statement": "This exact requested sale route succeeds in its recorded captured execution context."
+    }
+  ],
+  "referenced_evidence": [
+    {
+      "id": "measurement:group-2-raw-14577177576",
+      "artifact": {
+        "file": "../reports/phase7-evidence/results/6105d7609ea6840cec226188199159b02c9089a83ebadc83abe7b2ce82d53530.json",
+        "sha256": "6105d7609ea6840cec226188199159b02c9089a83ebadc83abe7b2ce82d53530"
+      },
+      "description": "Existing actual local transaction/precondition result; no fresh execution occurs in this gate."
+    }
+  ],
+  "required_assurance_conditions": [
+    "direct-mobility",
+    "direct-official-transition",
+    "evidence-isolation",
+    "lp-complete-exit",
+    "lp-official-transition",
+    "lp-principal-unwind",
+    "optional-failed-route",
+    "population-actionability"
+  ]
+}

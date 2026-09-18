@@ -1,0 +1,7 @@
+cargo clippy --locked --all-targets -- -D warnings
+    Checking eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 10.39s
+cargo clippy --manifest-path programs/fixture-lending/Cargo.toml --no-default-features --features v1 --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.29s
+cargo clippy --manifest-path programs/fixture-lending/Cargo.toml --no-default-features --features v2 --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.11s

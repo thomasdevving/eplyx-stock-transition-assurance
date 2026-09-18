@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.00s
+     Running tests/rollout_assumptions.rs (target/debug/deps/rollout_assumptions-ca50cc1b52db2105)
+
+running 1 test
+test exact_required_failed_route_is_blocked ... FAILED
+
+failures:
+
+---- exact_required_failed_route_is_blocked stdout ----
+
+thread 'exact_required_failed_route_is_blocked' (8350492) panicked at engine/tests/rollout_assumptions.rs:204:5:
+assertion `left == right` failed: required_exact_failure_blocks
+  left: Incomplete
+ right: Blocked
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    exact_required_failed_route_is_blocked
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 21 filtered out; finished in 58.41s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test rollout_assumptions`

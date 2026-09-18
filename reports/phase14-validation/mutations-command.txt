@@ -1,0 +1,5 @@
+1/5 principal_removal_never_establishes_complete_exit: caught
+2/5 transfer_never_establishes_official_conversion: caught
+3/5 exact_required_failed_route_is_blocked: caught
+4/5 incomplete_assurance_never_runs_the_stub: caught
+5/5 analysis_completion_zero_never_authorizes_the_stub: caught

@@ -1,0 +1,22 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test
+
+(node:74711) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 6 tests using 1 worker
+
+(node:74742) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:74742) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:74742) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (11.3s)
+  ✓  2 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (8.7s)
+  ✓  3 frontend/tests/browser.spec.js:76:1 › downloads are the exact pinned source bytes and missing assets fail clearly (215ms)
+  ✓  4 frontend/tests/browser.spec.js:89:1 › WebGL failure retains the original vector mark (5.6s)
+  ✓  5 frontend/tests/browser.spec.js:103:1 › tablet layout keeps navigation and content within the viewport (2.8s)
+  ✓  6 frontend/tests/browser.spec.js:117:1 › published rollout cases keep assertions, policy and local guard observations separate (3.0s)
+
+  6 passed (49.3s)

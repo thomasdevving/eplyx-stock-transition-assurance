@@ -1,0 +1,26 @@
+cargo clippy --locked --all-targets -- -D warnings
+    Checking eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+error: using `print!()` with a format string that ends in a single newline
+    --> engine/src/main.rs:1427:29
+     |
+1427 |               Format::Text => print!(
+     |  _____________________________^
+1428 | |                 "{}Marker created: {}\n",
+1429 | |                 evaluated.render_text(),
+1430 | |                 result.observation.marker_created
+1431 | |             ),
+     | |_____________^
+     |
+     = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.98.0/index.html#print_with_newline
+     = note: `-D clippy::print-with-newline` implied by `-D warnings`
+     = help: to override `-D warnings` add `#[allow(clippy::print_with_newline)]`
+help: use `println!` instead
+     |
+1427 ~             Format::Text => println!(
+1428 ~                 "{}Marker created: {}",
+     |
+
+error: could not compile `eplyx-lifecycle-impact` (bin "eplyx-lifecycle") due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `eplyx-lifecycle-impact` (bin "eplyx-lifecycle" test) due to 1 previous error
+make: *** [lint] Error 101

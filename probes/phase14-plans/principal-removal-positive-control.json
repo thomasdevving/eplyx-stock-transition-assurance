@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "id": "principal-removal-positive-control",
+  "version": 1,
+  "label": "Claim only exact local principal removal",
+  "provenance": "DemonstrationNonIssuer",
+  "target_view": {
+    "id": "after_transition",
+    "label": "Transition effective, before deadline",
+    "lifecycle_policy_sha256": "7cceb6802566d8bec105ad5314534f2b322d8690581c69a5eb9f8ca155a31556",
+    "evaluation_time": "2026-09-17T20:00:00Z"
+  },
+  "production_state_digest": "c0cf207b91abd06e70f4a0e8b01a6614e941c4ff6709081e39d6d4880b3ebf78",
+  "assurance_policy": {
+    "artifact": {
+      "file": "../../policies/phase14-principal-removal-only.json",
+      "sha256": "060cabd7cba03c4e26f759717e83be7b3e43ed71f3c5b183d07f2958e52ba855"
+    },
+    "parent_policy_sha256": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d",
+    "derivation": {
+      "kind": "PrincipalRemovalOnly",
+      "requirement_id": "lp-principal-unwind"
+    },
+    "rationale": "Separate entity/action policy requires only independently measured principal-removal proof; it does not weaken or replace population rollout assurance."
+  },
+  "requested_actions": [
+    {
+      "id": "principal-removal",
+      "path_type": "Withdrawal",
+      "scope": {
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+        "state_shape": "ProtocolPosition",
+        "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+        "exact_amount_raw": "21296808",
+        "range": [
+          -102,
+          -53
+        ],
+        "bps_to_remove": 10000,
+        "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "context_id": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+        "captured_slot": 448082469,
+        "clock": {
+          "slot": 448082469,
+          "epoch_start_timestamp": 1789708003,
+          "epoch": 1037,
+          "leader_schedule_epoch": 1038,
+          "unix_timestamp": 1789734213
+        },
+        "capture_context": "CurrentFinalizedProduction",
+        "captured_state_sha256": null,
+        "fixture_sha256": "3d79ad5dcee2a9b7ecc74575fe9af7e025695e229471b7aab5288d69813c844f",
+        "source_before_raw": null,
+        "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+      },
+      "signer": {
+        "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+        "signer_possession_known": false,
+        "signer_assumed_locally": true,
+        "wording": "Encoded position owner is retained; local message signing privilege is assumed only for a DirectSigner. Private-key possession and real authorization are not proved."
+      },
+      "runtime_assumption": "CapturedDeployedProgramsInLocalLiteSvm"
+    }
+  ],
+  "assertions": [
+    {
+      "id": "principal-operation",
+      "action_id": "principal-removal",
+      "claim": {
+        "kind": "ExactPathSucceeded"
+      },
+      "evidence_ids": [
+        "position-resolution"
+      ],
+      "statement": "The exact principal-removal operation succeeded locally under the recorded owner-signing and runtime assumptions."
+    },
+    {
+      "id": "principal-token-deltas",
+      "action_id": "principal-removal",
+      "claim": {
+        "kind": "ExactPrincipalTokenDeltas",
+        "expected": {
+          "principal_removed_raw": {
+            "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "8132564",
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "21296808"
+          },
+          "owner_received_raw": {
+            "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "8132564",
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "21190323"
+          },
+          "destination_withheld_raw": {
+            "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "0",
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "106485"
+          }
+        }
+      },
+      "evidence_ids": [
+        "position-resolution"
+      ],
+      "statement": "The exact locally measured principal debits, owner credits and destination withheld transfer fees match the submitted ledgers."
+    },
+    {
+      "id": "zero-liquidity-shares",
+      "action_id": "principal-removal",
+      "claim": {
+        "kind": "ZeroRemainingLiquidityShares"
+      },
+      "evidence_ids": [
+        "position-resolution"
+      ],
+      "statement": "All liquidity shares became zero in this exact local full-range removal."
+    }
+  ],
+  "referenced_evidence": [
+    {
+      "id": "position-resolution",
+      "artifact": {
+        "file": "../reports/spacex-dlmm-withdrawal.json",
+        "sha256": "5f74a2b70946efbc937fba9e9bcd028ce6b6586184104424c8f28e7ba39ddff5"
+      },
+      "description": "Pinned existing frozen artifact; references are relative to the readiness evidence manifest."
+    }
+  ],
+  "required_assurance_conditions": [
+    "lp-principal-unwind"
+  ]
+}
