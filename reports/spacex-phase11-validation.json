@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "phase": 11,
+  "branch": "main",
+  "readiness_status": "Incomplete",
+  "gate_exit_code": 4,
+  "tests_passed": 290,
+  "tests_failed": 0,
+  "tests_ignored": 0,
+  "new_unit_tests": 20,
+  "new_integration_tests": 3,
+  "mutations_injected": 10,
+  "mutations_caught_by_named_assertions": 10,
+  "mutations_source_restored": true,
+  "cli_exit_codes": {
+    "Ready": 0,
+    "Blocked": 3,
+    "Incomplete": 4,
+    "InvalidInputOrProtectedOutput": 2
+  },
+  "commands": [
+    {
+      "command": "make test",
+      "actual_exit_code": 0,
+      "passed": true,
+      "log_file": "phase11-validation/01-make-test.txt",
+      "log_sha256": "39854c6c987b0474759da1c8d34a37eb9f3c2c2ef38e37ea0d160bf057f6f06d"
+    },
+    {
+      "command": "make fmt-check",
+      "actual_exit_code": 0,
+      "passed": true,
+      "log_file": "phase11-validation/02-fmt-check.txt",
+      "log_sha256": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239"
+    },
+    {
+      "command": "make lint",
+      "actual_exit_code": 0,
+      "passed": true,
+      "log_file": "phase11-validation/03-lint.txt",
+      "log_sha256": "fe02a60497b64995a5795f0e1f691d1f52c28ddc0239586d6c72fc6f6447297b"
+    },
+    {
+      "command": "git diff --check",
+      "actual_exit_code": 0,
+      "passed": true,
+      "log_file": "phase11-validation/04-diff-check.txt",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": "offline readiness canonical replay",
+      "actual_exit_code": 4,
+      "passed": true,
+      "log_file": "phase11-validation/05-readiness-replay.txt",
+      "log_sha256": "6b1c5d723202debc77987742af5a136d90900e44353608625ce0500916298ced"
+    },
+    {
+      "command": "historical manifests/checksums",
+      "actual_exit_code": 0,
+      "passed": true,
+      "log_file": "phase11-validation/06-historical-preservation.txt",
+      "log_sha256": "4e3186e32e6e384938ca284caa6588c997366e3a96c50de9ffb98222adbfb2f6"
+    }
+  ],
+  "artifact_sha256": {
+    "policies/stocklana-spacex-preflight-v1.json": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d",
+    "probes/spacex-readiness-evidence.json": "9154dda0427f70478a16dd144d37987d8f5c94bb2083778353bb8fa2ad3cc892",
+    "reports/spacex-lifecycle-readiness.json": "fb2b093170d5b4c85461c2d83b4d99569b2d80d9f6b62c3783bbfd2a843a4953",
+    "reports/spacex-lifecycle-readiness.txt": "a4c47168ab01ea7ef32b3fd26441036c2595e6fb97e7c727101e3408d7f8f47e",
+    "reports/spacex-phase11-mutation-results-verified.json": "0891c5a382d9083996bf3bfc79c755ca44cbca79b5f299cacb342deb5f993727",
+    "engine/src/readiness/mod.rs": "14a1616ecba973e3dcddc0a4f0a9ce3bccbc8eec29124eb7db5db12722012ffe",
+    "engine/src/readiness/evidence.rs": "bcbbc19b1ae15c798a830f6ec0830d08f5488379da953bdfdeced45e506a71fd",
+    "engine/src/readiness/tests.rs": "28b3883212257360c4d13de132096821e39aa48e3111785dfeb6fe4187efe7c1",
+    "engine/tests/lifecycle_readiness.rs": "371a3b133a1ae997f9381f75121281e78981180406160a88f59ea08993863761",
+    "engine/src/main.rs": "46d51788695e712e6b96c886cd595e66a49cf6c18c2eaacac3d65d5f9eb94a3d",
+    "engine/src/lib.rs": "42b81fe312a2a0a9718f9f54088e6d2b7a5bbde2a83bd1a902cc1a8f7196c946"
+  },
+  "historical_preservation": {
+    "phase7_unchanged": 79,
+    "phase8_unchanged": 40,
+    "phase9_unchanged": 45,
+    "phase10_unchanged": 35,
+    "original_checksum_files_verified": 43,
+    "unchanged_digest_entries": 238,
+    "allowed_additive_shared_files": [
+      "AGENTS.md",
+      "README.md",
+      "engine/src/lib.rs",
+      "engine/src/main.rs"
+    ]
+  },
+  "new_capture": false,
+  "new_execution": false,
+  "mainnet_transaction_submitted": false,
+  "readiness_gate_performs_execution": false,
+  "prior_phase_execution_tests_ran": true
+}

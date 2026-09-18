@@ -1,0 +1,32 @@
+LIFECYCLE PRE-FLIGHT
+Asset: PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh
+Policy: stocklana-spacex-preflight-v1 (DemoAssurancePolicy; not issuer policy)
+Evaluated scope: PopulationRolloutReadiness
+Overall readiness: Incomplete
+
+Satisfied: Exact full-balance direct holder mobility [direct-mobility]
+  SecondaryMarketExit: Proven; requested raw Some("17621"); exact scope true; bank Some(448018537).
+  Transfer: Proven; requested raw Some("17621"); exact scope true; bank Some(448018365).
+IncompleteEvidence: Official transition for selected direct holder [direct-official-transition]
+  OfficialTransition: NotTested; requested raw Some("17621"); exact scope false; bank None.
+  No independently verifiable official transition mechanism was established within the bounded investigation.
+Satisfied: No hidden path/entity/venue/principal claim escalation [evidence-isolation]
+  Evidence identity/scope isolation verified: true.
+IncompleteEvidence: Complete position exit including retained fees and closure [lp-complete-exit]
+  Principal unwind Proven; fee collection NotTested; position closure NotTested; residual fee ledger {"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "113735", "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "126543"}.
+IncompleteEvidence: Official transition for selected protocol position [lp-official-transition]
+  OfficialTransition: NotTested; requested raw Some("21296808"); exact scope false; bank None.
+  No official conversion execution for this position; withdrawal does not establish lifecycle completion.
+Satisfied: Exact native full-range liquidity principal unwind [lp-principal-unwind]
+  Withdrawal: Proven; requested raw Some("21296808"); exact scope true; bank Some(448082469).
+Informational: Previously measured large-holder route failure [optional-failed-route]
+  SecondaryMarketExit: Failed; requested raw Some("14577177576"); exact scope true; bank Some(448018480).
+  InstructionError(1, Custom(6036)) Program log: AnchorError occurred. Error Code: BitmapExtensionAccountIsNotProvided. Error Number: 6036. Error Message: Bitmap extension account is not provided.
+IncompleteEvidence: Every positive observed account has its own full-amount path evidence [population-actionability]
+  4 of 10155 positive token-account entities have full represented-amount evidence on the requested paths; 17957 total observed accounts.
+
+Population: 17957 accounts; 10155 positive; 4 entities with measured amount.
+Principal removed by mint (raw): {"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "8132564", "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "21296808"}; public owner credit: {"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "8132564", "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "21190323"}; destination withheld: {"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "0", "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "106485"}.
+Position solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN: principal Proven; fees NotTested; closure NotTested; remaining {"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": "113735", "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": "126543"}.
+
+No real incident/loss is claimed. No mainnet action or new execution occurs.

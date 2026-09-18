@@ -1,0 +1,6 @@
+Command: env -u SOLANA_RPC_URL target/debug/eplyx-lifecycle readiness --snapshot snapshots/spacex-exposure.json --scenario scenarios/spacex-transition.json --policy policies/stocklana-spacex-preflight-v1.json --direct-resolution reports/spacex-lifecycle-path-resolution-phase9.json --position-resolution reports/spacex-dlmm-withdrawal.json --coverage reports/spacex-lifecycle-coverage-phase7.json --format json --out /private/tmp/phase11-frozen-replay.json
+Actual process exit: 4 (Incomplete decision)
+Published report, fresh saved JSON and JSON stdout: byte-identical
+Report bytes: 161334
+SHA-256: fb2b093170d5b4c85461c2d83b4d99569b2d80d9f6b62c3783bbfd2a843a4953
+All final mutation logs, named assertion failures and restored source digest: verified

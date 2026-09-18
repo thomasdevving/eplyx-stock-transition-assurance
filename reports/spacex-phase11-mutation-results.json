@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "injected": 10,
+  "caught": 10,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/readiness/mod.rs": "9c7a6612ddc749f823aeed819a8398b403e9cae4a18a4c549f87a6c141f726e7"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Treat NotTested as Proven",
+      "test": "readiness::tests::not_tested_never_becomes_proven_or_failed",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/01.txt",
+      "log_sha256": "d505d70e90393dbb37e8abe0d3e5cbba8134c2d326e5853d038a329d3e1782b4"
+    },
+    {
+      "mutation": 2,
+      "fault": "Transfer substitutes for OfficialTransition",
+      "test": "readiness::tests::transfer_never_satisfies_official_transition",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/02.txt",
+      "log_sha256": "73ee90b998d4c91523a941751619bb8a41359dd92a809e40dc6b88105ea7022d"
+    },
+    {
+      "mutation": 3,
+      "fault": "Withdrawal substitutes for OfficialTransition",
+      "test": "readiness::tests::withdrawal_never_satisfies_official_transition",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/03.txt",
+      "log_sha256": "7f0f4688e20aebffe261222ed669e90ce119d54ef4f4adeca23ddd01ca024077"
+    },
+    {
+      "mutation": 4,
+      "fault": "Principal unwind substitutes for complete position exit",
+      "test": "readiness::tests::principal_is_not_complete_position_exit",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/04.txt",
+      "log_sha256": "c3174eaa3b2aa7e477f85cc5ed88b9d67ddbde2cfbc27395d0bfae2d6c2d7b9d"
+    },
+    {
+      "mutation": 5,
+      "fault": "Inherit one sampled holder to population",
+      "test": "readiness::tests::sampled_entity_never_proves_population",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/05.txt",
+      "log_sha256": "ebc0cf0a7b79cc7415cf18b53a3ea0075c2e6d69b179e7dfc692ac3ddf0528b0"
+    },
+    {
+      "mutation": 6,
+      "fault": "Ignore evidence entity mismatch",
+      "test": "readiness::tests::evidence_cannot_inherit_between_entities",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/06.txt",
+      "log_sha256": "63af5e013422aeb7d49934cb962dff9cd3498533418a15105477fb151f398d56"
+    },
+    {
+      "mutation": 7,
+      "fault": "Ignore venue/context/bank mismatch",
+      "test": "readiness::tests::venue_context_bank_and_fixture_are_exact",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/07.txt",
+      "log_sha256": "62b6e5789f43e501cfcf4425bea472bd202a48db9fa1437bd22a6ebd0b1291ce"
+    },
+    {
+      "mutation": 8,
+      "fault": "Missing evidence becomes Ready",
+      "test": "readiness::tests::missing_evidence_is_incomplete_not_ready",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/08.txt",
+      "log_sha256": "3218894ded13a3281f816741bcf02a51b4c3b93cc75ecfaefd49cd18aa670fb3"
+    },
+    {
+      "mutation": 9,
+      "fault": "Incomplete becomes Blocked without policy justification",
+      "test": "readiness::tests::not_tested_never_becomes_proven_or_failed",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/09.txt",
+      "log_sha256": "7f5fd1cd0b78a48e0e84feb928138e66a4690ab75c5d78f8bf14d1afd34ce97c"
+    },
+    {
+      "mutation": 10,
+      "fault": "Unrelated success erases a required failure",
+      "test": "readiness::tests::unrelated_success_cannot_erase_required_failure",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations/10.txt",
+      "log_sha256": "ef8ca07a699ace33376a600940e664770cd842780b75f85fdbb150c473d9442d"
+    }
+  ]
+}

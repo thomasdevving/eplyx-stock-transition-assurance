@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "id": "stocklana-spacex-preflight-v1",
+  "policy_type": "DemoAssurancePolicy",
+  "not_issuer_policy": true,
+  "description": "Stocklana demonstration assurance requirements; not PreStocks internal policy or an asset safety judgment.",
+  "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea",
+  "evaluated_scope": "PopulationRolloutReadiness",
+  "evidence_manifest": {
+    "file": "../probes/spacex-readiness-evidence.json",
+    "sha256": "9154dda0427f70478a16dd144d37987d8f5c94bb2083778353bb8fa2ad3cc892"
+  },
+  "requirements": [
+    {
+      "id": "direct-official-transition",
+      "label": "Official transition for selected direct holder",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs"
+      },
+      "required": true,
+      "condition": {
+        "kind": "Path",
+        "any_of": [
+          {
+            "path_type": "OfficialTransition",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "state_shape": "DirectTokenAccount",
+              "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+              "exact_amount_raw": "17621",
+              "range": null,
+              "bps_to_remove": null,
+              "venue": null,
+              "context_id": null,
+              "captured_slot": null,
+              "clock": null,
+              "capture_context": null,
+              "captured_state_sha256": null,
+              "fixture_sha256": null,
+              "source_before_raw": null,
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          }
+        ]
+      },
+      "rollout_assumption": "The selected holder can complete the official successor transition.",
+      "remediation_requirement": "Establish and independently prove an issuer-bound official mechanism for this exact holder/amount/context."
+    },
+    {
+      "id": "direct-mobility",
+      "label": "Exact full-balance direct holder mobility",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs"
+      },
+      "required": true,
+      "condition": {
+        "kind": "Path",
+        "any_of": [
+          {
+            "path_type": "SecondaryMarketExit",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "state_shape": "DirectTokenAccount",
+              "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+              "exact_amount_raw": "17621",
+              "range": null,
+              "bps_to_remove": null,
+              "venue": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "captured_slot": 448018537,
+              "clock": {
+                "slot": 448018537,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717192
+              },
+              "capture_context": "CurrentFinalizedProduction",
+              "captured_state_sha256": "94c5753df57d37ab8fff1556c21a3a34201cacbee908d3302581ce76bf81f045",
+              "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+              "source_before_raw": "17621",
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          },
+          {
+            "path_type": "Transfer",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "state_shape": "DirectTokenAccount",
+              "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+              "exact_amount_raw": "17621",
+              "range": null,
+              "bps_to_remove": null,
+              "venue": null,
+              "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+              "captured_slot": 448018365,
+              "clock": {
+                "slot": 448018365,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717146
+              },
+              "capture_context": "CurrentFinalizedProduction",
+              "captured_state_sha256": "23de19a55ece6855245b7a86cc570629a4d1fbe64bf04d4c0d5ba8a92474a1a7",
+              "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+              "source_before_raw": "17621",
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          }
+        ]
+      },
+      "rollout_assumption": "The selected direct holder has a measured non-official mobility path.",
+      "remediation_requirement": "Supply scoped successful movement or sale evidence; never substitute it for official conversion."
+    },
+    {
+      "id": "lp-official-transition",
+      "label": "Official transition for selected protocol position",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN"
+      },
+      "required": true,
+      "condition": {
+        "kind": "Path",
+        "any_of": [
+          {
+            "path_type": "OfficialTransition",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+              "state_shape": "ProtocolPosition",
+              "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+              "exact_amount_raw": "21296808",
+              "range": null,
+              "bps_to_remove": null,
+              "venue": null,
+              "context_id": null,
+              "captured_slot": null,
+              "clock": null,
+              "capture_context": null,
+              "captured_state_sha256": null,
+              "fixture_sha256": null,
+              "source_before_raw": null,
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          }
+        ]
+      },
+      "rollout_assumption": "Principal unwind establishes official successor conversion.",
+      "remediation_requirement": "Prove the distinct issuer-bound conversion action; native removal is not conversion."
+    },
+    {
+      "id": "lp-principal-unwind",
+      "label": "Exact native full-range liquidity principal unwind",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN"
+      },
+      "required": true,
+      "condition": {
+        "kind": "Path",
+        "any_of": [
+          {
+            "path_type": "Withdrawal",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+              "state_shape": "ProtocolPosition",
+              "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+              "exact_amount_raw": "21296808",
+              "range": [
+                -102,
+                -53
+              ],
+              "bps_to_remove": 10000,
+              "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+              "context_id": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+              "captured_slot": 448082469,
+              "clock": {
+                "slot": 448082469,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789734213
+              },
+              "capture_context": "CurrentFinalizedProduction",
+              "captured_state_sha256": null,
+              "fixture_sha256": "3d79ad5dcee2a9b7ecc74575fe9af7e025695e229471b7aab5288d69813c844f",
+              "source_before_raw": null,
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          }
+        ]
+      },
+      "rollout_assumption": "The selected LP principal can be removed through its native owner-authorized path.",
+      "remediation_requirement": "Supply exact position/range/fraction/bank withdrawal evidence with reconciliation."
+    },
+    {
+      "id": "lp-complete-exit",
+      "label": "Complete position exit including retained fees and closure",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN"
+      },
+      "required": true,
+      "condition": {
+        "kind": "CompletePositionExit",
+        "scope": {
+          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          "entity_id": "solana-program-position:BpTBNQ7vNaBujkwhgyBoiYyvEc6KrUUNTGiQDsrwTNxN",
+          "state_shape": "ProtocolPosition",
+          "authority": "55uxDcXEaUjwit2Mv3EoNrtaGqTTUaUCvXpABpkoUUoE",
+          "exact_amount_raw": "21296808",
+          "range": [
+            -102,
+            -53
+          ],
+          "bps_to_remove": 10000,
+          "venue": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+          "context_id": "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc",
+          "captured_slot": 448082469,
+          "clock": {
+            "slot": 448082469,
+            "epoch_start_timestamp": 1789708003,
+            "epoch": 1037,
+            "leader_schedule_epoch": 1038,
+            "unix_timestamp": 1789734213
+          },
+          "capture_context": "CurrentFinalizedProduction",
+          "captured_state_sha256": null,
+          "fixture_sha256": "3d79ad5dcee2a9b7ecc74575fe9af7e025695e229471b7aab5288d69813c844f",
+          "source_before_raw": null,
+          "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+        },
+        "forbid_remaining_fees": false
+      },
+      "rollout_assumption": "Removing all principal shares completely removes protocol-embedded exposure.",
+      "remediation_requirement": "Independently prove fee handling and position closure; account for the residual SPACEX and USDC fee ledger."
+    },
+    {
+      "id": "population-actionability",
+      "label": "Every positive observed account has its own full-amount path evidence",
+      "target": {
+        "kind": "Rollout"
+      },
+      "required": true,
+      "condition": {
+        "kind": "PopulationCoverage",
+        "any_of_paths": [
+          "Transfer",
+          "SecondaryMarketExit",
+          "OfficialTransition"
+        ]
+      },
+      "rollout_assumption": "A bounded successful sample establishes population-wide lifecycle actionability.",
+      "remediation_requirement": "Supply entity-specific full represented-amount evidence for the declared population; unresolved authority classes remain explicit."
+    },
+    {
+      "id": "evidence-isolation",
+      "label": "No hidden path/entity/venue/principal claim escalation",
+      "target": {
+        "kind": "Rollout"
+      },
+      "required": true,
+      "condition": {
+        "kind": "EvidenceIsolation"
+      },
+      "rollout_assumption": "Evidence cannot inherit across paths, holders, venues or fee/closure actions.",
+      "remediation_requirement": "Retain exact artifact digests, measurement scope and independent action identities."
+    },
+    {
+      "id": "optional-failed-route",
+      "label": "Previously measured large-holder route failure",
+      "target": {
+        "kind": "Entity",
+        "entity_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV"
+      },
+      "required": false,
+      "condition": {
+        "kind": "Path",
+        "any_of": [
+          {
+            "path_type": "SecondaryMarketExit",
+            "scope": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "entity_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+              "state_shape": "DirectTokenAccount",
+              "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+              "exact_amount_raw": "14577177576",
+              "range": null,
+              "bps_to_remove": null,
+              "venue": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "context_id": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+              "captured_slot": 448018480,
+              "clock": {
+                "slot": 448018480,
+                "epoch_start_timestamp": 1789708003,
+                "epoch": 1037,
+                "leader_schedule_epoch": 1038,
+                "unix_timestamp": 1789717176
+              },
+              "capture_context": "CurrentFinalizedProduction",
+              "captured_state_sha256": "19c4a4ab11d3f3eee6aad52d176b85ae157234737a39f1449c34de437d0ba04e",
+              "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+              "source_before_raw": "1457717757690",
+              "scenario_sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+            },
+            "accepted_statuses": [
+              "Proven"
+            ],
+            "blocking_statuses": [
+              "Failed",
+              "Unsupported"
+            ],
+            "allow_local_signer_assumption": true
+          }
+        ]
+      },
+      "rollout_assumption": "This exact selected large-holder DLMM sale route can execute its requested input.",
+      "remediation_requirement": "Resolve and separately prove this exact route/context before relying on it; failure does not condemn other paths or the asset."
+    }
+  ]
+}

@@ -1,0 +1,450 @@
+./scripts/test-programs.sh
+==> testing fixture-lending [v1]
+   Compiling fixture-lending v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/programs/fixture-lending)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.16s
+     Running unittests src/lib.rs (programs/fixture-lending/target/debug/deps/fixture_lending-83c823db8ecd5db2)
+
+running 7 tests
+test math::tests::v1::agrees_with_the_reference_implementation ... ok
+test math::tests::v1::fractional_collateral_keeps_its_value ... ok
+test math::tests::v1::the_flagship_position_is_healthy ... ok
+test math::tests::zero_debt_is_infinitely_healthy ... ok
+test math::tests::whole_sol_collateral_is_valued_identically_by_both_builds ... ok
+test test_id ... ok
+test math::tests::widening_removes_the_overflow_surface_for_u64_inputs ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests fixture_lending
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+==> testing fixture-lending [v2]
+   Compiling fixture-lending v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/programs/fixture-lending)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.25s
+     Running unittests src/lib.rs (programs/fixture-lending/target/debug/deps/fixture_lending-5ae35b44163a0064)
+
+running 7 tests
+test math::tests::v2::sub_one_sol_collateral_is_valued_at_zero ... ok
+test math::tests::v2::the_flagship_position_is_liquidatable ... ok
+test math::tests::zero_debt_is_infinitely_healthy ... ok
+test test_id ... ok
+test math::tests::whole_sol_collateral_is_valued_identically_by_both_builds ... ok
+test math::tests::v2::fractional_collateral_is_silently_truncated ... ok
+test math::tests::widening_removes_the_overflow_surface_for_u64_inputs ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests fixture_lending
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+./scripts/build-programs.sh
+==> building fixture-lending [v1]
+[2026-09-18T14:40:05.746723000Z WARN  cargo_build_sbf] Package 'fixture-lending' has two crate types defined: cdylib and lib. This setting precludes link-time optimizations (LTO). Use cdylib for programs to be deployed and rlib for packages to be imported by other programs as libraries.
+   Compiling fixture-lending v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/programs/fixture-lending)
+    Finished `release` profile [optimized] target(s) in 1.13s
+==> building fixture-lending [v2]
+[2026-09-18T14:40:07.073749000Z WARN  cargo_build_sbf] Package 'fixture-lending' has two crate types defined: cdylib and lib. This setting precludes link-time optimizations (LTO). Use cdylib for programs to be deployed and rlib for packages to be imported by other programs as libraries.
+   Compiling fixture-lending v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/programs/fixture-lending)
+    Finished `release` profile [optimized] target(s) in 0.68s
+
+==> artifacts
+-rwxr-xr-x@ 1 thomas  staff  103104 Sep 18 16:40 /Users/thomas/Downloads/eplyx-stock-transition/artifacts/fixture_lending_v1.so
+-rwxr-xr-x@ 1 thomas  staff  103008 Sep 18 16:40 /Users/thomas/Downloads/eplyx-stock-transition/artifacts/fixture_lending_v2.so
+
+==> sha256 (V1 and V2 must differ)
+b307faa27e09fc74fee9e8087263f249bef565a6998f49fd5e562d2932bf1641  /Users/thomas/Downloads/eplyx-stock-transition/artifacts/fixture_lending_v1.so
+fa19e0129dc3d6d7236eda1140e7c211d0ac4418604bcd00a4d0140c1218251b  /Users/thomas/Downloads/eplyx-stock-transition/artifacts/fixture_lending_v2.so
+cargo run --locked -q -p eplyx-lifecycle-impact -- generate
+wrote 141 fixtures to /Users/thomas/Downloads/eplyx-stock-transition/fixtures/states
+cargo test --locked --workspace
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.76s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 135 tests
+test cluster::tests::identical_values_are_always_informative ... ok
+test cluster::tests::tight_ranges_are_informative_and_wide_ones_are_not ... ok
+test corpus::tests::boundary_window_is_where_we_think_it_is ... ok
+test diff::invocation_shape::a_changed_discriminant_is_a_changed_invocation ... ok
+test diff::invocation_shape::the_owning_instruction_is_part_of_the_shape ... ok
+test cluster::tests::ranges_capture_min_and_max ... ok
+test diff::invocation_shape::an_identical_call_compares_equal ... ok
+test diff::invocation_shape::account_count_and_data_length_are_part_of_the_shape ... ok
+test cluster::tests::metrics_render_in_their_own_units ... ok
+test diff::tests::large_compute_drift_escalates ... ok
+test diff::tests::severity_ordering_is_meaningful ... ok
+test diff::tests::small_compute_drift_is_noise ... ok
+test diff::tests::compute_only_diffs_are_not_behavioural_changes ... ok
+test diff::large_value_serialization::a_numeric_balance_is_still_read ... ok
+test diff::large_value_serialization::a_balance_past_two_to_the_fifty_third_round_trips ... ok
+test diff::tests::changes_past_a_decoded_prefix_are_still_reported ... ok
+test diff::tests::a_foreign_account_is_not_decoded_as_a_lending_layout ... ok
+test corpus::tests::corpus_is_large_enough_and_ids_are_unique ... ok
+test corpus::tests::generation_is_deterministic ... ok
+test expansion::pipeline::tests::current_capture_cannot_be_labeled_a_historical_bank ... ok
+test expansion::pipeline::tests::distinct_accounts_with_one_authority_stay_distinct ... ok
+test expansion::selector::tests::amount_score_is_bounded_and_config_is_versioned ... ok
+test expansion::selector::tests::new_class_and_state_shape_have_declared_separate_scores ... ok
+test expansion::selector::tests::new_venue_adds_context_not_a_second_entity_amount ... ok
+test expansion::selector::tests::unsupported_and_invalid_cannot_be_scored ... ok
+test expansion::selector::tests::predicted_independent_contexts_use_maxima ... ok
+test expansion::tests::full_and_partial_never_follow_selection_or_zero_balance ... ok
+test expansion::tests::integer_amount_matrix_boundaries_and_controls ... ok
+test hexfmt::tests::rejects_malformed ... ok
+test hexfmt::tests::round_trips ... ok
+test impact::tests::a_balance_change_alone_is_a_value_change ... ok
+test impact::tests::a_reverting_transaction_is_affected_but_not_newly_liquidatable ... ok
+test impact::tests::a_threshold_crossing_contributes_and_is_counted_as_newly_liquidatable ... ok
+test impact::tests::aggregate_equals_the_sum_of_included_positions ... ok
+test impact::tests::compute_only_differences_do_not_affect_capital ... ok
+test impact::tests::consequence_keys_are_always_present ... ok
+test impact::tests::unchanged_fixtures_do_not_affect_capital ... ok
+test interpret::tests::an_underwater_position_has_negative_net_value ... ok
+test interpret::tests::health_formats_as_decimal ... ok
+test interpret::tests::instruction_names_match_the_wire_encoding ... ok
+test interpret::tests::liquidation_threshold_is_exactly_one ... ok
+test interpret::tests::opaque_data_decodes_to_opaque ... ok
+test interpret::tests::valuation_uses_account_state_and_protocol_constants ... ok
+test money::tests::exact_at_magnitudes_where_f64_would_lose_precision ... ok
+test money::tests::integer_boundaries_and_malformed_decimals ... ok
+test money::tests::rejects_malformed_and_over_precise_input ... ok
+test money::tests::renders_full_precision_for_json ... ok
+test money::tests::renders_grouped_dollars_for_terminals ... ok
+test money::tests::round_trips_through_json ... ok
+test money::tests::signed_values_round_trip_and_render ... ok
+test numfmt::tests::a_number_is_still_accepted_on_the_way_in ... ok
+test money::tests::summation_is_exact_and_order_independent ... ok
+test numfmt::tests::large_values_round_trip_without_loss ... ok
+test numfmt::tests::nonsense_is_rejected_rather_than_defaulted ... ok
+test position::meteora_dlmm::tests::failed_withdrawal_never_becomes_proven ... ok
+test position::meteora_dlmm::tests::pool_vault_authority_cannot_grant_lp_ownership ... ok
+test position::meteora_dlmm::tests::position_is_bound_to_exact_pool ... ok
+test position::meteora_dlmm::tests::position_shares_and_bin_supply_reconcile_exactly ... ok
+test position::meteora_dlmm::tests::proportional_rounding_and_overflow_are_explicit ... ok
+test position::meteora_dlmm::tests::successful_token_deltas_require_exact_conservation ... ok
+test position::meteora_dlmm::tests::wrong_position_authority_is_rejected ... ok
+test position::tests::direct_holder_evidence_cannot_prove_withdrawal ... ok
+test position::tests::pool_authority_bank_range_and_fraction_are_independent_scopes ... ok
+test position::tests::vault_presence_and_discovery_without_execution_remain_not_tested ... ok
+test position::tests::generic_position_model_contains_no_asset_or_issuer_literals ... ok
+test position::tests::withdrawal_evidence_cannot_inherit_to_another_position ... ok
+test position::tests::withdrawal_never_proves_official_transition_or_redemption ... ok
+test expansion::pipeline::tests::a_class_sample_never_proves_its_peers ... ok
+test expansion::pipeline::tests::independent_swaps_are_maxima_never_summed_capacity ... ok
+test expansion::pipeline::tests::second_venue_has_no_brand_or_first_venue_inheritance ... ok
+test expansion::pipeline::tests::official_transition_and_redemption_cannot_inherit_swap_or_transfer ... ok
+test expansion::pipeline::tests::execution_never_rewrites_expected_selection_gains ... ok
+test expansion::pipeline::tests::smaller_repeated_points_and_larger_points_add_only_difference ... ok
+test readiness::tests::evidence_cannot_inherit_between_entities ... ok
+test readiness::tests::failed_claim_without_actual_rollback_is_not_blocker ... ok
+test readiness::tests::failed_required_path_blocks_only_when_explicit ... ok
+test readiness::tests::generic_asset_and_economic_policy_remain_separate ... ok
+test readiness::tests::invalid_policy_cannot_contradict_accepted_proof ... ok
+test readiness::tests::market_exit_never_satisfies_official_transition ... ok
+test readiness::tests::missing_evidence_is_incomplete_not_ready ... ok
+test readiness::tests::missing_vm_or_reconciliation_never_grants_ready ... ok
+test readiness::tests::not_tested_never_becomes_proven_or_failed ... ok
+test readiness::tests::optional_failed_route_is_informational ... ok
+test readiness::tests::policy_ordering_and_json_roundtrip_are_canonical ... ok
+test readiness::tests::principal_is_not_complete_position_exit ... ok
+test readiness::tests::sampled_entity_never_proves_population ... ok
+test readiness::tests::signer_assumption_is_explicit_not_key_possession ... ok
+test readiness::tests::status_exit_codes_are_stable ... ok
+test readiness::tests::transfer_never_satisfies_official_transition ... ok
+test readiness::tests::unrelated_success_cannot_erase_required_failure ... ok
+test readiness::tests::unsupported_is_a_boundary_until_policy_blocks ... ok
+test readiness::tests::venue_context_bank_and_fixture_are_exact ... ok
+test readiness::tests::withdrawal_never_satisfies_official_transition ... ok
+test expansion::pipeline::tests::failed_indeterminate_unsupported_and_controls_gain_nothing ... ok
+test resolution::tests::entity_proof_does_not_inherit ... ok
+test resolution::tests::direct_holder_withdrawal_is_not_applicable ... ok
+test resolution::tests::exact_scope_fees_banks_and_control_points_are_preserved ... ok
+test resolution::tests::failed_evidence_never_becomes_proven ... ok
+test resolution::tests::generic_logic_has_no_asset_issuer_or_target_literals ... ok
+test resolution::tests::indeterminate_evidence_never_becomes_proven ... ok
+test resolution::tests::local_assumed_signer_never_becomes_possession ... ok
+test resolution::tests::malformed_discovery_and_unbound_claims_fail_closed ... ok
+test resolution::tests::market_exit_cannot_prove_redemption ... ok
+test resolution::tests::evidence_and_discovery_input_order_do_not_change_resolution ... ok
+test resolution::tests::not_tested_never_becomes_proven ... ok
+test resolution::tests::projection_rejects_claimed_success_without_vm_or_reconciliation ... ok
+test resolution::tests::transfer_cannot_prove_official_transition ... ok
+test resolution::tests::unsupported_is_not_failed_or_nonexistent ... ok
+test resolution::tests::venue_proof_does_not_inherit ... ok
+test resolution::tests::matrix_rows_roundtrip_with_strict_status_parsing ... ok
+test shrink::tests::quantization_rounds_down_to_readable_steps ... ok
+test transition::tests::arbitrary_source_successor_pair_is_not_official_identity ... ok
+test transition::tests::dex_execution_cannot_be_relabelled_official ... ok
+test transition::tests::exact_mechanism_amount_assets_and_bank_are_isolated ... ok
+test transition::tests::failed_transition_execution_never_becomes_proven ... ok
+test transition::tests::generic_burn_mint_pattern_needs_official_binding ... ok
+test transition::tests::generic_transition_code_has_no_asset_issuer_literals ... ok
+test transition::tests::holder_assumption_does_not_grant_issuer_authorization ... ok
+test transition::tests::issuer_assumed_private_signing_is_unsupported ... ok
+test transition::tests::kyc_backend_dependency_is_unsupported ... ok
+test transition::tests::no_mechanism_is_not_nonexistence ... ok
+test transition::tests::public_state_and_unknown_eligibility_are_distinct ... ok
+test transition::tests::successful_receipt_requires_exact_source_successor_and_fee_reconciliation ... ok
+test transition::tests::successor_mint_reference_alone_cannot_prove_transition ... ok
+test transition::tests::successor_only_transfer_cannot_prove_source_exchange ... ok
+test transition::tests::transition_proof_does_not_inherit_to_another_holder ... ok
+test shrink::tests::a_variant_stays_self_consistent ... ok
+test expansion::pipeline::tests::result_bindings_preserve_immutable_preexecution_plan ... ok
+test probe::token_transfer::tests::insufficient_input_is_a_precondition_rejection ... ok
+test probe::token_transfer::tests::paused_mint_and_active_hook_without_extra_accounts_are_rejected ... ok
+test probe::token_transfer::tests::destination_must_be_real_distinct_and_same_mint ... ok
+test probe::token_transfer::tests::wrong_mint_authority_and_frozen_source_are_rejected ... ok
+test probe::token_transfer::tests::real_program_failure_rolls_back_watched_tokens_and_mint ... ok
+test probe::token_transfer::tests::deployed_token_2022_transfer_executes_and_fees_reconcile ... ok
+test probe::token_transfer::tests::token_transfer_replay_is_identical ... ok
+
+test result: ok. 135 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 7.56s
+
+     Running unittests src/main.rs (target/debug/deps/eplyx_lifecycle-b5d9f7c4cc7febdc)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/coverage_expansion.rs (target/debug/deps/coverage_expansion-3ee4573fb61effb6)
+
+running 6 tests
+test real_multi_entity_transfer_and_second_venue_results_have_exact_content_identities ... ok
+test each_expected_entity_amount_is_counted_once_across_independent_paths ... ok
+test bounded_plan_selects_three_distinct_balance_shapes_and_excludes_unsupported ... ok
+test hashes_and_selected_plan_tampering_fail_closed ... ok
+test production_selector_is_deterministic_under_population_input_reordering ... ok
+test public_update_rejects_changed_fixture_and_rehashed_fabricated_result ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 46.53s
+
+     Running tests/execution_probe.rs (target/debug/deps/execution_probe-a31b4490246e67d2)
+
+running 12 tests
+test insufficient_balance_is_a_clean_precondition_failure_without_execution ... ok
+test lifecycle_assessment_attaches_market_exit_without_claiming_official_transition_or_vault_exit ... ok
+test exact_user_vault_bin_and_fee_deltas_reconcile ... ok
+test controlled_capture_runs_actual_swap2_and_both_deployed_token_programs ... ok
+test token2022_epoch_fee_is_executed_and_matches_vault_withheld_delta ... ok
+test production_probe_and_fixture_load_offline_and_report_outputs_cannot_overwrite ... ok
+test impossible_minimum_output_executes_and_fails_atomically_with_real_error ... ok
+test frozen_hash_bindings_and_capture_contexts_are_enforced ... ok
+test missing_bin_array_or_programdata_is_indeterminate_never_a_quote_fallback ... ok
+test offline_replay_is_identical_including_logs_exact_message_and_post_state ... ok
+test wrong_pool_mint_and_vault_as_source_are_rejected_before_execution ... ok
+test report_roundtrip_and_reexecution_detect_tampered_deltas ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.90s
+
+     Running tests/lifecycle_consequence.rs (target/debug/deps/lifecycle_consequence-4daa07203f96ef79)
+
+running 12 tests
+test local_policy_capture_load_checks_hash_without_network ... ok
+test active_before_effective_time_preserves_meaning ... ok
+test positive_unknown_role_is_transition_required_without_inventing_role ... ok
+test rpc_evidence_and_policy_assumptions_are_distinct_and_resolvable ... ok
+test malformed_provenance_wrong_asset_reversed_times_and_mismatched_change_fail ... ok
+test inclusive_deadline_ends_entitlement_without_claiming_stranding_or_available_conversion ... ok
+test exact_effective_boundary_changes_same_positive_wallet_without_mutating_bytes ... ok
+test unknown_policy_optional_deadline_and_legacy_snapshot_remain_conservative ... ok
+test verified_vault_is_stale_and_old_and_current_amounts_never_merge ... ok
+test zero_public_balance_is_unaffected_but_confidential_zero_is_unresolved ... ok
+test same_frozen_world_produces_reproducible_before_after_diff_offline ... ok
+test deterministic_serialization_roundtrip_and_tamper_detection ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.09s
+
+     Running tests/lifecycle_coverage.rs (target/debug/deps/lifecycle_coverage-14137d859dbb3a92)
+
+running 16 tests
+test empty_matrix_is_untested_and_zero_public_balance_is_never_proven ... ok
+test invalid_amount_matrix_and_seed_fingerprints_fail_before_plan_generation ... ok
+test official_only_request_is_unsupported_capability_with_transition_still_not_tested ... ok
+test plan_json_is_strict_and_deterministic ... ok
+test missing_fixture_and_duplicate_cases_never_silently_skip ... ok
+test case_identity_path_amount_and_population_fingerprints_are_enforced ... ok
+test actual_slippage_failure_retains_atomic_rollback_and_gives_no_amount_coverage ... ok
+test population_before_view_can_differ_without_changing_after_view_or_execution_clock ... ok
+test alternate_venue_is_a_separate_untested_cohort_without_copying_evidence ... ok
+test differing_population_bank_balance_retains_witness_but_covers_no_historical_amount ... ok
+test cli_output_is_canonical_portable_and_protects_existing_inputs ... ok
+test full_amount_is_conditionally_proven_and_insufficient_balance_is_not_execution ... ok
+test prior_phase5_result_requires_matching_fresh_replay_and_tampering_is_rejected ... ok
+test representative_selection_is_stable_and_never_extrapolates_to_peers_or_vaults ... ok
+test real_amount_matrix_uses_maximum_not_sum_and_retains_exact_witnesses ... ok
+test canonical_report_roundtrip_replay_and_tamper_detection ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 16.19s
+
+     Running tests/lifecycle_exposure.rs (target/debug/deps/lifecycle_exposure-3a0fbc7596411470)
+
+running 11 tests
+test candidate_without_target_mint_is_rejected ... ok
+test decoder_offsets_and_discriminator_match_pinned_official_zero_copy_idl ... ok
+test malformed_pool_wrong_owner_discriminator_pda_reserve_or_version_never_classifies ... ok
+test absent_phase2_vault_and_unproven_phase2_pool_role_cannot_be_refined ... ok
+test vault_link_retains_phase2_identity_classification_balance_and_historical_pool_proof ... ok
+test genuine_dlmm_state_normalizes_pool_both_assets_authority_and_balances ... ok
+test offline_replay_rebuilds_the_identical_graph_without_rpc ... ok
+test fake_vault_mint_authority_program_extension_and_missing_accounts_are_rejected ... ok
+test source_uses_only_one_candidate_read_and_one_contextual_six_account_batch ... ok
+test incomplete_cross_chain_old_context_unknown_adapter_and_tampered_proof_fail ... ok
+test schema1_compatibility_and_schema2_serialization_roundtrip_are_deterministic ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+     Running tests/lifecycle_readiness.rs (target/debug/deps/lifecycle_readiness-b31fa492c0a6bc9c)
+
+running 3 tests
+test stale_or_mismatched_policy_scope_is_incomplete_and_signer_is_conditional ... ok
+test offline_existing_evidence_reproduces_published_report_and_boundaries ... ok
+test cli_gate_codes_portability_canonical_output_and_digest_protection has been running for over 60 seconds
+test cli_gate_codes_portability_canonical_output_and_digest_protection ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 67.70s
+
+     Running tests/lifecycle_resolution.rs (target/debug/deps/lifecycle_resolution-2f2a491957ec3336)
+
+running 5 tests
+test discovery_artifact_tampering_and_unknown_boundaries_are_rejected ... ok
+test published_successor_and_bounded_chain_sample_are_real_but_not_transition_proof ... ok
+test cli_is_portable_canonical_offline_and_protects_outputs has been running for over 60 seconds
+test public_offline_replay_reproduces_and_roundtrips_saved_matrix has been running for over 60 seconds
+test replay_rejects_rehashed_fabricated_execution_before_resolution has been running for over 60 seconds
+test replay_rejects_rehashed_fabricated_execution_before_resolution ... ok
+test cli_is_portable_canonical_offline_and_protects_outputs ... ok
+test public_offline_replay_reproduces_and_roundtrips_saved_matrix ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 91.53s
+
+     Running tests/lifecycle_snapshot.rs (target/debug/deps/lifecycle_snapshot-c282e9ee00e2b929)
+
+running 13 tests
+test exact_decimal_amounts_do_not_use_floats_or_overflow ... ok
+test legacy_mint_and_account_decoding ... ok
+test duplicate_extensions_and_invalid_marker_lengths_are_rejected ... ok
+test delegated_frozen_zero_and_account_extensions_survive_normalization ... ok
+test real_spacex_mint_fixture_decodes_all_live_extensions_and_embedded_metadata ... ok
+test token2022_mint_extensions_are_decoded_not_assumed ... ok
+test malformed_unsupported_and_wrong_mint_fail_explicitly ... ok
+test uninitialized_accounts_are_preserved_and_zero_allowance_is_not_active ... ok
+test spl_multisig_authority_preserves_threshold_and_signers ... ok
+test offline_replay_rejects_tampering_incomplete_evidence_and_bad_context ... ok
+test rpc_url_credentials_are_not_retained_in_origin ... ok
+test entity_classification_uses_authority_evidence_and_does_not_guess_pda_programs ... ok
+test snapshot_json_roundtrip_and_offline_evidence_replay_are_deterministic ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/official_transition.rs (target/debug/deps/official_transition-77079e2fd6c538eb)
+
+running 3 tests
+test successor_programs_and_real_samples_do_not_establish_official_conversion ... ok
+test changed_research_artifacts_and_other_entity_are_rejected_before_replay ... ok
+test offline_cli_reproduces_report_and_matrix_with_protected_portable_outputs has been running for over 60 seconds
+test offline_cli_reproduces_report_and_matrix_with_protected_portable_outputs ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 91.34s
+
+     Running tests/protocol_position.rs (target/debug/deps/protocol_position-5f6276af4b4db607)
+
+running 10 tests
+test signer_assumption_never_claims_private_key_possession ... ok
+test wrong_pool_or_position_authority_cannot_execute ... ok
+test vault_accounts_and_changed_position_artifacts_do_not_grant_proof ... ok
+test failed_native_transaction_rolls_back_every_watched_production_account ... ok
+test actual_position_liquidity_is_removed_and_fees_remain_unclaimed ... ok
+test native_withdrawal_executes_real_deployed_dlmm_and_both_token_programs ... ok
+test actual_user_vault_fee_and_bin_amounts_conserve_exactly ... ok
+test missing_bin_and_bitmap_state_are_explicitly_indeterminate ... ok
+test complete_offline_execution_and_message_are_identical ... ok
+test cli_is_portable_offline_byte_identical_and_protects_existing_outputs ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 36.68s
+
+     Running tests/scenario.rs (target/debug/deps/scenario-1c2b40becb96aedc)
+
+running 2 tests
+test lifecycle_change_refuses_execution ... ok
+test program_upgrade_matches_direct_execution_and_the_legacy_api ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.19s
+
+     Running tests/upgrade_diff.rs (target/debug/deps/upgrade_diff-b3461b11e221d4ed)
+
+running 42 tests
+test checked_in_fixtures_match_the_generator ... ok
+test corpus_generation_is_reproducible ... ok
+test corpus_valuation_is_deterministic_and_covers_every_position ... ok
+test consequences_partition_the_affected_set ... ok
+test audit_account_metadata_changes_are_not_silent ... ok
+test aggregates_equal_the_sum_of_their_member_positions ... ok
+test compute_only_and_unchanged_positions_contribute_no_affected_capital ... ok
+test clusters_partition_the_changed_fixtures_exactly ... ok
+test boundary_window_flips_exactly_the_expected_fixtures ... ok
+test audit_cluster_ids_are_unique_for_same_action_different_fields ... ok
+test audit_zero_granularity_is_rejected ... ok
+test every_critical_finding_is_a_threshold_crossing_or_a_reverted_transaction ... ok
+test fixtures_sharing_a_consequence_and_action_cluster_together ... ok
+test liquidation_eligibility_flips_and_seizes_collateral_under_v2 ... ok
+test newly_liquidatable_capital_is_counted_from_the_expected_positions ... ok
+test ranges_describe_the_trigger_and_wide_ones_are_not_promoted ... ok
+test reproduction_output_shows_both_sides ... ok
+test the_flagship_counterexample_is_reported_precisely ... ok
+test the_flagship_fixture_carries_exact_economic_values ... ok
+test no_floating_point_in_the_valuation_or_reporting_path ... ok
+test the_json_report_carries_the_economic_summary ... ok
+test the_json_report_is_valid_and_carries_the_findings ... ok
+test the_corpus_exercises_the_instruction_surface ... ok
+test the_majority_of_the_corpus_is_unaffected ... ok
+test the_text_report_names_the_fixture_and_the_changed_fields ... ok
+test the_text_report_shows_economic_coverage_and_impact ... ok
+test the_two_artifacts_differ ... ok
+test unrelated_regression_classes_stay_separate ... ok
+test v1_matches_the_reference_implementation ... ok
+test v2_accepts_the_same_instruction_encoding_and_layout ... ok
+test v2_disagrees_with_the_reference_somewhere ... ok
+test whole_sol_categories_are_completely_unaffected ... ok
+test withdrawal_gate_reverts_under_v2_for_the_expected_fixtures ... ok
+test representative_selection_is_deterministic_and_derived_from_data ... ok
+test the_json_report_round_trips ... ok
+test repeated_execution_of_a_fixture_is_bit_identical ... ok
+test clustering_does_not_disturb_the_economic_totals ... ok
+test every_critical_cluster_produces_a_smaller_counterexample ... ok
+test the_cluster_section_renders_and_reproduction_resolves_by_group_id ... ok
+test the_json_report_carries_clusters_and_round_trips_with_minimized_cases ... ok
+test minimized_cases_preserve_the_exact_regression_class ... ok
+test reproducing_a_minimized_case_is_deterministic ... ok
+
+test result: ok. 42 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 21.36s
+
+     Running unittests src/lib.rs (target/debug/deps/fixture_lending_interface-9268422fea2cfc98)
+
+running 6 tests
+test audit_tests::valuation_handles_all_decimal_exponents ... ok
+test tests::debt_valuation_matches_the_pegged_amount ... ok
+test tests::layout_sizes_are_stable ... ok
+test tests::value_normalisation_handles_arbitrary_decimals ... ok
+test tests::reference_math_matches_worked_example ... ok
+test tests::zero_debt_is_infinitely_healthy ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests eplyx_lifecycle_impact
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests fixture_lending_interface
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.70s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test readiness::tests::principal_is_not_complete_position_exit ... FAILED
+
+failures:
+
+---- readiness::tests::principal_is_not_complete_position_exit stdout ----
+
+thread 'readiness::tests::principal_is_not_complete_position_exit' (7647315) panicked at engine/src/readiness/tests.rs:269:5:
+assertion `left == right` failed
+  left: Ready
+ right: Incomplete
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    readiness::tests::principal_is_not_complete_position_exit
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 134 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

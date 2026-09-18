@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "injected": 10,
+  "caught": 10,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/readiness/mod.rs": "14a1616ecba973e3dcddc0a4f0a9ce3bccbc8eec29124eb7db5db12722012ffe"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Treat NotTested as Proven",
+      "test": "readiness::tests::not_tested_never_becomes_proven_or_failed",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/01.txt",
+      "log_sha256": "a0e3eee132fc5ed160e21e72e9fc7d0313ff2d10cf122d93f0893925ded01ee7"
+    },
+    {
+      "mutation": 2,
+      "fault": "Transfer substitutes for OfficialTransition",
+      "test": "readiness::tests::transfer_never_satisfies_official_transition",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/02.txt",
+      "log_sha256": "c5c7cc07a6786e46f1e6ffe3bef106b181b3e1fb16e78f630c194922ee0f96d0"
+    },
+    {
+      "mutation": 3,
+      "fault": "Withdrawal substitutes for OfficialTransition",
+      "test": "readiness::tests::withdrawal_never_satisfies_official_transition",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/03.txt",
+      "log_sha256": "e7471e9b20ca3687de61c23ee8e6d70aabf0449da8bfb42767263adf00b1661e"
+    },
+    {
+      "mutation": 4,
+      "fault": "Principal unwind substitutes for complete position exit",
+      "test": "readiness::tests::principal_is_not_complete_position_exit",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/04.txt",
+      "log_sha256": "84c5639a41e05043b0420a154a6c73f04c885c9d813956abd782e64b24dca4ac"
+    },
+    {
+      "mutation": 5,
+      "fault": "Inherit one sampled holder to population",
+      "test": "readiness::tests::sampled_entity_never_proves_population",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/05.txt",
+      "log_sha256": "284bc780fcc496efa05abc89c612f109395970625e3924a41a33fe313ded14a4"
+    },
+    {
+      "mutation": 6,
+      "fault": "Ignore evidence entity mismatch",
+      "test": "readiness::tests::evidence_cannot_inherit_between_entities",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/06.txt",
+      "log_sha256": "c838c6382c8d27e036a200447d2c6218d2a0fec98192e7944ec8b0696b87dcd4"
+    },
+    {
+      "mutation": 7,
+      "fault": "Ignore venue/context/bank mismatch",
+      "test": "readiness::tests::venue_context_bank_and_fixture_are_exact",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/07.txt",
+      "log_sha256": "4c61d956ade9757f89836085db8a0511ccea5383c1afa16044019371e3643d06"
+    },
+    {
+      "mutation": 8,
+      "fault": "Missing evidence becomes Ready",
+      "test": "readiness::tests::missing_evidence_is_incomplete_not_ready",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/08.txt",
+      "log_sha256": "733544f183c308dcac175b93165b42f00bda6046fe7345d2fbe00cd71a71e871"
+    },
+    {
+      "mutation": 9,
+      "fault": "Incomplete becomes Blocked without policy justification",
+      "test": "readiness::tests::not_tested_never_becomes_proven_or_failed",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/09.txt",
+      "log_sha256": "a9719bf3ec74c67f4424e0ebc3f4b857c01bdad3f47d6c7605e9d7d72a809db0"
+    },
+    {
+      "mutation": 10,
+      "fault": "Unrelated success erases a required failure",
+      "test": "readiness::tests::unrelated_success_cannot_erase_required_failure",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase11-mutations-verified/10.txt",
+      "log_sha256": "704e3f76ed89bb79be1ac488d740841bd02f095a4d4a4d0bf1081d4ecac4d908"
+    }
+  ]
+}

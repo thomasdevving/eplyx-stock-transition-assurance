@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "snapshot": {
+    "file": "../snapshots/spacex-exposure.json",
+    "sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e"
+  },
+  "scenario": {
+    "file": "../scenarios/spacex-transition.json",
+    "sha256": "9d7d0556a55fd97885cca6f62105d3550ae8d0946b2ec473502bcba050035cea"
+  },
+  "direct_resolution": {
+    "file": "../reports/spacex-lifecycle-path-resolution-phase9.json",
+    "sha256": "993989bcdad106d7eef79895e258f4ce14bad18ec810503932688e0ebeb8e06d"
+  },
+  "position_resolution": {
+    "file": "../reports/spacex-dlmm-withdrawal.json",
+    "sha256": "5f74a2b70946efbc937fba9e9bcd028ce6b6586184104424c8f28e7ba39ddff5"
+  },
+  "coverage": {
+    "file": "../reports/spacex-lifecycle-coverage-phase7.json",
+    "sha256": "79b78e877b63c9fa3fd5ef80755b0759c47ae8ac9771a56cc3046a387217e07f"
+  },
+  "baseline_coverage": {
+    "file": "../reports/spacex-lifecycle-coverage.json",
+    "sha256": "f3ff991165d23f9ff851b8e7d9c141a92aac4668bf26e2bc83926a12a2e4d920"
+  },
+  "expansion_plan": {
+    "file": "../probes/spacex-lifecycle-expansion-plan.json",
+    "sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade"
+  },
+  "execution_index": {
+    "file": "../reports/phase7-evidence/execution-index.json",
+    "sha256": "e14c449199c972b91b5390b325b8ed8285f07efa70c5a41df960e2a142ee3c52"
+  },
+  "capture_manifest": {
+    "file": "../probes/phase7-captures/capture-manifest.json",
+    "sha256": "5357ef0ff0436649e27c626f81f16be99022a48ce232a640d9114228d0befdc6"
+  },
+  "withdrawal_fixture": {
+    "file": "../evidence/withdrawal/phase10/execution-capture.json",
+    "sha256": "3d79ad5dcee2a9b7ecc74575fe9af7e025695e229471b7aab5288d69813c844f"
+  },
+  "withdrawal_discovery": {
+    "file": "../evidence/withdrawal/phase10/position-discovery.json",
+    "sha256": "9152453761142ba59a56c9a415aed6a3c600f1e7ba5e89b4a6efa708a6bb6ce1"
+  },
+  "official_research": {
+    "file": "../reports/spacex-official-transition.json",
+    "sha256": "fb7a79bd6f1a56daf09b34f3af49a0c5d11baa0b479b2922be200ff6b68e6d6d"
+  }
+}

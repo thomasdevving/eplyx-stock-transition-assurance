@@ -1,0 +1,6 @@
+Phase 7: 79 unchanged entries; additive shared files: ['AGENTS.md', 'README.md', 'engine/src/lib.rs', 'engine/src/main.rs']; unexpected changes: []
+Phase 8: 40 unchanged entries; additive shared files: ['AGENTS.md', 'README.md', 'engine/src/lib.rs', 'engine/src/main.rs']; unexpected changes: []
+Phase 9: 45 unchanged entries; additive shared files: ['AGENTS.md', 'README.md', 'engine/src/lib.rs', 'engine/src/main.rs']; unexpected changes: []
+Phase 10: 35 unchanged entries; additive shared files: ['AGENTS.md', 'README.md', 'engine/src/lib.rs', 'engine/src/main.rs']; unexpected changes: []
+All historical manifest differences are confined to the four additive shared scope/export/CLI files.
+All 43 original checksum files checked: 238 matching entries; 16 allowed additive shared-file entries; no unexpected changes.
