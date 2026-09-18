@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "baseline_sha256": "f3ff991165d23f9ff851b8e7d9c141a92aac4668bf26e2bc83926a12a2e4d920",
+  "checks": {
+    "make_test": {
+      "passed": 205,
+      "failed": 0,
+      "ignored": 0,
+      "suite_counts": {
+        "fixture_v1": 7,
+        "fixture_v2": 7,
+        "engine": 71,
+        "phase7": 6,
+        "phase5": 12,
+        "phase4": 12,
+        "phase6": 16,
+        "phase3": 11,
+        "phase2": 13,
+        "scenario": 2,
+        "upgrade_integration": 42,
+        "interface": 6
+      }
+    },
+    "make_fmt_check": "Passed",
+    "make_lint": "Passed",
+    "git_diff_check": "Passed",
+    "mutations": {
+      "injected": 10,
+      "caught_by_named_assertions": 10,
+      "source_restored": true
+    },
+    "offline_replay": {
+      "rpc_variables_unset": [
+        "SOLANA_RPC_URL",
+        "RPC_URL",
+        "ARCHIVE_RPC_URL",
+        "SOLANA_ARCHIVE_RPC_URL"
+      ],
+      "evidence_files_byte_identical": 30,
+      "execution_index_byte_identical": true,
+      "coverage_delta_byte_identical": true,
+      "saved_json_stdout_byte_identical": true
+    },
+    "before_plan_immutable": "Passed",
+    "original_phase2_through_phase6_checksums": "Passed",
+    "public_rehashed_fabrication_rejected": "Passed",
+    "reversed_population_order_byte_identical": "Passed",
+    "all_five_cli_commands_existing_output_protection": "Passed"
+  }
+}

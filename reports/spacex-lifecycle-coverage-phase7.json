@@ -1,0 +1,1245 @@
+{
+  "schema_version": 2,
+  "baseline_sha256": "f3ff991165d23f9ff851b8e7d9c141a92aac4668bf26e2bc83926a12a2e4d920",
+  "plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "capture_manifest_sha256": "5357ef0ff0436649e27c626f81f16be99022a48ce232a640d9114228d0befdc6",
+  "execution_index_sha256": "e14c449199c972b91b5390b325b8ed8285f07efa70c5a41df960e2a142ee3c52",
+  "before": {
+    "portfolio": {
+      "entities": 17957,
+      "positive_balance_entities": 10155,
+      "distinct_owner_authorities": 17950,
+      "authorities_with_measured_amount": 1,
+      "classifications": {
+        "Proven": 1,
+        "PartiallyProven": 0,
+        "Untested": 12378,
+        "Unsupported": 5578
+      },
+      "represented_amount_raw": "8741534482051",
+      "represented_amount_covered_raw": "60354",
+      "represented_amount_without_evidence_raw": "8741534421697"
+    },
+    "measured_entities": 1,
+    "measured_authorities": 1,
+    "secondary_market_venues": [
+      "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc"
+    ],
+    "measured_paths": [
+      "SecondaryMarketExit"
+    ],
+    "measured_classes": [
+      "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified"
+    ],
+    "by_path": {
+      "OfficialTransition": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      },
+      "Redemption": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      },
+      "SecondaryMarketExit": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 1,
+        "classifications": {
+          "Proven": 1,
+          "PartiallyProven": 0,
+          "Untested": 12378,
+          "Unsupported": 5578
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "60354",
+        "represented_amount_without_evidence_raw": "8741534421697"
+      },
+      "Transfer": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      },
+      "Withdrawal": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      }
+    },
+    "by_account_type": {
+      "ProgramOwnedAuthority": {
+        "entities": 165,
+        "positive_balance_entities": 68,
+        "distinct_owner_authorities": 165,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 165
+        },
+        "represented_amount_raw": "299279967199",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "299279967199"
+      },
+      "Unknown": {
+        "entities": 5413,
+        "positive_balance_entities": 2969,
+        "distinct_owner_authorities": 5406,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 5413
+        },
+        "represented_amount_raw": "367785541678",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "367785541678"
+      },
+      "WalletCompatible": {
+        "entities": 12379,
+        "positive_balance_entities": 7118,
+        "distinct_owner_authorities": 12379,
+        "authorities_with_measured_amount": 1,
+        "classifications": {
+          "Proven": 1,
+          "PartiallyProven": 0,
+          "Untested": 12378,
+          "Unsupported": 0
+        },
+        "represented_amount_raw": "8074468973174",
+        "represented_amount_covered_raw": "60354",
+        "represented_amount_without_evidence_raw": "8074468912820"
+      }
+    }
+  },
+  "after": {
+    "portfolio": {
+      "entities": 17957,
+      "positive_balance_entities": 10155,
+      "distinct_owner_authorities": 17950,
+      "authorities_with_measured_amount": 4,
+      "classifications": {
+        "Proven": 4,
+        "PartiallyProven": 0,
+        "Untested": 12375,
+        "Unsupported": 5578
+      },
+      "represented_amount_raw": "8741534482051",
+      "represented_amount_covered_raw": "1457718144803",
+      "represented_amount_without_evidence_raw": "7283816337248"
+    },
+    "measured_entities": 4,
+    "measured_authorities": 4,
+    "secondary_market_venues": [
+      "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc"
+    ],
+    "measured_paths": [
+      "SecondaryMarketExit",
+      "Transfer"
+    ],
+    "measured_classes": [
+      "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified"
+    ],
+    "by_path": {
+      "OfficialTransition": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      },
+      "Redemption": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      },
+      "SecondaryMarketExit": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 3,
+        "classifications": {
+          "Proven": 3,
+          "PartiallyProven": 0,
+          "Untested": 12376,
+          "Unsupported": 5578
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "387113",
+        "represented_amount_without_evidence_raw": "8741534094938"
+      },
+      "Transfer": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 3,
+        "classifications": {
+          "Proven": 3,
+          "PartiallyProven": 0,
+          "Untested": 12376,
+          "Unsupported": 5578
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "1457718084449",
+        "represented_amount_without_evidence_raw": "7283816397602"
+      },
+      "Withdrawal": {
+        "entities": 17957,
+        "positive_balance_entities": 10155,
+        "distinct_owner_authorities": 17950,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 17957
+        },
+        "represented_amount_raw": "8741534482051",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "8741534482051"
+      }
+    },
+    "by_account_type": {
+      "ProgramOwnedAuthority": {
+        "entities": 165,
+        "positive_balance_entities": 68,
+        "distinct_owner_authorities": 165,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 165
+        },
+        "represented_amount_raw": "299279967199",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "299279967199"
+      },
+      "Unknown": {
+        "entities": 5413,
+        "positive_balance_entities": 2969,
+        "distinct_owner_authorities": 5406,
+        "authorities_with_measured_amount": 0,
+        "classifications": {
+          "Proven": 0,
+          "PartiallyProven": 0,
+          "Untested": 0,
+          "Unsupported": 5413
+        },
+        "represented_amount_raw": "367785541678",
+        "represented_amount_covered_raw": "0",
+        "represented_amount_without_evidence_raw": "367785541678"
+      },
+      "WalletCompatible": {
+        "entities": 12379,
+        "positive_balance_entities": 7118,
+        "distinct_owner_authorities": 12379,
+        "authorities_with_measured_amount": 4,
+        "classifications": {
+          "Proven": 4,
+          "PartiallyProven": 0,
+          "Untested": 12375,
+          "Unsupported": 0
+        },
+        "represented_amount_raw": "8074468973174",
+        "represented_amount_covered_raw": "1457718144803",
+        "represented_amount_without_evidence_raw": "6616750828371"
+      }
+    }
+  },
+  "represented_raw_gain": "1457718084449",
+  "entity_updates": [
+    {
+      "entity_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "owner_authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "account_type": "WalletCompatible",
+      "representative_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "selected_representative": false,
+      "impact_classification": "RequiresTransition",
+      "represented_balance_raw": "17621",
+      "classification": "Proven",
+      "represented_amount_covered_raw": "17621",
+      "represented_amount_without_evidence_raw": "0",
+      "paths": [
+        {
+          "path_type": "OfficialTransition",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "17621",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "Redemption",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "17621",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "SecondaryMarketExit",
+          "classification": "Proven",
+          "largest_successful_input_raw": "17621",
+          "represented_amount_covered_raw": "17621",
+          "represented_amount_without_evidence_raw": "0",
+          "successful_cases": [
+            "group-3-raw-176",
+            "group-3-raw-4405",
+            "group-3-raw-8810",
+            "group-3-raw-17621"
+          ],
+          "reason": "Direct measured exact input at matching captured source balance. Independent cases use maxima, never interpolation or simultaneous capacity."
+        },
+        {
+          "path_type": "Transfer",
+          "classification": "Proven",
+          "largest_successful_input_raw": "17621",
+          "represented_amount_covered_raw": "17621",
+          "represented_amount_without_evidence_raw": "0",
+          "successful_cases": [
+            "group-0-raw-176",
+            "group-0-raw-4405",
+            "group-0-raw-8810",
+            "group-0-raw-17621"
+          ],
+          "reason": "Direct measured exact input at matching captured source balance. Independent cases use maxima, never interpolation or simultaneous capacity."
+        },
+        {
+          "path_type": "Withdrawal",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "17621",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        }
+      ],
+      "official_transition": "NotTested"
+    },
+    {
+      "entity_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE",
+      "owner_authority": "8uN1R2nEei4kzst55bRqGhJEA7kNYxmJyeWpvCzZcpcD",
+      "account_type": "WalletCompatible",
+      "representative_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "selected_representative": false,
+      "impact_classification": "RequiresTransition",
+      "represented_balance_raw": "309138",
+      "classification": "Proven",
+      "represented_amount_covered_raw": "309138",
+      "represented_amount_without_evidence_raw": "0",
+      "paths": [
+        {
+          "path_type": "OfficialTransition",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "309138",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "Redemption",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "309138",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "SecondaryMarketExit",
+          "classification": "Proven",
+          "largest_successful_input_raw": "309138",
+          "represented_amount_covered_raw": "309138",
+          "represented_amount_without_evidence_raw": "0",
+          "successful_cases": [
+            "group-1-raw-3091",
+            "group-1-raw-77284",
+            "group-1-raw-154569",
+            "group-1-raw-309138"
+          ],
+          "reason": "Direct measured exact input at matching captured source balance. Independent cases use maxima, never interpolation or simultaneous capacity."
+        },
+        {
+          "path_type": "Transfer",
+          "classification": "Proven",
+          "largest_successful_input_raw": "309138",
+          "represented_amount_covered_raw": "309138",
+          "represented_amount_without_evidence_raw": "0",
+          "successful_cases": [
+            "group-4-raw-3091",
+            "group-4-raw-77284",
+            "group-4-raw-154569",
+            "group-4-raw-309138"
+          ],
+          "reason": "Direct measured exact input at matching captured source balance. Independent cases use maxima, never interpolation or simultaneous capacity."
+        },
+        {
+          "path_type": "Withdrawal",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "309138",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        }
+      ],
+      "official_transition": "NotTested"
+    },
+    {
+      "entity_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "owner_authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "account_type": "WalletCompatible",
+      "representative_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "selected_representative": true,
+      "impact_classification": "RequiresTransition",
+      "represented_balance_raw": "1457717757690",
+      "classification": "Proven",
+      "represented_amount_covered_raw": "1457717757690",
+      "represented_amount_without_evidence_raw": "0",
+      "paths": [
+        {
+          "path_type": "OfficialTransition",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "1457717757690",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "Redemption",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "1457717757690",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "SecondaryMarketExit",
+          "classification": "Untested",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "1457717757690",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        },
+        {
+          "path_type": "Transfer",
+          "classification": "Proven",
+          "largest_successful_input_raw": "1457717757690",
+          "represented_amount_covered_raw": "1457717757690",
+          "represented_amount_without_evidence_raw": "0",
+          "successful_cases": [
+            "group-5-raw-14577177576",
+            "group-5-raw-364429439422",
+            "group-5-raw-728858878845",
+            "group-5-raw-1457717757690"
+          ],
+          "reason": "Direct measured exact input at matching captured source balance. Independent cases use maxima, never interpolation or simultaneous capacity."
+        },
+        {
+          "path_type": "Withdrawal",
+          "classification": "Unsupported",
+          "largest_successful_input_raw": "0",
+          "represented_amount_covered_raw": "0",
+          "represented_amount_without_evidence_raw": "1457717757690",
+          "successful_cases": [],
+          "reason": "Coverage is the maximum successful exact input with matching source balance, under retained captured-bank/signer/runtime assumptions. Amounts and alternative paths are never added; failed probes do not prove stranded exposure."
+        }
+      ],
+      "official_transition": "NotTested"
+    }
+  ],
+  "evidence": [
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-176",
+      "result_sha256": "ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-4405",
+      "result_sha256": "8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-8810",
+      "result_sha256": "c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-17621",
+      "result_sha256": "85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-17622",
+      "result_sha256": "493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-3091",
+      "result_sha256": "6a39c3d3abc7fd6c38455d99a75b56ea1cc9e827fef190a03c9e8bbaa9fb4cc2",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/6a39c3d3abc7fd6c38455d99a75b56ea1cc9e827fef190a03c9e8bbaa9fb4cc2.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-77284",
+      "result_sha256": "a136906766be4d5f8921cfe53f0e05a3aad47410a2f08610c906ddca944679ad",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/a136906766be4d5f8921cfe53f0e05a3aad47410a2f08610c906ddca944679ad.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-154569",
+      "result_sha256": "e618824624be8baf28c1fd9dc694fe44d5d5d5316fee52f2f2961b4da0b22a84",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/e618824624be8baf28c1fd9dc694fe44d5d5d5316fee52f2f2961b4da0b22a84.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-309138",
+      "result_sha256": "674eb93145aa130e7a88aa81b2570709d2817962ea3b767d1ef457ebafdbe984",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/674eb93145aa130e7a88aa81b2570709d2817962ea3b767d1ef457ebafdbe984.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-309139",
+      "result_sha256": "d499f81e0e23c122acaf45fadac6d8be3838dad1ad05ad5925ec9d30784e6a6f",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/d499f81e0e23c122acaf45fadac6d8be3838dad1ad05ad5925ec9d30784e6a6f.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-14577177576",
+      "result_sha256": "6105d7609ea6840cec226188199159b02c9089a83ebadc83abe7b2ce82d53530",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/6105d7609ea6840cec226188199159b02c9089a83ebadc83abe7b2ce82d53530.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-364429439422",
+      "result_sha256": "87be5f200f4491d658cdc03abfc29937103abc73d0f068ecd152467a3de179dc",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/87be5f200f4491d658cdc03abfc29937103abc73d0f068ecd152467a3de179dc.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-728858878845",
+      "result_sha256": "97aa887081db308ed5538403efbe76640a039100d1d56c08eac12cabc1cb31f2",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/97aa887081db308ed5538403efbe76640a039100d1d56c08eac12cabc1cb31f2.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-1457717757690",
+      "result_sha256": "46a947ef45c55f478f1b01416c63a8c5c43a87c4f90e120863499612679fbfef",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/46a947ef45c55f478f1b01416c63a8c5c43a87c4f90e120863499612679fbfef.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-1457717757691",
+      "result_sha256": "b020661764ec104c48b338ecaec6006915153a1490b83e04bf6de2e512911d6f",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/b020661764ec104c48b338ecaec6006915153a1490b83e04bf6de2e512911d6f.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-176",
+      "result_sha256": "429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-4405",
+      "result_sha256": "19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-8810",
+      "result_sha256": "b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-17621",
+      "result_sha256": "697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-17622",
+      "result_sha256": "7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-3091",
+      "result_sha256": "6056a14b7829e815500a5a70667965964324b4b2511d8c4ea45af49e22091f28",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/6056a14b7829e815500a5a70667965964324b4b2511d8c4ea45af49e22091f28.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-77284",
+      "result_sha256": "1b3ac53efcc86222514244c5e62e2269cc4f190ec06c7311896063c91cf7ff7b",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/1b3ac53efcc86222514244c5e62e2269cc4f190ec06c7311896063c91cf7ff7b.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-154569",
+      "result_sha256": "616c3a1914d7dd1d0f1aea43ce62fb024dab296422f38e78dd847301d510bedd",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/616c3a1914d7dd1d0f1aea43ce62fb024dab296422f38e78dd847301d510bedd.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-309138",
+      "result_sha256": "4401be5f6ace5a897a97d3b6c19bc11718e2dd8fa52d4cf3fcd894acd7d8b72c",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/4401be5f6ace5a897a97d3b6c19bc11718e2dd8fa52d4cf3fcd894acd7d8b72c.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-309139",
+      "result_sha256": "b95d56dea931d767f0097532f1ad633ee1ed9ce5df6f0720cdbe8cded2c4c449",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/b95d56dea931d767f0097532f1ad633ee1ed9ce5df6f0720cdbe8cded2c4c449.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-14577177576",
+      "result_sha256": "eefd93e2806f1bcebc625d380579f5f7d242069da482d92ca8db80ce1acf21ac",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/eefd93e2806f1bcebc625d380579f5f7d242069da482d92ca8db80ce1acf21ac.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-364429439422",
+      "result_sha256": "70e901479f612116cfa7ab88e38f845f72a8d659b6d8c4a06e65a11a14a69ddc",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/70e901479f612116cfa7ab88e38f845f72a8d659b6d8c4a06e65a11a14a69ddc.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-728858878845",
+      "result_sha256": "ada3fde1d361ad2475f9d320f1541bbd86c245908c2eac1bc4180cae8903a02a",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/ada3fde1d361ad2475f9d320f1541bbd86c245908c2eac1bc4180cae8903a02a.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-1457717757690",
+      "result_sha256": "41d81f4d13f8cf3ba5799213dbb5aa2c8d99fd31e550a4a0a3069a8e0f039299",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/41d81f4d13f8cf3ba5799213dbb5aa2c8d99fd31e550a4a0a3069a8e0f039299.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-1457717757691",
+      "result_sha256": "b5ba6afc5b012909771396761dd7093afe8e524a2d0c98f8e4f1d6059afbebf4",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/b5ba6afc5b012909771396761dd7093afe8e524a2d0c98f8e4f1d6059afbebf4.json",
+      "status": "Indeterminate"
+    }
+  ],
+  "gains": [
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "expected": {
+        "entities": 1,
+        "authorities": 1,
+        "represented_raw": "17621",
+        "entity_path_contexts": 1,
+        "venue": 0,
+        "path_type": 1,
+        "state_shape": 1
+      },
+      "realized_represented_raw": "17621",
+      "newly_measured_entities": 1,
+      "new_venue_contexts": 0,
+      "new_path_contexts": 1
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "expected": {
+        "entities": 1,
+        "authorities": 1,
+        "represented_raw": "309138",
+        "entity_path_contexts": 1,
+        "venue": 1,
+        "path_type": 0,
+        "state_shape": 0
+      },
+      "realized_represented_raw": "309138",
+      "newly_measured_entities": 1,
+      "new_venue_contexts": 1,
+      "new_path_contexts": 0
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "expected": {
+        "entities": 1,
+        "authorities": 1,
+        "represented_raw": "1457717757690",
+        "entity_path_contexts": 1,
+        "venue": 0,
+        "path_type": 0,
+        "state_shape": 1
+      },
+      "realized_represented_raw": "0",
+      "newly_measured_entities": 0,
+      "new_venue_contexts": 0,
+      "new_path_contexts": 0
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "expected": {
+        "entities": 0,
+        "authorities": 0,
+        "represented_raw": "0",
+        "entity_path_contexts": 1,
+        "venue": 0,
+        "path_type": 0,
+        "state_shape": 0
+      },
+      "realized_represented_raw": "0",
+      "newly_measured_entities": 0,
+      "new_venue_contexts": 0,
+      "new_path_contexts": 0
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "expected": {
+        "entities": 0,
+        "authorities": 0,
+        "represented_raw": "0",
+        "entity_path_contexts": 1,
+        "venue": 0,
+        "path_type": 0,
+        "state_shape": 0
+      },
+      "realized_represented_raw": "0",
+      "newly_measured_entities": 0,
+      "new_venue_contexts": 0,
+      "new_path_contexts": 0
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "expected": {
+        "entities": 0,
+        "authorities": 0,
+        "represented_raw": "0",
+        "entity_path_contexts": 1,
+        "venue": 0,
+        "path_type": 0,
+        "state_shape": 0
+      },
+      "realized_represented_raw": "1457717757690",
+      "newly_measured_entities": 1,
+      "new_venue_contexts": 0,
+      "new_path_contexts": 0
+    }
+  ],
+  "status_counts": {
+    "Failed": 4,
+    "Indeterminate": 6,
+    "Succeeded": 20
+  },
+  "remaining_gaps": [
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=LiquidityVault",
+      "path_type": "OfficialTransition",
+      "entities": 1,
+      "represented_raw": "678320992",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "678320992",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=LiquidityVault",
+      "path_type": "Redemption",
+      "entities": 1,
+      "represented_raw": "678320992",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "678320992",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=LiquidityVault",
+      "path_type": "SecondaryMarketExit",
+      "entities": 1,
+      "represented_raw": "678320992",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "678320992",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=LiquidityVault",
+      "path_type": "Transfer",
+      "entities": 1,
+      "represented_raw": "678320992",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "678320992",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=LiquidityVault",
+      "path_type": "Withdrawal",
+      "entities": 1,
+      "represented_raw": "678320992",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "678320992",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:HgQRhiATjX9jTWh7QgLWnhCeR7PaBqoWVf4vSaL61YVv"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "OfficialTransition",
+      "entities": 67,
+      "represented_raw": "298601646207",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "298601646207",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+        "solana-token-account:AmAm2TdvbPBjjAJU9TfU17kyGvZWik3fTXDgQfaNEPrb",
+        "solana-token-account:6pvqD1e8zZ8XLSEV9BffV3yUPRP8NQLYZdZDwwv99WUa"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Redemption",
+      "entities": 67,
+      "represented_raw": "298601646207",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "298601646207",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+        "solana-token-account:AmAm2TdvbPBjjAJU9TfU17kyGvZWik3fTXDgQfaNEPrb",
+        "solana-token-account:6pvqD1e8zZ8XLSEV9BffV3yUPRP8NQLYZdZDwwv99WUa"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "SecondaryMarketExit",
+      "entities": 67,
+      "represented_raw": "298601646207",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "298601646207",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+        "solana-token-account:AmAm2TdvbPBjjAJU9TfU17kyGvZWik3fTXDgQfaNEPrb",
+        "solana-token-account:6pvqD1e8zZ8XLSEV9BffV3yUPRP8NQLYZdZDwwv99WUa"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Transfer",
+      "entities": 67,
+      "represented_raw": "298601646207",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "298601646207",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+        "solana-token-account:AmAm2TdvbPBjjAJU9TfU17kyGvZWik3fTXDgQfaNEPrb",
+        "solana-token-account:6pvqD1e8zZ8XLSEV9BffV3yUPRP8NQLYZdZDwwv99WUa"
+      ]
+    },
+    {
+      "account_class": "ProgramOwnedAuthority/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Withdrawal",
+      "entities": 67,
+      "represented_raw": "298601646207",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "298601646207",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+        "solana-token-account:AmAm2TdvbPBjjAJU9TfU17kyGvZWik3fTXDgQfaNEPrb",
+        "solana-token-account:6pvqD1e8zZ8XLSEV9BffV3yUPRP8NQLYZdZDwwv99WUa"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "OfficialTransition",
+      "entities": 2963,
+      "represented_raw": "366379417999",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "366379417999",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+        "solana-token-account:4q5to3r4LGyfEjKn6YzrB2oLC57Nfj26tbkkWPU48C1g",
+        "solana-token-account:9iWw1ncrGKeQRL4P1hF27EC8snrsN6nCArtbU1vvbbya"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Redemption",
+      "entities": 2963,
+      "represented_raw": "366379417999",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "366379417999",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+        "solana-token-account:4q5to3r4LGyfEjKn6YzrB2oLC57Nfj26tbkkWPU48C1g",
+        "solana-token-account:9iWw1ncrGKeQRL4P1hF27EC8snrsN6nCArtbU1vvbbya"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "SecondaryMarketExit",
+      "entities": 2963,
+      "represented_raw": "366379417999",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "366379417999",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+        "solana-token-account:4q5to3r4LGyfEjKn6YzrB2oLC57Nfj26tbkkWPU48C1g",
+        "solana-token-account:9iWw1ncrGKeQRL4P1hF27EC8snrsN6nCArtbU1vvbbya"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Transfer",
+      "entities": 2963,
+      "represented_raw": "366379417999",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "366379417999",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+        "solana-token-account:4q5to3r4LGyfEjKn6YzrB2oLC57Nfj26tbkkWPU48C1g",
+        "solana-token-account:9iWw1ncrGKeQRL4P1hF27EC8snrsN6nCArtbU1vvbbya"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Withdrawal",
+      "entities": 2963,
+      "represented_raw": "366379417999",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "366379417999",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:CrUbatqBEsptu3yvMmFY7VszYNNkcpPrGQ9Cy34xcuAp",
+        "solana-token-account:4q5to3r4LGyfEjKn6YzrB2oLC57Nfj26tbkkWPU48C1g",
+        "solana-token-account:9iWw1ncrGKeQRL4P1hF27EC8snrsN6nCArtbU1vvbbya"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=true/confidential=false/role=unverified",
+      "path_type": "OfficialTransition",
+      "entities": 6,
+      "represented_raw": "1406123679",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "1406123679",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+        "solana-token-account:H8v9oWMwU8oEziaA72zEmFxNTpXgZZ2GYDxRv85AAT25",
+        "solana-token-account:9HuwD5KkwvebAwZk69kEPhxMj8CEox95GmEhsp2RA2yR"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=true/confidential=false/role=unverified",
+      "path_type": "Redemption",
+      "entities": 6,
+      "represented_raw": "1406123679",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "1406123679",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+        "solana-token-account:H8v9oWMwU8oEziaA72zEmFxNTpXgZZ2GYDxRv85AAT25",
+        "solana-token-account:9HuwD5KkwvebAwZk69kEPhxMj8CEox95GmEhsp2RA2yR"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=true/confidential=false/role=unverified",
+      "path_type": "SecondaryMarketExit",
+      "entities": 6,
+      "represented_raw": "1406123679",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "1406123679",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+        "solana-token-account:H8v9oWMwU8oEziaA72zEmFxNTpXgZZ2GYDxRv85AAT25",
+        "solana-token-account:9HuwD5KkwvebAwZk69kEPhxMj8CEox95GmEhsp2RA2yR"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=true/confidential=false/role=unverified",
+      "path_type": "Transfer",
+      "entities": 6,
+      "represented_raw": "1406123679",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "1406123679",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+        "solana-token-account:H8v9oWMwU8oEziaA72zEmFxNTpXgZZ2GYDxRv85AAT25",
+        "solana-token-account:9HuwD5KkwvebAwZk69kEPhxMj8CEox95GmEhsp2RA2yR"
+      ]
+    },
+    {
+      "account_class": "Unknown/state=Initialized/delegated=true/confidential=false/role=unverified",
+      "path_type": "Withdrawal",
+      "entities": 6,
+      "represented_raw": "1406123679",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "1406123679",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:FjZ5ne4J7v58Pwr8k7yERSp1DakcZm4ZcTHs9BvscqMf",
+        "solana-token-account:H8v9oWMwU8oEziaA72zEmFxNTpXgZZ2GYDxRv85AAT25",
+        "solana-token-account:9HuwD5KkwvebAwZk69kEPhxMj8CEox95GmEhsp2RA2yR"
+      ]
+    },
+    {
+      "account_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "OfficialTransition",
+      "entities": 7118,
+      "represented_raw": "8074468973174",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "8074468973174",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "solana-token-account:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+        "solana-token-account:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+      ]
+    },
+    {
+      "account_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Redemption",
+      "entities": 7118,
+      "represented_raw": "8074468973174",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "8074468973174",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "solana-token-account:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+        "solana-token-account:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+      ]
+    },
+    {
+      "account_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "SecondaryMarketExit",
+      "entities": 7118,
+      "represented_raw": "8074468973174",
+      "already_measured_raw": "387113",
+      "without_evidence_raw": "8074468586061",
+      "execution_supported": true,
+      "reason": "Individual observed entity gaps; sample selection never proves class peers",
+      "highest_balance_entities": [
+        "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "solana-token-account:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+        "solana-token-account:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+      ]
+    },
+    {
+      "account_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Transfer",
+      "entities": 7118,
+      "represented_raw": "8074468973174",
+      "already_measured_raw": "1457718084449",
+      "without_evidence_raw": "6616750888725",
+      "execution_supported": true,
+      "reason": "Individual observed entity gaps; sample selection never proves class peers",
+      "highest_balance_entities": [
+        "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "solana-token-account:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+        "solana-token-account:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+      ]
+    },
+    {
+      "account_class": "WalletCompatible/state=Initialized/delegated=false/confidential=false/role=unverified",
+      "path_type": "Withdrawal",
+      "entities": 7118,
+      "represented_raw": "8074468973174",
+      "already_measured_raw": "0",
+      "without_evidence_raw": "8074468973174",
+      "execution_supported": false,
+      "reason": "High-value unsupported authority/path gap; not scored as executable",
+      "highest_balance_entities": [
+        "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "solana-token-account:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+        "solana-token-account:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+      ]
+    }
+  ],
+  "added_capabilities": [
+    "WalletCompatible + Token-2022 Transfer; capability changes prior Unsupported to Untested, never positive proof"
+  ],
+  "second_venue_outcome": "SecondVenueExecuted",
+  "official_transition": "NotTested",
+  "assumptions": [
+    "Population assurance uses the unchanged Phase 6 maximum/exact-input rules and matching source balances. Current-state measured entities/context points remain separate when captures differ.",
+    "Original owner locally assumed to sign. Signer possession/authorization, inclusion, future exit, lifecycle entitlement and full validator bank fidelity are not proved.",
+    "Independent amounts/venues/paths reset captured state. Use per-entity maxima and exact points, never liquidity sums, interpolation, class-peer or venue-brand inheritance.",
+    "Transfer is actual token movement only; it does not prove sale, redemption, LP/vault withdrawal or OfficialTransition.",
+    "Remaining gaps recompute measured/without-evidence amounts from updated individual paths. Unsupported gaps remain development guidance, never assurance."
+  ]
+}

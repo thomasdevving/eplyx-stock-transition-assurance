@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.30s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test expansion::pipeline::tests::execution_never_rewrites_expected_selection_gains ... FAILED
+
+failures:
+
+---- expansion::pipeline::tests::execution_never_rewrites_expected_selection_gains stdout ----
+
+thread 'expansion::pipeline::tests::execution_never_rewrites_expected_selection_gains' (7240802) panicked at engine/src/expansion/pipeline.rs:1059:13:
+assertion `left == right` failed
+  left: ExpectedGain { entities: 1, authorities: 1, represented_raw: "17621", entity_path_contexts: 1, venue: 0, path_type: 1, state_shape: 1 }
+ right: ExpectedGain { entities: 2, authorities: 1, represented_raw: "17621", entity_path_contexts: 1, venue: 0, path_type: 1, state_shape: 1 }
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    expansion::pipeline::tests::execution_never_rewrites_expected_selection_gains
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 70 filtered out; finished in 0.89s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

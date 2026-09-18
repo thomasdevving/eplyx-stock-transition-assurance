@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.50s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test expansion::pipeline::tests::second_venue_has_no_brand_or_first_venue_inheritance ... FAILED
+
+failures:
+
+---- expansion::pipeline::tests::second_venue_has_no_brand_or_first_venue_inheritance stdout ----
+
+thread 'expansion::pipeline::tests::second_venue_has_no_brand_or_first_venue_inheritance' (7240038) panicked at engine/src/expansion/pipeline.rs:1050:9:
+assertion `left == right` failed
+  left: ["22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg", "24GqvQRzobYRYB967eEYr31iNa9ESsvpR1DMFKFTgNj8", "24RRsLYyLWRb7Q2qBXeMjVGkBkzpV9BHix3kepgcZD9c", "283tAkQVKT89svN1jCZbHyMsrzRwwYBRuTPrT2y5Ldtj", "2fLrLpkyRjE4yHJYdwfMVHFo11kVGi5ttR6MMB6XyRP5", "2rGYqzf7bdVTR5rYPsFpiCZZ8nWuJM9SQVtWbYf2Cx8d", "3GwS1UFmgrb7YJy9iCSzNQJjMx6MqA8bNoz9VQqBTGyr", "4aTvyQ2Yb6XhwrbrZmkCNY4m6rpqPcajh5eC264gxV9U", "5PonTq66ubDVavpVfxv7uJazGEmE9GSvrW4NRBbFAWbm", "5U5hsegPfQPp3Z8zeMb54nsw7TUasfaaZ26kZrQsimcz", "66T1o5ZB5PXLhB1GU17aoXiVCiCF3ZEr9ZVg6FSi1iZg", "6Q1XMPLsr4FHt1dVPqDbzrQCjCnh4BxAfuTbib3t3ksC", "6dgDJZQo8fGgo8S6L7TW5EXxYt9QwExiG8zTZRHodYGJ", "6frKHdDpuYpY1DSE67CT4Cn84V8TTczxL1FYqqyJ73s9", "6gSM71j33vS15jPnGxzfZm1d2SvHUYixTwzWvCgAjKm7", "7fAYUSy9TYACXjeK9F2NJCBLs87oC4KMPi4k16xe9wnG", "7u5qhbCY37FTRzGmXYUDWKvbRijSAWBphUoXCAHfoMn6", "7yUWzVuzCmyDzAjKBCDdSMSUMz71BnhCvFg9t6QEazJ5", "8Ma1hLGpkkxqwW64dS1cj54eqQFwvfB8KKUNNB6kbQQ2", "8rFjXknJvC225QZqKZtohSnwpL3ZeocNiVDs8tpfUiR8", "99wirLAYvWXVLaZBLkkE7MCxHDnZL75szNyyjbgDFUDh", "9Ana4uRfbxvCwkxLoFBXpzXDKLgf5N7nnpv9FyZsK3DM", "9DuT2XuEWrRA1VSRVmNdiwPoSr357PEL2Zh6m3ZWBXEV", "9RExWJFGfAviKHCSCQ59CqA6e7eZgmnfKuABqHn1jKG4", "9WcJhURghfJq3qmppLgPtoSCsmiWjc8cMe8x27WsbT4X", "9aPP1h6p7x9FrVik4D8oPXYaDacWi3y5pPCWWukqat8V", "9cw41ZUHEvxn8NmPXp9H8RA3EiyPvNbbLre99f5nsGZR", "9pJkFZH9wg1s77kP4giDE9c1PxeBiHx4UYcSndpxjd6N", "9sZQe48HLLPQZqtF2x3GGdthoHZNQSnCj3pYU5FY8PET", "9zxhknfHkFaFzsdor3ngc5dZ5k7uuHPbcYX9YDuwbuJE", "AsDZABjwbABoAF1H6rtxtZ2GbehkRxVhz2QZyyAKgySm", "Ayyvhb2gqXPBceozmh2wiUWT9uQjNrn49esJLPQu7DR2", "B2JzJPSF8PL89V2eKzoEbr2YnJh1GUA1J3YCtxzqVKKg", "BvjhwPPb2XQWy8YntZBmhCTYR1ed8VGyPwNcCqRnP3rq", "CGXS1gn4fxittQo6koeEg52hcezwetHjJWLEobuSr4Zg", "CWvrRiKnSUuxKbFE8867Y5Pz5Be61Zmi6Kmoy2vtzph4", "CeUaYugivPBrMs5Krce3WsL83qAFGzkbwLFqWVEShWWY", "Chroid93DKzmgDYmCJELZ6CNC3SZ8WfRXzCkcqVtRy1r", "CrF67j539b4PoZD2WyjMuzspE3fouL2qonTssuCHffqg", "D45wkcK72BjQdcE9zEri53FpkZb3Z5dtDztvqw7oVzqY", "DSoeh1omL7nREeNBuqN1Q1SDqhzmUHQDPAL5vvsqW7sz", "ErXdwoM9nAFxDSSxNJcBmpdmdrXv3GvG8SHYa4VfeJfR", "F2AaTFbg8BYscBGphsDw9TScP41xPFkouAoSFHeahBPx", "F9oJK3UC6bLVcAoYEZPHNteZACb7YzdZw7FHad4KFC6B", "FS2328VP35YHQ3TqzNbHPVVecYCS8jJSfNe9S5GRsbr9", "GAZkdAWwf7jim8NihgdRzpu98N3eKBCTzeQvxo7LePay", "GAbPFPMFwxDa5ts3JqZpJU7Nxqv2a7obu2BubcYLPBJr", "GbtX5AEEcki3jXs9RPvb9abSYxnJvtJVoAZkk4W96dPu", "H7t7y17FN8yvQagJorGzoPwi8BNCYK9jV4m2FCPGESik", "WtgJ4fakWQnBJdc3eKZagQmAY3624o69BnESPAANu7i", "qc1NJaDGNXt3aKSnVx5TtGRTtoLZgwCKewYqiwndoZC", "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc"]
+ right: ["v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc"]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    expansion::pipeline::tests::second_venue_has_no_brand_or_first_venue_inheritance
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 70 filtered out; finished in 0.89s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "capture_manifest_sha256": "5357ef0ff0436649e27c626f81f16be99022a48ce232a640d9114228d0befdc6",
+  "results": [
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-176",
+      "result_sha256": "ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/ab06340581cda069bc7875e974a7d51dde84ceba4d7ef5f2051960ccb4290cb9.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-4405",
+      "result_sha256": "8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/8911247a21051627a2e47e0a20f26b46829f4300f0380db3f85690f39d3a4e54.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-8810",
+      "result_sha256": "c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/c1bec2bdaa04a8ce75c7daeb4a8970826f7115c25d6cf33cb7838df2c2a870d2.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-17621",
+      "result_sha256": "85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/85e1ee3067ce9a33bba222b2d88559d6a9bde91091b0ba10d661c37ac182895a.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-0-raw-17622",
+      "result_sha256": "493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "result_file": "results/493edfdecddb83193831108b12fbc3dc6595105a7ac37a7f7e5a0978605f4463.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-3091",
+      "result_sha256": "6a39c3d3abc7fd6c38455d99a75b56ea1cc9e827fef190a03c9e8bbaa9fb4cc2",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/6a39c3d3abc7fd6c38455d99a75b56ea1cc9e827fef190a03c9e8bbaa9fb4cc2.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-77284",
+      "result_sha256": "a136906766be4d5f8921cfe53f0e05a3aad47410a2f08610c906ddca944679ad",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/a136906766be4d5f8921cfe53f0e05a3aad47410a2f08610c906ddca944679ad.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-154569",
+      "result_sha256": "e618824624be8baf28c1fd9dc694fe44d5d5d5316fee52f2f2961b4da0b22a84",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/e618824624be8baf28c1fd9dc694fe44d5d5d5316fee52f2f2961b4da0b22a84.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-309138",
+      "result_sha256": "674eb93145aa130e7a88aa81b2570709d2817962ea3b767d1ef457ebafdbe984",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/674eb93145aa130e7a88aa81b2570709d2817962ea3b767d1ef457ebafdbe984.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-1-raw-309139",
+      "result_sha256": "d499f81e0e23c122acaf45fadac6d8be3838dad1ad05ad5925ec9d30784e6a6f",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "result_file": "results/d499f81e0e23c122acaf45fadac6d8be3838dad1ad05ad5925ec9d30784e6a6f.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-14577177576",
+      "result_sha256": "6105d7609ea6840cec226188199159b02c9089a83ebadc83abe7b2ce82d53530",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/6105d7609ea6840cec226188199159b02c9089a83ebadc83abe7b2ce82d53530.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-364429439422",
+      "result_sha256": "87be5f200f4491d658cdc03abfc29937103abc73d0f068ecd152467a3de179dc",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/87be5f200f4491d658cdc03abfc29937103abc73d0f068ecd152467a3de179dc.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-728858878845",
+      "result_sha256": "97aa887081db308ed5538403efbe76640a039100d1d56c08eac12cabc1cb31f2",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/97aa887081db308ed5538403efbe76640a039100d1d56c08eac12cabc1cb31f2.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-1457717757690",
+      "result_sha256": "46a947ef45c55f478f1b01416c63a8c5c43a87c4f90e120863499612679fbfef",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/46a947ef45c55f478f1b01416c63a8c5c43a87c4f90e120863499612679fbfef.json",
+      "status": "Failed"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-2-raw-1457717757691",
+      "result_sha256": "b020661764ec104c48b338ecaec6006915153a1490b83e04bf6de2e512911d6f",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "result_file": "results/b020661764ec104c48b338ecaec6006915153a1490b83e04bf6de2e512911d6f.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-176",
+      "result_sha256": "429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/429614ecbf4d015213b77e2047efe97e41bb5c7ded4e5518b71791d611eab8f0.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-4405",
+      "result_sha256": "19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/19cd07e2310a0707f48a7c0aa70648796066c29dffcfb750cc02f1dc574f0f0f.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-8810",
+      "result_sha256": "b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/b3105e98c3c84aa5e4ef8879cfcab09a5b42dd4ba469a9b251bf42732605cb6d.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-17621",
+      "result_sha256": "697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/697e63336a6468cb340cbbfdc614c5e27c2e1f64b80ccde7c1b7e65a17c822a6.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "case_id": "group-3-raw-17622",
+      "result_sha256": "7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "result_file": "results/7f80ff9d726b076e3abaff78a4a360c88d750fd75200d548cf7a004dc6b54bd7.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-3091",
+      "result_sha256": "6056a14b7829e815500a5a70667965964324b4b2511d8c4ea45af49e22091f28",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/6056a14b7829e815500a5a70667965964324b4b2511d8c4ea45af49e22091f28.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-77284",
+      "result_sha256": "1b3ac53efcc86222514244c5e62e2269cc4f190ec06c7311896063c91cf7ff7b",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/1b3ac53efcc86222514244c5e62e2269cc4f190ec06c7311896063c91cf7ff7b.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-154569",
+      "result_sha256": "616c3a1914d7dd1d0f1aea43ce62fb024dab296422f38e78dd847301d510bedd",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/616c3a1914d7dd1d0f1aea43ce62fb024dab296422f38e78dd847301d510bedd.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-309138",
+      "result_sha256": "4401be5f6ace5a897a97d3b6c19bc11718e2dd8fa52d4cf3fcd894acd7d8b72c",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/4401be5f6ace5a897a97d3b6c19bc11718e2dd8fa52d4cf3fcd894acd7d8b72c.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-4-raw-309139",
+      "result_sha256": "b95d56dea931d767f0097532f1ad633ee1ed9ce5df6f0720cdbe8cded2c4c449",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "result_file": "results/b95d56dea931d767f0097532f1ad633ee1ed9ce5df6f0720cdbe8cded2c4c449.json",
+      "status": "Indeterminate"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-14577177576",
+      "result_sha256": "eefd93e2806f1bcebc625d380579f5f7d242069da482d92ca8db80ce1acf21ac",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/eefd93e2806f1bcebc625d380579f5f7d242069da482d92ca8db80ce1acf21ac.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-364429439422",
+      "result_sha256": "70e901479f612116cfa7ab88e38f845f72a8d659b6d8c4a06e65a11a14a69ddc",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/70e901479f612116cfa7ab88e38f845f72a8d659b6d8c4a06e65a11a14a69ddc.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-728858878845",
+      "result_sha256": "ada3fde1d361ad2475f9d320f1541bbd86c245908c2eac1bc4180cae8903a02a",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/ada3fde1d361ad2475f9d320f1541bbd86c245908c2eac1bc4180cae8903a02a.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-1457717757690",
+      "result_sha256": "41d81f4d13f8cf3ba5799213dbb5aa2c8d99fd31e550a4a0a3069a8e0f039299",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/41d81f4d13f8cf3ba5799213dbb5aa2c8d99fd31e550a4a0a3069a8e0f039299.json",
+      "status": "Succeeded"
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "case_id": "group-5-raw-1457717757691",
+      "result_sha256": "b5ba6afc5b012909771396761dd7093afe8e524a2d0c98f8e4f1d6059afbebf4",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "result_file": "results/b5ba6afc5b012909771396761dd7093afe8e524a2d0c98f8e4f1d6059afbebf4.json",
+      "status": "Indeterminate"
+    }
+  ]
+}

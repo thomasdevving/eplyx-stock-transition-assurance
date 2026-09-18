@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "population_sha256": "6802afb871035a0883a04196c7c9542d021d97514f43748b8f63747ea3ce016e",
+  "phase6_report_sha256": "f3ff991165d23f9ff851b8e7d9c141a92aac4668bf26e2bc83926a12a2e4d920",
+  "selected_plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "coverage": {
+    "entities": 17957,
+    "positive_balance_entities": 10155,
+    "distinct_owner_authorities": 17950,
+    "authorities_with_measured_amount": 1,
+    "classifications": {
+      "Proven": 1,
+      "PartiallyProven": 0,
+      "Untested": 12378,
+      "Unsupported": 5578
+    },
+    "represented_amount_raw": "8741534482051",
+    "represented_amount_covered_raw": "60354",
+    "represented_amount_without_evidence_raw": "8741534421697"
+  },
+  "covered_venues": [
+    "v4D5b4knJ83WzErtDiugxChUZUfWxe2FtDLguarvgFc"
+  ],
+  "covered_path_types": [
+    "SecondaryMarketExit"
+  ]
+}

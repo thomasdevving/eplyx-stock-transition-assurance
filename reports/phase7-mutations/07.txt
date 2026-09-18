@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.24s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test expansion::pipeline::tests::failed_indeterminate_unsupported_and_controls_gain_nothing ... FAILED
+
+failures:
+
+---- expansion::pipeline::tests::failed_indeterminate_unsupported_and_controls_gain_nothing stdout ----
+
+thread 'expansion::pipeline::tests::failed_indeterminate_unsupported_and_controls_gain_nothing' (7241529) panicked at engine/src/expansion/pipeline.rs:972:86:
+called `Result::unwrap()` on an `Err` value: success without exact measured reconciliation
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    expansion::pipeline::tests::failed_indeterminate_unsupported_and_controls_gain_nothing
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 70 filtered out; finished in 0.89s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

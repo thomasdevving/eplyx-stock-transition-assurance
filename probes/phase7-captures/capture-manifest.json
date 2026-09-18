@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "bindings": [
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "fixture_file": "fixtures/group-0.json",
+      "fixture_sha256": "d99ec5e1c0c6aedf4d1a675ddaff9c5cbf7dab11b77c478ef045416c6185c264",
+      "capture_context": "CurrentFinalizedProduction",
+      "error": null
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "fixture_file": "fixtures/group-1.json",
+      "fixture_sha256": "21870077ff6082cc6c40c1d036b7057d8176ec1b45fcfe1a2387eb7012ae2487",
+      "capture_context": "CurrentFinalizedProduction",
+      "error": null
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "fixture_file": "fixtures/group-2.json",
+      "fixture_sha256": "51457a1baaf3bfcb8c9e178de88376f60eb53dca9387106af4b5a7f476a18f39",
+      "capture_context": "CurrentFinalizedProduction",
+      "error": null
+    },
+    {
+      "group_id": "solana-token-account:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs:SecondaryMarketExit:22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "fixture_file": "fixtures/group-3.json",
+      "fixture_sha256": "bc0ee60ac9e0326eabbbf72dba4afd00ff4bed218bcbb02609318720bc11cc50",
+      "capture_context": "CurrentFinalizedProduction",
+      "error": null
+    },
+    {
+      "group_id": "solana-token-account:E6NHqVMSHrssPiKGgKnfxNqjoTnQXMoL5xDUvDBXiFdE:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "fixture_file": "fixtures/group-4.json",
+      "fixture_sha256": "a83e9a55c1e6fc2cd2d0e363e32ad9f7ec6cb8434ca269f32ce24618be70ef68",
+      "capture_context": "CurrentFinalizedProduction",
+      "error": null
+    },
+    {
+      "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "fixture_file": "fixtures/group-5.json",
+      "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+      "capture_context": "CurrentFinalizedProduction",
+      "error": null
+    }
+  ]
+}

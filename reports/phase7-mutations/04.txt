@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.57s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test expansion::selector::tests::unsupported_and_invalid_cannot_be_scored ... FAILED
+
+failures:
+
+---- expansion::selector::tests::unsupported_and_invalid_cannot_be_scored stdout ----
+
+thread 'expansion::selector::tests::unsupported_and_invalid_cannot_be_scored' (7240403) panicked at engine/src/expansion/selector.rs:569:13:
+assertion failed: score(&c, &VirtualCoverage::default(), &SelectorConfig::default()).is_err()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    expansion::selector::tests::unsupported_and_invalid_cannot_be_scored
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 70 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

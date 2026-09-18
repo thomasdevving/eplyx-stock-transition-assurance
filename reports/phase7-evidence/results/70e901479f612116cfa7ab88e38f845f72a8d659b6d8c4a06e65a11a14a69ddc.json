@@ -1,0 +1,265 @@
+{
+  "schema_version": 1,
+  "plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "group_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV:Transfer:token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+  "case_id": "group-5-raw-364429439422",
+  "entity_id": "solana-token-account:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+  "path_type": "Transfer",
+  "context_id": "token-transfer:124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+  "input_raw": "364429439422",
+  "invalid_control": false,
+  "fixture_sha256": "122fd13fb1ffda01d8117d1224497986a676d661e3d06aa5fd6e4e6105dcd727",
+  "captured_state_sha256": "43868644a34723bc1ad8cc0a0b09fb28ce0f561ab402fa7d673c2b6c63d2ebcd",
+  "capture_context": "CurrentFinalizedProduction",
+  "source_before_raw": "1457717757690",
+  "authority": {
+    "pubkey": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+    "authority_model": "WalletCompatible",
+    "on_curve": true,
+    "captured_runtime_owner": "11111111111111111111111111111111",
+    "captured_executable": false,
+    "signer_possession_known": false,
+    "signer_assumed_locally": true,
+    "wording": "original owner locally assumed to sign"
+  },
+  "status": "Succeeded",
+  "blocker": null,
+  "preconditions": [
+    {
+      "name": "Coherent final transfer batch, loader/ELF/Clock, actual compatible accounts and public transfer authority",
+      "proven": true,
+      "reason": "Verified raw RPC bytes, canonical token loader links, mint/owner/initialized/freeze/pause/hook/confidential/memo states and sufficient input"
+    }
+  ],
+  "assumptions": [
+    "Original owner locally assumed to sign; possession and authorization are unknown. Signature and recent-blockhash verification are disabled locally.",
+    "Actual deployed Token-2022 executes TransferChecked with captured epoch fees. Permanent delegate and active delegate remain unused; raw quantities exclude scaled display transforms.",
+    "Fresh existing LiteSVM 0.16 backend with pinned mainnet/default runtime profile and synthetic fee payer; not a full validator bank. No token account or token balance is fabricated.",
+    "Transfer is movement to a different actual observed recipient token account. No market sale, redemption, withdrawal, entitlement, or official successor transition is implied.",
+    "Independent reset at CurrentFinalizedProduction bank slot 448018550. No historical lifecycle bank is implied; no simultaneous venue capacity is measured."
+  ],
+  "vm_clock": {
+    "slot": 448018550,
+    "epoch_start_timestamp": 1789708003,
+    "epoch": 1037,
+    "leader_schedule_epoch": 1038,
+    "unix_timestamp": 1789717195
+  },
+  "message": {
+    "required_signatures": 2,
+    "readonly_signed_accounts": 1,
+    "readonly_unsigned_accounts": 3,
+    "account_keys": [
+      "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+      "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "ComputeBudget111111111111111111111111111111",
+      "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+    ],
+    "recent_blockhash": "11111111111111111111111111111111",
+    "instructions": [
+      {
+        "program_index": 4,
+        "account_indices": [],
+        "data": "02c05c1500"
+      },
+      {
+        "program_index": 6,
+        "account_indices": [
+          3,
+          5,
+          2,
+          1
+        ],
+        "data": "0cbef1afd95400000009"
+      }
+    ]
+  },
+  "account_evidence": [
+    {
+      "address": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+      "rpc_record": 3,
+      "pointer": "/value/0",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "raw_data_sha256": "c7b5bc50cd91d9f1c058f949f291186118a0e8fa6811128dff29aa4ab421238b"
+    },
+    {
+      "address": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "rpc_record": 3,
+      "pointer": "/value/1",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "11111111111111111111111111111111",
+      "raw_data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+      "rpc_record": 3,
+      "pointer": "/value/2",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+      "raw_data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1"
+    },
+    {
+      "address": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "rpc_record": 3,
+      "pointer": "/value/3",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "raw_data_sha256": "ded65e2330a7cdf848c48f74583c4dc9a468eaa074bd88b5116a1f902816405a"
+    },
+    {
+      "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "rpc_record": 3,
+      "pointer": "/value/4",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "raw_data_sha256": "5031771a84320c80236f4453c9b7d554446acc23490a9e1abffdd141cfada219"
+    },
+    {
+      "address": "SysvarC1ock11111111111111111111111111111111",
+      "rpc_record": 3,
+      "pointer": "/value/5",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+      "raw_data_sha256": "d526aeb90ccfab25676cc838244f45816e5939f9cfc87cbd42abdc8883e13478"
+    },
+    {
+      "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "rpc_record": 3,
+      "pointer": "/value/6",
+      "slot": 448018550,
+      "exists": true,
+      "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+      "raw_data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c"
+    }
+  ],
+  "local_accounts": [
+    {
+      "label": "local-fee-payer",
+      "address": "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+      "account": {
+        "lamports": "1000000000",
+        "owner": "11111111111111111111111111111111",
+        "data": "",
+        "executable": false,
+        "rent_epoch": 0
+      }
+    }
+  ],
+  "execution": {
+    "success": true,
+    "error": null,
+    "compute_units": 4622,
+    "transaction_fee_lamports": 10000,
+    "logs": [
+      "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+      "Program ComputeBudget111111111111111111111111111111 success",
+      "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [1]",
+      "Program log: Instruction: TransferChecked",
+      "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 4472 of 1399850 compute units",
+      "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success"
+    ],
+    "inner_instructions": [],
+    "post_accounts": {
+      "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az": {
+        "lamports": "2220240",
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "data": "05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5949aa0a07ae5d5ecc57c0ea8c0a626f7d586ee8e5465149a384ff27d3d2cc0cfd3021b156d540000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000207000000020008007ec29b6c000000000f000100001b000000",
+        "executable": false,
+        "rent_epoch": 18446744073709551615
+      },
+      "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV": {
+        "lamports": "2220240",
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "data": "05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5944e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbd3cd50f8dfe000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020700000002000800002c7307000000000f000100001b000000",
+        "executable": false,
+        "rent_epoch": 18446744073709551615
+      },
+      "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": {
+        "lamports": "1397830680",
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd34f58486f3070000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddd06c0000000000005003000000000000000000000000000000000804000000000000ffffffffffffffff320004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f48e8286a00000000000000000000144012004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5941a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa594100000005370616365582050726553746f636b73060000005350414345582a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f7370616365782e6a736f6e00000000",
+        "executable": false,
+        "rent_epoch": 18446744073709551615
+      }
+    }
+  },
+  "deltas": {
+    "input_debited_raw": "364429439422",
+    "output_received_raw": "362607292224",
+    "output_decimal_base_units": "362.607292224",
+    "token_accounts": [
+      {
+        "address": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before_raw": "1457717757690",
+        "after_raw": "1093288318268",
+        "change_raw": "-364429439422",
+        "change_decimal_base_units": "-364.429439422",
+        "withheld_fee_change_raw": "0"
+      },
+      {
+        "address": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before_raw": "60354",
+        "after_raw": "362607352578",
+        "change_raw": "362607292224",
+        "change_decimal_base_units": "362.607292224",
+        "withheld_fee_change_raw": "1822147198"
+      }
+    ],
+    "account_data": [
+      {
+        "address": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "before_sha256": "ded65e2330a7cdf848c48f74583c4dc9a468eaa074bd88b5116a1f902816405a",
+        "after_sha256": "793438e9f46c78d665398dfff2dffc1f1b6726e769e1e7361b835a8256d9ae65",
+        "changed_ranges": [
+          {
+            "offset": 64,
+            "before": "fac6bf665301",
+            "after": "3cd50f8dfe00"
+          }
+        ]
+      },
+      {
+        "address": "124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az",
+        "before_sha256": "c7b5bc50cd91d9f1c058f949f291186118a0e8fa6811128dff29aa4ab421238b",
+        "after_sha256": "3fa208cad7b0a574d09807e89f73cb6d24a3baa4eaec5fd65005337e42ac5960",
+        "changed_ranges": [
+          {
+            "offset": 64,
+            "before": "c2eb000000",
+            "after": "021b156d54"
+          },
+          {
+            "offset": 174,
+            "before": "00000000",
+            "after": "7ec29b6c"
+          }
+        ]
+      },
+      {
+        "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before_sha256": "5031771a84320c80236f4453c9b7d554446acc23490a9e1abffdd141cfada219",
+        "after_sha256": "5031771a84320c80236f4453c9b7d554446acc23490a9e1abffdd141cfada219",
+        "changed_ranges": []
+      }
+    ],
+    "fees": null,
+    "reconciled": true,
+    "reconciliation": [
+      "Actual Token-2022 transfer: source debit = destination public credit + destination withheld fee. Captured epoch 1037; independently calculated transfer fee 1822147198 raw. Mint unchanged; no DLMM event/bin/venue delta is applicable to Transfer.",
+      "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+    ]
+  },
+  "rollback_verified": null
+}

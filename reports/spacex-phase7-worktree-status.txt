@@ -1,0 +1,47 @@
+HEAD: 3787a697bbdd9ed08d87e5b63800724d4de2d55c
+Branch: main
+Staged paths: (none)
+
+ M AGENTS.md
+ M Cargo.lock
+ M README.md
+ M engine/Cargo.toml
+ M engine/src/executor.rs
+ M engine/src/lib.rs
+ M engine/src/main.rs
+ M engine/src/scenario.rs
+ M engine/tests/scenario.rs
+ M engine/tests/upgrade_diff.rs
+?? assets/
+?? docs/lifecycle-phase-2-discovery.md
+?? docs/lifecycle-phase-2-production-report.md
+?? docs/lifecycle-phase-3-exposure.md
+?? docs/lifecycle-phase-3-production-report.md
+?? docs/lifecycle-phase-4-consequence.md
+?? docs/lifecycle-phase-4-production-report.md
+?? docs/lifecycle-phase-5-exitability.md
+?? docs/lifecycle-phase-5-production-report.md
+?? docs/lifecycle-phase-6-coverage.md
+?? docs/lifecycle-phase-6-production-report.md
+?? docs/lifecycle-phase-7-expansion.md
+?? docs/lifecycle-phase-7-production-report.md
+?? engine/src/coverage/
+?? engine/src/expansion/
+?? engine/src/lifecycle/
+?? engine/src/probe/
+?? engine/tests/coverage_expansion.rs
+?? engine/tests/execution_probe.rs
+?? engine/tests/lifecycle_consequence.rs
+?? engine/tests/lifecycle_coverage.rs
+?? engine/tests/lifecycle_exposure.rs
+?? engine/tests/lifecycle_snapshot.rs
+?? evidence/
+?? fixtures/meteora-dlmm-layout.json
+?? fixtures/meteora-dlmm-spacex.json
+?? fixtures/spacex-dlmm-exit-baseline.json
+?? fixtures/token-2022-spacex-mint.json
+?? probes/
+?? reports/
+?? scenarios/
+?? scripts/test-phase7-mutations.py
+?? snapshots/

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "plan_sha256": "6758fbd4e3d99c44e726c638fe2bcbe514ce702957af6dfd121bc8d23cd4aade",
+  "measurement": "whole CLI child process via monotonic wall clock and Darwin getrusage(RUSAGE_CHILDREN); peak RSS is bytes; commands may overlap other validation work",
+  "commands": {
+    "plan": {
+      "elapsed_seconds": 211.54327379202005,
+      "platform": "darwin",
+      "exit_code": 0,
+      "max_rss_bytes": 724762624
+    },
+    "capture": {
+      "elapsed_seconds": 88.91244733298663,
+      "platform": "darwin",
+      "exit_code": 0,
+      "max_rss_bytes": 897007616
+    },
+    "execute": {
+      "elapsed_seconds": 125.85189266700763,
+      "platform": "darwin",
+      "exit_code": 0,
+      "max_rss_bytes": 681443328
+    },
+    "update": {
+      "elapsed_seconds": 135.67776329099433,
+      "platform": "darwin",
+      "exit_code": 0,
+      "max_rss_bytes": 618840064
+    },
+    "offline-execute": {
+      "elapsed_seconds": 147.7556146660063,
+      "platform": "darwin",
+      "exit_code": 0,
+      "max_rss_bytes": 781778944
+    },
+    "offline-update": {
+      "elapsed_seconds": 149.92264008300845,
+      "platform": "darwin",
+      "exit_code": 0,
+      "max_rss_bytes": 735641600
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "injected": 10,
+  "caught": 10,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/expansion/selector.rs": "75bd168dc5ed9e85a97a3f7db636ab373a8d9ab5ad4f62266897e220ebbe57ee",
+    "engine/src/expansion/pipeline.rs": "7340c5a09f83ca36e17d3d9a96c29d1cd6bdfd765ad28159579d534e7bdb4717"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Predict independent contexts by summing amounts",
+      "test": "predicted_independent_contexts_use_maxima",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/01.txt",
+      "log_sha256": "c070b1b62eb1c2405590a32fc42bb89bb23f1a4d11f6246bbea5686dccea4491"
+    },
+    {
+      "mutation": 2,
+      "fault": "Propagate representative evidence to class peers",
+      "test": "a_class_sample_never_proves_its_peers",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/02.txt",
+      "log_sha256": "43dd277a288fddac0f8f58880e7a9a4842891a90e51bfbd8b58182fe259463e5"
+    },
+    {
+      "mutation": 3,
+      "fault": "Inherit all same-brand venue evidence",
+      "test": "second_venue_has_no_brand_or_first_venue_inheritance",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/03.txt",
+      "log_sha256": "58180577fa3e5c4bb061627e50d2169f58dfd3fa07b5149af49cc57226d3a7e1"
+    },
+    {
+      "mutation": 4,
+      "fault": "Score unsupported candidates",
+      "test": "unsupported_and_invalid_cannot_be_scored",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/04.txt",
+      "log_sha256": "b7482c46e758dc8bf949e98010e593bae7f72c97da1812a73080fb8b94014912"
+    },
+    {
+      "mutation": 5,
+      "fault": "Rewrite expected gains from measured results",
+      "test": "execution_never_rewrites_expected_selection_gains",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/05.txt",
+      "log_sha256": "872276f3266f69af7664216261faa77ca2b52c86af1fd8179388bf2071a649d8"
+    },
+    {
+      "mutation": 6,
+      "fault": "Conflate entity and authority counts",
+      "test": "distinct_accounts_with_one_authority_stay_distinct",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/06.txt",
+      "log_sha256": "a14c54017019d1930d1261824f98dd3ab3a61ca943aeca6539427840e37d3592"
+    },
+    {
+      "mutation": 7,
+      "fault": "Allow failed probes to gain assurance",
+      "test": "failed_indeterminate_unsupported_and_controls_gain_nothing",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/07.txt",
+      "log_sha256": "416ee737dee3755d3fb552cb572c8941e38bf7600fe1071dc589b2d337589719"
+    },
+    {
+      "mutation": 8,
+      "fault": "Sum independent executions as capacity",
+      "test": "independent_swaps_are_maxima_never_summed_capacity",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/08.txt",
+      "log_sha256": "faebeb88bfa066b96e338d862e4f1bc271aec9a9f2b86e030408102c2cbbc3aa"
+    },
+    {
+      "mutation": 9,
+      "fault": "Label current capture as a historical bank",
+      "test": "current_capture_cannot_be_labeled_a_historical_bank",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/09.txt",
+      "log_sha256": "2c799f39ad4dc2523d54e33da3d2343419a5d5476956c362a3ac6655f303eb97"
+    },
+    {
+      "mutation": 10,
+      "fault": "Inherit swap and transfer into official transition",
+      "test": "official_transition_and_redemption_cannot_inherit_swap_or_transfer",
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "log_file": "phase7-mutations/10.txt",
+      "log_sha256": "d48a5bc86a79829de66f00667afa4de5cc3e678edf8837a1448b8618599b842f"
+    }
+  ]
+}
