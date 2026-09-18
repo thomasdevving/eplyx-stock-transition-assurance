@@ -1,0 +1,138 @@
+{
+  "checksum_files": [
+    "policies/stocklana-spacex-preflight-v1.sha256",
+    "probes/phase7-captures/capture-manifest.sha256",
+    "probes/spacex-dlmm-position.sha256",
+    "probes/spacex-lifecycle-coverage-plan.sha256",
+    "probes/spacex-lifecycle-expansion-plan.sha256",
+    "probes/spacex-lifecycle-path-discovery-phase9.sha256",
+    "probes/spacex-lifecycle-path-discovery.sha256",
+    "probes/spacex-official-transition-research.sha256",
+    "probes/spacex-phase7-before.sha256",
+    "probes/spacex-phase7-selector-config.sha256",
+    "probes/spacex-phase7-venues-verified.sha256",
+    "probes/spacex-phase8-evidence-bundle.sha256",
+    "probes/spacex-readiness-evidence.sha256",
+    "probes/spacex-usdc-dlmm-exit.sha256",
+    "probes/spacex-usdc-dlmm-fixture.sha256",
+    "reports/phase7-evidence/execution-index.sha256",
+    "reports/spacex-dlmm-withdrawal.sha256",
+    "reports/spacex-expired-impact.json.sha256",
+    "reports/spacex-lifecycle-coverage-phase7.sha256",
+    "reports/spacex-lifecycle-coverage.sha256",
+    "reports/spacex-lifecycle-path-resolution-phase9.sha256",
+    "reports/spacex-lifecycle-path-resolution.sha256",
+    "reports/spacex-lifecycle-path-resolution.txt.sha256",
+    "reports/spacex-lifecycle-readiness.sha256",
+    "reports/spacex-lifecycle-readiness.txt.sha256",
+    "reports/spacex-lifecycle-state-shape-comparison.sha256",
+    "reports/spacex-official-transition-candidates.sha256",
+    "reports/spacex-official-transition-search.sha256",
+    "reports/spacex-official-transition.sha256",
+    "reports/spacex-phase10-artifacts.sha256",
+    "reports/spacex-phase10-mutation-results.sha256",
+    "reports/spacex-phase10-validation.sha256",
+    "reports/spacex-phase11-artifacts.sha256",
+    "reports/spacex-phase11-mutation-results-verified.sha256",
+    "reports/spacex-phase11-validation.json.sha256",
+    "reports/spacex-phase7-artifacts.sha256",
+    "reports/spacex-phase7-mutation-results.sha256",
+    "reports/spacex-phase7-performance.sha256",
+    "reports/spacex-phase7-validation.sha256",
+    "reports/spacex-phase8-artifacts.sha256",
+    "reports/spacex-phase8-mutation-results.sha256",
+    "reports/spacex-phase8-validation.sha256",
+    "reports/spacex-phase9-artifacts.sha256",
+    "reports/spacex-phase9-mutation-results.sha256",
+    "reports/spacex-phase9-validation.sha256",
+    "reports/spacex-successor-mint-verification.sha256",
+    "reports/spacex-transition-impact.json.sha256",
+    "reports/spacex-usdc-dlmm-exit-result.sha256",
+    "snapshots/spacex-exposure.sha256",
+    "snapshots/spacex.sha256"
+  ],
+  "matching_entries": 302,
+  "allowed_shared_entries": [
+    {
+      "manifest": "reports/spacex-phase10-artifacts.sha256",
+      "file": "AGENTS.md"
+    },
+    {
+      "manifest": "reports/spacex-phase10-artifacts.sha256",
+      "file": "README.md"
+    },
+    {
+      "manifest": "reports/spacex-phase10-artifacts.sha256",
+      "file": "engine/src/lib.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase10-artifacts.sha256",
+      "file": "engine/src/main.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase11-artifacts.sha256",
+      "file": "AGENTS.md"
+    },
+    {
+      "manifest": "reports/spacex-phase11-artifacts.sha256",
+      "file": "README.md"
+    },
+    {
+      "manifest": "reports/spacex-phase11-artifacts.sha256",
+      "file": "engine/src/lib.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase11-artifacts.sha256",
+      "file": "engine/src/main.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase7-artifacts.sha256",
+      "file": "AGENTS.md"
+    },
+    {
+      "manifest": "reports/spacex-phase7-artifacts.sha256",
+      "file": "README.md"
+    },
+    {
+      "manifest": "reports/spacex-phase7-artifacts.sha256",
+      "file": "engine/src/lib.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase7-artifacts.sha256",
+      "file": "engine/src/main.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase8-artifacts.sha256",
+      "file": "AGENTS.md"
+    },
+    {
+      "manifest": "reports/spacex-phase8-artifacts.sha256",
+      "file": "README.md"
+    },
+    {
+      "manifest": "reports/spacex-phase8-artifacts.sha256",
+      "file": "engine/src/lib.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase8-artifacts.sha256",
+      "file": "engine/src/main.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase9-artifacts.sha256",
+      "file": "AGENTS.md"
+    },
+    {
+      "manifest": "reports/spacex-phase9-artifacts.sha256",
+      "file": "README.md"
+    },
+    {
+      "manifest": "reports/spacex-phase9-artifacts.sha256",
+      "file": "engine/src/lib.rs"
+    },
+    {
+      "manifest": "reports/spacex-phase9-artifacts.sha256",
+      "file": "engine/src/main.rs"
+    }
+  ],
+  "unexpected": []
+}

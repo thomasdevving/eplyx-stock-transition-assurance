@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "id": "stocklana-spacex-ingested-demo-v1",
+  "effective_at": "2026-09-17T20:00:00Z",
+  "evaluate_at": "2026-09-17T20:00:00Z",
+  "before": "Active",
+  "deadline_interpretation": "ExclusiveStartOfMinute",
+  "expiry_interpretation": "NoIssuerEntitlement",
+  "not_issuer_policy": true,
+  "description": "Demo effective/evaluation boundary and conservative deadline interpretation; not the actual IPO time, legal value or issuer execution mechanism."
+}

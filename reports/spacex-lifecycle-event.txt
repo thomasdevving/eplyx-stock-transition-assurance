@@ -1,0 +1,11 @@
+LIFECYCLE EVENT INGESTED
+Issuer: PreStocks
+Asset: SpaceX PreStocks
+Event: Successor transition
+Successor reference: SPCXx or any other token
+Deadline wording: 11:59pm UTC on 12 March 2027
+Normalized exclusive minute cutoff: 2027-03-12T23:59:00Z
+Source: https://prestocks.com/spacex
+Source identity: Verified; successor identity: Verified
+Official execution mechanism: Unknown; execution status: NotTested
+No issuer fact establishes signing access, conversion execution or readiness.

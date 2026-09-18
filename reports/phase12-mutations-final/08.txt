@@ -1,0 +1,25 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.85s
+     Running tests/lifecycle_notice.rs (target/debug/deps/lifecycle_notice-135c98c9a826329b)
+
+running 1 test
+test notice_cannot_bypass_existing_readiness_requirements has been running for over 60 seconds
+test notice_cannot_bypass_existing_readiness_requirements ... FAILED
+
+failures:
+
+---- notice_cannot_bypass_existing_readiness_requirements stdout ----
+
+thread 'notice_cannot_bypass_existing_readiness_requirements' (7853633) panicked at engine/tests/lifecycle_notice.rs:22:5:
+assertion `left == right` failed: notice cannot bypass unchanged official/complete-exit/population requirements
+  left: Ready
+ right: Incomplete
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    notice_cannot_bypass_existing_readiness_requirements
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 1 filtered out; finished in 94.03s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test lifecycle_notice`

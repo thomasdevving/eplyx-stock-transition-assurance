@@ -1,0 +1,457 @@
+{
+  "schema_version": 1,
+  "event_id": "issuer-successor-transition-3987e16a59ee8813",
+  "adapter_version": "prestocks-rendered-notice-v1",
+  "source_url": "https://prestocks.com/spacex",
+  "source_content_sha256": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+  "captured_document_sha256": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+  "field_provenance": {
+    "/adapter_version": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+          "pointer": "/source_type",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/captured_document_sha256": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+          "pointer": "",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/event_id": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+          "pointer": "/content_sha256",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/schema_version": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+          "pointer": "/schema_version",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/source_content_sha256": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+          "pointer": "/content_sha256",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/source_identity": {
+      "classifications": [
+        "Derived",
+        "OnChainVerified"
+      ],
+      "provenance": [
+        {
+          "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+          "pointer": "/records/4/response/result/value/39",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/source_url": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "6ae746d91f052bdb472f79f410a53ca5353692060d0424b82b023d7f2b88b4dd",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/successor_identity": {
+      "classifications": [
+        "Derived",
+        "OnChainVerified"
+      ],
+      "provenance": [
+        {
+          "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+          "pointer": "/records/4/response/result/value/47",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    }
+  },
+  "issuer": {
+    "value": "PreStocks",
+    "classifications": [
+      "IssuerAsserted"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/80845/80854",
+        "byte_range": [
+          80845,
+          80854
+        ],
+        "exact_text": "PreStocks"
+      }
+    ]
+  },
+  "event_type": {
+    "value": "SuccessorTransition",
+    "classifications": [
+      "Derived"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "source_asset": {
+    "name": {
+      "value": "SpaceX PreStocks",
+      "classifications": [
+        "IssuerAsserted"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27269/28083",
+          "byte_range": [
+            27269,
+            28083
+          ],
+          "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+        }
+      ]
+    },
+    "symbol": {
+      "value": null,
+      "classifications": [
+        "Unknown"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27269/28083",
+          "byte_range": [
+            27269,
+            28083
+          ],
+          "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+        }
+      ]
+    },
+    "issuer_asserted_mint": {
+      "value": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "classifications": [
+        "IssuerAsserted",
+        "OnChainVerified"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/11599/11667",
+          "byte_range": [
+            11599,
+            11667
+          ],
+          "exact_text": "https://solscan.io/token/PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+        },
+        {
+          "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+          "pointer": "/records/4/response/result/value/39",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    }
+  },
+  "successor_asset": {
+    "name": {
+      "value": null,
+      "classifications": [
+        "Unknown"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27269/28083",
+          "byte_range": [
+            27269,
+            28083
+          ],
+          "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+        }
+      ]
+    },
+    "symbol": {
+      "value": "SPCXx",
+      "classifications": [
+        "IssuerAsserted"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27487/27493",
+          "byte_range": [
+            27487,
+            27493
+          ],
+          "exact_text": "$SPCXx"
+        }
+      ]
+    },
+    "issuer_asserted_mint": {
+      "value": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "classifications": [
+        "IssuerAsserted",
+        "OnChainVerified"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27331/27399",
+          "byte_range": [
+            27331,
+            27399
+          ],
+          "exact_text": "https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+        },
+        {
+          "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+          "pointer": "/records/4/response/result/value/47",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    }
+  },
+  "effective_at": {
+    "value": null,
+    "classifications": [
+      "Unknown"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "deadline": {
+    "value": "2027-03-12T23:59:00Z",
+    "classifications": [
+      "IssuerAsserted"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "deadline_wording": {
+    "value": "11:59pm UTC on 12 March 2027",
+    "classifications": [
+      "IssuerAsserted"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "alternate_destination": {
+    "value": "any other token",
+    "classifications": [
+      "IssuerAsserted"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "conversion_ratio": {
+    "value": null,
+    "classifications": [
+      "Unknown"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "official_mechanism": {
+    "value": "Unknown",
+    "classifications": [
+      "Unknown"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "official_execution_status": {
+    "value": "NotTested",
+    "classifications": [
+      "Unknown"
+    ],
+    "provenance": [
+      {
+        "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+        "pointer": "/raw_content/utf8-bytes/27269/28083",
+        "byte_range": [
+          27269,
+          28083
+        ],
+        "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+      }
+    ]
+  },
+  "issuer_assertions": {
+    "public_listing": {
+      "value": "⚠️ SpaceX has gone public!",
+      "classifications": [
+        "IssuerAsserted"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27212/27242",
+          "byte_range": [
+            27212,
+            27242
+          ],
+          "exact_text": "⚠️ SpaceX has gone public!"
+        }
+      ]
+    },
+    "transition_and_expiry": {
+      "value": "SpaceX PreStocks tokens must be swapped into $SPCXx or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless. Learn more",
+      "classifications": [
+        "IssuerAsserted"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27269/28083",
+          "byte_range": [
+            27269,
+            28083
+          ],
+          "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+        }
+      ]
+    }
+  },
+  "source_identity": {
+    "asserted_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "observed_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "status": "Verified",
+    "slot": 448067723,
+    "observed_name": "SpaceX PreStocks",
+    "observed_symbol": "SPACEX",
+    "provenance": [
+      {
+        "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+        "pointer": "/records/4/response/result/value/39",
+        "byte_range": null,
+        "exact_text": null
+      }
+    ]
+  },
+  "successor_identity": {
+    "asserted_mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+    "observed_mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+    "status": "Verified",
+    "slot": 448067723,
+    "observed_name": "SpaceX xStock",
+    "observed_symbol": "SPCXx",
+    "provenance": [
+      {
+        "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+        "pointer": "/records/4/response/result/value/47",
+        "byte_range": null,
+        "exact_text": null
+      }
+    ]
+  }
+}

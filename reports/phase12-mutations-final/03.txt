@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.65s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test notice::tests::demo_time_never_becomes_issuer_assertion ... FAILED
+
+failures:
+
+---- notice::tests::demo_time_never_becomes_issuer_assertion stdout ----
+
+thread 'notice::tests::demo_time_never_becomes_issuer_assertion' (7849986) panicked at engine/src/notice/tests.rs:142:5:
+assertion `left == right` failed: hypothetical boundary must remain demo configuration
+  left: [IssuerAsserted]
+ right: [DemoConfigured]
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    notice::tests::demo_time_never_becomes_issuer_assertion
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 155 filtered out; finished in 11.57s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

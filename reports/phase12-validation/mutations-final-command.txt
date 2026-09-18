@@ -1,0 +1,8 @@
+1/8 notice::tests::missing_chain_artifact_cannot_grant_identity: caught
+2/8 notice::tests::issuer_wording_never_proves_official_transition: caught
+3/8 notice::tests::demo_time_never_becomes_issuer_assertion: caught
+4/8 notice::tests::source_digest_mismatch_is_rejected: caught
+5/8 notice::tests::altered_deadline_without_regeneration_is_rejected: caught
+6/8 notice::tests::unrelated_data_never_infers_conversion_ratio: caught
+7/8 notice::tests::unknown_mechanism_stays_unknown: caught
+8/8 notice_cannot_bypass_existing_readiness_requirements: caught

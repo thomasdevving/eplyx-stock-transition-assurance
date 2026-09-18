@@ -1,0 +1,16 @@
+1/8 notice::tests::missing_chain_artifact_cannot_grant_identity: NOT caught
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+error[E0382]: borrow of partially moved value: `e`
+   --> engine/src/notice/tests.rs:287:60
+    |
+285 |     changed.policy.successor.as_mut().unwrap().mint = e.source_asset.issuer_asserted_mint.value;
+    |                                                       ----------------------------------------- value partially moved here
+286 |     assert!(
+287 |         workflow::check_compatibility(&original, &changed, &e).is_err(),
+    |                                                            ^^ value borrowed here after partial move
+    |
+    = note: partial move occurs because `e.source_asset.issuer_asserted_mint.value` has type `std::string::String`, which does not implement the `Copy` trait
+
+For more information about this error, try `rustc --explain E0382`.
+error: could not compile `eplyx-lifecycle-impact` (lib test) due to 1 previous error
+

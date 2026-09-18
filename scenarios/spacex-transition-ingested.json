@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "scenario_type": "lifecycle_change",
+  "id": "stocklana-spacex-ingested-demo-v1",
+  "scenario_version": "1.0.0",
+  "captured_at": "2026-09-17T20:00:13Z",
+  "change": {
+    "description": "Apply captured issuer successor-transition assertions with an explicit demo boundary, minute-precision cutoff and issuer-policy expiration interpretation; no executable conversion is inferred."
+  },
+  "policy": {
+    "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "effective_at": "2026-09-17T20:00:00Z",
+    "before": "Active",
+    "after": "TransitionRequired",
+    "deadline": {
+      "at": "2027-03-12T23:59:00Z",
+      "after": "NoIssuerEntitlement"
+    },
+    "successor": {
+      "mint": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "description": "Issuer-linked successor identity independently matched to captured initialized mint state; no conversion mechanics or entitlement implied."
+    }
+  },
+  "sources": [
+    {
+      "id": "captured-issuer-notice",
+      "kind": "ExternalPolicy",
+      "reference": "https://prestocks.com/spacex",
+      "description": "Issuer transition and deadline wording; also allows any other token. Assertions do not prove an IPO, legal worthlessness or execution.",
+      "captured_at": "2026-09-17T20:00:13Z",
+      "supports": [
+        "/policy/after",
+        "/policy/deadline",
+        "/policy/successor"
+      ],
+      "artifact": "../evidence/lifecycle/prestocks-spacex-2026-09-17.html",
+      "content_sha256": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82"
+    },
+    {
+      "id": "explicit-demo-evaluation",
+      "kind": "ScenarioAssumption",
+      "reference": "config:stocklana-spacex-ingested-demo-v1",
+      "description": "Demo effective/evaluation boundary and conservative deadline interpretation; not the actual IPO time, legal value or issuer execution mechanism.",
+      "captured_at": "2026-09-17T20:00:13Z",
+      "supports": [
+        "/policy/effective_at",
+        "/policy/before",
+        "/policy/deadline"
+      ],
+      "artifact": "../scenarios/spacex-demo-evaluation.json",
+      "content_sha256": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "injected": 1,
+  "caught": 0,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/notice/mod.rs": "155d020b4b099d4f954d01cf804d3d9c20419fb3ceb80d4d97794613bc450775",
+    "engine/src/notice/prestocks.rs": "98c735546d6bcb88414fcff346851c1b05182b6531ac74ab90940fd5e183bbe5",
+    "engine/src/notice/workflow.rs": "bdc334ad6262d1de631001a27fdd06f118408647fee7ed94f8b299a605774253"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Trust successor address/metadata without raw on-chain verification",
+      "test": "notice::tests::missing_chain_artifact_cannot_grant_identity",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::missing_chain_artifact_cannot_grant_identity",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": false,
+      "mutated_source_sha256": "332c25eeedf6117ac9a053be4f8fb6d490ee239a92a5da4b80b66608d5969ab5",
+      "log_file": "phase12-mutations-verified/01.txt",
+      "log_sha256": "53aef4be1a0a6a2da9ffcbec3843e9fb163f20aff1d61edf14e1472b05fc8755"
+    }
+  ]
+}

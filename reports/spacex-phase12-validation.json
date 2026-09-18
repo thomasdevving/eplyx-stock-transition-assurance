@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "phase": 12,
+  "branch": "main",
+  "commands": [
+    {
+      "command": "make test",
+      "exit_code": 0,
+      "passed": 313,
+      "failed": 0,
+      "ignored": 0,
+      "log": "reports/phase12-validation/make-test.txt"
+    },
+    {
+      "command": "make fmt-check",
+      "exit_code": 0,
+      "log": "reports/phase12-validation/make-fmt-check-final.txt"
+    },
+    {
+      "command": "make lint",
+      "exit_code": 0,
+      "log": "reports/phase12-validation/make-lint-final.txt"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "log": "reports/phase12-validation/git-diff-check.txt"
+    },
+    {
+      "command": "python3 scripts/test-phase12-mutations.py --suffix final",
+      "exit_code": 0,
+      "log": "reports/phase12-validation/mutations-final-command.txt"
+    },
+    {
+      "command": "cargo build --locked -q -p eplyx-lifecycle-impact",
+      "exit_code": 0,
+      "log": "reports/phase12-validation/restore-final-build.txt"
+    }
+  ],
+  "final_mutation_record": {
+    "file": "reports/spacex-phase12-mutation-results-final.json",
+    "sha256": "ac74ab53e2cf11bbe304e00cc6ee3037cd80775413286b50d4318f40d890607f",
+    "caught_by_named_assertions": 8,
+    "compiler_failures_counted": 0,
+    "source_restored": true
+  },
+  "source_sha256": {
+    "engine/src/lib.rs": "9c339b4286e643dbef267255ace48491017aa4df25cded3203ae35ae8e404c3f",
+    "engine/src/main.rs": "0f0fe6ca910fc42d287c85454eb6808abddc03ff672daf97743e1a2e3f1371bd",
+    "engine/src/notice/mod.rs": "155d020b4b099d4f954d01cf804d3d9c20419fb3ceb80d4d97794613bc450775",
+    "engine/src/notice/prestocks.rs": "98c735546d6bcb88414fcff346851c1b05182b6531ac74ab90940fd5e183bbe5",
+    "engine/src/notice/tests.rs": "186a1977aa8a1c45b4220c94e9b7d7d6dcc62f34ea4d2145c7c73ad730adc893",
+    "engine/src/notice/workflow.rs": "bdc334ad6262d1de631001a27fdd06f118408647fee7ed94f8b299a605774253",
+    "engine/tests/lifecycle_notice.rs": "1c2580c782365845730efe2c7cc5e04eda5c4fcc1b2ba6ec95cab8a4ebf0ba5c",
+    "scripts/test-phase12-mutations.py": "74a9518723e1745581b73d080d12c164b7f2830039db82a071de656dad6c8e79"
+  },
+  "artifact_sha256": {
+    "evidence/lifecycle/phase12/captured-issuer-notice.json": "7ae96b029e825db09189e94895e07a93bbc5d21fd20423a7d8413cbe2d53193f",
+    "probes/spacex-notice-workflow.json": "4b0c76e4fc9bd5cf0641ffbba73dcf39d3b6d8c234184939633628cd9e13f7f3",
+    "reports/spacex-lifecycle-event.json": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+    "reports/spacex-notice-path-resolution.json": "f4c2f99c07fed9b2ca4bd88c60767a5fe2c690daa5c4333b008a31b20608068f",
+    "reports/spacex-notice-preflight.json": "053a47d6da73ab3009fa09b09e389908bc2f49e0558a086211aa9e119b91890e",
+    "reports/spacex-notice-readiness.json": "fb2b093170d5b4c85461c2d83b4d99569b2d80d9f6b62c3783bbfd2a843a4953",
+    "reports/spacex-notice-scenario-binding.json": "71cd214301284000cd9d16d49183eb9cdeb5dca67e8c86b9694fa4a985b19705",
+    "reports/spacex-notice-transition-impact.json": "d4ca7245e30f5a59dada7eae1ce503cdea718a17101befb12a262fe42a894a25",
+    "reports/spacex-phase12-mutation-results-final.json": "ac74ab53e2cf11bbe304e00cc6ee3037cd80775413286b50d4318f40d890607f",
+    "reports/spacex-phase12-mutation-results-verified.json": "4e9e21a6d12980fc3773344a8d9168d8f397e1e3e15aadf9febd7efb2a45d172",
+    "reports/spacex-phase12-mutation-results.json": "009f8e55abe369ee10aa17d7f79b61574a3db78b73bfa3ca9b6dab2a0cb28f91",
+    "scenarios/spacex-demo-evaluation.json": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+    "scenarios/spacex-transition-ingested.json": "bcf333bff6d3d116aff97003887857a5164a26dd427ab00a6c21b8de0a83a534"
+  },
+  "production_report": {
+    "file": "docs/lifecycle-phase-12-production-report.md",
+    "sha256": "c01a0abb9c2bc62b7da72f22662a17d222f1e476155a9867f774b5f44993f13a"
+  },
+  "logs_sha256": {
+    "reports/phase12-validation/compatibility-regression.txt": "6dfba7b193f297c37cf3ceccf74f817e46d14ec1e7e1ac6b52c7b76d9c9dabcd",
+    "reports/phase12-validation/focused-integration.txt": "4eb8f17bb2234b1092c99b9856ebe28601dd9b1f73f9c14db97b8c73fe274022",
+    "reports/phase12-validation/focused-unit.txt": "9401b2a5832b993bba18501bb62b1cd199a36a7de46946ccf590cdf544e03347",
+    "reports/phase12-validation/git-diff-check.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "reports/phase12-validation/historical-checksums.json": "7caee3c6aa24b268f9668a5c48a4d0b5289512b15c386dadf5e7448e6e853d7d",
+    "reports/phase12-validation/make-fmt-check-final.txt": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239",
+    "reports/phase12-validation/make-fmt-check.txt": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239",
+    "reports/phase12-validation/make-lint-final.txt": "ac5efc4c4ab06883c8fc67dc5246532298da19b0db155e978588fbf22d0b676b",
+    "reports/phase12-validation/make-lint.txt": "f0c62bce40f902479347899339a15764989e39b0b9d329a854762a9a452dfa68",
+    "reports/phase12-validation/make-test.txt": "ada9227a425ed8841f4715bf9f337c6180a1df822fe833b41e4c4ed4aab88cf9",
+    "reports/phase12-validation/mutations-command.txt": "fc9d943ccddeefe036e2b9da731c06fda23c20e05ef04a2e801cc1358ed0c02d",
+    "reports/phase12-validation/mutations-final-command.txt": "fc9d943ccddeefe036e2b9da731c06fda23c20e05ef04a2e801cc1358ed0c02d",
+    "reports/phase12-validation/mutations-verified-command.txt": "7cbe1f3de71f4598fc554ad77731291aff4cbc8e24fa86669e5abb1440c32f7f",
+    "reports/phase12-validation/notice-replay.json": "bff3730ce4cf58fcf279a0124c13c12ba96d40dd5b34cde5fcf74a548e94bfdc",
+    "reports/phase12-validation/restore-final-build.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "replay": {
+    "schema_version": 1,
+    "command": [
+      "target/debug/eplyx-lifecycle",
+      "preflight-from-notice",
+      "--workflow",
+      "probes/spacex-notice-workflow.json",
+      "--event",
+      "reports/spacex-lifecycle-event.json",
+      "--scenario",
+      "scenarios/spacex-transition-ingested.json",
+      "--binding",
+      "reports/spacex-notice-scenario-binding.json",
+      "--out",
+      "/private/tmp/phase12-final-replay.json",
+      "--out-impact",
+      "/private/tmp/phase12-final-impact.json",
+      "--out-resolution",
+      "/private/tmp/phase12-final-resolution.json",
+      "--out-readiness",
+      "/private/tmp/phase12-final-readiness.json"
+    ],
+    "exit_code": 4,
+    "evaluated_decision": "Incomplete",
+    "results": [
+      {
+        "artifact": "reports/spacex-notice-preflight.json",
+        "replay": "/private/tmp/phase12-final-replay.json",
+        "bytes": 239403,
+        "sha256": "053a47d6da73ab3009fa09b09e389908bc2f49e0558a086211aa9e119b91890e",
+        "byte_identical": true
+      },
+      {
+        "artifact": "reports/spacex-notice-transition-impact.json",
+        "replay": "/private/tmp/phase12-final-impact.json",
+        "bytes": 50531807,
+        "sha256": "d4ca7245e30f5a59dada7eae1ce503cdea718a17101befb12a262fe42a894a25",
+        "byte_identical": true
+      },
+      {
+        "artifact": "reports/spacex-notice-path-resolution.json",
+        "replay": "/private/tmp/phase12-final-resolution.json",
+        "bytes": 49888,
+        "sha256": "f4c2f99c07fed9b2ca4bd88c60767a5fe2c690daa5c4333b008a31b20608068f",
+        "byte_identical": true
+      },
+      {
+        "artifact": "reports/spacex-notice-readiness.json",
+        "replay": "/private/tmp/phase12-final-readiness.json",
+        "bytes": 161334,
+        "sha256": "fb2b093170d5b4c85461c2d83b4d99569b2d80d9f6b62c3783bbfd2a843a4953",
+        "byte_identical": true
+      }
+    ],
+    "original_phase11_readiness_byte_identical": true,
+    "actual_text_stdout": "reports/spacex-notice-preflight.txt"
+  },
+  "historical_integrity": {
+    "checksum_files": 50,
+    "matching_entries": 302,
+    "allowed_shared_entries": 20,
+    "unexpected_changes": 0
+  },
+  "production_decision": "Incomplete",
+  "official_transition": "NotTested",
+  "official_mechanism": "Unknown",
+  "new_capture_or_probe_campaign": false,
+  "notice_workflow_calls_rpc_http_or_executor": false,
+  "development_mutation_evidence_excluded": [
+    "reports/spacex-phase12-mutation-results.json",
+    "reports/spacex-phase12-mutation-results-verified.json"
+  ]
+}

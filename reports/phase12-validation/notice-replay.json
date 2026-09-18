@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "command": [
+    "target/debug/eplyx-lifecycle",
+    "preflight-from-notice",
+    "--workflow",
+    "probes/spacex-notice-workflow.json",
+    "--event",
+    "reports/spacex-lifecycle-event.json",
+    "--scenario",
+    "scenarios/spacex-transition-ingested.json",
+    "--binding",
+    "reports/spacex-notice-scenario-binding.json",
+    "--out",
+    "/private/tmp/phase12-final-replay.json",
+    "--out-impact",
+    "/private/tmp/phase12-final-impact.json",
+    "--out-resolution",
+    "/private/tmp/phase12-final-resolution.json",
+    "--out-readiness",
+    "/private/tmp/phase12-final-readiness.json"
+  ],
+  "exit_code": 4,
+  "evaluated_decision": "Incomplete",
+  "results": [
+    {
+      "artifact": "reports/spacex-notice-preflight.json",
+      "replay": "/private/tmp/phase12-final-replay.json",
+      "bytes": 239403,
+      "sha256": "053a47d6da73ab3009fa09b09e389908bc2f49e0558a086211aa9e119b91890e",
+      "byte_identical": true
+    },
+    {
+      "artifact": "reports/spacex-notice-transition-impact.json",
+      "replay": "/private/tmp/phase12-final-impact.json",
+      "bytes": 50531807,
+      "sha256": "d4ca7245e30f5a59dada7eae1ce503cdea718a17101befb12a262fe42a894a25",
+      "byte_identical": true
+    },
+    {
+      "artifact": "reports/spacex-notice-path-resolution.json",
+      "replay": "/private/tmp/phase12-final-resolution.json",
+      "bytes": 49888,
+      "sha256": "f4c2f99c07fed9b2ca4bd88c60767a5fe2c690daa5c4333b008a31b20608068f",
+      "byte_identical": true
+    },
+    {
+      "artifact": "reports/spacex-notice-readiness.json",
+      "replay": "/private/tmp/phase12-final-readiness.json",
+      "bytes": 161334,
+      "sha256": "fb2b093170d5b4c85461c2d83b4d99569b2d80d9f6b62c3783bbfd2a843a4953",
+      "byte_identical": true
+    }
+  ],
+  "original_phase11_readiness_byte_identical": true,
+  "actual_text_stdout": "reports/spacex-notice-preflight.txt"
+}

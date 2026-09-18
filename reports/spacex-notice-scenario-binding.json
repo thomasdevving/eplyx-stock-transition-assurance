@@ -1,0 +1,498 @@
+{
+  "schema_version": 1,
+  "event_sha256": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+  "config_sha256": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+  "scenario_sha256": "bcf333bff6d3d116aff97003887857a5164a26dd427ab00a6c21b8de0a83a534",
+  "fields": {
+    "/captured_at": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/captured_document_sha256",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/change/description": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/issuer_assertions",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/id": {
+      "classifications": [
+        "DemoConfigured"
+      ],
+      "provenance": [
+        {
+          "source_digest": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+          "pointer": "/id",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/after": {
+      "classifications": [
+        "IssuerAsserted",
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27269/28083",
+          "byte_range": [
+            27269,
+            28083
+          ],
+          "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+        }
+      ]
+    },
+    "/policy/asset_mint": {
+      "classifications": [
+        "IssuerAsserted",
+        "OnChainVerified"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/11599/11667",
+          "byte_range": [
+            11599,
+            11667
+          ],
+          "exact_text": "https://solscan.io/token/PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+        },
+        {
+          "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+          "pointer": "/records/4/response/result/value/39",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/before": {
+      "classifications": [
+        "DemoConfigured"
+      ],
+      "provenance": [
+        {
+          "source_digest": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+          "pointer": "/before",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/deadline/after": {
+      "classifications": [
+        "DemoConfigured"
+      ],
+      "provenance": [
+        {
+          "source_digest": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+          "pointer": "/expiry_interpretation",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/deadline/at": {
+      "classifications": [
+        "IssuerAsserted",
+        "Derived",
+        "DemoConfigured"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27269/28083",
+          "byte_range": [
+            27269,
+            28083
+          ],
+          "exact_text": "SpaceX PreStocks tokens must be swapped into<!-- --> <a href=\"https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"border-b border-current font-medium\">$SPCXx</a> <!-- -->or any other token before 11:59pm UTC on 12 March 2027, or they will expire worthless.<!-- --> <a href=\"https://x.com/PreStocks/status/2063623768535363940\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"inline-flex items-center gap-0.5 border-b border-current font-medium leading-none\">Learn more<svg stroke=\"currentColor\" fill=\"none\" stroke-width=\"2\" viewBox=\"0 0 24 24\" stroke-linecap=\"round\" stroke-linejoin=\"round\" height=\"12\" width=\"12\" xmlns=\"http://www.w3.org/2000/svg\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>"
+        },
+        {
+          "source_digest": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+          "pointer": "/deadline_interpretation",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/effective_at": {
+      "classifications": [
+        "DemoConfigured"
+      ],
+      "provenance": [
+        {
+          "source_digest": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e",
+          "pointer": "/effective_at",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/successor/description": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/successor_identity",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/policy/successor/mint": {
+      "classifications": [
+        "IssuerAsserted",
+        "OnChainVerified"
+      ],
+      "provenance": [
+        {
+          "source_digest": "3987e16a59ee881339038d284d0eebd60c51172670b6e030d6cffb9aa4a0ad82",
+          "pointer": "/raw_content/utf8-bytes/27331/27399",
+          "byte_range": [
+            27331,
+            27399
+          ],
+          "exact_text": "https://solscan.io/token/Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8"
+        },
+        {
+          "source_digest": "ab4d10bbcd1df05d6461d23031aea507e8bc0eda236e316415c9a92b45d9684b",
+          "pointer": "/records/4/response/result/value/47",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/scenario_type": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/event_type",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/scenario_version": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/adapter_version",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/schema_version": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/schema_version",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/artifact": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/captured_at": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/content_sha256": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/description": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/id": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/kind": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/reference": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/supports/0": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/supports/1": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/0/supports/2": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/artifact": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/captured_at": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/content_sha256": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/description": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/id": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/kind": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/reference": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/supports/0": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/supports/1": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    },
+    "/sources/1/supports/2": {
+      "classifications": [
+        "Derived"
+      ],
+      "provenance": [
+        {
+          "source_digest": "b8f91dd0aba091787d8a1368e3c5b0887778f72732e7e9d977ba8f4d7edf3824",
+          "pointer": "/source_url",
+          "byte_range": null,
+          "exact_text": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "injected": 8,
+  "caught": 8,
+  "source_restored": true,
+  "source_sha256": {
+    "engine/src/notice/mod.rs": "155d020b4b099d4f954d01cf804d3d9c20419fb3ceb80d4d97794613bc450775",
+    "engine/src/notice/prestocks.rs": "98c735546d6bcb88414fcff346851c1b05182b6531ac74ab90940fd5e183bbe5",
+    "engine/src/notice/workflow.rs": "142eca5a2b98cae7f9ce313e20d64fab75aa31e4bdf5a7e346c0a943f3ca7026"
+  },
+  "results": [
+    {
+      "mutation": 1,
+      "fault": "Trust successor address/metadata without raw on-chain verification",
+      "test": "notice::tests::missing_chain_artifact_cannot_grant_identity",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::missing_chain_artifact_cannot_grant_identity",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "d4590441e7ce373ef447964ccae7eef930d62019ecabafe96dd9cd2e899c6e9e",
+      "log_file": "phase12-mutations/01.txt",
+      "log_sha256": "13fd9cb219e4c0acc84050e21a1b4c98b84e86e3edce015f0e04ca1b78e2f18e"
+    },
+    {
+      "mutation": 2,
+      "fault": "Let issuer swap wording prove OfficialTransition",
+      "test": "notice::tests::issuer_wording_never_proves_official_transition",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::issuer_wording_never_proves_official_transition",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "72cebf1f9fe148f7b40f06affc504b33bed7e5f53ff5fd76335e937a74828c62",
+      "log_file": "phase12-mutations/02.txt",
+      "log_sha256": "926e7e45988df49f93c0391b0fab532a52ddc7d3bbb5fb1c3b1a8ead95dcf5c1"
+    },
+    {
+      "mutation": 3,
+      "fault": "Relabel demo timestamp as issuer assertion",
+      "test": "notice::tests::demo_time_never_becomes_issuer_assertion",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::demo_time_never_becomes_issuer_assertion",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "e44f66a1e81ec7f34975fb785c07c794f0abf2ab75beb4907fa746d1dacff3f8",
+      "log_file": "phase12-mutations/03.txt",
+      "log_sha256": "4d0f96b93fe8691b7dc3488179ce9c22e3e8c6ec5adeba093f91e1772c8dd5d2"
+    },
+    {
+      "mutation": 4,
+      "fault": "Ignore source raw-content digest mismatch",
+      "test": "notice::tests::source_digest_mismatch_is_rejected",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::source_digest_mismatch_is_rejected",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "d79675bcb2c9141212189b8354bccfdbc1c37e90bf4f62a87886f754a4e910c4",
+      "log_file": "phase12-mutations/04.txt",
+      "log_sha256": "4fa70f042d03d51661bf2229d2ef611f803a3d4a8b663ed8f576c61f404ad8f5"
+    },
+    {
+      "mutation": 5,
+      "fault": "Accept altered normalized deadline without source regeneration",
+      "test": "notice::tests::altered_deadline_without_regeneration_is_rejected",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::altered_deadline_without_regeneration_is_rejected",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "04e0776f83d4cff01b28c4c56e2494de40ca945bc2571cd0e1e29ea50fe79f33",
+      "log_file": "phase12-mutations/05.txt",
+      "log_sha256": "e3159efdebfe436f421f64e65e514d7841396688d01cb18e639c0f7bb2d12bdb"
+    },
+    {
+      "mutation": 6,
+      "fault": "Infer invented conversion ratio from unrelated page data",
+      "test": "notice::tests::unrelated_data_never_infers_conversion_ratio",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::unrelated_data_never_infers_conversion_ratio",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "d540fb6f8efec1d8b231342c6dc9e1b341ee59d3d05b14cd7c69a12500754ffe",
+      "log_file": "phase12-mutations/06.txt",
+      "log_sha256": "495ef598f1b4bd0a6b926b9199c605463e012b07aaf11491252e2c9323d92899"
+    },
+    {
+      "mutation": 7,
+      "fault": "Convert unknown mechanism into an executable Swap",
+      "test": "notice::tests::unknown_mechanism_stays_unknown",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "notice::tests::unknown_mechanism_stays_unknown",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "05487b731dc5fd3d570bca5d6e0d4aa047da14b105da599cbf44947898674cbd",
+      "log_file": "phase12-mutations/07.txt",
+      "log_sha256": "e8a5cd65d8f6078184eef84f072ae47bb62584d1fc651cc21bc076228671ce47"
+    },
+    {
+      "mutation": 8,
+      "fault": "Bypass unchanged required readiness findings",
+      "test": "notice_cannot_bypass_existing_readiness_requirements",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "lifecycle_notice",
+        "notice_cannot_bypass_existing_readiness_requirements",
+        "--",
+        "--exact"
+      ],
+      "exit_code": 101,
+      "caught_by_test_assertion": true,
+      "mutated_source_sha256": "d56d4fc83e15530b54586f4bb732000d3e22003582b4a2e692d4280aab1c4772",
+      "log_file": "phase12-mutations/08.txt",
+      "log_sha256": "b12ad5d522a3369b0f3ae0fb261a30d34dc9d0321b82731101acf18d5ab0b99a"
+    }
+  ]
+}

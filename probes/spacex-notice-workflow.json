@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": {
+    "file": "../evidence/lifecycle/phase12/captured-issuer-notice.json",
+    "sha256": "7ae96b029e825db09189e94895e07a93bbc5d21fd20423a7d8413cbe2d53193f"
+  },
+  "config": {
+    "file": "../scenarios/spacex-demo-evaluation.json",
+    "sha256": "0e2d83207b71741a39563dff64fdebf3d9518f9d18724f0f7d75530fad47330e"
+  },
+  "identity_report": {
+    "file": "../reports/spacex-official-transition.json",
+    "sha256": "fb7a79bd6f1a56daf09b34f3af49a0c5d11baa0b479b2922be200ff6b68e6d6d"
+  },
+  "readiness_policy": {
+    "file": "../policies/stocklana-spacex-preflight-v1.json",
+    "sha256": "162655313c70cba8adc4417d535128f73d0e8de6cc36d8b1d04586e8a1993c4d"
+  }
+}
