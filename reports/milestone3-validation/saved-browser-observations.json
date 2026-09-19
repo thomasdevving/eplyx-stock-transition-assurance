@@ -1,0 +1,62 @@
+[
+  {
+    "id": "28c35bc8-3887-4203-898b-18dbbe70542d",
+    "selection": {
+      "asset": "spacex",
+      "review": "overview",
+      "stage": "after_transition",
+      "check": null
+    },
+    "status": "Completed",
+    "engine_exit_code": 0,
+    "readiness": "Incomplete",
+    "scope": "PopulationRolloutReadiness",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "canonical_sha256": "268182e18bcce4b6dfba2b4dfcf785619033a13f01923cb01c98a35488926a47"
+  },
+  {
+    "id": "8075415d-1a4a-406d-8c8f-4a869ad0d109",
+    "selection": {
+      "asset": "spacex",
+      "review": "assumption",
+      "stage": "after_transition",
+      "check": "complete-exit"
+    },
+    "status": "Completed",
+    "engine_exit_code": 4,
+    "readiness": "Incomplete",
+    "scope": "PopulationRolloutReadiness",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "canonical_sha256": "52f6228523683450852e3890b96c1bd4a33734368d7dd8aa1f81f69cd9466826"
+  },
+  {
+    "id": "3a43e603-e5d0-4930-af19-9480a768e330",
+    "selection": {
+      "asset": "spacex",
+      "review": "assumption",
+      "stage": "after_transition",
+      "check": "required-sale"
+    },
+    "status": "Completed",
+    "engine_exit_code": 3,
+    "readiness": "Blocked",
+    "scope": "PopulationRolloutReadiness",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "canonical_sha256": "2aaa2795670cc74db2620ce913a6f201483ee845f7fab6c3c970b155ba03eb6f"
+  },
+  {
+    "id": "23da1f65-eb4c-4757-8db6-08e1b29ac33c",
+    "selection": {
+      "asset": "spacex",
+      "review": "assumption",
+      "stage": "after_deadline",
+      "check": "principal-removal"
+    },
+    "status": "Completed",
+    "engine_exit_code": 0,
+    "readiness": "Ready",
+    "scope": "DemoEntityReadiness",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "canonical_sha256": "ca5226b3b207340a05fbc86efbfa40b921aa49c9634c23d5989440c38fc4eb5f"
+  }
+]

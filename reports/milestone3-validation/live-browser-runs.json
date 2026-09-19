@@ -1,0 +1,1675 @@
+[
+  {
+    "label": "known",
+    "id": "5ed43536-d3c2-4749-9d85-4e5d1ba12c55",
+    "owner": "5d4c868b9d99be7d3726018a8308bc0b736b10cd1f42ad3ed966f9fa57b813b3",
+    "request_key": "c197a947-41ce-4ad4-805b-23ac21d4a563",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-19T14:17:03.874Z",
+    "resolved": {
+      "asset": "SpaceX",
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "scope": "Public owner and selected mint token accounts",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "policy": null,
+      "trusted_bundle": null
+    },
+    "operation": "Fresh read-only acquisition and current-state inspection",
+    "cached": false,
+    "authorization": false,
+    "guarded_action_invoked": false,
+    "result": {
+      "account_observation": {
+        "executable": false,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448432108,
+        "space": 902
+      },
+      "accounts": [],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-19T14:17:06.078Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448432108,
+          448432110,
+          448432112
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-19T14:17:03.972Z"
+      },
+      "asset": {
+        "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "expected_token_program": null,
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "name": "SpaceX",
+        "verification": []
+      },
+      "authorization": false,
+      "discovery": {
+        "complete_population": false,
+        "gaps": [],
+        "maximum_sample_accounts": 20,
+        "method": "getTokenLargestAccounts + getMultipleAccounts",
+        "requested": false,
+        "sample_count": null,
+        "status": "NotRequested",
+        "technical_errors": []
+      },
+      "execution_performed": false,
+      "funds_moved": false,
+      "identity_mismatches": [
+        "Source name/symbol (SpaceX/SPACEX) differs from on-chain metadata"
+      ],
+      "identity_provenance": "Referenced by the PreStocks product source; on-chain account inspected independently. This source reference is not execution proof or legal verification.",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "kind": "current-inspection",
+      "lifecycle_event": null,
+      "limitations": [
+        "Protocol positions were not checked in this analysis.",
+        "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+        "Public owner association does not prove human identity, legal ownership or signing access.",
+        "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+        "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+      ],
+      "local_execution_performed": false,
+      "mint": {
+        "decimal_supply": "8742.506831107",
+        "decimals": 9,
+        "extensions": [
+          {
+            "config": {
+              "newerTransferFee": {
+                "epoch": 1039,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 100
+              },
+              "olderTransferFee": {
+                "epoch": 1032,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 50
+              },
+              "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withheldAmount": 916
+            },
+            "extension_type": "TransferFeeConfig",
+            "type_id": 1
+          },
+          {
+            "config": {
+              "auditorElgamalPubkey": null,
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "autoApproveNewAccounts": false
+            },
+            "extension_type": "ConfidentialTransferMint",
+            "type_id": 4
+          },
+          {
+            "config": {
+              "rawState": 1,
+              "state": "Initialized"
+            },
+            "extension_type": "DefaultAccountState",
+            "type_id": 6
+          },
+          {
+            "config": {
+              "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+            },
+            "extension_type": "PermanentDelegate",
+            "type_id": 12
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "programId": null
+            },
+            "extension_type": "TransferHook",
+            "type_id": 14
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "harvestToMintEnabled": true,
+              "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+              "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            },
+            "extension_type": "ConfidentialTransferFeeConfig",
+            "type_id": 16
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "metadataAddress": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+            },
+            "extension_type": "MetadataPointer",
+            "type_id": 18
+          },
+          {
+            "config": {
+              "additionalMetadata": [],
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX PreStocks",
+              "symbol": "SPACEX",
+              "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "uri": "https://prestocks.com/metadata/spacex.json"
+            },
+            "extension_type": "TokenMetadata",
+            "type_id": 19
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "multiplier": 1,
+              "newMultiplier": 5,
+              "newMultiplierEffectiveTimestamp": 1781065800
+            },
+            "extension_type": "ScaledUiAmount",
+            "type_id": 25
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "paused": false
+            },
+            "extension_type": "Pausable",
+            "type_id": 26
+          }
+        ],
+        "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "is_initialized": true,
+        "is_token_2022": true,
+        "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "raw_supply": "8742506831107",
+        "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      "mint_slot": 448432108,
+      "onchain_metadata": {
+        "additionalMetadata": [],
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "name": "SpaceX PreStocks",
+        "symbol": "SPACEX",
+        "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "uri": "https://prestocks.com/metadata/spacex.json"
+      },
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        }
+      ],
+      "readiness": null,
+      "schema_version": 3,
+      "selection": {
+        "cluster": "solana-mainnet",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "reference": {
+          "assertions": [
+            {
+              "decimals": 9,
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX",
+              "symbol": "SPACEX"
+            }
+          ],
+          "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+          "retrieved_at": "2026-09-19T10:33:42.635Z",
+          "source_url": "https://prestocks.com/products",
+          "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+        },
+        "sample_accounts": false
+      },
+      "signer_assumed_locally": false,
+      "signer_possession_known": false,
+      "wallet_observation": {
+        "account_count": 1,
+        "acquisition": {
+          "context_slot": 448432112,
+          "evidence": "observations[3]",
+          "method": "getTokenAccountsByOwner",
+          "query": {
+            "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+          },
+          "status": "Succeeded"
+        },
+        "confidential_balance": "Unknown; excluded from public quantities",
+        "coverage": {
+          "all_assets": false,
+          "complete_response_decoded": true,
+          "maximum_accounts": 1000,
+          "protocol_positions_checked": false,
+          "response_byte_limit": 2097152,
+          "scope": "Owner-scoped token accounts for selected mint"
+        },
+        "decoded_account_count": 1,
+        "gaps": [],
+        "known_public_balance_subtotal_raw": "17621",
+        "limitations": [
+          "Protocol positions were not checked in this analysis.",
+          "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+          "Public owner association does not prove human identity, legal ownership or signing access.",
+          "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+          "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+        ],
+        "owner_inspection": {
+          "accepted": true,
+          "kind": "PossibleOwnerAuthority",
+          "message": "Possible owner authority; human identity, authority control and signer possession are not established.",
+          "runtime_owner": "11111111111111111111111111111111"
+        },
+        "public_balance_total_raw": "17621",
+        "selected_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "status": "Completed",
+        "submitted_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "token_accounts": [
+          {
+            "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+            "evidence": "observations[3].result.value[0]",
+            "slot": 448432112,
+            "state": {
+              "account_state": "Initialized",
+              "close_authority": null,
+              "delegate": null,
+              "delegated_amount": "0",
+              "extensions": [
+                {
+                  "config": {
+                    "withheldAmount": 0
+                  },
+                  "extension_type": "TransferFeeAmount",
+                  "type_id": 2
+                },
+                {
+                  "config": {},
+                  "extension_type": "ImmutableOwner",
+                  "type_id": 7
+                },
+                {
+                  "config": {
+                    "transferring": false
+                  },
+                  "extension_type": "TransferHookAccount",
+                  "type_id": 15
+                },
+                {
+                  "config": {},
+                  "extension_type": "PausableAccount",
+                  "type_id": 27
+                }
+              ],
+              "has_active_delegate": false,
+              "is_frozen": false,
+              "is_initialized": true,
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "native_reserve": null,
+              "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+              "raw_balance": "17621",
+              "ui_balance": "0.000017621",
+              "ui_balance_basis": "raw_balance / 10^decimals; no UI transform"
+            }
+          }
+        ]
+      }
+    },
+    "error": null,
+    "pinned_selection": {
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "reference": {
+        "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+        "source_url": "https://prestocks.com/products",
+        "retrieved_at": "2026-09-19T10:33:42.635Z",
+        "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+        "assertions": [
+          {
+            "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "name": "SpaceX",
+            "symbol": "SPACEX",
+            "decimals": 9
+          }
+        ]
+      },
+      "sample_accounts": false,
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "started_at": "2026-09-19T14:17:03.875Z",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "stage": "Decoding and preparing findings",
+    "engine_exit_code": 0,
+    "canonical_sha256": "fce28c307177fa7e437c53a7947ae7edb488a6b3d062bc74fe3ed721fb6db8b3",
+    "capture_sha256": "95d7a30419fcbc8801ebd3f6f63c3aab66bad25b0352eed05e4d5593a6158f1f",
+    "completed_at": "2026-09-19T14:17:06.105Z"
+  },
+  {
+    "label": "refresh",
+    "id": "1a4e0dbd-1d7e-47a2-843e-7b3ee6564d95",
+    "owner": "5d4c868b9d99be7d3726018a8308bc0b736b10cd1f42ad3ed966f9fa57b813b3",
+    "request_key": "565b4b1a-ed3d-47ec-a0fc-f4ea4e999a71",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-19T14:17:07.811Z",
+    "resolved": {
+      "asset": "SpaceX",
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "scope": "Public owner and selected mint token accounts",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "policy": null,
+      "trusted_bundle": null
+    },
+    "operation": "Fresh read-only acquisition and current-state inspection",
+    "cached": false,
+    "authorization": false,
+    "guarded_action_invoked": false,
+    "result": {
+      "account_observation": {
+        "executable": false,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448432121,
+        "space": 902
+      },
+      "accounts": [],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-19T14:17:09.460Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448432121,
+          448432122,
+          448432125
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-19T14:17:07.907Z"
+      },
+      "asset": {
+        "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "expected_token_program": null,
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "name": "SpaceX",
+        "verification": []
+      },
+      "authorization": false,
+      "discovery": {
+        "complete_population": false,
+        "gaps": [],
+        "maximum_sample_accounts": 20,
+        "method": "getTokenLargestAccounts + getMultipleAccounts",
+        "requested": false,
+        "sample_count": null,
+        "status": "NotRequested",
+        "technical_errors": []
+      },
+      "execution_performed": false,
+      "funds_moved": false,
+      "identity_mismatches": [
+        "Source name/symbol (SpaceX/SPACEX) differs from on-chain metadata"
+      ],
+      "identity_provenance": "Referenced by the PreStocks product source; on-chain account inspected independently. This source reference is not execution proof or legal verification.",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "kind": "current-inspection",
+      "lifecycle_event": null,
+      "limitations": [
+        "Protocol positions were not checked in this analysis.",
+        "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+        "Public owner association does not prove human identity, legal ownership or signing access.",
+        "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+        "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+      ],
+      "local_execution_performed": false,
+      "mint": {
+        "decimal_supply": "8742.506831107",
+        "decimals": 9,
+        "extensions": [
+          {
+            "config": {
+              "newerTransferFee": {
+                "epoch": 1039,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 100
+              },
+              "olderTransferFee": {
+                "epoch": 1032,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 50
+              },
+              "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withheldAmount": 916
+            },
+            "extension_type": "TransferFeeConfig",
+            "type_id": 1
+          },
+          {
+            "config": {
+              "auditorElgamalPubkey": null,
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "autoApproveNewAccounts": false
+            },
+            "extension_type": "ConfidentialTransferMint",
+            "type_id": 4
+          },
+          {
+            "config": {
+              "rawState": 1,
+              "state": "Initialized"
+            },
+            "extension_type": "DefaultAccountState",
+            "type_id": 6
+          },
+          {
+            "config": {
+              "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+            },
+            "extension_type": "PermanentDelegate",
+            "type_id": 12
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "programId": null
+            },
+            "extension_type": "TransferHook",
+            "type_id": 14
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "harvestToMintEnabled": true,
+              "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+              "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            },
+            "extension_type": "ConfidentialTransferFeeConfig",
+            "type_id": 16
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "metadataAddress": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+            },
+            "extension_type": "MetadataPointer",
+            "type_id": 18
+          },
+          {
+            "config": {
+              "additionalMetadata": [],
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX PreStocks",
+              "symbol": "SPACEX",
+              "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "uri": "https://prestocks.com/metadata/spacex.json"
+            },
+            "extension_type": "TokenMetadata",
+            "type_id": 19
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "multiplier": 1,
+              "newMultiplier": 5,
+              "newMultiplierEffectiveTimestamp": 1781065800
+            },
+            "extension_type": "ScaledUiAmount",
+            "type_id": 25
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "paused": false
+            },
+            "extension_type": "Pausable",
+            "type_id": 26
+          }
+        ],
+        "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "is_initialized": true,
+        "is_token_2022": true,
+        "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "raw_supply": "8742506831107",
+        "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      "mint_slot": 448432121,
+      "onchain_metadata": {
+        "additionalMetadata": [],
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "name": "SpaceX PreStocks",
+        "symbol": "SPACEX",
+        "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "uri": "https://prestocks.com/metadata/spacex.json"
+      },
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        }
+      ],
+      "readiness": null,
+      "schema_version": 3,
+      "selection": {
+        "cluster": "solana-mainnet",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "reference": {
+          "assertions": [
+            {
+              "decimals": 9,
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX",
+              "symbol": "SPACEX"
+            }
+          ],
+          "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+          "retrieved_at": "2026-09-19T10:33:42.635Z",
+          "source_url": "https://prestocks.com/products",
+          "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+        },
+        "sample_accounts": false
+      },
+      "signer_assumed_locally": false,
+      "signer_possession_known": false,
+      "wallet_observation": {
+        "account_count": 1,
+        "acquisition": {
+          "context_slot": 448432125,
+          "evidence": "observations[3]",
+          "method": "getTokenAccountsByOwner",
+          "query": {
+            "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+          },
+          "status": "Succeeded"
+        },
+        "confidential_balance": "Unknown; excluded from public quantities",
+        "coverage": {
+          "all_assets": false,
+          "complete_response_decoded": true,
+          "maximum_accounts": 1000,
+          "protocol_positions_checked": false,
+          "response_byte_limit": 2097152,
+          "scope": "Owner-scoped token accounts for selected mint"
+        },
+        "decoded_account_count": 1,
+        "gaps": [],
+        "known_public_balance_subtotal_raw": "17621",
+        "limitations": [
+          "Protocol positions were not checked in this analysis.",
+          "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+          "Public owner association does not prove human identity, legal ownership or signing access.",
+          "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+          "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+        ],
+        "owner_inspection": {
+          "accepted": true,
+          "kind": "PossibleOwnerAuthority",
+          "message": "Possible owner authority; human identity, authority control and signer possession are not established.",
+          "runtime_owner": "11111111111111111111111111111111"
+        },
+        "public_balance_total_raw": "17621",
+        "selected_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "status": "Completed",
+        "submitted_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "token_accounts": [
+          {
+            "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+            "evidence": "observations[3].result.value[0]",
+            "slot": 448432125,
+            "state": {
+              "account_state": "Initialized",
+              "close_authority": null,
+              "delegate": null,
+              "delegated_amount": "0",
+              "extensions": [
+                {
+                  "config": {
+                    "withheldAmount": 0
+                  },
+                  "extension_type": "TransferFeeAmount",
+                  "type_id": 2
+                },
+                {
+                  "config": {},
+                  "extension_type": "ImmutableOwner",
+                  "type_id": 7
+                },
+                {
+                  "config": {
+                    "transferring": false
+                  },
+                  "extension_type": "TransferHookAccount",
+                  "type_id": 15
+                },
+                {
+                  "config": {},
+                  "extension_type": "PausableAccount",
+                  "type_id": 27
+                }
+              ],
+              "has_active_delegate": false,
+              "is_frozen": false,
+              "is_initialized": true,
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "native_reserve": null,
+              "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+              "raw_balance": "17621",
+              "ui_balance": "0.000017621",
+              "ui_balance_basis": "raw_balance / 10^decimals; no UI transform"
+            }
+          }
+        ]
+      }
+    },
+    "error": null,
+    "pinned_selection": {
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "reference": {
+        "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+        "source_url": "https://prestocks.com/products",
+        "retrieved_at": "2026-09-19T10:33:42.635Z",
+        "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+        "assertions": [
+          {
+            "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "name": "SpaceX",
+            "symbol": "SPACEX",
+            "decimals": 9
+          }
+        ]
+      },
+      "sample_accounts": false,
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "started_at": "2026-09-19T14:17:07.813Z",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "stage": "Decoding and preparing findings",
+    "engine_exit_code": 0,
+    "canonical_sha256": "06161bbbe886ac9a9d9fcf14ac29cbb8e4c2f4aa3eed84756bdd144432103a67",
+    "capture_sha256": "6d58b6c4774c492fec55a540774c91ffd2ceba8be949762583601d044d256c1f",
+    "completed_at": "2026-09-19T14:17:09.470Z"
+  },
+  {
+    "label": "zero-target",
+    "id": "e362e02d-27fe-49aa-95b6-462575904cc4",
+    "owner": "5d4c868b9d99be7d3726018a8308bc0b736b10cd1f42ad3ed966f9fa57b813b3",
+    "request_key": "1b73a89d-3727-4335-9628-5870db65088f",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-19T14:17:10.788Z",
+    "resolved": {
+      "asset": "SpaceX",
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "scope": "Public owner and selected mint token accounts",
+      "public_owner": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+      "policy": null,
+      "trusted_bundle": null
+    },
+    "operation": "Fresh read-only acquisition and current-state inspection",
+    "cached": false,
+    "authorization": false,
+    "guarded_action_invoked": false,
+    "result": {
+      "account_observation": {
+        "executable": false,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448432132,
+        "space": 902
+      },
+      "accounts": [],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-19T14:17:12.440Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448432132,
+          448432134,
+          448432136
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-19T14:17:10.912Z"
+      },
+      "asset": {
+        "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "expected_token_program": null,
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "name": "SpaceX",
+        "verification": []
+      },
+      "authorization": false,
+      "discovery": {
+        "complete_population": false,
+        "gaps": [],
+        "maximum_sample_accounts": 20,
+        "method": "getTokenLargestAccounts + getMultipleAccounts",
+        "requested": false,
+        "sample_count": null,
+        "status": "NotRequested",
+        "technical_errors": []
+      },
+      "execution_performed": false,
+      "funds_moved": false,
+      "identity_mismatches": [
+        "Source name/symbol (SpaceX/SPACEX) differs from on-chain metadata"
+      ],
+      "identity_provenance": "Referenced by the PreStocks product source; on-chain account inspected independently. This source reference is not execution proof or legal verification.",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "kind": "current-inspection",
+      "lifecycle_event": null,
+      "limitations": [
+        "Protocol positions were not checked in this analysis.",
+        "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+        "Public owner association does not prove human identity, legal ownership or signing access.",
+        "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+        "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+      ],
+      "local_execution_performed": false,
+      "mint": {
+        "decimal_supply": "8742.506831107",
+        "decimals": 9,
+        "extensions": [
+          {
+            "config": {
+              "newerTransferFee": {
+                "epoch": 1039,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 100
+              },
+              "olderTransferFee": {
+                "epoch": 1032,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 50
+              },
+              "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withheldAmount": 916
+            },
+            "extension_type": "TransferFeeConfig",
+            "type_id": 1
+          },
+          {
+            "config": {
+              "auditorElgamalPubkey": null,
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "autoApproveNewAccounts": false
+            },
+            "extension_type": "ConfidentialTransferMint",
+            "type_id": 4
+          },
+          {
+            "config": {
+              "rawState": 1,
+              "state": "Initialized"
+            },
+            "extension_type": "DefaultAccountState",
+            "type_id": 6
+          },
+          {
+            "config": {
+              "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+            },
+            "extension_type": "PermanentDelegate",
+            "type_id": 12
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "programId": null
+            },
+            "extension_type": "TransferHook",
+            "type_id": 14
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "harvestToMintEnabled": true,
+              "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+              "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            },
+            "extension_type": "ConfidentialTransferFeeConfig",
+            "type_id": 16
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "metadataAddress": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+            },
+            "extension_type": "MetadataPointer",
+            "type_id": 18
+          },
+          {
+            "config": {
+              "additionalMetadata": [],
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX PreStocks",
+              "symbol": "SPACEX",
+              "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "uri": "https://prestocks.com/metadata/spacex.json"
+            },
+            "extension_type": "TokenMetadata",
+            "type_id": 19
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "multiplier": 1,
+              "newMultiplier": 5,
+              "newMultiplierEffectiveTimestamp": 1781065800
+            },
+            "extension_type": "ScaledUiAmount",
+            "type_id": 25
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "paused": false
+            },
+            "extension_type": "Pausable",
+            "type_id": 26
+          }
+        ],
+        "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "is_initialized": true,
+        "is_token_2022": true,
+        "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "raw_supply": "8742506831107",
+        "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      "mint_slot": 448432132,
+      "onchain_metadata": {
+        "additionalMetadata": [],
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "name": "SpaceX PreStocks",
+        "symbol": "SPACEX",
+        "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "uri": "https://prestocks.com/metadata/spacex.json"
+      },
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        }
+      ],
+      "readiness": null,
+      "schema_version": 3,
+      "selection": {
+        "cluster": "solana-mainnet",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "public_owner": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+        "reference": {
+          "assertions": [
+            {
+              "decimals": 9,
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX",
+              "symbol": "SPACEX"
+            }
+          ],
+          "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+          "retrieved_at": "2026-09-19T10:33:42.635Z",
+          "source_url": "https://prestocks.com/products",
+          "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+        },
+        "sample_accounts": false
+      },
+      "signer_assumed_locally": false,
+      "signer_possession_known": false,
+      "wallet_observation": {
+        "account_count": 0,
+        "acquisition": {
+          "context_slot": 448432136,
+          "evidence": "observations[3]",
+          "method": "getTokenAccountsByOwner",
+          "query": {
+            "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "owner": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8"
+          },
+          "status": "Succeeded"
+        },
+        "confidential_balance": "Unknown; excluded from public quantities",
+        "coverage": {
+          "all_assets": false,
+          "complete_response_decoded": true,
+          "maximum_accounts": 1000,
+          "protocol_positions_checked": false,
+          "response_byte_limit": 2097152,
+          "scope": "Owner-scoped token accounts for selected mint"
+        },
+        "decoded_account_count": 0,
+        "gaps": [],
+        "known_public_balance_subtotal_raw": "0",
+        "limitations": [
+          "Protocol positions were not checked in this analysis.",
+          "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+          "Public owner association does not prove human identity, legal ownership or signing access.",
+          "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+          "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+        ],
+        "owner_inspection": {
+          "accepted": true,
+          "kind": "Absent",
+          "message": "No funded account observed at this owner address. Signing access is unknown."
+        },
+        "public_balance_total_raw": "0",
+        "selected_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "status": "Completed",
+        "submitted_owner": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8",
+        "token_accounts": []
+      }
+    },
+    "error": null,
+    "pinned_selection": {
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "reference": {
+        "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+        "source_url": "https://prestocks.com/products",
+        "retrieved_at": "2026-09-19T10:33:42.635Z",
+        "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+        "assertions": [
+          {
+            "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "name": "SpaceX",
+            "symbol": "SPACEX",
+            "decimals": 9
+          }
+        ]
+      },
+      "sample_accounts": false,
+      "public_owner": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8"
+    },
+    "started_at": "2026-09-19T14:17:10.789Z",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "stage": "Decoding and preparing findings",
+    "engine_exit_code": 0,
+    "canonical_sha256": "a51c87537bbdeb7f9cae332843eb326adeb1df3108b2407d4c15014c4cb55012",
+    "capture_sha256": "5a6720abd1dcd349aa9b1e2975460a0bd6e8da3eaf873cd1a4db94194241d79b",
+    "completed_at": "2026-09-19T14:17:12.458Z"
+  },
+  {
+    "label": "second-asset",
+    "id": "d1213bd8-4737-4701-8872-d91643e43e1c",
+    "owner": "5d4c868b9d99be7d3726018a8308bc0b736b10cd1f42ad3ed966f9fa57b813b3",
+    "request_key": "3c55d8ca-6a82-47e1-b869-d14645a2b91a",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-19T14:17:13.743Z",
+    "resolved": {
+      "asset": "OpenAI",
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "scope": "Public owner and selected mint token accounts",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "policy": null,
+      "trusted_bundle": null
+    },
+    "operation": "Fresh read-only acquisition and current-state inspection",
+    "cached": false,
+    "authorization": false,
+    "guarded_action_invoked": false,
+    "result": {
+      "account_observation": {
+        "executable": false,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448432143,
+        "space": 902
+      },
+      "accounts": [],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-19T14:17:15.379Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448432143,
+          448432145,
+          448432148
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-19T14:17:13.839Z"
+      },
+      "asset": {
+        "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "expected_token_program": null,
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "name": "OpenAI",
+        "verification": []
+      },
+      "authorization": false,
+      "discovery": {
+        "complete_population": false,
+        "gaps": [],
+        "maximum_sample_accounts": 20,
+        "method": "getTokenLargestAccounts + getMultipleAccounts",
+        "requested": false,
+        "sample_count": null,
+        "status": "NotRequested",
+        "technical_errors": []
+      },
+      "execution_performed": false,
+      "funds_moved": false,
+      "identity_mismatches": [
+        "Source name/symbol (OpenAI/OPENAI) differs from on-chain metadata"
+      ],
+      "identity_provenance": "Referenced by the PreStocks product source; on-chain account inspected independently. This source reference is not execution proof or legal verification.",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "kind": "current-inspection",
+      "lifecycle_event": null,
+      "limitations": [
+        "Protocol positions were not checked in this analysis.",
+        "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+        "Public owner association does not prove human identity, legal ownership or signing access.",
+        "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+        "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+      ],
+      "local_execution_performed": false,
+      "mint": {
+        "decimal_supply": "1901.898747771",
+        "decimals": 9,
+        "extensions": [
+          {
+            "config": {
+              "newerTransferFee": {
+                "epoch": 1039,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 100
+              },
+              "olderTransferFee": {
+                "epoch": 1032,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 50
+              },
+              "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withheldAmount": 47543671
+            },
+            "extension_type": "TransferFeeConfig",
+            "type_id": 1
+          },
+          {
+            "config": {
+              "auditorElgamalPubkey": null,
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "autoApproveNewAccounts": false
+            },
+            "extension_type": "ConfidentialTransferMint",
+            "type_id": 4
+          },
+          {
+            "config": {
+              "rawState": 1,
+              "state": "Initialized"
+            },
+            "extension_type": "DefaultAccountState",
+            "type_id": 6
+          },
+          {
+            "config": {
+              "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+            },
+            "extension_type": "PermanentDelegate",
+            "type_id": 12
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "programId": null
+            },
+            "extension_type": "TransferHook",
+            "type_id": 14
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "harvestToMintEnabled": true,
+              "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+              "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            },
+            "extension_type": "ConfidentialTransferFeeConfig",
+            "type_id": 16
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "metadataAddress": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+            },
+            "extension_type": "MetadataPointer",
+            "type_id": 18
+          },
+          {
+            "config": {
+              "additionalMetadata": [],
+              "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "name": "OpenAI PreStocks",
+              "symbol": "OPENAI",
+              "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "uri": "https://prestocks.com/metadata/openai.json"
+            },
+            "extension_type": "TokenMetadata",
+            "type_id": 19
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "multiplier": 1,
+              "newMultiplier": 1.4861347,
+              "newMultiplierEffectiveTimestamp": 1784305800
+            },
+            "extension_type": "ScaledUiAmount",
+            "type_id": 25
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "paused": false
+            },
+            "extension_type": "Pausable",
+            "type_id": 26
+          }
+        ],
+        "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "is_initialized": true,
+        "is_token_2022": true,
+        "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "raw_supply": "1901898747771",
+        "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      "mint_slot": 448432143,
+      "onchain_metadata": {
+        "additionalMetadata": [],
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "name": "OpenAI PreStocks",
+        "symbol": "OPENAI",
+        "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "uri": "https://prestocks.com/metadata/openai.json"
+      },
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        }
+      ],
+      "readiness": null,
+      "schema_version": 3,
+      "selection": {
+        "cluster": "solana-mainnet",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "reference": {
+          "assertions": [
+            {
+              "decimals": 9,
+              "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "name": "OpenAI",
+              "symbol": "OPENAI"
+            }
+          ],
+          "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+          "retrieved_at": "2026-09-19T10:33:42.635Z",
+          "source_url": "https://prestocks.com/products",
+          "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+        },
+        "sample_accounts": false
+      },
+      "signer_assumed_locally": false,
+      "signer_possession_known": false,
+      "wallet_observation": {
+        "account_count": 0,
+        "acquisition": {
+          "context_slot": 448432148,
+          "evidence": "observations[3]",
+          "method": "getTokenAccountsByOwner",
+          "query": {
+            "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+          },
+          "status": "Succeeded"
+        },
+        "confidential_balance": "Unknown; excluded from public quantities",
+        "coverage": {
+          "all_assets": false,
+          "complete_response_decoded": true,
+          "maximum_accounts": 1000,
+          "protocol_positions_checked": false,
+          "response_byte_limit": 2097152,
+          "scope": "Owner-scoped token accounts for selected mint"
+        },
+        "decoded_account_count": 0,
+        "gaps": [],
+        "known_public_balance_subtotal_raw": "0",
+        "limitations": [
+          "Protocol positions were not checked in this analysis.",
+          "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+          "Public owner association does not prove human identity, legal ownership or signing access.",
+          "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+          "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+        ],
+        "owner_inspection": {
+          "accepted": true,
+          "kind": "PossibleOwnerAuthority",
+          "message": "Possible owner authority; human identity, authority control and signer possession are not established.",
+          "runtime_owner": "11111111111111111111111111111111"
+        },
+        "public_balance_total_raw": "0",
+        "selected_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "status": "Completed",
+        "submitted_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "token_accounts": []
+      }
+    },
+    "error": null,
+    "pinned_selection": {
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "reference": {
+        "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+        "source_url": "https://prestocks.com/products",
+        "retrieved_at": "2026-09-19T10:33:42.635Z",
+        "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+        "assertions": [
+          {
+            "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "name": "OpenAI",
+            "symbol": "OPENAI",
+            "decimals": 9
+          }
+        ]
+      },
+      "sample_accounts": false,
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "started_at": "2026-09-19T14:17:13.744Z",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "stage": "Decoding and preparing findings",
+    "engine_exit_code": 0,
+    "canonical_sha256": "b37ec87b4bcb32b8df0d282c11e8302eebb3a82407101423673d6a1eb7eaf84b",
+    "capture_sha256": "d4279eedeee79cd5caf96760bd29bf6181f2412209b18d648dbd5e997d7d3843",
+    "completed_at": "2026-09-19T14:17:15.391Z"
+  },
+  {
+    "label": "custom",
+    "id": "8c632017-e200-43bf-8bad-e223b3457b69",
+    "owner": "5d4c868b9d99be7d3726018a8308bc0b736b10cd1f42ad3ed966f9fa57b813b3",
+    "request_key": "e96f413f-a11b-46b0-a002-f5b650d43af6",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "So11111111111111111111111111111111111111112",
+      "catalogue_version": null,
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-19T14:17:16.924Z",
+    "resolved": {
+      "asset": "Custom token address",
+      "cluster": "solana-mainnet",
+      "mint": "So11111111111111111111111111111111111111112",
+      "scope": "Public owner and selected mint token accounts",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "policy": null,
+      "trusted_bundle": null
+    },
+    "operation": "Fresh read-only acquisition and current-state inspection",
+    "cached": false,
+    "authorization": false,
+    "guarded_action_invoked": false,
+    "result": {
+      "account_observation": {
+        "executable": false,
+        "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "slot": 448432155,
+        "space": 82
+      },
+      "accounts": [],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-19T14:17:18.524Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448432155,
+          448432156,
+          448432159
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-19T14:17:17.004Z"
+      },
+      "asset": {
+        "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "expected_token_program": null,
+        "mint": "So11111111111111111111111111111111111111112",
+        "name": "Custom token address",
+        "verification": []
+      },
+      "authorization": false,
+      "discovery": {
+        "complete_population": false,
+        "gaps": [],
+        "maximum_sample_accounts": 20,
+        "method": "getTokenLargestAccounts + getMultipleAccounts",
+        "requested": false,
+        "sample_count": null,
+        "status": "NotRequested",
+        "technical_errors": []
+      },
+      "execution_performed": false,
+      "funds_moved": false,
+      "identity_mismatches": [],
+      "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "kind": "current-inspection",
+      "lifecycle_event": null,
+      "limitations": [
+        "Protocol positions were not checked in this analysis.",
+        "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+        "Public owner association does not prove human identity, legal ownership or signing access.",
+        "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+        "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+      ],
+      "local_execution_performed": false,
+      "mint": {
+        "decimal_supply": "0",
+        "decimals": 9,
+        "extensions": [],
+        "freeze_authority": null,
+        "is_initialized": true,
+        "is_token_2022": false,
+        "mint_authority": null,
+        "raw_supply": "0",
+        "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      },
+      "mint_slot": 448432155,
+      "onchain_metadata": null,
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        }
+      ],
+      "readiness": null,
+      "schema_version": 3,
+      "selection": {
+        "cluster": "solana-mainnet",
+        "mint": "So11111111111111111111111111111111111111112",
+        "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "reference": null,
+        "sample_accounts": false
+      },
+      "signer_assumed_locally": false,
+      "signer_possession_known": false,
+      "wallet_observation": {
+        "account_count": 0,
+        "acquisition": {
+          "context_slot": 448432159,
+          "evidence": "observations[3]",
+          "method": "getTokenAccountsByOwner",
+          "query": {
+            "mint": "So11111111111111111111111111111111111111112",
+            "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+          },
+          "status": "Succeeded"
+        },
+        "confidential_balance": "Unknown; excluded from public quantities",
+        "coverage": {
+          "all_assets": false,
+          "complete_response_decoded": true,
+          "maximum_accounts": 1000,
+          "protocol_positions_checked": false,
+          "response_byte_limit": 2097152,
+          "scope": "Owner-scoped token accounts for selected mint"
+        },
+        "decoded_account_count": 0,
+        "gaps": [],
+        "known_public_balance_subtotal_raw": "0",
+        "limitations": [
+          "Protocol positions were not checked in this analysis.",
+          "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+          "Public owner association does not prove human identity, legal ownership or signing access.",
+          "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+          "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+        ],
+        "owner_inspection": {
+          "accepted": true,
+          "kind": "PossibleOwnerAuthority",
+          "message": "Possible owner authority; human identity, authority control and signer possession are not established.",
+          "runtime_owner": "11111111111111111111111111111111"
+        },
+        "public_balance_total_raw": "0",
+        "selected_mint": "So11111111111111111111111111111111111111112",
+        "status": "Completed",
+        "submitted_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "token_accounts": []
+      }
+    },
+    "error": null,
+    "pinned_selection": {
+      "cluster": "solana-mainnet",
+      "mint": "So11111111111111111111111111111111111111112",
+      "reference": null,
+      "sample_accounts": false,
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "started_at": "2026-09-19T14:17:16.925Z",
+    "engine_sha256": "8a8332a3eb36bf0bbf9f4dfe050407c7ef87750a3d103084af6f7d510f3e8ca8",
+    "stage": "Decoding and preparing findings",
+    "engine_exit_code": 0,
+    "canonical_sha256": "420d91cf7c8c2e4adc137e3a1ce15a95cfd78366f85f11af52a8ad18e6a37897",
+    "capture_sha256": "1b2cf5dd4b661426ddf1c030400b05074a22ef479f2dd15fda3d82f18b603c3d",
+    "completed_at": "2026-09-19T14:17:18.538Z"
+  }
+]

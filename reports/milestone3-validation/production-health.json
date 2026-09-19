@@ -1,0 +1,8 @@
+{
+  "origin": "http://127.0.0.1:4173",
+  "health": {
+    "available": true
+  },
+  "analysis_sha256": "b29e7ab5d6c75b14be4e4f4d0e8ca9a8daabe87bccb432cdbe5b1972f5f58292",
+  "wallet_scope_present": true
+}

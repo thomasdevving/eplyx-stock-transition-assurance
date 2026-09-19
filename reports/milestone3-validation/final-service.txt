@@ -1,0 +1,38 @@
+
+> eplyx-stock-transition@0.1.0 test:service
+> node --test frontend/tests/*.test.mjs
+
+(node:52640) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ retained first-party flight JSON provides nine real canonical mint identities, no script execution (2.560583ms)
+✔ parser rejects missing and malformed fields; duplicate names remain distinct; conflicting assertions retained (0.897208ms)
+✔ catalogue binding rejects a reviewed version combined with another mint (9.545875ms)
+✔ real Solana parser accepts custom and off-curve addresses and rejects malformed addresses (43.790667ms)
+✔ same mint and immutable source reference flow into structured arguments, captures, result, refresh and restart (301.709042ms)
+✔ changed catalogue versions cannot rewrite earlier pinned references (14.564959ms)
+✔ cross-asset results, source mismatches, proof and lifecycle inheritance are rejected (3.85975ms)
+✔ consumer rendering escapes names and metadata and retains exact amounts without external fetch markup (37.04375ms)
+✔ failed catalogue import is retained and a dated saved catalogue remains usable (50.389416ms)
+✔ allowlist rejects commands paths addresses endpoints unknown assets and decorative selections (2.443875ms)
+✔ completed policy outcomes 0 3 4 5 stay separate from processing errors (5.807958ms)
+✔ duplicate concurrent requests invoke one job and serialized jobs stay bounded (530.467333ms)
+✔ timeout verification failure and missing executable yield honest errors without result (401.034375ms)
+✔ actual child timeout and nonzero verification exit are errors (177.4415ms)
+✔ restart makes interrupted job an error rather than silently restarting it (5.111667ms)
+✔ integer formatting never loses large values or rounds small positives to zero (29.416958ms)
+✔ real engine rejects a tampered isolated trust binding server-side (155.891792ms)
+✔ all scenario dates and example scopes select the actual engine view without changing proof (331.385417ms)
+✔ current requests accept no saved scenario, endpoint, evidence, or filesystem scope (22.260792ms)
+✔ new captures never accept historical statuses or readiness grants (8.079875ms)
+✔ refresh invokes acquisition again and keeps scoped capture digests, sessions and prior run (756.684625ms)
+✔ fresh acquisition failure never runs the historical engine or substitutes a saved result (114.797792ms)
+✔ wallet scope requires exact public owner and rejects injected settings and historical proof (25.844084ms)
+✔ decimal formatting preserves u8 mint precision without floating point (1.395041ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2701.374416

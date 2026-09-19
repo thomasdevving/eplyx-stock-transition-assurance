@@ -1,0 +1,60 @@
+{
+  "engine": {
+    "passed": 375,
+    "failed": 0,
+    "ignored": 0,
+    "command": "make test",
+    "sbf_programs_built": true
+  },
+  "format": "Passed",
+  "lint": "Passed",
+  "service": {
+    "passed": 24
+  },
+  "frontend_syntax_and_build": "Passed",
+  "browser": {
+    "executed_cases_passed": 14,
+    "skipped": 1,
+    "initial_context_startup_timeout": 1,
+    "unchanged_source_retry_passed": 1,
+    "skipped_scope": "Prior opt-in milestone 2 live mint/largest-account campaign"
+  },
+  "live_wallet_runs": 5,
+  "offline_replays": [
+    {
+      "run_id": "5ed43536-d3c2-4749-9d85-4e5d1ba12c55",
+      "capture": "reports/milestone3-validation/live-known.capture.json",
+      "byte_identical": true
+    },
+    {
+      "run_id": "1a4e0dbd-1d7e-47a2-843e-7b3ee6564d95",
+      "capture": "reports/milestone3-validation/live-refresh.capture.json",
+      "byte_identical": true
+    },
+    {
+      "run_id": "e362e02d-27fe-49aa-95b6-462575904cc4",
+      "capture": "reports/milestone3-validation/live-zero-target.capture.json",
+      "byte_identical": true
+    },
+    {
+      "run_id": "d1213bd8-4737-4701-8872-d91643e43e1c",
+      "capture": "reports/milestone3-validation/live-second-asset.capture.json",
+      "byte_identical": true
+    },
+    {
+      "run_id": "8c632017-e200-43bf-8bad-e223b3457b69",
+      "capture": "reports/milestone3-validation/live-custom.capture.json",
+      "byte_identical": true
+    }
+  ],
+  "historical_data": {
+    "files": 262,
+    "changed": []
+  },
+  "final_source": {
+    "files": 97,
+    "changed": []
+  },
+  "git_diff_check": "Passed",
+  "milestone4_started": false
+}

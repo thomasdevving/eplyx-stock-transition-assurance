@@ -1,0 +1,5 @@
+
+> eplyx-stock-transition@0.1.0 start
+> node frontend/serve.mjs --production
+
+Eplyx Stock Transition: http://localhost:4173

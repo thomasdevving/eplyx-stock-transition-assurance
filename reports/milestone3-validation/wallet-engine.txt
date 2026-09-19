@@ -1,0 +1,18 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.46s
+     Running tests/current_wallet.rs (target/debug/deps/current_wallet-a820cbdab441702e)
+
+running 10 tests
+test invalid_owner_rejected_before_any_rpc ... ok
+test confidential_balance_remains_unknown_and_extensions_retained ... ok
+test empty_success_is_distinct_from_rpc_failure ... ok
+test owner_lookup_failure_and_mint_failure_remain_unknown ... ok
+test exact_owner_mint_context_and_decoder_bindings_fail_closed ... ok
+test programs_mints_and_token_accounts_are_not_reinterpreted ... ok
+test malformed_duplicate_and_stale_response_never_establish_zero_holdings ... ok
+test wrong_mint_owner_and_decoder_gaps_preserve_other_rows_without_claiming_total ... ok
+test one_and_multiple_legacy_and_token2022_accounts_preserve_exact_state ... ok
+test replay_and_refresh_never_inherit_execution_or_lifecycle ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

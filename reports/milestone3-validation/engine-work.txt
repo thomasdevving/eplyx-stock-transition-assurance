@@ -1,0 +1,19 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 20.99s
+     Running tests/current_observations.rs (target/debug/deps/current_observations-4b8af7924457c34f)
+
+running 11 tests
+test acquisition_interval_and_decoder_version_are_checked ... ok
+test nonmint_accounts_and_unsupported_configuration_retain_observations_without_fake_mint ... ok
+test selected_catalogue_identity_and_original_source_assertions_remain_pinned ... ok
+test sampled_token_state_preserves_exact_amounts_and_never_becomes_population_or_authority_proof ... ok
+test changed_scope_commitment_program_or_injected_proof_fails_closed ... ok
+test cross_mint_sample_is_a_scoped_gap_never_another_assets_balance ... ok
+test dynamic_mint_is_bound_to_requests_capture_replay_and_no_saved_evidence ... ok
+test fresh_capture_calls_rpc_again_and_rate_limit_preserves_only_valid_mint_findings ... ok
+test missing_sample_account_is_a_gap_and_stale_capture_is_rejected ... ok
+test wrong_cluster_and_missing_mint_never_fall_back_to_demo ... ok
+test offline_replay_redecodes_and_retains_original_rpc_evidence ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
