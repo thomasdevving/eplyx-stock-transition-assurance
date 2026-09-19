@@ -1,0 +1,184 @@
+{
+  "kind": "live-browser-acceptance",
+  "mocked_acquisition": false,
+  "provider_configured": false,
+  "rpc_origin": "https://api.mainnet-beta.solana.com",
+  "sample_outcome": "Unresolved: HTTP 429 on all three requested getTokenLargestAccounts samples",
+  "runs": [
+    {
+      "label": "spacex",
+      "run_id": "b5f56b06-ccbd-4ebf-bf97-6e808ca52b1e",
+      "cluster": "solana-mainnet",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "sample_status": "Unavailable",
+      "sample_count": null,
+      "rpc_methods": [
+        {
+          "method": "getGenesisHash",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getAccountInfo",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getTokenLargestAccounts",
+          "success": false,
+          "error": "RPC getTokenLargestAccounts HTTP status 429 Too Many Requests"
+        }
+      ],
+      "capture_sha256": "384d5f1811506ea5353e7cde8df41d766ab12477b741c0b863b92695abe48faf",
+      "result_sha256": "f187ef7a0d10ae877b99a676b7cf35b06478b4d757cf2428f407b704c175bf8c",
+      "offline_replay_byte_exact": true,
+      "execution_performed": false,
+      "lifecycle_event": null,
+      "readiness": null
+    },
+    {
+      "label": "openai",
+      "run_id": "478ae006-69c6-45df-8a93-628002acc25d",
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "sample_status": "Unavailable",
+      "sample_count": null,
+      "rpc_methods": [
+        {
+          "method": "getGenesisHash",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getAccountInfo",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getTokenLargestAccounts",
+          "success": false,
+          "error": "RPC getTokenLargestAccounts HTTP status 429 Too Many Requests"
+        }
+      ],
+      "capture_sha256": "04ae18436c13589da66668fea909ef301485ddd987c19814ca4169ba4c49ae4e",
+      "result_sha256": "722c20a7461ea9b6123fa9ff2e86eb1e205e521070ea1f5f1e72b87d956b6cac",
+      "offline_replay_byte_exact": true,
+      "execution_performed": false,
+      "lifecycle_event": null,
+      "readiness": null
+    },
+    {
+      "label": "openai-refresh",
+      "run_id": "df0d58c8-07c9-4ec9-b064-7a836bad611f",
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "sample_status": "Unavailable",
+      "sample_count": null,
+      "rpc_methods": [
+        {
+          "method": "getGenesisHash",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getAccountInfo",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getTokenLargestAccounts",
+          "success": false,
+          "error": "RPC getTokenLargestAccounts HTTP status 429 Too Many Requests"
+        }
+      ],
+      "capture_sha256": "17cb9b1e61da62ec54bbbfd51e693f40eb3cbce6ff8ed470ca99926c0c26e7e9",
+      "result_sha256": "151d70cad66e338323b59dbc94a3e8e074a5be1223bc660b4645ed72ecf17666",
+      "offline_replay_byte_exact": true,
+      "execution_performed": false,
+      "lifecycle_event": null,
+      "readiness": null
+    },
+    {
+      "label": "custom",
+      "run_id": "6f36a95a-b4e7-45ee-8b81-6ed6b6051fdf",
+      "cluster": "solana-mainnet",
+      "mint": "So11111111111111111111111111111111111111112",
+      "catalogue_version": null,
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "sample_status": "NotRequested",
+      "sample_count": null,
+      "rpc_methods": [
+        {
+          "method": "getGenesisHash",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getAccountInfo",
+          "success": true,
+          "error": null
+        }
+      ],
+      "capture_sha256": "5355e0a6140066ccb24dc7c5c61be83dd9975534f44c1b7ea22eb1b42b332b97",
+      "result_sha256": "733968ec81449cf086cd147ba252aead52f398cd62236a07bdf21415c1e8e8bb",
+      "offline_replay_byte_exact": true,
+      "execution_performed": false,
+      "lifecycle_event": null,
+      "readiness": null
+    },
+    {
+      "label": "nonmint",
+      "run_id": "a3fe222b-7ec2-4064-bc0c-a500953b961d",
+      "cluster": "solana-mainnet",
+      "mint": "11111111111111111111111111111111",
+      "catalogue_version": null,
+      "inspection": {
+        "account_type": "Program",
+        "message": "This address is an executable program, not a token mint.",
+        "status": "Unsupported"
+      },
+      "sample_status": "NotRequested",
+      "sample_count": null,
+      "rpc_methods": [
+        {
+          "method": "getGenesisHash",
+          "success": true,
+          "error": null
+        },
+        {
+          "method": "getAccountInfo",
+          "success": true,
+          "error": null
+        }
+      ],
+      "capture_sha256": "23f9341c07e18de2ba21fc82be59fd5f76824d04f1a7b235153d5312e05ed6a7",
+      "result_sha256": "d19b07b8114eaf6f9395a6e4895bfe17b664b016be028df9eb5cdff6043ca2c1",
+      "offline_replay_byte_exact": true,
+      "execution_performed": false,
+      "lifecycle_event": null,
+      "readiness": null
+    }
+  ]
+}

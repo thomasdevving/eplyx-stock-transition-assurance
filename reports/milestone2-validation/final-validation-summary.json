@@ -1,0 +1,27 @@
+{
+  "completed_at": "2026-09-19T13:43:57.954303+00:00",
+  "rust_make_test": {
+    "passed": 365,
+    "failed": 0,
+    "ignored": 0
+  },
+  "format_check": "Passed",
+  "lint": "Passed",
+  "service_tests": 22,
+  "browser_regressions": 12,
+  "live_browser_acceptance": 1,
+  "frontend_check": "Passed",
+  "production_build": "Passed",
+  "bindings": {
+    "historical-before": {
+      "files": 424,
+      "changed": []
+    },
+    "final-source-digests": {
+      "files": 120,
+      "changed": []
+    }
+  },
+  "live_sample": "Unresolved: HTTP 429; mint inspections completed",
+  "production_url": "http://127.0.0.1:4173/analysis#analysis"
+}

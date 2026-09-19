@@ -1,0 +1,32 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1 --grep-invert live generic
+
+(node:44270) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:44305) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:44306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:44306) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:44306) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (7.6s)
+  ✓   2 frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (14.6m)
+  ✓   3 frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly (1.4s)
+  ✓   4 frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies (43ms)
+  ✓   5 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (10.8s)
+  ✓   6 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (9.3s)
+  ✓   7 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (103ms)
+  ✓   8 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (5.4s)
+  ✓   9 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (2.2s)
+  ✓  10 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (7.2s)
+  ✓  11 frontend/tests/current.spec.js:6:1 › failed new submission cannot display a prior result as its outcome (4.9s)
+  ✓  12 frontend/tests/multiasset.spec.js:7:1 › catalogue search, custom draft, unavailable source and original toggle preserve selection without submission (7.0s)
+
+  Slow test file: frontend/tests/analysis.spec.js (14.8m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  12 passed (15.6m)

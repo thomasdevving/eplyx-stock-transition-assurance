@@ -1,0 +1,33 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.43s
+     Running tests/current_observations.rs (target/debug/deps/current_observations-4b8af7924457c34f)
+
+running 7 tests
+test wrong_cluster_and_missing_mint_never_fall_back_to_demo ... ok
+test acquisition_interval_and_decoder_version_are_checked ... ok
+test sampled_token_state_preserves_exact_amounts_and_never_becomes_population_or_authority_proof ... ok
+test changed_scope_commitment_program_or_injected_proof_fails_closed ... ok
+test fresh_capture_calls_rpc_again_and_rate_limit_preserves_only_valid_mint_findings ... ok
+test missing_sample_account_is_a_gap_and_stale_capture_is_rejected ... ok
+test offline_replay_redecodes_and_retains_original_rpc_evidence ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+     Running tests/lifecycle_snapshot.rs (target/debug/deps/lifecycle_snapshot-c282e9ee00e2b929)
+
+running 13 tests
+test exact_decimal_amounts_do_not_use_floats_or_overflow ... ok
+test legacy_mint_and_account_decoding ... ok
+test delegated_frozen_zero_and_account_extensions_survive_normalization ... ok
+test real_spacex_mint_fixture_decodes_all_live_extensions_and_embedded_metadata ... ok
+test token2022_mint_extensions_are_decoded_not_assumed ... ok
+test duplicate_extensions_and_invalid_marker_lengths_are_rejected ... ok
+test malformed_unsupported_and_wrong_mint_fail_explicitly ... ok
+test uninitialized_accounts_are_preserved_and_zero_allowance_is_not_active ... ok
+test spl_multisig_authority_preserves_threshold_and_signers ... ok
+test offline_replay_rejects_tampering_incomplete_evidence_and_bad_context ... ok
+test entity_classification_uses_authority_evidence_and_does_not_guess_pda_programs ... ok
+test rpc_url_credentials_are_not_retained_in_origin ... ok
+test snapshot_json_roundtrip_and_offline_evidence_replay_are_deterministic ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+

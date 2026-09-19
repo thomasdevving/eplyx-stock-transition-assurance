@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "asset": {
+    "name": "Custom token address",
+    "mint": "11111111111111111111111111111111",
+    "expected_token_program": null,
+    "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+    "verification": []
+  },
+  "rpc_origin": "https://api.mainnet-beta.solana.com",
+  "started_at": "2026-09-19T10:44:30.683Z",
+  "completed_at": "2026-09-19T10:44:32.799Z",
+  "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+  "observations": [
+    {
+      "method": "getGenesisHash",
+      "params": [],
+      "started_at": "2026-09-19T10:44:30.683Z",
+      "completed_at": "2026-09-19T10:44:32.217Z",
+      "result": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "error": null
+    },
+    {
+      "method": "getAccountInfo",
+      "params": [
+        "11111111111111111111111111111111",
+        {
+          "commitment": "finalized",
+          "encoding": "base64"
+        }
+      ],
+      "started_at": "2026-09-19T10:44:32.217Z",
+      "completed_at": "2026-09-19T10:44:32.799Z",
+      "result": {
+        "context": {
+          "apiVersion": "4.3.0-rc.0",
+          "slot": 448384187
+        },
+        "value": {
+          "data": [
+            "c29sYW5hX3N5c3RlbV9wcm9ncmFt",
+            "base64"
+          ],
+          "executable": true,
+          "lamports": 1,
+          "owner": "NativeLoader1111111111111111111111111111111",
+          "rentEpoch": 18446744073709551615,
+          "space": 21
+        }
+      },
+      "error": null
+    }
+  ],
+  "selection": {
+    "cluster": "solana-mainnet",
+    "mint": "11111111111111111111111111111111",
+    "reference": null,
+    "sample_accounts": false
+  }
+}

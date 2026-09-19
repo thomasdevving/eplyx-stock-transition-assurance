@@ -1,0 +1,40 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1 --grep live generic
+
+(node:42999) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:43121) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:43151) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43151) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:43151) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 frontend/tests/multiasset.spec.js:20:1 › live generic browser-to-engine inspection: two catalogue stocks, custom mint, nonmint, invalid input, refresh and offline replay (6.0s)
+
+
+  1) frontend/tests/multiasset.spec.js:20:1 › live generic browser-to-engine inspection: two catalogue stocks, custom mint, nonmint, invalid input, refresh and offline replay 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m202[39m
+    Received: [31m400[39m
+
+      26 |  const jobs=[];
+      27 |  async function run(label,mint){
+    > 28 |   const accepted=page.waitForResponse(r=>r.url().endsWith('/api/runs')&&r.request().method()==='POST');await page.locator('#run-analysis').click();const response=await accepted;expect(response.status()).toBe(202);const queued=await response.json();
+         |                                                                                                                                                                                                            ^
+      29 |   await page.getByRole('button',{name:'Technical',exact:true}).click();await page.getByRole('button',{name:'Overview',exact:true}).click();
+      30 |   await expect(page.locator(`.analysis-output[data-run="${queued.id}"]`)).toBeVisible({timeout:100000});
+      31 |   const job=await(await page.request.get(`/api/runs/${queued.id}`)).json();expect(job.status).toBe('Completed');expect(job.selection.mint).toBe(mint);expect(job.pinned_selection.mint).toBe(mint);expect(job.result.asset.mint).toBe(mint);expect(job.result.selection.mint).toBe(mint);
+        at run (/Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/multiasset.spec.js:28:204)
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/multiasset.spec.js:37:135
+
+    Error Context: test-results/multiasset-live-generic-br-095fb--refresh-and-offline-replay/error-context.md
+
+  1 failed
+    frontend/tests/multiasset.spec.js:20:1 › live generic browser-to-engine inspection: two catalogue stocks, custom mint, nonmint, invalid input, refresh and offline replay 

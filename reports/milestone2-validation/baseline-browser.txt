@@ -1,0 +1,64 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1
+
+(node:38169) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:38220) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:38226) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:38226) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:38226) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (9.0s)
+  ✘   2 frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (11.5m)
+(node:39957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39957) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:39957) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly (2.5s)
+  ✓   4 frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies (172ms)
+  ✓   5 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (14.7s)
+  ✓   6 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (9.5s)
+  ✓   7 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (164ms)
+  ✓   8 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (5.8s)
+  ✓   9 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (4.5s)
+  ✓  10 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (8.6s)
+  -  11 frontend/tests/current.spec.js:7:1 › live browser capture and refresh bind new evidence and replay offline
+  ✓  12 frontend/tests/current.spec.js:56:1 › failed new submission cannot display a prior result as its outcome (4.8s)
+
+
+  1) frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('.analysis-output[data-run="11f1c3fc-2f2e-4268-b879-86d96ae96009"]')
+    Expected: visible
+    Timeout: 300000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 300000ms[22m
+    [2m  - waiting for locator('.analysis-output[data-run="11f1c3fc-2f2e-4268-b879-86d96ae96009"]')[22m
+
+
+      35 |   await expect(page.locator('[name="review"]')).toHaveValue(review);
+      36 |   if(review==='overview'){await page.reload();await expect(page.locator('[name="review"]')).toHaveValue(review);}
+    > 37 |   await expect(page.locator(`.analysis-output[data-run="${queued.id}"]`)).toBeVisible({timeout:300000});
+         |                                                                           ^
+      38 |   const job=await (await page.request.get(`/api/runs/${queued.id}`)).json();
+      39 |   expect(job.status).toBe('Completed');expect(job.cached).toBe(false);expect(job.engine_sha256).toBe(engineHash);expect(job.engine_exit_code).toBe(exit);
+      40 |   const readiness=job.result.assessment?.readiness||job.result.readiness;expect(readiness.overall_status).toBe(status);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:37:75
+
+    Error Context: test-results/analysis-real-frontend-run-b4f77-ges-never-authorize-rollout/error-context.md
+
+  1 failed
+    frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout 
+  1 skipped
+  10 passed (12.7m)

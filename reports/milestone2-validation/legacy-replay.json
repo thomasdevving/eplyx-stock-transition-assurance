@@ -1,0 +1,10 @@
+[
+  {
+    "capture": "reports/on-demand-validation/live-1.capture.json",
+    "byte_exact": true
+  },
+  {
+    "capture": "reports/on-demand-validation/live-2.capture.json",
+    "byte_exact": true
+  }
+]

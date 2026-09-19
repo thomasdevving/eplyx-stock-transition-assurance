@@ -1,0 +1,6 @@
+cargo clippy --locked --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.97s
+cargo clippy --manifest-path programs/fixture-lending/Cargo.toml --no-default-features --features v1 --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.24s
+cargo clippy --manifest-path programs/fixture-lending/Cargo.toml --no-default-features --features v2 --all-targets -- -D warnings
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.09s

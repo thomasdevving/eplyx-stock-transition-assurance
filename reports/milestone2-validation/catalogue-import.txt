@@ -1,0 +1,10 @@
+{
+  "id": "f4fc0fba-b1ae-4190-b2e0-69c8ad3165ef",
+  "source_url": "https://prestocks.com/products",
+  "started_at": "2026-09-19T10:28:10.000Z",
+  "http_status": 200,
+  "status": "Completed",
+  "version": "322f404988ee43a983148215286cd269ea59664a4ad6607388b265198f0bda1e",
+  "entries": 9,
+  "completed_at": "2026-09-19T10:28:10.706Z"
+}

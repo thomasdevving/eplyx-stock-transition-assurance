@@ -1,0 +1,2 @@
+cargo fmt --all -- --check
+cargo fmt --all --manifest-path programs/fixture-lending/Cargo.toml -- --check

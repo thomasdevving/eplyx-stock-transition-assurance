@@ -1,0 +1,8 @@
+{
+  "address": "JEKNVnkbo3jma5nREBBJCDoXFVeKkD56V3xKrvRmWxFG",
+  "bytes_hex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "curve_membership": false,
+  "basis": "compressed y = 2^255-1 exceeds Ed25519 field modulus 2^255-19",
+  "solana_parser_accepted": true,
+  "rpc_performed": false
+}

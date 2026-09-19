@@ -1,0 +1,26 @@
+{
+  "name": "eplyx-stock-transition",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Eplyx Stock Transition \u2014 frozen lifecycle evidence frontend.",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "dev": "node frontend/serve.mjs",
+    "build": "node frontend/build.mjs",
+    "start": "node frontend/serve.mjs --production",
+    "check:frontend": "node frontend/check.mjs",
+    "test:frontend": "playwright test",
+    "test:service": "node --test frontend/tests/*.test.mjs",
+    "build:engine": "cargo build --locked -p eplyx-lifecycle-impact",
+    "import:catalogue": "node scripts/import-catalogue.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.58.2"
+  }
+}
