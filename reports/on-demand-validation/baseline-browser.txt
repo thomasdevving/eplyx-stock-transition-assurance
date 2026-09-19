@@ -1,0 +1,85 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1
+
+(node:22482) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:22517) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 10 tests using 1 worker
+
+(node:22518) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:22518) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:22518) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:6:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (8.3s)
+  ✘   2 frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (7.5m)
+(node:23682) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23682) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:23682) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   3 frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly (5.9s)
+(node:23721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:23721) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:23721) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   4 frontend/tests/analysis.spec.js:62:1 › API rejects unsupported caller commands, evidence and oversized bodies (69ms)
+  ✓   5 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (11.0s)
+  ✓   6 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (8.4s)
+  ✓   7 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (127ms)
+  ✓   8 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (5.0s)
+  ✓   9 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (2.2s)
+  ✓  10 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (8.1s)
+
+
+  1) frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"f[7m3e29e5ed83f7549bb1d78098bacd6c418d3e455b1fe184d73fa021847d1c631[27m"[39m
+    Received: [31m"f[7m17027508d2a4da0971d8984df66ea09d17183be79efdcd5421d720b6ce6873e[27m"[39m
+
+      37 |   await expect(page.locator(`.analysis-output[data-run="${queued.id}"]`)).toBeVisible({timeout:300000});
+      38 |   const job=await (await request.get(`/api/runs/${queued.id}`)).json();
+    > 39 |   expect(job.status).toBe('Completed');expect(job.cached).toBe(false);expect(job.engine_sha256).toBe(engineHash);expect(job.engine_exit_code).toBe(exit);
+         |                                                                                                 ^
+      40 |   const readiness=job.result.assessment?.readiness||job.result.readiness;expect(readiness.overall_status).toBe(status);
+      41 |   expect(job.selection).toEqual({asset:'spacex',review,stage,check});expect(job.authorization).toBe(false);expect(job.guarded_action_invoked).toBe(false);
+      42 |   const canonical=await (await request.get(`/api/runs/${queued.id}/artifact`)).body();expect(createHash('sha256').update(canonical).digest('hex')).toBe(job.canonical_sha256);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:39:97
+
+    Error Context: test-results/analysis-real-frontend-run-b4f77-ges-never-authorize-rollout/error-context.md
+
+  2) frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('#analysis-error')
+    Expected substring: [32m"unavailable"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('#analysis-error')[22m
+
+
+      56 |
+      57 | test('unavailable backend and saved reports are labeled honestly',async({page})=>{
+    > 58 |  await page.route('**/api/**',route=>route.abort());await page.goto('/');await expect(page.locator('#analysis-error')).toContainText('unavailable');
+         |                                                                                                                        ^
+      59 |  await page.goto('/evidence');await expect(page.locator('.consumer-only .report-top')).toContainText('Saved published result');await expect(page.locator('.technical-only:visible')).toHaveCount(0);
+      60 | });
+      61 |
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:58:120
+
+    Error Context: test-results/analysis-unavailable-backe-4c915-eports-are-labeled-honestly/error-context.md
+
+  2 failed
+    frontend/tests/analysis.spec.js:22:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout 
+    frontend/tests/analysis.spec.js:57:1 › unavailable backend and saved reports are labeled honestly 
+  8 passed (8.8m)

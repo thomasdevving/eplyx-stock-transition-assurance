@@ -1,0 +1,16 @@
+{
+  "milestone": 1,
+  "make_test": {
+    "passed": 361,
+    "failed": 0,
+    "ignored": 0
+  },
+  "service_tests": 13,
+  "browser_tests": 12,
+  "fmt_check": "Passed",
+  "lint": "Passed",
+  "frontend_build": "Passed",
+  "live_acquisition": "Mint inspection completed; largest-account sampling rate-limited (429)",
+  "fresh_execution": "NotTested",
+  "next_milestone": 2
+}

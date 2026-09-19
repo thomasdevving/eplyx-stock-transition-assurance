@@ -1,0 +1,25 @@
+
+> eplyx-stock-transition@0.1.0 test:service
+> node --test frontend/tests/service.test.mjs
+
+✔ allowlist rejects commands paths addresses endpoints unknown assets and decorative selections (2.24875ms)
+✔ completed policy outcomes 0 3 4 5 stay separate from processing errors (5.927209ms)
+✔ duplicate concurrent requests invoke one job and serialized jobs stay bounded (650.606292ms)
+✔ timeout verification failure and missing executable yield honest errors without result (286.1255ms)
+✔ actual child timeout and nonzero verification exit are errors (145.907584ms)
+✔ restart makes interrupted job an error rather than silently restarting it (24.948375ms)
+✔ integer formatting never loses large values or rounds small positives to zero (82.557709ms)
+✔ real engine rejects a tampered isolated trust binding server-side (156.611375ms)
+✔ all scenario dates and example scopes select the actual engine view without changing proof (75.277666ms)
+✔ current requests accept no saved scenario, endpoint, evidence, or filesystem scope (2.48725ms)
+✔ new captures never accept historical statuses or readiness grants (1.113ms)
+✔ refresh invokes acquisition again and keeps scoped capture digests, sessions and prior run (373.370708ms)
+✔ fresh acquisition failure never runs the historical engine or substitutes a saved result (133.265042ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2144.91325
