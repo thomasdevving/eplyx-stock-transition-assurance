@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "purpose": "Milestone 6 bounded public mechanism search",
+  "rpc": "https://api.mainnet-beta.solana.com",
+  "signature_limit_per_address": 20,
+  "transaction_limit": 16,
+  "searches": [
+    {
+      "role": "source-mint",
+      "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "returned": null,
+      "error": null,
+      "entries": []
+    },
+    {
+      "role": "successor-mint",
+      "address": "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+      "returned": null,
+      "error": null,
+      "entries": []
+    },
+    {
+      "role": "source-mint-authority",
+      "address": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+      "returned": null,
+      "error": null,
+      "entries": []
+    },
+    {
+      "role": "successor-mint-authority",
+      "address": "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+      "returned": null,
+      "error": null,
+      "entries": []
+    }
+  ],
+  "selected_signatures": [],
+  "records": [
+    {
+      "name": "issuer-spacex",
+      "url": "https://prestocks.com/spacex",
+      "retrieved_at": "2026-09-20T14:14:46.099855+00:00",
+      "http_status": null,
+      "content_type": null,
+      "sha256": "a8014ecefc9b9c4cc3987abe484f64b8ee37dd3e6bc0182a0f12915e702dedb3",
+      "file": "issuer-spacex.body",
+      "request": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "name": "issuer-faq",
+      "url": "https://prestocks.com/faq",
+      "retrieved_at": "2026-09-20T14:14:46.133005+00:00",
+      "http_status": null,
+      "content_type": null,
+      "sha256": "a8014ecefc9b9c4cc3987abe484f64b8ee37dd3e6bc0182a0f12915e702dedb3",
+      "file": "issuer-faq.body",
+      "request": null,
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "name": "signatures-source-mint",
+      "url": "https://api.mainnet-beta.solana.com",
+      "retrieved_at": "2026-09-20T14:14:46.185671+00:00",
+      "http_status": null,
+      "content_type": null,
+      "sha256": "a8014ecefc9b9c4cc3987abe484f64b8ee37dd3e6bc0182a0f12915e702dedb3",
+      "file": "signatures-source-mint.body",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": "signatures-source-mint",
+        "method": "getSignaturesForAddress",
+        "params": [
+          "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          {
+            "limit": 20,
+            "commitment": "finalized"
+          }
+        ]
+      },
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "name": "signatures-successor-mint",
+      "url": "https://api.mainnet-beta.solana.com",
+      "retrieved_at": "2026-09-20T14:14:46.295898+00:00",
+      "http_status": null,
+      "content_type": null,
+      "sha256": "a8014ecefc9b9c4cc3987abe484f64b8ee37dd3e6bc0182a0f12915e702dedb3",
+      "file": "signatures-successor-mint.body",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": "signatures-successor-mint",
+        "method": "getSignaturesForAddress",
+        "params": [
+          "Xs3oZwbHvqis4NYcf4YKWmEia2eC84wSiVrcYcTqpH8",
+          {
+            "limit": 20,
+            "commitment": "finalized"
+          }
+        ]
+      },
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "name": "signatures-source-mint-authority",
+      "url": "https://api.mainnet-beta.solana.com",
+      "retrieved_at": "2026-09-20T14:14:46.328881+00:00",
+      "http_status": null,
+      "content_type": null,
+      "sha256": "a8014ecefc9b9c4cc3987abe484f64b8ee37dd3e6bc0182a0f12915e702dedb3",
+      "file": "signatures-source-mint-authority.body",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": "signatures-source-mint-authority",
+        "method": "getSignaturesForAddress",
+        "params": [
+          "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+          {
+            "limit": 20,
+            "commitment": "finalized"
+          }
+        ]
+      },
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    },
+    {
+      "name": "signatures-successor-mint-authority",
+      "url": "https://api.mainnet-beta.solana.com",
+      "retrieved_at": "2026-09-20T14:14:46.361642+00:00",
+      "http_status": null,
+      "content_type": null,
+      "sha256": "a8014ecefc9b9c4cc3987abe484f64b8ee37dd3e6bc0182a0f12915e702dedb3",
+      "file": "signatures-successor-mint-authority.body",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": "signatures-successor-mint-authority",
+        "method": "getSignaturesForAddress",
+        "params": [
+          "7pt9tkctJPK7PPNQJ77GKg8ZffSF6QxoMiCFYHxrtaCj",
+          {
+            "limit": 20,
+            "commitment": "finalized"
+          }
+        ]
+      },
+      "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1028)>"
+    }
+  ]
+}

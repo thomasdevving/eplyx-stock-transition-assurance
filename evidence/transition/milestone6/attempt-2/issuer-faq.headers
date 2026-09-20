@@ -1,0 +1,19 @@
+HTTP/2 200 
+accept-ch: Sec-CH-Prefers-Color-Scheme
+age: 0
+cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+content-security-policy: base-uri 'self'; connect-src 'self' https://*.intercom-messenger.com https://api-iam.au.intercom.io https://api-iam.eu.intercom.io https://api-iam.intercom.io https://api-ping.intercom.io https://api.au.intercom.io https://api.eu.intercom.io https://api.intercom.io https://downloads.intercomcdn.com https://downloads.intercomcdn.eu https://nexus-australia-websocket.intercom.io https://nexus-europe-websocket.intercom.io https://nexus-websocket-a.intercom.io https://nexus-websocket-b.intercom.io https://uploads.au.intercomcdn.com https://uploads.eu.intercomcdn.com https://uploads.intercomusercontent.com https://via.intercom.io https://widget.intercom.io wss://*.intercom-messenger.com wss://*.intercom.io wss://nexus-australia-websocket.intercom.io wss://nexus-europe-websocket.intercom.io wss://nexus-websocket-a.intercom.io wss://nexus-websocket-b.intercom.io https://api.mainnet-beta.solana.com; child-src https://fast.wistia.net https://intercom-sheets.com https://player.vimeo.com https://www.intercom-reporting.com https://www.youtube.com; default-src 'self'; font-src 'self' https://fonts.intercomcdn.com https://js.intercomcdn.com https://fonts.gstatic.com; form-action 'self' https://api-iam.au.intercom.io https://api-iam.eu.intercom.io https://api-iam.intercom.io https://intercom.help; frame-ancestors 'none'; frame-src https://fast.wistia.net https://intercom-sheets.com https://player.vimeo.com https://www.intercom-reporting.com https://www.youtube.com; img-src 'self' blob: data: https://explorer-api.walletconnect.com https://* https://*.au.intercom-attachments.com https://*.intercom-attachments-1.com https://*.intercom-attachments-2.com https://*.intercom-attachments-3.com https://*.intercom-attachments-4.com https://*.intercom-attachments-5.com https://*.intercom-attachments-6.com https://*.intercom-attachments-7.com https://*.intercom-attachments-8.com https://*.intercom-attachments-9.com https://*.intercom-attachments.eu https://downloads.au.intercomcdn.com https://downloads.intercomcdn.com https://downloads.intercomcdn.eu https://gifs.intercomcdn.com https://js.intercomcdn.com https://messenger-apps.au.intercom.io https://messenger-apps.eu.intercom.io https://messenger-apps.intercom.io https://static.au.intercomassets.com https://static.intercomassets.com https://static.intercomassets.eu https://uploads.intercomusercontent.com https://video-messages.intercomcdn.com https://widget.intercom.io; manifest-src 'self'; media-src https://downloads.au.intercomcdn.com https://downloads.intercomcdn.com https://downloads.intercomcdn.eu https://js.intercomcdn.com; object-src 'none'; script-src 'nonce-bIGxSQVimrrVRy9J1ZCIj' 'self' 'strict-dynamic' https://app.intercom.io https://js.intercomcdn.com https://widget.intercom.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com
+content-type: text/html; charset=utf-8
+critical-ch: Sec-CH-Prefers-Color-Scheme
+date: Sun, 20 Sep 2026 14:15:32 GMT
+link: </_next/static/media/739c2d8941231bb4-s.p.woff2>; rel=preload; as="font"; crossorigin=""; nonce="bIGxSQVimrrVRy9J1ZCIj"; type="font/woff2", </_next/static/media/e4af272ccee01ff0-s.p.woff2>; rel=preload; as="font"; crossorigin=""; nonce="bIGxSQVimrrVRy9J1ZCIj"; type="font/woff2", </ui/brand-logos/prestocks-logo.svg>; rel=preload; as="image"
+server: Vercel
+strict-transport-security: max-age=63072000
+vary: rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch
+x-content-type-options: nosniff
+x-matched-path: /faq
+x-nonce: bIGxSQVimrrVRy9J1ZCIj
+x-powered-by: Next.js
+x-vercel-cache: MISS
+x-vercel-id: fra1::iad1::z8wqm-1789913731900-6601350fe485
+

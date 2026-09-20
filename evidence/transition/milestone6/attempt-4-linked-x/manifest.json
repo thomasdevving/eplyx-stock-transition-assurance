@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source_type": "issuer_linked_public_x_post_html",
+  "url": "https://x.com/PreStocks/status/2063623768535363940",
+  "retrieved_at": "2026-09-20T14:39:37Z",
+  "http_status": 200,
+  "content_type": "text/html; charset=UTF-8",
+  "body_file": "post.body",
+  "headers_file": "post.headers",
+  "body_sha256": "d1bb272189916e9f602140e3bfce7182ead8c8e1bf9039e0283a504debcd6519",
+  "exact_pointers": [
+    "HTML title: conversion happens through normal trading and is fully onchain",
+    "HTML og:description: visible snippet ends after The 5-for..."
+  ],
+  "boundary": "One unauthenticated public request. The returned metadata truncates the post; no full post text or transaction plan was inferred."
+}

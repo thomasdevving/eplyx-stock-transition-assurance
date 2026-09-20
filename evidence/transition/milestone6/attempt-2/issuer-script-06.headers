@@ -1,0 +1,21 @@
+HTTP/2 200 
+accept-ch: Sec-CH-Prefers-Color-Scheme
+accept-ranges: bytes
+access-control-allow-origin: *
+age: 25523
+cache-control: public,max-age=31536000,immutable
+content-disposition: inline; filename="1816-4f7d0bba9810fd96.js"
+content-type: application/javascript; charset=utf-8
+critical-ch: Sec-CH-Prefers-Color-Scheme
+date: Sun, 20 Sep 2026 14:15:32 GMT
+etag: "78688d0b279b16dcb411520356fdbc6d"
+last-modified: Sun, 20 Sep 2026 07:10:09 GMT
+server: Vercel
+strict-transport-security: max-age=63072000
+vary: Sec-CH-Prefers-Color-Scheme
+x-content-type-options: nosniff
+x-matched-path: /_next/static/chunks/1816-4f7d0bba9810fd96.js
+x-vercel-cache: HIT
+x-vercel-id: fra1::64qjs-1789913732736-0e3369e87def
+content-length: 10420
+
