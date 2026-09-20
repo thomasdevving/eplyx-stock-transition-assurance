@@ -1,0 +1,2253 @@
+{
+  "parent": {
+    "id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+    "owner": "ff4f7f4723d6e1b8a973617a175f933727e05a515f857f0242f78567ba25ac2d",
+    "request_key": "6410e45a-dbc7-4c58-9421-f3517dba58d7",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-20T13:16:58.390Z",
+    "resolved": {
+      "asset": "OpenAI",
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "scope": "Public owner and selected mint token accounts",
+      "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "policy": null,
+      "trusted_bundle": null
+    },
+    "operation": "Fresh read-only acquisition and current-state inspection",
+    "cached": false,
+    "authorization": false,
+    "guarded_action_invoked": false,
+    "result": {
+      "account_observation": {
+        "executable": false,
+        "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448742577,
+        "space": 902
+      },
+      "accounts": [],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-20T13:16:59.606Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448742577,
+          448742578,
+          448742580
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-20T13:16:58.487Z"
+      },
+      "asset": {
+        "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "expected_token_program": null,
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "name": "OpenAI",
+        "verification": []
+      },
+      "authorization": false,
+      "discovery": {
+        "complete_population": false,
+        "gaps": [],
+        "maximum_sample_accounts": 20,
+        "method": "getTokenLargestAccounts + getMultipleAccounts",
+        "requested": false,
+        "sample_count": null,
+        "status": "NotRequested",
+        "technical_errors": []
+      },
+      "execution_performed": false,
+      "funds_moved": false,
+      "identity_mismatches": [
+        "Source name/symbol (OpenAI/OPENAI) differs from on-chain metadata"
+      ],
+      "identity_provenance": "Referenced by the PreStocks product source; on-chain account inspected independently. This source reference is not execution proof or legal verification.",
+      "inspection": {
+        "account_type": "Mint",
+        "message": "Current token information retrieved",
+        "status": "Completed"
+      },
+      "kind": "current-inspection",
+      "lifecycle_event": null,
+      "limitations": [
+        "Protocol positions were not checked in this analysis.",
+        "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+        "Public owner association does not prove human identity, legal ownership or signing access.",
+        "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+        "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+      ],
+      "local_execution_performed": false,
+      "mint": {
+        "decimal_supply": "1901.883218865",
+        "decimals": 9,
+        "extensions": [
+          {
+            "config": {
+              "newerTransferFee": {
+                "epoch": 1039,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 100
+              },
+              "olderTransferFee": {
+                "epoch": 1032,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 50
+              },
+              "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withheldAmount": 586451591
+            },
+            "extension_type": "TransferFeeConfig",
+            "type_id": 1
+          },
+          {
+            "config": {
+              "auditorElgamalPubkey": null,
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "autoApproveNewAccounts": false
+            },
+            "extension_type": "ConfidentialTransferMint",
+            "type_id": 4
+          },
+          {
+            "config": {
+              "rawState": 1,
+              "state": "Initialized"
+            },
+            "extension_type": "DefaultAccountState",
+            "type_id": 6
+          },
+          {
+            "config": {
+              "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+            },
+            "extension_type": "PermanentDelegate",
+            "type_id": 12
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "programId": null
+            },
+            "extension_type": "TransferHook",
+            "type_id": 14
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "harvestToMintEnabled": true,
+              "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+              "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            },
+            "extension_type": "ConfidentialTransferFeeConfig",
+            "type_id": 16
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "metadataAddress": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+            },
+            "extension_type": "MetadataPointer",
+            "type_id": 18
+          },
+          {
+            "config": {
+              "additionalMetadata": [],
+              "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "name": "OpenAI PreStocks",
+              "symbol": "OPENAI",
+              "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "uri": "https://prestocks.com/metadata/openai.json"
+            },
+            "extension_type": "TokenMetadata",
+            "type_id": 19
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "multiplier": 1,
+              "newMultiplier": 1.4861347,
+              "newMultiplierEffectiveTimestamp": 1784305800
+            },
+            "extension_type": "ScaledUiAmount",
+            "type_id": 25
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "paused": false
+            },
+            "extension_type": "Pausable",
+            "type_id": 26
+          }
+        ],
+        "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "is_initialized": true,
+        "is_token_2022": true,
+        "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "raw_supply": "1901883218865",
+        "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      "mint_slot": 448742577,
+      "onchain_metadata": {
+        "additionalMetadata": [],
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "name": "OpenAI PreStocks",
+        "symbol": "OPENAI",
+        "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "uri": "https://prestocks.com/metadata/openai.json"
+      },
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "reason": "Fresh execution is not wired for this observation milestone.",
+          "status": "NotTested"
+        }
+      ],
+      "readiness": null,
+      "schema_version": 3,
+      "selection": {
+        "cluster": "solana-mainnet",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "reference": {
+          "assertions": [
+            {
+              "decimals": 9,
+              "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "name": "OpenAI",
+              "symbol": "OPENAI"
+            }
+          ],
+          "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+          "retrieved_at": "2026-09-19T10:33:42.635Z",
+          "source_url": "https://prestocks.com/products",
+          "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+        },
+        "sample_accounts": false
+      },
+      "signer_assumed_locally": false,
+      "signer_possession_known": false,
+      "wallet_observation": {
+        "account_count": 1,
+        "acquisition": {
+          "context_slot": 448742580,
+          "evidence": "observations[3]",
+          "method": "getTokenAccountsByOwner",
+          "query": {
+            "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+          },
+          "status": "Succeeded"
+        },
+        "confidential_balance": "Unknown; excluded from public quantities",
+        "coverage": {
+          "all_assets": false,
+          "complete_response_decoded": true,
+          "maximum_accounts": 1000,
+          "protocol_positions_checked": false,
+          "response_byte_limit": 2097152,
+          "scope": "Owner-scoped token accounts for selected mint"
+        },
+        "decoded_account_count": 1,
+        "gaps": [],
+        "known_public_balance_subtotal_raw": "149232852141",
+        "limitations": [
+          "Protocol positions were not checked in this analysis.",
+          "Transfers, market exits, withdrawals, lifecycle transition and redemption were not tested.",
+          "Public owner association does not prove human identity, legal ownership or signing access.",
+          "Public base balances exclude encrypted balances and withheld fees; display scaling and interest conversion are not applied.",
+          "Separate finalized RPC contexts are not an atomic bank or a guarantee of later availability."
+        ],
+        "owner_inspection": {
+          "accepted": true,
+          "kind": "PossibleOwnerAuthority",
+          "message": "Possible owner authority; human identity, authority control and signer possession are not established.",
+          "runtime_owner": "11111111111111111111111111111111"
+        },
+        "public_balance_total_raw": "149232852141",
+        "selected_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "status": "Completed",
+        "submitted_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "token_accounts": [
+          {
+            "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+            "evidence": "observations[3].result.value[0]",
+            "slot": 448742580,
+            "state": {
+              "account_state": "Initialized",
+              "close_authority": null,
+              "delegate": null,
+              "delegated_amount": "0",
+              "extensions": [
+                {
+                  "config": {
+                    "withheldAmount": 0
+                  },
+                  "extension_type": "TransferFeeAmount",
+                  "type_id": 2
+                },
+                {
+                  "config": {},
+                  "extension_type": "ImmutableOwner",
+                  "type_id": 7
+                },
+                {
+                  "config": {
+                    "transferring": false
+                  },
+                  "extension_type": "TransferHookAccount",
+                  "type_id": 15
+                },
+                {
+                  "config": {},
+                  "extension_type": "PausableAccount",
+                  "type_id": 27
+                }
+              ],
+              "has_active_delegate": false,
+              "is_frozen": false,
+              "is_initialized": true,
+              "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "native_reserve": null,
+              "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+              "raw_balance": "149232852141",
+              "ui_balance": "149.232852141",
+              "ui_balance_basis": "raw_balance / 10^decimals; no UI transform"
+            }
+          }
+        ]
+      }
+    },
+    "error": null,
+    "pinned_selection": {
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "reference": {
+        "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+        "source_url": "https://prestocks.com/products",
+        "retrieved_at": "2026-09-19T10:33:42.635Z",
+        "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+        "assertions": [
+          {
+            "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "name": "OpenAI",
+            "symbol": "OPENAI",
+            "decimals": 9
+          }
+        ]
+      },
+      "sample_accounts": false,
+      "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+    },
+    "started_at": "2026-09-20T13:16:58.390Z",
+    "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+    "stage": "Decoding and preparing findings",
+    "engine_exit_code": 0,
+    "canonical_sha256": "6be4c212056bfe8db806998e4494b4b52df48e96efcb78db5237b7d987e8d923",
+    "capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2",
+    "completed_at": "2026-09-20T13:16:59.615Z",
+    "execution_checks": []
+  },
+  "transfer": {
+    "id": "fae8519f-aa14-4d65-a66b-320a4aa738e9",
+    "owner": "ff4f7f4723d6e1b8a973617a175f933727e05a515f857f0242f78567ba25ac2d",
+    "request_key": "ddcd9424-f28d-4047-af52-4eef8dce6858",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+    },
+    "parent_run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+    "parent_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2",
+    "check_request": {
+      "path": "Transfer",
+      "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "recipient": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+      "amount_mode": "Full",
+      "amount_decimal": null
+    },
+    "validated_request": {
+      "amount_decimal": "149.232852141",
+      "amount_raw": "149232852141",
+      "reason": null,
+      "status": "NotTested"
+    },
+    "status": "Completed",
+    "created_at": "2026-09-20T13:17:00.413Z",
+    "operation": "Fresh read-only execution capture followed by offline local simulation",
+    "authorization": false,
+    "result": {
+      "account_evidence": [
+        {
+          "address": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+          "exists": true,
+          "pointer": "/value/0",
+          "raw_data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "rpc_record": 3,
+          "runtime_owner": "11111111111111111111111111111111",
+          "slot": 448742587
+        },
+        {
+          "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+          "exists": true,
+          "pointer": "/value/1",
+          "raw_data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+          "rpc_record": 3,
+          "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "slot": 448742587
+        },
+        {
+          "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "exists": true,
+          "pointer": "/value/2",
+          "raw_data_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+          "rpc_record": 3,
+          "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "slot": 448742587
+        },
+        {
+          "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+          "exists": true,
+          "pointer": "/value/3",
+          "raw_data_sha256": "1e5a0a6043401ff09f2355fbc351774e2476cd53f4c160b9e25bf6e602a7ab26",
+          "rpc_record": 3,
+          "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "slot": 448742587
+        },
+        {
+          "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+          "exists": true,
+          "pointer": "/value/4",
+          "raw_data_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+          "rpc_record": 3,
+          "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "slot": 448742587
+        },
+        {
+          "address": "SysvarC1ock11111111111111111111111111111111",
+          "exists": true,
+          "pointer": "/value/5",
+          "raw_data_sha256": "b89f7bc50d943d4cec0bb0c2563ce15e0b9446559ed39d2dac1daca455a36532",
+          "rpc_record": 3,
+          "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+          "slot": 448742587
+        },
+        {
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "exists": true,
+          "pointer": "/value/6",
+          "raw_data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+          "rpc_record": 3,
+          "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "slot": 448742587
+        }
+      ],
+      "account_plan": [
+        "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+        "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+        "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "SysvarC1ock11111111111111111111111111111111",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      ],
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-20T13:17:01.997345+00:00",
+        "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+        "discovery_slot": 448742580,
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-20T13:17:00.660989+00:00"
+      },
+      "amount_basis": "Unscaled base token units using captured mint decimals; scaled UI and interest-bearing conversions are not requested or applied.",
+      "amount_decimal": "149.232852141",
+      "amount_raw": "149232852141",
+      "assumptions": [
+        "The recorded owner is assumed locally to sign; key possession and authorization remain unknown.",
+        "Signature and recent-blockhash verification are disabled in the existing LiteSVM 0.16 runtime. Only the fee payer is synthetic; token accounts and deployed program bytes are captured.",
+        "This is token movement only. No market sale, conversion, redemption, withdrawal or readiness is established."
+      ],
+      "authorization": false,
+      "check_id": "fae8519f-aa14-4d65-a66b-320a4aa738e9",
+      "clock": {
+        "epoch": 1038,
+        "epoch_start_timestamp": 1789823115,
+        "leader_schedule_epoch": 1039,
+        "slot": 448742587,
+        "unix_timestamp": 1789910212
+      },
+      "deployed_programs": [
+        {
+          "code_sha256": "0999dbf708971e723b08d1caafc988826a59c6001ed6dc02260da07defbe1469",
+          "deployment_slot": 427147035,
+          "loader": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "programdata_address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY"
+        }
+      ],
+      "discovery_comparison": {
+        "execution_fixture_is_authoritative": true,
+        "mint_data_changed": false,
+        "owner_account_changed": false,
+        "source_unchanged": true
+      },
+      "execution": {
+        "compute_units": 4620,
+        "error": null,
+        "inner_instructions": [],
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [1]",
+          "Program log: Instruction: TransferChecked",
+          "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 4470 of 1399850 compute units",
+          "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success"
+        ],
+        "post_accounts": {
+          "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy": {
+            "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197284e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+            "executable": false,
+            "lamports": "2220240",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          },
+          "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ": {
+            "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197282a214f23e54f83cb3558e8015c8513095461e1536228d4dc5722bf5dbc44c5a0b30c7f92220000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000207000000020008002590792c000000000f000100001b000000",
+            "executable": false,
+            "lamports": "2220240",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          },
+          "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF": {
+            "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddb1db12d1ba010000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd878af422000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f88585a6a000000005c36df2d35c7f73f12004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197281a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe3719728100000004f70656e41492050726553746f636b73060000004f50454e41492a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f6f70656e61692e6a736f6e00000000",
+            "executable": false,
+            "lamports": "362899490",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          }
+        },
+        "success": true,
+        "transaction_fee_lamports": 10000
+      },
+      "execution_capture_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+      "execution_fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+      "execution_performed": true,
+      "funds_moved": false,
+      "kind": "current-execution",
+      "lifecycle_event": null,
+      "local_execution_performed": true,
+      "message": {
+        "account_keys": [
+          "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+          "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+          "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+          "ComputeBudget111111111111111111111111111111",
+          "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+          "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        ],
+        "instructions": [
+          {
+            "account_indices": [],
+            "data": "02c05c1500",
+            "program_index": 4
+          },
+          {
+            "account_indices": [
+              2,
+              5,
+              3,
+              1
+            ],
+            "data": "0cad9cf8be2200000009",
+            "program_index": 6
+          }
+        ],
+        "readonly_signed_accounts": 1,
+        "readonly_unsigned_accounts": 3,
+        "recent_blockhash": "11111111111111111111111111111111",
+        "required_signatures": 2
+      },
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "path": "Transfer",
+      "pre_accounts": [
+        {
+          "account": {
+            "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197284e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbdad9cf8be2200000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+            "executable": false,
+            "lamports": "2220240",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          },
+          "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "label": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy"
+        },
+        {
+          "account": {
+            "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197282a214f23e54f83cb3558e8015c8513095461e1536228d4dc5722bf5dbc44c5a02b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+            "executable": false,
+            "lamports": "2220240",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          },
+          "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+          "label": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ"
+        },
+        {
+          "account": {
+            "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddb1db12d1ba010000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd878af422000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f88585a6a000000005c36df2d35c7f73f12004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197281a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe3719728100000004f70656e41492050726553746f636b73060000004f50454e41492a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f6f70656e61692e6a736f6e00000000",
+            "executable": false,
+            "lamports": "362899490",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          },
+          "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+          "label": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+        }
+      ],
+      "readiness": null,
+      "recipient": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+      "reconciliation": {
+        "account_data": [
+          {
+            "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+            "after_sha256": "403a3fb14d71d9e34635eb5571e649b50a555e2be1b263d66e3ca1fb590c97d4",
+            "before_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+            "changed_ranges": [
+              {
+                "after": "0000000000",
+                "before": "ad9cf8be22",
+                "offset": 64
+              }
+            ]
+          },
+          {
+            "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+            "after_sha256": "0852e4adcb55205e7f267a73986615b6f0f371dc8b045b094b293f1ef20a24a2",
+            "before_sha256": "1e5a0a6043401ff09f2355fbc351774e2476cd53f4c160b9e25bf6e602a7ab26",
+            "changed_ranges": [
+              {
+                "after": "b30c7f9222",
+                "before": "2b00000000",
+                "offset": 64
+              },
+              {
+                "after": "2590792c",
+                "before": "00000000",
+                "offset": 174
+              }
+            ]
+          },
+          {
+            "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "after_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+            "before_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+            "changed_ranges": []
+          }
+        ],
+        "fees": null,
+        "input_debited_raw": "149232852141",
+        "output_decimal_base_units": "148.48668788",
+        "output_received_raw": "148486687880",
+        "reconciled": true,
+        "reconciliation": [
+          "Actual TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb transfer: source debit = destination public credit + destination withheld fee. Captured epoch 1038; independently calculated transfer fee 746164261 raw. Mint unchanged; no DLMM event/bin/venue delta is applicable to Transfer.",
+          "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+        ],
+        "token_accounts": [
+          {
+            "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+            "after_raw": "0",
+            "before_raw": "149232852141",
+            "change_decimal_base_units": "-149.232852141",
+            "change_raw": "-149232852141",
+            "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "withheld_fee_change_raw": "0"
+          },
+          {
+            "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+            "after_raw": "148486687923",
+            "before_raw": "43",
+            "change_decimal_base_units": "148.48668788",
+            "change_raw": "148486687880",
+            "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "withheld_fee_change_raw": "746164261"
+          }
+        ]
+      },
+      "request": {
+        "amount_decimal": null,
+        "amount_mode": "Full",
+        "path": "Transfer",
+        "recipient": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+        "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy"
+      },
+      "run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+      "runtime_profile": {
+        "backend": "LiteSVM 0.16",
+        "features": "pinned mainnet/default profile",
+        "recent_blockhash_verification": false,
+        "signature_verification": false,
+        "synthetic_fee_payer": "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+        "validator_bank_reproduction": false
+      },
+      "schema_version": 1,
+      "scope": "Only this exact source, mint, amount, recipient, fixture, deployed code, runtime and assumed owner signature. No other account, amount, venue or lifecycle path inherits this evidence.",
+      "signer_assumed_locally": true,
+      "signer_possession_known": false,
+      "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "status": "Proven",
+      "wallet_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+    },
+    "error": null,
+    "started_at": "2026-09-20T13:17:00.416Z",
+    "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+    "stage": "Preparing evidence",
+    "capture_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+    "engine_exit_code": 0,
+    "canonical_sha256": "7f2f0ecfb99a6112832fe071fd7d33eeb0301c9dad8f2b65a2e7dd4442da5ec9",
+    "completed_at": "2026-09-20T13:17:03.276Z"
+  },
+  "preflight": {
+    "id": "77c7c8d9-72c8-4148-9a90-d0d4b58c95f7",
+    "owner": "ff4f7f4723d6e1b8a973617a175f933727e05a515f857f0242f78567ba25ac2d",
+    "request_key": "d126b4dc-45f2-4993-884b-4c410e332f1d",
+    "selection": {
+      "asset": "mint",
+      "review": "current",
+      "stage": null,
+      "check": null,
+      "cluster": "solana-mainnet",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "sample_accounts": false,
+      "scope": "wallet",
+      "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+    },
+    "parent_run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+    "parent_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2",
+    "preflight_request": {
+      "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "successor_mint": "So11111111111111111111111111111111111111112",
+      "effective_at": "2026-11-04T13:17:00.000Z",
+      "deadline": null,
+      "post_deadline": null,
+      "assurance": "FullTransition",
+      "check_ids": [
+        "fae8519f-aa14-4d65-a66b-320a4aa738e9"
+      ]
+    },
+    "status": "Completed",
+    "created_at": "2026-09-20T13:17:05.764Z",
+    "operation": "User-proposed prospective pre-flight over unchanged current observations",
+    "authorization": false,
+    "result": {
+      "authorization": false,
+      "bundle_sha256": "b8a788b79dfde2dfafb41faa24d1d5900b4b90ab84e0c5e1ff1bc96ebcc1e854",
+      "current_state": {
+        "account": {
+          "account_state": "Initialized",
+          "close_authority": null,
+          "delegate": null,
+          "delegated_amount": "0",
+          "extensions": [
+            {
+              "config": {
+                "withheldAmount": 0
+              },
+              "extension_type": "TransferFeeAmount",
+              "type_id": 2
+            },
+            {
+              "config": {},
+              "extension_type": "ImmutableOwner",
+              "type_id": 7
+            },
+            {
+              "config": {
+                "transferring": false
+              },
+              "extension_type": "TransferHookAccount",
+              "type_id": 15
+            },
+            {
+              "config": {},
+              "extension_type": "PausableAccount",
+              "type_id": 27
+            }
+          ],
+          "has_active_delegate": false,
+          "is_frozen": false,
+          "is_initialized": true,
+          "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+          "native_reserve": null,
+          "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+          "raw_balance": "149232852141",
+          "ui_balance": "149.232852141",
+          "ui_balance_basis": "raw_balance / 10^decimals; no UI transform"
+        },
+        "acquisition": {
+          "commitment": "finalized",
+          "completed_at": "2026-09-20T13:16:59.606Z",
+          "consistency": "Separate RPC observations, not an atomic validator bank",
+          "context_slots": [
+            448742577,
+            448742578,
+            448742580
+          ],
+          "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+          "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+          "rpc_methods": [
+            "getGenesisHash",
+            "getAccountInfo",
+            "getAccountInfo",
+            "getTokenAccountsByOwner"
+          ],
+          "rpc_origin": "https://api.mainnet-beta.solana.com",
+          "started_at": "2026-09-20T13:16:58.487Z"
+        },
+        "captured_at": "2026-09-20T13:16:59.606Z",
+        "mint": {
+          "decimal_supply": "1901.883218865",
+          "decimals": 9,
+          "extensions": [
+            {
+              "config": {
+                "newerTransferFee": {
+                  "epoch": 1039,
+                  "maximumFee": 18446744073709552000,
+                  "transferFeeBasisPoints": 100
+                },
+                "olderTransferFee": {
+                  "epoch": 1032,
+                  "maximumFee": 18446744073709552000,
+                  "transferFeeBasisPoints": 50
+                },
+                "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "withheldAmount": 586451591
+              },
+              "extension_type": "TransferFeeConfig",
+              "type_id": 1
+            },
+            {
+              "config": {
+                "auditorElgamalPubkey": null,
+                "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "autoApproveNewAccounts": false
+              },
+              "extension_type": "ConfidentialTransferMint",
+              "type_id": 4
+            },
+            {
+              "config": {
+                "rawState": 1,
+                "state": "Initialized"
+              },
+              "extension_type": "DefaultAccountState",
+              "type_id": 6
+            },
+            {
+              "config": {
+                "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+              },
+              "extension_type": "PermanentDelegate",
+              "type_id": 12
+            },
+            {
+              "config": {
+                "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "programId": null
+              },
+              "extension_type": "TransferHook",
+              "type_id": 14
+            },
+            {
+              "config": {
+                "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "harvestToMintEnabled": true,
+                "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+                "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+              },
+              "extension_type": "ConfidentialTransferFeeConfig",
+              "type_id": 16
+            },
+            {
+              "config": {
+                "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "metadataAddress": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+              },
+              "extension_type": "MetadataPointer",
+              "type_id": 18
+            },
+            {
+              "config": {
+                "additionalMetadata": [],
+                "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "name": "OpenAI PreStocks",
+                "symbol": "OPENAI",
+                "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "uri": "https://prestocks.com/metadata/openai.json"
+              },
+              "extension_type": "TokenMetadata",
+              "type_id": 19
+            },
+            {
+              "config": {
+                "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "multiplier": 1,
+                "newMultiplier": 1.4861347,
+                "newMultiplierEffectiveTimestamp": 1784305800
+              },
+              "extension_type": "ScaledUiAmount",
+              "type_id": 25
+            },
+            {
+              "config": {
+                "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+                "paused": false
+              },
+              "extension_type": "Pausable",
+              "type_id": 26
+            }
+          ],
+          "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+          "is_initialized": true,
+          "is_token_2022": true,
+          "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+          "raw_supply": "1901883218865",
+          "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+        }
+      },
+      "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+      "entity": {
+        "account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+        "balance_decimal": "149.232852141",
+        "balance_raw": "149232852141",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+      },
+      "execution_evidence": [
+        {
+          "account_evidence": [
+            {
+              "address": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+              "exists": true,
+              "pointer": "/value/0",
+              "raw_data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "rpc_record": 3,
+              "runtime_owner": "11111111111111111111111111111111",
+              "slot": 448742587
+            },
+            {
+              "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+              "exists": true,
+              "pointer": "/value/1",
+              "raw_data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+              "rpc_record": 3,
+              "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+              "slot": 448742587
+            },
+            {
+              "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+              "exists": true,
+              "pointer": "/value/2",
+              "raw_data_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+              "rpc_record": 3,
+              "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "slot": 448742587
+            },
+            {
+              "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+              "exists": true,
+              "pointer": "/value/3",
+              "raw_data_sha256": "1e5a0a6043401ff09f2355fbc351774e2476cd53f4c160b9e25bf6e602a7ab26",
+              "rpc_record": 3,
+              "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "slot": 448742587
+            },
+            {
+              "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "exists": true,
+              "pointer": "/value/4",
+              "raw_data_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+              "rpc_record": 3,
+              "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "slot": 448742587
+            },
+            {
+              "address": "SysvarC1ock11111111111111111111111111111111",
+              "exists": true,
+              "pointer": "/value/5",
+              "raw_data_sha256": "b89f7bc50d943d4cec0bb0c2563ce15e0b9446559ed39d2dac1daca455a36532",
+              "rpc_record": 3,
+              "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+              "slot": 448742587
+            },
+            {
+              "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "exists": true,
+              "pointer": "/value/6",
+              "raw_data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+              "rpc_record": 3,
+              "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+              "slot": 448742587
+            }
+          ],
+          "account_plan": [
+            "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+            "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+            "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+            "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+            "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "SysvarC1ock11111111111111111111111111111111",
+            "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+          ],
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:17:01.997345+00:00",
+            "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+            "discovery_slot": 448742580,
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:17:00.660989+00:00"
+          },
+          "amount_basis": "Unscaled base token units using captured mint decimals; scaled UI and interest-bearing conversions are not requested or applied.",
+          "amount_decimal": "149.232852141",
+          "amount_raw": "149232852141",
+          "assumptions": [
+            "The recorded owner is assumed locally to sign; key possession and authorization remain unknown.",
+            "Signature and recent-blockhash verification are disabled in the existing LiteSVM 0.16 runtime. Only the fee payer is synthetic; token accounts and deployed program bytes are captured.",
+            "This is token movement only. No market sale, conversion, redemption, withdrawal or readiness is established."
+          ],
+          "authorization": false,
+          "check_id": "fae8519f-aa14-4d65-a66b-320a4aa738e9",
+          "clock": {
+            "epoch": 1038,
+            "epoch_start_timestamp": 1789823115,
+            "leader_schedule_epoch": 1039,
+            "slot": 448742587,
+            "unix_timestamp": 1789910212
+          },
+          "deployed_programs": [
+            {
+              "code_sha256": "0999dbf708971e723b08d1caafc988826a59c6001ed6dc02260da07defbe1469",
+              "deployment_slot": 427147035,
+              "loader": "BPFLoaderUpgradeab1e11111111111111111111111",
+              "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "programdata_address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY"
+            }
+          ],
+          "discovery_comparison": {
+            "execution_fixture_is_authoritative": true,
+            "mint_data_changed": false,
+            "owner_account_changed": false,
+            "source_unchanged": true
+          },
+          "execution": {
+            "compute_units": 4620,
+            "error": null,
+            "inner_instructions": [],
+            "logs": [
+              "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+              "Program ComputeBudget111111111111111111111111111111 success",
+              "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [1]",
+              "Program log: Instruction: TransferChecked",
+              "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 4470 of 1399850 compute units",
+              "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success"
+            ],
+            "post_accounts": {
+              "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy": {
+                "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197284e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbd000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+                "executable": false,
+                "lamports": "2220240",
+                "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+                "rent_epoch": 18446744073709552000
+              },
+              "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ": {
+                "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197282a214f23e54f83cb3558e8015c8513095461e1536228d4dc5722bf5dbc44c5a0b30c7f92220000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000207000000020008002590792c000000000f000100001b000000",
+                "executable": false,
+                "lamports": "2220240",
+                "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+                "rent_epoch": 18446744073709552000
+              },
+              "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF": {
+                "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddb1db12d1ba010000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd878af422000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f88585a6a000000005c36df2d35c7f73f12004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197281a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe3719728100000004f70656e41492050726553746f636b73060000004f50454e41492a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f6f70656e61692e6a736f6e00000000",
+                "executable": false,
+                "lamports": "362899490",
+                "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+                "rent_epoch": 18446744073709552000
+              }
+            },
+            "success": true,
+            "transaction_fee_lamports": 10000
+          },
+          "execution_capture_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+          "execution_fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+          "execution_performed": true,
+          "funds_moved": false,
+          "kind": "current-execution",
+          "lifecycle_event": null,
+          "local_execution_performed": true,
+          "message": {
+            "account_keys": [
+              "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+              "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+              "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+              "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+              "ComputeBudget111111111111111111111111111111",
+              "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+            ],
+            "instructions": [
+              {
+                "account_indices": [],
+                "data": "02c05c1500",
+                "program_index": 4
+              },
+              {
+                "account_indices": [
+                  2,
+                  5,
+                  3,
+                  1
+                ],
+                "data": "0cad9cf8be2200000009",
+                "program_index": 6
+              }
+            ],
+            "readonly_signed_accounts": 1,
+            "readonly_unsigned_accounts": 3,
+            "recent_blockhash": "11111111111111111111111111111111",
+            "required_signatures": 2
+          },
+          "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+          "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+          "path": "Transfer",
+          "pre_accounts": [
+            {
+              "account": {
+                "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197284e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbdad9cf8be2200000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+                "executable": false,
+                "lamports": "2220240",
+                "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+                "rent_epoch": 18446744073709552000
+              },
+              "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+              "label": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy"
+            },
+            {
+              "account": {
+                "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197282a214f23e54f83cb3558e8015c8513095461e1536228d4dc5722bf5dbc44c5a02b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+                "executable": false,
+                "lamports": "2220240",
+                "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+                "rent_epoch": 18446744073709552000
+              },
+              "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+              "label": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ"
+            },
+            {
+              "account": {
+                "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddb1db12d1ba010000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd878af422000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f88585a6a000000005c36df2d35c7f73f12004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197281a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe3719728100000004f70656e41492050726553746f636b73060000004f50454e41492a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f6f70656e61692e6a736f6e00000000",
+                "executable": false,
+                "lamports": "362899490",
+                "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+                "rent_epoch": 18446744073709552000
+              },
+              "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+              "label": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+            }
+          ],
+          "readiness": null,
+          "recipient": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+          "reconciliation": {
+            "account_data": [
+              {
+                "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                "after_sha256": "403a3fb14d71d9e34635eb5571e649b50a555e2be1b263d66e3ca1fb590c97d4",
+                "before_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+                "changed_ranges": [
+                  {
+                    "after": "0000000000",
+                    "before": "ad9cf8be22",
+                    "offset": 64
+                  }
+                ]
+              },
+              {
+                "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+                "after_sha256": "0852e4adcb55205e7f267a73986615b6f0f371dc8b045b094b293f1ef20a24a2",
+                "before_sha256": "1e5a0a6043401ff09f2355fbc351774e2476cd53f4c160b9e25bf6e602a7ab26",
+                "changed_ranges": [
+                  {
+                    "after": "b30c7f9222",
+                    "before": "2b00000000",
+                    "offset": 64
+                  },
+                  {
+                    "after": "2590792c",
+                    "before": "00000000",
+                    "offset": 174
+                  }
+                ]
+              },
+              {
+                "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "after_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+                "before_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+                "changed_ranges": []
+              }
+            ],
+            "fees": null,
+            "input_debited_raw": "149232852141",
+            "output_decimal_base_units": "148.48668788",
+            "output_received_raw": "148486687880",
+            "reconciled": true,
+            "reconciliation": [
+              "Actual TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb transfer: source debit = destination public credit + destination withheld fee. Captured epoch 1038; independently calculated transfer fee 746164261 raw. Mint unchanged; no DLMM event/bin/venue delta is applicable to Transfer.",
+              "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+            ],
+            "token_accounts": [
+              {
+                "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                "after_raw": "0",
+                "before_raw": "149232852141",
+                "change_decimal_base_units": "-149.232852141",
+                "change_raw": "-149232852141",
+                "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "withheld_fee_change_raw": "0"
+              },
+              {
+                "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+                "after_raw": "148486687923",
+                "before_raw": "43",
+                "change_decimal_base_units": "148.48668788",
+                "change_raw": "148486687880",
+                "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "withheld_fee_change_raw": "746164261"
+              }
+            ]
+          },
+          "request": {
+            "amount_decimal": null,
+            "amount_mode": "Full",
+            "path": "Transfer",
+            "recipient": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+            "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy"
+          },
+          "run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+          "runtime_profile": {
+            "backend": "LiteSVM 0.16",
+            "features": "pinned mainnet/default profile",
+            "recent_blockhash_verification": false,
+            "signature_verification": false,
+            "synthetic_fee_payer": "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+            "validator_bank_reproduction": false
+          },
+          "schema_version": 1,
+          "scope": "Only this exact source, mint, amount, recipient, fixture, deployed code, runtime and assumed owner signature. No other account, amount, venue or lifecycle path inherits this evidence.",
+          "signer_assumed_locally": true,
+          "signer_possession_known": false,
+          "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "status": "Proven",
+          "wallet_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+        }
+      ],
+      "freshness_policy": "Evidence is pinned to these observed times and this run. No age-based promise or future-state prediction; refresh creates a new unverified run. Scenario re-evaluation performs no live check.",
+      "funds_moved": false,
+      "kind": "current-preflight",
+      "limitations": [
+        "UserProposed semantics are hypothetical, not issuer assertions or legal entitlement",
+        "Same captured bytes and balance at every policy time; future balances and liquidity are not predicted",
+        "Mobility readiness covers the exact selected tested amounts, recipients and routes only, with local signing assumed and possession unknown",
+        "Transfer and market sale never prove replacement-token conversion; no conversion ratio is inferred",
+        "Selected direct token account only; protocol positions and population readiness are not assessed"
+      ],
+      "paths": [
+        {
+          "contexts": [],
+          "discovery": {
+            "boundary": "Unresolved",
+            "evidence_ids": [
+              "current-wallet"
+            ],
+            "facts": [],
+            "limitations": [
+              "Proposed successor identity supplies no conversion mechanism or proof"
+            ],
+            "path_type": "OfficialTransition",
+            "reason": "No selected current-run execution on this path",
+            "requested_contexts": []
+          },
+          "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "evidence": [
+            {
+              "artifact": {
+                "file": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e.capture.json",
+                "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+              },
+              "description": "Exact current owner-scoped token account observation; no execution inferred",
+              "id": "current-wallet",
+              "kind": "ObservedOnchainState",
+              "reference": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+            }
+          ],
+          "limitations": [
+            "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+            "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+            "Proposed successor identity supplies no conversion mechanism or proof",
+            "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+          ],
+          "path_type": "OfficialTransition",
+          "reason": "No selected current-run execution on this path",
+          "status": "NotTested"
+        },
+        {
+          "contexts": [],
+          "discovery": {
+            "boundary": "NoSupportedAdapter",
+            "evidence_ids": [
+              "current-wallet"
+            ],
+            "facts": [],
+            "limitations": [
+              "Proposed successor identity supplies no conversion mechanism or proof"
+            ],
+            "path_type": "Redemption",
+            "reason": "No redemption adapter is implemented",
+            "requested_contexts": []
+          },
+          "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "evidence": [
+            {
+              "artifact": {
+                "file": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e.capture.json",
+                "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+              },
+              "description": "Exact current owner-scoped token account observation; no execution inferred",
+              "id": "current-wallet",
+              "kind": "ObservedOnchainState",
+              "reference": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+            }
+          ],
+          "limitations": [
+            "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+            "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+            "Proposed successor identity supplies no conversion mechanism or proof",
+            "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+          ],
+          "path_type": "Redemption",
+          "reason": "No redemption adapter is implemented",
+          "status": "Unsupported"
+        },
+        {
+          "contexts": [],
+          "discovery": {
+            "boundary": "Unresolved",
+            "evidence_ids": [
+              "current-wallet"
+            ],
+            "facts": [],
+            "limitations": [
+              "Proposed successor identity supplies no conversion mechanism or proof"
+            ],
+            "path_type": "SecondaryMarketExit",
+            "reason": "No selected current-run execution on this path",
+            "requested_contexts": []
+          },
+          "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "evidence": [
+            {
+              "artifact": {
+                "file": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e.capture.json",
+                "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+              },
+              "description": "Exact current owner-scoped token account observation; no execution inferred",
+              "id": "current-wallet",
+              "kind": "ObservedOnchainState",
+              "reference": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+            }
+          ],
+          "limitations": [
+            "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+            "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+            "Proposed successor identity supplies no conversion mechanism or proof",
+            "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+          ],
+          "path_type": "SecondaryMarketExit",
+          "reason": "No selected current-run execution on this path",
+          "status": "NotTested"
+        },
+        {
+          "contexts": [
+            {
+              "attempts": [
+                {
+                  "actual_output_raw": "148486687880",
+                  "capture_context": "CurrentFinalizedProduction",
+                  "captured_state_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+                  "case_id": "fae8519f-aa14-4d65-a66b-320a4aa738e9",
+                  "clock": {
+                    "epoch": 1038,
+                    "epoch_start_timestamp": 1789823115,
+                    "leader_schedule_epoch": 1039,
+                    "slot": 448742587,
+                    "unix_timestamp": 1789910212
+                  },
+                  "context_id": "current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9",
+                  "destination": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+                  "dlmm_fee_raw": null,
+                  "dlmm_protocol_fee_raw": null,
+                  "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                  "error": null,
+                  "evidence": {
+                    "file": "fae8519f-aa14-4d65-a66b-320a4aa738e9.capture.json",
+                    "sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3"
+                  },
+                  "exact_input_raw": "149232852141",
+                  "execution_assumptions": [
+                    "Exact current fixture, amount, destination, route and minimum output only"
+                  ],
+                  "execution_attempted": true,
+                  "fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+                  "invalid_control": false,
+                  "output_mint": null,
+                  "path_type": "Transfer",
+                  "rollback_verified": null,
+                  "signer": {
+                    "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                    "signer_assumed_locally": true,
+                    "signer_possession_known": false,
+                    "wording": "Local owner signature assumed; possession unknown"
+                  },
+                  "source_before_raw": "149232852141",
+                  "status": "Proven",
+                  "token_transfer_withheld_raw": null
+                }
+              ],
+              "context_id": "current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9",
+              "status": "Proven"
+            }
+          ],
+          "discovery": {
+            "boundary": "Unresolved",
+            "evidence_ids": [
+              "current-wallet"
+            ],
+            "facts": [],
+            "limitations": [
+              "Proposed successor identity supplies no conversion mechanism or proof"
+            ],
+            "path_type": "Transfer",
+            "reason": "No selected current-run execution on this path",
+            "requested_contexts": []
+          },
+          "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "evidence": [
+            {
+              "artifact": {
+                "file": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e.capture.json",
+                "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+              },
+              "description": "Exact current owner-scoped token account observation; no execution inferred",
+              "id": "current-wallet",
+              "kind": "ObservedOnchainState",
+              "reference": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+            }
+          ],
+          "limitations": [
+            "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+            "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+            "Proposed successor identity supplies no conversion mechanism or proof",
+            "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+          ],
+          "path_type": "Transfer",
+          "reason": "At least one exact entity/path/context/amount execution was successful and reconciled after fresh offline replay. Proof applies only to listed successful points.",
+          "status": "Proven"
+        },
+        {
+          "contexts": [],
+          "discovery": {
+            "boundary": "Unresolved",
+            "evidence_ids": [
+              "current-wallet"
+            ],
+            "facts": [],
+            "limitations": [
+              "Proposed successor identity supplies no conversion mechanism or proof"
+            ],
+            "path_type": "Withdrawal",
+            "reason": "No selected current-run execution on this path",
+            "requested_contexts": []
+          },
+          "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "evidence": [
+            {
+              "artifact": {
+                "file": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e.capture.json",
+                "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+              },
+              "description": "Exact current owner-scoped token account observation; no execution inferred",
+              "id": "current-wallet",
+              "kind": "ObservedOnchainState",
+              "reference": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+            }
+          ],
+          "limitations": [
+            "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+            "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+            "Proposed successor identity supplies no conversion mechanism or proof",
+            "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+          ],
+          "path_type": "Withdrawal",
+          "reason": "Direct wallet-compatible token account with no verified protocol/LP position in this entity context; a venue vault does not grant holder withdrawal rights.",
+          "status": "NotApplicable"
+        }
+      ],
+      "population_readiness": null,
+      "preflight_id": "77c7c8d9-72c8-4148-9a90-d0d4b58c95f7",
+      "preparation_status": "Prepared",
+      "proposed_change": {
+        "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+        "conversion_ratio": null,
+        "created_at": "2026-09-20T13:17:05.764Z",
+        "created_for_run": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+        "current_balance_raw": "149232852141",
+        "execution_evidence": [
+          {
+            "capture_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+            "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+            "id": "fae8519f-aa14-4d65-a66b-320a4aa738e9",
+            "result_sha256": "7f2f0ecfb99a6112832fe071fd7d33eeb0301c9dad8f2b65a2e7dd4442da5ec9"
+          }
+        ],
+        "focused_account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "issuer_relationship_verified": false,
+        "lifecycle": {
+          "captured_at": "2026-09-20T13:17:05.764Z",
+          "change": {
+            "description": "User-proposed replacement-token transition against unchanged currently captured state"
+          },
+          "id": "77c7c8d9-72c8-4148-9a90-d0d4b58c95f7",
+          "policy": {
+            "after": "TransitionRequired",
+            "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "before": "Active",
+            "deadline": null,
+            "effective_at": "2026-11-04T13:17:00Z",
+            "successor": {
+              "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+              "mint": "So11111111111111111111111111111111111111112"
+            }
+          },
+          "scenario_type": "lifecycle_change",
+          "scenario_version": "current-proposed/v1",
+          "schema_version": 1,
+          "sources": [
+            {
+              "artifact": null,
+              "captured_at": "2026-09-20T13:17:05.764Z",
+              "content_sha256": null,
+              "description": "UserProposed, not issuer asserted or on-chain policy",
+              "id": "user-proposed",
+              "kind": "ScenarioAssumption",
+              "reference": "current-run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+              "supports": [
+                "/policy/effective_at",
+                "/policy/before",
+                "/policy/after",
+                "/policy/successor"
+              ]
+            }
+          ]
+        },
+        "official_authorization": false,
+        "provenance": "User-provided hypothetical policy; current mint observations and local checks are separate evidence",
+        "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "scenario_id": "77c7c8d9-72c8-4148-9a90-d0d4b58c95f7",
+        "scenario_version": "current-proposed/v1",
+        "source": "UserProposed",
+        "source_asset": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "successor_asset": "So11111111111111111111111111111111111111112",
+        "successor_capture_sha256": "72b6526d62fcd96221a7b6ec673a7dac0e21cdc325b550c6fc9bd1db5491a06c",
+        "wallet_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+      },
+      "run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+      "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+      "schema_version": 1,
+      "selected_assurance": "FullTransition",
+      "successor_verification": {
+        "capture_sha256": "72b6526d62fcd96221a7b6ec673a7dac0e21cdc325b550c6fc9bd1db5491a06c",
+        "conversion_ratio": null,
+        "issuer_relationship_verified": false,
+        "message": "Replacement mint exists on Solana",
+        "observation": {
+          "account_observation": {
+            "executable": false,
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "slot": 448742605,
+            "space": 82
+          },
+          "accounts": [],
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:17:06.542Z",
+            "consistency": "Separate RPC observations, not an atomic validator bank",
+            "context_slots": [
+              448742605
+            ],
+            "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+            "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:17:05.975Z"
+          },
+          "asset": {
+            "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "expected_token_program": null,
+            "mint": "So11111111111111111111111111111111111111112",
+            "name": "Custom token address",
+            "verification": []
+          },
+          "authorization": false,
+          "discovery": {
+            "complete_population": false,
+            "gaps": [],
+            "maximum_sample_accounts": 20,
+            "method": "getTokenLargestAccounts + getMultipleAccounts",
+            "requested": false,
+            "sample_count": null,
+            "status": "NotRequested",
+            "technical_errors": []
+          },
+          "execution_performed": false,
+          "funds_moved": false,
+          "identity_mismatches": [],
+          "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+          "inspection": {
+            "account_type": "Mint",
+            "message": "Current token information retrieved",
+            "status": "Completed"
+          },
+          "kind": "current-inspection",
+          "lifecycle_event": null,
+          "limitations": [
+            "Largest-account sampling is not a holder population or wallet lookup.",
+            "No protocol position, market route, token transfer, withdrawal or official conversion was tested.",
+            "No lifecycle event or assurance policy was selected; this is not a readiness verdict.",
+            "Mint supply, public account balances and withheld fees are separate quantities; no reconciliation across RPC contexts is claimed.",
+            "Amounts are unscaled token quantities, not company shares or valuations. Confidential balances are not known zero. Extension presence alone is not active behavior."
+          ],
+          "local_execution_performed": false,
+          "mint": {
+            "decimal_supply": "0",
+            "decimals": 9,
+            "extensions": [],
+            "freeze_authority": null,
+            "is_initialized": true,
+            "is_token_2022": false,
+            "mint_authority": null,
+            "raw_supply": "0",
+            "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+          },
+          "mint_slot": 448742605,
+          "onchain_metadata": null,
+          "paths": [
+            {
+              "path": "OfficialTransition",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Redemption",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "SecondaryMarketExit",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Transfer",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Withdrawal",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            }
+          ],
+          "readiness": null,
+          "schema_version": 2,
+          "selection": {
+            "cluster": "solana-mainnet",
+            "mint": "So11111111111111111111111111111111111111112",
+            "reference": null,
+            "sample_accounts": false
+          },
+          "signer_assumed_locally": false,
+          "signer_possession_known": false
+        },
+        "status": "MintObserved"
+      },
+      "views": [
+        {
+          "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+          "balance_raw": "149232852141",
+          "evaluated_at": "2026-09-20T13:17:05.764Z",
+          "gate_applicability": "PreEvent",
+          "id": "BeforeProposedEvent",
+          "impact": "Unaffected",
+          "lifecycle_status": "Active",
+          "paths": [
+            {
+              "lifecycle_relevant": false,
+              "path": "OfficialTransition",
+              "status": "NotTested"
+            },
+            {
+              "lifecycle_relevant": false,
+              "path": "Redemption",
+              "status": "Unsupported"
+            },
+            {
+              "lifecycle_relevant": false,
+              "path": "SecondaryMarketExit",
+              "status": "NotTested"
+            },
+            {
+              "lifecycle_relevant": false,
+              "path": "Transfer",
+              "status": "Proven"
+            },
+            {
+              "lifecycle_relevant": false,
+              "path": "Withdrawal",
+              "status": "NotApplicable"
+            }
+          ],
+          "readiness": null,
+          "reason": "Positive public token amount retains Active lifecycle semantics under this policy",
+          "technical_state": "Unchanged"
+        },
+        {
+          "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+          "balance_raw": "149232852141",
+          "evaluated_at": "2026-11-04T13:17:00Z",
+          "gate_applicability": "Applicable",
+          "id": "ProposedActive",
+          "impact": "RequiresTransition",
+          "lifecycle_status": "TransitionRequired",
+          "paths": [
+            {
+              "lifecycle_relevant": true,
+              "path": "OfficialTransition",
+              "status": "NotTested"
+            },
+            {
+              "lifecycle_relevant": true,
+              "path": "Redemption",
+              "status": "Unsupported"
+            },
+            {
+              "lifecycle_relevant": true,
+              "path": "SecondaryMarketExit",
+              "status": "NotTested"
+            },
+            {
+              "lifecycle_relevant": true,
+              "path": "Transfer",
+              "status": "Proven"
+            },
+            {
+              "lifecycle_relevant": false,
+              "path": "Withdrawal",
+              "status": "NotApplicable"
+            }
+          ],
+          "readiness": {
+            "full_transition": {
+              "authorization": false,
+              "entity": [
+                {
+                  "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                  "requirement_ids": [
+                    "mobility",
+                    "observed-and-isolated",
+                    "official-conversion"
+                  ],
+                  "status": "Incomplete"
+                }
+              ],
+              "findings": [
+                {
+                  "effect": "Satisfied",
+                  "evidence_ids": [
+                    "fae8519f-aa14-4d65-a66b-320a4aa738e9"
+                  ],
+                  "expected": "At least one declared exact path must be Proven, reconciled and compatible with the policy's signer assumptions.",
+                  "label": "At least one selected exact mobility test is Proven",
+                  "observed": [
+                    "Transfer Proven; entity current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy; context Some(\"current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9\"); amount Some(\"149232852141\"); exact scope true. Exact current-run replay; original check retains destination, route, minimum output and fees"
+                  ],
+                  "reason": "Path identity, asset/entity/authority/amount/range/venue/fixture/bank/scenario must match; missing or incompatible proof is not execution failure.",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "requirement_id": "mobility",
+                  "scope": {
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "effect": "Satisfied",
+                  "evidence_ids": [
+                    "bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+                  ],
+                  "expected": "No path/entity/venue/amount/fee/closure proof escalation.",
+                  "label": "Selected current account observed; exact evidence isolation",
+                  "observed": [
+                    "Evidence identity/scope isolation verified: true."
+                  ],
+                  "reason": "The gate consumes only pinned measurements with explicit source and scope bindings; no readiness finding grants new execution evidence.",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "requirement_id": "observed-and-isolated",
+                  "scope": {
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "effect": "IncompleteEvidence",
+                  "evidence_ids": [],
+                  "expected": "At least one declared exact path must be Proven, reconciled and compatible with the policy's signer assumptions.",
+                  "label": "Actual replacement-token conversion must be independently Proven",
+                  "observed": [
+                    "No matching scoped evidence."
+                  ],
+                  "reason": "Path identity, asset/entity/authority/amount/range/venue/fixture/bank/scenario must match; missing or incompatible proof is not execution failure.",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "requirement_id": "official-conversion",
+                  "scope": {
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "kind": "Entity"
+                  }
+                }
+              ],
+              "path_evidence": [
+                {
+                  "evidence_ids": [
+                    "fae8519f-aa14-4d65-a66b-320a4aa738e9"
+                  ],
+                  "execution_attempted": true,
+                  "path_type": "Transfer",
+                  "reason": "Exact current-run replay; original check retains destination, route, minimum output and fees",
+                  "reconciled": true,
+                  "rollback_verified": null,
+                  "scope": {
+                    "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                    "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                    "bps_to_remove": null,
+                    "capture_context": "CurrentFinalizedProduction",
+                    "captured_slot": 448742587,
+                    "captured_state_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+                    "clock": {
+                      "epoch": 1038,
+                      "epoch_start_timestamp": 1789823115,
+                      "leader_schedule_epoch": 1039,
+                      "slot": 448742587,
+                      "unix_timestamp": 1789910212
+                    },
+                    "context_id": "current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9",
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "exact_amount_raw": "149232852141",
+                    "fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+                    "range": null,
+                    "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                    "source_before_raw": "149232852141",
+                    "state_shape": "DirectTokenAccount",
+                    "venue": null
+                  },
+                  "signer": {
+                    "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                    "signer_assumed_locally": true,
+                    "signer_possession_known": false,
+                    "wording": "Local owner signature assumed; possession unknown"
+                  },
+                  "status": "Proven"
+                }
+              ],
+              "policy": {
+                "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "description": "Selected entity demonstration assurance; successful exact tested amounts do not prove whole-balance or future actionability. Missing and failed alternatives remain incomplete, not blocking.",
+                "evaluated_scope": "DemoEntityReadiness",
+                "evidence_manifest": {
+                  "file": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+                  "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+                },
+                "id": "current-full-transition-v1",
+                "not_issuer_policy": true,
+                "policy_type": "DemoAssurancePolicy",
+                "requirements": [
+                  {
+                    "condition": {
+                      "any_of": [
+                        {
+                          "accepted_statuses": [
+                            "Proven"
+                          ],
+                          "allow_local_signer_assumption": true,
+                          "blocking_statuses": [],
+                          "path_type": "Transfer",
+                          "scope": {
+                            "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                            "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                            "bps_to_remove": null,
+                            "capture_context": "CurrentFinalizedProduction",
+                            "captured_slot": 448742587,
+                            "captured_state_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+                            "clock": {
+                              "epoch": 1038,
+                              "epoch_start_timestamp": 1789823115,
+                              "leader_schedule_epoch": 1039,
+                              "slot": 448742587,
+                              "unix_timestamp": 1789910212
+                            },
+                            "context_id": "current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9",
+                            "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                            "exact_amount_raw": "149232852141",
+                            "fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+                            "range": null,
+                            "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                            "source_before_raw": "149232852141",
+                            "state_shape": "DirectTokenAccount",
+                            "venue": null
+                          }
+                        }
+                      ],
+                      "kind": "Path"
+                    },
+                    "id": "mobility",
+                    "label": "At least one selected exact mobility test is Proven",
+                    "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                    "required": true,
+                    "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                    "target": {
+                      "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                      "kind": "Entity"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "kind": "EvidenceIsolation"
+                    },
+                    "id": "observed-and-isolated",
+                    "label": "Selected current account observed; exact evidence isolation",
+                    "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                    "required": true,
+                    "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                    "target": {
+                      "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                      "kind": "Entity"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "any_of": [
+                        {
+                          "accepted_statuses": [
+                            "Proven"
+                          ],
+                          "allow_local_signer_assumption": true,
+                          "blocking_statuses": [],
+                          "path_type": "OfficialTransition",
+                          "scope": {
+                            "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                            "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                            "bps_to_remove": null,
+                            "capture_context": null,
+                            "captured_slot": null,
+                            "captured_state_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2",
+                            "clock": null,
+                            "context_id": null,
+                            "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                            "exact_amount_raw": null,
+                            "fixture_sha256": null,
+                            "range": null,
+                            "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                            "source_before_raw": null,
+                            "state_shape": "DirectTokenAccount",
+                            "venue": null
+                          }
+                        }
+                      ],
+                      "kind": "Path"
+                    },
+                    "id": "official-conversion",
+                    "label": "Actual replacement-token conversion must be independently Proven",
+                    "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                    "required": true,
+                    "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                    "target": {
+                      "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                      "kind": "Entity"
+                    }
+                  }
+                ],
+                "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                "schema_version": 1
+              },
+              "policy_sha256": "41d38610ef8ca3849fead9072267db480f1349adce806dd99d00e944eb0d26bb",
+              "population_readiness": null,
+              "scope": "SelectedEntityPreflightReadiness",
+              "status": "Incomplete"
+            },
+            "mobility": {
+              "authorization": false,
+              "entity": [
+                {
+                  "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                  "requirement_ids": [
+                    "mobility",
+                    "observed-and-isolated"
+                  ],
+                  "status": "Ready"
+                }
+              ],
+              "findings": [
+                {
+                  "effect": "Satisfied",
+                  "evidence_ids": [
+                    "fae8519f-aa14-4d65-a66b-320a4aa738e9"
+                  ],
+                  "expected": "At least one declared exact path must be Proven, reconciled and compatible with the policy's signer assumptions.",
+                  "label": "At least one selected exact mobility test is Proven",
+                  "observed": [
+                    "Transfer Proven; entity current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy; context Some(\"current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9\"); amount Some(\"149232852141\"); exact scope true. Exact current-run replay; original check retains destination, route, minimum output and fees"
+                  ],
+                  "reason": "Path identity, asset/entity/authority/amount/range/venue/fixture/bank/scenario must match; missing or incompatible proof is not execution failure.",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "requirement_id": "mobility",
+                  "scope": {
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "effect": "Satisfied",
+                  "evidence_ids": [
+                    "bd076870-fe5c-4fe8-add4-8e922ae8bc3e"
+                  ],
+                  "expected": "No path/entity/venue/amount/fee/closure proof escalation.",
+                  "label": "Selected current account observed; exact evidence isolation",
+                  "observed": [
+                    "Evidence identity/scope isolation verified: true."
+                  ],
+                  "reason": "The gate consumes only pinned measurements with explicit source and scope bindings; no readiness finding grants new execution evidence.",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "requirement_id": "observed-and-isolated",
+                  "scope": {
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "kind": "Entity"
+                  }
+                }
+              ],
+              "path_evidence": [
+                {
+                  "evidence_ids": [
+                    "fae8519f-aa14-4d65-a66b-320a4aa738e9"
+                  ],
+                  "execution_attempted": true,
+                  "path_type": "Transfer",
+                  "reason": "Exact current-run replay; original check retains destination, route, minimum output and fees",
+                  "reconciled": true,
+                  "rollback_verified": null,
+                  "scope": {
+                    "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                    "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                    "bps_to_remove": null,
+                    "capture_context": "CurrentFinalizedProduction",
+                    "captured_slot": 448742587,
+                    "captured_state_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+                    "clock": {
+                      "epoch": 1038,
+                      "epoch_start_timestamp": 1789823115,
+                      "leader_schedule_epoch": 1039,
+                      "slot": 448742587,
+                      "unix_timestamp": 1789910212
+                    },
+                    "context_id": "current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9",
+                    "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                    "exact_amount_raw": "149232852141",
+                    "fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+                    "range": null,
+                    "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                    "source_before_raw": "149232852141",
+                    "state_shape": "DirectTokenAccount",
+                    "venue": null
+                  },
+                  "signer": {
+                    "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                    "signer_assumed_locally": true,
+                    "signer_possession_known": false,
+                    "wording": "Local owner signature assumed; possession unknown"
+                  },
+                  "status": "Proven"
+                }
+              ],
+              "policy": {
+                "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "description": "Selected entity demonstration assurance; successful exact tested amounts do not prove whole-balance or future actionability. Missing and failed alternatives remain incomplete, not blocking.",
+                "evaluated_scope": "DemoEntityReadiness",
+                "evidence_manifest": {
+                  "file": "run:bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+                  "sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+                },
+                "id": "current-mobility-v1",
+                "not_issuer_policy": true,
+                "policy_type": "DemoAssurancePolicy",
+                "requirements": [
+                  {
+                    "condition": {
+                      "any_of": [
+                        {
+                          "accepted_statuses": [
+                            "Proven"
+                          ],
+                          "allow_local_signer_assumption": true,
+                          "blocking_statuses": [],
+                          "path_type": "Transfer",
+                          "scope": {
+                            "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                            "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+                            "bps_to_remove": null,
+                            "capture_context": "CurrentFinalizedProduction",
+                            "captured_slot": 448742587,
+                            "captured_state_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+                            "clock": {
+                              "epoch": 1038,
+                              "epoch_start_timestamp": 1789823115,
+                              "leader_schedule_epoch": 1039,
+                              "slot": 448742587,
+                              "unix_timestamp": 1789910212
+                            },
+                            "context_id": "current-check:fae8519f-aa14-4d65-a66b-320a4aa738e9",
+                            "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                            "exact_amount_raw": "149232852141",
+                            "fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+                            "range": null,
+                            "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                            "source_before_raw": "149232852141",
+                            "state_shape": "DirectTokenAccount",
+                            "venue": null
+                          }
+                        }
+                      ],
+                      "kind": "Path"
+                    },
+                    "id": "mobility",
+                    "label": "At least one selected exact mobility test is Proven",
+                    "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                    "required": true,
+                    "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                    "target": {
+                      "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                      "kind": "Entity"
+                    }
+                  },
+                  {
+                    "condition": {
+                      "kind": "EvidenceIsolation"
+                    },
+                    "id": "observed-and-isolated",
+                    "label": "Selected current account observed; exact evidence isolation",
+                    "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                    "required": true,
+                    "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                    "target": {
+                      "entity_id": "current:bd076870-fe5c-4fe8-add4-8e922ae8bc3e:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                      "kind": "Entity"
+                    }
+                  }
+                ],
+                "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+                "schema_version": 1
+              },
+              "policy_sha256": "c1020660fb4a5302e74c435a7c2b49313500956aa8aa280c79b6081ab9fccfa1",
+              "population_readiness": null,
+              "scope": "SelectedEntityPreflightReadiness",
+              "status": "Ready"
+            }
+          },
+          "reason": "Positive public token amount is subject to the scenario transition requirement; owner role and executable transition path are not inferred",
+          "technical_state": "Unchanged"
+        }
+      ],
+      "wallet_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2"
+    },
+    "error": null,
+    "started_at": "2026-09-20T13:17:05.881Z",
+    "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+    "stage": "Preparing evidence",
+    "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+    "capture_sha256": "b8a788b79dfde2dfafb41faa24d1d5900b4b90ab84e0c5e1ff1bc96ebcc1e854",
+    "engine_exit_code": 0,
+    "canonical_sha256": "1997412bf7dde4a33409111157986acb05e3677f767b7c63e4a0e4227b645527",
+    "completed_at": "2026-09-20T13:17:08.166Z"
+  }
+}

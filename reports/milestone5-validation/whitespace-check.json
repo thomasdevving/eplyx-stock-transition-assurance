@@ -1,0 +1,55 @@
+{
+  "new_and_changed_files": [
+    {
+      "file": "engine/src/preflight.rs",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "engine/src/resolution/current.rs",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "engine/src/readiness/current.rs",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "engine/tests/current_preflight.rs",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "frontend/preflight-service.mjs",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "frontend/src/preflight.js",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "frontend/tests/preflight.test.mjs",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "frontend/tests/preflight.spec.js",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "scripts/test-current-preflight-mutations.py",
+      "exit_code": 1,
+      "output": ""
+    },
+    {
+      "file": "docs/on-demand-progress.md",
+      "exit_code": 1,
+      "output": ""
+    }
+  ],
+  "passed": true
+}

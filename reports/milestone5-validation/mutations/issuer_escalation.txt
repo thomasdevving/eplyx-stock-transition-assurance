@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.45s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test proposed_provenance_never_becomes_issuer_assertion ... FAILED
+
+failures:
+
+---- proposed_provenance_never_becomes_issuer_assertion stdout ----
+
+thread 'proposed_provenance_never_becomes_issuer_assertion' (10786601) panicked at engine/tests/current_preflight.rs:104:5:
+assertion `left == right` failed: user proposal cannot become issuer assertion
+  left: String("IssuerAsserted")
+ right: "UserProposed"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    proposed_provenance_never_becomes_issuer_assertion
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

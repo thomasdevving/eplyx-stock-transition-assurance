@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.72s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test unchanged_current_bytes_at_all_proposed_times ... FAILED
+
+failures:
+
+---- unchanged_current_bytes_at_all_proposed_times stdout ----
+
+thread 'unchanged_current_bytes_at_all_proposed_times' (10787304) panicked at engine/tests/current_preflight.rs:131:9:
+assertion `left == right` failed: proposed time cannot change current balance
+  left: String("0")
+ right: String("17621")
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    unchanged_current_bytes_at_all_proposed_times
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.03s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

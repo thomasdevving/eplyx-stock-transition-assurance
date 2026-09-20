@@ -1,0 +1,62 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.55s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 13 tests
+test exact_decimal_parsing ... ok
+test availability_uses_engine_boundaries_without_granting_proof ... ok
+test missing_capture_never_promotes_to_proven ... ok
+test no_supported_pool_is_bounded_and_never_global_absence ... ok
+test legacy_transfer_uses_deployed_legacy_code_and_another_mint ... ok
+test current_request_cannot_import_claimed_proof_or_custom_programs ... ok
+test changed_discovery_source_requires_reconfirmation ... ok
+test unsupported_frozen_paused_hook_confidential_and_authority_never_execute ... ok
+test deterministic_actual_vm_failure_is_failed_with_rollback ... ok
+test exact_account_amount_run_and_fixture_bindings ... ok
+test current_proof_requires_actual_execution_and_replays_identically ... ok
+test market_minimum_failure_and_missing_bin_are_distinct ... ok
+test current_market_executes_and_reconciles_one_exact_route_offline ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 8.40s
+
+     Running tests/lifecycle_consequence.rs (target/debug/deps/lifecycle_consequence-4daa07203f96ef79)
+
+running 12 tests
+test local_policy_capture_load_checks_hash_without_network ... ok
+test positive_unknown_role_is_transition_required_without_inventing_role ... ok
+test rpc_evidence_and_policy_assumptions_are_distinct_and_resolvable ... ok
+test inclusive_deadline_ends_entitlement_without_claiming_stranding_or_available_conversion ... ok
+test unknown_policy_optional_deadline_and_legacy_snapshot_remain_conservative ... ok
+test exact_effective_boundary_changes_same_positive_wallet_without_mutating_bytes ... ok
+test active_before_effective_time_preserves_meaning ... ok
+test verified_vault_is_stale_and_old_and_current_amounts_never_merge ... ok
+test malformed_provenance_wrong_asset_reversed_times_and_mismatched_change_fail ... ok
+test zero_public_balance_is_unaffected_but_confidential_zero_is_unresolved ... ok
+test same_frozen_world_produces_reproducible_before_after_diff_offline ... ok
+test deterministic_serialization_roundtrip_and_tamper_detection ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.16s
+
+     Running tests/lifecycle_readiness.rs (target/debug/deps/lifecycle_readiness-b31fa492c0a6bc9c)
+
+running 3 tests
+test stale_or_mismatched_policy_scope_is_incomplete_and_signer_is_conditional ... ok
+test offline_existing_evidence_reproduces_published_report_and_boundaries ... ok
+test cli_gate_codes_portability_canonical_output_and_digest_protection has been running for over 60 seconds
+test cli_gate_codes_portability_canonical_output_and_digest_protection ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 144.35s
+
+     Running tests/lifecycle_resolution.rs (target/debug/deps/lifecycle_resolution-2f2a491957ec3336)
+
+running 5 tests
+test discovery_artifact_tampering_and_unknown_boundaries_are_rejected ... ok
+test published_successor_and_bounded_chain_sample_are_real_but_not_transition_proof ... ok
+test cli_is_portable_canonical_offline_and_protects_outputs has been running for over 60 seconds
+test public_offline_replay_reproduces_and_roundtrips_saved_matrix has been running for over 60 seconds
+test replay_rejects_rehashed_fabricated_execution_before_resolution has been running for over 60 seconds
+test replay_rejects_rehashed_fabricated_execution_before_resolution ... ok
+test cli_is_portable_canonical_offline_and_protects_outputs ... ok
+test public_offline_replay_reproduces_and_roundtrips_saved_matrix ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 224.02s
+

@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "run_id": "f4abc65a-87f6-4231-b64b-f6ea49467755",
+    "preflight_id": "7d924ed2-3676-4530-b90b-ad5b14e7c7c9",
+    "created_at": "2026-09-20T13:16:51.086Z",
+    "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+    "wallet_capture": "{\n  \"schema_version\": 3,\n  \"asset\": {\n    \"name\": \"SpaceX\",\n    \"mint\": \"PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh\",\n    \"expected_token_program\": null,\n    \"expected_genesis_hash\": \"5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d\",\n    \"verification\": []\n  },\n  \"rpc_origin\": \"https://api.mainnet-beta.solana.com\",\n  \"started_at\": \"2026-09-20T13:16:48.145Z\",\n  \"completed_at\": \"2026-09-20T13:16:49.322Z\",\n  \"decoder\": \"spl-token-2022-interface/3.1.1; current-wallet/v1\",\n  \"observations\": [\n    {\n      \"method\": \"getGenesisHash\",\n      \"params\": [],\n      \"started_at\": \"2026-09-20T13:16:48.145Z\",\n      \"completed_at\": \"2026-09-20T13:16:48.449Z\",\n      \"result\": \"5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d\",\n      \"error\": null\n    },\n    {\n      \"method\": \"getAccountInfo\",\n      \"params\": [\n        \"PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh\",\n        {\n          \"commitment\": \"finalized\",\n          \"encoding\": \"base64\"\n        }\n      ],\n      \"started_at\": \"2026-09-20T13:16:48.450Z\",\n      \"completed_at\": \"2026-09-20T13:16:48.717Z\",\n      \"result\": {\n        \"context\": {\n          \"apiVersion\": \"4.3.0-rc.0\",\n          \"slot\": 448742537\n        },\n        \"value\": {\n          \"data\": [\n            \"AQAAAAeNqqeCA9d7yCO5aGPaTYZRxkP8EOtsvluXh+BW2kvd0REDhvMHAAAJAQEAAAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQwAIAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QYAAQABAQBsAAeNqqeCA9d7yCO5aGPaTYZRxkP8EOtsvluXh+BW2kvdB42qp4ID13vII7loY9pNhlHGQ/wQ62y+W5eH4FbaS91BpgAAAAAAAAgEAAAAAAAA//////////8yAA8EAAAAAAAA//////////9kAAQAQQAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAgQAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3WCB1W7kKtMQ71vIPL1tXp2iAcSHa5u7/uxMhIjGhw5jAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAEAAB42qp4ID13vII7loY9pNhlHGQ/wQ62y+W5eH4FbaS90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkAOAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QAAAAAAAPA/SOgoagAAAAAAAAAAAAAUQBIAQAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QXa6CAVZgkz9ml9yPMoqUt1jvw88eGSXB87EByFX6WUGgAhAAeNqqeCA9d7yCO5aGPaTYZRxkP8EOtsvluXh+BW2kvdABMAkAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QXa6CAVZgkz9ml9yPMoqUt1jvw88eGSXB87EByFX6WUEAAAAFNwYWNlWCBQcmVTdG9ja3MGAAAAU1BBQ0VYKgAAAGh0dHBzOi8vcHJlc3RvY2tzLmNvbS9tZXRhZGF0YS9zcGFjZXguanNvbgAAAAA=\",\n            \"base64\"\n          ],\n          \"executable\": false,\n          \"lamports\": 1397830680,\n          \"owner\": \"TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb\",\n          \"rentEpoch\": 18446744073709551615,\n          \"space\": 902\n        }\n      },\n      \"error\": null\n    },\n    {\n      \"method\": \"getAccountInfo\",\n      \"params\": [\n        \"2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj\",\n        {\n          \"commitment\": \"finalized\",\n          \"encoding\": \"base64\",\n          \"minContextSlot\": 448742537\n        }\n      ],\n      \"started_at\": \"2026-09-20T13:16:48.718Z\",\n      \"completed_at\": \"2026-09-20T13:16:49.046Z\",\n      \"result\": {\n        \"context\": {\n          \"apiVersion\": \"4.3.0-rc.0\",\n          \"slot\": 448742538\n        },\n        \"value\": {\n          \"data\": [\n            \"\",\n            \"base64\"\n          ],\n          \"executable\": false,\n          \"lamports\": 17533609,\n          \"owner\": \"11111111111111111111111111111111\",\n          \"rentEpoch\": 18446744073709551615,\n          \"space\": 0\n        }\n      },\n      \"error\": null\n    },\n    {\n      \"method\": \"getTokenAccountsByOwner\",\n      \"params\": [\n        \"2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj\",\n        {\n          \"mint\": \"PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh\"\n        },\n        {\n          \"commitment\": \"finalized\",\n          \"encoding\": \"base64\",\n          \"minContextSlot\": 448742538\n        }\n      ],\n      \"started_at\": \"2026-09-20T13:16:49.046Z\",\n      \"completed_at\": \"2026-09-20T13:16:49.322Z\",\n      \"result\": {\n        \"context\": {\n          \"apiVersion\": \"4.2.1\",\n          \"slot\": 448742540\n        },\n        \"value\": [\n          {\n            \"account\": {\n              \"data\": [\n                \"BdroIBVmCTP2aX3I8yipS3WO/Dzx4ZJcHzsQHIVfpZQcvoeXAd0ityrvez9x5c6Su10ySLiXDGSlb8qxNnfU1tVEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgcAAAACAAgAAAAAAAAAAAAPAAEAABsAAAA=\",\n                \"base64\"\n              ],\n              \"executable\": false,\n              \"lamports\": 2220240,\n              \"owner\": \"TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb\",\n              \"rentEpoch\": 18446744073709551615,\n              \"space\": 191\n            },\n            \"pubkey\": \"741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs\"\n          }\n        ]\n      },\n      \"error\": null\n    }\n  ],\n  \"selection\": {\n    \"cluster\": \"solana-mainnet\",\n    \"mint\": \"PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh\",\n    \"reference\": {\n      \"version\": \"273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493\",\n      \"source_url\": \"https://prestocks.com/products\",\n      \"retrieved_at\": \"2026-09-19T10:33:42.635Z\",\n      \"content_sha256\": \"0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73\",\n      \"assertions\": [\n        {\n          \"mint\": \"PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh\",\n          \"name\": \"SpaceX\",\n          \"symbol\": \"SPACEX\",\n          \"decimals\": 9\n        }\n      ]\n    },\n    \"sample_accounts\": false,\n    \"public_owner\": \"2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj\"\n  }\n}",
+    "wallet_sha256": "580dd757060f019ebf0ba22db22be08a70645770f26df89b6745c765d2e7eb06",
+    "request": {
+      "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "successor_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "effective_at": "2026-10-20T13:16:00Z",
+      "deadline": "2026-11-19T13:16:00Z",
+      "post_deadline": "TransitionStillRequired",
+      "assurance": "FullTransition",
+      "check_ids": []
+    },
+    "successor_capture": "{\n  \"schema_version\": 2,\n  \"asset\": {\n    \"name\": \"Custom token address\",\n    \"mint\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n    \"expected_token_program\": null,\n    \"expected_genesis_hash\": \"5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d\",\n    \"verification\": []\n  },\n  \"rpc_origin\": \"https://api.mainnet-beta.solana.com\",\n  \"started_at\": \"2026-09-20T13:16:51.302Z\",\n  \"completed_at\": \"2026-09-20T13:16:51.873Z\",\n  \"decoder\": \"spl-token-2022-interface/3.1.1; current-observation/v1\",\n  \"observations\": [\n    {\n      \"method\": \"getGenesisHash\",\n      \"params\": [],\n      \"started_at\": \"2026-09-20T13:16:51.302Z\",\n      \"completed_at\": \"2026-09-20T13:16:51.604Z\",\n      \"result\": \"5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d\",\n      \"error\": null\n    },\n    {\n      \"method\": \"getAccountInfo\",\n      \"params\": [\n        \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n        {\n          \"commitment\": \"finalized\",\n          \"encoding\": \"base64\"\n        }\n      ],\n      \"started_at\": \"2026-09-20T13:16:51.604Z\",\n      \"completed_at\": \"2026-09-20T13:16:51.873Z\",\n      \"result\": {\n        \"context\": {\n          \"apiVersion\": \"4.3.0-rc.0\",\n          \"slot\": 448742549\n        },\n        \"value\": {\n          \"data\": [\n            \"AQAAAJj+huiNm+Lqi8HMpIeLKYjCQPUrhCS/tA7Rot3LXhmbvcIFNRZUHAAGAQEAAABicKqKWcWUBbRShshncubNEm6bil06OFNtN/e0FOi2Zw==\",\n            \"base64\"\n          ],\n          \"executable\": false,\n          \"lamports\": 534673269469,\n          \"owner\": \"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\",\n          \"rentEpoch\": 18446744073709551615,\n          \"space\": 82\n        }\n      },\n      \"error\": null\n    }\n  ],\n  \"selection\": {\n    \"cluster\": \"solana-mainnet\",\n    \"mint\": \"EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v\",\n    \"reference\": null,\n    \"sample_accounts\": false\n  }\n}",
+    "checks": []
+  },
+  "scenario": {
+    "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+    "conversion_ratio": null,
+    "created_at": "2026-09-20T13:16:51.086Z",
+    "created_for_run": "f4abc65a-87f6-4231-b64b-f6ea49467755",
+    "current_balance_raw": "17621",
+    "execution_evidence": [],
+    "focused_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "issuer_relationship_verified": false,
+    "lifecycle": {
+      "captured_at": "2026-09-20T13:16:51.086Z",
+      "change": {
+        "description": "User-proposed replacement-token transition against unchanged currently captured state"
+      },
+      "id": "7d924ed2-3676-4530-b90b-ad5b14e7c7c9",
+      "policy": {
+        "after": "TransitionRequired",
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before": "Active",
+        "deadline": {
+          "after": "PostDeadlineTransitionRequired",
+          "at": "2026-11-19T13:16:00Z"
+        },
+        "effective_at": "2026-10-20T13:16:00Z",
+        "successor": {
+          "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+        }
+      },
+      "scenario_type": "lifecycle_change",
+      "scenario_version": "current-proposed/v1",
+      "schema_version": 1,
+      "sources": [
+        {
+          "artifact": null,
+          "captured_at": "2026-09-20T13:16:51.086Z",
+          "content_sha256": null,
+          "description": "UserProposed, not issuer asserted or on-chain policy",
+          "id": "user-proposed",
+          "kind": "ScenarioAssumption",
+          "reference": "current-run:f4abc65a-87f6-4231-b64b-f6ea49467755",
+          "supports": [
+            "/policy/effective_at",
+            "/policy/before",
+            "/policy/after",
+            "/policy/deadline",
+            "/policy/successor"
+          ]
+        }
+      ]
+    },
+    "official_authorization": false,
+    "provenance": "User-provided hypothetical policy; current mint observations and local checks are separate evidence",
+    "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+    "scenario_id": "7d924ed2-3676-4530-b90b-ad5b14e7c7c9",
+    "scenario_version": "current-proposed/v1",
+    "source": "UserProposed",
+    "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "successor_asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "successor_capture_sha256": "19e0e3c221a1e8a06dbeace34c40eaed62bd2ec5e23ba380a3a8e4f5916731a3",
+    "wallet_capture_sha256": "580dd757060f019ebf0ba22db22be08a70645770f26df89b6745c765d2e7eb06"
+  },
+  "scenario_sha256": "f3b8f53affc679f346af771835a5532e7bdb31c9bd66b5cf494b0be4ab60719f"
+}

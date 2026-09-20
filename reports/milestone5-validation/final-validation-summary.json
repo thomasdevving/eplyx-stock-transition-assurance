@@ -1,0 +1,112 @@
+{
+  "milestone": 5,
+  "status": "Complete",
+  "completed_at": "2026-09-20T13:46:09.736961+00:00",
+  "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+  "validation": {
+    "make_test": {
+      "exit_code": 0,
+      "passed": 401,
+      "failed": 0,
+      "ignored": 0,
+      "includes_sbf_builds": true
+    },
+    "fmt_check": {
+      "exit_code": 0
+    },
+    "lint": {
+      "exit_code": 0
+    },
+    "service": {
+      "exit_code": 0,
+      "passed": 29
+    },
+    "frontend_check": {
+      "exit_code": 0
+    },
+    "frontend_build": {
+      "exit_code": 0
+    },
+    "browser": {
+      "exit_code": 0,
+      "passed": 22,
+      "skipped": 0,
+      "all_live_flags_enabled": true,
+      "duration_minutes": 17.8
+    },
+    "mutations": {
+      "injected": 7,
+      "killed_by_named_assertions": 7,
+      "sources_restored": true
+    },
+    "canonical_preflight_replays": 4,
+    "current_execution_checks_replayed_in_live_preflights": 3,
+    "git_diff_check": true,
+    "production_smoke": "Passed"
+  },
+  "preservation": {
+    "historical": {
+      "recorded": 893,
+      "unchanged": 893,
+      "changed": []
+    },
+    "source_and_binary": {
+      "recorded": 138,
+      "unchanged": 138,
+      "changed": []
+    },
+    "mutation_sources_match_final": true,
+    "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+    "checked_at": "2026-09-20T13:46:09.736961+00:00"
+  },
+  "live_cases": [
+    {
+      "label": "live-preflight",
+      "run_id": "77b916d4-4123-40c8-8d83-f64b4e69cdfc",
+      "preflight_id": "d9c2a6d4-e6de-40af-848d-9ba9b6bab297",
+      "scenario_sha256": "2f39f660c17687e2d955c8f0b3a5ad82d935d696814c87e99c8d0d5f47012954",
+      "result_sha256": "888d50756c7e2f9d3e8f5bd1bbdbdb1eb2ec48bf0a7a49b86b0c0fb742024318"
+    },
+    {
+      "label": "live-missing",
+      "run_id": "f4abc65a-87f6-4231-b64b-f6ea49467755",
+      "preflight_id": "7d924ed2-3676-4530-b90b-ad5b14e7c7c9",
+      "scenario_sha256": "f3b8f53affc679f346af771835a5532e7bdb31c9bd66b5cf494b0be4ab60719f",
+      "result_sha256": "d4b4829cc660aca2a85794bf172546bcefc54d3d4ea058a55b2804cad13a66c6"
+    },
+    {
+      "label": "live-openai-preflight",
+      "run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+      "preflight_id": "77c7c8d9-72c8-4148-9a90-d0d4b58c95f7",
+      "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+      "result_sha256": "1997412bf7dde4a33409111157986acb05e3677f767b7c63e4a0e4227b645527"
+    },
+    {
+      "label": "live-invalid",
+      "run_id": "f4abc65a-87f6-4231-b64b-f6ea49467755",
+      "preflight_id": "69afa6a3-cad7-4e7e-992c-143c5090b753",
+      "scenario_sha256": "0f2b48e30435b5bac506dd40688571171f382e2713feb60fa7f3b6b99c09b840",
+      "result_sha256": "19a722f3b8c3e85c976181de1531c0780c02df8a29081cdaece4f742716b82bc"
+    }
+  ],
+  "production_url": "http://127.0.0.1:4173/analysis#analysis",
+  "funds_moved": false,
+  "later_milestone_started": false,
+  "historical_inputs_used_for_current_assurance": false,
+  "limitations": [
+    "UserProposed association is not issuer verification",
+    "OfficialTransition remains NotTested and full transition readiness Incomplete",
+    "Mobility applies to exact tested amounts/routes/recipients and captured state only",
+    "Signing possession unknown; no future balances/liquidity or population readiness inferred"
+  ],
+  "logs": {
+    "final-fmt.txt": "4c850b689e0062721ffffb73822f09ee43af4198fdc6b8682f65542dd9e91239",
+    "final-build.txt": "d4ff239568489d2c0f1b9e4dcefc3b472aeabd4a92e2c4d52d8aeea63cfaf22f",
+    "final-make-test.txt": "2fde2ddad91188ccdcb54336746f1434c5fb1bf58ca74e6d16c7919d1d2e1cf6",
+    "final-service.txt": "35af4c5cdc8b2cb3dc1a10fb96ef117ae6eaac0da1489f65db5a5fab7475b986",
+    "final-lint.txt": "cb94dbfa410046c72d79d5df0cff8dd5ea22853f9955614ad0118c262bddf736",
+    "final-frontend-check.txt": "18382232cfc9f1f2b117b1c8ba130e1a8e6e7264a5233c404d03b5d44b9fd6be",
+    "final-engine-build.txt": "64ee649315c2c790a0422d115847103da06ce295bf02c8f08ff8642dfae3eded",
+    "final-browser.txt": "ae9249226c26b40be495ba762f30e2cbcbb9a52b2842af390374fcb0ddf84ed8"
+  }
+}

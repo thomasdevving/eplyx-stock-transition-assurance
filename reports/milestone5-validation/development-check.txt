@@ -1,0 +1,2 @@
+    Checking eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 22.60s

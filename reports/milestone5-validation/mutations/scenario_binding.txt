@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.04s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test scenario_digest_cannot_reuse_readiness ... FAILED
+
+failures:
+
+---- scenario_digest_cannot_reuse_readiness stdout ----
+
+thread 'scenario_digest_cannot_reuse_readiness' (10789004) panicked at engine/tests/current_preflight.rs:216:5:
+different scenario digest must reject readiness
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    scenario_digest_cannot_reuse_readiness
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 9 filtered out; finished in 0.04s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

@@ -1,8 +1,12 @@
 //! Eplyx Lifecycle Impact: state plus a proposed change and its consequences.
 //!
-//! Phase 1 supports program-upgrade execution and a lifecycle placeholder.
+//! Phase 1 introduced program-upgrade execution and a lifecycle change description.
 //! ChangeScenario owns the change description; fixture accounts and transactions
-//! remain separate state inputs. Lifecycle execution is explicitly unsupported.
+//! remain separate state inputs. Phase 4 adds offline lifecycle-policy consequences;
+//! official lifecycle transition execution remains explicitly untested.
+//! Phase 6 joins population impacts with independent bounded execution witnesses
+//! into portfolio coverage without extrapolating samples or summing route capacity.
+//! Phase 2 adds production token-asset discovery and frozen RPC evidence snapshots.
 //!
 //! The execution and raw state diff primitives are reusable. The lending corpus,
 //! economic interpretation, reports and counterexample minimization are retained
@@ -10,16 +14,22 @@
 
 pub mod cluster;
 pub mod corpus;
+pub mod coverage;
 pub mod diff;
 pub mod executor;
+pub mod expansion;
 pub mod hexfmt;
 pub mod impact;
 pub mod interpret;
+pub mod lifecycle;
 pub mod money;
 pub mod numfmt;
+pub mod probe;
 pub mod report;
+pub mod resolution;
 pub mod scenario;
 pub mod shrink;
+pub mod transition;
 pub mod types;
 
 use std::path::{Path, PathBuf};
@@ -176,3 +186,17 @@ pub fn compare_default_corpus_minimized() -> Result<Report> {
     )?;
     Ok(report)
 }
+
+pub mod position;
+
+pub mod readiness;
+
+/// Captured issuer assertions and deterministic offline lifecycle ingestion.
+pub mod notice;
+
+/// Deterministic time counterfactuals over one frozen production world.
+pub mod counterfactual;
+pub mod rollout;
+
+/// Prospective user-proposed analysis over an exact current wallet capture.
+pub mod preflight;

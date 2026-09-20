@@ -1,0 +1,5 @@
+
+> eplyx-stock-transition@0.1.0 build:engine
+> cargo build --locked -p eplyx-lifecycle-impact
+
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.50s

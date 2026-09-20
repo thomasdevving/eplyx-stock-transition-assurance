@@ -1,0 +1,90 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1
+
+(node:10230) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:10262) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 22 tests using 1 worker
+
+(node:10263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10263) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:10263) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:7:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (11.1s)
+  ✓   2 frontend/tests/analysis.spec.js:23:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (12.9m)
+  ✓   3 frontend/tests/analysis.spec.js:58:1 › unavailable backend and saved reports are labeled honestly (1.5s)
+  ✓   4 frontend/tests/analysis.spec.js:63:1 › API rejects unsupported caller commands, evidence and oversized bodies (39ms)
+  ✓   5 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (11.1s)
+  ✓   6 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (7.9s)
+  ✓   7 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (92ms)
+  ✓   8 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (4.2s)
+  ✓   9 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (1.6s)
+  ✓  10 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (7.0s)
+  ✓  11 frontend/tests/current.spec.js:6:1 › failed new submission cannot display a prior result as its outcome (4.4s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  12 frontend/tests/execution.spec.js:30:1 › current transfer browser/service/engine and offline VM replay using deterministic reconstructed RPC (23.8s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  13 frontend/tests/execution.spec.js:35:1 › live current transfer and refreshed transfer with exact offline VM replay (22.0s)
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  14 frontend/tests/execution.spec.js:39:1 › live bounded current market discovery and exact offline replay (17.3s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  15 frontend/tests/execution.spec.js:48:1 › live second catalogue asset transfers freshly captured OPENAI holdings (10.4s)
+  ✓  16 frontend/tests/multiasset.spec.js:8:1 › catalogue search, custom draft, unavailable source and original toggle preserve selection without submission (6.5s)
+  ✓  17 frontend/tests/multiasset.spec.js:21:1 › live generic browser-to-engine inspection: two catalogue stocks, custom mint, nonmint, invalid input, refresh and offline replay (24.8s)
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  18 frontend/tests/preflight.spec.js:46:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM (37.8s)
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+  ✓  19 frontend/tests/preflight.spec.js:52:1 › live prospective current SPACEX pre-flight with new checks and refresh isolation (30.7s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  20 frontend/tests/preflight.spec.js:54:1 › live prospective OPENAI uses distinct hypothetical successor and fresh Transfer (16.4s)
+
+  ✓  21 frontend/tests/wallet.spec.js:18:1 › deterministic wallet browser/service/engine: multiple accounts, precision, focus, zero, errors, refresh and isolation (26.5s)
+
+  ✓  22 frontend/tests/wallet.spec.js:59:1 › live wallet browser acquisition with refresh, second asset, custom mint, zero target and offline replay (26.4s)
+
+  Slow test file: frontend/tests/analysis.spec.js (13.1m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  22 passed (17.8m)

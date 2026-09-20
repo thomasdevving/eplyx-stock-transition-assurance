@@ -1,0 +1,18 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.22s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 10 tests
+test scenario_digest_cannot_reuse_readiness ... ok
+test unchanged_current_bytes_at_all_proposed_times ... ok
+test proposed_provenance_never_becomes_issuer_assertion ... ok
+test saved_phase7_proof_cannot_enter_missing_current_checks ... ok
+test request_boundaries_and_offline_canonical_replay ... ok
+test successor_is_independently_inspected_and_never_issuer_verified ... ok
+test unavailable_current_check_is_indeterminate_not_failure_or_readiness ... ok
+test refreshed_run_and_other_entity_reject_existing_proof ... ok
+test entity_ready_never_becomes_population_ready ... ok
+test current_mobility_never_proves_official_conversion ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 9.34s
+

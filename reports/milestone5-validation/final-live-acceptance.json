@@ -1,0 +1,1271 @@
+{
+  "checks_are_current_run_only": true,
+  "population_readiness": null,
+  "funds_moved": false,
+  "cases": [
+    {
+      "label": "live-preflight",
+      "run_id": "77b916d4-4123-40c8-8d83-f64b4e69cdfc",
+      "preflight_id": "d9c2a6d4-e6de-40af-848d-9ba9b6bab297",
+      "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+      "wallet_capture_sha256": "f5fe85148812c73ccc3f5a6a6c45972d6172fa576bf1e9c89aacb5ad3b4a1e76",
+      "scenario_sha256": "2f39f660c17687e2d955c8f0b3a5ad82d935d696814c87e99c8d0d5f47012954",
+      "bundle_sha256": "c9b072288b77cd68a49ad60e0ff7261cae320bc6e3eed6cd0dbb602297bc2723",
+      "result_sha256": "888d50756c7e2f9d3e8f5bd1bbdbdb1eb2ec48bf0a7a49b86b0c0fb742024318",
+      "entity": {
+        "account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+        "balance_decimal": "0.000017621",
+        "balance_raw": "17621",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+      },
+      "wallet_acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-20T13:16:28.486Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448742462,
+          448742463,
+          448742465
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-20T13:16:27.330Z"
+      },
+      "policy": {
+        "after": "TransitionRequired",
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before": "Active",
+        "deadline": {
+          "after": "PostDeadlineTransitionRequired",
+          "at": "2026-11-19T13:16:00Z"
+        },
+        "effective_at": "2026-10-20T13:16:00Z",
+        "successor": {
+          "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+        }
+      },
+      "source": "UserProposed",
+      "successor": {
+        "capture_sha256": "f4becbb586adbb44f0993d1e5df0bdbddf881797a2f017697ad8602d754d3a0d",
+        "conversion_ratio": null,
+        "issuer_relationship_verified": false,
+        "message": "Replacement mint exists on Solana",
+        "observation": {
+          "account_observation": {
+            "executable": false,
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "slot": 448742502,
+            "space": 82
+          },
+          "accounts": [],
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:16:39.356Z",
+            "consistency": "Separate RPC observations, not an atomic validator bank",
+            "context_slots": [
+              448742502
+            ],
+            "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+            "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:16:38.784Z"
+          },
+          "asset": {
+            "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "expected_token_program": null,
+            "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "name": "Custom token address",
+            "verification": []
+          },
+          "authorization": false,
+          "discovery": {
+            "complete_population": false,
+            "gaps": [],
+            "maximum_sample_accounts": 20,
+            "method": "getTokenLargestAccounts + getMultipleAccounts",
+            "requested": false,
+            "sample_count": null,
+            "status": "NotRequested",
+            "technical_errors": []
+          },
+          "execution_performed": false,
+          "funds_moved": false,
+          "identity_mismatches": [],
+          "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+          "inspection": {
+            "account_type": "Mint",
+            "message": "Current token information retrieved",
+            "status": "Completed"
+          },
+          "kind": "current-inspection",
+          "lifecycle_event": null,
+          "limitations": [
+            "Largest-account sampling is not a holder population or wallet lookup.",
+            "No protocol position, market route, token transfer, withdrawal or official conversion was tested.",
+            "No lifecycle event or assurance policy was selected; this is not a readiness verdict.",
+            "Mint supply, public account balances and withheld fees are separate quantities; no reconciliation across RPC contexts is claimed.",
+            "Amounts are unscaled token quantities, not company shares or valuations. Confidential balances are not known zero. Extension presence alone is not active behavior."
+          ],
+          "local_execution_performed": false,
+          "mint": {
+            "decimal_supply": "7973753703.482045",
+            "decimals": 6,
+            "extensions": [],
+            "freeze_authority": "7dGbd2QZcCKcTndnHcTL8q7SMVXAkp688NTQYwrRCrar",
+            "is_initialized": true,
+            "is_token_2022": false,
+            "mint_authority": "BJE5MMbqXjVwjAF7oxwPYXnTXDyspzZyt4vwenNw5ruG",
+            "raw_supply": "7973753703482045",
+            "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+          },
+          "mint_slot": 448742502,
+          "onchain_metadata": null,
+          "paths": [
+            {
+              "path": "OfficialTransition",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Redemption",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "SecondaryMarketExit",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Transfer",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Withdrawal",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            }
+          ],
+          "readiness": null,
+          "schema_version": 2,
+          "selection": {
+            "cluster": "solana-mainnet",
+            "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "reference": null,
+            "sample_accounts": false
+          },
+          "signer_assumed_locally": false,
+          "signer_possession_known": false
+        },
+        "status": "MintObserved"
+      },
+      "views": [
+        {
+          "id": "BeforeProposedEvent",
+          "evaluated_at": "2026-09-20T13:16:38.538Z",
+          "lifecycle_status": "Active",
+          "impact": "Unaffected",
+          "balance_raw": "17621",
+          "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+          "mobility": null,
+          "full_transition": null
+        },
+        {
+          "id": "ProposedActive",
+          "evaluated_at": "2026-10-20T13:16:00Z",
+          "lifecycle_status": "TransitionRequired",
+          "impact": "RequiresTransition",
+          "balance_raw": "17621",
+          "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+          "mobility": "Ready",
+          "full_transition": "Incomplete"
+        },
+        {
+          "id": "AfterProposedDeadline",
+          "evaluated_at": "2026-11-19T13:16:00Z",
+          "lifecycle_status": "PostDeadlineTransitionRequired",
+          "impact": "RequiresTransition",
+          "balance_raw": "17621",
+          "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+          "mobility": "Ready",
+          "full_transition": "Incomplete"
+        }
+      ],
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "status": "Unsupported"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "status": "Proven"
+        },
+        {
+          "path": "Transfer",
+          "status": "Proven"
+        },
+        {
+          "path": "Withdrawal",
+          "status": "NotApplicable"
+        }
+      ],
+      "checks": [
+        {
+          "id": "03b88b76-534b-4717-853b-bba5454ca661",
+          "capture_sha256": "b48a270fcaa9039a999ce312d3b7b09ecf682557367c67fc5ac4021fad2455c8",
+          "fixture_sha256": "3e63799eeb3875cd4cb6379c0239127c5d2b2c8d56635d04d61ac8f82a7db0cf",
+          "path": "SecondaryMarketExit",
+          "status": "Proven",
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:16:34.780564+00:00",
+            "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+            "discovery_slot": 448742465,
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:16:32.255777+00:00"
+          },
+          "clock": {
+            "epoch": 1038,
+            "epoch_start_timestamp": 1789823115,
+            "leader_schedule_epoch": 1039,
+            "slot": 448742486,
+            "unix_timestamp": 1789910185
+          },
+          "input_raw": "17621",
+          "reconciliation": {
+            "account_data": [
+              {
+                "address": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+                "after_sha256": "e066d2857488e160391b457f8205639fb299cf795195a0eea160710223a07c21",
+                "before_sha256": "00e7459b7904337cab29a9de183e225f137e0f1355fc7ea9e155d96e3c428568",
+                "changed_ranges": [
+                  {
+                    "after": "0000",
+                    "before": "1027",
+                    "offset": 40
+                  },
+                  {
+                    "after": "c1",
+                    "before": "c0",
+                    "offset": 48
+                  },
+                  {
+                    "after": "72",
+                    "before": "4f",
+                    "offset": 216
+                  }
+                ]
+              },
+              {
+                "address": "46af1n4VNVVkvEQAG3LcUrQt7gMMrvqGHsBht8vcYtYu",
+                "after_sha256": "e70a94b8c671125e67c4975775d95eac17061d09db3657392ac99d516037ba1c",
+                "before_sha256": "643487de87a2a3d5c2a292561eeb1573bc36960f3834df4b03c13387dc0b1834",
+                "changed_ranges": [
+                  {
+                    "after": "40",
+                    "before": "3f",
+                    "offset": 8
+                  },
+                  {
+                    "after": "a73415d2",
+                    "before": "7b7b00d7",
+                    "offset": 2080
+                  },
+                  {
+                    "after": "a9dcaf",
+                    "before": "e7b29c",
+                    "offset": 2096
+                  },
+                  {
+                    "after": "a9dcaf",
+                    "before": "e7b29c",
+                    "offset": 2104
+                  }
+                ]
+              },
+              {
+                "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "after_sha256": "7d2bc77302976da90ff18feb8ad622059c401238997881fed1f670d2fae7b7d9",
+                "before_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+                "changed_ranges": [
+                  {
+                    "after": "0000",
+                    "before": "d544",
+                    "offset": 64
+                  }
+                ]
+              },
+              {
+                "address": "77iUtJ23jGcMDzNvpLRptUenJMNtfQgFrCBcpHZWVVhN",
+                "after_sha256": "4616fd5db2903fac1e00218720e66ea4fa3809923d5b48fbde2fca8b26aaacfb",
+                "before_sha256": "4616fd5db2903fac1e00218720e66ea4fa3809923d5b48fbde2fca8b26aaacfb",
+                "changed_ranges": []
+              },
+              {
+                "address": "8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+                "after_sha256": "8187df370964ea63166f8caf764b821f9f3f94d993d1d1752088008ed839ac0f",
+                "before_sha256": "af1f7c06b20050b995c4f4371002965f1fba24a1b6be42e3e8ce95224bcb61dc",
+                "changed_ranges": [
+                  {
+                    "after": "9be0",
+                    "before": "1f9c",
+                    "offset": 64
+                  },
+                  {
+                    "after": "05d5",
+                    "before": "acd4",
+                    "offset": 174
+                  }
+                ]
+              },
+              {
+                "address": "A7KSKmpxWFN2dStE158J8xwC5ZHYX1LEfHLZk8t4YSY2",
+                "after_sha256": "ea086649df228b7debd4678a60bd96fc5c1050d716c9b3980d55dd2c554aad0d",
+                "before_sha256": "fe4efbb996ffef8b52718d6f1f1b51245ffa80619a7388ce50e3eda2b7a70a4a",
+                "changed_ranges": [
+                  {
+                    "after": "4b4093",
+                    "before": "2efd92",
+                    "offset": 1064
+                  },
+                  {
+                    "after": "b172",
+                    "before": "519b",
+                    "offset": 1072
+                  },
+                  {
+                    "after": "14643b059db425",
+                    "before": "1e3eea4e4e5d22",
+                    "offset": 1144
+                  }
+                ]
+              },
+              {
+                "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                "after_sha256": "b09496107359a19c2beb966fa0f7956a238fdd529d7f8c73ede994eab8aa32ad",
+                "before_sha256": "b09496107359a19c2beb966fa0f7956a238fdd529d7f8c73ede994eab8aa32ad",
+                "changed_ranges": []
+              },
+              {
+                "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+                "after_sha256": "8305b0799d7dc25192ad7fb78660e602f31b2e74ea1f445974a04c6b83cbf172",
+                "before_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+                "changed_ranges": [
+                  {
+                    "after": "422b",
+                    "before": "a202",
+                    "offset": 64
+                  }
+                ]
+              },
+              {
+                "address": "J1o8ikH5wKTnNyAjeYjKRfwCEBTVLbiV5v15pL7QZHpb",
+                "after_sha256": "1ab7dc8777c7952f02ea3c1caa0d90bf7efcedd7b261fa60263cfa3f10b516dd",
+                "before_sha256": "bcdeeb140d439adc051c6a604a4113f64b51e0f9ef06d1e4d2881c8e6ac302c2",
+                "changed_ranges": [
+                  {
+                    "after": "38fd7d",
+                    "before": "d8257e",
+                    "offset": 64
+                  }
+                ]
+              },
+              {
+                "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                "after_sha256": "1eb23e3cc941c968ee1bedc498ea013592b2533af5dfbfab2301ceaf4b855feb",
+                "before_sha256": "1eb23e3cc941c968ee1bedc498ea013592b2533af5dfbfab2301ceaf4b855feb",
+                "changed_ranges": []
+              }
+            ],
+            "fees": {
+              "active_epoch": 1038,
+              "dlmm_liquidity_provider_fee_raw": "316",
+              "dlmm_protocol_fee_raw": "35",
+              "dlmm_swap_fee_raw": "351",
+              "fee_asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "host_fee_raw": "0",
+              "token_2022_transfer_fee_raw": "89"
+            },
+            "input_debited_raw": "17621",
+            "output_decimal_base_units": "0.0104",
+            "output_received_raw": "10400",
+            "reconciled": true,
+            "reconciliation": [
+              "Amounts reconcile public SPL account amounts; withheld fees are separate extension balances, not additional holder amounts",
+              "User input debit 17621 = X vault public delta 17532 + X vault withheld fee 89",
+              "User output credit 10400 = -Y vault public delta -10400",
+              "Actual Swap2Evt protocol fee 35 = pool protocol accumulator delta 35; total fee 351; fee-on-input=true",
+              "MM-only bins: X delta 17181, Y delta -10400; vault deltas equal bin deltas plus fee 351 on the identified fee asset",
+              "DLMM fees remain within the relevant vault's public amount and are not added again to token conservation; Swap2Evt records MM/protocol/order components"
+            ],
+            "token_accounts": [
+              {
+                "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "after_raw": "0",
+                "before_raw": "17621",
+                "change_decimal_base_units": "-0.000017621",
+                "change_raw": "-17621",
+                "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                "withheld_fee_change_raw": "0"
+              },
+              {
+                "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+                "after_raw": "11074",
+                "before_raw": "674",
+                "change_decimal_base_units": "0.0104",
+                "change_raw": "10400",
+                "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                "withheld_fee_change_raw": "0"
+              },
+              {
+                "address": "8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+                "after_raw": "88503935131",
+                "before_raw": "88503917599",
+                "change_decimal_base_units": "0.000017532",
+                "change_raw": "17532",
+                "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                "withheld_fee_change_raw": "89"
+              },
+              {
+                "address": "J1o8ikH5wKTnNyAjeYjKRfwCEBTVLbiV5v15pL7QZHpb",
+                "after_raw": "629013816",
+                "before_raw": "629024216",
+                "change_decimal_base_units": "-0.0104",
+                "change_raw": "-10400",
+                "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                "withheld_fee_change_raw": "0"
+              }
+            ]
+          },
+          "signer_possession_known": false
+        },
+        {
+          "id": "5f8789a5-dad0-46ed-910a-29d36695e631",
+          "capture_sha256": "845d000711c37835a3acd6df230d3cf1f1714ca0f90a37eb9ab39c28506fe90a",
+          "fixture_sha256": "744ba42bcd6f6c729d21d7fc2a4d52536e13ec78b7fc9535d511bba07e7704c8",
+          "path": "Transfer",
+          "status": "Proven",
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:16:30.674657+00:00",
+            "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+            "discovery_slot": 448742465,
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:16:29.322235+00:00"
+          },
+          "clock": {
+            "epoch": 1038,
+            "epoch_start_timestamp": 1789823115,
+            "leader_schedule_epoch": 1039,
+            "slot": 448742472,
+            "unix_timestamp": 1789910181
+          },
+          "input_raw": "17621",
+          "reconciliation": {
+            "account_data": [
+              {
+                "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "after_sha256": "7d2bc77302976da90ff18feb8ad622059c401238997881fed1f670d2fae7b7d9",
+                "before_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+                "changed_ranges": [
+                  {
+                    "after": "0000",
+                    "before": "d544",
+                    "offset": 64
+                  }
+                ]
+              },
+              {
+                "address": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc",
+                "after_sha256": "7fe9f57881377435db8148eb6dc56da35f7b1856acfefa7710863d5a911debd3",
+                "before_sha256": "cc91c82d12019d4bf268e09ceb66272f13c2f4ee591e659f57a9db374f67eb24",
+                "changed_ranges": [
+                  {
+                    "after": "5447",
+                    "before": "d802",
+                    "offset": 64
+                  },
+                  {
+                    "after": "59",
+                    "before": "00",
+                    "offset": 174
+                  }
+                ]
+              },
+              {
+                "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                "after_sha256": "1eb23e3cc941c968ee1bedc498ea013592b2533af5dfbfab2301ceaf4b855feb",
+                "before_sha256": "1eb23e3cc941c968ee1bedc498ea013592b2533af5dfbfab2301ceaf4b855feb",
+                "changed_ranges": []
+              }
+            ],
+            "fees": null,
+            "input_debited_raw": "17621",
+            "output_decimal_base_units": "0.000017532",
+            "output_received_raw": "17532",
+            "reconciled": true,
+            "reconciliation": [
+              "Actual TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb transfer: source debit = destination public credit + destination withheld fee. Captured epoch 1038; independently calculated transfer fee 89 raw. Mint unchanged; no DLMM event/bin/venue delta is applicable to Transfer.",
+              "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+            ],
+            "token_accounts": [
+              {
+                "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "after_raw": "0",
+                "before_raw": "17621",
+                "change_decimal_base_units": "-0.000017621",
+                "change_raw": "-17621",
+                "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                "withheld_fee_change_raw": "0"
+              },
+              {
+                "address": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc",
+                "after_raw": "18260",
+                "before_raw": "728",
+                "change_decimal_base_units": "0.000017532",
+                "change_raw": "17532",
+                "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                "withheld_fee_change_raw": "89"
+              }
+            ]
+          },
+          "signer_possession_known": false
+        }
+      ],
+      "capture_file": "reports/milestone5-validation/final-browser/live-preflight.capture.json",
+      "result_file": "reports/milestone5-validation/final-browser/live-preflight.result.json",
+      "canonical_offline_replay_verified": true,
+      "execution_checks_replayed_in_vm": 2
+    },
+    {
+      "label": "live-missing",
+      "run_id": "f4abc65a-87f6-4231-b64b-f6ea49467755",
+      "preflight_id": "7d924ed2-3676-4530-b90b-ad5b14e7c7c9",
+      "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+      "wallet_capture_sha256": "580dd757060f019ebf0ba22db22be08a70645770f26df89b6745c765d2e7eb06",
+      "scenario_sha256": "f3b8f53affc679f346af771835a5532e7bdb31c9bd66b5cf494b0be4ab60719f",
+      "bundle_sha256": "f01037d5a15a943e6c3b4b6e63b0cef63f723b2d188ef51744cc22752103031e",
+      "result_sha256": "d4b4829cc660aca2a85794bf172546bcefc54d3d4ea058a55b2804cad13a66c6",
+      "entity": {
+        "account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+        "balance_decimal": "0.000017621",
+        "balance_raw": "17621",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+      },
+      "wallet_acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-20T13:16:49.322Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448742537,
+          448742538,
+          448742540
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-20T13:16:48.145Z"
+      },
+      "policy": {
+        "after": "TransitionRequired",
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before": "Active",
+        "deadline": {
+          "after": "PostDeadlineTransitionRequired",
+          "at": "2026-11-19T13:16:00Z"
+        },
+        "effective_at": "2026-10-20T13:16:00Z",
+        "successor": {
+          "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+        }
+      },
+      "source": "UserProposed",
+      "successor": {
+        "capture_sha256": "19e0e3c221a1e8a06dbeace34c40eaed62bd2ec5e23ba380a3a8e4f5916731a3",
+        "conversion_ratio": null,
+        "issuer_relationship_verified": false,
+        "message": "Replacement mint exists on Solana",
+        "observation": {
+          "account_observation": {
+            "executable": false,
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "slot": 448742549,
+            "space": 82
+          },
+          "accounts": [],
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:16:51.873Z",
+            "consistency": "Separate RPC observations, not an atomic validator bank",
+            "context_slots": [
+              448742549
+            ],
+            "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+            "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:16:51.302Z"
+          },
+          "asset": {
+            "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "expected_token_program": null,
+            "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "name": "Custom token address",
+            "verification": []
+          },
+          "authorization": false,
+          "discovery": {
+            "complete_population": false,
+            "gaps": [],
+            "maximum_sample_accounts": 20,
+            "method": "getTokenLargestAccounts + getMultipleAccounts",
+            "requested": false,
+            "sample_count": null,
+            "status": "NotRequested",
+            "technical_errors": []
+          },
+          "execution_performed": false,
+          "funds_moved": false,
+          "identity_mismatches": [],
+          "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+          "inspection": {
+            "account_type": "Mint",
+            "message": "Current token information retrieved",
+            "status": "Completed"
+          },
+          "kind": "current-inspection",
+          "lifecycle_event": null,
+          "limitations": [
+            "Largest-account sampling is not a holder population or wallet lookup.",
+            "No protocol position, market route, token transfer, withdrawal or official conversion was tested.",
+            "No lifecycle event or assurance policy was selected; this is not a readiness verdict.",
+            "Mint supply, public account balances and withheld fees are separate quantities; no reconciliation across RPC contexts is claimed.",
+            "Amounts are unscaled token quantities, not company shares or valuations. Confidential balances are not known zero. Extension presence alone is not active behavior."
+          ],
+          "local_execution_performed": false,
+          "mint": {
+            "decimal_supply": "7973753703.482045",
+            "decimals": 6,
+            "extensions": [],
+            "freeze_authority": "7dGbd2QZcCKcTndnHcTL8q7SMVXAkp688NTQYwrRCrar",
+            "is_initialized": true,
+            "is_token_2022": false,
+            "mint_authority": "BJE5MMbqXjVwjAF7oxwPYXnTXDyspzZyt4vwenNw5ruG",
+            "raw_supply": "7973753703482045",
+            "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+          },
+          "mint_slot": 448742549,
+          "onchain_metadata": null,
+          "paths": [
+            {
+              "path": "OfficialTransition",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Redemption",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "SecondaryMarketExit",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Transfer",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Withdrawal",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            }
+          ],
+          "readiness": null,
+          "schema_version": 2,
+          "selection": {
+            "cluster": "solana-mainnet",
+            "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "reference": null,
+            "sample_accounts": false
+          },
+          "signer_assumed_locally": false,
+          "signer_possession_known": false
+        },
+        "status": "MintObserved"
+      },
+      "views": [
+        {
+          "id": "BeforeProposedEvent",
+          "evaluated_at": "2026-09-20T13:16:51.086Z",
+          "lifecycle_status": "Active",
+          "impact": "Unaffected",
+          "balance_raw": "17621",
+          "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+          "mobility": null,
+          "full_transition": null
+        },
+        {
+          "id": "ProposedActive",
+          "evaluated_at": "2026-10-20T13:16:00Z",
+          "lifecycle_status": "TransitionRequired",
+          "impact": "RequiresTransition",
+          "balance_raw": "17621",
+          "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+          "mobility": "Incomplete",
+          "full_transition": "Incomplete"
+        },
+        {
+          "id": "AfterProposedDeadline",
+          "evaluated_at": "2026-11-19T13:16:00Z",
+          "lifecycle_status": "PostDeadlineTransitionRequired",
+          "impact": "RequiresTransition",
+          "balance_raw": "17621",
+          "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+          "mobility": "Incomplete",
+          "full_transition": "Incomplete"
+        }
+      ],
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "status": "Unsupported"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "status": "NotApplicable"
+        }
+      ],
+      "checks": [],
+      "capture_file": "reports/milestone5-validation/final-browser/live-missing.capture.json",
+      "result_file": "reports/milestone5-validation/final-browser/live-missing.result.json",
+      "canonical_offline_replay_verified": true,
+      "execution_checks_replayed_in_vm": 0
+    },
+    {
+      "label": "live-openai-preflight",
+      "run_id": "bd076870-fe5c-4fe8-add4-8e922ae8bc3e",
+      "preflight_id": "77c7c8d9-72c8-4148-9a90-d0d4b58c95f7",
+      "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+      "wallet_capture_sha256": "c46effe75de592756cea487f2580e5a23468cb52978b4f09133e0a135401d9a2",
+      "scenario_sha256": "d541a85190556819aeed2cb335ed577f82297f766c72f56e5e4fc8d511cd7ca2",
+      "bundle_sha256": "b8a788b79dfde2dfafb41faa24d1d5900b4b90ab84e0c5e1ff1bc96ebcc1e854",
+      "result_sha256": "1997412bf7dde4a33409111157986acb05e3677f767b7c63e4a0e4227b645527",
+      "entity": {
+        "account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+        "balance_decimal": "149.232852141",
+        "balance_raw": "149232852141",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+      },
+      "wallet_acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-20T13:16:59.606Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448742577,
+          448742578,
+          448742580
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-20T13:16:58.487Z"
+      },
+      "policy": {
+        "after": "TransitionRequired",
+        "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "before": "Active",
+        "deadline": null,
+        "effective_at": "2026-11-04T13:17:00Z",
+        "successor": {
+          "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+          "mint": "So11111111111111111111111111111111111111112"
+        }
+      },
+      "source": "UserProposed",
+      "successor": {
+        "capture_sha256": "72b6526d62fcd96221a7b6ec673a7dac0e21cdc325b550c6fc9bd1db5491a06c",
+        "conversion_ratio": null,
+        "issuer_relationship_verified": false,
+        "message": "Replacement mint exists on Solana",
+        "observation": {
+          "account_observation": {
+            "executable": false,
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "slot": 448742605,
+            "space": 82
+          },
+          "accounts": [],
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:17:06.542Z",
+            "consistency": "Separate RPC observations, not an atomic validator bank",
+            "context_slots": [
+              448742605
+            ],
+            "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+            "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:17:05.975Z"
+          },
+          "asset": {
+            "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "expected_token_program": null,
+            "mint": "So11111111111111111111111111111111111111112",
+            "name": "Custom token address",
+            "verification": []
+          },
+          "authorization": false,
+          "discovery": {
+            "complete_population": false,
+            "gaps": [],
+            "maximum_sample_accounts": 20,
+            "method": "getTokenLargestAccounts + getMultipleAccounts",
+            "requested": false,
+            "sample_count": null,
+            "status": "NotRequested",
+            "technical_errors": []
+          },
+          "execution_performed": false,
+          "funds_moved": false,
+          "identity_mismatches": [],
+          "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+          "inspection": {
+            "account_type": "Mint",
+            "message": "Current token information retrieved",
+            "status": "Completed"
+          },
+          "kind": "current-inspection",
+          "lifecycle_event": null,
+          "limitations": [
+            "Largest-account sampling is not a holder population or wallet lookup.",
+            "No protocol position, market route, token transfer, withdrawal or official conversion was tested.",
+            "No lifecycle event or assurance policy was selected; this is not a readiness verdict.",
+            "Mint supply, public account balances and withheld fees are separate quantities; no reconciliation across RPC contexts is claimed.",
+            "Amounts are unscaled token quantities, not company shares or valuations. Confidential balances are not known zero. Extension presence alone is not active behavior."
+          ],
+          "local_execution_performed": false,
+          "mint": {
+            "decimal_supply": "0",
+            "decimals": 9,
+            "extensions": [],
+            "freeze_authority": null,
+            "is_initialized": true,
+            "is_token_2022": false,
+            "mint_authority": null,
+            "raw_supply": "0",
+            "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+          },
+          "mint_slot": 448742605,
+          "onchain_metadata": null,
+          "paths": [
+            {
+              "path": "OfficialTransition",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Redemption",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "SecondaryMarketExit",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Transfer",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Withdrawal",
+              "reason": "Fresh execution is not wired for this observation milestone.",
+              "status": "NotTested"
+            }
+          ],
+          "readiness": null,
+          "schema_version": 2,
+          "selection": {
+            "cluster": "solana-mainnet",
+            "mint": "So11111111111111111111111111111111111111112",
+            "reference": null,
+            "sample_accounts": false
+          },
+          "signer_assumed_locally": false,
+          "signer_possession_known": false
+        },
+        "status": "MintObserved"
+      },
+      "views": [
+        {
+          "id": "BeforeProposedEvent",
+          "evaluated_at": "2026-09-20T13:17:05.764Z",
+          "lifecycle_status": "Active",
+          "impact": "Unaffected",
+          "balance_raw": "149232852141",
+          "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+          "mobility": null,
+          "full_transition": null
+        },
+        {
+          "id": "ProposedActive",
+          "evaluated_at": "2026-11-04T13:17:00Z",
+          "lifecycle_status": "TransitionRequired",
+          "impact": "RequiresTransition",
+          "balance_raw": "149232852141",
+          "account_sha256": "4ebf020051e0f51015e994543d9c61951c838ea8157ba3369e0d9084b6457322",
+          "mobility": "Ready",
+          "full_transition": "Incomplete"
+        }
+      ],
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "status": "Unsupported"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "status": "Proven"
+        },
+        {
+          "path": "Withdrawal",
+          "status": "NotApplicable"
+        }
+      ],
+      "checks": [
+        {
+          "id": "fae8519f-aa14-4d65-a66b-320a4aa738e9",
+          "capture_sha256": "c0721cd468e9b3579c943c3fb9f0e9e27c5b37352c55755956a02baca74e71b3",
+          "fixture_sha256": "bb7ceec2b2ab6a2111bbee466a401e2feadce362f392db09dfefb94e712fe147",
+          "path": "Transfer",
+          "status": "Proven",
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:17:01.997345+00:00",
+            "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+            "discovery_slot": 448742580,
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:17:00.660989+00:00"
+          },
+          "clock": {
+            "epoch": 1038,
+            "epoch_start_timestamp": 1789823115,
+            "leader_schedule_epoch": 1039,
+            "slot": 448742587,
+            "unix_timestamp": 1789910212
+          },
+          "input_raw": "149232852141",
+          "reconciliation": {
+            "account_data": [
+              {
+                "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                "after_sha256": "403a3fb14d71d9e34635eb5571e649b50a555e2be1b263d66e3ca1fb590c97d4",
+                "before_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+                "changed_ranges": [
+                  {
+                    "after": "0000000000",
+                    "before": "ad9cf8be22",
+                    "offset": 64
+                  }
+                ]
+              },
+              {
+                "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+                "after_sha256": "0852e4adcb55205e7f267a73986615b6f0f371dc8b045b094b293f1ef20a24a2",
+                "before_sha256": "1e5a0a6043401ff09f2355fbc351774e2476cd53f4c160b9e25bf6e602a7ab26",
+                "changed_ranges": [
+                  {
+                    "after": "b30c7f9222",
+                    "before": "2b00000000",
+                    "offset": 64
+                  },
+                  {
+                    "after": "2590792c",
+                    "before": "00000000",
+                    "offset": 174
+                  }
+                ]
+              },
+              {
+                "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "after_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+                "before_sha256": "9687fe33d3ea66d267f5005cf1dcd7ec52b9f7fda497b1257ec762fe548c60cf",
+                "changed_ranges": []
+              }
+            ],
+            "fees": null,
+            "input_debited_raw": "149232852141",
+            "output_decimal_base_units": "148.48668788",
+            "output_received_raw": "148486687880",
+            "reconciled": true,
+            "reconciliation": [
+              "Actual TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb transfer: source debit = destination public credit + destination withheld fee. Captured epoch 1038; independently calculated transfer fee 746164261 raw. Mint unchanged; no DLMM event/bin/venue delta is applicable to Transfer.",
+              "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+            ],
+            "token_accounts": [
+              {
+                "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+                "after_raw": "0",
+                "before_raw": "149232852141",
+                "change_decimal_base_units": "-149.232852141",
+                "change_raw": "-149232852141",
+                "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "withheld_fee_change_raw": "0"
+              },
+              {
+                "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+                "after_raw": "148486687923",
+                "before_raw": "43",
+                "change_decimal_base_units": "148.48668788",
+                "change_raw": "148486687880",
+                "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+                "withheld_fee_change_raw": "746164261"
+              }
+            ]
+          },
+          "signer_possession_known": false
+        }
+      ],
+      "capture_file": "reports/milestone5-validation/final-browser/live-openai-preflight.capture.json",
+      "result_file": "reports/milestone5-validation/final-browser/live-openai-preflight.result.json",
+      "canonical_offline_replay_verified": true,
+      "execution_checks_replayed_in_vm": 1
+    },
+    {
+      "label": "live-invalid",
+      "run_id": "f4abc65a-87f6-4231-b64b-f6ea49467755",
+      "preflight_id": "69afa6a3-cad7-4e7e-992c-143c5090b753",
+      "engine_sha256": "fea3f0c1ac3be12a783c9000107fd110aa63dc90022c879b68e54d956f6396ce",
+      "wallet_capture_sha256": "580dd757060f019ebf0ba22db22be08a70645770f26df89b6745c765d2e7eb06",
+      "scenario_sha256": "0f2b48e30435b5bac506dd40688571171f382e2713feb60fa7f3b6b99c09b840",
+      "bundle_sha256": "9f7e2914221b88012f162a954880d734bbe420850e7c7bca85255c81039fb0e3",
+      "result_sha256": "19a722f3b8c3e85c976181de1531c0780c02df8a29081cdaece4f742716b82bc",
+      "entity": {
+        "account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+        "balance_decimal": "0.000017621",
+        "balance_raw": "17621",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+      },
+      "wallet_acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-20T13:16:49.322Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448742537,
+          448742538,
+          448742540
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "https://api.mainnet-beta.solana.com",
+        "started_at": "2026-09-20T13:16:48.145Z"
+      },
+      "policy": {
+        "after": "TransitionRequired",
+        "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "before": "Active",
+        "deadline": {
+          "after": "PostDeadlineTransitionRequired",
+          "at": "2026-11-19T13:16:00Z"
+        },
+        "effective_at": "2026-10-20T13:16:00Z",
+        "successor": {
+          "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+          "mint": "11111111111111111111111111111111"
+        }
+      },
+      "source": "UserProposed",
+      "successor": {
+        "conversion_ratio": null,
+        "issuer_relationship_verified": false,
+        "message": "The replacement address is not a supported initialized token mint",
+        "observation": {
+          "account_observation": {
+            "executable": true,
+            "owner": "NativeLoader1111111111111111111111111111111",
+            "slot": 448742554,
+            "space": 21
+          },
+          "accounts": [],
+          "acquisition": {
+            "commitment": "finalized",
+            "completed_at": "2026-09-20T13:16:53.234Z",
+            "consistency": "Separate RPC observations, not an atomic validator bank",
+            "context_slots": [
+              448742554
+            ],
+            "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+            "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "rpc_origin": "https://api.mainnet-beta.solana.com",
+            "started_at": "2026-09-20T13:16:52.662Z"
+          },
+          "asset": {
+            "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+            "expected_token_program": null,
+            "mint": "11111111111111111111111111111111",
+            "name": "Custom token address",
+            "verification": []
+          },
+          "authorization": false,
+          "discovery": {
+            "complete_population": false,
+            "gaps": [],
+            "maximum_sample_accounts": 20,
+            "method": "getTokenLargestAccounts + getMultipleAccounts",
+            "requested": false,
+            "sample_count": null,
+            "status": "NotRequested",
+            "technical_errors": []
+          },
+          "execution_performed": false,
+          "funds_moved": false,
+          "identity_mismatches": [],
+          "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+          "inspection": {
+            "account_type": "Program",
+            "message": "This address is an executable program, not a token mint.",
+            "status": "Unsupported"
+          },
+          "kind": "current-inspection",
+          "lifecycle_event": null,
+          "limitations": [
+            "This inspection does not establish stock issuer association, lifecycle readiness or execution assurance."
+          ],
+          "local_execution_performed": false,
+          "mint": null,
+          "mint_slot": 448742554,
+          "onchain_metadata": null,
+          "paths": [
+            {
+              "path": "OfficialTransition",
+              "reason": "No execution requested or performed.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Redemption",
+              "reason": "No execution requested or performed.",
+              "status": "NotTested"
+            },
+            {
+              "path": "SecondaryMarketExit",
+              "reason": "No execution requested or performed.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Transfer",
+              "reason": "No execution requested or performed.",
+              "status": "NotTested"
+            },
+            {
+              "path": "Withdrawal",
+              "reason": "No execution requested or performed.",
+              "status": "NotTested"
+            }
+          ],
+          "readiness": null,
+          "schema_version": 2,
+          "selection": {
+            "cluster": "solana-mainnet",
+            "mint": "11111111111111111111111111111111",
+            "reference": null,
+            "sample_accounts": false
+          },
+          "signer_assumed_locally": false,
+          "signer_possession_known": false
+        },
+        "status": "NotSupportedMint"
+      },
+      "views": [],
+      "paths": [
+        {
+          "path": "OfficialTransition",
+          "status": "NotTested"
+        },
+        {
+          "path": "Redemption",
+          "status": "Unsupported"
+        },
+        {
+          "path": "SecondaryMarketExit",
+          "status": "NotTested"
+        },
+        {
+          "path": "Transfer",
+          "status": "NotTested"
+        },
+        {
+          "path": "Withdrawal",
+          "status": "NotApplicable"
+        }
+      ],
+      "checks": [],
+      "capture_file": "reports/milestone5-validation/final-browser/live-invalid.capture.json",
+      "result_file": "reports/milestone5-validation/final-browser/live-invalid.result.json",
+      "canonical_offline_replay_verified": true,
+      "execution_checks_replayed_in_vm": 0
+    }
+  ]
+}

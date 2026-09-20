@@ -1,0 +1,38 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1 --grep prospective current SPACEX pre-flight reconstructed
+
+(node:7988) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:8017) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:8021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8021) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:8021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 frontend/tests/preflight.spec.js:45:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM (4.6s)
+
+
+  1) frontend/tests/preflight.spec.js:45:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM 
+
+    Test was interrupted.
+
+    Error: page.waitForResponse: Test ended.
+
+      11 | async function fetchWallet(page,asset){
+      12 |  await expect(page.locator('[name="asset"] option')).toHaveCount(9);const catalogue=await get(page,'/api/catalogue');await page.locator('[name="scope"]').selectOption('wallet');await page.locator('[name="asset"]').selectOption(catalogue.entries.find(e=>e.assertions[0].symbol===asset.symbol).mint);await page.locator('[name="public_owner"]').fill(asset.owner);
+    > 13 |  const response=page.waitForResponse(r=>r.url().endsWith('/api/runs')&&r.request().method()==='POST');await page.locator('#run-analysis').click();const accepted=await response;expect(accepted.status()).toBe(202);const submitted=await accepted.json();await expect(page.locator(`.wallet-output[data-run="${submitted.id}"]`)).toBeVisible({timeout:100000});await page.locator(`[name="focused_account"][value="${asset.source}"]`).check();return get(page,`/api/runs/${submitted.id}`);
+         |                      ^
+      14 | }
+      15 | async function check(page,parent,asset,path){
+      16 |  await expect(page.locator('.local-check-form')).toBeVisible();await page.locator('.local-check-form [name="path"]').selectOption(path);
+        at fetchWallet (/Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:13:22)
+        at vertical (/Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:27:167)
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:49:117
+
+  1 interrupted
+    frontend/tests/preflight.spec.js:45:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM 

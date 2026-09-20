@@ -1,0 +1,139 @@
+{
+  "schema_version": 3,
+  "asset": {
+    "name": "SpaceX",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "expected_token_program": null,
+    "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+    "verification": []
+  },
+  "rpc_origin": "http://127.0.0.1:57871",
+  "started_at": "2026-09-20T13:17:15.720Z",
+  "completed_at": "2026-09-20T13:17:16.746Z",
+  "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+  "observations": [
+    {
+      "method": "getGenesisHash",
+      "params": [],
+      "started_at": "2026-09-20T13:17:15.720Z",
+      "completed_at": "2026-09-20T13:17:15.979Z",
+      "result": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "error": null
+    },
+    {
+      "method": "getAccountInfo",
+      "params": [
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        {
+          "commitment": "finalized",
+          "encoding": "base64"
+        }
+      ],
+      "started_at": "2026-09-20T13:17:15.979Z",
+      "completed_at": "2026-09-20T13:17:16.235Z",
+      "result": {
+        "context": {
+          "slot": 10
+        },
+        "value": {
+          "data": [
+            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "base64"
+          ],
+          "executable": false,
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "space": 82
+        }
+      },
+      "error": null
+    },
+    {
+      "method": "getAccountInfo",
+      "params": [
+        "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+        {
+          "commitment": "finalized",
+          "encoding": "base64",
+          "minContextSlot": 10
+        }
+      ],
+      "started_at": "2026-09-20T13:17:16.235Z",
+      "completed_at": "2026-09-20T13:17:16.488Z",
+      "result": {
+        "context": {
+          "slot": 11
+        },
+        "value": null
+      },
+      "error": null
+    },
+    {
+      "method": "getTokenAccountsByOwner",
+      "params": [
+        "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR",
+        {
+          "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+        },
+        {
+          "commitment": "finalized",
+          "encoding": "base64",
+          "minContextSlot": 11
+        }
+      ],
+      "started_at": "2026-09-20T13:17:16.488Z",
+      "completed_at": "2026-09-20T13:17:16.746Z",
+      "result": {
+        "context": {
+          "slot": 12
+        },
+        "value": [
+          {
+            "account": {
+              "data": [
+                "BdroIBVmCTP2aX3I8yipS3WO/Dzx4ZJcHzsQHIVfpZQCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAv//////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "base64"
+              ],
+              "executable": false,
+              "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "space": 165
+            },
+            "pubkey": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR"
+          },
+          {
+            "account": {
+              "data": [
+                "BdroIBVmCTP2aX3I8yipS3WO/Dzx4ZJcHzsQHIVfpZQCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAv//////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "base64"
+              ],
+              "executable": false,
+              "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "space": 165
+            },
+            "pubkey": "CktRuQ2mttgRGkXJtyksdKHjUdc2C4TgDzyB98oEzy8"
+          }
+        ]
+      },
+      "error": null
+    }
+  ],
+  "selection": {
+    "cluster": "solana-mainnet",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "reference": {
+      "version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+      "source_url": "https://prestocks.com/products",
+      "retrieved_at": "2026-09-19T10:33:42.635Z",
+      "content_sha256": "0500315983475df561c9c0680cc2aac86a2ec5383c3b07d52a3efa7fe15f3c73",
+      "assertions": [
+        {
+          "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          "name": "SpaceX",
+          "symbol": "SPACEX",
+          "decimals": 9
+        }
+      ]
+    },
+    "sample_accounts": false,
+    "public_owner": "8qbHbw2BbbTHBW1sbeqakYXVKRQM8Ne7pLK7m6CVfeR"
+  }
+}

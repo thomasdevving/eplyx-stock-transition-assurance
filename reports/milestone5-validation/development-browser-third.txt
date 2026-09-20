@@ -1,0 +1,28 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1 --grep prospective current SPACEX pre-flight reconstructed
+
+(node:6474) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:6514) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:6524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6524) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:6524) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+  ✓  1 frontend/tests/preflight.spec.js:40:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM (34.4s)
+
+  1 passed (49.0s)

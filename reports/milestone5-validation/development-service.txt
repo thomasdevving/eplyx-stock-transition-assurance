@@ -1,0 +1,11 @@
+✔ prospective structured fields reject proof, programs, paths and unsupported semantics (1.463584ms)
+✔ real offline preflight persists bound scenario and survives restart with zero acquisition (1369.085959ms)
+✔ preflight rejects cross-session, refresh, focus and invalid time before acquisition (179.305459ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1643.14725

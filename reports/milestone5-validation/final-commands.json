@@ -1,0 +1,27 @@
+{
+  "engine_build": "npm run build:engine",
+  "programs_and_engine": "make test",
+  "format": "make fmt-check",
+  "lint": "make lint",
+  "service": "npm run test:service",
+  "frontend": [
+    "npm run build",
+    "npm run check:frontend"
+  ],
+  "browser": {
+    "command": "npm run test:frontend -- --workers=1",
+    "environment": {
+      "EPLYX_RUN_DIRECTORY": "/private/tmp/eplyx-m5-final-runs",
+      "EPLYX_REPORT_DIR": "reports/milestone5-validation/final-browser",
+      "EPLYX_LIVE_TEST": "1",
+      "EPLYX_WALLET_LIVE": "1",
+      "EPLYX_EXECUTION_LIVE": "1",
+      "EPLYX_MARKET_LIVE": "1",
+      "EPLYX_SECOND_EXECUTION_LIVE": "1",
+      "EPLYX_PREFLIGHT_LIVE": "1",
+      "EPLYX_ACCEPTANCE_OWNER": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "EPLYX_TRANSFER_RECIPIENT": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc"
+    }
+  },
+  "mutations": "python3 scripts/test-current-preflight-mutations.py"
+}

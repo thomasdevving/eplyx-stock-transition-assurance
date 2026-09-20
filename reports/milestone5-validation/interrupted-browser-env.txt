@@ -1,0 +1,48 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1
+
+(node:10075) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:10113) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 22 tests using 1 worker
+
+(node:10114) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10114) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:10114) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:7:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (7.1s)
+  ✘   2 frontend/tests/analysis.spec.js:23:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (5.9s)
+
+
+  1) frontend/tests/analysis.spec.js:23:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout 
+
+    Test was interrupted.
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveValue[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator:  locator('[name="review"]')
+    Expected: [32m"overview"[39m
+    Received: [31m""[39m
+
+    Call log:
+    [2m  - Expect "toHaveValue" with timeout 5000ms[22m
+    [2m  - waiting for locator('[name="review"]')[22m
+
+
+      35 |   await page.getByRole('button',{name:'Technical',exact:true}).click();await page.getByRole('button',{name:'Overview',exact:true}).click();
+      36 |   await expect(page.locator('[name="review"]')).toHaveValue(review);
+    > 37 |   if(review==='overview'){await page.reload();await expect(page.locator('[name="review"]')).toHaveValue(review);}
+         |                                                                                             ^
+      38 |   await expect(page.locator(`.analysis-output[data-run="${queued.id}"]`)).toBeVisible({timeout:620000});
+      39 |   const job=await (await page.request.get(`/api/runs/${queued.id}`)).json();
+      40 |   expect(job.status).toBe('Completed');expect(job.cached).toBe(false);expect(job.engine_sha256).toBe(engineHash);expect(job.engine_exit_code).toBe(exit);
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/analysis.spec.js:37:93
+
+  1 interrupted
+    frontend/tests/analysis.spec.js:23:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout 
+  20 did not run
+  1 passed (15.8s)

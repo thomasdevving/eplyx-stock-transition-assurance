@@ -1,0 +1,49 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1 --grep prospective current SPACEX pre-flight reconstructed
+
+(node:8617) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:8649) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:8657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8657) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:8657) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+  ✘  1 frontend/tests/preflight.spec.js:45:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM (37.9s)
+
+
+  1) frontend/tests/preflight.spec.js:45:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m"Ready"[39m
+    Received: [31m"Incomplete"[39m
+
+      37 |   await check(page,refreshed,asset,'Transfer');
+      38 |   const strengthened=await proposal(page,refreshed,'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',`${prefix}-strengthened`);
+    > 39 |   expect(strengthened.result.views[1].readiness.mobility.status).toBe('Ready');expect(strengthened.result.proposed_change.successor_capture_sha256).toBe(missing.result.proposed_change.successor_capture_sha256);expect(strengthened.parent_capture_sha256).toBe(missing.parent_capture_sha256);
+         |                                                                  ^
+      40 |  }
+      41 |  const invalid=await proposal(page,refreshed,'11111111111111111111111111111111',`${prefix}-invalid`);expect(invalid.result.preparation_status).toBe('InvalidScenario');await expect(page.locator(`[data-preflight="${invalid.id}"]`)).toContainText('Invalid proposed replacement');
+      42 |  const cross=await page.request.post(`${base}/api/runs/${refreshed.id}/preflights`,{data:{request_key:crypto.randomUUID(),request:{...missing.preflight_request,check_ids:[transfer.id]}}});expect(cross.status()).toBe(400);
+        at vertical (/Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:39:66)
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:49:117
+
+    Error Context: test-results/preflight-prospective-curr-35d2d-structed-browser-service-VM/error-context.md
+
+  1 failed
+    frontend/tests/preflight.spec.js:45:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM 

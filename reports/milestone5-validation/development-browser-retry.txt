@@ -1,0 +1,49 @@
+
+> eplyx-stock-transition@0.1.0 test:frontend
+> playwright test --workers=1 --grep prospective current SPACEX pre-flight reconstructed
+
+(node:6171) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:6209) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:6216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:6216) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:6216) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✘  1 frontend/tests/preflight.spec.js:40:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM (38.1s)
+
+
+  1) frontend/tests/preflight.spec.js:40:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM 
+
+    Error: locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+    Call log:
+    [2m  - attempting scroll into view action[22m
+    [2m    - waiting for element to be stable[22m
+
+
+      31 |  expect(await(await page.request.get(`${base}/api/runs/${parent.id}/capture`)).body()).toEqual(original);expect(JSON.stringify([(await get(page,`/api/runs/${transfer.id}`)).result,(await get(page,`/api/runs/${market.id}`)).result])).toBe(before);
+      32 |  const rendered=page.locator(`[data-preflight="${job.id}"]`);await expect(rendered.locator('[data-readiness="mobility"]')).toContainText('Passed');await page.getByRole('button',{name:'Technical',exact:true}).click();await expect(rendered).toContainText(job.scenario_sha256);await page.getByRole('button',{name:'Overview',exact:true}).click();await page.reload();await expect(page.locator(`[data-preflight="${job.id}"] [data-readiness="full"]`)).toContainText('More evidence needed',{timeout:15000});
+    > 33 |  await page.locator(`[data-preflight="${job.id}"]`).scrollIntoViewIfNeeded();await page.screenshot({path:`${dir}/${prefix}-preflight-desktop.png`});await page.setViewportSize({width:390,height:844});await page.locator(`[data-preflight="${job.id}"]`).scrollIntoViewIfNeeded();await page.screenshot({path:`${dir}/${prefix}-preflight-mobile.png`});expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(390);
+         |                                                     ^
+      34 |  const refreshed=await fetchWallet(page,asset);expect(refreshed.id).not.toBe(parent.id);await expect(page.locator('.local-checks .execution-result')).toHaveCount(0);
+      35 |  const missing=await proposal(page,refreshed,'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',`${prefix}-missing`);expect(missing.result.execution_evidence).toEqual([]);expect(missing.result.paths.find(p=>p.path_type==='Transfer').status).toBe('NotTested');expect(missing.result.views[1].readiness.mobility.status).toBe('Incomplete');await expect(page.locator('.previous-preflights')).toContainText('Saved previous pre-flight');
+      36 |  const invalid=await proposal(page,refreshed,'11111111111111111111111111111111',`${prefix}-invalid`);expect(invalid.result.preparation_status).toBe('InvalidScenario');await expect(page.locator(`[data-preflight="${invalid.id}"]`)).toContainText('Invalid proposed replacement');
+        at vertical (/Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:33:53)
+        at /Users/thomas/Downloads/eplyx-stock-transition/frontend/tests/preflight.spec.js:44:117
+
+    Error Context: test-results/preflight-prospective-curr-35d2d-structed-browser-service-VM/error-context.md
+
+  1 failed
+    frontend/tests/preflight.spec.js:40:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM 
