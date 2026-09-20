@@ -1,0 +1,21 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.61s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 13 tests
+test exact_decimal_parsing ... ok
+test availability_uses_engine_boundaries_without_granting_proof ... ok
+test missing_capture_never_promotes_to_proven ... ok
+test no_supported_pool_is_bounded_and_never_global_absence ... ok
+test legacy_transfer_uses_deployed_legacy_code_and_another_mint ... ok
+test changed_discovery_source_requires_reconfirmation ... ok
+test current_request_cannot_import_claimed_proof_or_custom_programs ... ok
+test unsupported_frozen_paused_hook_confidential_and_authority_never_execute ... ok
+test deterministic_actual_vm_failure_is_failed_with_rollback ... ok
+test exact_account_amount_run_and_fixture_bindings ... ok
+test current_proof_requires_actual_execution_and_replays_identically ... ok
+test market_minimum_failure_and_missing_bin_are_distinct ... ok
+test current_market_executes_and_reconciles_one_exact_route_offline ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.10s
+

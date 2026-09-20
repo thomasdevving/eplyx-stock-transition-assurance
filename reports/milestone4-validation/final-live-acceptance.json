@@ -1,0 +1,378 @@
+[
+  {
+    "label": "live-transfer",
+    "parent_run_id": "9e972d33-f054-474a-acd7-54d133e755c4",
+    "check_id": "a7f8adef-6ae9-4d64-bd0b-8f37f427fe2d",
+    "status": "Proven",
+    "wallet_capture_sha256": "01d82cfefc0cde3cafada2a63089346df8df169fd81378d30a8751cf712edee2",
+    "capture_sha256": "e1a524e447a9a909cd170d391226960ea1abcca4d7839a344549d7058be7a30d",
+    "fixture_sha256": "182f50404c8e043bad181e76de80a101f4b01b931dd5d0aac0b30f0f120951f7",
+    "result_sha256": "bee6fe7cf6a1538c19b0d79e401cc6ee60cfc4758cd13f1da9c1219f50b2a1f0",
+    "engine_sha256": "9d8818bacd808f701f9546306a2c14ffb7d5646ac33b5be5746c28317c30953f",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "recipient": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc",
+    "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+    "acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:11.303826+00:00",
+      "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+      "discovery_slot": 448573141,
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:08.643488+00:00"
+    },
+    "clock": {
+      "epoch": 1038,
+      "epoch_start_timestamp": 1789823115,
+      "leader_schedule_epoch": 1039,
+      "slot": 448573147,
+      "unix_timestamp": 1789865100
+    },
+    "amount_raw": "17621",
+    "amount_decimal": "0.000017621",
+    "input_debited_raw": "17621",
+    "output_received_raw": "17532",
+    "token_deltas": [
+      {
+        "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "after_raw": "0",
+        "before_raw": "17621",
+        "change_decimal_base_units": "-0.000017621",
+        "change_raw": "-17621",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "0"
+      },
+      {
+        "address": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc",
+        "after_raw": "18260",
+        "before_raw": "728",
+        "change_decimal_base_units": "0.000017532",
+        "change_raw": "17532",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "89"
+      }
+    ],
+    "fees": null,
+    "market_parameters": null,
+    "discovery": null,
+    "execution_success": true,
+    "compute_units": 4620,
+    "signer_assumed_locally": true,
+    "signer_possession_known": false,
+    "wallet_acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:07.767Z",
+      "consistency": "Separate RPC observations, not an atomic validator bank",
+      "context_slots": [
+        448573137,
+        448573138,
+        448573141
+      ],
+      "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+      "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "rpc_methods": [
+        "getGenesisHash",
+        "getAccountInfo",
+        "getAccountInfo",
+        "getTokenAccountsByOwner"
+      ],
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:06.666Z"
+    },
+    "wallet_result_sha256": "cb5f7ff332bc3ba11b34352238478192c4adcc95fb1576c0bfa7391d2dd91c3b",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+  },
+  {
+    "label": "live-refresh-transfer",
+    "parent_run_id": "94bd94e1-6000-452f-95b7-70fce1c37411",
+    "check_id": "f113269d-0eee-4540-993c-71723f233542",
+    "status": "Proven",
+    "wallet_capture_sha256": "489b1a9e86d5fdf57fb456c382b8e9db065cb8947f13ac6d9b55b2bdda201360",
+    "capture_sha256": "645b1bf1dacea927ffccf383eecc80ecab2da273f6bca2d30d0866051eebe024",
+    "fixture_sha256": "aed5f9be1b86a73fe1a6d14811ab23091faaec87b6c8959349ed3af376c4d2fe",
+    "result_sha256": "62c16729aba9a6950af31bb510fa975b112c5eb14be922cc40cbe9c2e9143d25",
+    "engine_sha256": "9d8818bacd808f701f9546306a2c14ffb7d5646ac33b5be5746c28317c30953f",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "recipient": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc",
+    "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+    "acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:20.214625+00:00",
+      "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+      "discovery_slot": 448573171,
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:17.495081+00:00"
+    },
+    "clock": {
+      "epoch": 1038,
+      "epoch_start_timestamp": 1789823115,
+      "leader_schedule_epoch": 1039,
+      "slot": 448573181,
+      "unix_timestamp": 1789865109
+    },
+    "amount_raw": "17621",
+    "amount_decimal": "0.000017621",
+    "input_debited_raw": "17621",
+    "output_received_raw": "17532",
+    "token_deltas": [
+      {
+        "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "after_raw": "0",
+        "before_raw": "17621",
+        "change_decimal_base_units": "-0.000017621",
+        "change_raw": "-17621",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "0"
+      },
+      {
+        "address": "123aUGPWa93jiga876U3rLdBP86JNFSoz9tSQWCAskMc",
+        "after_raw": "18260",
+        "before_raw": "728",
+        "change_decimal_base_units": "0.000017532",
+        "change_raw": "17532",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "89"
+      }
+    ],
+    "fees": null,
+    "market_parameters": null,
+    "discovery": null,
+    "execution_success": true,
+    "compute_units": 4620,
+    "signer_assumed_locally": true,
+    "signer_possession_known": false,
+    "wallet_acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:15.794Z",
+      "consistency": "Separate RPC observations, not an atomic validator bank",
+      "context_slots": [
+        448573167,
+        448573169,
+        448573171
+      ],
+      "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+      "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "rpc_methods": [
+        "getGenesisHash",
+        "getAccountInfo",
+        "getAccountInfo",
+        "getTokenAccountsByOwner"
+      ],
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:14.549Z"
+    },
+    "wallet_result_sha256": "800ebf05faed1b9e2e309fb1a3344dec9b5821e33976a53eb71a64665fc88c9d",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+  },
+  {
+    "label": "live-market",
+    "parent_run_id": "2dbfaed8-50b3-4a69-b597-432c72ceb988",
+    "check_id": "15e7ec6a-eba2-499e-8d15-19822e765d11",
+    "status": "Proven",
+    "wallet_capture_sha256": "dad94f5b6e3f51218ef28405b9fc667fc132bb42cfd604698acfc5bf29c9e9b9",
+    "capture_sha256": "3d7ba0f24d424bcc0042495f5cdf39555c0b09569d5dfcecc8017097a8604b52",
+    "fixture_sha256": "3823db856ab4fc0393142c43d9d33d031d572857ac3894fe43427d08253c6994",
+    "result_sha256": "aefe998434cc6c18a3f99c9d9957b57e29e9b34a1bf6173b8f61e2dfea7d1680",
+    "engine_sha256": "9d8818bacd808f701f9546306a2c14ffb7d5646ac33b5be5746c28317c30953f",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "recipient": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+    "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+    "acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:34.846829+00:00",
+      "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+      "discovery_slot": 448573214,
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:28.073245+00:00"
+    },
+    "clock": {
+      "epoch": 1038,
+      "epoch_start_timestamp": 1789823115,
+      "leader_schedule_epoch": 1039,
+      "slot": 448573222,
+      "unix_timestamp": 1789865120
+    },
+    "amount_raw": "17621",
+    "amount_decimal": "0.000017621",
+    "input_debited_raw": "17621",
+    "output_received_raw": "10400",
+    "token_deltas": [
+      {
+        "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "after_raw": "0",
+        "before_raw": "17621",
+        "change_decimal_base_units": "-0.000017621",
+        "change_raw": "-17621",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "0"
+      },
+      {
+        "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+        "after_raw": "11074",
+        "before_raw": "674",
+        "change_decimal_base_units": "0.0104",
+        "change_raw": "10400",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "withheld_fee_change_raw": "0"
+      },
+      {
+        "address": "8H7LiWHtwA9S6BcQGjoAYhYo8aVVmdsuVeznSZdKGoAB",
+        "after_raw": "88503935131",
+        "before_raw": "88503917599",
+        "change_decimal_base_units": "0.000017532",
+        "change_raw": "17532",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "89"
+      },
+      {
+        "address": "J1o8ikH5wKTnNyAjeYjKRfwCEBTVLbiV5v15pL7QZHpb",
+        "after_raw": "629013816",
+        "before_raw": "629024216",
+        "change_decimal_base_units": "-0.0104",
+        "change_raw": "-10400",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "withheld_fee_change_raw": "0"
+      }
+    ],
+    "fees": {
+      "active_epoch": 1038,
+      "dlmm_liquidity_provider_fee_raw": "316",
+      "dlmm_protocol_fee_raw": "35",
+      "dlmm_swap_fee_raw": "351",
+      "fee_asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "host_fee_raw": "0",
+      "token_2022_transfer_fee_raw": "89"
+    },
+    "market_parameters": {
+      "amount_reason": "Exact user-selected base token input and explicit minimum paired-token output for this local test; no quote or best execution guarantee.",
+      "input_amount_raw": "17621",
+      "input_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "minimum_output_raw": "100",
+      "output_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "pool": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg"
+    },
+    "discovery": {
+      "compatible_layout_candidates": 5,
+      "global_exitability_established": false,
+      "maximum_candidates": 64,
+      "observed_candidates": 48,
+      "output_decimals": 6,
+      "program": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+      "scan_slot": 448573219,
+      "scope": "One bounded Meteora DLMM PermissionlessV2 version 1 scan for selected mint as Token-2022 X and requested legacy Y, at most four internal-bitmap bin arrays. Not a global market search or best-route ranking.",
+      "selected_pool": "22PthLk8TYnurtbWKRyECFd99cHHbfsbPNHfeMetzfZg",
+      "selection_rule": "Lexicographically first layout-compatible X-to-Y pool; final dependencies verified for this one candidate. No substitution after selection."
+    },
+    "execution_success": true,
+    "compute_units": 39434,
+    "signer_assumed_locally": true,
+    "signer_possession_known": false,
+    "wallet_acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:27.201Z",
+      "consistency": "Separate RPC observations, not an atomic validator bank",
+      "context_slots": [
+        448573210,
+        448573211,
+        448573214
+      ],
+      "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+      "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "rpc_methods": [
+        "getGenesisHash",
+        "getAccountInfo",
+        "getAccountInfo",
+        "getTokenAccountsByOwner"
+      ],
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:26.102Z"
+    },
+    "wallet_result_sha256": "992887594d2a1145389d99bb10472e16f371aaa27a1c805e0e2b347a4f44c1ef",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+  },
+  {
+    "label": "live-second-transfer",
+    "parent_run_id": "e1266c6c-83f3-4f6d-b636-67675cdf44f9",
+    "check_id": "bca6537f-f32a-415e-8e2b-d3b68868f566",
+    "status": "Proven",
+    "wallet_capture_sha256": "1e40159510ce781d7064be9b52cd41908e771b6a748588b1a2a141a9ee330be9",
+    "capture_sha256": "6ecb492fa267c951e6ce4e8edb5677e4a0243548bf5f6df747e03e0b7a230339",
+    "fixture_sha256": "12846652b3d746de8e87f7170a65f7dcadc716e37a4e7fdcaafb9819cfe5d59e",
+    "result_sha256": "dc6c28d6814cc55138bbbde06e9ad04baa7226cb28931fa895e45c41403164e8",
+    "engine_sha256": "9d8818bacd808f701f9546306a2c14ffb7d5646ac33b5be5746c28317c30953f",
+    "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+    "recipient": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+    "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+    "acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:49.952598+00:00",
+      "consistency": "Discovery and execution are separate observations. Execution uses one final account batch, not a full validator bank.",
+      "discovery_slot": 448573280,
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:46.955280+00:00"
+    },
+    "clock": {
+      "epoch": 1038,
+      "epoch_start_timestamp": 1789823115,
+      "leader_schedule_epoch": 1039,
+      "slot": 448573291,
+      "unix_timestamp": 1789865138
+    },
+    "amount_raw": "149232852141",
+    "amount_decimal": "149.232852141",
+    "input_debited_raw": "149232852141",
+    "output_received_raw": "148486687880",
+    "token_deltas": [
+      {
+        "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "after_raw": "0",
+        "before_raw": "149232852141",
+        "change_decimal_base_units": "-149.232852141",
+        "change_raw": "-149232852141",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "withheld_fee_change_raw": "0"
+      },
+      {
+        "address": "Ft3bKc8RLPz8NaXEwUdttnG1PgKiN8q3ULMX5pmQ1WeZ",
+        "after_raw": "148486687923",
+        "before_raw": "43",
+        "change_decimal_base_units": "148.48668788",
+        "change_raw": "148486687880",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "withheld_fee_change_raw": "746164261"
+      }
+    ],
+    "fees": null,
+    "market_parameters": null,
+    "discovery": null,
+    "execution_success": true,
+    "compute_units": 4620,
+    "signer_assumed_locally": true,
+    "signer_possession_known": false,
+    "wallet_acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-20T00:45:44.896Z",
+      "consistency": "Separate RPC observations, not an atomic validator bank",
+      "context_slots": [
+        448573277,
+        448573278,
+        448573280
+      ],
+      "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+      "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "rpc_methods": [
+        "getGenesisHash",
+        "getAccountInfo",
+        "getAccountInfo",
+        "getTokenAccountsByOwner"
+      ],
+      "rpc_origin": "https://api.mainnet-beta.solana.com",
+      "started_at": "2026-09-20T00:45:43.586Z"
+    },
+    "wallet_result_sha256": "06a89f9b82f3dc38e5a218833ebf7da3fb4af5cc2a03fa0c6d59ec55e776db6f",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493"
+  }
+]

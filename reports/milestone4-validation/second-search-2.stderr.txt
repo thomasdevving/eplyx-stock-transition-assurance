@@ -1,0 +1,5 @@
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Decoding and preparing findings

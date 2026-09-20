@@ -1,0 +1,34 @@
+{
+  "historical_file_count": 746,
+  "historical_changes": [],
+  "source_and_binary_file_count": 129,
+  "source_and_binary_changes": [],
+  "mutation_sources_match_final": true,
+  "engine_sha256": "9d8818bacd808f701f9546306a2c14ffb7d5646ac33b5be5746c28317c30953f",
+  "live_checks": [
+    {
+      "label": "live-transfer",
+      "capture_matches": true,
+      "canonical_result_matches": true,
+      "engine_matches": true
+    },
+    {
+      "label": "live-refresh-transfer",
+      "capture_matches": true,
+      "canonical_result_matches": true,
+      "engine_matches": true
+    },
+    {
+      "label": "live-market",
+      "capture_matches": true,
+      "canonical_result_matches": true,
+      "engine_matches": true
+    },
+    {
+      "label": "live-second-transfer",
+      "capture_matches": true,
+      "canonical_result_matches": true,
+      "engine_matches": true
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+(node:86831) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[2m[WebServer] [22m(node:86856) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[2m[WebServer] [22m(Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 19 tests using 1 worker
+
+(node:86872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:86872) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(node:86872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:7:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (7.0s)
+  ✓   2 frontend/tests/analysis.spec.js:23:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (4.5m)
+  ✓   3 frontend/tests/analysis.spec.js:58:1 › unavailable backend and saved reports are labeled honestly (680ms)
+  ✓   4 frontend/tests/analysis.spec.js:63:1 › API rejects unsupported caller commands, evidence and oversized bodies (15ms)
+  ✓   5 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (9.5s)
+  ✓   6 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (6.6s)
+  ✓   7 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (39ms)
+  ✓   8 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (4.0s)
+  ✓   9 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (677ms)
+  ✓  10 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (6.4s)
+  ✓  11 frontend/tests/current.spec.js:6:1 › failed new submission cannot display a prior result as its outcome (4.1s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  12 frontend/tests/execution.spec.js:30:1 › current transfer browser/service/engine and offline VM replay using deterministic reconstructed RPC (23.0s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  13 frontend/tests/execution.spec.js:35:1 › live current transfer and refreshed transfer with exact offline VM replay (19.4s)
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  14 frontend/tests/execution.spec.js:39:1 › live bounded current market discovery and exact offline replay (17.6s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  15 frontend/tests/execution.spec.js:48:1 › live second catalogue asset transfers freshly captured OPENAI holdings (13.0s)
+  ✓  16 frontend/tests/multiasset.spec.js:8:1 › catalogue search, custom draft, unavailable source and original toggle preserve selection without submission (6.6s)
+  ✓  17 frontend/tests/multiasset.spec.js:21:1 › live generic browser-to-engine inspection: two catalogue stocks, custom mint, nonmint, invalid input, refresh and offline replay (19.1s)
+
+  ✓  18 frontend/tests/wallet.spec.js:18:1 › deterministic wallet browser/service/engine: multiple accounts, precision, focus, zero, errors, refresh and isolation (24.6s)
+
+  ✓  19 frontend/tests/wallet.spec.js:59:1 › live wallet browser acquisition with refresh, second asset, custom mint, zero target and offline replay (16.1s)
+
+  19 passed (7.5m)

@@ -1,0 +1,9 @@
+{
+  "url": "http://127.0.0.1:4173/analysis#analysis",
+  "health": {
+    "available": true
+  },
+  "asset_options": 9,
+  "public_owner_visible": true,
+  "served_analysis_sha256": "34ecb12630a00dd506bb78a8717374b7c50ce692a0830cca9f1bb05996fb17bd"
+}

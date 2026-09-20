@@ -1,0 +1,37 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.96s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 11 tests
+test exact_decimal_parsing ... ok
+test missing_capture_never_promotes_to_proven ... ok
+test no_supported_pool_is_bounded_and_never_global_absence ... ok
+test legacy_transfer_uses_deployed_legacy_code_and_another_mint ... ok
+test changed_discovery_source_requires_reconfirmation ... ok
+test unsupported_frozen_paused_hook_confidential_and_authority_never_execute ... ok
+test deterministic_actual_vm_failure_is_failed_with_rollback ... ok
+test exact_account_amount_run_and_fixture_bindings ... ok
+test current_proof_requires_actual_execution_and_replays_identically ... ok
+test market_minimum_failure_and_missing_bin_are_distinct ... ok
+test current_market_executes_and_reconciles_one_exact_route_offline ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.96s
+
+     Running tests/execution_probe.rs (target/debug/deps/execution_probe-a31b4490246e67d2)
+
+running 12 tests
+test insufficient_balance_is_a_clean_precondition_failure_without_execution ... ok
+test controlled_capture_runs_actual_swap2_and_both_deployed_token_programs ... ok
+test token2022_epoch_fee_is_executed_and_matches_vault_withheld_delta ... ok
+test lifecycle_assessment_attaches_market_exit_without_claiming_official_transition_or_vault_exit ... ok
+test exact_user_vault_bin_and_fee_deltas_reconcile ... ok
+test impossible_minimum_output_executes_and_fails_atomically_with_real_error ... ok
+test production_probe_and_fixture_load_offline_and_report_outputs_cannot_overwrite ... ok
+test frozen_hash_bindings_and_capture_contexts_are_enforced ... ok
+test missing_bin_array_or_programdata_is_indeterminate_never_a_quote_fallback ... ok
+test offline_replay_is_identical_including_logs_exact_message_and_post_state ... ok
+test wrong_pool_mint_and_vault_as_source_are_rejected_before_execution ... ok
+test report_roundtrip_and_reexecution_detect_tampered_deltas ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.65s
+

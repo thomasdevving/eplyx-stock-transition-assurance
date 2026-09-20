@@ -1,0 +1,7 @@
+historical_proof: killed by named assertion
+focused_account: killed by named assertion
+run_binding: killed by named assertion
+withheld_fee: killed by named assertion
+known_signer: killed by named assertion
+promote_indeterminate: killed by named assertion
+global_exitability: killed by named assertion

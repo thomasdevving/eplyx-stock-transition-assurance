@@ -1,0 +1,27 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 5.49s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 1 test
+test current_proof_requires_actual_execution_and_replays_identically ... FAILED
+
+failures:
+
+---- current_proof_requires_actual_execution_and_replays_identically stdout ----
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Preparing current state
+
+thread 'current_proof_requires_actual_execution_and_replays_identically' (9923544) panicked at engine/tests/current_execution.rs:169:5:
+historical proof cannot enter fresh observations
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    current_proof_requires_actual_execution_and_replays_identically
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_execution`

@@ -1,0 +1,34 @@
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.75s
+     Running tests/current_observations.rs (target/debug/deps/current_observations-4b8af7924457c34f)
+
+running 11 tests
+test nonmint_accounts_and_unsupported_configuration_retain_observations_without_fake_mint ... ok
+test acquisition_interval_and_decoder_version_are_checked ... ok
+test changed_scope_commitment_program_or_injected_proof_fails_closed ... ok
+test wrong_cluster_and_missing_mint_never_fall_back_to_demo ... ok
+test selected_catalogue_identity_and_original_source_assertions_remain_pinned ... ok
+test dynamic_mint_is_bound_to_requests_capture_replay_and_no_saved_evidence ... ok
+test fresh_capture_calls_rpc_again_and_rate_limit_preserves_only_valid_mint_findings ... ok
+test missing_sample_account_is_a_gap_and_stale_capture_is_rejected ... ok
+test sampled_token_state_preserves_exact_amounts_and_never_becomes_population_or_authority_proof ... ok
+test cross_mint_sample_is_a_scoped_gap_never_another_assets_balance ... ok
+test offline_replay_redecodes_and_retains_original_rpc_evidence ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/current_wallet.rs (target/debug/deps/current_wallet-a820cbdab441702e)
+
+running 10 tests
+test invalid_owner_rejected_before_any_rpc ... ok
+test programs_mints_and_token_accounts_are_not_reinterpreted ... ok
+test owner_lookup_failure_and_mint_failure_remain_unknown ... ok
+test empty_success_is_distinct_from_rpc_failure ... ok
+test confidential_balance_remains_unknown_and_extensions_retained ... ok
+test malformed_duplicate_and_stale_response_never_establish_zero_holdings ... ok
+test wrong_mint_owner_and_decoder_gaps_preserve_other_rows_without_claiming_total ... ok
+test one_and_multiple_legacy_and_token2022_accounts_preserve_exact_state ... ok
+test exact_owner_mint_context_and_decoder_bindings_fail_closed ... ok
+test replay_and_refresh_never_inherit_execution_or_lifecycle ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+

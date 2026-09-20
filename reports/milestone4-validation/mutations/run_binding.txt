@@ -1,0 +1,34 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.02s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 1 test
+test exact_account_amount_run_and_fixture_bindings ... FAILED
+
+failures:
+
+---- exact_account_amount_run_and_fixture_bindings stdout ----
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+thread 'exact_account_amount_run_and_fixture_bindings' (9924960) panicked at engine/tests/current_execution.rs:243:9:
+cross-run or cross-fixture proof must be rejected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    exact_account_amount_run_and_fixture_bindings
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.60s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_execution`

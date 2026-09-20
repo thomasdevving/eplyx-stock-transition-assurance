@@ -1,0 +1,29 @@
+[
+  {
+    "schema_version": 3,
+    "capture": "reports/milestone3-validation/live-refresh.capture.json",
+    "output": "reports/milestone4-validation/legacy-v3-replay.result.json",
+    "sha256": "06161bbbe886ac9a9d9fcf14ac29cbb8e4c2f4aa3eed84756bdd144432103a67",
+    "matching_historical_files": [
+      "reports/milestone3-validation/live-refresh.result.json"
+    ]
+  },
+  {
+    "schema_version": 2,
+    "capture": "reports/milestone2-validation/nonmint.capture.json",
+    "output": "reports/milestone4-validation/legacy-v2-replay.result.json",
+    "sha256": "d19b07b8114eaf6f9395a6e4895bfe17b664b016be028df9eb5cdff6043ca2c1",
+    "matching_historical_files": [
+      "reports/milestone2-validation/nonmint.result.json"
+    ]
+  },
+  {
+    "schema_version": 1,
+    "capture": "reports/on-demand-validation/live-1.capture.json",
+    "output": "reports/milestone4-validation/legacy-v1-replay.result.json",
+    "sha256": "684c32f1cef95f0ad0195a6cd892f1d368d467f6c74afce68d304a8f0d7e4046",
+    "matching_historical_files": [],
+    "matching_historical_manifest": "reports/on-demand-validation/live-browser-runs.json",
+    "byte_digest_matches_original": true
+  }
+]

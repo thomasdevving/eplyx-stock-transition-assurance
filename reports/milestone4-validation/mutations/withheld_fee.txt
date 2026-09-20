@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.96s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 1 test
+test probe::token_transfer::tests::missing_withheld_fee_fails_exact_reconciliation ... FAILED
+
+failures:
+
+---- probe::token_transfer::tests::missing_withheld_fee_fails_exact_reconciliation stdout ----
+
+thread 'probe::token_transfer::tests::missing_withheld_fee_fails_exact_reconciliation' (9925361) panicked at engine/src/probe/token_transfer.rs:785:9:
+missing_destination_withheld_fee_must_reject_proof
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    probe::token_transfer::tests::missing_withheld_fee_fails_exact_reconciliation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 156 filtered out; finished in 6.40s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --lib`

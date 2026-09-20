@@ -1,0 +1,29 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.20s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 1 test
+test missing_capture_never_promotes_to_proven ... FAILED
+
+failures:
+
+---- missing_capture_never_promotes_to_proven stdout ----
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Preparing current state
+
+thread 'missing_capture_never_promotes_to_proven' (9927120) panicked at engine/tests/current_execution.rs:255:5:
+assertion `left == right` failed: missing capture must not promote
+  left: String("Proven")
+ right: "Indeterminate"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    missing_capture_never_promotes_to_proven
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.01s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_execution`

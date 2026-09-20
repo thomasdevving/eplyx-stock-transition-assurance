@@ -1,0 +1,166 @@
+{
+  "injected": 7,
+  "killed": 7,
+  "sources_restored": true,
+  "source_sha256": {
+    "engine/src/lifecycle/current.rs": "468b6ab7c0d063cc1020844d6a242e56d18e5e7587e1051da3c04377dea07028",
+    "engine/src/probe/current.rs": "a2f00ab9dc10c9e7a1141b613ee19b8018d31a8b1009662f2d630109936c4d53",
+    "engine/src/probe/token_transfer.rs": "d21ef357b30902fa045b8a18130ace77303bc0747dff7c809865377ca72c5b01",
+    "engine/src/probe/current_market.rs": "c35ef9bfe677374e841dcf5382e51407e3b581251f734bb04d1f2dc6635e0811"
+  },
+  "results": [
+    {
+      "mutation": "historical_proof",
+      "source": "engine/src/lifecycle/current.rs",
+      "test": "current_proof_requires_actual_execution_and_replays_identically",
+      "named_assertion": "historical proof cannot enter fresh observations",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_execution",
+        "current_proof_requires_actual_execution_and_replays_identically",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "f8eda3cbc3f96abed270cc33b9c001e8a5edf06539991c8d227b0c076d952c8f",
+      "log_sha256": "9a894cb9f913250b25ca533d96582f0893ddd34019ebcfd394398a07d32af21a"
+    },
+    {
+      "mutation": "focused_account",
+      "source": "engine/src/probe/current.rs",
+      "test": "exact_account_amount_run_and_fixture_bindings",
+      "named_assertion": "focused account mismatch must be rejected",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_execution",
+        "exact_account_amount_run_and_fixture_bindings",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "2d66ea27c1a61c7f0b9326ce4ca9c5fc12281070b22c1e9bd960f2860b13a413",
+      "log_sha256": "e74a62023d5b458d827d05d19cbd4b02b8371519564ba13cf874a5f625ff9f5a"
+    },
+    {
+      "mutation": "run_binding",
+      "source": "engine/src/probe/current.rs",
+      "test": "exact_account_amount_run_and_fixture_bindings",
+      "named_assertion": "cross-run or cross-fixture proof must be rejected",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_execution",
+        "exact_account_amount_run_and_fixture_bindings",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "43896753f74ecf3315b10778b8061b3909883c4a0b4205cd4a51de0f8071fc03",
+      "log_sha256": "196d4b6929e22232be428257d07f376adfa0e501aa751beb00dcbb2cbb0b5c02"
+    },
+    {
+      "mutation": "withheld_fee",
+      "source": "engine/src/probe/token_transfer.rs",
+      "test": "probe::token_transfer::tests::missing_withheld_fee_fails_exact_reconciliation",
+      "named_assertion": "missing_destination_withheld_fee_must_reject_proof",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--lib",
+        "probe::token_transfer::tests::missing_withheld_fee_fails_exact_reconciliation",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "955f65a8913c1209ed25e61bbd612aaa444b5f5eac08cd2034abfd274c82f2b4",
+      "log_sha256": "92c4aed56366621becc0431f28941999f842d68896f726548d47ad833324b815"
+    },
+    {
+      "mutation": "known_signer",
+      "source": "engine/src/probe/current.rs",
+      "test": "current_proof_requires_actual_execution_and_replays_identically",
+      "named_assertion": "assumption never proves possession",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_execution",
+        "current_proof_requires_actual_execution_and_replays_identically",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "9a770bd76e5c23909702a5e3ba99290c51ba35eaefdc243fac1b94e12008142c",
+      "log_sha256": "a5e83d223ba6c0c77411801c33af62b2f755a17d6081daea019b8687d5505197"
+    },
+    {
+      "mutation": "promote_indeterminate",
+      "source": "engine/src/probe/current.rs",
+      "test": "missing_capture_never_promotes_to_proven",
+      "named_assertion": "missing capture must not promote",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_execution",
+        "missing_capture_never_promotes_to_proven",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "dab2e380c03a773fa4c8d606e7975509e437163f8bf6878f99e884693e9612c0",
+      "log_sha256": "332a20e9582bc3aa37b9bf37c32e6f949dfa40ad040a31503aff6437032ce09e"
+    },
+    {
+      "mutation": "global_exitability",
+      "source": "engine/src/probe/current_market.rs",
+      "test": "current_market_executes_and_reconciles_one_exact_route_offline",
+      "named_assertion": "one route never proves global exitability",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_execution",
+        "current_market_executes_and_reconciles_one_exact_route_offline",
+        "--",
+        "--exact"
+      ],
+      "mutated_source_sha256": "d42df0975e315f103d56a3680bdc9df349fa1cd67fc0cfa0984addd68a6c24c2",
+      "log_sha256": "6285bbaeaf5fe768f0dd2bb0b41077f467aeebeb6c56c44ee02d0e765f325929"
+    }
+  ]
+}

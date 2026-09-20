@@ -1,0 +1,41 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+warning: unused import: `BaseStateWithExtensions`
+   --> engine/tests/current_execution.rs:307:42
+    |
+307 |             transfer_hook::TransferHook, BaseStateWithExtensions, BaseStateWithExtensionsMut,
+    |                                          ^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: `eplyx-lifecycle-impact` (test "current_execution") generated 1 warning (run `cargo fix --test "current_execution" -p eplyx-lifecycle-impact` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.63s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 1 test
+test legacy_transfer_uses_deployed_legacy_code_and_another_mint ... FAILED
+
+failures:
+
+---- legacy_transfer_uses_deployed_legacy_code_and_another_mint stdout ----
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+thread 'legacy_transfer_uses_deployed_legacy_code_and_another_mint' (9884304) panicked at engine/tests/current_execution.rs:419:5:
+assertion `left == right` failed: legacy VM transfer must succeed: execution={"compute_units":255,"error":null,"inner_instructions":[],"logs":["Program ComputeBudget111111111111111111111111111111 invoke [1]","Program ComputeBudget111111111111111111111111111111 success","Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [1]","Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 1399850 compute units","Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success"],"post_accounts":{"124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az":{"data":"07070707070707070707070707070707070707070707070707070707070707079aa0a07ae5d5ecc57c0ea8c0a626f7d586ee8e5465149a384ff27d3d2cc0cfd326ec000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","executable":false,"lamports":"2220240","owner":"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA","rent_epoch":18446744073709551615},"741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs":{"data":"07070707070707070707070707070707070707070707070707070707070707071cbe879701dd22b72aef7b3f71e5ce92bb5d3248b8970c64a56fcab13677d4d67144000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","executable":false,"lamports":"2220240","owner":"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA","rent_epoch":18446744073709551615},"US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx":{"data":"01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd34f58486f3070000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd","executable":false,"lamports":"1397830680","owner":"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA","rent_epoch":18446744073709551615}},"success":true,"transaction_fee_lamports":10000} deltas={"account_data":[{"address":"741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs","after_sha256":"51384a527cfe2d35610383dcefd1ad15f9bb70a181cccdca4ebb4511995e3868","before_sha256":"3f1a1c9ebffb5b5e88e753a66bec51d87cf3190a23b14684caaf1249ac229575","changed_ranges":[{"after":"71","before":"d5","offset":64}]},{"address":"124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az","after_sha256":"e36c32c5a41d3c605fe889269402f5cc1d8ddffb1d51c7f9947f121b4e14ee53","before_sha256":"ea79ac3a392325954aa4735c59c36e9b843234064eb7d89a8804127f9810ed6a","changed_ranges":[{"after":"26ec","before":"c2eb","offset":64}]},{"address":"US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx","after_sha256":"0b45b927293468f23239ebe1076b5e9ffc3bbddfd4e13c1112c77d66a93e0d1c","before_sha256":"0b45b927293468f23239ebe1076b5e9ffc3bbddfd4e13c1112c77d66a93e0d1c","changed_ranges":[]}],"fees":null,"input_debited_raw":"100","output_decimal_base_units":"0.0000001","output_received_raw":"100","reconciled":false,"reconciliation":["Actual TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA transfer: source debit = destination public credit + destination withheld fee. Captured epoch 1037; independently calculated transfer fee 0 raw. Mint unchanged; no DLMM event/bin/venue delta is applicable to Transfer.","Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."],"token_accounts":[{"address":"741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs","after_raw":"17521","before_raw":"17621","change_decimal_base_units":"-0.0000001","change_raw":"-100","mint":"US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx","withheld_fee_change_raw":"0"},{"address":"124XHuTYUNnCf2ABCNcCEdQFpHQ7Y6MnPe9NeouDB1az","after_raw":"60454","before_raw":"60354","change_decimal_base_units":"0.0000001","change_raw":"100","mint":"US517G5965aydkZ46HS38QLi7UQiSojurfbQfKCELFx","withheld_fee_change_raw":"0"}]}
+  left: String("Indeterminate")
+ right: "Proven"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    legacy_transfer_uses_deployed_legacy_code_and_another_mint
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 7 filtered out; finished in 0.10s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_execution`

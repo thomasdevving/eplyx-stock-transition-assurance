@@ -1,0 +1,36 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.60s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 1 test
+test current_market_executes_and_reconciles_one_exact_route_offline ... FAILED
+
+failures:
+
+---- current_market_executes_and_reconciles_one_exact_route_offline stdout ----
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+thread 'current_market_executes_and_reconciles_one_exact_route_offline' (9927841) panicked at engine/tests/current_execution.rs:489:5:
+assertion `left == right` failed: one route never proves global exitability
+  left: Bool(true)
+ right: false
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    current_market_executes_and_reconciles_one_exact_route_offline
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 1.48s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_execution`

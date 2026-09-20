@@ -1,0 +1,27 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 14.05s
+     Running unittests src/lib.rs (target/debug/deps/eplyx_lifecycle_impact-71d1e04dc4d68828)
+
+running 7 tests
+test probe::token_transfer::tests::insufficient_input_is_a_precondition_rejection ... ok
+test probe::token_transfer::tests::paused_mint_and_active_hook_without_extra_accounts_are_rejected ... ok
+test probe::token_transfer::tests::destination_must_be_real_distinct_and_same_mint ... ok
+test probe::token_transfer::tests::wrong_mint_authority_and_frozen_source_are_rejected ... ok
+test probe::token_transfer::tests::deployed_token_2022_transfer_executes_and_fees_reconcile ... ok
+test probe::token_transfer::tests::real_program_failure_rolls_back_watched_tokens_and_mint ... ok
+test probe::token_transfer::tests::token_transfer_replay_is_identical ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 149 filtered out; finished in 6.46s
+
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 0.00s
+
+     Running tests/execution_probe.rs (target/debug/deps/execution_probe-a31b4490246e67d2)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.00s
+

@@ -1,0 +1,26 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.76s
+     Running tests/current_execution.rs (target/debug/deps/current_execution-e47a512e63fa65ed)
+
+running 1 test
+test exact_account_amount_run_and_fixture_bindings ... FAILED
+
+failures:
+
+---- exact_account_amount_run_and_fixture_bindings stdout ----
+CURRENT_STAGE:Validating mainnet identity
+CURRENT_STAGE:Fetching current mint state
+CURRENT_STAGE:Checking public owner address
+CURRENT_STAGE:Looking up token accounts
+
+thread 'exact_account_amount_run_and_fixture_bindings' (9924243) panicked at engine/tests/current_execution.rs:210:5:
+focused account mismatch must be rejected
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    exact_account_amount_run_and_fixture_bindings
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 0.02s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_execution`

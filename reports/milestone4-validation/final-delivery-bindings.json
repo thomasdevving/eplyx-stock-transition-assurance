@@ -1,0 +1,16 @@
+{
+  "documentation": {
+    "docs/on-demand-progress.md": "d43958820b8f123dab712fee18bb74431e062ce2642144b95da2f7c01ec497c1",
+    "AGENTS.md": "70b87596fc379a13faa4cbc936ba0698f6b2f48f396f2188a30e3b2be844728b"
+  },
+  "validation": {
+    "reports/milestone4-validation/final-validation-summary.json": "30c9ca39147b867dfa2cd60adf058031dbf3f50dc2e00daac36108fd4170063d",
+    "reports/milestone4-validation/final-integrity.json": "ac69e7b50678ca3a6ca5ed0512d8dfefdf0f5db70dd79e5fa1e1982ce0a01f6f",
+    "reports/milestone4-validation/final-live-acceptance.json": "b091f692c5567a1b3fb54019d1fb899f63d5799d1314e63f84cf419fd2e96530",
+    "reports/milestone4-validation/final-make-test.txt": "ed8d933f88286e409028330c32ce419c933c0aea177a1f6a3d27df92db40c466",
+    "reports/milestone4-validation/final-browser.txt": "4047760c9e9caf059a271fdbb94174c3ca02c5728c62796b2613980dee23674f"
+  },
+  "tracked_and_changed_untracked_whitespace_checks": "passed",
+  "historical_preservation_rechecked": true,
+  "source_and_binary_identity_rechecked": true
+}
