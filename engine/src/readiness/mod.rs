@@ -90,6 +90,15 @@ pub enum RequirementCondition {
     PopulationCoverage {
         any_of_paths: Vec<ExitPathType>,
     },
+    /// An operator-supplied candidate conversion plan, proven by actual execution
+    /// at this exact scope. Deliberately a different slot from the lifecycle path
+    /// matrix: a candidate plan is never an issuer-defined official transition.
+    CandidateConversion {
+        scope: Box<EvidenceScope>,
+        plan_sha256: String,
+        program_sha256: String,
+        replacement_mint: String,
+    },
     EvidenceIsolation,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -207,6 +216,27 @@ impl LifecycleReadinessPolicy {
                     );
                     normalize_paths(any_of_paths);
                 }
+                RequirementCondition::CandidateConversion {
+                    scope,
+                    plan_sha256,
+                    program_sha256,
+                    replacement_mint,
+                } => {
+                    validate_scope(scope)?;
+                    ensure!(
+                        scope.asset_mint == p.asset_mint
+                            && scope.scenario_sha256 == p.scenario_sha256
+                            && matches!(&r.target,RequirementTarget::Entity{entity_id} if *entity_id==scope.entity_id),
+                        "candidate-conversion target/scope mismatch"
+                    );
+                    ensure!(
+                        plan_sha256.len() == 64
+                            && program_sha256.len() == 64
+                            && !replacement_mint.is_empty()
+                            && *replacement_mint != p.asset_mint,
+                        "a candidate-conversion requirement must pin its plan, candidate program and distinct replacement asset"
+                    );
+                }
                 RequirementCondition::EvidenceIsolation => {}
             }
         }
@@ -271,6 +301,27 @@ pub struct PathFact {
     pub evidence_ids: Vec<String>,
     pub reason: String,
 }
+/// One executed operator-supplied candidate conversion, with every distinction
+/// this gate must not blur: provenance, digests, assumed authorities and the
+/// separate question of issuer binding.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct ConversionFact {
+    pub scope: EvidenceScope,
+    pub status: PathStatus,
+    pub provenance: crate::conversion::PlanProvenance,
+    pub plan_sha256: String,
+    pub program_sha256: String,
+    pub replacement_mint: String,
+    pub destination: String,
+    pub execution_attempted: bool,
+    pub reconciled: bool,
+    pub rollback_verified: Option<bool>,
+    pub holder_signer: SignerAssumption,
+    pub candidate_authority_assumed_locally: bool,
+    pub issuer_binding_established: bool,
+    pub evidence_ids: Vec<String>,
+    pub reason: String,
+}
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CompleteExitFact {
     pub scope: EvidenceScope,
@@ -312,6 +363,7 @@ pub struct VerifiedReadinessEvidence {
     pub(super) lifecycle_event: crate::lifecycle::policy::AssetLifecyclePolicy,
     pub(super) policy_evaluated_at: String,
     pub(super) path_facts: Vec<PathFact>,
+    pub(super) conversion_facts: Vec<ConversionFact>,
     pub(super) complete_exits: Vec<CompleteExitFact>,
     pub(super) population: PopulationEvidence,
     pub(super) evidence_refs: Vec<EvidenceReference>,
@@ -502,6 +554,42 @@ fn evaluate_requirement(
             observed.push(format!("{} of {} positive token-account entities have full represented-amount evidence on the requested paths; {} total observed accounts.",n,e.population.positive_balance_entities,e.population.token_account_entities));
             ids.extend(e.population.evidence_ids.clone());
             (if n==e.population.positive_balance_entities{FindingEffect::Satisfied}else{FindingEffect::IncompleteEvidence},"Every positive observed token-account entity must have its own full represented-amount proof on a requested path.","Sampled entities, protocol observations and venue reserves cannot establish peer-holder or population-wide actionability.")
+        }
+        RequirementCondition::CandidateConversion {
+            scope,
+            plan_sha256,
+            program_sha256,
+            replacement_mint,
+        } => {
+            let mut satisfied = false;
+            for f in e
+                .conversion_facts
+                .iter()
+                .filter(|f| f.scope.asset_mint == scope.asset_mint)
+            {
+                let exact = matches_scope(&f.scope, scope)
+                    && f.plan_sha256 == *plan_sha256
+                    && f.program_sha256 == *program_sha256
+                    && f.replacement_mint == *replacement_mint;
+                observed.push(format!(
+                    "Candidate conversion {:?} under {:?} provenance; entity {}; amount {:?}; replacement {}; plan {}; candidate program {}; exact scope {}. Issuer binding established: {}. {}",
+                    f.status, f.provenance, f.scope.entity_id, f.scope.exact_amount_raw,
+                    f.replacement_mint, f.plan_sha256, f.program_sha256, exact,
+                    f.issuer_binding_established, f.reason
+                ));
+                ids.extend(f.evidence_ids.clone());
+                if exact {
+                    satisfied |= f.status == PathStatus::Proven
+                        && f.provenance == crate::conversion::PlanProvenance::OperatorSupplied
+                        && f.execution_attempted
+                        && f.reconciled
+                        && (f.holder_signer.signer_possession_known
+                            || f.holder_signer.signer_assumed_locally);
+                }
+            }
+            (if satisfied{FindingEffect::Satisfied}else{FindingEffect::IncompleteEvidence},
+             "The declared candidate conversion plan must have actually executed and reconciled at this exact account, amount, replacement asset, plan version and candidate program build.",
+             "This is evidence about the supplied candidate plan under its declared authority model only. It never establishes an issuer-defined official transition, an issuer relationship or any authorization.")
         }
         RequirementCondition::EvidenceIsolation => {
             observed.push(format!(

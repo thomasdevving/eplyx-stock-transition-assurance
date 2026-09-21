@@ -1,0 +1,22 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.74s
+     Running tests/candidate_conversion.rs (target/debug/deps/candidate_conversion-f9110bcada2132aa)
+
+running 1 test
+test a_short_replacement_credit_fails_exact_reconciliation ... FAILED
+
+failures:
+
+---- a_short_replacement_credit_fails_exact_reconciliation stdout ----
+
+thread 'a_short_replacement_credit_fails_exact_reconciliation' (11915177) panicked at engine/tests/candidate_conversion.rs:634:5:
+short_replacement_credit_must_reject_proof
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    a_short_replacement_credit_fails_exact_reconciliation
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 22 filtered out; finished in 0.46s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test candidate_conversion`

@@ -1,0 +1,6 @@
+
+> eplyx-stock-transition@0.1.0 build
+> node frontend/build.mjs
+
+Built static Eplyx Stock Transition frontend in dist/
+EXIT:0

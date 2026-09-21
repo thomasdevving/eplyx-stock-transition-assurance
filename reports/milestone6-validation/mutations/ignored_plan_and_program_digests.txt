@@ -1,0 +1,40 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+warning: unused variable: `plan_hash`
+   --> engine/src/conversion/current.rs:306:5
+    |
+306 |     plan_hash: &str,
+    |     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_plan_hash`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `eplyx-lifecycle-impact` (lib) generated 1 warning (run `cargo fix --lib -p eplyx-lifecycle-impact` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.86s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test candidate_plan::candidate_evidence_is_exact_to_its_run_plan_program_and_result ... FAILED
+
+failures:
+
+---- candidate_plan::candidate_evidence_is_exact_to_its_run_plan_program_and_result stdout ----
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+
+thread 'candidate_plan::candidate_evidence_is_exact_to_its_run_plan_program_and_result' (11919976) panicked at engine/tests/current_preflight.rs:574:13:
+exact_candidate_binding_must_be_required: wrong plan digest
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    candidate_plan::candidate_evidence_is_exact_to_its_run_plan_program_and_result
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 3.28s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

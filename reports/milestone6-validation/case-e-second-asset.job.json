@@ -1,0 +1,871 @@
+{
+  "id": "7f1a92d6-c735-42a3-9b95-bfa9952550e7",
+  "owner": "26759b74f49216083b516b878258bf03fac7a11b3bf785c93ee506953a41183d",
+  "request_key": "09ac3969-8121-40e7-a3ff-ce02ecc0f475",
+  "selection": {
+    "asset": "mint",
+    "review": "current",
+    "stage": null,
+    "check": null,
+    "cluster": "solana-mainnet",
+    "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+    "sample_accounts": false,
+    "scope": "wallet",
+    "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+  },
+  "parent_run_id": "78060a9d-c090-4f6d-be5f-7d6ccf365a43",
+  "parent_capture_sha256": "8e49589d86249c4cbd37d33ed251086f9f35f531c02c501131c250873518e3f3",
+  "conversion_request": {
+    "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+    "replacement_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "amount_mode": "Custom",
+    "amount_decimal": "0.000001",
+    "ratio_numerator": 3,
+    "ratio_denominator": 4,
+    "rounding": "Floor",
+    "conversion_fee_bps": 0,
+    "reserve_funded_replacement_raw": "1000000000000"
+  },
+  "conversion_plan": {
+    "schema_version": 1,
+    "id": "7f1a92d6-c735-42a3-9b95-bfa9952550e7",
+    "version": 1,
+    "provenance": "OperatorSupplied",
+    "mechanism": "EplyxDemoCandidateConversion",
+    "adapter_id": "eplyx-demo-candidate-conversion/v1",
+    "mechanism_ref": "Eplyx Demo Candidate Conversion (registered repository candidate)",
+    "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "replacement_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "source_account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+    "amount_mode": "Custom",
+    "amount_decimal": "0.000001",
+    "terms": {
+      "ratio_numerator": 3,
+      "ratio_denominator": 4,
+      "rounding": "Floor",
+      "conversion_fee_bps": 0
+    },
+    "authority_model": {
+      "holder_signs": true,
+      "candidate_authority": "ProgramDerived"
+    },
+    "source_consumption": "Burn",
+    "replacement_delivery": "ProposedReserveRelease",
+    "reserve": {
+      "funded_replacement_raw": "1000000000000"
+    }
+  },
+  "plan_sha256": "a25089d75935a0e242b599b35bb2ce57c08c0de82f8159efb1e283ad3af99654",
+  "validated_request": {
+    "amount_decimal": "0.000001",
+    "amount_raw": "1000",
+    "execution_performed": false,
+    "expected": {
+      "consumed_raw": "1000",
+      "conversion_fee_raw": "0",
+      "convertible_raw": "1000",
+      "replacement_gross_raw": "750"
+    },
+    "official_transition": "NotTested",
+    "plan_sha256": "a25089d75935a0e242b599b35bb2ce57c08c0de82f8159efb1e283ad3af99654",
+    "provenance": "OperatorSupplied",
+    "reason": null,
+    "status": "NotTested"
+  },
+  "status": "Completed",
+  "created_at": "2026-09-21T01:13:46.490Z",
+  "operation": "Fresh read-only revalidation followed by offline local execution of the operator-supplied candidate conversion plan",
+  "authorization": false,
+  "result": {
+    "account_evidence": [
+      {
+        "address": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "exists": true,
+        "pointer": "/value/0",
+        "raw_data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rpc_record": 4,
+        "runtime_owner": "11111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "exists": true,
+        "pointer": "/value/1",
+        "raw_data_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoader2111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+        "exists": true,
+        "pointer": "/value/2",
+        "raw_data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "exists": false,
+        "pointer": "/value/3",
+        "raw_data_sha256": null,
+        "rpc_record": 4,
+        "runtime_owner": null,
+        "slot": 448573222
+      },
+      {
+        "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "exists": true,
+        "pointer": "/value/4",
+        "raw_data_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "exists": true,
+        "pointer": "/value/5",
+        "raw_data_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "exists": true,
+        "pointer": "/value/6",
+        "raw_data_sha256": "adefa215938dc4df3ddd35db953bb304e7a36eb822f81356902b64932639e28e",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "SysvarC1ock11111111111111111111111111111111",
+        "exists": true,
+        "pointer": "/value/7",
+        "raw_data_sha256": "491ce435b6e683664f569c526819942f41d3ce45b1700531a5b3a112b9528068",
+        "rpc_record": 4,
+        "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "exists": true,
+        "pointer": "/value/8",
+        "raw_data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      }
+    ],
+    "account_plan": [
+      "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+      "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+      "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "SysvarC1ock11111111111111111111111111111111",
+      "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+    ],
+    "acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-21T01:13:47.910271+00:00",
+      "consistency": "Wallet discovery and this candidate check are separate observations. The final captured batch is authoritative for the conversion result.",
+      "discovery_slot": 448573222,
+      "rpc_origin": "http://127.0.0.1:55524",
+      "started_at": "2026-09-21T01:13:46.577428+00:00"
+    },
+    "amount_decimal": "0.000001",
+    "amount_raw": "1000",
+    "assumptions": [
+      "The recorded holder is assumed locally to sign; key possession and authorization remain unknown.",
+      "The candidate operator authority is a program-derived address of the registered candidate mechanism and is assumed locally. It is not an issuer key and cannot establish issuer identity or control.",
+      "The candidate program, its configuration and the funded reserve are proposed rollout state, not observed mainnet state. Only the source account, its mint, the holder authority, the replacement mint, the token programs and the Clock are captured current production state.",
+      "Signature and recent-blockhash verification are disabled in the existing LiteSVM 0.16 runtime. Only the fee payer is synthetic; token accounts and deployed token program bytes are captured.",
+      "A successful candidate conversion is evidence about this supplied plan only. It does not establish an issuer-defined official transition, an issuer relationship, entitlement or any authorization."
+    ],
+    "authorization": false,
+    "candidate_authority_assumed_locally": true,
+    "candidate_authority_possession_known": false,
+    "candidate_mechanism": {
+      "adapter_id": "eplyx-demo-candidate-conversion/v1",
+      "artifact": "artifacts/eplyx_demo_conversion.so",
+      "deployed_on_mainnet": false,
+      "id": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "issuer_mechanism": false,
+      "loader": "BPFLoader2111111111111111111111111111111111",
+      "name": "Eplyx Demo Candidate Conversion",
+      "note": "A candidate mechanism the operator intends to deploy. It is not deployed on any cluster and is not a PreStocks, SPACEX or issuer mechanism.",
+      "origin": "Proposed",
+      "program_id_preimage": "sha256(\"eplyx-demo-candidate-conversion-v1\")",
+      "program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+      "registered_by": "This repository",
+      "revision": "eplyx-demo-candidate-conversion-v1"
+    },
+    "check_id": "7f1a92d6-c735-42a3-9b95-bfa9952550e7",
+    "clock": {
+      "epoch": 1038,
+      "epoch_start_timestamp": 1789823115,
+      "leader_schedule_epoch": 1039,
+      "slot": 448573222,
+      "unix_timestamp": 1789865120
+    },
+    "deployed_programs": [
+      {
+        "code_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+        "deployed_on_mainnet": true,
+        "loader": "BPFLoader2111111111111111111111111111111111",
+        "origin": "Observed",
+        "program": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+      },
+      {
+        "code_sha256": "0999dbf708971e723b08d1caafc988826a59c6001ed6dc02260da07defbe1469",
+        "deployed_on_mainnet": true,
+        "loader": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "origin": "Observed",
+        "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      {
+        "code_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+        "deployed_on_mainnet": false,
+        "loader": "BPFLoader2111111111111111111111111111111111",
+        "origin": "Proposed",
+        "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+      }
+    ],
+    "destination": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+    "execution": {
+      "compute_units": 40176,
+      "error": null,
+      "inner_instructions": [
+        {
+          "accounts": [
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+          ],
+          "data": "150700",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "stack_height": 2
+        },
+        {
+          "accounts": [
+            "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+            "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV"
+          ],
+          "data": "00000000d0e0210000000000bf0000000000000006ddf6e1ee758fde18425dbce46ccddab61afc4d83b90d27febdf928d8a18bfc",
+          "program": "11111111111111111111111111111111",
+          "stack_height": 2
+        },
+        {
+          "accounts": [
+            "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV"
+          ],
+          "data": "16",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "stack_height": 2
+        },
+        {
+          "accounts": [
+            "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+          ],
+          "data": "124e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbd",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "stack_height": 2
+        },
+        {
+          "accounts": [
+            "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+            "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+            "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+          ],
+          "data": "0fe80300000000000009",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "stack_height": 2
+        },
+        {
+          "accounts": [
+            "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B",
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+            "22ao6LRnSDsza89NZWQGqeZ4Xnpb1KRqakKZWxgYxYP1"
+          ],
+          "data": "0cee0200000000000009",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "stack_height": 2
+        }
+      ],
+      "logs": [
+        "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+        "Program ComputeBudget111111111111111111111111111111 success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL invoke [1]",
+        "Program log: CreateIdempotent",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+        "Program log: Instruction: GetAccountDataSize",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 2435 of 1393007 compute units",
+        "Program return: TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb vwAAAAAAAAA=",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+        "Program 11111111111111111111111111111111 invoke [2]",
+        "Program 11111111111111111111111111111111 success",
+        "Program log: Initialize the associated token account",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+        "Program log: Instruction: InitializeImmutableOwner",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 736 of 1385750 compute units",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+        "Program log: Instruction: InitializeAccount3",
+        "Program log: Warning: Mint has a permanent delegate, so tokens in this account may be seized at any time",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 4212 of 1382676 compute units",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL consumed 21690 of 1399850 compute units",
+        "Program ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL success",
+        "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf invoke [1]",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+        "Program log: Instruction: BurnChecked",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3346 of 1371690 compute units",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+        "Program log: Instruction: TransferChecked",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 4362 of 1365966 compute units",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+        "Program log: EPLYX_CANDIDATE_CONVERSION consumed=1000 conversion_fee=0 released=750 ratio=3/4 rounding=0",
+        "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf consumed 18336 of 1378160 compute units",
+        "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf success"
+      ],
+      "post_accounts": {
+        "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B": {
+          "data": "05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5940f437ac1549e1aa40994d4ee2e657b5993c1f9cf0a4133b89c5c337a2154eb80120da5d4e8000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020200080000000000000000000f000100001b000000",
+          "executable": false,
+          "lamports": "10000000",
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rent_epoch": 18446744073709552000
+        },
+        "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV": {
+          "data": "05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5944e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbdea0200000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080004000000000000000f000100001b000000",
+          "executable": false,
+          "lamports": "2220240",
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rent_epoch": 18446744073709552000
+        },
+        "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy": {
+          "data": "05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197284e3609ff8972496b1e2cf99f9ff9480d1481d8f32b88b476bffbd481cb21dcbdc598f8be2200000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+          "executable": false,
+          "lamports": "2220240",
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rent_epoch": 18446744073709552000
+        },
+        "FBJqCUn986rqzXJGvJUsRM52i9AKcuY39o4unxsxewCx": {
+          "data": "0105daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe371972805dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa594a995ce231368133794edf940c5a574459a1eab5b23c40d0ab92bc9c4cad4c6520f437ac1549e1aa40994d4ee2e657b5993c1f9cf0a4133b89c5c337a2154eb80030000000000000004000000000000000000000909fd",
+          "executable": false,
+          "lamports": "10000000",
+          "owner": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+          "rent_epoch": 0
+        },
+        "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF": {
+          "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddf70782d1ba010000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd5985a71c000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f88585a6a000000005c36df2d35c7f73f12004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe37197281a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05daec0529e52bbf67f6ff1e146a9eb6ace7fc4ea31ca4bc9f15e10fe3719728100000004f70656e41492050726553746f636b73060000004f50454e41492a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f6f70656e61692e6a736f6e00000000",
+          "executable": false,
+          "lamports": "362899490",
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rent_epoch": 18446744073709552000
+        }
+      },
+      "success": true,
+      "transaction_fee_lamports": 10000
+    },
+    "execution_capture_sha256": "e7403c30cac92a43fb67d521c789caacdfafaa82402ad46005dcb007a83a03b1",
+    "execution_fixture_sha256": "2ea2ab596989578ebc4293020365e971c886294a7ff6167c628531c67032ccbe",
+    "execution_performed": true,
+    "expected": {
+      "consumed_raw": "1000",
+      "conversion_fee_raw": "0",
+      "convertible_raw": "1000",
+      "replacement_gross_raw": "750"
+    },
+    "fixture_accounts": [
+      {
+        "address": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "data_len": 0,
+        "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "derivation": null,
+        "executable": false,
+        "lamports": 69178568398,
+        "origin": "Observed",
+        "pointer": "/value/0",
+        "role": "holder-authority",
+        "rpc_record": 4,
+        "runtime_owner": "11111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "data_len": 105032,
+        "data_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+        "derivation": null,
+        "executable": true,
+        "lamports": 3388612899,
+        "origin": "Observed",
+        "pointer": "/value/1",
+        "role": "deployed-token-or-ata-program",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoader2111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+        "data_len": 1382061,
+        "data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+        "derivation": null,
+        "executable": false,
+        "lamports": 9620035440,
+        "origin": "Observed",
+        "pointer": "/value/2",
+        "role": "deployed-program-data",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "data_len": 191,
+        "data_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+        "derivation": null,
+        "executable": false,
+        "lamports": 2220240,
+        "origin": "Observed",
+        "pointer": "/value/4",
+        "role": "holder-source-token-account",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "data_len": 902,
+        "data_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+        "derivation": null,
+        "executable": false,
+        "lamports": 1397830680,
+        "origin": "Observed",
+        "pointer": "/value/5",
+        "role": "replacement-mint",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "data_len": 902,
+        "data_sha256": "adefa215938dc4df3ddd35db953bb304e7a36eb822f81356902b64932639e28e",
+        "derivation": null,
+        "executable": false,
+        "lamports": 362899490,
+        "origin": "Observed",
+        "pointer": "/value/6",
+        "role": "source-mint",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "SysvarC1ock11111111111111111111111111111111",
+        "data_len": 40,
+        "data_sha256": "491ce435b6e683664f569c526819942f41d3ce45b1700531a5b3a112b9528068",
+        "derivation": null,
+        "executable": false,
+        "lamports": 1169280,
+        "origin": "Observed",
+        "pointer": "/value/7",
+        "role": "clock",
+        "rpc_record": 4,
+        "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "data_len": 36,
+        "data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+        "derivation": null,
+        "executable": true,
+        "lamports": 70128638,
+        "origin": "Observed",
+        "pointer": "/value/8",
+        "role": "deployed-token-or-ata-program",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "FBJqCUn986rqzXJGvJUsRM52i9AKcuY39o4unxsxewCx",
+        "data_len": 151,
+        "data_sha256": "5cc4810bca53a80d4afcc020ff490f03dd6e7c9789bdb80d616ab67977bf45fb",
+        "derivation": "PDA([\"eplyx-candidate-config\", plan sha-256], candidate program)",
+        "executable": false,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-config",
+        "runtime_owner": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+      },
+      {
+        "address": "22ao6LRnSDsza89NZWQGqeZ4Xnpb1KRqakKZWxgYxYP1",
+        "data_len": 0,
+        "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "derivation": "PDA([\"eplyx-candidate-vault\", config], candidate program)",
+        "executable": false,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-authority",
+        "runtime_owner": "11111111111111111111111111111111"
+      },
+      {
+        "address": "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B",
+        "data_len": 187,
+        "data_sha256": "e2821979d60753f8604ee12554da4130fe9d92b7e408bd4f2d9aac892d459436",
+        "derivation": "Associated token account of the candidate authority for the replacement mint",
+        "executable": false,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-reserve",
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      {
+        "address": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+        "data_len": 42400,
+        "data_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+        "derivation": "Registered repository artifact artifacts/eplyx_demo_conversion.so; program id sha256(\"eplyx-demo-candidate-conversion-v1\"). Not deployed on any cluster.",
+        "executable": true,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-conversion-program",
+        "runtime_owner": "BPFLoader2111111111111111111111111111111111"
+      }
+    ],
+    "funds_moved": false,
+    "issuer_binding_established": false,
+    "kind": "current-conversion",
+    "lifecycle_event": null,
+    "limitations": [
+      "This proves the supplied candidate plan against this exact captured state. It does not establish an issuer-defined official transition.",
+      "The candidate reserve, configuration and authority are proposed rollout state assumed locally; the candidate authority cannot establish issuer identity or control.",
+      "Holder signing is assumed locally; key possession and authorization remain unknown.",
+      "No mainnet transaction is constructed, signed or submitted, and no funds moved."
+    ],
+    "local_execution_performed": true,
+    "message": {
+      "account_keys": [
+        "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+        "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B",
+        "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "11111111111111111111111111111111",
+        "ComputeBudget111111111111111111111111111111",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "22ao6LRnSDsza89NZWQGqeZ4Xnpb1KRqakKZWxgYxYP1",
+        "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "FBJqCUn986rqzXJGvJUsRM52i9AKcuY39o4unxsxewCx",
+        "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+      ],
+      "instructions": [
+        {
+          "account_indices": [],
+          "data": "02c05c1500",
+          "program_index": 7
+        },
+        {
+          "account_indices": [
+            0,
+            4,
+            1,
+            8,
+            6,
+            9
+          ],
+          "data": "01",
+          "program_index": 11
+        },
+        {
+          "account_indices": [
+            12,
+            5,
+            2,
+            1,
+            3,
+            8,
+            4,
+            10,
+            9,
+            9
+          ],
+          "data": "01e803000000000000",
+          "program_index": 13
+        }
+      ],
+      "readonly_signed_accounts": 1,
+      "readonly_unsigned_accounts": 8,
+      "recent_blockhash": "11111111111111111111111111111111",
+      "required_signatures": 2
+    },
+    "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "observed_state": {
+      "holder_replacement_account_existed": false,
+      "origin": "Observed",
+      "replacement_decimals": 9,
+      "replacement_mint_inspection": "Independently captured in this check. Existence and layout only; no issuer relationship, ratio or economic equivalence is established.",
+      "replacement_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+      "source_balance_before_raw": "149232852141",
+      "source_decimals": 9
+    },
+    "official_transition": "NotTested",
+    "owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+    "plan": {
+      "adapter_id": "eplyx-demo-candidate-conversion/v1",
+      "amount_decimal": "0.000001",
+      "amount_mode": "Custom",
+      "authority_model": {
+        "candidate_authority": "ProgramDerived",
+        "holder_signs": true
+      },
+      "id": "7f1a92d6-c735-42a3-9b95-bfa9952550e7",
+      "mechanism": "EplyxDemoCandidateConversion",
+      "mechanism_ref": "Eplyx Demo Candidate Conversion (registered repository candidate)",
+      "provenance": "OperatorSupplied",
+      "replacement_delivery": "ProposedReserveRelease",
+      "replacement_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "reserve": {
+        "funded_replacement_raw": "1000000000000"
+      },
+      "schema_version": 1,
+      "source_account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "source_consumption": "Burn",
+      "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "terms": {
+        "conversion_fee_bps": 0,
+        "ratio_denominator": 4,
+        "ratio_numerator": 3,
+        "rounding": "Floor"
+      },
+      "version": 1
+    },
+    "plan_sha256": "a25089d75935a0e242b599b35bb2ce57c08c0de82f8159efb1e283ad3af99654",
+    "preconditions": [
+      {
+        "name": "Fresh current source/mint/authority state, independently inspected replacement mint, deployed token loaders and a deterministic proposed overlay",
+        "proven": true,
+        "reason": "Verified raw captured bytes, canonical loader links, mint/owner/initialized/freeze/pause/hook/confidential state, sufficient balance and non-colliding derived proposed addresses"
+      }
+    ],
+    "proposed_overlay": {
+      "addresses": {
+        "config": "FBJqCUn986rqzXJGvJUsRM52i9AKcuY39o4unxsxewCx",
+        "config_bump": 255,
+        "destination": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+        "reserve_vault": "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B",
+        "vault_authority": "22ao6LRnSDsza89NZWQGqeZ4Xnpb1KRqakKZWxgYxYP1",
+        "vault_bump": 253
+      },
+      "note": "Deterministically derived from the candidate program, the plan digest and the observed replacement identity. None of it is observed mainnet state and none of it is issuer controlled.",
+      "origin": "Proposed",
+      "reserve_funded_replacement_raw": "1000000000000"
+    },
+    "provenance": "OperatorSupplied",
+    "readiness": null,
+    "reconciliation": {
+      "account_data": [
+        {
+          "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+          "after_sha256": "51161e31b97d9d24e9f443b8e7423c947921a225270aa41ff841fbd24a025308",
+          "before_sha256": "e631f9f27e5123ad0e075f7e6bbffaa40cec2a7835ee10fb4faa050c0fa42770",
+          "changed_ranges": [
+            {
+              "after": "c598",
+              "before": "ad9c",
+              "offset": 64
+            }
+          ]
+        },
+        {
+          "address": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+          "after_sha256": "8ef40409bada1b2ae5a5b138ae88a89a495d5dba883530bd4ecf63e857576921",
+          "before_sha256": "adefa215938dc4df3ddd35db953bb304e7a36eb822f81356902b64932639e28e",
+          "changed_ranges": [
+            {
+              "after": "f707",
+              "before": "df0b",
+              "offset": 36
+            }
+          ]
+        },
+        {
+          "address": "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B",
+          "after_sha256": "82d8ddb6e33b9f1e5a190b7d296b2b5f52802f362791eecc1d3aa2199450b737",
+          "before_sha256": "e2821979d60753f8604ee12554da4130fe9d92b7e408bd4f2d9aac892d459436",
+          "changed_ranges": [
+            {
+              "after": "120d",
+              "before": "0010",
+              "offset": 64
+            }
+          ]
+        },
+        {
+          "address": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+          "after_sha256": "89a9129c7d95630a3339394a1148b2c5442c2b82d8a624c55071aa549c92ad1a",
+          "before_sha256": "f4d866440c18f9624632a2b13f824aa01e81e9e64bfaa45e2f51c403a006494b",
+          "changed_ranges": [
+            {
+              "after": "ea02",
+              "before": "0000",
+              "offset": 64
+            },
+            {
+              "after": "07",
+              "before": "02",
+              "offset": 166
+            },
+            {
+              "after": "00",
+              "before": "08",
+              "offset": 168
+            },
+            {
+              "after": "02",
+              "before": "00",
+              "offset": 170
+            },
+            {
+              "after": "08",
+              "before": "00",
+              "offset": 172
+            },
+            {
+              "after": "04",
+              "before": "00",
+              "offset": 174
+            },
+            {
+              "after": "00",
+              "before": "0f",
+              "offset": 178
+            },
+            {
+              "after": "00",
+              "before": "01",
+              "offset": 180
+            },
+            {
+              "after": "0f0001",
+              "before": "001b00",
+              "offset": 182
+            },
+            {
+              "after": "1b000000",
+              "before": "",
+              "offset": 187
+            }
+          ]
+        },
+        {
+          "address": "FBJqCUn986rqzXJGvJUsRM52i9AKcuY39o4unxsxewCx",
+          "after_sha256": "5cc4810bca53a80d4afcc020ff490f03dd6e7c9789bdb80d616ab67977bf45fb",
+          "before_sha256": "5cc4810bca53a80d4afcc020ff490f03dd6e7c9789bdb80d616ab67977bf45fb",
+          "changed_ranges": []
+        }
+      ],
+      "burn_cpi_observed": true,
+      "candidate_program_invoked": true,
+      "conversion_fee_raw": "0",
+      "convertible_raw": "1000",
+      "destination": {
+        "address": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "after_raw": "746",
+        "before_raw": "0",
+        "change_decimal_base_units": "0.000000746",
+        "change_raw": "746",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "4"
+      },
+      "expected": {
+        "consumed_raw": "1000",
+        "conversion_fee_raw": "0",
+        "convertible_raw": "1000",
+        "replacement_gross_raw": "750"
+      },
+      "program_reported": "EPLYX_CANDIDATE_CONVERSION consumed=1000 conversion_fee=0 released=750 ratio=3/4 rounding=0",
+      "reconciled": true,
+      "reconciliation": [
+        "Source consumption: the holder account debited 1000 raw and the captured source mint supply fell by 1000 raw. The source is burned, not transferred, so no source Token-2022 transfer fee applies.",
+        "Candidate terms: conversion fee 0 raw taken first, 1000 raw convertible, ratio 3/4 with Floor rounding, expected release 750 raw.",
+        "Replacement delivery: the proposed reserve fell by 750 raw and the holder's replacement account rose by 746 raw with 4 raw withheld as a replacement-side Token-2022 transfer fee. Conversion fee and transfer fees are counted separately.",
+        "The registered candidate program executed and reported its own arithmetic: EPLYX_CANDIDATE_CONVERSION consumed=1000 conversion_fee=0 released=750 ratio=3/4 rounding=0.",
+        "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+      ],
+      "release_cpi_observed": true,
+      "replacement_credit_decimal": "0.000000746",
+      "replacement_public_credit_raw": "746",
+      "replacement_released_raw": "750",
+      "replacement_token_2022_transfer_fee_raw": "4",
+      "reserve": {
+        "address": "CQzPb1XKFhD52xZZbwCyyW2EvohPsuub6qm6gzCXZ47B",
+        "after_raw": "999999999250",
+        "before_raw": "1000000000000",
+        "change_decimal_base_units": "-0.00000075",
+        "change_raw": "-750",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "0"
+      },
+      "source": {
+        "address": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "after_raw": "149232851141",
+        "before_raw": "149232852141",
+        "change_decimal_base_units": "-0.000001",
+        "change_raw": "-1000",
+        "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "withheld_fee_change_raw": "0"
+      },
+      "source_burned_raw": "1000",
+      "source_debited_raw": "1000",
+      "source_supply_after_raw": "1901890504695",
+      "source_supply_before_raw": "1901890505695",
+      "source_supply_change_raw": "-1000",
+      "source_token_2022_transfer_fee_raw": "0"
+    },
+    "replacement_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "run_id": "78060a9d-c090-4f6d-be5f-7d6ccf365a43",
+    "runtime_profile": {
+      "backend": "LiteSVM 0.16",
+      "features": "pinned mainnet/default profile",
+      "network_access": false,
+      "recent_blockhash_verification": false,
+      "signature_verification": false,
+      "synthetic_fee_payer": "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+      "validator_bank_reproduction": false
+    },
+    "schema_version": 1,
+    "scope": "Only this exact source account, source mint, amount, replacement mint, destination, candidate plan version, candidate program build, proposed overlay, captured bank and assumed local signing. No other account, amount, plan or mechanism inherits this evidence.",
+    "signer_assumed_locally": true,
+    "signer_possession_known": false,
+    "source": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+    "source_revalidated": {
+      "execution_fixture_is_authoritative": true,
+      "unchanged_since_discovery": true
+    },
+    "status": "Proven",
+    "wallet_capture_sha256": "8e49589d86249c4cbd37d33ed251086f9f35f531c02c501131c250873518e3f3"
+  },
+  "error": null,
+  "started_at": "2026-09-21T01:13:46.491Z",
+  "engine_sha256": "059ff0810ee6dfe4c13d71632b253a3a15fbf06edda3a6f2e7db76aa36845bb8",
+  "candidate_program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+  "stage": "Preparing evidence",
+  "capture_sha256": "e7403c30cac92a43fb67d521c789caacdfafaa82402ad46005dcb007a83a03b1",
+  "engine_exit_code": 0,
+  "canonical_sha256": "3cef3127cfa3d9de15d93a01b0dd18c061de2ae5b7343b1efee75a9c5eaa10d7",
+  "completed_at": "2026-09-21T01:13:48.802Z"
+}

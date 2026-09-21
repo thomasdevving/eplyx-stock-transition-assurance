@@ -200,3 +200,6 @@ pub mod rollout;
 
 /// Prospective user-proposed analysis over an exact current wallet capture.
 pub mod preflight;
+
+/// Operator-supplied candidate conversion plans, executed against current state.
+pub mod conversion;

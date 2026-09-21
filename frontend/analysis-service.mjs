@@ -1,4 +1,5 @@
 import {createPreflight,executePreflight} from './preflight-service.mjs';
+import {createConversion,executeConversion,conversionMechanism} from './conversion-service.mjs';
 import { CatalogueStore, CLUSTER, isDigest } from './catalogue.mjs';
 import { spawn } from 'node:child_process';
 import { randomUUID, createHash } from 'node:crypto';
@@ -130,13 +131,18 @@ export class AnalysisService {
   const operation=(this.submitting||Promise.resolve()).then(()=>createPreflight(this,parentId,request,key,owner));
   this.submitting=operation.catch(()=>{});return operation;
  }
+ async submitConversion(parentId, request, key, owner) {
+  const operation=(this.submitting||Promise.resolve()).then(()=>createConversion(this,parentId,request,key,owner));
+  this.submitting=operation.catch(()=>{});return operation;
+ }
+ async mechanism() { return conversionMechanism(this); }
  async submitCheck(parentId, request, key, owner) {
   const operation=(this.submitting||Promise.resolve()).then(()=>this.createCheck(parentId,request,key,owner));
   this.submitting=operation.catch(()=>{});return operation;
  }
  async createCheck(parentId, request, key, owner) {
   const parent=this.get(parentId);
-  if(!parent||parent.owner!==owner||parent.status!=='Completed'||parent.selection.scope!=='wallet'||parent.check_request||parent.preflight_request)throw new Error('InvalidParent');
+  if(!parent||parent.owner!==owner||parent.status!=='Completed'||parent.selection.scope!=='wallet'||parent.check_request||parent.preflight_request||parent.conversion_request)throw new Error('InvalidParent');
   if(!request||typeof request!=='object'||Array.isArray(request)||Object.keys(request).some(k=>!['path','source','amount_mode','amount_decimal','recipient','output_mint','minimum_output_decimal'].includes(k))||!['Transfer','SecondaryMarketExit'].includes(request.path)||typeof request.source!=='string'||typeof request.recipient!=='string'||request.source.length>44||request.recipient.length>44||!['Full','Custom'].includes(request.amount_mode)||(request.amount_decimal!==null&&typeof request.amount_decimal!=='string')||(request.amount_decimal?.length||0)>280)throw new Error('InvalidCheck');
   if(request.path==='SecondaryMarketExit'&&(request.recipient!==''||typeof request.output_mint!=='string'||request.output_mint.length>44||typeof request.minimum_output_decimal!=='string'||request.minimum_output_decimal.length>280))throw new Error('InvalidCheck');
   if(!validRunId(key))throw new Error('InvalidRequestKey');
@@ -153,7 +159,7 @@ export class AnalysisService {
   this.jobs.set(id,job);this.keys.set(scopedKey,id);await this.save(job);this.queue.push(job);void this.process();return job;
  }
  async capabilities(id) {
-  const parent=this.get(id);if(parent?.status!=='Completed'||parent.selection.scope!=='wallet'||parent.check_request||parent.preflight_request)throw new Error('InvalidParent');
+  const parent=this.get(id);if(parent?.status!=='Completed'||parent.selection.scope!=='wallet'||parent.check_request||parent.preflight_request||parent.conversion_request)throw new Error('InvalidParent');
   await this.artifact(id,true);
   const {stdout}=await executeEngine(this.executable,['current-check-capabilities','--input',resolve(this.directory,`${id}.capture.json`)],{cwd:this.root,timeoutMs:10000});
   const value=JSON.parse(stdout);if(value.wallet_capture_sha256!==parent.capture_sha256)throw new Error('EvidenceVerificationFailed');return value;
@@ -184,7 +190,7 @@ export class AnalysisService {
     const job=this.queue.shift();job.status='Running';job.started_at=new Date().toISOString();await this.save(job);
     try {
      job.engine_sha256=hash(await readFile(this.executable));
-     if(job.preflight_request){await executePreflight(this,job);}else if(job.check_request){await this.executeCheck(job);}else{
+     if(job.preflight_request){await executePreflight(this,job);}else if(job.conversion_request){await executeConversion(this,job);}else if(job.check_request){await this.executeCheck(job);}else{
      const referencePath=resolve(this.directory,`${job.id}.selection.json`);
      if(job.selection.review==='current')await writeFile(referencePath,JSON.stringify(job.pinned_selection),{flag:'wx'});
      const {code,stdout}=await this.runner(this.executable,engineArguments(job.selection,resolve(this.directory,`${job.id}.capture.json`),referencePath),{cwd:this.root,timeoutMs:job.selection.review==='current'?Math.min(this.timeoutMs,90000):this.timeoutMs,fresh:job.selection.review==='current',onStage:stage=>{job.stage=stage;}});
@@ -198,7 +204,7 @@ export class AnalysisService {
      job.status='Completed';
     } catch(error) {
      const known=['BackendUnavailable','AnalysisTimeout','ResultTooLarge','EvidenceVerificationFailed','EngineFailure'];
-     job.status='Error';job.result=null;job.error={code:known.includes(error.message)?error.message:'InvalidEngineResult',message:job.preflight_request?'The pre-flight preparation or evidence verification could not complete. The original wallet and local checks remain available; no readiness was granted.':job.check_request?'The local execution check could not complete. The wallet observation is still available. No execution proof was granted.':job.selection.review==='current'?'Current mainnet acquisition or decoding could not finish. No saved example was substituted. Retry with a new capture; the server operator can check the configured RPC provider.':error.message==='AnalysisTimeout'?'The analysis timed out. You can try again.':'The saved inputs could not be verified or the local engine could not finish. No readiness result was granted.'};
+     job.status='Error';job.result=null;job.error={code:known.includes(error.message)?error.message:'InvalidEngineResult',message:job.preflight_request?'The pre-flight preparation or evidence verification could not complete. The original wallet and local checks remain available; no readiness was granted.':job.conversion_request?'The candidate conversion check could not complete. The wallet observation is still available. No conversion proof was granted and no funds moved.':job.check_request?'The local execution check could not complete. The wallet observation is still available. No execution proof was granted.':job.selection.review==='current'?'Current mainnet acquisition or decoding could not finish. No saved example was substituted. Retry with a new capture; the server operator can check the configured RPC provider.':error.message==='AnalysisTimeout'?'The analysis timed out. You can try again.':'The saved inputs could not be verified or the local engine could not finish. No readiness result was granted.'};
     }
     job.completed_at=new Date().toISOString();await this.save(job);
    }
@@ -214,6 +220,10 @@ export async function handleAnalysisAPI(service,request,response,origin) {
  if(request.headers.host!==new URL(origin).host || (request.headers.origin && request.headers.origin!==origin) || request.headers['sec-fetch-site']==='cross-site'){json(403,{error:{code:'OriginRejected',message:'Use the local application origin.'}});return true;}
  if(pathname==='/api/catalogue' && request.method==='GET'){json(200,await service.catalogue.current());return true;}
  if(pathname==='/api/health' && request.method==='GET'){json(200,{available:await service.available()});return true;}
+ if(pathname==='/api/conversion-mechanism' && request.method==='GET'){
+  try{json(200,await service.mechanism());}catch{json(503,{error:{code:'MechanismUnavailable',message:'The registered candidate conversion mechanism is not built. Run ./scripts/build-programs.sh.'}});}
+  return true;
+ }
  let session=request.headers.cookie?.match(/(?:^|; )eplyx_session=([a-f0-9]{64})(?:;|$)/)?.[1];
  if(!session){session=hash(randomUUID()+randomUUID());response.setHeader('Set-Cookie',`eplyx_session=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=2592000`);}
  const owner=hash(session);
@@ -233,6 +243,20 @@ export async function handleAnalysisAPI(service,request,response,origin) {
     const value=JSON.parse(body);if(!value||Object.keys(value).some(k=>!['request','request_key'].includes(k)))throw new Error('InvalidPreflight');
     json(202,await service.submitPreflight(parent.id,value.request,value.request_key,owner));
    }catch(error){json(error.message==='QueueFull'?503:400,{error:{code:error.message==='QueueFull'?'QueueFull':'InvalidPreflight',message:'Choose a discovered account, a future effective time, an optional later deadline and valid replacement mint address. Select at most four completed checks from this exact run and account.'}});}
+   return true;
+  }
+ }
+ const conversionMatch=pathname.match(/^\/api\/runs\/([a-f0-9-]+)\/conversions$/);
+ if(conversionMatch){
+  const parent=service.get(conversionMatch[1]);if(!parent||parent.owner!==owner){json(404,{error:{code:'RunNotFound'}});return true;}
+  if(request.method==='GET'){json(200,[...service.jobs.values()].filter(j=>j.parent_run_id===parent.id&&j.owner===owner&&j.conversion_request));return true;}
+  if(request.method==='POST'){
+   try{
+    if(!String(request.headers['content-type']).startsWith('application/json'))throw new Error('InvalidConversion');
+    let body='';for await(const chunk of request){body+=chunk;if(Buffer.byteLength(body)>2048)throw new Error('RequestTooLarge');}
+    const value=JSON.parse(body);if(!value||Object.keys(value).some(k=>!['request','request_key'].includes(k)))throw new Error('InvalidConversion');
+    json(202,await service.submitConversion(parent.id,value.request,value.request_key,owner));
+   }catch(error){json(error.message==='QueueFull'?503:400,{error:{code:error.message==='QueueFull'?'QueueFull':'InvalidConversion',message:'Choose an account discovered in this wallet run, a different existing replacement mint, a positive whole-number ratio, a supported rounding rule, a conversion fee between 0 and 10000 bps and a proposed reserve amount. Only the registered demonstration mechanism runs; program code, instructions and accounts cannot be supplied.'}});}
    return true;
   }
  }
@@ -256,7 +280,7 @@ export async function handleAnalysisAPI(service,request,response,origin) {
   const job=service.get(match[1]);
   if(!job || job.owner!==owner){json(404,{error:{code:'RunNotFound',message:'This local run is no longer available. Run it again.'}});return true;}
   if(match[2]){const bytes=await service.artifact(job.id,match[2]==='/capture');if(!bytes)json(409,{error:{code:'ResultNotAvailable'}});else{response.writeHead(200,{'Content-Type':'application/json','Content-Disposition':`attachment; filename="analysis-${job.id}.json"`,'Cache-Control':'no-store'});response.end(bytes);}return true;}
-  const execution_checks=job.selection.scope==='wallet'&&!job.check_request&&!job.preflight_request?[...service.jobs.values()].filter(c=>c.parent_run_id===job.id&&c.owner===owner&&c.check_request&&c.status==='Completed').map(c=>({check_id:c.id,capture_sha256:c.capture_sha256,result_sha256:c.canonical_sha256,engine_sha256:c.engine_sha256,evidence:c.result})):undefined;
+  const execution_checks=job.selection.scope==='wallet'&&!job.check_request&&!job.preflight_request&&!job.conversion_request?[...service.jobs.values()].filter(c=>c.parent_run_id===job.id&&c.owner===owner&&c.check_request&&c.status==='Completed').map(c=>({check_id:c.id,capture_sha256:c.capture_sha256,result_sha256:c.canonical_sha256,engine_sha256:c.engine_sha256,evidence:c.result})):undefined;
   json(200,execution_checks?{...job,execution_checks}:job);return true;
  }
  if(pathname==='/api/runs' && request.method==='POST') {

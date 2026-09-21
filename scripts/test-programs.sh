@@ -12,3 +12,9 @@ for VERSION in v1 v2; do
   echo "==> testing fixture-lending [$VERSION]"
   cargo test --manifest-path "$MANIFEST" --no-default-features --features "$VERSION"
 done
+
+# The registered candidate conversion mechanism: its exact ratio, rounding and fee
+# arithmetic in isolation. Real SBF execution is covered by engine/tests.
+echo "==> testing eplyx-demo-conversion [candidate]"
+cargo test --manifest-path "$ROOT/programs/eplyx-demo-conversion/Cargo.toml" \
+  --no-default-features --features no-entrypoint

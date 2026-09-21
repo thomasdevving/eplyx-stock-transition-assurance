@@ -1,14 +1,26 @@
 //! Entity-only presets reuse the existing exact-scope requirement evaluator.
+//! Mobility, candidate-plan and full-transition assurance stay separate gates.
 use super::*;
 use crate::resolution::current::VerifiedCurrentPaths;
 use serde_json::{json, Value};
 
+/// Which question this evaluation answers. They never substitute for each other.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(crate) enum Gate {
+    /// Can this exact tested amount move or be sold?
+    Mobility,
+    /// Does this supplied conversion plan work for this exact account and amount?
+    CandidatePlan,
+    /// Everything mobility requires, plus an independently proven official conversion.
+    FullTransition,
+}
 pub(crate) fn evaluate_selected(
     paths: &VerifiedCurrentPaths,
+    conversions: &[ConversionFact],
     policy: &crate::lifecycle::policy::AssetLifecyclePolicy,
     scope: &crate::resolution::current::CurrentEntityScope<'_>,
     at: &str,
-    full: bool,
+    gate: Gate,
 ) -> Result<Value> {
     let crate::resolution::current::CurrentEntityScope {
         run,
@@ -63,49 +75,67 @@ pub(crate) fn evaluate_selected(
         blocking_statuses: vec![],
         allow_local_signer_assumption: true,
     };
-    let mut mobility: Vec<_> = facts
-        .iter()
-        .filter(|f| {
-            matches!(
-                f.path_type,
-                ExitPathType::Transfer | ExitPathType::SecondaryMarketExit
-            )
-        })
-        .map(|f| condition(f.path_type, f.scope.clone()))
-        .collect();
-    if mobility.is_empty() {
-        mobility = vec![
-            condition(ExitPathType::Transfer, base.clone()),
-            condition(ExitPathType::SecondaryMarketExit, base.clone()),
-        ];
-    }
     let requirement = |id: &str, label: &str, condition| {
         ReadinessRequirement{id:id.into(),label:label.into(),target:RequirementTarget::Entity{entity_id:entity.clone()},required:true,condition,
         rollout_assumption:"Selected account only, under captured-state and assumed local signing; no future liquidity assurance".into(),
         remediation_requirement:"Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate".into()}
     };
-    let mut requirements = vec![
-        requirement(
-            "observed-and-isolated",
-            "Selected current account observed; exact evidence isolation",
-            RequirementCondition::EvidenceIsolation,
-        ),
-        requirement(
+    let mut requirements = vec![requirement(
+        "observed-and-isolated",
+        "Selected current account observed; exact evidence isolation",
+        RequirementCondition::EvidenceIsolation,
+    )];
+    if gate == Gate::CandidatePlan {
+        // The gate pins whatever the supplied plan actually executed against. With
+        // no candidate execution the pinned digests match nothing and stay Incomplete.
+        let fact = conversions.first();
+        requirements.push(requirement(
+            "candidate-conversion",
+            "The supplied candidate conversion plan executed and reconciled for this exact account and amount",
+            RequirementCondition::CandidateConversion {
+                scope: Box::new(fact.map(|f| f.scope.clone()).unwrap_or_else(|| base.clone())),
+                plan_sha256: fact.map(|f| f.plan_sha256.clone()).unwrap_or_else(|| "0".repeat(64)),
+                program_sha256: fact
+                    .map(|f| f.program_sha256.clone())
+                    .unwrap_or_else(|| "0".repeat(64)),
+                replacement_mint: fact
+                    .map(|f| f.replacement_mint.clone())
+                    .unwrap_or_else(|| "no-candidate-replacement-supplied".into()),
+            },
+        ));
+    } else {
+        let mut mobility: Vec<_> = facts
+            .iter()
+            .filter(|f| {
+                matches!(
+                    f.path_type,
+                    ExitPathType::Transfer | ExitPathType::SecondaryMarketExit
+                )
+            })
+            .map(|f| condition(f.path_type, f.scope.clone()))
+            .collect();
+        if mobility.is_empty() {
+            mobility = vec![
+                condition(ExitPathType::Transfer, base.clone()),
+                condition(ExitPathType::SecondaryMarketExit, base.clone()),
+            ];
+        }
+        requirements.push(requirement(
             "mobility",
             "At least one selected exact mobility test is Proven",
             RequirementCondition::Path { any_of: mobility },
-        ),
-    ];
-    if full {
-        requirements.push(requirement(
-            "official-conversion",
-            "Actual replacement-token conversion must be independently Proven",
-            RequirementCondition::Path {
-                any_of: vec![condition(ExitPathType::OfficialTransition, base)],
-            },
         ));
+        if gate == Gate::FullTransition {
+            requirements.push(requirement(
+                "official-conversion",
+                "Actual replacement-token conversion must be independently Proven",
+                RequirementCondition::Path {
+                    any_of: vec![condition(ExitPathType::OfficialTransition, base.clone())],
+                },
+            ));
+        }
     }
-    let assurance=LifecycleReadinessPolicy {schema_version:1,id:if full{"current-full-transition-v1"}else{"current-mobility-v1"}.into(),policy_type:PolicyType::DemoAssurancePolicy,
+    let assurance=LifecycleReadinessPolicy {schema_version:1,id:match gate {Gate::FullTransition=>"current-full-transition-v1",Gate::CandidatePlan=>"current-candidate-conversion-v1",Gate::Mobility=>"current-mobility-v1"}.into(),policy_type:PolicyType::DemoAssurancePolicy,
         not_issuer_policy:true,description:"Selected entity demonstration assurance; successful exact tested amounts do not prove whole-balance or future actionability. Missing and failed alternatives remain incomplete, not blocking.".into(),
         asset_mint:policy.asset_mint.clone(),scenario_sha256:scenario_hash.into(),evaluated_scope:EvaluatedScope::DemoEntityReadiness,
         evidence_manifest:ArtifactRef{file:format!("run:{run}"),sha256:wallet_hash.into()},requirements};
@@ -115,6 +145,7 @@ pub(crate) fn evaluate_selected(
         lifecycle_event: policy.clone(),
         policy_evaluated_at: at.into(),
         path_facts: facts,
+        conversion_facts: conversions.to_vec(),
         complete_exits: vec![],
         isolation_verified: true,
         evidence_refs: vec![EvidenceReference {
@@ -141,8 +172,14 @@ pub(crate) fn evaluate_selected(
     };
     let report = evaluate(&assurance, &evidence)?;
     // Do not publish the historical report's population fields for a current entity.
-    Ok(
-        json!({"scope":"SelectedEntityPreflightReadiness","status":report.overall_status,"policy":report.policy,"policy_sha256":report.policy_semantic_sha256,
-        "findings":report.findings,"entity":report.entity_readiness,"path_evidence":report.path_evidence,"population_readiness":null,"authorization":false}),
-    )
+    let mut value = json!({"scope":match gate {Gate::CandidatePlan=>"CandidateConversionPlanReadiness",_=>"SelectedEntityPreflightReadiness"},
+        "status":report.overall_status,"policy":report.policy,"policy_sha256":report.policy_semantic_sha256,
+        "findings":report.findings,"entity":report.entity_readiness,"path_evidence":report.path_evidence,
+        "population_readiness":null,"authorization":false});
+    if gate == Gate::CandidatePlan {
+        value["conversion_evidence"] = serde_json::to_value(conversions)?;
+        value["official_transition_established"] = false.into();
+        value["question"] = "Does this supplied conversion plan work for this exact selected current account and amount?".into();
+    }
+    Ok(value)
 }

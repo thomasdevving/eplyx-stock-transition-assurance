@@ -135,6 +135,31 @@ prediction, network transaction or wallet signing is introduced. Offline pre-fli
 replay regenerates checks through the existing VM; the readiness gate itself never
 executes. Refresh starts unverified. See docs/on-demand-progress.md.
 
+Milestone 6 adds an operator-supplied candidate conversion plan, executed against fresh
+current production state before rollout. The operator declares a bounded plan — source and
+replacement mint, selected account, amount, exact integer ratio, rounding, optional conversion
+fee, authority model and proposed reserve — and Eplyx runs exactly one registered repository
+mechanism, `Eplyx Demo Candidate Conversion`, in the existing offline VM. The browser supplies
+terms only: never program code, a program id, an instruction, account metas, transaction bytes,
+a filesystem path, an RPC endpoint or a claimed status. No upload path exists.
+
+The execution bank is freshly captured current state plus an explicitly proposed rollout
+overlay; every account carries its origin and proposed accounts never claim captured RPC
+evidence. Proven requires the real program to run and every relationship to reconcile exactly:
+source debit, burn against the captured mint supply, conversion fee, ratio and rounding,
+reserve decrease, replacement credit and the replacement-side transfer fee, all separate.
+Token-2022 transfer fees and the candidate conversion fee are never combined.
+
+`ReplacementConversion` and `OfficialTransition` are distinct facts in distinct status slots.
+An OperatorSupplied plan can make `ReplacementConversion = Proven` and `CandidatePlanReadiness
+= Ready`; it can never make `OfficialTransition` anything but `NotTested`, and full transition
+readiness stays Incomplete without independent issuer binding. Transfer, market exit, a DEX
+swap into the replacement token, successor-mint existence and an unrelated burn plus MintTo
+never satisfy conversion. The candidate authority is a program-derived address assumed locally
+and cannot establish issuer identity or control; no issuer key is ever assumed. Refresh starts
+untested and no proof crosses runs, accounts, amounts, plans, program builds or banks.
+See docs/on-demand-milestone-6-conversion.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.
@@ -190,6 +215,18 @@ executes. Refresh starts unverified. See docs/on-demand-progress.md.
   one deterministic issuer adapter, and offline orchestration of existing impact
   and frozen path/readiness evaluation. Successor identity is an additive fact;
   it never supplies conversion mechanics. Assurance policy remains unchanged.
+- conversion/ models operator-supplied candidate conversion plans and executes exactly one
+  registered repository mechanism through the existing LiteSVM backend. The plan model is
+  bounded and serializable: no DSL, no scripts, no supplied account metas or transaction bytes.
+  Provenance is explicit and only OperatorSupplied has an executable adapter. Observed captured
+  accounts and the deterministically derived proposed overlay never mix, and the candidate
+  program is never described as deployed. VerifiedReplacementConversion has no deserialization
+  constructor: only a validated plan, actual VM execution and exact reconciliation build one.
+  A proven candidate plan is evidence about that plan under its declared authority model, never
+  an issuer-defined official transition.
+- programs/eplyx-demo-conversion/ is the registered candidate mechanism. It enforces the ratio,
+  rounding and conversion fee itself in checked integer arithmetic and performs real token
+  CPIs, so host-side calculation can never stand in for execution. It is not deployed anywhere.
 - corpus.rs, interpret.rs, impact.rs, cluster.rs, shrink.rs and report.rs retain
   synthetic lending regression/demo behavior, not lifecycle domain semantics.
 - interface/ and programs/fixture-lending/ are the synthetic harness only.

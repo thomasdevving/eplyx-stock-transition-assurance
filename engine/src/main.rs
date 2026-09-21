@@ -65,6 +65,46 @@ enum Command {
         #[arg(long)]
         capture_sha256: String,
     },
+    /// Validate an operator-supplied candidate conversion plan offline. Does not execute.
+    ValidateConversionPlan {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        plan: PathBuf,
+    },
+    /// Report the registered candidate conversion mechanism and its pinned digest.
+    ConversionMechanism,
+    /// Capture fresh current state for one candidate conversion plan. Does not execute.
+    CaptureConversionCheck {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        plan: PathBuf,
+        #[arg(long)]
+        run_id: String,
+        #[arg(long)]
+        check_id: String,
+        #[arg(long)]
+        out: PathBuf,
+    },
+    /// Rebuild the observed bank and proposed overlay, then run the actual candidate
+    /// program offline and reconcile exactly. This is also the offline replay command.
+    ReplayConversionCheck {
+        #[arg(long)]
+        input: PathBuf,
+        #[arg(long)]
+        run_id: String,
+        #[arg(long)]
+        check_id: String,
+        #[arg(long)]
+        wallet_sha256: String,
+        #[arg(long)]
+        capture_sha256: String,
+        #[arg(long)]
+        plan_sha256: String,
+        #[arg(long)]
+        program_sha256: String,
+    },
     /// Fetch bounded current mainnet observations; never constructs execution proof.
     InspectCurrent(CurrentArgs),
     /// Validate a typed current transfer request entirely offline.
@@ -696,6 +736,76 @@ fn run() -> Result<ExitCode> {
                 &capture_sha256,
             )?;
             println!("{}", result);
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ValidateConversionPlan { input, plan } => {
+            use eplyx_lifecycle_impact::conversion;
+            let wallet = std::fs::read_to_string(input)?;
+            let plan: conversion::ConversionPlan = serde_json::from_slice(&std::fs::read(plan)?)?;
+            println!("{}", conversion::current::validate(&wallet, &plan)?);
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ConversionMechanism => {
+            use eplyx_lifecycle_impact::conversion::demo;
+            let bytes = demo::program_bytes()?;
+            println!(
+                "{}",
+                serde_json::json!({"id":demo::PROGRAM_ID,"name":"Eplyx Demo Candidate Conversion",
+                    "adapter_id":eplyx_lifecycle_impact::conversion::ADAPTER_ID,
+                    "revision":demo::REVISION,"artifact":demo::ARTIFACT,
+                    "program_sha256":eplyx_lifecycle_impact::lifecycle::exposure::sha256(&bytes),
+                    "loader":demo::LOADER,"deployed_on_mainnet":false,"issuer_mechanism":false,
+                    "accepts_uploaded_programs":false,
+                    "source_consumption":"Burn","replacement_delivery":"ProposedReserveRelease",
+                    "rounding":["Floor","Ceiling"]})
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::CaptureConversionCheck {
+            input,
+            plan,
+            run_id,
+            check_id,
+            out,
+        } => {
+            use eplyx_lifecycle_impact::conversion::current;
+            let wallet = std::fs::read_to_string(input)?;
+            let plan = serde_json::from_slice(&std::fs::read(plan)?)?;
+            let url = std::env::var("SOLANA_RPC_URL")
+                .unwrap_or_else(|_| "https://api.mainnet-beta.solana.com".into());
+            let capture = current::capture(
+                wallet,
+                plan,
+                run_id,
+                check_id,
+                &HttpSolanaRpc::bounded_execution(&url)?,
+            )?;
+            current::save(&capture, &out)?;
+            println!("{{}}");
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ReplayConversionCheck {
+            input,
+            run_id,
+            check_id,
+            wallet_sha256,
+            capture_sha256,
+            plan_sha256,
+            program_sha256,
+        } => {
+            use eplyx_lifecycle_impact::conversion::{current, demo};
+            let program = demo::program_bytes()?;
+            let verified = current::replay(
+                &std::fs::read(input)?,
+                &run_id,
+                &check_id,
+                &wallet_sha256,
+                &capture_sha256,
+                &plan_sha256,
+                &program,
+                &program_sha256,
+            )?;
+            println!("{}", verified.value());
             Ok(ExitCode::SUCCESS)
         }
         Command::CurrentCheckCapabilities { input } => {

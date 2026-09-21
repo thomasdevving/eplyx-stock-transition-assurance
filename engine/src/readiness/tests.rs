@@ -85,6 +85,7 @@ fn policy(r: Vec<ReadinessRequirement>) -> LifecycleReadinessPolicy {
 fn evidence(facts: Vec<PathFact>) -> VerifiedReadinessEvidence {
     let at = "2026-01-01T00:00:00Z".parse().unwrap();
     VerifiedReadinessEvidence {
+        conversion_facts: vec![],
         asset_mint: "asset-a".into(),
         scenario_sha256: "scenario-a".into(),
         lifecycle_event: crate::lifecycle::policy::AssetLifecyclePolicy {

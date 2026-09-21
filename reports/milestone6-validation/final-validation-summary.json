@@ -1,0 +1,48 @@
+{
+ "milestone": 6,
+ "title": "Operator-supplied conversion-plan pre-flight",
+ "make_test": {
+  "passing": 440,
+  "failed": 0,
+  "exit": 0
+ },
+ "fmt_check_exit": 0,
+ "lint_exit": 0,
+ "service_tests": {
+  "total": 33,
+  "passed": 33,
+  "failed": 0
+ },
+ "frontend_build_exit": 0,
+ "frontend_check_exit": 0,
+ "browser_suite": {
+  "passed": 16,
+  "failed": 0,
+  "skipped": 7,
+  "exit": 0
+ },
+ "engine_conversion_tests": {
+  "candidate_conversion_integration": 23,
+  "conversion_unit": 7,
+  "candidate_plan_preflight": 5,
+  "candidate_program_arithmetic": 4
+ },
+ "mutations": {
+  "injected": 8,
+  "killed": 8,
+  "sources_restored": true
+ },
+ "browser_cases": {
+  "A_no_plan": "ReplacementConversion NotTested, candidate readiness Incomplete, full transition Incomplete",
+  "B_candidate_plan": "ReplacementConversion Proven, CandidatePlanReadiness Ready, OfficialTransition NotTested, full transition Incomplete",
+  "C_failed_plan": "actual Failed with verified rollback and zero deltas; no issuer claim",
+  "D_refresh": "new run starts NotTested and rejects the earlier candidate check",
+  "E_second_asset": "OPENAI source to a hypothetical replacement at 3/4 through the same generic adapter"
+ },
+ "candidate_program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+ "official_transition": "NotTested",
+ "funds_moved": false,
+ "authorization": false,
+ "uploads_supported": false,
+ "recorded_at": "2026-09-21T01:16:43.582513+00:00"
+}

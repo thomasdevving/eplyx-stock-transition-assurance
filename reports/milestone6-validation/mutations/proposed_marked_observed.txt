@@ -1,0 +1,25 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.56s
+     Running tests/candidate_conversion.rs (target/debug/deps/candidate_conversion-f9110bcada2132aa)
+
+running 1 test
+test proposed_overlay_is_never_labelled_observed ... FAILED
+
+failures:
+
+---- proposed_overlay_is_never_labelled_observed stdout ----
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+
+thread 'proposed_overlay_is_never_labelled_observed' (11914293) panicked at engine/tests/candidate_conversion.rs:149:5:
+config, authority, reserve and candidate program are proposed
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    proposed_overlay_is_never_labelled_observed
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 22 filtered out; finished in 0.92s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test candidate_conversion`

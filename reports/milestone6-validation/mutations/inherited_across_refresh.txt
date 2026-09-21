@@ -1,0 +1,28 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 8.71s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test candidate_plan::a_refreshed_run_cannot_inherit_candidate_conversion_proof ... FAILED
+
+failures:
+
+---- candidate_plan::a_refreshed_run_cannot_inherit_candidate_conversion_proof stdout ----
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+
+thread 'candidate_plan::a_refreshed_run_cannot_inherit_candidate_conversion_proof' (11917922) panicked at engine/tests/current_preflight.rs:585:9:
+refresh_must_not_inherit_candidate_conversion_proof
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    candidate_plan::a_refreshed_run_cannot_inherit_candidate_conversion_proof
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 2.18s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

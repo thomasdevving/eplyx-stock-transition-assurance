@@ -6,6 +6,8 @@ use eplyx_lifecycle_impact::{
     probe::current as execution,
 };
 use serde_json::{json, Value};
+#[path = "common/candidate.rs"]
+mod harness;
 fn root() -> std::path::PathBuf {
     eplyx_lifecycle_impact::repo_root()
 }
@@ -31,9 +33,11 @@ fn inputs(checks: bool) -> Inputs {
             post_deadline: Some(PostDeadline::TransitionStillRequired),
             assurance: Assurance::FullTransition,
             check_ids: vec![],
+            conversion_check_id: None,
         },
         successor_capture: None,
         checks: vec![],
+        conversion: None,
     };
     if checks {
         for label in ["live-transfer", "live-market"] {
@@ -391,4 +395,230 @@ fn exact_failed_market_is_not_globally_blocked_by_entity_preset() {
         "Incomplete"
     );
     assert_eq!(path(&v, "OfficialTransition"), "NotTested");
+}
+mod candidate_plan {
+    use super::*;
+    use crate::harness;
+    use eplyx_lifecycle_impact::conversion::{current as conversion, demo};
+
+    /// A completed candidate conversion check, bound to this same preflight run.
+    fn conversion_evidence(run: &str, input: &Inputs) -> (ConversionEvidence, String) {
+        let plan = harness::plan(harness::USDC_MINT);
+        let mut capture = harness::capture(&plan, run, "candidate-check");
+        capture.wallet_capture = input.wallet_capture.clone();
+        capture.wallet_capture_sha256 = input.wallet_sha256.clone();
+        let bytes = serde_json::to_vec(&capture).unwrap();
+        let hash = sha256(&bytes);
+        let program = demo::program_bytes().unwrap();
+        let program_hash = sha256(&program);
+        let verified = conversion::replay(
+            &bytes,
+            run,
+            "candidate-check",
+            &input.wallet_sha256,
+            &hash,
+            &capture.plan_sha256,
+            &program,
+            &program_hash,
+        )
+        .unwrap();
+        assert_eq!(verified.value()["status"], "Proven");
+        (
+            ConversionEvidence {
+                id: "candidate-check".into(),
+                capture_sha256: hash,
+                result_sha256: sha256(format!("{}\n", verified.value()).as_bytes()),
+                engine_sha256: "fixture-test".into(),
+                plan_sha256: capture.plan_sha256.clone(),
+                program_sha256: program_hash,
+                capture: String::from_utf8(bytes).unwrap(),
+            },
+            plan.replacement_mint,
+        )
+    }
+    /// The existing independent replacement-mint inspection for this asset.
+    fn successor_capture() -> String {
+        let bundle: Value = serde_json::from_slice(
+            &std::fs::read(
+                root().join("reports/milestone5-validation/fixture-preflight.capture.json"),
+            )
+            .unwrap(),
+        )
+        .unwrap();
+        bundle["inputs"]["successor_capture"]
+            .as_str()
+            .unwrap()
+            .to_string()
+    }
+    fn with_conversion() -> Inputs {
+        let mut input = inputs(false);
+        let (evidence, replacement) = conversion_evidence(&input.run_id, &input);
+        input.request.conversion_check_id = Some(evidence.id.clone());
+        input.request.successor_mint = Some(replacement);
+        input.successor_capture = Some(successor_capture());
+        input.conversion = Some(evidence);
+        input
+    }
+    fn readiness(v: &Value, gate: &str) -> Value {
+        v["views"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .find(|view| view["id"] == "ProposedActive")
+            .unwrap()["readiness"][gate]["status"]
+            .clone()
+    }
+    #[test]
+    fn no_supplied_plan_leaves_conversion_untested_and_full_transition_incomplete() {
+        let v = evaluate(inputs(true)).unwrap();
+        assert_eq!(
+            v["replacement_conversion"]["status"], "NotTested",
+            "an unsupplied conversion plan cannot be tested"
+        );
+        assert!(v["replacement_conversion"]["message"]
+            .as_str()
+            .unwrap()
+            .contains("No conversion mechanism was supplied"));
+        assert_eq!(path(&v, "OfficialTransition"), "NotTested");
+        assert_eq!(readiness(&v, "candidate_plan"), "Incomplete");
+        assert_eq!(readiness(&v, "full_transition"), "Incomplete");
+        assert_eq!(
+            readiness(&v, "mobility"),
+            "Ready",
+            "mobility can still be ready without any conversion plan"
+        );
+    }
+    #[test]
+    fn a_proven_candidate_plan_makes_candidate_readiness_ready_and_nothing_else() {
+        let v = evaluate(with_conversion()).unwrap();
+        assert_eq!(v["replacement_conversion"]["status"], "Proven");
+        assert_eq!(
+            v["replacement_conversion"]["provenance"],
+            "OperatorSupplied"
+        );
+        assert_eq!(
+            readiness(&v, "candidate_plan"),
+            "Ready",
+            "candidate_plan_readiness_can_become_ready"
+        );
+        assert_eq!(
+            path(&v, "OfficialTransition"),
+            "NotTested",
+            "candidate_proof_must_not_become_official_transition"
+        );
+        assert_eq!(
+            v["replacement_conversion"]["official_transition"], "NotTested",
+            "operator_supplied_proof_must_not_report_an_official_transition"
+        );
+        assert_eq!(
+            readiness(&v, "full_transition"),
+            "Incomplete",
+            "candidate_ready_must_not_become_full_transition_ready"
+        );
+        assert_eq!(
+            v["population_readiness"],
+            Value::Null,
+            "candidate_ready_must_not_become_population_ready"
+        );
+        assert_eq!(v["authorization"], false);
+        assert_eq!(v["funds_moved"], false);
+    }
+    #[test]
+    fn candidate_evidence_is_exact_to_its_run_plan_program_and_result() {
+        let base = with_conversion();
+        type InputEdit = (&'static str, Box<dyn Fn(&mut Inputs)>);
+        let mutate: Vec<InputEdit> = vec![
+            (
+                "wrong result digest",
+                Box::new(|i: &mut Inputs| {
+                    i.conversion.as_mut().unwrap().result_sha256 = "0".repeat(64)
+                }),
+            ),
+            (
+                "wrong plan digest",
+                Box::new(|i: &mut Inputs| {
+                    i.conversion.as_mut().unwrap().plan_sha256 = "0".repeat(64)
+                }),
+            ),
+            (
+                "wrong candidate binary digest",
+                Box::new(|i: &mut Inputs| {
+                    i.conversion.as_mut().unwrap().program_sha256 = "0".repeat(64)
+                }),
+            ),
+            (
+                "wrong capture digest",
+                Box::new(|i: &mut Inputs| {
+                    i.conversion.as_mut().unwrap().capture_sha256 = "0".repeat(64)
+                }),
+            ),
+            (
+                "another run",
+                Box::new(|i: &mut Inputs| i.run_id = "another-run".into()),
+            ),
+            (
+                "a different proposed replacement",
+                Box::new(|i: &mut Inputs| {
+                    i.request.successor_mint =
+                        Some("PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF".into())
+                }),
+            ),
+            (
+                "unbound evidence",
+                Box::new(|i: &mut Inputs| i.request.conversion_check_id = None),
+            ),
+        ];
+        for (name, edit) in mutate {
+            let mut input = base.clone();
+            edit(&mut input);
+            assert!(
+                evaluate(input).is_err(),
+                "exact_candidate_binding_must_be_required: {name}"
+            );
+        }
+    }
+    #[test]
+    fn a_refreshed_run_cannot_inherit_candidate_conversion_proof() {
+        let mut input = with_conversion();
+        input.run_id = "refreshed-run".into();
+        input.preflight_id = "proposal-b".into();
+        assert!(
+            evaluate(input).is_err(),
+            "refresh_must_not_inherit_candidate_conversion_proof"
+        );
+        // The refreshed run without the candidate check is simply untested again.
+        let mut fresh = inputs(false);
+        fresh.run_id = "refreshed-run".into();
+        let v = evaluate(fresh).unwrap();
+        assert_eq!(v["replacement_conversion"]["status"], "NotTested");
+    }
+    #[test]
+    fn mobility_evidence_can_never_stand_in_for_a_candidate_conversion() {
+        let mut input = inputs(true);
+        let (evidence, replacement) = conversion_evidence(&input.run_id, &input);
+        input.request.successor_mint = Some(replacement);
+        input.successor_capture = Some(successor_capture());
+        // Transfer and market-exit proof is present; no conversion is selected.
+        let v = evaluate(input.clone()).unwrap();
+        assert_eq!(path(&v, "Transfer"), "Proven");
+        assert_eq!(v["replacement_conversion"]["status"], "NotTested");
+        assert_eq!(
+            readiness(&v, "candidate_plan"),
+            "Incomplete",
+            "mobility_proof_must_not_satisfy_candidate_conversion"
+        );
+        // Selecting it as an ordinary execution check is rejected outright.
+        input.request.check_ids.push(evidence.id.clone());
+        input.checks.push(CheckEvidence {
+            id: evidence.id,
+            capture_sha256: evidence.capture_sha256,
+            result_sha256: evidence.result_sha256,
+            engine_sha256: evidence.engine_sha256,
+            capture: evidence.capture,
+        });
+        assert!(
+            evaluate(input).is_err(),
+            "a candidate conversion capture is not an execution check"
+        );
+    }
 }

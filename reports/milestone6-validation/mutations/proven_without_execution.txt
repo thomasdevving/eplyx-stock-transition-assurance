@@ -1,0 +1,24 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 12.52s
+     Running tests/candidate_conversion.rs (target/debug/deps/candidate_conversion-f9110bcada2132aa)
+
+running 1 test
+test candidate_conversion_executes_the_actual_program_and_reconciles_exactly ... FAILED
+
+failures:
+
+---- candidate_conversion_executes_the_actual_program_and_reconciles_exactly stdout ----
+
+thread 'candidate_conversion_executes_the_actual_program_and_reconciles_exactly' (11913350) panicked at engine/tests/candidate_conversion.rs:15:5:
+assertion `left == right` failed: proven_requires_an_actual_successful_vm_transaction
+  left: Null
+ right: true
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    candidate_conversion_executes_the_actual_program_and_reconciles_exactly
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 22 filtered out; finished in 0.83s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test candidate_conversion`

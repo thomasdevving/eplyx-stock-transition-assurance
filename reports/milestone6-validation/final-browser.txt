@@ -1,0 +1,60 @@
+(node:3243) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+Running 23 tests using 1 worker
+
+(node:3274) [DEP0205] DeprecationWarning: `module.register()` is deprecated. Use `module.registerHooks()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+  ✓   1 frontend/tests/analysis.spec.js:7:1 › new visitor uses overview, existing hero toggle preserves selections without requests, CTA focuses real form (7.3s)
+  ✓   2 frontend/tests/analysis.spec.js:23:1 › real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout (5.8m)
+  ✓   3 frontend/tests/analysis.spec.js:58:1 › unavailable backend and saved reports are labeled honestly (933ms)
+  ✓   4 frontend/tests/analysis.spec.js:63:1 › API rejects unsupported caller commands, evidence and oversized bodies (16ms)
+  ✓   5 frontend/tests/browser.spec.js:6:1 › desktop renders the sculpture, scoped stones, navigation and exact evidence (10.5s)
+  ✓   6 frontend/tests/browser.spec.js:52:1 › mobile navigation, page width and keyboard path details work (7.6s)
+  ✓   7 frontend/tests/browser.spec.js:77:1 › downloads are the exact pinned source bytes and missing assets fail clearly (62ms)
+  ✓   8 frontend/tests/browser.spec.js:90:1 › WebGL failure retains the original vector mark (5.7s)
+  ✓   9 frontend/tests/browser.spec.js:105:1 › tablet layout keeps navigation and content within the viewport (1.0s)
+  ✓  10 frontend/tests/browser.spec.js:119:1 › published rollout cases keep assertions, policy and local guard observations separate (8.0s)
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+  ✓  11 frontend/tests/conversion.spec.js:70:1 › operator-supplied candidate conversion through browser, service and VM (26.3s)
+  ✓  12 frontend/tests/current.spec.js:6:1 › failed new submission cannot display a prior result as its outcome (4.1s)
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  13 frontend/tests/execution.spec.js:30:1 › current transfer browser/service/engine and offline VM replay using deterministic reconstructed RPC (23.1s)
+  -  14 frontend/tests/execution.spec.js:35:1 › live current transfer and refreshed transfer with exact offline VM replay
+  -  15 frontend/tests/execution.spec.js:39:1 › live bounded current market discovery and exact offline replay
+  -  16 frontend/tests/execution.spec.js:48:1 › live second catalogue asset transfers freshly captured OPENAI holdings
+  ✓  17 frontend/tests/multiasset.spec.js:8:1 › catalogue search, custom draft, unavailable source and original toggle preserve selection without submission (6.2s)
+  -  18 frontend/tests/multiasset.spec.js:21:1 › live generic browser-to-engine inspection: two catalogue stocks, custom mint, nonmint, invalid input, refresh and offline replay
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+  ✓  19 frontend/tests/preflight.spec.js:46:1 › prospective current SPACEX pre-flight reconstructed browser/service/VM (36.6s)
+  -  20 frontend/tests/preflight.spec.js:52:1 › live prospective current SPACEX pre-flight with new checks and refresh isolation
+  -  21 frontend/tests/preflight.spec.js:54:1 › live prospective OPENAI uses distinct hypothetical successor and fresh Transfer
+
+  ✓  22 frontend/tests/wallet.spec.js:18:1 › deterministic wallet browser/service/engine: multiple accounts, precision, focus, zero, errors, refresh and isolation (24.9s)
+  -  23 frontend/tests/wallet.spec.js:59:1 › live wallet browser acquisition with refresh, second asset, custom mint, zero target and offline replay
+
+  Slow test file: frontend/tests/analysis.spec.js (5.9m)
+  Consider running tests from slow files in parallel. See: https://playwright.dev/docs/test-parallel
+  7 skipped
+  16 passed (8.5m)
+EXIT:0

@@ -1,4 +1,46 @@
-# On-demand analysis — milestone 6 research checkpoint
+# On-demand analysis — milestone 6 operator-supplied conversion pre-flight
+
+Milestone 6 is delivered: an operator supplies the conversion plan they intend to
+deploy, and Eplyx executes that candidate plan against freshly captured current
+production state before rollout. The full delivery report is
+[here](on-demand-milestone-6-conversion.md).
+
+Fresh current wallet state + an operator-supplied candidate plan + a registered
+candidate mechanism → local Solana execution → exact old-token → replacement-token
+reconciliation → `ReplacementConversion` evidence → `CandidatePlanReadiness`.
+
+The mechanism is one repository-registered, hash-pinned program, **Eplyx Demo
+Candidate Conversion**. It is not deployed on any cluster, holds no issuer
+authority and is never presented as a PreStocks, SPACEX or issuer mechanism. It
+burns the observed source through the captured deployed token program and releases
+the replacement from a **proposed** reserve under a candidate program-derived
+authority, enforcing the exact ratio, rounding and conversion fee itself in checked
+integer arithmetic. No program code, instruction, account meta, transaction byte,
+filesystem path, RPC endpoint or claimed status can be supplied from the browser,
+and there is no upload path.
+
+A successful candidate plan makes `ReplacementConversion = Proven` and
+`CandidatePlanReadiness = Ready` for that exact account, amount, replacement asset,
+plan version, candidate program build and captured bank. It never makes
+`OfficialTransition` anything but **NotTested**, and full transition readiness stays
+**Incomplete**. The demo result — mobility Ready, candidate conversion plan Ready,
+official issuer transition not established, full issuer transition readiness
+Incomplete — is correct. Transfer, market exit, a DEX swap into the replacement
+token, successor-mint existence and an unrelated burn plus MintTo still never
+satisfy conversion. Refresh starts untested; no proof crosses runs.
+
+## Milestone 6 final validation
+
+`make test` **440 passing, 0 failed**; `make fmt-check` and `make lint` clean; **33/33** Node
+service tests; frontend build and check; the full browser suite **16 passed, 0 failed, 7
+skipped** (opt-in live capture); **8/8** mutation kills by named assertion with every source
+restored. **1061** historical data artifacts and **152** source/build identities are unchanged.
+The registered candidate mechanism is pinned at
+`a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b`. Browser cases A–E
+(no plan, candidate plan, failed candidate plan, refresh, second asset) all pass. No mainnet
+transaction is submitted and no later milestone is started.
+
+## Milestone 6 research checkpoint (completed earlier)
 
 Milestone 6's proof contract and a new bounded public SPACEX → SPCXx
 mechanism search are recorded in
@@ -23,6 +65,11 @@ remain **NotTested**; Full
 transition readiness remains **Incomplete**. Milestone 5 mobility evidence
 retains its original exact scope. This is a research checkpoint, not a claim
 that Milestone 6 conversion execution is complete.
+
+That section describes the research checkpoint's own boundary. The conversion
+execution delivered above is an **operator-supplied candidate** plan, not an
+issuer mechanism: it does not change the research finding, and the current
+`OfficialTransition` path still remains **NotTested**.
 
 ## Milestone 5 completed delivery
 

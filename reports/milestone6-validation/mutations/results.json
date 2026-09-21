@@ -1,0 +1,266 @@
+{
+  "injected": 8,
+  "killed": 8,
+  "sources_restored": true,
+  "source_sha256": {
+    "engine/src/conversion/current.rs": "c545c29576210e682e325d408f1b63da100017aa798838b3c40eae4cefdaffec",
+    "engine/src/conversion/demo.rs": "f8fee2c4b7b28a02f417f3ce6d8be65121facac13158dd03234557c37cefbda6",
+    "engine/src/conversion/mod.rs": "04bd353d6fc8d73321c533a389b00587a2d05fb3b35b0508b5a6d03e0f9d50a0",
+    "engine/src/preflight.rs": "c7c5940a68da81bb1d199ca91b712ef26c45234fedf47dbaf6d33a72e137b213",
+    "engine/src/readiness/mod.rs": "f959e153cd051432f7154537de529cdb40ce8c47c7a5d80c436fddca062f35e6"
+  },
+  "results": [
+    {
+      "mutation": "proven_without_execution",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "candidate_conversion",
+        "candidate_conversion_executes_the_actual_program_and_reconciles_exactly",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "proven_requires_an_actual_successful_vm_transaction",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/conversion/current.rs",
+          "before": "    eprintln!(\"CURRENT_STAGE:Running candidate conversion locally\");\n    let execution = executor::execute_probe_message(",
+          "after": "    if true {\n        let mut forged = result.clone();\n        forged[\"status\"] = serde_json::to_value(PathStatus::Proven)?;\n        forged[\"reconciliation\"] = json!({\"reconciled\":true});\n        return Ok(VerifiedReplacementConversion::new(forged));\n    }\n    eprintln!(\"CURRENT_STAGE:Running candidate conversion locally\");\n    let execution = executor::execute_probe_message(",
+          "mutated_sha256": "15bfd2a7bffed09e892cf718ba1bdcac9d7ff322da550764e94d158a8f0edc63"
+        }
+      ],
+      "log_sha256": "946ad7139f07805f752e53cd739cd55cab7616a1676633b6607edac82063f94d"
+    },
+    {
+      "mutation": "proposed_marked_observed",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "candidate_conversion",
+        "proposed_overlay_is_never_labelled_observed",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "config, authority, reserve and candidate program are proposed",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/conversion/demo.rs",
+          "before": "            origin: AccountOrigin::Proposed,\n            role: role.into(),",
+          "after": "            origin: AccountOrigin::Observed,\n            role: role.into(),",
+          "mutated_sha256": "3404b5e473431223f18e1a237581cdae7a7441e7c139642e47dadd08aa3a4e70"
+        },
+        {
+          "file": "engine/src/conversion/mod.rs",
+          "before": "pub fn validate_origins(accounts: &[FixtureAccount]) -> Result<()> {\n    for a in accounts {",
+          "after": "pub fn validate_origins(accounts: &[FixtureAccount]) -> Result<()> {\n    if !accounts.is_empty() { return Ok(()); }\n    for a in accounts {",
+          "mutated_sha256": "9f550e1f2fb1d7e5c1183a462a59dd8af76275c51cf2ebfb38d8095626347708"
+        }
+      ],
+      "log_sha256": "218994145c11d3e6a5a0205ed54e6ad1144d45d73530231c570f92d9a025df29"
+    },
+    {
+      "mutation": "ignored_replacement_credit",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "candidate_conversion",
+        "a_short_replacement_credit_fails_exact_reconciliation",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "short_replacement_credit_must_reject_proof",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/conversion/demo.rs",
+          "before": "            && credited == released - replacement_fee",
+          "after": "            && credited <= released",
+          "mutated_sha256": "3bd95d48104bbc6ed0b3692e179240c6d78d47beacb84980692fb22b4cff01c0"
+        }
+      ],
+      "log_sha256": "ff47aef15d1e9a4182d8c0d5169466c2571a3e4e209083bcf135752093b001d5"
+    },
+    {
+      "mutation": "ignored_ratio_rounding",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "candidate_conversion",
+        "a_release_that_ignores_the_terms_fails_reconciliation",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "release_outside_the_declared_terms_must_reject_proof",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/conversion/demo.rs",
+          "before": "            && released.to_string() == expected.replacement_gross_raw",
+          "after": "            && released > 0",
+          "mutated_sha256": "508e5296bf26fad9a253988ec9e2a88a82c6f964279d61ef0d92be50d5455002"
+        }
+      ],
+      "log_sha256": "15adeacaf9f748dab80880ee3d20837020a61a086a294698158d3cb64665b358"
+    },
+    {
+      "mutation": "operator_promoted_to_official",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_preflight",
+        "candidate_plan::a_proven_candidate_plan_makes_candidate_readiness_ready_and_nothing_else",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "operator_supplied_proof_must_not_report_an_official_transition",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/preflight.rs",
+          "before": "            \"official_transition\": PathStatus::NotTested, \"issuer_binding_established\": false,\n            \"reason\": v[\"reason\"],",
+          "after": "            \"official_transition\": status, \"issuer_binding_established\": true,\n            \"reason\": v[\"reason\"],",
+          "mutated_sha256": "217a38af931da43356590f3314b6ce64422caa48d59ce571eddb8b6a9c9c2ea6"
+        }
+      ],
+      "log_sha256": "6ab875a6036821a8da4e1534588d2c528c88591fd0efa8c0eebe12d2b63897c5"
+    },
+    {
+      "mutation": "inherited_across_refresh",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_preflight",
+        "candidate_plan::a_refreshed_run_cannot_inherit_candidate_conversion_proof",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "refresh_must_not_inherit_candidate_conversion_proof",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/conversion/current.rs",
+          "before": "            && c.run_id == run_id\n            && c.check_id == check_id",
+          "after": "            && !run_id.is_empty()\n            && c.check_id == check_id",
+          "mutated_sha256": "474497bf6bb134df55c0ab861e2d24fe9cdd75f96db74d10acfb75cca2e017db"
+        },
+        {
+          "file": "engine/src/preflight.rs",
+          "before": "        ensure!(\n            sha256(format!(\"{v}\\n\").as_bytes()) == evidence.result_sha256,\n            \"original candidate conversion result digest mismatch\"\n        );",
+          "after": "",
+          "mutated_sha256": "2cfecb9027173a12025b9d162637e97c1ddc41f9ac2c12c09254fb3a8d6d3ce1"
+        }
+      ],
+      "log_sha256": "2626d9ee259e27952cce79c47cc52331700b249d1d3fd2db645d6f51aaceb645"
+    },
+    {
+      "mutation": "market_exit_satisfies_conversion",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_preflight",
+        "candidate_plan::mobility_evidence_can_never_stand_in_for_a_candidate_conversion",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "mobility_proof_must_not_satisfy_candidate_conversion",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/preflight.rs",
+          "before": "    let mut conversion_facts: Vec<ConversionFact> = vec![];",
+          "after": "    let mut conversion_facts: Vec<ConversionFact> = vec![];\n    for row in paths.rows() {\n        for context in &row.contexts {\n            for a in &context.attempts {\n                if a.status == PathStatus::Proven {\n                    conversion_facts.push(ConversionFact {\n                        scope: readiness::EvidenceScope{asset_mint:state.mint.clone(),entity_id:format!(\"current:{run}:{}\",r.source),state_shape:readiness::StateShape::DirectTokenAccount,authority:state.owner.clone(),exact_amount_raw:None,range:None,bps_to_remove:None,venue:None,context_id:None,captured_slot:None,clock:None,capture_context:None,captured_state_sha256:Some(wallet_hash.into()),fixture_sha256:None,source_before_raw:None,scenario_sha256:scenario_hash.into()},\n                        status: PathStatus::Proven, provenance: conversion::PlanProvenance::OperatorSupplied,\n                        plan_sha256: \"0\".repeat(64), program_sha256: \"0\".repeat(64),\n                        replacement_mint: \"market\".into(), destination: String::new(),\n                        execution_attempted: true, reconciled: true, rollback_verified: None,\n                        holder_signer: SignerAssumption{authority:state.owner.clone(),signer_possession_known:false,signer_assumed_locally:true,wording:String::new()},\n                        candidate_authority_assumed_locally: true, issuer_binding_established: false,\n                        evidence_ids: vec![a.case_id.clone()], reason: String::new(),\n                    });\n                }\n            }\n        }\n    }",
+          "mutated_sha256": "e635e5c5f72606b269d739efb30c76f1f645c10a3d0f2d062a8d31bb31bb41c2"
+        }
+      ],
+      "log_sha256": "f8954081d67d4e399353b0ec626b1961fe1aea8672c5a1359e008e12b9b3c21d"
+    },
+    {
+      "mutation": "ignored_plan_and_program_digests",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "current_preflight",
+        "candidate_plan::candidate_evidence_is_exact_to_its_run_plan_program_and_result",
+        "--",
+        "--exact"
+      ],
+      "named_assertion": "exact_candidate_binding_must_be_required",
+      "killed_by_assertion": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/readiness/mod.rs",
+          "before": "                    && f.plan_sha256 == *plan_sha256\n                    && f.program_sha256 == *program_sha256\n                    && f.replacement_mint == *replacement_mint;",
+          "after": "                    && !plan_sha256.is_empty()\n                    && !program_sha256.is_empty()\n                    && !replacement_mint.is_empty();",
+          "mutated_sha256": "5417bde5917411bbc81cba4cb4b89e4359489ac4387252659cd6f682299c20b3"
+        },
+        {
+          "file": "engine/src/conversion/current.rs",
+          "before": "    ensure!(\n        sha256(program) == program_hash,\n        \"candidate program digest mismatch\"\n    );",
+          "after": "",
+          "mutated_sha256": "5681b9bc7d611da2a09d85cbb8c2949280fad4860231b6074b95b7eab414631b"
+        },
+        {
+          "file": "engine/src/conversion/current.rs",
+          "before": "    ensure!(\n        c.plan_sha256 == s.plan_sha256 && c.plan_sha256 == plan_hash,\n        \"conversion plan digest mismatch\"\n    );",
+          "after": "    ensure!(c.plan_sha256 == s.plan_sha256, \"conversion plan digest mismatch\");",
+          "mutated_sha256": "5681b9bc7d611da2a09d85cbb8c2949280fad4860231b6074b95b7eab414631b"
+        },
+        {
+          "file": "engine/src/preflight.rs",
+          "before": "        ensure!(\n            sha256(&program) == evidence.program_sha256,\n            \"candidate mechanism build differs from the recorded candidate program digest\"\n        );",
+          "after": "",
+          "mutated_sha256": "970734843a5878accd2cdbac12e48e975834e624e226ae274263181dfdeddbed"
+        },
+        {
+          "file": "engine/src/preflight.rs",
+          "before": "                && v[\"plan_sha256\"] == evidence.plan_sha256\n",
+          "after": "",
+          "mutated_sha256": "970734843a5878accd2cdbac12e48e975834e624e226ae274263181dfdeddbed"
+        }
+      ],
+      "log_sha256": "c443e24f9fed4dfd6b8b8ca3a60c3ed240eedea1bb9ec7454fbfd340247cf035"
+    }
+  ]
+}

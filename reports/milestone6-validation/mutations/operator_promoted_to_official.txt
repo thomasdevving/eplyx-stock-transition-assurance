@@ -1,0 +1,30 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 10.14s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test candidate_plan::a_proven_candidate_plan_makes_candidate_readiness_ready_and_nothing_else ... FAILED
+
+failures:
+
+---- candidate_plan::a_proven_candidate_plan_makes_candidate_readiness_ready_and_nothing_else stdout ----
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+
+thread 'candidate_plan::a_proven_candidate_plan_makes_candidate_readiness_ready_and_nothing_else' (11917039) panicked at engine/tests/current_preflight.rs:509:9:
+assertion `left == right` failed: operator_supplied_proof_must_not_report_an_official_transition
+  left: String("Proven")
+ right: "NotTested"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    candidate_plan::a_proven_candidate_plan_makes_candidate_readiness_ready_and_nothing_else
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 2.19s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

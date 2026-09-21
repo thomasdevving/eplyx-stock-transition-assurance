@@ -1,0 +1,1737 @@
+{
+  "id": "38e42201-701a-475d-a375-fb81c4751837",
+  "owner": "26759b74f49216083b516b878258bf03fac7a11b3bf785c93ee506953a41183d",
+  "request_key": "14021fb6-c9fb-4059-85a5-c7a535d077fd",
+  "selection": {
+    "asset": "mint",
+    "review": "current",
+    "stage": null,
+    "check": null,
+    "cluster": "solana-mainnet",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+    "sample_accounts": false,
+    "scope": "wallet",
+    "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+  },
+  "parent_run_id": "e493b696-ef87-4688-bc9b-0c90164fafd2",
+  "parent_capture_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+  "preflight_request": {
+    "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "conversion_check_id": "4326ea24-dd45-4a64-b1b4-90ce9d78ba3c",
+    "successor_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "effective_at": "2026-10-21T01:13:00.000Z",
+    "deadline": null,
+    "post_deadline": null,
+    "assurance": "FullTransition",
+    "check_ids": []
+  },
+  "status": "Completed",
+  "created_at": "2026-09-21T01:13:34.415Z",
+  "operation": "User-proposed prospective pre-flight over unchanged current observations",
+  "authorization": false,
+  "result": {
+    "authorization": false,
+    "bundle_sha256": "a839a0d33edf17f3f271a4feabeed707c144fe8a47fbcbcfed5d5ada181d0930",
+    "current_state": {
+      "account": {
+        "account_state": "Initialized",
+        "close_authority": null,
+        "delegate": null,
+        "delegated_amount": "0",
+        "extensions": [
+          {
+            "config": {
+              "withheldAmount": 0
+            },
+            "extension_type": "TransferFeeAmount",
+            "type_id": 2
+          },
+          {
+            "config": {},
+            "extension_type": "ImmutableOwner",
+            "type_id": 7
+          },
+          {
+            "config": {
+              "transferring": false
+            },
+            "extension_type": "TransferHookAccount",
+            "type_id": 15
+          },
+          {
+            "config": {},
+            "extension_type": "PausableAccount",
+            "type_id": 27
+          }
+        ],
+        "has_active_delegate": false,
+        "is_frozen": false,
+        "is_initialized": true,
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "native_reserve": null,
+        "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "raw_balance": "17621",
+        "ui_balance": "0.000017621",
+        "ui_balance_basis": "raw_balance / 10^decimals; no UI transform"
+      },
+      "acquisition": {
+        "commitment": "finalized",
+        "completed_at": "2026-09-21T01:13:28.893Z",
+        "consistency": "Separate RPC observations, not an atomic validator bank",
+        "context_slots": [
+          448573222,
+          448573222,
+          448573222
+        ],
+        "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+        "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+        "rpc_methods": [
+          "getGenesisHash",
+          "getAccountInfo",
+          "getAccountInfo",
+          "getTokenAccountsByOwner"
+        ],
+        "rpc_origin": "http://127.0.0.1:55524",
+        "started_at": "2026-09-21T01:13:27.853Z"
+      },
+      "captured_at": "2026-09-21T01:13:28.893Z",
+      "mint": {
+        "decimal_supply": "8742.506795473",
+        "decimals": 9,
+        "extensions": [
+          {
+            "config": {
+              "newerTransferFee": {
+                "epoch": 1039,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 100
+              },
+              "olderTransferFee": {
+                "epoch": 1032,
+                "maximumFee": 18446744073709552000,
+                "transferFeeBasisPoints": 50
+              },
+              "transferFeeConfigAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withdrawWithheldAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "withheldAmount": 916
+            },
+            "extension_type": "TransferFeeConfig",
+            "type_id": 1
+          },
+          {
+            "config": {
+              "auditorElgamalPubkey": null,
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "autoApproveNewAccounts": false
+            },
+            "extension_type": "ConfidentialTransferMint",
+            "type_id": 4
+          },
+          {
+            "config": {
+              "rawState": 1,
+              "state": "Initialized"
+            },
+            "extension_type": "DefaultAccountState",
+            "type_id": 6
+          },
+          {
+            "config": {
+              "delegate": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc"
+            },
+            "extension_type": "PermanentDelegate",
+            "type_id": 12
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "programId": null
+            },
+            "extension_type": "TransferHook",
+            "type_id": 14
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "harvestToMintEnabled": true,
+              "withdrawWithheldAuthorityElgamalPubkey": "YIHVbuQq0xDvW8g8vW1enaIBxIdrm7v+7EyEiMaHDmM=",
+              "withheldAmount": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
+            },
+            "extension_type": "ConfidentialTransferFeeConfig",
+            "type_id": 16
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "metadataAddress": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh"
+            },
+            "extension_type": "MetadataPointer",
+            "type_id": 18
+          },
+          {
+            "config": {
+              "additionalMetadata": [],
+              "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "name": "SpaceX PreStocks",
+              "symbol": "SPACEX",
+              "updateAuthority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "uri": "https://prestocks.com/metadata/spacex.json"
+            },
+            "extension_type": "TokenMetadata",
+            "type_id": 19
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "multiplier": 1,
+              "newMultiplier": 5,
+              "newMultiplierEffectiveTimestamp": 1781065800
+            },
+            "extension_type": "ScaledUiAmount",
+            "type_id": 25
+          },
+          {
+            "config": {
+              "authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+              "paused": false
+            },
+            "extension_type": "Pausable",
+            "type_id": 26
+          }
+        ],
+        "freeze_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "is_initialized": true,
+        "is_token_2022": true,
+        "mint_authority": "WV9PJN7XTmTLVwbutCLFxp8TyePee6Xq5mRq6Fti5Wc",
+        "raw_supply": "8742506795473",
+        "token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      }
+    },
+    "engine_sha256": "059ff0810ee6dfe4c13d71632b253a3a15fbf06edda3a6f2e7db76aa36845bb8",
+    "entity": {
+      "account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+      "balance_decimal": "0.000017621",
+      "balance_raw": "17621",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+    },
+    "execution_evidence": [],
+    "freshness_policy": "Evidence is pinned to these observed times and this run. No age-based promise or future-state prediction; refresh creates a new unverified run. Scenario re-evaluation performs no live check.",
+    "funds_moved": false,
+    "kind": "current-preflight",
+    "limitations": [
+      "UserProposed semantics are hypothetical, not issuer assertions or legal entitlement",
+      "Same captured bytes and balance at every policy time; future balances and liquidity are not predicted",
+      "Mobility readiness covers the exact selected tested amounts, recipients and routes only, with local signing assumed and possession unknown",
+      "Transfer and market sale never prove replacement-token conversion; no conversion ratio is inferred",
+      "Selected direct token account only; protocol positions and population readiness are not assessed",
+      "A proven operator-supplied candidate conversion is evidence about that supplied plan under its declared authority model; it never establishes an issuer-defined official transition"
+    ],
+    "paths": [
+      {
+        "contexts": [],
+        "discovery": {
+          "boundary": "Unresolved",
+          "evidence_ids": [
+            "current-wallet"
+          ],
+          "facts": [],
+          "limitations": [
+            "Proposed successor identity supplies no conversion mechanism or proof"
+          ],
+          "path_type": "OfficialTransition",
+          "reason": "No selected current-run execution on this path",
+          "requested_contexts": []
+        },
+        "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "evidence": [
+          {
+            "artifact": {
+              "file": "e493b696-ef87-4688-bc9b-0c90164fafd2.capture.json",
+              "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+            },
+            "description": "Exact current owner-scoped token account observation; no execution inferred",
+            "id": "current-wallet",
+            "kind": "ObservedOnchainState",
+            "reference": "run:e493b696-ef87-4688-bc9b-0c90164fafd2"
+          }
+        ],
+        "limitations": [
+          "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+          "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+          "Proposed successor identity supplies no conversion mechanism or proof",
+          "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+        ],
+        "path_type": "OfficialTransition",
+        "reason": "No selected current-run execution on this path",
+        "status": "NotTested"
+      },
+      {
+        "contexts": [],
+        "discovery": {
+          "boundary": "NoSupportedAdapter",
+          "evidence_ids": [
+            "current-wallet"
+          ],
+          "facts": [],
+          "limitations": [
+            "Proposed successor identity supplies no conversion mechanism or proof"
+          ],
+          "path_type": "Redemption",
+          "reason": "No redemption adapter is implemented",
+          "requested_contexts": []
+        },
+        "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "evidence": [
+          {
+            "artifact": {
+              "file": "e493b696-ef87-4688-bc9b-0c90164fafd2.capture.json",
+              "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+            },
+            "description": "Exact current owner-scoped token account observation; no execution inferred",
+            "id": "current-wallet",
+            "kind": "ObservedOnchainState",
+            "reference": "run:e493b696-ef87-4688-bc9b-0c90164fafd2"
+          }
+        ],
+        "limitations": [
+          "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+          "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+          "Proposed successor identity supplies no conversion mechanism or proof",
+          "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+        ],
+        "path_type": "Redemption",
+        "reason": "No redemption adapter is implemented",
+        "status": "Unsupported"
+      },
+      {
+        "contexts": [],
+        "discovery": {
+          "boundary": "Unresolved",
+          "evidence_ids": [
+            "current-wallet"
+          ],
+          "facts": [],
+          "limitations": [
+            "Proposed successor identity supplies no conversion mechanism or proof"
+          ],
+          "path_type": "SecondaryMarketExit",
+          "reason": "No selected current-run execution on this path",
+          "requested_contexts": []
+        },
+        "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "evidence": [
+          {
+            "artifact": {
+              "file": "e493b696-ef87-4688-bc9b-0c90164fafd2.capture.json",
+              "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+            },
+            "description": "Exact current owner-scoped token account observation; no execution inferred",
+            "id": "current-wallet",
+            "kind": "ObservedOnchainState",
+            "reference": "run:e493b696-ef87-4688-bc9b-0c90164fafd2"
+          }
+        ],
+        "limitations": [
+          "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+          "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+          "Proposed successor identity supplies no conversion mechanism or proof",
+          "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+        ],
+        "path_type": "SecondaryMarketExit",
+        "reason": "No selected current-run execution on this path",
+        "status": "NotTested"
+      },
+      {
+        "contexts": [],
+        "discovery": {
+          "boundary": "Unresolved",
+          "evidence_ids": [
+            "current-wallet"
+          ],
+          "facts": [],
+          "limitations": [
+            "Proposed successor identity supplies no conversion mechanism or proof"
+          ],
+          "path_type": "Transfer",
+          "reason": "No selected current-run execution on this path",
+          "requested_contexts": []
+        },
+        "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "evidence": [
+          {
+            "artifact": {
+              "file": "e493b696-ef87-4688-bc9b-0c90164fafd2.capture.json",
+              "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+            },
+            "description": "Exact current owner-scoped token account observation; no execution inferred",
+            "id": "current-wallet",
+            "kind": "ObservedOnchainState",
+            "reference": "run:e493b696-ef87-4688-bc9b-0c90164fafd2"
+          }
+        ],
+        "limitations": [
+          "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+          "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+          "Proposed successor identity supplies no conversion mechanism or proof",
+          "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+        ],
+        "path_type": "Transfer",
+        "reason": "No selected current-run execution on this path",
+        "status": "NotTested"
+      },
+      {
+        "contexts": [],
+        "discovery": {
+          "boundary": "Unresolved",
+          "evidence_ids": [
+            "current-wallet"
+          ],
+          "facts": [],
+          "limitations": [
+            "Proposed successor identity supplies no conversion mechanism or proof"
+          ],
+          "path_type": "Withdrawal",
+          "reason": "No selected current-run execution on this path",
+          "requested_contexts": []
+        },
+        "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "evidence": [
+          {
+            "artifact": {
+              "file": "e493b696-ef87-4688-bc9b-0c90164fafd2.capture.json",
+              "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+            },
+            "description": "Exact current owner-scoped token account observation; no execution inferred",
+            "id": "current-wallet",
+            "kind": "ObservedOnchainState",
+            "reference": "run:e493b696-ef87-4688-bc9b-0c90164fafd2"
+          }
+        ],
+        "limitations": [
+          "No inheritance across paths, entities, venues or unmeasured amounts; independent points do not establish intervals, proceeds or simultaneous capacity.",
+          "Original owner locally assumed to sign; signer possession/authorization and mainnet inclusion remain unproved.",
+          "Proposed successor identity supplies no conversion mechanism or proof",
+          "Unsupported describes the executor/evidence boundary, never non-existence or impossibility."
+        ],
+        "path_type": "Withdrawal",
+        "reason": "Direct wallet-compatible token account with no verified protocol/LP position in this entity context; a venue vault does not grant holder withdrawal rights.",
+        "status": "NotApplicable"
+      }
+    ],
+    "population_readiness": null,
+    "preflight_id": "38e42201-701a-475d-a375-fb81c4751837",
+    "preparation_status": "Prepared",
+    "proposed_change": {
+      "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+      "candidate_conversion_evidence": {
+        "capture_sha256": "61241adf21a47b2ddcfa27043f1432963ff9c0091c9ef19390e9b3f67956621b",
+        "engine_sha256": "059ff0810ee6dfe4c13d71632b253a3a15fbf06edda3a6f2e7db76aa36845bb8",
+        "id": "4326ea24-dd45-4a64-b1b4-90ce9d78ba3c",
+        "plan_sha256": "415e1b6186e7c4bfe9a66ac4bf1297d7bb460d418fb6df636e0bdd010b0aa234",
+        "program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+        "provenance": "OperatorSupplied",
+        "result_sha256": "e12dc63fb5ae05047d1d6214cf6051d6aa65f1abd925ae9809d5ca46e05a292c"
+      },
+      "conversion_ratio": null,
+      "created_at": "2026-09-21T01:13:34.415Z",
+      "created_for_run": "e493b696-ef87-4688-bc9b-0c90164fafd2",
+      "current_balance_raw": "17621",
+      "execution_evidence": [],
+      "focused_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "issuer_relationship_verified": false,
+      "lifecycle": {
+        "captured_at": "2026-09-21T01:13:34.415Z",
+        "change": {
+          "description": "User-proposed replacement-token transition against unchanged currently captured state"
+        },
+        "id": "38e42201-701a-475d-a375-fb81c4751837",
+        "policy": {
+          "after": "TransitionRequired",
+          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          "before": "Active",
+          "deadline": null,
+          "effective_at": "2026-10-21T01:13:00Z",
+          "successor": {
+            "description": "User-proposed association only; issuer relationship, ratio and mechanism unknown",
+            "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+          }
+        },
+        "scenario_type": "lifecycle_change",
+        "scenario_version": "current-proposed/v1",
+        "schema_version": 1,
+        "sources": [
+          {
+            "artifact": null,
+            "captured_at": "2026-09-21T01:13:34.415Z",
+            "content_sha256": null,
+            "description": "UserProposed, not issuer asserted or on-chain policy",
+            "id": "user-proposed",
+            "kind": "ScenarioAssumption",
+            "reference": "current-run:e493b696-ef87-4688-bc9b-0c90164fafd2",
+            "supports": [
+              "/policy/effective_at",
+              "/policy/before",
+              "/policy/after",
+              "/policy/successor"
+            ]
+          }
+        ]
+      },
+      "official_authorization": false,
+      "provenance": "User-provided hypothetical policy; current mint observations and local checks are separate evidence",
+      "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "scenario_id": "38e42201-701a-475d-a375-fb81c4751837",
+      "scenario_version": "current-proposed/v1",
+      "source": "UserProposed",
+      "source_asset": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "successor_asset": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "successor_capture_sha256": "cfb2e442fb387fedf2abf4c5588d0d1bcb9e0b0828fcbb7fd30c76d0f817748a",
+      "wallet_capture_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+    },
+    "replacement_conversion": {
+      "amount_decimal": "0.000001",
+      "amount_raw": "1000",
+      "candidate_mechanism": {
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "artifact": "artifacts/eplyx_demo_conversion.so",
+        "deployed_on_mainnet": false,
+        "id": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+        "issuer_mechanism": false,
+        "loader": "BPFLoader2111111111111111111111111111111111",
+        "name": "Eplyx Demo Candidate Conversion",
+        "note": "A candidate mechanism the operator intends to deploy. It is not deployed on any cluster and is not a PreStocks, SPACEX or issuer mechanism.",
+        "origin": "Proposed",
+        "program_id_preimage": "sha256(\"eplyx-demo-candidate-conversion-v1\")",
+        "program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+        "registered_by": "This repository",
+        "revision": "eplyx-demo-candidate-conversion-v1"
+      },
+      "check_id": "4326ea24-dd45-4a64-b1b4-90ce9d78ba3c",
+      "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+      "execution": {
+        "compute_units": 14448,
+        "error": null,
+        "inner_instructions": [
+          {
+            "accounts": [
+              "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+              "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+            ],
+            "data": "0fe80300000000000009",
+            "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "stack_height": 2
+          },
+          {
+            "accounts": [
+              "Biei5dNtv8tqPkQktYhm5c8ryzaSgmy8isEDUVp9iRX7",
+              "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+              "2HbLasn3CEgTztHbX8KgRqb99YhS6KDb2Qshh7MtxLy9"
+            ],
+            "data": "0cf40100000000000006",
+            "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "stack_height": 2
+          }
+        ],
+        "logs": [
+          "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+          "Program ComputeBudget111111111111111111111111111111 success",
+          "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf invoke [1]",
+          "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+          "Program log: Instruction: BurnChecked",
+          "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3346 of 1393186 compute units",
+          "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA invoke [2]",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA consumed 105 of 1387465 compute units",
+          "Program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA success",
+          "Program log: EPLYX_CANDIDATE_CONVERSION consumed=1000 conversion_fee=0 released=500 ratio=1/2 rounding=0",
+          "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf consumed 14298 of 1399850 compute units",
+          "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf success"
+        ],
+        "post_accounts": {
+          "2C9pkZGnkeFav71TJdJefKuAyk7hLLfHSBixVd47tX4r": {
+            "data": "0105dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa594c6fa7af3bedbad3a3d65f36aabc97431b1bbe4c2d2f6e0e47ca60203452f5d619f4051be9c6c086b500bce858f7f84d1e5929c3449f02d7a5c755a88746adbfa131bce3ab34ccf05dff935171d3c7ae1a37545f2d325748f7de757c68530792c010000000000000002000000000000000000000906ff",
+            "executable": false,
+            "lamports": "10000000",
+            "owner": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+            "rent_epoch": 0
+          },
+          "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs": {
+            "data": "05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5941cbe879701dd22b72aef7b3f71e5ce92bb5d3248b8970c64a56fcab13677d4d6ed4000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+            "executable": false,
+            "lamports": "2220240",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          },
+          "Biei5dNtv8tqPkQktYhm5c8ryzaSgmy8isEDUVp9iRX7": {
+            "data": "c6fa7af3bedbad3a3d65f36aabc97431b1bbe4c2d2f6e0e47ca60203452f5d61131bce3ab34ccf05dff935171d3c7ae1a37545f2d325748f7de757c68530792c0c0ea5d4e8000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "executable": false,
+            "lamports": "10000000",
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "rent_epoch": 18446744073709552000
+          },
+          "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i": {
+            "data": "c6fa7af3bedbad3a3d65f36aabc97431b1bbe4c2d2f6e0e47ca60203452f5d611cbe879701dd22b72aef7b3f71e5ce92bb5d3248b8970c64a56fcab13677d4d69604000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "executable": false,
+            "lamports": "2039280",
+            "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+            "rent_epoch": 18446744073709552000
+          },
+          "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": {
+            "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdde90d0386f3070000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd94030000000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f48e8286a00000000000000000000144012004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5941a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa594100000005370616365582050726553746f636b73060000005350414345582a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f7370616365782e6a736f6e00000000",
+            "executable": false,
+            "lamports": "1397830680",
+            "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+            "rent_epoch": 18446744073709552000
+          }
+        },
+        "success": true,
+        "transaction_fee_lamports": 10000
+      },
+      "execution_fixture_sha256": "53f01161d7360bc5ebf6d3afdfca21d05ec501530a5ec2905d2b5262b32fcf49",
+      "expected": {
+        "consumed_raw": "1000",
+        "conversion_fee_raw": "0",
+        "convertible_raw": "1000",
+        "replacement_gross_raw": "500"
+      },
+      "fixture_accounts": [
+        {
+          "address": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+          "data_len": 0,
+          "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "derivation": null,
+          "executable": false,
+          "lamports": 17533609,
+          "origin": "Observed",
+          "pointer": "/value/0",
+          "role": "holder-authority",
+          "rpc_record": 4,
+          "runtime_owner": "11111111111111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "3gvYRKWyXRR9xKWe1ZjPhLY5ZJRN7KDB4rFZFGoJfFk2",
+          "data_len": 108645,
+          "data_sha256": "573971c9baedda479bf4c38537787ae396358009b4920f8a270bd2b31dde5fe3",
+          "derivation": null,
+          "executable": false,
+          "lamports": 759682820,
+          "origin": "Observed",
+          "pointer": "/value/1",
+          "role": "deployed-program-data",
+          "rpc_record": 4,
+          "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+          "data_len": 191,
+          "data_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+          "derivation": null,
+          "executable": false,
+          "lamports": 2220240,
+          "origin": "Observed",
+          "pointer": "/value/2",
+          "role": "holder-source-token-account",
+          "rpc_record": 4,
+          "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "slot": 448573222
+        },
+        {
+          "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+          "data_len": 105032,
+          "data_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+          "derivation": null,
+          "executable": true,
+          "lamports": 3388612899,
+          "origin": "Observed",
+          "pointer": "/value/3",
+          "role": "deployed-token-or-ata-program",
+          "rpc_record": 4,
+          "runtime_owner": "BPFLoader2111111111111111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+          "data_len": 1382061,
+          "data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+          "derivation": null,
+          "executable": false,
+          "lamports": 9620035440,
+          "origin": "Observed",
+          "pointer": "/value/4",
+          "role": "deployed-program-data",
+          "rpc_record": 4,
+          "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "data_len": 82,
+          "data_sha256": "6f6d6382e353b608880bc778e3faa024e9b54de6cf5d3cf26f1403294bca1b1b",
+          "derivation": null,
+          "executable": false,
+          "lamports": 534673269469,
+          "origin": "Observed",
+          "pointer": "/value/5",
+          "role": "replacement-mint",
+          "rpc_record": 4,
+          "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "slot": 448573222
+        },
+        {
+          "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+          "data_len": 165,
+          "data_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+          "derivation": null,
+          "executable": false,
+          "lamports": 2039280,
+          "origin": "Observed",
+          "pointer": "/value/6",
+          "role": "holder-replacement-token-account",
+          "rpc_record": 4,
+          "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "slot": 448573222
+        },
+        {
+          "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          "data_len": 902,
+          "data_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+          "derivation": null,
+          "executable": false,
+          "lamports": 1397830680,
+          "origin": "Observed",
+          "pointer": "/value/7",
+          "role": "source-mint",
+          "rpc_record": 4,
+          "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "slot": 448573222
+        },
+        {
+          "address": "SysvarC1ock11111111111111111111111111111111",
+          "data_len": 40,
+          "data_sha256": "491ce435b6e683664f569c526819942f41d3ce45b1700531a5b3a112b9528068",
+          "derivation": null,
+          "executable": false,
+          "lamports": 1169280,
+          "origin": "Observed",
+          "pointer": "/value/8",
+          "role": "clock",
+          "rpc_record": 4,
+          "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "data_len": 36,
+          "data_sha256": "5b31219b7bc4060b1638b933be5f50df3400109acfef12408a196d57ad119748",
+          "derivation": null,
+          "executable": true,
+          "lamports": 200653906,
+          "origin": "Observed",
+          "pointer": "/value/9",
+          "role": "deployed-token-or-ata-program",
+          "rpc_record": 4,
+          "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "data_len": 36,
+          "data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+          "derivation": null,
+          "executable": true,
+          "lamports": 70128638,
+          "origin": "Observed",
+          "pointer": "/value/10",
+          "role": "deployed-token-or-ata-program",
+          "rpc_record": 4,
+          "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+          "slot": 448573222
+        },
+        {
+          "address": "2C9pkZGnkeFav71TJdJefKuAyk7hLLfHSBixVd47tX4r",
+          "data_len": 151,
+          "data_sha256": "2778fba2292b1402411f953be109df1b96833dcf14f0e0326aa46491d78a627c",
+          "derivation": "PDA([\"eplyx-candidate-config\", plan sha-256], candidate program)",
+          "executable": false,
+          "lamports": 10000000,
+          "origin": "Proposed",
+          "role": "candidate-config",
+          "runtime_owner": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+        },
+        {
+          "address": "2HbLasn3CEgTztHbX8KgRqb99YhS6KDb2Qshh7MtxLy9",
+          "data_len": 0,
+          "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "derivation": "PDA([\"eplyx-candidate-vault\", config], candidate program)",
+          "executable": false,
+          "lamports": 10000000,
+          "origin": "Proposed",
+          "role": "candidate-authority",
+          "runtime_owner": "11111111111111111111111111111111"
+        },
+        {
+          "address": "Biei5dNtv8tqPkQktYhm5c8ryzaSgmy8isEDUVp9iRX7",
+          "data_len": 165,
+          "data_sha256": "a6136c3eea965fd2f8c05de1d357ddbcca8fe449416c510faa73de96c0e1f673",
+          "derivation": "Associated token account of the candidate authority for the replacement mint",
+          "executable": false,
+          "lamports": 10000000,
+          "origin": "Proposed",
+          "role": "candidate-reserve",
+          "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "address": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+          "data_len": 42400,
+          "data_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+          "derivation": "Registered repository artifact artifacts/eplyx_demo_conversion.so; program id sha256(\"eplyx-demo-candidate-conversion-v1\"). Not deployed on any cluster.",
+          "executable": true,
+          "lamports": 10000000,
+          "origin": "Proposed",
+          "role": "candidate-conversion-program",
+          "runtime_owner": "BPFLoader2111111111111111111111111111111111"
+        }
+      ],
+      "issuer_binding_established": false,
+      "message": "This exact candidate mechanism worked against the state captured for this check.",
+      "observed_state": {
+        "holder_replacement_account_existed": true,
+        "origin": "Observed",
+        "replacement_decimals": 6,
+        "replacement_mint_inspection": "Independently captured in this check. Existence and layout only; no issuer relationship, ratio or economic equivalence is established.",
+        "replacement_token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "source_balance_before_raw": "17621",
+        "source_decimals": 9
+      },
+      "official_transition": "NotTested",
+      "plan": {
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "amount_decimal": "0.000001",
+        "amount_mode": "Custom",
+        "authority_model": {
+          "candidate_authority": "ProgramDerived",
+          "holder_signs": true
+        },
+        "id": "4326ea24-dd45-4a64-b1b4-90ce9d78ba3c",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "mechanism_ref": "Eplyx Demo Candidate Conversion (registered repository candidate)",
+        "provenance": "OperatorSupplied",
+        "replacement_delivery": "ProposedReserveRelease",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "schema_version": 1,
+        "source_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "source_consumption": "Burn",
+        "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "terms": {
+          "conversion_fee_bps": 0,
+          "ratio_denominator": 2,
+          "ratio_numerator": 1,
+          "rounding": "Floor"
+        },
+        "version": 1
+      },
+      "plan_sha256": "415e1b6186e7c4bfe9a66ac4bf1297d7bb460d418fb6df636e0bdd010b0aa234",
+      "proposed_overlay": {
+        "addresses": {
+          "config": "2C9pkZGnkeFav71TJdJefKuAyk7hLLfHSBixVd47tX4r",
+          "config_bump": 254,
+          "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+          "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+          "reserve_vault": "Biei5dNtv8tqPkQktYhm5c8ryzaSgmy8isEDUVp9iRX7",
+          "vault_authority": "2HbLasn3CEgTztHbX8KgRqb99YhS6KDb2Qshh7MtxLy9",
+          "vault_bump": 255
+        },
+        "note": "Deterministically derived from the candidate program, the plan digest and the observed replacement identity. None of it is observed mainnet state and none of it is issuer controlled.",
+        "origin": "Proposed",
+        "reserve_funded_replacement_raw": "1000000000000"
+      },
+      "provenance": "OperatorSupplied",
+      "reason": null,
+      "reconciliation": {
+        "account_data": [
+          {
+            "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+            "after_sha256": "349e3747d039ff234fa150b527a93c19821fecdd4c765826eae81fcc9f4654de",
+            "before_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+            "changed_ranges": [
+              {
+                "after": "ed40",
+                "before": "d544",
+                "offset": 64
+              }
+            ]
+          },
+          {
+            "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "after_sha256": "75ae7953ba4d397895e5730d8aa769aa6399ec8953a4b555109d4828490336cc",
+            "before_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+            "changed_ranges": [
+              {
+                "after": "e90d",
+                "before": "d111",
+                "offset": 36
+              }
+            ]
+          },
+          {
+            "address": "Biei5dNtv8tqPkQktYhm5c8ryzaSgmy8isEDUVp9iRX7",
+            "after_sha256": "4a1a30ab11f4a7310d59edec4b17bf5b6c1f89fa22fdc09968ce29c456043cec",
+            "before_sha256": "a6136c3eea965fd2f8c05de1d357ddbcca8fe449416c510faa73de96c0e1f673",
+            "changed_ranges": [
+              {
+                "after": "0c0e",
+                "before": "0010",
+                "offset": 64
+              }
+            ]
+          },
+          {
+            "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+            "after_sha256": "e222deaad06a737ee9c76e9fb859e73303fe2b5fdf8dc90d33615b78c44774c6",
+            "before_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+            "changed_ranges": [
+              {
+                "after": "9604",
+                "before": "a202",
+                "offset": 64
+              }
+            ]
+          },
+          {
+            "address": "2C9pkZGnkeFav71TJdJefKuAyk7hLLfHSBixVd47tX4r",
+            "after_sha256": "2778fba2292b1402411f953be109df1b96833dcf14f0e0326aa46491d78a627c",
+            "before_sha256": "2778fba2292b1402411f953be109df1b96833dcf14f0e0326aa46491d78a627c",
+            "changed_ranges": []
+          }
+        ],
+        "burn_cpi_observed": true,
+        "candidate_program_invoked": true,
+        "conversion_fee_raw": "0",
+        "convertible_raw": "1000",
+        "destination": {
+          "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+          "after_raw": "1174",
+          "before_raw": "674",
+          "change_decimal_base_units": "0.0005",
+          "change_raw": "500",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "withheld_fee_change_raw": "0"
+        },
+        "expected": {
+          "consumed_raw": "1000",
+          "conversion_fee_raw": "0",
+          "convertible_raw": "1000",
+          "replacement_gross_raw": "500"
+        },
+        "program_reported": "EPLYX_CANDIDATE_CONVERSION consumed=1000 conversion_fee=0 released=500 ratio=1/2 rounding=0",
+        "reconciled": true,
+        "reconciliation": [
+          "Source consumption: the holder account debited 1000 raw and the captured source mint supply fell by 1000 raw. The source is burned, not transferred, so no source Token-2022 transfer fee applies.",
+          "Candidate terms: conversion fee 0 raw taken first, 1000 raw convertible, ratio 1/2 with Floor rounding, expected release 500 raw.",
+          "Replacement delivery: the proposed reserve fell by 500 raw and the holder's replacement account rose by 500 raw with 0 raw withheld as a replacement-side Token-2022 transfer fee. Conversion fee and transfer fees are counted separately.",
+          "The registered candidate program executed and reported its own arithmetic: EPLYX_CANDIDATE_CONVERSION consumed=1000 conversion_fee=0 released=500 ratio=1/2 rounding=0.",
+          "Watched rollback on failed execution: false; transaction fees are paid separately by the synthetic payer."
+        ],
+        "release_cpi_observed": true,
+        "replacement_credit_decimal": "0.0005",
+        "replacement_public_credit_raw": "500",
+        "replacement_released_raw": "500",
+        "replacement_token_2022_transfer_fee_raw": "0",
+        "reserve": {
+          "address": "Biei5dNtv8tqPkQktYhm5c8ryzaSgmy8isEDUVp9iRX7",
+          "after_raw": "999999999500",
+          "before_raw": "1000000000000",
+          "change_decimal_base_units": "-0.0005",
+          "change_raw": "-500",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "withheld_fee_change_raw": "0"
+        },
+        "source": {
+          "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+          "after_raw": "16621",
+          "before_raw": "17621",
+          "change_decimal_base_units": "-0.000001",
+          "change_raw": "-1000",
+          "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          "withheld_fee_change_raw": "0"
+        },
+        "source_burned_raw": "1000",
+        "source_debited_raw": "1000",
+        "source_supply_after_raw": "8742506794473",
+        "source_supply_before_raw": "8742506795473",
+        "source_supply_change_raw": "-1000",
+        "source_token_2022_transfer_fee_raw": "0"
+      },
+      "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "status": "Proven"
+    },
+    "run_id": "e493b696-ef87-4688-bc9b-0c90164fafd2",
+    "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+    "schema_version": 1,
+    "selected_assurance": "FullTransition",
+    "successor_verification": {
+      "capture_sha256": "cfb2e442fb387fedf2abf4c5588d0d1bcb9e0b0828fcbb7fd30c76d0f817748a",
+      "conversion_ratio": null,
+      "issuer_relationship_verified": false,
+      "message": "Replacement mint exists on Solana",
+      "observation": {
+        "account_observation": {
+          "executable": false,
+          "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "slot": 448573222,
+          "space": 82
+        },
+        "accounts": [],
+        "acquisition": {
+          "commitment": "finalized",
+          "completed_at": "2026-09-21T01:13:30.514Z",
+          "consistency": "Separate RPC observations, not an atomic validator bank",
+          "context_slots": [
+            448573222
+          ],
+          "decoder": "spl-token-2022-interface/3.1.1; current-observation/v1",
+          "genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+          "rpc_origin": "http://127.0.0.1:55524",
+          "started_at": "2026-09-21T01:13:29.989Z"
+        },
+        "asset": {
+          "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+          "expected_token_program": null,
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "name": "Custom token address",
+          "verification": []
+        },
+        "authorization": false,
+        "discovery": {
+          "complete_population": false,
+          "gaps": [],
+          "maximum_sample_accounts": 20,
+          "method": "getTokenLargestAccounts + getMultipleAccounts",
+          "requested": false,
+          "sample_count": null,
+          "status": "NotRequested",
+          "technical_errors": []
+        },
+        "execution_performed": false,
+        "funds_moved": false,
+        "identity_mismatches": [],
+        "identity_provenance": "Stock/issuer association unconfirmed. A token name or symbol is not issuer evidence.",
+        "inspection": {
+          "account_type": "Mint",
+          "message": "Current token information retrieved",
+          "status": "Completed"
+        },
+        "kind": "current-inspection",
+        "lifecycle_event": null,
+        "limitations": [
+          "Largest-account sampling is not a holder population or wallet lookup.",
+          "No protocol position, market route, token transfer, withdrawal or official conversion was tested.",
+          "No lifecycle event or assurance policy was selected; this is not a readiness verdict.",
+          "Mint supply, public account balances and withheld fees are separate quantities; no reconciliation across RPC contexts is claimed.",
+          "Amounts are unscaled token quantities, not company shares or valuations. Confidential balances are not known zero. Extension presence alone is not active behavior."
+        ],
+        "local_execution_performed": false,
+        "mint": {
+          "decimal_supply": "8021320775.28262",
+          "decimals": 6,
+          "extensions": [],
+          "freeze_authority": "7dGbd2QZcCKcTndnHcTL8q7SMVXAkp688NTQYwrRCrar",
+          "is_initialized": true,
+          "is_token_2022": false,
+          "mint_authority": "BJE5MMbqXjVwjAF7oxwPYXnTXDyspzZyt4vwenNw5ruG",
+          "raw_supply": "8021320775282620",
+          "token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        "mint_slot": 448573222,
+        "onchain_metadata": null,
+        "paths": [
+          {
+            "path": "OfficialTransition",
+            "reason": "Fresh execution is not wired for this observation milestone.",
+            "status": "NotTested"
+          },
+          {
+            "path": "Redemption",
+            "reason": "Fresh execution is not wired for this observation milestone.",
+            "status": "NotTested"
+          },
+          {
+            "path": "SecondaryMarketExit",
+            "reason": "Fresh execution is not wired for this observation milestone.",
+            "status": "NotTested"
+          },
+          {
+            "path": "Transfer",
+            "reason": "Fresh execution is not wired for this observation milestone.",
+            "status": "NotTested"
+          },
+          {
+            "path": "Withdrawal",
+            "reason": "Fresh execution is not wired for this observation milestone.",
+            "status": "NotTested"
+          }
+        ],
+        "readiness": null,
+        "schema_version": 2,
+        "selection": {
+          "cluster": "solana-mainnet",
+          "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+          "reference": null,
+          "sample_accounts": false
+        },
+        "signer_assumed_locally": false,
+        "signer_possession_known": false
+      },
+      "status": "MintObserved"
+    },
+    "views": [
+      {
+        "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+        "balance_raw": "17621",
+        "evaluated_at": "2026-09-21T01:13:34.415Z",
+        "gate_applicability": "PreEvent",
+        "id": "BeforeProposedEvent",
+        "impact": "Unaffected",
+        "lifecycle_status": "Active",
+        "paths": [
+          {
+            "lifecycle_relevant": false,
+            "path": "OfficialTransition",
+            "status": "NotTested"
+          },
+          {
+            "lifecycle_relevant": false,
+            "path": "Redemption",
+            "status": "Unsupported"
+          },
+          {
+            "lifecycle_relevant": false,
+            "path": "SecondaryMarketExit",
+            "status": "NotTested"
+          },
+          {
+            "lifecycle_relevant": false,
+            "path": "Transfer",
+            "status": "NotTested"
+          },
+          {
+            "lifecycle_relevant": false,
+            "path": "Withdrawal",
+            "status": "NotApplicable"
+          }
+        ],
+        "readiness": null,
+        "reason": "Positive public token amount retains Active lifecycle semantics under this policy",
+        "technical_state": "Unchanged"
+      },
+      {
+        "account_sha256": "a2d999fb51f2d41d9604558ecf1388e1aeca4c7b05e0c0edc1f87236dc325c8f",
+        "balance_raw": "17621",
+        "evaluated_at": "2026-10-21T01:13:00Z",
+        "gate_applicability": "Applicable",
+        "id": "ProposedActive",
+        "impact": "RequiresTransition",
+        "lifecycle_status": "TransitionRequired",
+        "paths": [
+          {
+            "lifecycle_relevant": true,
+            "path": "OfficialTransition",
+            "status": "NotTested"
+          },
+          {
+            "lifecycle_relevant": true,
+            "path": "Redemption",
+            "status": "Unsupported"
+          },
+          {
+            "lifecycle_relevant": true,
+            "path": "SecondaryMarketExit",
+            "status": "NotTested"
+          },
+          {
+            "lifecycle_relevant": true,
+            "path": "Transfer",
+            "status": "NotTested"
+          },
+          {
+            "lifecycle_relevant": false,
+            "path": "Withdrawal",
+            "status": "NotApplicable"
+          }
+        ],
+        "readiness": {
+          "candidate_plan": {
+            "authorization": false,
+            "conversion_evidence": [
+              {
+                "candidate_authority_assumed_locally": true,
+                "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+                "evidence_ids": [
+                  "4326ea24-dd45-4a64-b1b4-90ce9d78ba3c"
+                ],
+                "execution_attempted": true,
+                "holder_signer": {
+                  "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                  "signer_assumed_locally": true,
+                  "signer_possession_known": false,
+                  "wording": "Local holder signature assumed; possession unknown"
+                },
+                "issuer_binding_established": false,
+                "plan_sha256": "415e1b6186e7c4bfe9a66ac4bf1297d7bb460d418fb6df636e0bdd010b0aa234",
+                "program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+                "provenance": "OperatorSupplied",
+                "reason": "Operator-supplied candidate plan executed locally against this exact captured state; issuer binding is a separate, unestablished fact",
+                "reconciled": true,
+                "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                "rollback_verified": null,
+                "scope": {
+                  "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                  "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                  "bps_to_remove": null,
+                  "capture_context": "CurrentFinalizedProduction",
+                  "captured_slot": 448573222,
+                  "captured_state_sha256": "61241adf21a47b2ddcfa27043f1432963ff9c0091c9ef19390e9b3f67956621b",
+                  "clock": {
+                    "epoch": 1038,
+                    "epoch_start_timestamp": 1789823115,
+                    "leader_schedule_epoch": 1039,
+                    "slot": 448573222,
+                    "unix_timestamp": 1789865120
+                  },
+                  "context_id": "candidate-conversion:4326ea24-dd45-4a64-b1b4-90ce9d78ba3c",
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "exact_amount_raw": "1000",
+                  "fixture_sha256": "53f01161d7360bc5ebf6d3afdfca21d05ec501530a5ec2905d2b5262b32fcf49",
+                  "range": null,
+                  "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                  "source_before_raw": "17621",
+                  "state_shape": "DirectTokenAccount",
+                  "venue": null
+                },
+                "status": "Proven"
+              }
+            ],
+            "entity": [
+              {
+                "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "requirement_ids": [
+                  "candidate-conversion",
+                  "observed-and-isolated"
+                ],
+                "status": "Ready"
+              }
+            ],
+            "findings": [
+              {
+                "effect": "Satisfied",
+                "evidence_ids": [
+                  "4326ea24-dd45-4a64-b1b4-90ce9d78ba3c"
+                ],
+                "expected": "The declared candidate conversion plan must have actually executed and reconciled at this exact account, amount, replacement asset, plan version and candidate program build.",
+                "label": "The supplied candidate conversion plan executed and reconciled for this exact account and amount",
+                "observed": [
+                  "Candidate conversion Proven under OperatorSupplied provenance; entity current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs; amount Some(\"1000\"); replacement EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v; plan 415e1b6186e7c4bfe9a66ac4bf1297d7bb460d418fb6df636e0bdd010b0aa234; candidate program a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b; exact scope true. Issuer binding established: false. Operator-supplied candidate plan executed locally against this exact captured state; issuer binding is a separate, unestablished fact"
+                ],
+                "reason": "This is evidence about the supplied candidate plan under its declared authority model only. It never establishes an issuer-defined official transition, an issuer relationship or any authorization.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "candidate-conversion",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              },
+              {
+                "effect": "Satisfied",
+                "evidence_ids": [
+                  "e493b696-ef87-4688-bc9b-0c90164fafd2"
+                ],
+                "expected": "No path/entity/venue/amount/fee/closure proof escalation.",
+                "label": "Selected current account observed; exact evidence isolation",
+                "observed": [
+                  "Evidence identity/scope isolation verified: true."
+                ],
+                "reason": "The gate consumes only pinned measurements with explicit source and scope bindings; no readiness finding grants new execution evidence.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "observed-and-isolated",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              }
+            ],
+            "official_transition_established": false,
+            "path_evidence": [],
+            "policy": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "description": "Selected entity demonstration assurance; successful exact tested amounts do not prove whole-balance or future actionability. Missing and failed alternatives remain incomplete, not blocking.",
+              "evaluated_scope": "DemoEntityReadiness",
+              "evidence_manifest": {
+                "file": "run:e493b696-ef87-4688-bc9b-0c90164fafd2",
+                "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+              },
+              "id": "current-candidate-conversion-v1",
+              "not_issuer_policy": true,
+              "policy_type": "DemoAssurancePolicy",
+              "requirements": [
+                {
+                  "condition": {
+                    "kind": "CandidateConversion",
+                    "plan_sha256": "415e1b6186e7c4bfe9a66ac4bf1297d7bb460d418fb6df636e0bdd010b0aa234",
+                    "program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+                    "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                    "scope": {
+                      "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                      "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                      "bps_to_remove": null,
+                      "capture_context": "CurrentFinalizedProduction",
+                      "captured_slot": 448573222,
+                      "captured_state_sha256": "61241adf21a47b2ddcfa27043f1432963ff9c0091c9ef19390e9b3f67956621b",
+                      "clock": {
+                        "epoch": 1038,
+                        "epoch_start_timestamp": 1789823115,
+                        "leader_schedule_epoch": 1039,
+                        "slot": 448573222,
+                        "unix_timestamp": 1789865120
+                      },
+                      "context_id": "candidate-conversion:4326ea24-dd45-4a64-b1b4-90ce9d78ba3c",
+                      "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                      "exact_amount_raw": "1000",
+                      "fixture_sha256": "53f01161d7360bc5ebf6d3afdfca21d05ec501530a5ec2905d2b5262b32fcf49",
+                      "range": null,
+                      "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                      "source_before_raw": "17621",
+                      "state_shape": "DirectTokenAccount",
+                      "venue": null
+                    }
+                  },
+                  "id": "candidate-conversion",
+                  "label": "The supplied candidate conversion plan executed and reconciled for this exact account and amount",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "condition": {
+                    "kind": "EvidenceIsolation"
+                  },
+                  "id": "observed-and-isolated",
+                  "label": "Selected current account observed; exact evidence isolation",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                }
+              ],
+              "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+              "schema_version": 1
+            },
+            "policy_sha256": "d6fb7b75193cded4e4fb95283a302d8cd42ea9934611cc851cbf2f497c8406dc",
+            "population_readiness": null,
+            "question": "Does this supplied conversion plan work for this exact selected current account and amount?",
+            "scope": "CandidateConversionPlanReadiness",
+            "status": "Ready"
+          },
+          "full_transition": {
+            "authorization": false,
+            "entity": [
+              {
+                "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "requirement_ids": [
+                  "mobility",
+                  "observed-and-isolated",
+                  "official-conversion"
+                ],
+                "status": "Incomplete"
+              }
+            ],
+            "findings": [
+              {
+                "effect": "IncompleteEvidence",
+                "evidence_ids": [],
+                "expected": "At least one declared exact path must be Proven, reconciled and compatible with the policy's signer assumptions.",
+                "label": "At least one selected exact mobility test is Proven",
+                "observed": [
+                  "No matching scoped evidence."
+                ],
+                "reason": "Path identity, asset/entity/authority/amount/range/venue/fixture/bank/scenario must match; missing or incompatible proof is not execution failure.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "mobility",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              },
+              {
+                "effect": "Satisfied",
+                "evidence_ids": [
+                  "e493b696-ef87-4688-bc9b-0c90164fafd2"
+                ],
+                "expected": "No path/entity/venue/amount/fee/closure proof escalation.",
+                "label": "Selected current account observed; exact evidence isolation",
+                "observed": [
+                  "Evidence identity/scope isolation verified: true."
+                ],
+                "reason": "The gate consumes only pinned measurements with explicit source and scope bindings; no readiness finding grants new execution evidence.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "observed-and-isolated",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              },
+              {
+                "effect": "IncompleteEvidence",
+                "evidence_ids": [],
+                "expected": "At least one declared exact path must be Proven, reconciled and compatible with the policy's signer assumptions.",
+                "label": "Actual replacement-token conversion must be independently Proven",
+                "observed": [
+                  "No matching scoped evidence."
+                ],
+                "reason": "Path identity, asset/entity/authority/amount/range/venue/fixture/bank/scenario must match; missing or incompatible proof is not execution failure.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "official-conversion",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              }
+            ],
+            "path_evidence": [],
+            "policy": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "description": "Selected entity demonstration assurance; successful exact tested amounts do not prove whole-balance or future actionability. Missing and failed alternatives remain incomplete, not blocking.",
+              "evaluated_scope": "DemoEntityReadiness",
+              "evidence_manifest": {
+                "file": "run:e493b696-ef87-4688-bc9b-0c90164fafd2",
+                "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+              },
+              "id": "current-full-transition-v1",
+              "not_issuer_policy": true,
+              "policy_type": "DemoAssurancePolicy",
+              "requirements": [
+                {
+                  "condition": {
+                    "any_of": [
+                      {
+                        "accepted_statuses": [
+                          "Proven"
+                        ],
+                        "allow_local_signer_assumption": true,
+                        "blocking_statuses": [],
+                        "path_type": "SecondaryMarketExit",
+                        "scope": {
+                          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                          "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                          "bps_to_remove": null,
+                          "capture_context": null,
+                          "captured_slot": null,
+                          "captured_state_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+                          "clock": null,
+                          "context_id": null,
+                          "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                          "exact_amount_raw": null,
+                          "fixture_sha256": null,
+                          "range": null,
+                          "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                          "source_before_raw": null,
+                          "state_shape": "DirectTokenAccount",
+                          "venue": null
+                        }
+                      },
+                      {
+                        "accepted_statuses": [
+                          "Proven"
+                        ],
+                        "allow_local_signer_assumption": true,
+                        "blocking_statuses": [],
+                        "path_type": "Transfer",
+                        "scope": {
+                          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                          "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                          "bps_to_remove": null,
+                          "capture_context": null,
+                          "captured_slot": null,
+                          "captured_state_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+                          "clock": null,
+                          "context_id": null,
+                          "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                          "exact_amount_raw": null,
+                          "fixture_sha256": null,
+                          "range": null,
+                          "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                          "source_before_raw": null,
+                          "state_shape": "DirectTokenAccount",
+                          "venue": null
+                        }
+                      }
+                    ],
+                    "kind": "Path"
+                  },
+                  "id": "mobility",
+                  "label": "At least one selected exact mobility test is Proven",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "condition": {
+                    "kind": "EvidenceIsolation"
+                  },
+                  "id": "observed-and-isolated",
+                  "label": "Selected current account observed; exact evidence isolation",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "condition": {
+                    "any_of": [
+                      {
+                        "accepted_statuses": [
+                          "Proven"
+                        ],
+                        "allow_local_signer_assumption": true,
+                        "blocking_statuses": [],
+                        "path_type": "OfficialTransition",
+                        "scope": {
+                          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                          "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                          "bps_to_remove": null,
+                          "capture_context": null,
+                          "captured_slot": null,
+                          "captured_state_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+                          "clock": null,
+                          "context_id": null,
+                          "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                          "exact_amount_raw": null,
+                          "fixture_sha256": null,
+                          "range": null,
+                          "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                          "source_before_raw": null,
+                          "state_shape": "DirectTokenAccount",
+                          "venue": null
+                        }
+                      }
+                    ],
+                    "kind": "Path"
+                  },
+                  "id": "official-conversion",
+                  "label": "Actual replacement-token conversion must be independently Proven",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                }
+              ],
+              "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+              "schema_version": 1
+            },
+            "policy_sha256": "64296d7dcc68523c4abe7b432e196cd48159313be08492c4301ee9962fa5d702",
+            "population_readiness": null,
+            "scope": "SelectedEntityPreflightReadiness",
+            "status": "Incomplete"
+          },
+          "mobility": {
+            "authorization": false,
+            "entity": [
+              {
+                "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                "requirement_ids": [
+                  "mobility",
+                  "observed-and-isolated"
+                ],
+                "status": "Incomplete"
+              }
+            ],
+            "findings": [
+              {
+                "effect": "IncompleteEvidence",
+                "evidence_ids": [],
+                "expected": "At least one declared exact path must be Proven, reconciled and compatible with the policy's signer assumptions.",
+                "label": "At least one selected exact mobility test is Proven",
+                "observed": [
+                  "No matching scoped evidence."
+                ],
+                "reason": "Path identity, asset/entity/authority/amount/range/venue/fixture/bank/scenario must match; missing or incompatible proof is not execution failure.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "mobility",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              },
+              {
+                "effect": "Satisfied",
+                "evidence_ids": [
+                  "e493b696-ef87-4688-bc9b-0c90164fafd2"
+                ],
+                "expected": "No path/entity/venue/amount/fee/closure proof escalation.",
+                "label": "Selected current account observed; exact evidence isolation",
+                "observed": [
+                  "Evidence identity/scope isolation verified: true."
+                ],
+                "reason": "The gate consumes only pinned measurements with explicit source and scope bindings; no readiness finding grants new execution evidence.",
+                "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                "required": true,
+                "requirement_id": "observed-and-isolated",
+                "scope": {
+                  "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                  "kind": "Entity"
+                }
+              }
+            ],
+            "path_evidence": [],
+            "policy": {
+              "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+              "description": "Selected entity demonstration assurance; successful exact tested amounts do not prove whole-balance or future actionability. Missing and failed alternatives remain incomplete, not blocking.",
+              "evaluated_scope": "DemoEntityReadiness",
+              "evidence_manifest": {
+                "file": "run:e493b696-ef87-4688-bc9b-0c90164fafd2",
+                "sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+              },
+              "id": "current-mobility-v1",
+              "not_issuer_policy": true,
+              "policy_type": "DemoAssurancePolicy",
+              "requirements": [
+                {
+                  "condition": {
+                    "any_of": [
+                      {
+                        "accepted_statuses": [
+                          "Proven"
+                        ],
+                        "allow_local_signer_assumption": true,
+                        "blocking_statuses": [],
+                        "path_type": "SecondaryMarketExit",
+                        "scope": {
+                          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                          "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                          "bps_to_remove": null,
+                          "capture_context": null,
+                          "captured_slot": null,
+                          "captured_state_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+                          "clock": null,
+                          "context_id": null,
+                          "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                          "exact_amount_raw": null,
+                          "fixture_sha256": null,
+                          "range": null,
+                          "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                          "source_before_raw": null,
+                          "state_shape": "DirectTokenAccount",
+                          "venue": null
+                        }
+                      },
+                      {
+                        "accepted_statuses": [
+                          "Proven"
+                        ],
+                        "allow_local_signer_assumption": true,
+                        "blocking_statuses": [],
+                        "path_type": "Transfer",
+                        "scope": {
+                          "asset_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+                          "authority": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+                          "bps_to_remove": null,
+                          "capture_context": null,
+                          "captured_slot": null,
+                          "captured_state_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+                          "clock": null,
+                          "context_id": null,
+                          "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                          "exact_amount_raw": null,
+                          "fixture_sha256": null,
+                          "range": null,
+                          "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+                          "source_before_raw": null,
+                          "state_shape": "DirectTokenAccount",
+                          "venue": null
+                        }
+                      }
+                    ],
+                    "kind": "Path"
+                  },
+                  "id": "mobility",
+                  "label": "At least one selected exact mobility test is Proven",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                },
+                {
+                  "condition": {
+                    "kind": "EvidenceIsolation"
+                  },
+                  "id": "observed-and-isolated",
+                  "label": "Selected current account observed; exact evidence isolation",
+                  "remediation_requirement": "Run an available exact-scope local check, or independently establish and execute the conversion mechanism; then re-evaluate",
+                  "required": true,
+                  "rollout_assumption": "Selected account only, under captured-state and assumed local signing; no future liquidity assurance",
+                  "target": {
+                    "entity_id": "current:e493b696-ef87-4688-bc9b-0c90164fafd2:741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+                    "kind": "Entity"
+                  }
+                }
+              ],
+              "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+              "schema_version": 1
+            },
+            "policy_sha256": "381ce531c2940ab090d6b36b6ebf1b918d3a85a9be34a835c9af72389edd1744",
+            "population_readiness": null,
+            "scope": "SelectedEntityPreflightReadiness",
+            "status": "Incomplete"
+          }
+        },
+        "reason": "Positive public token amount is subject to the scenario transition requirement; owner role and executable transition path are not inferred",
+        "technical_state": "Unchanged"
+      }
+    ],
+    "wallet_capture_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+  },
+  "error": null,
+  "started_at": "2026-09-21T01:13:34.526Z",
+  "engine_sha256": "059ff0810ee6dfe4c13d71632b253a3a15fbf06edda3a6f2e7db76aa36845bb8",
+  "stage": "Preparing evidence",
+  "scenario_sha256": "bff4e725ce08d01da7216b33cedc043df6e21e454dc420a4f5c2d7dacfa21d16",
+  "capture_sha256": "a839a0d33edf17f3f271a4feabeed707c144fe8a47fbcbcfed5d5ada181d0930",
+  "engine_exit_code": 0,
+  "canonical_sha256": "98f5dd41b49aba90907681e9cc60e79eefa19e559a5740be0600d40ed0d9d280",
+  "completed_at": "2026-09-21T01:13:35.785Z"
+}

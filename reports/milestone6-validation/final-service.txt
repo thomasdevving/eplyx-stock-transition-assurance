@@ -1,0 +1,48 @@
+
+> eplyx-stock-transition@0.1.0 test:service
+> node --test frontend/tests/*.test.mjs
+
+(node:3101) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ retained first-party flight JSON provides nine real canonical mint identities, no script execution (2.143917ms)
+✔ parser rejects missing and malformed fields; duplicate names remain distinct; conflicting assertions retained (0.439167ms)
+✔ catalogue binding rejects a reviewed version combined with another mint (6.422333ms)
+✔ real Solana parser accepts custom and off-curve addresses and rejects malformed addresses (82.391625ms)
+✔ same mint and immutable source reference flow into structured arguments, captures, result, refresh and restart (309.42175ms)
+✔ changed catalogue versions cannot rewrite earlier pinned references (10.495084ms)
+✔ cross-asset results, source mismatches, proof and lifecycle inheritance are rejected (2.037834ms)
+✔ consumer rendering escapes names and metadata and retains exact amounts without external fetch markup (26.972833ms)
+✔ failed catalogue import is retained and a dated saved catalogue remains usable (24.708458ms)
+✔ the browser can choose bounded terms only, never code, accounts, paths, endpoints or a status (2.238375ms)
+✔ the server fixes the mechanism, provenance and design of every plan (0.19525ms)
+✔ a candidate conversion plan really executes, reconciles and stays separate from an official transition (4456.74075ms)
+✔ a candidate plan is rejected across sessions, parents and identities before any acquisition (45.800625ms)
+✔ prospective structured fields reject proof, programs, paths and unsupported semantics (2.813334ms)
+✔ real offline preflight persists bound scenario and survives restart with zero acquisition (564.346375ms)
+✔ preflight rejects cross-session, refresh, focus and invalid time before acquisition (156.311458ms)
+✔ allowlist rejects commands paths addresses endpoints unknown assets and decorative selections (1.665583ms)
+✔ completed policy outcomes 0 3 4 5 stay separate from processing errors (6.320708ms)
+✔ duplicate concurrent requests invoke one job and serialized jobs stay bounded (515.052625ms)
+✔ timeout verification failure and missing executable yield honest errors without result (158.371334ms)
+✔ actual child timeout and nonzero verification exit are errors (81.67625ms)
+✔ restart makes interrupted job an error rather than silently restarting it (1.647083ms)
+✔ integer formatting never loses large values or rounds small positives to zero (18.609333ms)
+✔ real engine rejects a tampered isolated trust binding server-side (91.262416ms)
+✔ all scenario dates and example scopes select the actual engine view without changing proof (36.173ms)
+✔ current requests accept no saved scenario, endpoint, evidence, or filesystem scope (0.925ms)
+✔ new captures never accept historical statuses or readiness grants (0.7305ms)
+✔ refresh invokes acquisition again and keeps scoped capture digests, sessions and prior run (267.674708ms)
+✔ fresh acquisition failure never runs the historical engine or substitutes a saved result (90.60875ms)
+✔ wallet scope requires exact public owner and rejects injected settings and historical proof (19.429083ms)
+✔ decimal formatting preserves u8 mint precision without floating point (1.122917ms)
+✔ current execution API rejects caller-supplied proof programs instructions and cross-session parent (1.43525ms)
+✔ offline execution child receives no provider or unrelated secret environment (104.3215ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4634.158334
+EXIT:0

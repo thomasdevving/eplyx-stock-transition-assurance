@@ -1,0 +1,4 @@
+cargo fmt --all -- --check
+cargo fmt --all --manifest-path programs/fixture-lending/Cargo.toml -- --check
+cargo fmt --all --manifest-path programs/eplyx-demo-conversion/Cargo.toml -- --check
+EXIT:0

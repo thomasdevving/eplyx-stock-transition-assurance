@@ -1,0 +1,43 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (/Users/thomas/Downloads/eplyx-stock-transition/engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.44s
+     Running tests/current_preflight.rs (target/debug/deps/current_preflight-2782d3521af5f056)
+
+running 1 test
+test candidate_plan::mobility_evidence_can_never_stand_in_for_a_candidate_conversion ... FAILED
+
+failures:
+
+---- candidate_plan::mobility_evidence_can_never_stand_in_for_a_candidate_conversion stdout ----
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running candidate conversion locally
+CURRENT_STAGE:Reconciling conversion
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+CURRENT_STAGE:Discovering a supported current route
+CURRENT_STAGE:Preparing current state
+CURRENT_STAGE:Running local simulation
+CURRENT_STAGE:Checking result
+CURRENT_STAGE:Preparing evidence
+
+thread 'candidate_plan::mobility_evidence_can_never_stand_in_for_a_candidate_conversion' (11918790) panicked at engine/tests/current_preflight.rs:605:9:
+assertion `left == right` failed: mobility_proof_must_not_satisfy_candidate_conversion
+  left: String("Ready")
+ right: "Incomplete"
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    candidate_plan::mobility_evidence_can_never_stand_in_for_a_candidate_conversion
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 16 filtered out; finished in 8.57s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test current_preflight`

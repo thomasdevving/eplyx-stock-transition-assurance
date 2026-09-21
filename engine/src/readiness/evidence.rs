@@ -656,6 +656,7 @@ impl ReadinessEvidenceManifest {
                 .policy_evaluated_at
                 .to_rfc3339_opts(chrono::SecondsFormat::Secs, true),
             path_facts: facts,
+            conversion_facts: vec![],
             complete_exits: vec![complete],
             population: PopulationEvidence {
                 token_account_entities: a.entities,

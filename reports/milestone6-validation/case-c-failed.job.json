@@ -1,0 +1,788 @@
+{
+  "id": "6d7139cd-2008-4fd9-b846-38f902c1dff1",
+  "owner": "26759b74f49216083b516b878258bf03fac7a11b3bf785c93ee506953a41183d",
+  "request_key": "2037be3e-fbbd-41cc-a75a-9023739dcb3e",
+  "selection": {
+    "asset": "mint",
+    "review": "current",
+    "stage": null,
+    "check": null,
+    "cluster": "solana-mainnet",
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "catalogue_version": "273ba7bc15259e60f4fc94070c2adc4dc41d35673aea0a28ac5c957fda944493",
+    "sample_accounts": false,
+    "scope": "wallet",
+    "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+  },
+  "parent_run_id": "e493b696-ef87-4688-bc9b-0c90164fafd2",
+  "parent_capture_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e",
+  "conversion_request": {
+    "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "amount_mode": "Custom",
+    "amount_decimal": "0.000001",
+    "ratio_numerator": 1,
+    "ratio_denominator": 2,
+    "rounding": "Floor",
+    "conversion_fee_bps": 0,
+    "reserve_funded_replacement_raw": "1"
+  },
+  "conversion_plan": {
+    "schema_version": 1,
+    "id": "6d7139cd-2008-4fd9-b846-38f902c1dff1",
+    "version": 1,
+    "provenance": "OperatorSupplied",
+    "mechanism": "EplyxDemoCandidateConversion",
+    "adapter_id": "eplyx-demo-candidate-conversion/v1",
+    "mechanism_ref": "Eplyx Demo Candidate Conversion (registered repository candidate)",
+    "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "source_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "amount_mode": "Custom",
+    "amount_decimal": "0.000001",
+    "terms": {
+      "ratio_numerator": 1,
+      "ratio_denominator": 2,
+      "rounding": "Floor",
+      "conversion_fee_bps": 0
+    },
+    "authority_model": {
+      "holder_signs": true,
+      "candidate_authority": "ProgramDerived"
+    },
+    "source_consumption": "Burn",
+    "replacement_delivery": "ProposedReserveRelease",
+    "reserve": {
+      "funded_replacement_raw": "1"
+    }
+  },
+  "plan_sha256": "09588631d231bc8b79987584dd0ad9f0cb435398794756bcd74fcb585b2469e4",
+  "validated_request": {
+    "amount_decimal": "0.000001",
+    "amount_raw": "1000",
+    "execution_performed": false,
+    "expected": {
+      "consumed_raw": "1000",
+      "conversion_fee_raw": "0",
+      "convertible_raw": "1000",
+      "replacement_gross_raw": "500"
+    },
+    "official_transition": "NotTested",
+    "plan_sha256": "09588631d231bc8b79987584dd0ad9f0cb435398794756bcd74fcb585b2469e4",
+    "provenance": "OperatorSupplied",
+    "reason": null,
+    "status": "NotTested"
+  },
+  "status": "Completed",
+  "created_at": "2026-09-21T01:13:37.924Z",
+  "operation": "Fresh read-only revalidation followed by offline local execution of the operator-supplied candidate conversion plan",
+  "authorization": false,
+  "result": {
+    "account_evidence": [
+      {
+        "address": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "exists": true,
+        "pointer": "/value/0",
+        "raw_data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "rpc_record": 4,
+        "runtime_owner": "11111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "3gvYRKWyXRR9xKWe1ZjPhLY5ZJRN7KDB4rFZFGoJfFk2",
+        "exists": true,
+        "pointer": "/value/1",
+        "raw_data_sha256": "573971c9baedda479bf4c38537787ae396358009b4920f8a270bd2b31dde5fe3",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "exists": true,
+        "pointer": "/value/2",
+        "raw_data_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "exists": true,
+        "pointer": "/value/3",
+        "raw_data_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoader2111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+        "exists": true,
+        "pointer": "/value/4",
+        "raw_data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "exists": true,
+        "pointer": "/value/5",
+        "raw_data_sha256": "6f6d6382e353b608880bc778e3faa024e9b54de6cf5d3cf26f1403294bca1b1b",
+        "rpc_record": 4,
+        "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "slot": 448573222
+      },
+      {
+        "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+        "exists": true,
+        "pointer": "/value/6",
+        "raw_data_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+        "rpc_record": 4,
+        "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "slot": 448573222
+      },
+      {
+        "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "exists": true,
+        "pointer": "/value/7",
+        "raw_data_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "SysvarC1ock11111111111111111111111111111111",
+        "exists": true,
+        "pointer": "/value/8",
+        "raw_data_sha256": "491ce435b6e683664f569c526819942f41d3ce45b1700531a5b3a112b9528068",
+        "rpc_record": 4,
+        "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "exists": true,
+        "pointer": "/value/9",
+        "raw_data_sha256": "5b31219b7bc4060b1638b933be5f50df3400109acfef12408a196d57ad119748",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "exists": true,
+        "pointer": "/value/10",
+        "raw_data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      }
+    ],
+    "account_plan": [
+      "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+      "3gvYRKWyXRR9xKWe1ZjPhLY5ZJRN7KDB4rFZFGoJfFk2",
+      "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+      "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+      "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "SysvarC1ock11111111111111111111111111111111",
+      "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+    ],
+    "acquisition": {
+      "commitment": "finalized",
+      "completed_at": "2026-09-21T01:13:39.353945+00:00",
+      "consistency": "Wallet discovery and this candidate check are separate observations. The final captured batch is authoritative for the conversion result.",
+      "discovery_slot": 448573222,
+      "rpc_origin": "http://127.0.0.1:55524",
+      "started_at": "2026-09-21T01:13:38.030938+00:00"
+    },
+    "amount_decimal": "0.000001",
+    "amount_raw": "1000",
+    "assumptions": [
+      "The recorded holder is assumed locally to sign; key possession and authorization remain unknown.",
+      "The candidate operator authority is a program-derived address of the registered candidate mechanism and is assumed locally. It is not an issuer key and cannot establish issuer identity or control.",
+      "The candidate program, its configuration and the funded reserve are proposed rollout state, not observed mainnet state. Only the source account, its mint, the holder authority, the replacement mint, the token programs and the Clock are captured current production state.",
+      "Signature and recent-blockhash verification are disabled in the existing LiteSVM 0.16 runtime. Only the fee payer is synthetic; token accounts and deployed token program bytes are captured.",
+      "A successful candidate conversion is evidence about this supplied plan only. It does not establish an issuer-defined official transition, an issuer relationship, entitlement or any authorization."
+    ],
+    "authorization": false,
+    "candidate_authority_assumed_locally": true,
+    "candidate_authority_possession_known": false,
+    "candidate_mechanism": {
+      "adapter_id": "eplyx-demo-candidate-conversion/v1",
+      "artifact": "artifacts/eplyx_demo_conversion.so",
+      "deployed_on_mainnet": false,
+      "id": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "issuer_mechanism": false,
+      "loader": "BPFLoader2111111111111111111111111111111111",
+      "name": "Eplyx Demo Candidate Conversion",
+      "note": "A candidate mechanism the operator intends to deploy. It is not deployed on any cluster and is not a PreStocks, SPACEX or issuer mechanism.",
+      "origin": "Proposed",
+      "program_id_preimage": "sha256(\"eplyx-demo-candidate-conversion-v1\")",
+      "program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+      "registered_by": "This repository",
+      "revision": "eplyx-demo-candidate-conversion-v1"
+    },
+    "check_id": "6d7139cd-2008-4fd9-b846-38f902c1dff1",
+    "clock": {
+      "epoch": 1038,
+      "epoch_start_timestamp": 1789823115,
+      "leader_schedule_epoch": 1039,
+      "slot": 448573222,
+      "unix_timestamp": 1789865120
+    },
+    "deployed_programs": [
+      {
+        "code_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+        "deployed_on_mainnet": true,
+        "loader": "BPFLoader2111111111111111111111111111111111",
+        "origin": "Observed",
+        "program": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+      },
+      {
+        "code_sha256": "8190d3f7ceb6cb7a7a8d8924bff89f9f611e15ce1f806f2b6237f3311a98f697",
+        "deployed_on_mainnet": true,
+        "loader": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "origin": "Observed",
+        "program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      },
+      {
+        "code_sha256": "0999dbf708971e723b08d1caafc988826a59c6001ed6dc02260da07defbe1469",
+        "deployed_on_mainnet": true,
+        "loader": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "origin": "Observed",
+        "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb"
+      },
+      {
+        "code_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+        "deployed_on_mainnet": false,
+        "loader": "BPFLoader2111111111111111111111111111111111",
+        "origin": "Proposed",
+        "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+      }
+    ],
+    "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+    "execution": {
+      "compute_units": 11100,
+      "error": "InstructionError(1, Custom(13))",
+      "inner_instructions": [
+        {
+          "accounts": [
+            "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+            "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+            "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj"
+          ],
+          "data": "0fe80300000000000009",
+          "program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "stack_height": 2
+        }
+      ],
+      "logs": [
+        "Program ComputeBudget111111111111111111111111111111 invoke [1]",
+        "Program ComputeBudget111111111111111111111111111111 success",
+        "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf invoke [1]",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb invoke [2]",
+        "Program log: Instruction: BurnChecked",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb consumed 3346 of 1393186 compute units",
+        "Program TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb success",
+        "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf consumed 10950 of 1399850 compute units",
+        "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd"
+      ],
+      "post_accounts": {
+        "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs": {
+          "data": "05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5941cbe879701dd22b72aef7b3f71e5ce92bb5d3248b8970c64a56fcab13677d4d6d54400000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002070000000200080000000000000000000f000100001b000000",
+          "executable": false,
+          "lamports": "2220240",
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rent_epoch": 18446744073709552000
+        },
+        "8eVorc17R5zRNwHnYHuYVPNkuPV7kqpeBAodYSdw6PYP": {
+          "data": "0105dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa594c6fa7af3bedbad3a3d65f36aabc97431b1bbe4c2d2f6e0e47ca60203452f5d6186a4366343f560287b925ee9016aa10637b95e8b1236e2c9508433e1ab9dbddb432000a43a81f67d1acdb2c8c44d3b6cd5f3c2ddf1582913b5105248fc7bc1ea010000000000000002000000000000000000000906fe",
+          "executable": false,
+          "lamports": "10000000",
+          "owner": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+          "rent_epoch": 0
+        },
+        "A4arzBS1ATD9kVEFrrAF3yyoC41ypAxMeKRZDMWoY1v2": {
+          "data": "c6fa7af3bedbad3a3d65f36aabc97431b1bbe4c2d2f6e0e47ca60203452f5d61432000a43a81f67d1acdb2c8c44d3b6cd5f3c2ddf1582913b5105248fc7bc1ea0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "executable": false,
+          "lamports": "10000000",
+          "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "rent_epoch": 0
+        },
+        "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i": {
+          "data": "c6fa7af3bedbad3a3d65f36aabc97431b1bbe4c2d2f6e0e47ca60203452f5d611cbe879701dd22b72aef7b3f71e5ce92bb5d3248b8970c64a56fcab13677d4d6a202000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "executable": false,
+          "lamports": "2039280",
+          "owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "rent_epoch": 18446744073709552000
+        },
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh": {
+          "data": "01000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bddd1110386f3070000090101000000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010c002000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd060001000101006c00078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd94030000000000000804000000000000ffffffffffffffff32000f04000000000000ffffffffffffffff640004004100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd00000000000000000000000000000000000000000000000000000000000000000010008100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd6081d56ee42ad310ef5bc83cbd6d5e9da201c4876b9bbbfeec4c8488c6870e6301000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000e004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000000000000000000000000000000000000000000000000000000019003800078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd000000000000f03f48e8286a00000000000000000000144012004000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa5941a002100078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd0013009000078daaa78203d77bc823b96863da4d8651c643fc10eb6cbe5b9787e056da4bdd05dae82015660933f6697dc8f328a94b758efc3cf1e1925c1f3b101c855fa594100000005370616365582050726553746f636b73060000005350414345582a00000068747470733a2f2f70726573746f636b732e636f6d2f6d657461646174612f7370616365782e6a736f6e00000000",
+          "executable": false,
+          "lamports": "1397830680",
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rent_epoch": 18446744073709552000
+        }
+      },
+      "success": false,
+      "transaction_fee_lamports": 10000
+    },
+    "execution_capture_sha256": "f329e4c33b12dff168e1afcecdb1d3e05b78ac0ee374e81b3c8d541712f65568",
+    "execution_fixture_sha256": "646268f8357ab2231febb1cc432098b82d7228bc3063a419fbbaf92146055683",
+    "execution_performed": true,
+    "expected": {
+      "consumed_raw": "1000",
+      "conversion_fee_raw": "0",
+      "convertible_raw": "1000",
+      "replacement_gross_raw": "500"
+    },
+    "fixture_accounts": [
+      {
+        "address": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "data_len": 0,
+        "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "derivation": null,
+        "executable": false,
+        "lamports": 17533609,
+        "origin": "Observed",
+        "pointer": "/value/0",
+        "role": "holder-authority",
+        "rpc_record": 4,
+        "runtime_owner": "11111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "3gvYRKWyXRR9xKWe1ZjPhLY5ZJRN7KDB4rFZFGoJfFk2",
+        "data_len": 108645,
+        "data_sha256": "573971c9baedda479bf4c38537787ae396358009b4920f8a270bd2b31dde5fe3",
+        "derivation": null,
+        "executable": false,
+        "lamports": 759682820,
+        "origin": "Observed",
+        "pointer": "/value/1",
+        "role": "deployed-program-data",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "data_len": 191,
+        "data_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+        "derivation": null,
+        "executable": false,
+        "lamports": 2220240,
+        "origin": "Observed",
+        "pointer": "/value/2",
+        "role": "holder-source-token-account",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+        "data_len": 105032,
+        "data_sha256": "6804554e69fd3a58caa191dc4a58f4c67223d30ca28ab8987f39fc18d2f7374d",
+        "derivation": null,
+        "executable": true,
+        "lamports": 3388612899,
+        "origin": "Observed",
+        "pointer": "/value/3",
+        "role": "deployed-token-or-ata-program",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoader2111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "DoU57AYuPFu2QU514RktNPG22QhApEjnKxnBcu4BHDTY",
+        "data_len": 1382061,
+        "data_sha256": "4bba6bf1da06a44b467038e2df01ae41199f97d9072888ce9856694ea8b2eec1",
+        "derivation": null,
+        "executable": false,
+        "lamports": 9620035440,
+        "origin": "Observed",
+        "pointer": "/value/4",
+        "role": "deployed-program-data",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "data_len": 82,
+        "data_sha256": "6f6d6382e353b608880bc778e3faa024e9b54de6cf5d3cf26f1403294bca1b1b",
+        "derivation": null,
+        "executable": false,
+        "lamports": 534673269469,
+        "origin": "Observed",
+        "pointer": "/value/5",
+        "role": "replacement-mint",
+        "rpc_record": 4,
+        "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "slot": 448573222
+      },
+      {
+        "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+        "data_len": 165,
+        "data_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+        "derivation": null,
+        "executable": false,
+        "lamports": 2039280,
+        "origin": "Observed",
+        "pointer": "/value/6",
+        "role": "holder-replacement-token-account",
+        "rpc_record": 4,
+        "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "slot": 448573222
+      },
+      {
+        "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "data_len": 902,
+        "data_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+        "derivation": null,
+        "executable": false,
+        "lamports": 1397830680,
+        "origin": "Observed",
+        "pointer": "/value/7",
+        "role": "source-mint",
+        "rpc_record": 4,
+        "runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "slot": 448573222
+      },
+      {
+        "address": "SysvarC1ock11111111111111111111111111111111",
+        "data_len": 40,
+        "data_sha256": "491ce435b6e683664f569c526819942f41d3ce45b1700531a5b3a112b9528068",
+        "derivation": null,
+        "executable": false,
+        "lamports": 1169280,
+        "origin": "Observed",
+        "pointer": "/value/8",
+        "role": "clock",
+        "rpc_record": 4,
+        "runtime_owner": "Sysvar1111111111111111111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "data_len": 36,
+        "data_sha256": "5b31219b7bc4060b1638b933be5f50df3400109acfef12408a196d57ad119748",
+        "derivation": null,
+        "executable": true,
+        "lamports": 200653906,
+        "origin": "Observed",
+        "pointer": "/value/9",
+        "role": "deployed-token-or-ata-program",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "data_len": 36,
+        "data_sha256": "bae3e5d63e30c0c3e6fe788b9e027bf003ca5e5bb46d3a9627e034bb3002ea5c",
+        "derivation": null,
+        "executable": true,
+        "lamports": 70128638,
+        "origin": "Observed",
+        "pointer": "/value/10",
+        "role": "deployed-token-or-ata-program",
+        "rpc_record": 4,
+        "runtime_owner": "BPFLoaderUpgradeab1e11111111111111111111111",
+        "slot": 448573222
+      },
+      {
+        "address": "8eVorc17R5zRNwHnYHuYVPNkuPV7kqpeBAodYSdw6PYP",
+        "data_len": 151,
+        "data_sha256": "c492aefa0f14621208ec78c39a81feb68901d6f8012c0d022b7c35167124b2bd",
+        "derivation": "PDA([\"eplyx-candidate-config\", plan sha-256], candidate program)",
+        "executable": false,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-config",
+        "runtime_owner": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+      },
+      {
+        "address": "5X2cu5Nffgd7cK9EHTerMCgRKuhh5Fw51SYhkSpmrq3o",
+        "data_len": 0,
+        "data_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "derivation": "PDA([\"eplyx-candidate-vault\", config], candidate program)",
+        "executable": false,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-authority",
+        "runtime_owner": "11111111111111111111111111111111"
+      },
+      {
+        "address": "A4arzBS1ATD9kVEFrrAF3yyoC41ypAxMeKRZDMWoY1v2",
+        "data_len": 165,
+        "data_sha256": "b9bd29b688e3229d42a3ed600a1cfa98b09a672c0c81498a9bee150c33c66778",
+        "derivation": "Associated token account of the candidate authority for the replacement mint",
+        "executable": false,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-reserve",
+        "runtime_owner": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+      },
+      {
+        "address": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+        "data_len": 42400,
+        "data_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+        "derivation": "Registered repository artifact artifacts/eplyx_demo_conversion.so; program id sha256(\"eplyx-demo-candidate-conversion-v1\"). Not deployed on any cluster.",
+        "executable": true,
+        "lamports": 10000000,
+        "origin": "Proposed",
+        "role": "candidate-conversion-program",
+        "runtime_owner": "BPFLoader2111111111111111111111111111111111"
+      }
+    ],
+    "funds_moved": false,
+    "issuer_binding_established": false,
+    "kind": "current-conversion",
+    "lifecycle_event": null,
+    "limitations": [
+      "This proves the supplied candidate plan against this exact captured state. It does not establish an issuer-defined official transition.",
+      "The candidate reserve, configuration and authority are proposed rollout state assumed locally; the candidate authority cannot establish issuer identity or control.",
+      "Holder signing is assumed locally; key possession and authorization remain unknown.",
+      "No mainnet transaction is constructed, signed or submitted, and no funds moved."
+    ],
+    "local_execution_performed": true,
+    "message": {
+      "account_keys": [
+        "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+        "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+        "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "A4arzBS1ATD9kVEFrrAF3yyoC41ypAxMeKRZDMWoY1v2",
+        "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+        "ComputeBudget111111111111111111111111111111",
+        "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+        "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "5X2cu5Nffgd7cK9EHTerMCgRKuhh5Fw51SYhkSpmrq3o",
+        "8eVorc17R5zRNwHnYHuYVPNkuPV7kqpeBAodYSdw6PYP",
+        "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf"
+      ],
+      "instructions": [
+        {
+          "account_indices": [],
+          "data": "02c05c1500",
+          "program_index": 6
+        },
+        {
+          "account_indices": [
+            10,
+            3,
+            2,
+            1,
+            4,
+            11,
+            5,
+            9,
+            8,
+            7
+          ],
+          "data": "01e803000000000000",
+          "program_index": 12
+        }
+      ],
+      "readonly_signed_accounts": 1,
+      "readonly_unsigned_accounts": 7,
+      "recent_blockhash": "11111111111111111111111111111111",
+      "required_signatures": 2
+    },
+    "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+    "observed_state": {
+      "holder_replacement_account_existed": true,
+      "origin": "Observed",
+      "replacement_decimals": 6,
+      "replacement_mint_inspection": "Independently captured in this check. Existence and layout only; no issuer relationship, ratio or economic equivalence is established.",
+      "replacement_token_program": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+      "source_balance_before_raw": "17621",
+      "source_decimals": 9
+    },
+    "official_transition": "NotTested",
+    "owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+    "plan": {
+      "adapter_id": "eplyx-demo-candidate-conversion/v1",
+      "amount_decimal": "0.000001",
+      "amount_mode": "Custom",
+      "authority_model": {
+        "candidate_authority": "ProgramDerived",
+        "holder_signs": true
+      },
+      "id": "6d7139cd-2008-4fd9-b846-38f902c1dff1",
+      "mechanism": "EplyxDemoCandidateConversion",
+      "mechanism_ref": "Eplyx Demo Candidate Conversion (registered repository candidate)",
+      "provenance": "OperatorSupplied",
+      "replacement_delivery": "ProposedReserveRelease",
+      "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "reserve": {
+        "funded_replacement_raw": "1"
+      },
+      "schema_version": 1,
+      "source_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+      "source_consumption": "Burn",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "terms": {
+        "conversion_fee_bps": 0,
+        "ratio_denominator": 2,
+        "ratio_numerator": 1,
+        "rounding": "Floor"
+      },
+      "version": 1
+    },
+    "plan_sha256": "09588631d231bc8b79987584dd0ad9f0cb435398794756bcd74fcb585b2469e4",
+    "preconditions": [
+      {
+        "name": "Fresh current source/mint/authority state, independently inspected replacement mint, deployed token loaders and a deterministic proposed overlay",
+        "proven": true,
+        "reason": "Verified raw captured bytes, canonical loader links, mint/owner/initialized/freeze/pause/hook/confidential state, sufficient balance and non-colliding derived proposed addresses"
+      }
+    ],
+    "proposed_overlay": {
+      "addresses": {
+        "config": "8eVorc17R5zRNwHnYHuYVPNkuPV7kqpeBAodYSdw6PYP",
+        "config_bump": 255,
+        "destination": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+        "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+        "reserve_vault": "A4arzBS1ATD9kVEFrrAF3yyoC41ypAxMeKRZDMWoY1v2",
+        "vault_authority": "5X2cu5Nffgd7cK9EHTerMCgRKuhh5Fw51SYhkSpmrq3o",
+        "vault_bump": 254
+      },
+      "note": "Deterministically derived from the candidate program, the plan digest and the observed replacement identity. None of it is observed mainnet state and none of it is issuer controlled.",
+      "origin": "Proposed",
+      "reserve_funded_replacement_raw": "1"
+    },
+    "provenance": "OperatorSupplied",
+    "readiness": null,
+    "reason": "The candidate conversion failed in local simulation: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+    "reconciliation": {
+      "account_data": [
+        {
+          "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+          "after_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+          "before_sha256": "fdd7b8048f3a0a81d7c99b3c69c7aea0db1d2642536cf835e030136cda71df33",
+          "changed_ranges": []
+        },
+        {
+          "address": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+          "after_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+          "before_sha256": "b6c21d7c3de23ef7303a89543c43988e437d0512ef162532bc052acf35ab5f87",
+          "changed_ranges": []
+        },
+        {
+          "address": "A4arzBS1ATD9kVEFrrAF3yyoC41ypAxMeKRZDMWoY1v2",
+          "after_sha256": "b9bd29b688e3229d42a3ed600a1cfa98b09a672c0c81498a9bee150c33c66778",
+          "before_sha256": "b9bd29b688e3229d42a3ed600a1cfa98b09a672c0c81498a9bee150c33c66778",
+          "changed_ranges": []
+        },
+        {
+          "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+          "after_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+          "before_sha256": "3169b2992075a039c5dac15ea1e65b7008bff3fd75a4d8e709f0652daf968b18",
+          "changed_ranges": []
+        },
+        {
+          "address": "8eVorc17R5zRNwHnYHuYVPNkuPV7kqpeBAodYSdw6PYP",
+          "after_sha256": "c492aefa0f14621208ec78c39a81feb68901d6f8012c0d022b7c35167124b2bd",
+          "before_sha256": "c492aefa0f14621208ec78c39a81feb68901d6f8012c0d022b7c35167124b2bd",
+          "changed_ranges": []
+        }
+      ],
+      "burn_cpi_observed": true,
+      "candidate_program_invoked": true,
+      "conversion_fee_raw": "0",
+      "convertible_raw": "1000",
+      "destination": {
+        "address": "EqY4swg9YTmipDPWBYNVEo3giMMkT2A42c4fr1o58J5i",
+        "after_raw": "674",
+        "before_raw": "674",
+        "change_decimal_base_units": "0",
+        "change_raw": "0",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "withheld_fee_change_raw": "0"
+      },
+      "expected": {
+        "consumed_raw": "1000",
+        "conversion_fee_raw": "0",
+        "convertible_raw": "1000",
+        "replacement_gross_raw": "500"
+      },
+      "program_reported": null,
+      "reconciled": true,
+      "reconciliation": [
+        "Source consumption: the holder account debited 0 raw and the captured source mint supply fell by 0 raw. The source is burned, not transferred, so no source Token-2022 transfer fee applies.",
+        "Candidate terms: conversion fee 0 raw taken first, 1000 raw convertible, ratio 1/2 with Floor rounding, expected release 500 raw.",
+        "Replacement delivery: the proposed reserve fell by 0 raw and the holder's replacement account rose by 0 raw with 0 raw withheld as a replacement-side Token-2022 transfer fee. Conversion fee and transfer fees are counted separately.",
+        "The registered candidate program executed and reported its own arithmetic: no candidate report.",
+        "Watched rollback on failed execution: true; transaction fees are paid separately by the synthetic payer."
+      ],
+      "release_cpi_observed": false,
+      "replacement_credit_decimal": "0",
+      "replacement_public_credit_raw": "0",
+      "replacement_released_raw": "0",
+      "replacement_token_2022_transfer_fee_raw": "0",
+      "reserve": {
+        "address": "A4arzBS1ATD9kVEFrrAF3yyoC41ypAxMeKRZDMWoY1v2",
+        "after_raw": "1",
+        "before_raw": "1",
+        "change_decimal_base_units": "0",
+        "change_raw": "0",
+        "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "withheld_fee_change_raw": "0"
+      },
+      "source": {
+        "address": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+        "after_raw": "17621",
+        "before_raw": "17621",
+        "change_decimal_base_units": "0",
+        "change_raw": "0",
+        "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+        "withheld_fee_change_raw": "0"
+      },
+      "source_burned_raw": "0",
+      "source_debited_raw": "0",
+      "source_supply_after_raw": "8742506795473",
+      "source_supply_before_raw": "8742506795473",
+      "source_supply_change_raw": "0",
+      "source_token_2022_transfer_fee_raw": "0"
+    },
+    "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "run_id": "e493b696-ef87-4688-bc9b-0c90164fafd2",
+    "runtime_profile": {
+      "backend": "LiteSVM 0.16",
+      "features": "pinned mainnet/default profile",
+      "network_access": false,
+      "recent_blockhash_verification": false,
+      "signature_verification": false,
+      "synthetic_fee_payer": "Dc4mCR5W9cVG7pGn2j1V5CprwJnQechgS8LRFci1czxb",
+      "validator_bank_reproduction": false
+    },
+    "schema_version": 1,
+    "scope": "Only this exact source account, source mint, amount, replacement mint, destination, candidate plan version, candidate program build, proposed overlay, captured bank and assumed local signing. No other account, amount, plan or mechanism inherits this evidence.",
+    "signer_assumed_locally": true,
+    "signer_possession_known": false,
+    "source": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+    "source_revalidated": {
+      "execution_fixture_is_authoritative": true,
+      "unchanged_since_discovery": true
+    },
+    "status": "Failed",
+    "wallet_capture_sha256": "e9c54ea2f342779eee11537d195ae64db9b7978047193fc7939d32d425154b1e"
+  },
+  "error": null,
+  "started_at": "2026-09-21T01:13:37.925Z",
+  "engine_sha256": "059ff0810ee6dfe4c13d71632b253a3a15fbf06edda3a6f2e7db76aa36845bb8",
+  "candidate_program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+  "stage": "Preparing evidence",
+  "capture_sha256": "f329e4c33b12dff168e1afcecdb1d3e05b78ac0ee374e81b3c8d541712f65568",
+  "engine_exit_code": 0,
+  "canonical_sha256": "8750607bb71f517e3eec662a28919dbabbf3027fbcaab9ce00e2ce5e7c845fbc",
+  "completed_at": "2026-09-21T01:13:40.303Z"
+}

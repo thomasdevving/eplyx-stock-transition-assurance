@@ -1,0 +1,22 @@
+{
+ "historical_data_artifacts": {
+  "recorded": 1061,
+  "unchanged": 1061,
+  "changed": []
+ },
+ "source_and_binary": {
+  "recorded": 152,
+  "unchanged": 152,
+  "changed": []
+ },
+ "mutations": {
+  "injected": 8,
+  "killed": 8,
+  "sources_restored": true
+ },
+ "mutation_sources_match_final": true,
+ "engine_sha256": "059ff0810ee6dfe4c13d71632b253a3a15fbf06edda3a6f2e7db76aa36845bb8",
+ "candidate_program_sha256": "a3468decc45e3b740a2479bca4c01f1a80c09b393e4d6e25386c1cd98de1fc5b",
+ "note": "Milestone 2-5 browser specs rewrite their own fixture outputs on every run; those files were restored to HEAD so historical evidence is preserved byte for byte.",
+ "checked_at": "2026-09-21T01:16:08.812430+00:00"
+}
