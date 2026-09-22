@@ -7,6 +7,8 @@
 //! that mechanism. OfficialTransition is a separate fact with separate requirements.
 pub mod current;
 pub mod demo;
+pub mod package;
+pub mod package_preflight;
 #[cfg(test)]
 mod tests;
 

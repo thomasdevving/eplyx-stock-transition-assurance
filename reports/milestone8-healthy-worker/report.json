@@ -1,0 +1,463 @@
+{
+  "adapter": "fixed_ratio_conversion_v1",
+  "adapter_version": 1,
+  "candidate_plan_readiness": "Ready",
+  "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+  "config_sha256": "ecab42ccfe095838347586d3e66d5150f225bde4d492d373d600b8aa69c18254",
+  "conversion_result": {
+    "execution_fixture_sha256": "89e90142aead24b1b83804bada79dd10a2b6541d1cbffaadff01c47e7d4a28f4",
+    "execution_performed": true,
+    "plan_sha256": "87924c95dcf18ef22c07bd4d81c1ec7a803aba2961f1423a3e8d32449be5ed03",
+    "reason": null,
+    "reconciliation": {
+      "reconciled": true
+    },
+    "status": "Proven"
+  },
+  "conversion_stress_readiness": {
+    "findings_count": 14,
+    "policy_sha256": "c7324dd923a3ed407fea986424b6561b3bfa552ad75ed763ce40fa16a5d6b004",
+    "status": "Incomplete"
+  },
+  "current_capture_timestamp": "2026-09-22T07:09:43.788Z",
+  "declared_preflight_status": "Incomplete",
+  "deployment_origin": "Proposed",
+  "effective_at": "2026-10-01T00:00:00Z",
+  "evaluated_at": "2026-09-22T07:10:21.541Z",
+  "exact_selected_cases": [
+    {
+      "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "case_id": "case-00",
+      "case_plan_sha256": "d02c7d4a95ef1cbf08ec6e3a423fb5ee0ba49a5768f9718f20636f96813b30ee",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "selected_amount_raw": "1487167960502",
+      "selection_reason": "NewStateShape",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV"
+    },
+    {
+      "authority": "DP5syqfFFppbdMYyejNqXkGCw7qQN5TBgNRuuHCoXbsU",
+      "case_id": "case-01",
+      "case_plan_sha256": "1b7b7f741acec86fbc20d3e06fcedbc453a9eb38c288f52a7356cf88e32c57a8",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C",
+      "selected_amount_raw": "2522262026",
+      "selection_reason": "NewStateShape",
+      "state_shape_sha256": "4a15088082802e62b7ce679c05e54fb15756102f0d5806d855785b70a319477d",
+      "token_account": "HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C"
+    },
+    {
+      "authority": "HvFdDWS3RqymRAVx1ZdoL2RjiC38r5dtt19Z8op5jqDK",
+      "case_id": "case-02",
+      "case_plan_sha256": "d6389a45d7885cc114cb1eaea35d9447e88d4508a1ca6fa9ef232fa0e9d81858",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS",
+      "selected_amount_raw": "22348",
+      "selection_reason": "NewStateShape",
+      "state_shape_sha256": "9770754e7cf24a91e3774dad55931407fcbd6f9ed4d1ce4b3db8efc0e4cf1f64",
+      "token_account": "DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS"
+    },
+    {
+      "authority": "CFSf8TXbT4VEwEDkckdLmtbqbZMjeG7T51GhKi8Su19e",
+      "case_id": "case-03",
+      "case_plan_sha256": "484da0de6c85dcefc3fac0cfc16f25c634acc64e5178b20c68d300537c1c6cb5",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL",
+      "selected_amount_raw": "14692",
+      "selection_reason": "NewBalanceBucket",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL"
+    },
+    {
+      "authority": "2wuePnDJJSKESRU5drsEbzPhEiXekWHW6VsemCrQzrM5",
+      "case_id": "case-04",
+      "case_plan_sha256": "bd027c06a135ac88a20c396b1cce49b532b8fd67495dcb1f86ab1aa90920bf81",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg",
+      "selected_amount_raw": "8306676",
+      "selection_reason": "NewBalanceBucket",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg"
+    },
+    {
+      "authority": "A6Wch1mJJ1PyooNSAUtctcNmQTxqtkcWManMBQPmKceM",
+      "case_id": "case-05",
+      "case_plan_sha256": "c343aa61e0242dec3d57ccaacfdcecf78a4eeaaf4407106cc4e9902ed8586417",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+      "selected_amount_raw": "1058231581513",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP"
+    },
+    {
+      "authority": "3qTam7huFAGNKQ8mbRcYWZwTesWM3EKKQWCQ6PiXLQgP",
+      "case_id": "case-06",
+      "case_plan_sha256": "dccbb5f8ee7c2d91f58dd3369f6823de33090d797acd612a79791a2a813945c5",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f",
+      "selected_amount_raw": "519958814436",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+    },
+    {
+      "authority": "yusdW9wZDwbvcvyHy7QHjCfQS4wtvwBzgxNoZTSH582",
+      "case_id": "case-07",
+      "case_plan_sha256": "06ccf761db65bc28a98c616bcd315b6131fe057b324a95c753a4b864f2c9fadb",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J",
+      "selected_amount_raw": "500215083490",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J"
+    },
+    {
+      "authority": "2sujbbTjp2r5ugbjfHgUNDSwtdVfYpTiCSKPgT84CvD7",
+      "case_id": "case-08",
+      "case_plan_sha256": "779c65e462db1c842aec9e8ef28b4230caa9dba9132cd27dd72d871e76b0c395",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS",
+      "selected_amount_raw": "456396236436",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS"
+    },
+    {
+      "authority": "55t97rzPqCLNY1KX4Ypd3BFDCvbKF15i6xzrjLJgWh95",
+      "case_id": "case-09",
+      "case_plan_sha256": "a183a82b17a308385d259bdee5960506d4ed296946536bf725c39598f6e0b7d2",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK",
+      "selected_amount_raw": "284995103905",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK"
+    }
+  ],
+  "failed_cases": [],
+  "funds_moved": false,
+  "limitations": [
+    "OperatorSupplied package identity does not establish issuer authorization or an official transition.",
+    "Only exact selected accounts, amounts, captured banks and locally assumed signing can receive conversion proof.",
+    "Stress sampling does not establish population rollout readiness.",
+    "No funds moved"
+  ],
+  "official_transition": "NotTested",
+  "population_rollout_readiness": {
+    "policy_sha256": "8411ed7a1671b6aabbd52735908827b63a908a51a91ab40e87f91232d7e234aa",
+    "status": "Incomplete"
+  },
+  "population_summary": {
+    "authority_resolution_completeness": "Complete",
+    "counts": {
+      "account_extension_counts": {
+        "ImmutableOwner": 17832,
+        "PausableAccount": 17870,
+        "TransferFeeAmount": 17870,
+        "TransferHookAccount": 17870
+      },
+      "active_delegation_accounts": 12,
+      "authority_model_counts": {
+        "ProgramOwnedAuthority": 69,
+        "Unknown": 10742,
+        "WalletCompatible": 7059
+      },
+      "close_authority_accounts": 55,
+      "delegate_present_accounts": 12,
+      "distinct_positive_balance_authorities": 10087,
+      "distinct_recorded_authorities": 17861,
+      "frozen_accounts": 0,
+      "observed_public_balance_raw": "8742024540692",
+      "positive_balance_accounts_observed": 10091,
+      "positive_balance_authority_model_counts": {
+        "ProgramOwnedAuthority": 69,
+        "Unknown": 2963,
+        "WalletCompatible": 7059
+      },
+      "terminology": "These are token accounts observed in this capture, not holders. No human ownership, legal ownership, identity or key possession is established anywhere in this milestone. Public base balances exclude encrypted balances and withheld fees; a public zero is not a known confidential zero.",
+      "token_accounts_observed": 17870,
+      "undecodable_rows_observed": 0,
+      "uninitialized_accounts": 0,
+      "zero_balance_accounts_observed": 7779
+    },
+    "enumeration_completeness": "CompleteForQuery",
+    "independent_axes": "Authority resolution is independent of token-account enumeration. An incomplete authority resolution does not mean the token-account enumeration was incomplete, and a complete enumeration does not imply every authority model is known."
+  },
+  "proposed_reserve_raw": "1000000000000",
+  "provenance": "OperatorSupplied",
+  "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+  "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "run_id": "pkg-89bf0a28e3a5-1790060909541",
+  "schema_version": 1,
+  "source_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+  "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "stress_results": [
+    {
+      "case_id": "case-00",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "execution_fixture_sha256": "cf5e113f2d4363d410901cca3982076a85c1480afa9199afde25634380cba654",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "f4f246b37f87479c9263aec2a893162fd1f55ce759709fb5099269a4ecc24371",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-01",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C",
+      "execution_fixture_sha256": "3caad4029236b51206290b02dcb446b09ebce98401f647bb0224910e45ab39f1",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "7f938699992ff0ef89cf238d3d43f046f66caadc99ca88ec697868f1fc32bb86",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-02",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS",
+      "execution_fixture_sha256": "681f03cdbf852ed724ecaf1de512151a3ea0ccd1e0157d11539f83074fd1680f",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "0ba5d850ee7547231f332de84800f7f50c143b48e47849526119d9440f93ca31",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-03",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL",
+      "execution_fixture_sha256": "a29d235a0b7563950c56723908281b7118ac3129348403ce8315300605c93437",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "f217b49273cb7304623aef26fb1697e93e875ba4ae61ecefccbe103523acf7d0",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-04",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg",
+      "execution_fixture_sha256": "70e12b62394b770bb62c21ab25d73265712689ac1b96244a4e358e577c91fc7a",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "ddd437dfaabb9d26ae376eeb2792d2aa8a9752715148495f03be26fd20c28987",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-05",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+      "execution_fixture_sha256": "02a61b67f54ee7be9e77f4aa8b86a020e886023a0242ae62d430b116355a7f82",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "2e2d5187748d0bad9f69ec9e8cce82f599c9727ec2a0fea2183a22320871e615",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-06",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f",
+      "execution_fixture_sha256": "6aa7ccd67a2c8c25abc4655bafd5c2988f81d84f8c24df30e0003dea1bf55cb1",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "d19c61fa5d283572ec8cd29b13c6596879d706f67b5870d2f7d199e1107bd827",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-07",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J",
+      "execution_fixture_sha256": "10d2fa7528bbcb4d5ac7c59875665f8051458859e538ea766c4ff677d0a0bbeb",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "ce8c1409f161a5fadcdc410043338dbb89318633f13f72853e0df8308ec1c013",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-08",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS",
+      "execution_fixture_sha256": "4a58b1b303fc655eeedb241cbff43d9c5a876f38955aded04363a137b9e8ad49",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "fea4a8a9b3001d25f2de0c748add920f2f1a635e284bea5f762de41267851b68",
+      "status": "Proven"
+    },
+    {
+      "case_id": "case-09",
+      "entity_id": "current-stress:3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b:DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK",
+      "execution_fixture_sha256": "94e632850f36117d22fa894f3cf33b3754e86996f95f685ac4b7ee0dc201206a",
+      "execution_performed": true,
+      "reason": null,
+      "result_sha256": "ed7c964a625d697385597329f5b2b4b6dbd604e19fc9a43b15f8289a899ed002",
+      "status": "Proven"
+    }
+  ],
+  "terms": {
+    "denominator": "2",
+    "feeBps": 0,
+    "numerator": "1",
+    "rounding": "floor"
+  },
+  "transition_package_sha256": "89bf0a28e3a5617f7a1a6c5c085bbc4030d6c1d3c3d4d735d0937a2ab834f55a",
+  "unresolved_cases": [],
+  "unsupported_states": [
+    {
+      "positive_balance_accounts": 2261,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "08e742ed5cae50f32001de0c7ef0cd7caadac0b5a4af64c8a279b832cc5100fc"
+    },
+    {
+      "positive_balance_accounts": 567,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "a2c4af6a2cb2b01b5cf3d120ed01daa90c9d1be9e7fda28e15a0d63a197ab7d7"
+    },
+    {
+      "positive_balance_accounts": 102,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "c896d996511af8be4c5f4cb145b7df5241b3abffff2a11b071e379678ced6e6d"
+    },
+    {
+      "positive_balance_accounts": 23,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "e2744ebf01998ed4bd42db87eacf9573f62ba6e60b8817f3df3d4928e394100d"
+    },
+    {
+      "positive_balance_accounts": 14,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "53556cf0dbe63afc2e09b954b758ca3a02b89dbe289a558185841c5864ed79c2"
+    },
+    {
+      "positive_balance_accounts": 9,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "73a03a4f330d75fa766fc3645fb5041ece0a57f2f8b5250cef28f2fb6c49f1eb"
+    },
+    {
+      "positive_balance_accounts": 7,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "157800d7193cb97c78065ca0d8d8191b6aa7a72eb89dfc22cc58f23751f104cb"
+    },
+    {
+      "positive_balance_accounts": 7,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "47d7d19e30b590fcdfcbb6206a3328918f6aff5d6529c3003afceaccdc38c88e"
+    },
+    {
+      "positive_balance_accounts": 4,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "9aca1dc8f8caa74271fae12da985c8c5081e6265578791ff49a7b3be7ccd9b0a"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "52f83d19db2e5aced33525691422d944ac4c71b04ff5d6abfea0f450d637c0c1"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "9d557ab1c9e0c6976428dc85847cf3f0d87660fadcde6a88da93113cf7e17cbc"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "e3fdc5f8a937b317022bdae87d92dba5f21667edfc078590c8c041844fbc5932"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "fa96f3e460d21956a9f82e2a3bd5b920a101a03cd5591edbb14a97a95216114a"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "1848450fd3b58ffb7bce728e3def738b1cfc9b166140dc8cc8f6be74edc39773"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "679820e564e3db21d00cc5c9bfdc727ba1e03f8702010f12126b64362ab0ad90"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "c37bb9cdebd5be5c1e6a709a9e2b5546681036c81080e37266cc7fcdbe04f65e"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "ed1b919e8ec18e353db7a1f0da1aacb78bedd2ac04e37ff556b8134d58b321a9"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "1178dd558c913f65813cda4ce8712c092c42c4f209003c6c3b4d3e1522f4a896"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "1f13c137244e31d8ff7917217280fca2ca7bab477f943339f5f0d1f078af60fe"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "39879ee13b4fd0b42a782491256e8695fcb03d985601084698f8de772fce019e"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "4759d2a92fda979dc38af67cf9e7dc304acc788133d3d776b5f6f1dccff23915"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "52d9074c1342ed4246ef1afb064df3fb048cccb4af7dcd85abeaa78c75a4d39f"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "557c5644b2529f5356c4fae6cf70280843989ee8ddddf5323fb855183326aa08"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "5704e675943f5a3c863bce958c6bed2513629991ad8802395ec7f8d75e21f0b1"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "765db1c4f5698409603fd924be75e46278b2accf30909ae538a90f7a7ea2bc82"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "8c1c25154a4c02a6336922eca8727a7e876880cefe070337c9a6eb209b37e34e"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "92d559c30a108f2e3fcfdb90601e75c4151603610147e7edc2d543d4bdbd6307"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "a16b897e8a438af7409d5eb6ad050b1ab6de1458506216ddeaaeb82dff8c9391"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "a3b20f60de333fa5698b819320d985dad53a78459238b0f615c65be0c83509d4"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "ab8b730c833c58eccd33e9f37c7f544c92981215a31d928480468f4857cdac86"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "b34be4186c60c2fab1c587bbbc9ca9eee0f11dbccbc01c54a86f4dc9777feeac"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "b3fb8bbc27c4f59d657846409b2d032f8452d762371021a31c67535a4c01b61c"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "bef5427232b144b22a40751f8c1ef934d3e13dcf094c1d5d9b6f6df3d4f2f737"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "d21f28f9ab2d57a2ec8b14462159231671ecb77498cfd815712ba199d5da16e1"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "fa1c7538cb8022c770e637e60ccaf6040a2909e1e0173906b608feaf86a25c05"
+    }
+  ]
+}

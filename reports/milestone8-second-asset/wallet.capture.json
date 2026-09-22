@@ -1,0 +1,131 @@
+{
+  "schema_version": 3,
+  "asset": {
+    "name": "Custom token address",
+    "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "expected_token_program": null,
+    "expected_genesis_hash": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+    "verification": []
+  },
+  "rpc_origin": "https://api.mainnet-beta.solana.com",
+  "started_at": "2026-09-22T06:39:27.341Z",
+  "completed_at": "2026-09-22T06:39:29.007Z",
+  "decoder": "spl-token-2022-interface/3.1.1; current-wallet/v1",
+  "observations": [
+    {
+      "method": "getGenesisHash",
+      "params": [],
+      "started_at": "2026-09-22T06:39:27.341Z",
+      "completed_at": "2026-09-22T06:39:27.944Z",
+      "result": "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d",
+      "error": null
+    },
+    {
+      "method": "getAccountInfo",
+      "params": [
+        "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        {
+          "commitment": "finalized",
+          "encoding": "base64"
+        }
+      ],
+      "started_at": "2026-09-22T06:39:27.944Z",
+      "completed_at": "2026-09-22T06:39:28.296Z",
+      "result": {
+        "context": {
+          "apiVersion": "4.3.0-rc.0",
+          "slot": 449300169
+        },
+        "value": {
+          "data": [
+            "AQAAAAeNqqeCA9d7yCO5aGPaTYZRxkP8EOtsvluXh+BW2kvdFq2uz7oBAAAJAQEAAAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQwAIAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QYAAQABAQBsAAeNqqeCA9d7yCO5aGPaTYZRxkP8EOtsvluXh+BW2kvdB42qp4ID13vII7loY9pNhlHGQ/wQ62y+W5eH4FbaS90V79pjAAAAAAgEAAAAAAAA//////////8yAA8EAAAAAAAA//////////9kAAQAQQAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAgQAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3WCB1W7kKtMQ71vIPL1tXp2iAcSHa5u7/uxMhIjGhw5jAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAEAAB42qp4ID13vII7loY9pNhlHGQ/wQ62y+W5eH4FbaS90AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkAOAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QAAAAAAAPA/iFhaagAAAABcNt8tNcf3PxIAQAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QXa7AUp5Su/Z/b/HhRqnras5/xOoxykvJ8V4Q/jcZcoGgAhAAeNqqeCA9d7yCO5aGPaTYZRxkP8EOtsvluXh+BW2kvdABMAkAAHjaqnggPXe8gjuWhj2k2GUcZD/BDrbL5bl4fgVtpL3QXa7AUp5Su/Z/b/HhRqnras5/xOoxykvJ8V4Q/jcZcoEAAAAE9wZW5BSSBQcmVTdG9ja3MGAAAAT1BFTkFJKgAAAGh0dHBzOi8vcHJlc3RvY2tzLmNvbS9tZXRhZGF0YS9vcGVuYWkuanNvbgAAAAA=",
+            "base64"
+          ],
+          "executable": false,
+          "lamports": 362899490,
+          "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+          "rentEpoch": 18446744073709551615,
+          "space": 902
+        }
+      },
+      "error": null
+    },
+    {
+      "method": "getAccountInfo",
+      "params": [
+        "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        {
+          "commitment": "finalized",
+          "encoding": "base64",
+          "minContextSlot": 449300169
+        }
+      ],
+      "started_at": "2026-09-22T06:39:28.296Z",
+      "completed_at": "2026-09-22T06:39:28.650Z",
+      "result": {
+        "context": {
+          "apiVersion": "4.3.0-rc.0",
+          "slot": 449300171
+        },
+        "value": {
+          "data": [
+            "",
+            "base64"
+          ],
+          "executable": false,
+          "lamports": 69176631022,
+          "owner": "11111111111111111111111111111111",
+          "rentEpoch": 18446744073709551615,
+          "space": 0
+        }
+      },
+      "error": null
+    },
+    {
+      "method": "getTokenAccountsByOwner",
+      "params": [
+        "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+        {
+          "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF"
+        },
+        {
+          "commitment": "finalized",
+          "encoding": "base64",
+          "minContextSlot": 449300171
+        }
+      ],
+      "started_at": "2026-09-22T06:39:28.650Z",
+      "completed_at": "2026-09-22T06:39:29.007Z",
+      "result": {
+        "context": {
+          "apiVersion": "4.3.0-beta.2",
+          "slot": 449300173
+        },
+        "value": [
+          {
+            "account": {
+              "data": [
+                "BdrsBSnlK79n9v8eFGqetqzn/E6jHKS8nxXhD+NxlyhONgn/iXJJax4s+Z+f+UgNFIHY8yuItHa/+9SByyHcvePGStQeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgcAAAACAAgAAAAAAAAAAAAPAAEAABsAAAA=",
+                "base64"
+              ],
+              "executable": false,
+              "lamports": 2220240,
+              "owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+              "rentEpoch": 18446744073709551615,
+              "space": 191
+            },
+            "pubkey": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy"
+          }
+        ]
+      },
+      "error": null
+    }
+  ],
+  "selection": {
+    "cluster": "solana-mainnet",
+    "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "reference": null,
+    "sample_accounts": false,
+    "public_owner": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt"
+  }
+}

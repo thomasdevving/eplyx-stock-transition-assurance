@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "sourceMint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+  "replacementMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "adapter": "fixed_ratio_conversion_v1",
+  "candidateProgram": {
+    "programId": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+    "artifact": "program.so",
+    "sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d"
+  },
+  "terms": {"numerator": "3", "denominator": "4", "rounding": "ceiling", "feeBps": 25},
+  "effectiveAt": "2026-10-01T00:00:00Z",
+  "config": "config.json",
+  "configSha256": "1681f7efbd8fb82d314e5b3f924b2743b37da52f73473e94f89ee21f178c9dd9"
+}

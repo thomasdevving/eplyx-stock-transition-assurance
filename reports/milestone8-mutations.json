@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "baseline_exit": 4,
+  "mutations": [
+    {
+      "mutation": "ignore-program-hash",
+      "killed_by": "candidate program SHA-256 mismatch",
+      "application_exit": 2
+    },
+    {
+      "mutation": "path-escape",
+      "killed_by": "package path must be a relative member without traversal",
+      "application_exit": 2
+    },
+    {
+      "mutation": "trust-declared-success",
+      "killed_by": "invalid package manifest",
+      "application_exit": 2
+    },
+    {
+      "mutation": "promote-official",
+      "killed_by": "invalid package manifest",
+      "application_exit": 2
+    },
+    {
+      "mutation": "reuse-after-terms-change",
+      "killed_by": "package identity changed",
+      "application_exit": 2
+    },
+    {
+      "mutation": "wrong-stress-package-digest",
+      "killed_by": "package identity changed",
+      "application_exit": 2
+    }
+  ],
+  "all_killed": true
+}

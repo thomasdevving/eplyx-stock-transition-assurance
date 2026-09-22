@@ -9,6 +9,17 @@
 
 # Eplyx Lifecycle Impact
 
+## Operator transition packages
+
+The `eplyx-lifecycle preflight ./transition-package` CLI validates a strict
+registered fixed-ratio candidate package, captures fresh read-only current
+state, executes the candidate in a bounded local VM and runs the existing
+production stress test. It writes `report.json` and `report.md`; use
+`replay-package-preflight` to reproduce the result offline. The package is
+OperatorSupplied, and even a Proven candidate conversion leaves
+OfficialTransition NotTested. See the [Milestone 8 package contract](docs/on-demand-milestone-8-package.md)
+and [example packages](examples/transitions/demo-fixed-ratio).
+
 ## Stock Transition frontend
 
 The frontend adapts the original Eplyx visual style with a blue theme, the original

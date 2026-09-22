@@ -160,6 +160,14 @@ and cannot establish issuer identity or control; no issuer key is ever assumed. 
 untested and no proof crosses runs, accounts, amounts, plans, program builds or banks.
 See docs/on-demand-milestone-6-conversion.md.
 
+Milestone 8 introduces strict operator transition packages through the registered
+fixed-ratio conversion adapter. A package supplies candidate SBF bytes and exact
+terms/config, never instructions, account metas, RPC endpoints or claimed proof.
+Fresh current capture, exact local conversion and Milestone 7 stress execution
+remain separate from issuer binding. Package, program, config, captured banks,
+frozen selection and VM results are rechecked on offline replay. OfficialTransition
+stays NotTested. See docs/on-demand-milestone-8-package.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.

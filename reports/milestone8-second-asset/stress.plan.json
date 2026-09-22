@@ -1,0 +1,2709 @@
+{
+  "schema_version": 1,
+  "kind": "conversion-stress-plan",
+  "stress_id": "pkg-2c3ca7f8c8c2-1790059167339-stress",
+  "run_id": "pkg-2c3ca7f8c8c2-1790059167339",
+  "asset_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+  "population_capture_sha256": "156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0",
+  "enumeration_completeness": "CompleteForQuery",
+  "authority_resolution_completeness": "Complete",
+  "candidate_plan": {
+    "schema_version": 1,
+    "id": "pkg-2c3ca7f8c8c23732d8a4",
+    "version": 1,
+    "provenance": "OperatorSupplied",
+    "mechanism": "EplyxDemoCandidateConversion",
+    "adapter_id": "eplyx-demo-candidate-conversion/v1",
+    "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+    "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+    "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+    "source_account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+    "amount_mode": "Custom",
+    "amount_decimal": "0.000001",
+    "terms": {
+      "ratio_numerator": 3,
+      "ratio_denominator": 4,
+      "rounding": "Ceiling",
+      "conversion_fee_bps": 25
+    },
+    "authority_model": {
+      "holder_signs": true,
+      "candidate_authority": "ProgramDerived"
+    },
+    "source_consumption": "Burn",
+    "replacement_delivery": "ProposedReserveRelease",
+    "reserve": {
+      "funded_replacement_raw": "1000000000000"
+    },
+    "effective_at": "2026-10-01T00:00:00Z"
+  },
+  "candidate_plan_sha256": "f69f2ebae7c00c4ed1a4d9bf00cbdddc3eba512d4025b630b30f341ac567fc09",
+  "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+  "classifier_version": "eplyx-conversion-stress-shape/v1",
+  "selector_version": "eplyx-conversion-stress-select/v1",
+  "ordering_rule": "Within any group: observed raw public balance descending, then token account address ascending. Fully deterministic and independent of execution outcomes.",
+  "selection_strategy": [
+    "1. State-shape coverage: one executable case for each distinct discovered state shape, shape key ascending.",
+    "2. Balance-bucket coverage: one executable case for each observed balance bucket not yet covered anywhere, bucket ascending.",
+    "3. Remaining budget: highest observed public balance first."
+  ],
+  "budget": {
+    "budget_version": "eplyx-conversion-stress-budget/v1",
+    "max_response_bytes": 134217728,
+    "max_decoded_accounts": 100000,
+    "max_authority_lookups": 40000,
+    "authority_batch_size": 100,
+    "max_selected_cases": 10,
+    "executions_per_case": 1,
+    "rpc_requests_per_case": 5,
+    "max_concurrent_rpc_requests": 1,
+    "max_concurrent_vm_executions": 1,
+    "population_timeout_seconds": 900,
+    "case_timeout_seconds": 120,
+    "max_artifact_bytes": 201326592
+  },
+  "buckets": {
+    "method": "Rank quartiles over the positive-balance accounts observed in this exact capture, ordered by raw balance ascending then address ascending. Buckets order tests; they are not economic classes and carry no valuation.",
+    "bucket_count": 4,
+    "population": 32760,
+    "boundaries": [
+      {
+        "bucket": 0,
+        "entities": 8190,
+        "min_raw": "1",
+        "max_raw": "30547"
+      },
+      {
+        "bucket": 1,
+        "entities": 8190,
+        "min_raw": "30555",
+        "max_raw": "348292"
+      },
+      {
+        "bucket": 2,
+        "entities": 8190,
+        "min_raw": "348374",
+        "max_raw": "1689716"
+      },
+      {
+        "bucket": 3,
+        "entities": 8190,
+        "min_raw": "1690440",
+        "max_raw": "247169964714"
+      }
+    ],
+    "note": "Selected across observed balance buckets. These cases are not a statistical sample and not representative holders."
+  },
+  "classification_sha256": "32382b3f4c4e0b500d083eb714933b89dd8846b49c435e7d0d7cf7ccf1aa1dbd",
+  "positive_balance_entities": 32760,
+  "state_shapes": [
+    {
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "WalletCompatible",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "ExecutableCandidate",
+      "eligibility_reason": "On-curve, existing, non-executable System-owned authority with empty data. The candidate conversion can be attempted under locally assumed holder signing; key possession remains unknown.",
+      "entities_in_shape": 20778,
+      "represented_raw": "1251031650162",
+      "balance_buckets": {
+        "0": 5644,
+        "1": 5531,
+        "2": 4990,
+        "3": 4613
+      },
+      "highest_balance_entities": [
+        "5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+        "BzfeaPxDiNwt9EV2tYiHPQyAmPZVZvmwY85FiAXwLa6T",
+        "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "2yKhrq4JNmudZtA5cy5aKHcvRuVGoJbo3QjAxGYUsBeQ",
+        "VSesNVc9yAnFbESNMKBmr2KWtckNowLWTSsSKfAUUDx",
+        "Fkhvv8ynXhzbYuKz1QUX5nQ2gKp7dwBwkriSg2xZB1jP",
+        "4gYBPfKx2QKQyj9CnxHF6vttCSdH1fv4E9tU87urpxxY",
+        "HgWVHPJZnDKfyimKotWyAo6vWeWqWdXqn44M2DASXp7q",
+        "79xEVAZDy2VQYTtAvVpxRgmuG2TbmsEdunqePSbqqmU8",
+        "3gbzgS6FJBfFqdg86LoXTNX2XXeNXq28Co7mUa8Ljgvg"
+      ],
+      "entities_selected": 7,
+      "selected_entity_ids": [
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:6kQPZqz2gS2aMqh3uwqxJB4tZ4FXZ1gNVKJvw18thQ9P",
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:9hoDKLgEqjixtBJRRvN4ssCgeJf4xJpkCxY2pv6qsZeH",
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:BzfeaPxDiNwt9EV2tYiHPQyAmPZVZvmwY85FiAXwLa6T",
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:2yKhrq4JNmudZtA5cy5aKHcvRuVGoJbo3QjAxGYUsBeQ",
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:VSesNVc9yAnFbESNMKBmr2KWtckNowLWTSsSKfAUUDx"
+      ]
+    },
+    {
+      "state_shape_sha256": "08e742ed5cae50f32001de0c7ef0cd7caadac0b5a4af64c8a279b832cc5100fc",
+      "shape_label": "Unknown authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": false,
+        "authority_runtime_owner": null,
+        "authority_executable": null,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 7091,
+      "represented_raw": "257686371628",
+      "balance_buckets": {
+        "0": 2214,
+        "1": 2180,
+        "2": 1936,
+        "3": 761
+      },
+      "highest_balance_entities": [
+        "G9fsp5q28indubzHgsb7SneGB6zBDs9KyFYBvPWDHxDQ",
+        "EuX7wZUXiUktHrZfyAKx279VRBPAqqKojgnUQFMw9Lur",
+        "JHGL2iiucs8DS8VehQp4fD1Do5xgFvxwCWxeuhPRcue",
+        "5BvB2mUZ8fhUk74qVwnhNxgHtbV55LU9QQoNqpeRnbFn",
+        "EfCHBtSHo1xN2eiuKJbbHTYfTZYzYXJ1PsJ8Bi5MzBxp",
+        "BBf79L1vaVqFCJWhDyoyNDgqenSxwdRWhB7wX9ZzpaGs",
+        "9qgwq5cXbMauaTbUmSiJbBci6UPQ1PecPhUXjuB34qfU",
+        "8y2Ujx1Hd6X6weGLXYrJgGznrzYAm6hzPjYWv9DkPJ8h",
+        "5VxCFPR7S4yJRkjgpMr4gMXocAgVqZD4j8W69G7H4h91",
+        "35em5JNN5tw8R4xFALz5WtvbW4aFwVZR61MNzurnpQWD"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "1178dd558c913f65813cda4ce8712c092c42c4f209003c6c3b4d3e1522f4a896",
+      "shape_label": "Program-controlled authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 3,
+      "represented_raw": "3713758437",
+      "balance_buckets": {
+        "2": 1,
+        "3": 2
+      },
+      "highest_balance_entities": [
+        "FuwH9eyEi9RApviaNqUhxZhEY6i455Ca2xQmNkjrfTU",
+        "AntpWAd9rqm9MJ974fGDmrfHMywtJ7ajvjjUxi2w9pgy",
+        "8RkD2FyFWoY36hMgSGNo4QaHU5p7sK51saYwWKAikHRo"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "157800d7193cb97c78065ca0d8d8191b6aa7a72eb89dfc22cc58f23751f104cb",
+      "shape_label": "Unknown authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": false,
+        "authority_runtime_owner": null,
+        "authority_executable": null,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 4,
+      "represented_raw": "318843884",
+      "balance_buckets": {
+        "3": 4
+      },
+      "highest_balance_entities": [
+        "CzxC3TFen2FAYAU4jXff1SQoy3Zwgc3oPZVEcbCgRuSC",
+        "AAtXqimhjTJiM9HgpcStx91KANiSMTr88GqoqRc3Efgb",
+        "HjGRYQwafK4fTMJ9b5w1hrFGn6zNHVXQMBJxAgJtgRDg",
+        "HuMrrz1pmw3kgvbaPr4QWKQMExmsy6wCAsik7kETB4GT"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "39879ee13b4fd0b42a782491256e8695fcb03d985601084698f8de772fce019e",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "spicyTHtbmarmUxwFSHYpA8G4uP2nRNq38RReMpoZ9c",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "133566147",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "2HQpNYpaoYMyew6yA1S9n1QEELmx17uEcp4iE9P9E1jd"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "4a15088082802e62b7ce679c05e54fb15756102f0d5806d855785b70a319477d",
+      "shape_label": "Direct wallet authority · initialized · close authority set · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "WalletCompatible",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": true,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "ExecutableCandidate",
+      "eligibility_reason": "On-curve, existing, non-executable System-owned authority with empty data. The candidate conversion can be attempted under locally assumed holder signing; key possession remains unknown.",
+      "entities_in_shape": 35,
+      "represented_raw": "4370997603",
+      "balance_buckets": {
+        "0": 4,
+        "1": 11,
+        "2": 8,
+        "3": 12
+      },
+      "highest_balance_entities": [
+        "3REFKe95C1VCt9ZHb5EBfbcsRzWJGNd7jVPBbPQuHQpB",
+        "8jQXGLWrBvZWB95kcbXxqU6i9p5wmy8jvXzZ6Xj2BZfy",
+        "6Z5JuNXpA2BpYDfhAX9eGn8YD7JUSFEH2uh23q3jTB7C",
+        "Dp3DXw98pUJomwmvp9CP2u9aeQbp9vmsmpvjbe5zQbdq",
+        "41ya3hDEnSA6Usr1mxNQxju6gkTkGQh1MsjVbKjKdTt8",
+        "8sRk8o4XLRBZnih4ugAsCcZa4SiG6qRmKbHpk6yQnrWf",
+        "FdaJc8oVMvKLoV79e5SHmn5msXCiR7dLVLorNooMgrh2",
+        "F3oKnDUmZq6A6crG7nWL5ddYzf88et8nmHsccCLjg4T2",
+        "Hg2mmTA4t55vC6uuCneuk2wYUhVHzgzX7Yhaf2zUEvUp",
+        "DjDBqX2vUAf1pXKs75NwX8Hq1abs7KLZXJUe4mrdd5we"
+      ],
+      "entities_selected": 1,
+      "selected_entity_ids": [
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:3REFKe95C1VCt9ZHb5EBfbcsRzWJGNd7jVPBbPQuHQpB"
+      ]
+    },
+    {
+      "state_shape_sha256": "52f83d19db2e5aced33525691422d944ac4c71b04ff5d6abfea0f450d637c0c1",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "212671696",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "3XXqtPUiuMtPrfxjEGY3dup2m6WRY2FBGkoF3rdM4i8u"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "53556cf0dbe63afc2e09b954b758ca3a02b89dbe289a558185841c5864ed79c2",
+      "shape_label": "Unknown authority · initialized · close authority set · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": false,
+        "authority_runtime_owner": null,
+        "authority_executable": null,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": true,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 39,
+      "represented_raw": "5807288898",
+      "balance_buckets": {
+        "0": 8,
+        "1": 8,
+        "2": 15,
+        "3": 8
+      },
+      "highest_balance_entities": [
+        "UTsJbaMErEDtRCDJnULBYeRTzHCBLedJLhkUTTKqxQD",
+        "EWSAAqR2zy91jpywbGmDdfW1pPfUCKXbXVDcw59JJyaR",
+        "5Udjdnd9KXH5GHiTZFjfWStBtHWKbpKDA5dvnUxQYsjX",
+        "8mSxYNLUc8kXwYPWefbp5ZumerodttSLnTJTZANysPY9",
+        "9Vzt9yNULQY7447iQcz5osjdu37q3y1pdJ6if3K8YPnG",
+        "HpWb2W4gGFZUXX5TUYpnVCJwcMFtjGCyfMh9sTGMsEYJ",
+        "5m7AtSiXnrGky6cFQc94ppqCUpb59WwZeLpY3zaMDMKi",
+        "6tKfBRNWbSA3AF7erEmMgwtxSy1TY4ufG4CR3x74GMv9",
+        "EuTgD47CveVVsPpKj7T9HwiyqXUUBdMyH1NekxnXPMWX",
+        "C3qUvuE8W2Qq1wtsVYNtNUxcY9592Ev1fU52The8xxH9"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "557c5644b2529f5356c4fae6cf70280843989ee8ddddf5323fb855183326aa08",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "2DAtv2URAcb9ZHVMHEB8E3TFBTk9PoNSYknjq8DVr69c",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "1088970",
+      "balance_buckets": {
+        "2": 1
+      },
+      "highest_balance_entities": [
+        "3Ao9zWTFe5U3ZYuAqrjfFEXcPwvc2RKNtZSCQWFKLUqF"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "60ce8c5246d4d61569f92e72c5418db4957edeb64dc02f8f52fa5236f1840619",
+      "shape_label": "Direct wallet authority · initialized · active delegation · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "WalletCompatible",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": true,
+        "active_delegation": true,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "ExecutableCandidate",
+      "eligibility_reason": "On-curve, existing, non-executable System-owned authority with empty data. The candidate conversion can be attempted under locally assumed holder signing; key possession remains unknown.",
+      "entities_in_shape": 1,
+      "represented_raw": "4910",
+      "balance_buckets": {
+        "0": 1
+      },
+      "highest_balance_entities": [
+        "5U9BBCA3DfpoixgEEnLtyorxE1dRzxwJw8Gtxg7M9Sen"
+      ],
+      "entities_selected": 1,
+      "selected_entity_ids": [
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:5U9BBCA3DfpoixgEEnLtyorxE1dRzxwJw8Gtxg7M9Sen"
+      ]
+    },
+    {
+      "state_shape_sha256": "679820e564e3db21d00cc5c9bfdc727ba1e03f8702010f12126b64362ab0ad90",
+      "shape_label": "Unknown authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 65,
+      "represented_raw": "83089377126",
+      "balance_buckets": {
+        "0": 5,
+        "1": 3,
+        "2": 2,
+        "3": 55
+      },
+      "highest_balance_entities": [
+        "ENrtwXXyfj7JpPzUN5eHBp5332fqTNmRC3LMjnfVGz4z",
+        "4DNZtQXoWVoCPB7cjrkTRAHiuotQMNh4MfYxLJjKbgP2",
+        "7st9mpyntoyKMyucz7kWSjggQnVmShG6d2Pm1FYF33zS",
+        "BdQYzbfPWzrpxyjGnWmak5gYTsVkHmiuGWJyKehSWsJM",
+        "3Br3obzR6aTnmVUr8tAcSNgqd68LLNkru9w8Kt5gevEg",
+        "fGR5Ew3wJVqjnScbuyn6WVJtR483MyN6qY7gvAr6NGU",
+        "D8LTix8E6YWFvxFL1yLXeYTVdER9RmhNDftNig3VTQZu",
+        "8diyvuAHyYbsVZ6b3vbo8arfn7BVStJoMxTMSSRHShfh",
+        "EzYNZYKJPB3f4bYgFRY31Rqi1QAuFCHoVCHzBwqhbV9c",
+        "DRQgJ2rY3nnzHc9ZEYaT1uJkjYbojBPYKS8VZktgvjrL"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "68356d4b3900d3a80bd99ef650a4cf925583f8a48f043f81afc78fe422542dc9",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "Dv93oubaDBY5sG9TYWC1Z4wvXv6TrtBABpghhehMnDfY",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 3,
+      "represented_raw": "13",
+      "balance_buckets": {
+        "0": 3
+      },
+      "highest_balance_entities": [
+        "FsL5CPqjGAViWGxMVG4VpXAguQpYKuxJrueSG6vDCX5z",
+        "ByP6Rnu3jkeeR1yNGozYhsfjPu5oQ7R6yxKkXUQG2uxz",
+        "54oUqD7JkrZzR7w61PyRn7De7PMKVLmuo5wUu4j2Rf51"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "73a03a4f330d75fa766fc3645fb5041ece0a57f2f8b5250cef28f2fb6c49f1eb",
+      "shape_label": "Program-controlled authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 10,
+      "represented_raw": "11311208090",
+      "balance_buckets": {
+        "1": 5,
+        "3": 5
+      },
+      "highest_balance_entities": [
+        "8HMV65zeWrGP93EGDuvNXg8cAc31sCXHho9mbLnBng5y",
+        "8byxrSA34A5RvXq2hNuRha4PZWW4gZfKifm3GpehRVdF",
+        "HSk51of4dE9fFnmKKCyQbbTvfMX32yncDZshuWVcUG41",
+        "FdVyKmPkJMVDjyL4ULSYYKckY62M98WizgqMMvuQ3S5b",
+        "HFM1G3JG2BoKiPtMrmvqZYbVnMGR7kbtYPwD7JWKAcRT",
+        "FGA5MDVg6bLBcvGJ32w7v2AHBiY8DhcNuY3RfqZYrzWC",
+        "5CE5a9ZXG9TfQLWaznWir2u1DZhLiL1v6kvHLQKpW8Kj",
+        "2HS2UsexNQVXefpAga8yqeRsQidHwMXdM554uENyeN4p",
+        "4W4iZbVXfNYDmDAV8edefDHnK2zSChrRSEg7kyBbdu8x",
+        "BNvMwvtuitqMZzc9jh1bLpsZWUGrGVPBP7GX6xqkWDgM"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "74fc80000a71048a6720bf61868e3af3211097c5407756bb7c08400a592e961c",
+      "shape_label": "Program-controlled authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "82FH494gMmF9UMTh62sxNCMUb7LZXrtquvVkVL2Bv17r",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "16850772",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "zfA4v6VgEfck1bYQe4VUSTG887Ea7UyjzwVWsFpfFn4"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "765db1c4f5698409603fd924be75e46278b2accf30909ae538a90f7a7ea2bc82",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "6845709",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "8w9MMP4HkXmP1UzaA6TCb5zD9eYhHCR7t4DAhSL3yNq4"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "8c1c25154a4c02a6336922eca8727a7e876880cefe070337c9a6eb209b37e34e",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "H67ehFrMLhFn6xVRymY2GaXMhr1LKH9mdaSEnXnQRKNa",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2,
+      "represented_raw": "785",
+      "balance_buckets": {
+        "0": 2
+      },
+      "highest_balance_entities": [
+        "CvoVwgNfQMkyXhNAYfV2kUDQXqiH682qBQ921pU6z9Nw",
+        "FGFqCXzjBZwFX2D1aBLimVqJWqpbeReahWSdhSye7v3a"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "8d88279dd70dfbf9e3d7eed2b8baf65ac03cf0a1aca259da7ed5c1f103f5331a",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "EXrQsAvsEESAnZiZ8fbuENtT7oX6jxkh1JsaYunewC16",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2,
+      "represented_raw": "1538222",
+      "balance_buckets": {
+        "2": 2
+      },
+      "highest_balance_entities": [
+        "HMGiqvJG9zfCLqpALMFu8JPKB2KYDw44dBbUaavnSZgg",
+        "76KCMvEHYc3iJxPyoG7A4j6APryFz95PAxZvQp4EHE7G"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "9770754e7cf24a91e3774dad55931407fcbd6f9ed4d1ce4b3db8efc0e4cf1f64",
+      "shape_label": "Direct wallet authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "WalletCompatible",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "ExecutableCandidate",
+      "eligibility_reason": "On-curve, existing, non-executable System-owned authority with empty data. The candidate conversion can be attempted under locally assumed holder signing; key possession remains unknown.",
+      "entities_in_shape": 2,
+      "represented_raw": "13967452",
+      "balance_buckets": {
+        "0": 1,
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "CoRkr6KNuxpPsqzbwvyQuteJvxeqwUgknrgWzXD8htZf",
+        "GtEuRcTFhNaD5vsFXuctQMvpAcQ1PRQvJMhe32ESFSPh"
+      ],
+      "entities_selected": 1,
+      "selected_entity_ids": [
+        "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:CoRkr6KNuxpPsqzbwvyQuteJvxeqwUgknrgWzXD8htZf"
+      ]
+    },
+    {
+      "state_shape_sha256": "9aca1dc8f8caa74271fae12da985c8c5081e6265578791ff49a7b3be7ccd9b0a",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "syspv6Qe5BbK8GPEjLbMnmF9hZy7juAuePbuspciCFP",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2,
+      "represented_raw": "78232",
+      "balance_buckets": {
+        "0": 1,
+        "1": 1
+      },
+      "highest_balance_entities": [
+        "2FF9XN1zo7VYD8ezvejQAD51feN3djqFnGgJYbo3q1b2",
+        "Fv2AXq9dqVD2KfLY6WQbribxTrPSjkQsnQemLYnQhcLq"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "9d557ab1c9e0c6976428dc85847cf3f0d87660fadcde6a88da93113cf7e17cbc",
+      "shape_label": "Unknown authority · initialized · active delegation · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": true,
+        "active_delegation": true,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 8,
+      "represented_raw": "16815757",
+      "balance_buckets": {
+        "0": 5,
+        "2": 1,
+        "3": 2
+      },
+      "highest_balance_entities": [
+        "B6eQwSKsJQGr5WHFvDB4tk5MNAcRM2mdjhmESacCpvL6",
+        "3wbxGph88mVWAa8LKJrn4WZXeq6kPxcETHmRLQwyezup",
+        "dSJLbdUfALQs6gE6KFJB85ytPhuoGfiAorby69J23Kj",
+        "Ca2nJnMQZUgpPXPpk9vKBE2sdAdtPcTibkUQHAHvPyM8",
+        "2W3kmacHuYVx5uiUKtpwTY4KRb3g8TZ3eynUkoH3sFrX",
+        "BBPjY56AuUkvA8mPd4ME5zV4WmTiDU73tTEuEvzC4631",
+        "CDnK5XkhqMFg2v8ogbJSGe9voBr9S4tJ1cE73REfpQz4",
+        "EtyN2WMaCzBQLaXSDjJJErNM3xvqxUyPAeJ1R3e6UtHH"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "a054b07dd89678369cec85c344b65cef150733713fa8410b295dff801d8f31c4",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "j1o2qRpjcyUwEvwtcfhEQefh773ZgjxcVRry7LDqg5X",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 3,
+      "represented_raw": "1032120",
+      "balance_buckets": {
+        "0": 1,
+        "1": 1,
+        "2": 1
+      },
+      "highest_balance_entities": [
+        "BrnY2DeLgRggo21swnB8KNxrrGNbcvzjSRnFypcxzR4d",
+        "9soKXGRNtDCfxZW8nN6jwnxkfYqLgbJBi3GPEUEd4jw3",
+        "Aw5puKjr9ukb1PDx2bDbqCAFiZ3ojerfUYTpRAYu9og3"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "a16b897e8a438af7409d5eb6ad050b1ab6de1458506216ddeaaeb82dff8c9391",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "HADRoNbLovyqhCsocfYQYB7QdfCAAinN9HTePvBCVDQ8",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "99460230",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "64mss75CrejBCUVSbLErZZcD1Xf2ZLtJ2gFDo6gNXqLs"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "a2c4af6a2cb2b01b5cf3d120ed01daa90c9d1be9e7fda28e15a0d63a197ab7d7",
+      "shape_label": "Unknown authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": false,
+        "authority_runtime_owner": null,
+        "authority_executable": null,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 96,
+      "represented_raw": "1917894613",
+      "balance_buckets": {
+        "0": 72,
+        "1": 9,
+        "2": 3,
+        "3": 12
+      },
+      "highest_balance_entities": [
+        "F9cvYQuBLJZUopj8X56uyGjomCgMJ8kRadbLBHn9Nu5x",
+        "DYMkMHkkbZHbaTiFvT5UtYuBBLJiBgPvb4cW2JrN6cU6",
+        "86hHYDnS4YhGe5ba62iwFi1Y6d1m21PaHVehvqBYBGse",
+        "3fg1HD3w3CvaDzHDmHwL2kgD3TCnJ3gMf7Pu6md2zPrx",
+        "A6o3buHZvSfuquNSjX5ytawJdci37XgeqqBLJPKy9jiU",
+        "3S6J6ybd3f1qHoGR4LtG721Ny7TYS28zbUKEbakrqXS4",
+        "FWN1nGKXoHQ8WGY2YLkConKduvRNyNh6UHASyVwQcqjb",
+        "9axgEf1BDySyFXVWW6WBE7zyZmLDWR4cnuR88tmN5xa9",
+        "HfoQjvcQjtmY7Xi67xetqHdxWtWUbo9YzBxotMLvHqpN",
+        "nzyw2PaNJvbZ7HHhvAsnEVeW9TVHGJHEy62t2bZsnNz"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "ab8b730c833c58eccd33e9f37c7f544c92981215a31d928480468f4857cdac86",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "3s1rAymURnacreXreMy718GfqW6kygQsLNka1xDyW8pC",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2,
+      "represented_raw": "5905178",
+      "balance_buckets": {
+        "0": 1,
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "6tsKwk6h26SDK4QnKjqLRo92CDQpcr8FqJjzDuPU7LVU",
+        "G1YQ2jneuyhtLqUxhfQrM6t63DzfzJLw4Duua7eMR7ps"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "ae7720ac874592ee045fe7d9d12f03a6685519b6ae68500f6e04b3ab0c3a71a4",
+      "shape_label": "Program-controlled authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "FqGg2Y1FNxMiGd51Q6UETixQWkF5fB92MysbYogRJb3P",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2,
+      "represented_raw": "146495",
+      "balance_buckets": {
+        "0": 1,
+        "1": 1
+      },
+      "highest_balance_entities": [
+        "JBPr82j16ej3f3os2pWqbviPqvj9mw7TD67BGVZWwPZF",
+        "Cb2yXt6T6eN7gjunnw1MbuXVc6RAUazKRfaAQvqDpGuc"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "b34be4186c60c2fab1c587bbbc9ca9eee0f11dbccbc01c54a86f4dc9777feeac",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "9bKZvDaj7ga1H9iVc9Ktqhg1uXXkhTgSRkzBboR1YbMy",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "1347752257",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "FHe1PBWYZV3TKCUi6iRZWZLqyFevbfyfveybe31vWRPB"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "b3fb8bbc27c4f59d657846409b2d032f8452d762371021a31c67535a4c01b61c",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "CAMMCzo5YL8w4VFF8KVHrK22GGUsp5VTaW7grrKgrWqK",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 377,
+      "represented_raw": "36479620209",
+      "balance_buckets": {
+        "0": 5,
+        "1": 12,
+        "2": 41,
+        "3": 319
+      },
+      "highest_balance_entities": [
+        "22BwzmU2XC3HsnhTzuus6hqSNbT5Rnhs77S8UdHded3x",
+        "Ej4sb8fvvMVzuMYVshGqqkmaLviF8QTVzFsMHMoX4jgs",
+        "9SdE464Fa1Ee3RYxEaq8oC1wUU1yLiwBnPWYfFxGVsoJ",
+        "6B7SNX9v7xLjKRkjhSem6Y37Uv7NbWqeuCJrJvzhVuSo",
+        "CEg5wExEt5UPKpaZr3NP7AcBZCJHStbLcZS7NrNV7asA",
+        "6cK6zfvCQK19jWjbbZsyokzoPc3hHQKPsboebKxaFupk",
+        "CHDFEtaLJUTDUudqRW44fbySVfV6CB6Dz5rUQW5LsVBk",
+        "4xWsB9go8CrSWNEqdBZPy8pBqSx2R6XfpKRXNrRpe9Qd",
+        "D4YSvKaEbCY3T7CZVmkFQYG5rfmWaG6BUYD2kmKypduJ",
+        "4WANXtrbcbWkJfh9fE8NdBfY1YVYbnR9WVcjj4mgxeja"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "b5616764048ca2485e7f2dbf56f60d24f4a9068e6f99f857842590ff4ba3988d",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "AjMx5My4YUDHMiCtLpTAtgkiUJgrpJnQqd5AcQnddHQW",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2207,
+      "represented_raw": "8927527939",
+      "balance_buckets": {
+        "0": 106,
+        "1": 382,
+        "2": 1054,
+        "3": 665
+      },
+      "highest_balance_entities": [
+        "8fdehMW3fnJ747Ck7q1ubXbuoD3twu9GernFvCU32FJq",
+        "8dDiQDnuKaRWTcRHHuThMzWjL2CtFRMGggUwwuHpyxRe",
+        "BiWUBaL9JeFTMHBZ7D38aL2mVgVSZssBTMBdyeKCDuB2",
+        "GDDAg388F2syuKx6UR9NnRn5TbCUMQARdydw1VSwDDS7",
+        "5jZJvqvzc1GjuPezBLcVeuEVyREJxZp2rR44jUaYr4bc",
+        "2BnddJNGwv81CFSceCnvat5V5zgpTgdTRcAVtunTQrUV",
+        "5wYnHYiFr4EWR1J7g8jnNp2Nfwrs6KZHhG2LfP3djGzq",
+        "6aCyaoHuFmXigm8B4vUWdp4G4eXnrLEn9vg9Utkuk5FG",
+        "8wTmZwNKHwfoC8ZGLHASs8HxCgxmrvcv5xHW6LfBStfe",
+        "BVk45q548xh64to3gBFAoMyYToqBhd9udtaDxgVsTYeU"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "b88091350fc4e1bd813c37b729585dfba6274584bef79fb6350c82fbcd1249f7",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "JTXJTXfr1wVRMEzqiPhXUr69zJtfGuLh5qEiXG772Zj",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 2,
+      "represented_raw": "9314",
+      "balance_buckets": {
+        "0": 2
+      },
+      "highest_balance_entities": [
+        "57kGofY2eMrbPj1Gkx84LDqdxKXxH12Ndb68N2f68Zo7",
+        "Bn1XUeiaZvwyxqU214i94UevLnNL7hvEg2oJGroiZ3CM"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "bef5427232b144b22a40751f8c1ef934d3e13dcf094c1d5d9b6f6df3d4f2f737",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "vanshF62ku4jVVdf8DS47SXuJC1rq8qokGSANAomhey",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 4,
+      "represented_raw": "21660115",
+      "balance_buckets": {
+        "2": 3,
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "DbaasChs7eifAsmLu8HkgBiCUKsDNbPHwjU7pfvp66VM",
+        "EzKePgAnqVVj72dTZ8BH5QfBMXdcMF5u2Ta3hcDxK7JJ",
+        "4SXbGxTA5vjQjFKTkVWLKTz2rMRGkXrAceg7v2KGoGPM",
+        "8sJjBdYVJhZNuB1MEzqgkaZaL5DL5zHsSsFpetfCFzYx"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "c37bb9cdebd5be5c1e6a709a9e2b5546681036c81080e37266cc7fcdbe04f65e",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "defAh9DW4sHuzs98QjbSdDevUuCMnhtEBeXJumTedif",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "86",
+      "balance_buckets": {
+        "0": 1
+      },
+      "highest_balance_entities": [
+        "EXAahwktqxRviy93rsMKXkzySNi3kfrCcZL48zfsSXgc"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "c896d996511af8be4c5f4cb145b7df5241b3abffff2a11b071e379678ced6e6d",
+      "shape_label": "Unknown authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 162,
+      "represented_raw": "118819288201",
+      "balance_buckets": {
+        "0": 90,
+        "1": 14,
+        "2": 23,
+        "3": 35
+      },
+      "highest_balance_entities": [
+        "BGoxoC3bR5KNVXJBYtAsz1WpXvNHnd8k525WGpHa8iQe",
+        "DXUPoRr3sqDyADQAiS7cHtwWdoNuSAqNrbfWBX1NsHie",
+        "DRCQt24BRkSnRuNcRMVXCpeeJxK8wvuMrdEUfzoJwaeQ",
+        "Hjmxauet7a2d6po1KzJdnVcwaem8ncywdx38AVEJDCx8",
+        "5cD3kBnCWLvySWKuc5Nv8cKvrKdPG5quoYPQxPHMgQpT",
+        "DeHTHhfhqgcNHxeGHA6ymFUzeeGeLue45JqRYpNWpp7k",
+        "EgZjzgCAtMRJax3Co1hVS2cKqYnge25dPaczHdbQJAbC",
+        "HxiWPxjxBZdxtPTBK9zz1C4Cnvykz8oU7m6ZKcbyYLx3",
+        "GpVtxzkBYJy9SscUXApGuiYckKyoXBmKBegNh4P891CR",
+        "DrXmC2mXwqw9ZgSiddC5sLzn8mDeXYW5ks9BuzNd9tyV"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "ca844ba92bdc625b3129fb2fde85bb60460be27e78898467114957196328143f",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "B3XB5WZBFqvDHFyV2TXoafbVRP5rsi7CAQZ1H9YEeudX",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "17967874",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "352tMtoGAufQfDdNYFnQwhorz3rPkNXcA9Stx3FsAuiY"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "d21f28f9ab2d57a2ec8b14462159231671ecb77498cfd815712ba199d5da16e1",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "T1TANpTeScyeqVzzgNViGDNrkQ6qHz9KrSBS4aNXvGT",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "53798697",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "577XY3BqQKdb2Y8i1jnRRxu594ZxQv7wzepDTVmmH7W8"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "dfc55628e2b03a5c59856c26fd22623fef68a279238ff36d93f9d8aafd7d61ba",
+      "shape_label": "Unknown authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": false,
+        "authority_runtime_owner": null,
+        "authority_executable": null,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 1802,
+      "represented_raw": "48218036218",
+      "balance_buckets": {
+        "0": 10,
+        "1": 26,
+        "2": 100,
+        "3": 1666
+      },
+      "highest_balance_entities": [
+        "BRPyZJLDEa5B3pgS68QQorzygoB9zDHhTL6SY94ZUi5i",
+        "5E3QNXANQiEwAJjNqNRrHaP6VQtj3MSC2JF1VyKQsSHW",
+        "EBtaCRkrtTzBYaycffi3wC8jTaBVSSfmVfXkvPfR7mLp",
+        "GdR3P6dQNNwCJKDNNDGQMB64CCyNqnHuRDCGTySJB3x2",
+        "GPVk1VJD1X89HAzeoijNByReZqg9J7tcuu843Mifb3SA",
+        "3EzdXrrRNubh8sukDt7cDkeyGV2r5e35jBpWHjK6BCtY",
+        "GpK5YuhkqjVWKjFBLLDMdKqXTc4qSpuFQK8AMiZa5GkU",
+        "3LDwVntdsQejTwqshCjb7AucrQjpyqdZwJG7e4oLDHE7",
+        "UGBVDauUcL2iAQobrXZNFgqXjPh3EgByeZKAZKsqQUN",
+        "EsAg51wx8reXqtawC5i1CRGcXQhfnq8pzDHLUCayLHnr"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "e2744ebf01998ed4bd42db87eacf9573f62ba6e60b8817f3df3d4928e394100d",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "LBUZKhRxPF3XUpBCjp4YzTKgLccjZhTSDM9YuVaPwxo",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 25,
+      "represented_raw": "43636236344",
+      "balance_buckets": {
+        "0": 3,
+        "1": 4,
+        "2": 6,
+        "3": 12
+      },
+      "highest_balance_entities": [
+        "CiGhjdnp4ARJt79ZRzCW72AQuQRMteKymCR4D6wsTFdB",
+        "FaHEk1LERWayrFxTsootwLpFHQyJX9BVhhZ8k34hUSNw",
+        "BLep6hMWoTDYvwMubBaDg5PttmpmjtH2wxsSJLh54NQG",
+        "33Xyge1oU16SXUSrJ1CU1MF3eLKX9tz8ogCK5Ue2SV7f",
+        "CFRVJwP73YK9aRqiUByQ7ierqdvGKgeLVMwoTJ8exPJJ",
+        "B8fXtESF5TxsgCA5oqciPDyQD8BHKxXDt9rkR1VF1yi6",
+        "B4GgSmMpa4iRY7uk7oBizJpA8hP43eLJhi1uLzeSQ4Po",
+        "5MbcseV8Qw9G1tLjfq7riFC9iNLPsx5urhzATePRJoeC",
+        "8WSS98TFwZEjkt95p94UNo6zQDi6u8uZPkztAEbeAaab",
+        "Di8TrvvL8ki7yAPVeTTBRaVMagecxFgx3gkWRQqTykES"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "e3fdc5f8a937b317022bdae87d92dba5f21667edfc078590c8c041844fbc5932",
+      "shape_label": "Unknown authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": true,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "11111111111111111111111111111111",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 1,
+      "represented_raw": "121356",
+      "balance_buckets": {
+        "1": 1
+      },
+      "highest_balance_entities": [
+        "7YcaHN38b9gK2QdshuDhnHEG4948Xv62u389UBLQ7Beh"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "e9031bccf534c52ac725ebdf95f5e5eafd71f9cdb233af212c496b28d1594521",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "AveaiuA1emN71q9mS2QQ9BEWNAAHmp8sHSvwLFHQjufM",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "7693417",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "EJoXhDyQq3bN2LM55cf7YBwxc6GabuNWnCWUMjbTswCe"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "ebe2ac0cd675c6fffbe38c4ae41532be28191470e393294950d1cce133590c26",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "whirLbMiicVdio4qvUfM5KAg6Ct8VwpYzGff3uctyCc",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 7,
+      "represented_raw": "1733835371",
+      "balance_buckets": {
+        "0": 1,
+        "1": 1,
+        "2": 2,
+        "3": 3
+      },
+      "highest_balance_entities": [
+        "1wVQo5nmtaLCx3CCUCnMU2xW4KXZbLTAYjp1ZNFTM4B",
+        "EBt3rrVUHfKAjVhQmPczx33ZxRk5zCcQFigeMrXQZUwi",
+        "72mvJSgu65jLhcrucJoxunjGkmccQLJSjJ1BNsbMzNRa",
+        "F3g7sY5hHMaNtYhJP23iJqyFF6ysXShCmL1dwV6n7NKX",
+        "C3hgTdKMgvno7Jant7uBLqZkNZDv44rm291Et2keAXjE",
+        "3nNhdrEmnR1AZa4fWaKviHYsREST7Xj4zCGt2xU7anDA",
+        "B4YaNioivsKAFK4Asc8VuVMeQMsbPLHE2Ko5oZCFYiTg"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "fa1c7538cb8022c770e637e60ccaf6040a2909e1e0173906b608feaf86a25c05",
+      "shape_label": "Program-controlled authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "8QzA9CNS94L7jXPJjRA4tewAGu3uqJBtjZbc4GhF2XHJ",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 3,
+      "represented_raw": "15369791",
+      "balance_buckets": {
+        "2": 1,
+        "3": 2
+      },
+      "highest_balance_entities": [
+        "8ydbgp7ywg7VAsLHEfy16SvchZx3LJhQHaT6kBZoJvYX",
+        "G5JSCXCANE2kghrL5uc5gaoNkdMELgQ1e9b2Na4mQmEf",
+        "4oYEYghBoufxFjzSufCcp54VzH9FNjSNEEYx3GE31Dx8"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "fa53c916c87de109e1172ca1d62bc55bb494a7237eb54a01ae440264be0978da",
+      "shape_label": "Program-controlled authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "ProgramOwnedAuthority",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": true,
+        "authority_runtime_owner": "2CwNQT3gDQ3c3iZCpofKGnC81FMwRAzbKHDEQZ3WQhjq",
+        "authority_executable": false,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": false,
+        "active_delegation": false,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "entities_in_shape": 1,
+      "represented_raw": "2605711",
+      "balance_buckets": {
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "FJ2WWVhyv68ofrgWuUCFKsqtyU1N6J6cf9UbrnFp53et"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    },
+    {
+      "state_shape_sha256": "fa96f3e460d21956a9f82e2a3bd5b920a101a03cd5591edbb14a97a95216114a",
+      "shape_label": "Unknown authority · initialized · active delegation · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "dimensions": {
+        "authority_model": "Unknown",
+        "authority_resolved": true,
+        "authority_on_curve": false,
+        "authority_account_exists": false,
+        "authority_runtime_owner": null,
+        "authority_executable": null,
+        "account_initialized": true,
+        "account_frozen": false,
+        "delegate_present": true,
+        "active_delegation": true,
+        "close_authority_present": false,
+        "account_extension_types": [
+          "ImmutableOwner",
+          "PausableAccount",
+          "TransferFeeAmount",
+          "TransferHookAccount"
+        ],
+        "mint_token_program": "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
+        "mint_paused": false,
+        "mint_transfer_hook_active": false,
+        "mint_transfer_fee_configured": true,
+        "mint_default_account_state": "Initialized",
+        "mint_permanent_delegate": true,
+        "mint_confidential_transfer": true,
+        "mint_confidential_mint_burn": false,
+        "mint_non_transferable": false,
+        "balance_positive": true
+      },
+      "eligibility": "Unsupported",
+      "eligibility_reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "entities_in_shape": 10,
+      "represented_raw": "10988890",
+      "balance_buckets": {
+        "0": 9,
+        "3": 1
+      },
+      "highest_balance_entities": [
+        "GtAtYdnBTj1Ndbkicrbh99ovy3sZTi3AmqauZiSDNkq7",
+        "6r5kvquctZXHkAr4u9mN3AotWbDmcDCX8xgF8ApjVbL9",
+        "7WuDPUeKyFu9rw1oGXNtEuLKPABpBozMX4o2BPWvPXnf",
+        "9pj9HYcPd7kam6W6eiVvC8AHXzRaNxMDAzEVETjuxhns",
+        "Aw1EQrz5WsBzGyu95Vh8pMgVMrksCvQFXxoBHeKTHban",
+        "CKmVm4j2eRDfXNZTY7JXwVQ3jAKDqjaTviNFymqxPUhP",
+        "DEBY1fgz1bkaY5rMivkfB7xiQZSjKgwGgP4iqQF6bDxU",
+        "HYa6jNfvB7G6DBNsKL9WVCWnQ2E9Hn5kPuNzhRxiKEGb",
+        "HbnWDtBUvL4PXcRUdtxbpadSnAg84kT4EbGs3fHf544v",
+        "KcaGY62GxvRHr9UWgGuzJQENDSPLf16Pmwy5CcLvQC1"
+      ],
+      "entities_selected": 0,
+      "selected_entity_ids": []
+    }
+  ],
+  "eligibility_counts": {
+    "ExecutableCandidate": 20816,
+    "Unsupported": 11944
+  },
+  "selected": [
+    {
+      "case_id": "case-00",
+      "selection_order": 0,
+      "selection_reason": "NewStateShape",
+      "selection_detail": "First executable case for state shape 089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21, which covers 20778 observed positive-balance accounts.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+      "token_account": "5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+      "authority": "D8J5wMyQSfnPohtMdYSz7VEYsH8Uk4DXY5Me8jVc1BsW",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "247169964714",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "247169964714",
+      "selected_amount_decimal": "247.169964714",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s00",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+        "amount_mode": "Custom",
+        "amount_decimal": "247.169964714",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "47ba5a5217b2b4fb6a68bb9fe84beaa4990965cfe7e1966dde088d6cfeb288ad"
+    },
+    {
+      "case_id": "case-01",
+      "selection_order": 1,
+      "selection_reason": "NewStateShape",
+      "selection_detail": "First executable case for state shape 4a15088082802e62b7ce679c05e54fb15756102f0d5806d855785b70a319477d, which covers 35 observed positive-balance accounts.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:3REFKe95C1VCt9ZHb5EBfbcsRzWJGNd7jVPBbPQuHQpB",
+      "token_account": "3REFKe95C1VCt9ZHb5EBfbcsRzWJGNd7jVPBbPQuHQpB",
+      "authority": "4WeFua1BRkBHDjo11znKZba4kHWfVg13Kkr7gARjjwXA",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "4a15088082802e62b7ce679c05e54fb15756102f0d5806d855785b70a319477d",
+      "shape_label": "Direct wallet authority · initialized · close authority set · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "4188110232",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "4188110232",
+      "selected_amount_decimal": "4.188110232",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s01",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "3REFKe95C1VCt9ZHb5EBfbcsRzWJGNd7jVPBbPQuHQpB",
+        "amount_mode": "Custom",
+        "amount_decimal": "4.188110232",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "7def399074dbd174aacaa5cc1beeb1f2b89e9a0cb24205ce639ef1685d1c5a9b"
+    },
+    {
+      "case_id": "case-02",
+      "selection_order": 2,
+      "selection_reason": "NewStateShape",
+      "selection_detail": "First executable case for state shape 60ce8c5246d4d61569f92e72c5418db4957edeb64dc02f8f52fa5236f1840619, which covers 1 observed positive-balance accounts.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:5U9BBCA3DfpoixgEEnLtyorxE1dRzxwJw8Gtxg7M9Sen",
+      "token_account": "5U9BBCA3DfpoixgEEnLtyorxE1dRzxwJw8Gtxg7M9Sen",
+      "authority": "EHgXJe2YKSpGH5sw9mCCPHuwkXqnuxgtfYn764zGjAB9",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "60ce8c5246d4d61569f92e72c5418db4957edeb64dc02f8f52fa5236f1840619",
+      "shape_label": "Direct wallet authority · initialized · active delegation · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 0,
+      "observed_balance_raw": "4910",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "4910",
+      "selected_amount_decimal": "0.00000491",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s02",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "5U9BBCA3DfpoixgEEnLtyorxE1dRzxwJw8Gtxg7M9Sen",
+        "amount_mode": "Custom",
+        "amount_decimal": "0.00000491",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "3e280946259662bbd1e1e0f1f931474aa2b3c6c475e8792176e5ecc5f92180bd"
+    },
+    {
+      "case_id": "case-03",
+      "selection_order": 3,
+      "selection_reason": "NewStateShape",
+      "selection_detail": "First executable case for state shape 9770754e7cf24a91e3774dad55931407fcbd6f9ed4d1ce4b3db8efc0e4cf1f64, which covers 2 observed positive-balance accounts.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:CoRkr6KNuxpPsqzbwvyQuteJvxeqwUgknrgWzXD8htZf",
+      "token_account": "CoRkr6KNuxpPsqzbwvyQuteJvxeqwUgknrgWzXD8htZf",
+      "authority": "HvFdDWS3RqymRAVx1ZdoL2RjiC38r5dtt19Z8op5jqDK",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "9770754e7cf24a91e3774dad55931407fcbd6f9ed4d1ce4b3db8efc0e4cf1f64",
+      "shape_label": "Direct wallet authority · initialized · account extensions: PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "13942867",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "13942867",
+      "selected_amount_decimal": "0.013942867",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s03",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "CoRkr6KNuxpPsqzbwvyQuteJvxeqwUgknrgWzXD8htZf",
+        "amount_mode": "Custom",
+        "amount_decimal": "0.013942867",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "4b7a96f81fd9954fcfec03023549cb6fd784f5d1432267c51ad21c1fc9beaf76"
+    },
+    {
+      "case_id": "case-04",
+      "selection_order": 4,
+      "selection_reason": "NewBalanceBucket",
+      "selection_detail": "First executable case in observed balance bucket 1, which no earlier case covered.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:6kQPZqz2gS2aMqh3uwqxJB4tZ4FXZ1gNVKJvw18thQ9P",
+      "token_account": "6kQPZqz2gS2aMqh3uwqxJB4tZ4FXZ1gNVKJvw18thQ9P",
+      "authority": "5fhspFK9SQD2m4XStFk1WfBMUVcuv5A6dfEMsD2q6z93",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 1,
+      "observed_balance_raw": "348292",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "348292",
+      "selected_amount_decimal": "0.000348292",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s04",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "6kQPZqz2gS2aMqh3uwqxJB4tZ4FXZ1gNVKJvw18thQ9P",
+        "amount_mode": "Custom",
+        "amount_decimal": "0.000348292",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "0ea7b2054ba6b92015ecdf37bf2a78e81bf748d0ff4a083954162b290d9833c2"
+    },
+    {
+      "case_id": "case-05",
+      "selection_order": 5,
+      "selection_reason": "NewBalanceBucket",
+      "selection_detail": "First executable case in observed balance bucket 2, which no earlier case covered.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:9hoDKLgEqjixtBJRRvN4ssCgeJf4xJpkCxY2pv6qsZeH",
+      "token_account": "9hoDKLgEqjixtBJRRvN4ssCgeJf4xJpkCxY2pv6qsZeH",
+      "authority": "3fUfhTaesCrptwV4YKsgx1Qr8TNfxLHztmaigr23GFSY",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 2,
+      "observed_balance_raw": "1689716",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "1689716",
+      "selected_amount_decimal": "0.001689716",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s05",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "9hoDKLgEqjixtBJRRvN4ssCgeJf4xJpkCxY2pv6qsZeH",
+        "amount_mode": "Custom",
+        "amount_decimal": "0.001689716",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "ab913a3622c461d13d8c8d6c0c1e241687dcd680ae69c9cd7547c8d0837054b5"
+    },
+    {
+      "case_id": "case-06",
+      "selection_order": 6,
+      "selection_reason": "HighestRemainingBalance",
+      "selection_detail": "Remaining stress budget, highest observed public balance first.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:BzfeaPxDiNwt9EV2tYiHPQyAmPZVZvmwY85FiAXwLa6T",
+      "token_account": "BzfeaPxDiNwt9EV2tYiHPQyAmPZVZvmwY85FiAXwLa6T",
+      "authority": "2sujbbTjp2r5ugbjfHgUNDSwtdVfYpTiCSKPgT84CvD7",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "231248606337",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "231248606337",
+      "selected_amount_decimal": "231.248606337",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s06",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "BzfeaPxDiNwt9EV2tYiHPQyAmPZVZvmwY85FiAXwLa6T",
+        "amount_mode": "Custom",
+        "amount_decimal": "231.248606337",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "bdda0e4a550b4f2648712c20801a90f90b637fd2c58608c66a80c8c8f030a92d"
+    },
+    {
+      "case_id": "case-07",
+      "selection_order": 7,
+      "selection_reason": "HighestRemainingBalance",
+      "selection_detail": "Remaining stress budget, highest observed public balance first.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "token_account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+      "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "132410689251",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "132410689251",
+      "selected_amount_decimal": "132.410689251",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s07",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+        "amount_mode": "Custom",
+        "amount_decimal": "132.410689251",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "1c827733b718ca0c5571e002a306d4ea58aa9887e73e015a33b1c4b1b4cfcf22"
+    },
+    {
+      "case_id": "case-08",
+      "selection_order": 8,
+      "selection_reason": "HighestRemainingBalance",
+      "selection_detail": "Remaining stress budget, highest observed public balance first.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:2yKhrq4JNmudZtA5cy5aKHcvRuVGoJbo3QjAxGYUsBeQ",
+      "token_account": "2yKhrq4JNmudZtA5cy5aKHcvRuVGoJbo3QjAxGYUsBeQ",
+      "authority": "HkvpFqa3WngHoQcfLttAX4am7Ng8vezF6EEGRSbMsRj9",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "109307092869",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "109307092869",
+      "selected_amount_decimal": "109.307092869",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s08",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "2yKhrq4JNmudZtA5cy5aKHcvRuVGoJbo3QjAxGYUsBeQ",
+        "amount_mode": "Custom",
+        "amount_decimal": "109.307092869",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "a6825a71676c4bf264b186e7a687597ce88c86df5746c77ec3526b6c253ba265"
+    },
+    {
+      "case_id": "case-09",
+      "selection_order": 9,
+      "selection_reason": "HighestRemainingBalance",
+      "selection_detail": "Remaining stress budget, highest observed public balance first.",
+      "entity_id": "current-stress:156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0:VSesNVc9yAnFbESNMKBmr2KWtckNowLWTSsSKfAUUDx",
+      "token_account": "VSesNVc9yAnFbESNMKBmr2KWtckNowLWTSsSKfAUUDx",
+      "authority": "ELet2Q2rzqJswXvj592QK9sLVd6ms7HcbTvcK8A3quqH",
+      "authority_model": "WalletCompatible",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "shape_label": "Direct wallet authority · initialized · account extensions: ImmutableOwner, PausableAccount, TransferFeeAmount, TransferHookAccount · positive balance",
+      "balance_bucket": 3,
+      "observed_balance_raw": "38861112259",
+      "discovery_slot": 449300189,
+      "selected_amount_raw": "38861112259",
+      "selected_amount_decimal": "38.861112259",
+      "amount_policy": "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture",
+      "amount_capped": false,
+      "case_plan": {
+        "schema_version": 1,
+        "id": "pkg-2c3ca7f8c8c23732d8a4-s09",
+        "version": 1,
+        "provenance": "OperatorSupplied",
+        "mechanism": "EplyxDemoCandidateConversion",
+        "adapter_id": "eplyx-demo-candidate-conversion/v1",
+        "mechanism_ref": "fixed_ratio_conversion_v1@ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+        "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+        "source_account": "VSesNVc9yAnFbESNMKBmr2KWtckNowLWTSsSKfAUUDx",
+        "amount_mode": "Custom",
+        "amount_decimal": "38.861112259",
+        "terms": {
+          "ratio_numerator": 3,
+          "ratio_denominator": 4,
+          "rounding": "Ceiling",
+          "conversion_fee_bps": 25
+        },
+        "authority_model": {
+          "holder_signs": true,
+          "candidate_authority": "ProgramDerived"
+        },
+        "source_consumption": "Burn",
+        "replacement_delivery": "ProposedReserveRelease",
+        "reserve": {
+          "funded_replacement_raw": "1000000000000"
+        },
+        "effective_at": "2026-10-01T00:00:00Z"
+      },
+      "case_plan_sha256": "10561f15d1b3e4dffaec7f52fe4d94fe588767c7bf356ea84d786203505cbb13"
+    }
+  ],
+  "frozen_at": "2026-09-22T06:41:42.230Z",
+  "limitations": [
+    "This plan was frozen before any capture or execution. Selected cases, amounts and expected classifications may not be rewritten afterwards.",
+    "A state shape prioritizes and describes tests. It is never a proof equivalence class: no tested entity establishes anything about its peers.",
+    "Balance buckets order tests across the observed range. They are not economic classes and the selected cases are not a representative sample.",
+    "Only the registered repository candidate mechanism is executed, always locally, against a freshly captured bank plus an explicitly proposed rollout overlay."
+  ]
+}

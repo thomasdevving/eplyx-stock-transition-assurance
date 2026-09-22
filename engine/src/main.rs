@@ -31,6 +31,27 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Validate an operator transition package, then capture fresh state and run
+    /// candidate conversion plus bounded production stress in the local VM.
+    Preflight {
+        package: PathBuf,
+        #[arg(long)]
+        out: Option<PathBuf>,
+    },
+    #[command(hide = true)]
+    FinishPackagePreflight {
+        package: PathBuf,
+        #[arg(long)]
+        result: PathBuf,
+    },
+    /// Reconstruct every conversion and stress result from saved capture bytes.
+    ReplayPackagePreflight {
+        package: PathBuf,
+        #[arg(long)]
+        result: PathBuf,
+    },
+    /// Validate a transition package entirely offline before any RPC request.
+    ValidateTransitionPackage { package: PathBuf },
     /// Validate structured prospective fields without RPC.
     ValidateCurrentPreflight {
         #[arg(long)]
@@ -740,6 +761,65 @@ fn main() -> ExitCode {
 
 fn run() -> Result<ExitCode> {
     match Cli::parse().command {
+        Command::ValidateTransitionPackage { package } => {
+            let p = eplyx_lifecycle_impact::conversion::package::load(&package)?;
+            let plan = p.conversion_plan()?;
+            println!(
+                "{}",
+                serde_json::json!({
+                    "transition_package_sha256": p.transition_package_sha256,
+                    "candidate_program_sha256": p.program_sha256,
+                    "config_sha256": p.config_sha256,
+                    "plan_sha256": plan.sha256()?,
+                    "deployment_origin": "Proposed",
+                    "provenance": "OperatorSupplied",
+                    "official_transition": "NotTested",
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::Preflight { package, out } => {
+            let out = out.unwrap_or_else(|| {
+                PathBuf::from(format!(
+                    "eplyx-preflight-{}",
+                    chrono::Utc::now().format("%Y%m%dT%H%M%S%.3fZ")
+                ))
+            });
+            let report =
+                eplyx_lifecycle_impact::conversion::package_preflight::run(&package, &out)?;
+            println!(
+                "{}",
+                serde_json::json!({"report":out.join("report.json"),
+                "transition_package_sha256":report["transition_package_sha256"],
+                "candidate_plan_readiness":report["candidate_plan_readiness"],
+                "conversion_stress_readiness":report["conversion_stress_readiness"]["status"],
+                "official_transition":report["official_transition"],
+                "declared_preflight_status":report["declared_preflight_status"]})
+            );
+            Ok(ExitCode::from(
+                eplyx_lifecycle_impact::conversion::package_preflight::exit_code(&report),
+            ))
+        }
+        Command::FinishPackagePreflight { package, result } => {
+            eplyx_lifecycle_impact::conversion::package_preflight::finish(&package, &result)?;
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ReplayPackagePreflight { package, result } => {
+            let report =
+                eplyx_lifecycle_impact::conversion::package_preflight::replay(&package, &result)?;
+            println!(
+                "{}",
+                serde_json::json!({"report":result.join("report.json"),
+                "transition_package_sha256":report["transition_package_sha256"],
+                "candidate_plan_readiness":report["candidate_plan_readiness"],
+                "conversion_stress_readiness":report["conversion_stress_readiness"]["status"],
+                "official_transition":report["official_transition"],
+                "declared_preflight_status":report["declared_preflight_status"]})
+            );
+            Ok(ExitCode::from(
+                eplyx_lifecycle_impact::conversion::package_preflight::exit_code(&report),
+            ))
+        }
         Command::ValidateCurrentPreflight { input } => {
             let input = serde_json::from_slice(&std::fs::read(input)?)?;
             eplyx_lifecycle_impact::preflight::validate(&input)?;

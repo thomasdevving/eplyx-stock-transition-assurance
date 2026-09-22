@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "kind": "milestone8-validation",
+  "engine_binary_sha256": "9491f1908a91c35af7641ee86cc51c29a1060cc4a97ed2cde47d03217f2dda19",
+  "source_sha256": {
+    "engine/src/conversion/package.rs": "d388f0cb438f41d716d1de34a85ad8fd799cd7e7b7c8bf00119c572b5bb1a1a1",
+    "engine/src/conversion/package_preflight.rs": "9bf4305faf4372e413ae8ee3c3a44afb6dd20e1adb10ea9f22acaf7cca56ca68",
+    "engine/src/conversion/mod.rs": "68e9e420939a6255cfed20324bb84c517a16d65ebcf3226aca33663965cf62d5",
+    "engine/src/main.rs": "1d03a1c7cef9a363061c9c2f58558b1670d5063e8389c1d136710b2c25b062fc",
+    "engine/src/stress/select.rs": "d3d88e39a1233bf61dface81d0385d612322baeca76123eab68fca6ad75af093",
+    "engine/src/stress/execute.rs": "25d4a9d3de2f4338951731eaf9b0747968fe1207700cb7cf164d2efe5563bbdd"
+  },
+  "cases": [
+    {
+      "package": "demo-fixed-ratio",
+      "result_directory": "reports/milestone8-healthy-worker",
+      "transition_package_sha256": "89bf0a28e3a5617f7a1a6c5c085bbc4030d6c1d3c3d4d735d0937a2ab834f55a",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "current_capture_timestamp": "2026-09-22T07:09:43.788Z",
+      "selected_cases": 10,
+      "outcome_counts": {
+        "Proven": 10
+      },
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "funds_moved": false,
+      "offline_exit": 4,
+      "report_sha256": "5230c99081ee47709576da8527a91f7a30f9ccaa6f71715adefe4dc8c6ff71f7"
+    },
+    {
+      "package": "demo-underfunded",
+      "result_directory": "reports/milestone8-underfunded",
+      "transition_package_sha256": "a4833ff3bdc555843ed65c90497bc3aa3363b40f9fd444e29075b933369f69df",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "current_capture_timestamp": "2026-09-22T06:37:51.576Z",
+      "selected_cases": 10,
+      "outcome_counts": {
+        "Failed": 10
+      },
+      "candidate_plan_readiness": "Blocked",
+      "conversion_stress_readiness": "Blocked",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "funds_moved": false,
+      "offline_exit": 3,
+      "report_sha256": "e3ddc7c0583e3fb923e496b269a2b23b6212b82bffd11aa06b33ef98d7871d17"
+    },
+    {
+      "package": "demo-second-asset",
+      "result_directory": "reports/milestone8-second-asset",
+      "transition_package_sha256": "2c3ca7f8c8c23732d8a4ac7650e653f6d9e94d8b40d4998a814cb7de0563a9d2",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "current_capture_timestamp": "2026-09-22T06:41:32.598Z",
+      "selected_cases": 10,
+      "outcome_counts": {
+        "Proven": 10
+      },
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "funds_moved": false,
+      "offline_exit": 4,
+      "report_sha256": "9fa951103722a6caed5042e6d4bfcbe5ba6c79b4f156b784ef29776a7c09d526"
+    }
+  ],
+  "mutation_campaign_sha256": "6c799f2d1e24d9d0de344ee12b4cc8edf52d8ca74976fbed1c120b40bdee7da8",
+  "mutations_killed": 6,
+  "historical_tracked_artifacts_unchanged": true,
+  "rpc_environment_removed_for_replay": true
+}

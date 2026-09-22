@@ -1204,3 +1204,26 @@ Evidence indexes:
 Start with `npm run build:engine`, `npm run build`, `npm start`; open
 **http://127.0.0.1:4173/analysis#analysis**. Restart the service after future source
 changes. The running production preview already serves this validated build.
+
+## Milestone 8 — transition packages
+
+The operator CLI now accepts a strict versioned transition package with a
+registered fixed-ratio adapter. The manifest and config carry exact terms,
+candidate SBF and hash bindings; no package field can supply an RPC endpoint,
+instruction, account meta, result or issuer status. The CLI validates before
+read-only acquisition, executes the candidate in an isolated bounded offline VM
+worker, reuses the Milestone 7 frozen selection/stress pipeline and writes
+`report.json` plus `report.md`. Offline replay rechecks the package and every
+capture/plan/case digest and reruns the VM. See
+[Milestone 8 package contract](on-demand-milestone-8-package.md).
+
+Three fresh production runs are retained: the standard demo package has Proven
+selected-account conversion and ten Proven stress cases, while the explicit
+stress policy remains Incomplete because the selected sample cannot resolve
+all population conditions; the underfunded reserve produces actual local
+failures and Blocked candidate/stress readiness; a second source asset uses the
+same package pipeline and retains its own exact identity. OfficialTransition
+remains NotTested, population rollout readiness remains Incomplete, and no
+funds moved. The final acceptance artifacts live under
+`reports/milestone8-healthy-worker/`, `reports/milestone8-underfunded/` and
+`reports/milestone8-second-asset/`.

@@ -1,0 +1,554 @@
+{
+  "adapter": "fixed_ratio_conversion_v1",
+  "adapter_version": 1,
+  "candidate_plan_readiness": "Blocked",
+  "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+  "config_sha256": "a359d08d7dc8ffd71ad461e81d141d4a83863674db294acb9e24ac765950d359",
+  "conversion_result": {
+    "execution_fixture_sha256": "eae2ef266eed61be270883e86b2895a5531a64bc58d093200e2fe708e93daaca",
+    "execution_performed": true,
+    "plan_sha256": "67b8a77f69deef195d69d3168c46a66f9dd706d81737fa57af1d4d4caac6f175",
+    "reason": "The candidate conversion failed in local simulation: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+    "reconciliation": {
+      "reconciled": true
+    },
+    "status": "Failed"
+  },
+  "conversion_stress_readiness": {
+    "findings_count": 14,
+    "policy_sha256": "5426c2f9e7a71b275d0a7436e4af1f050d2e71b62efb8092bef30e4ce0bd27e5",
+    "status": "Blocked"
+  },
+  "current_capture_timestamp": "2026-09-22T06:37:51.576Z",
+  "declared_preflight_status": "Blocked",
+  "deployment_origin": "Proposed",
+  "effective_at": "2026-10-01T00:00:00Z",
+  "evaluated_at": "2026-09-22T06:38:17.725Z",
+  "exact_selected_cases": [
+    {
+      "authority": "6GJbPKBtovsrMEEMcic5KMi5tswh9qSyT5ZYLMqEwNgt",
+      "case_id": "case-00",
+      "case_plan_sha256": "f464ced9aa8255c5f30c13125a69b95255b99e6097e08c20a8c519f1e8467303",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "selected_amount_raw": "1487167960502",
+      "selection_reason": "NewStateShape",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV"
+    },
+    {
+      "authority": "DP5syqfFFppbdMYyejNqXkGCw7qQN5TBgNRuuHCoXbsU",
+      "case_id": "case-01",
+      "case_plan_sha256": "5eaea5a80fc1603b3595624c59d9aa8cf517088a924e3037a09969a2b2ebe050",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C",
+      "selected_amount_raw": "2522262026",
+      "selection_reason": "NewStateShape",
+      "state_shape_sha256": "4a15088082802e62b7ce679c05e54fb15756102f0d5806d855785b70a319477d",
+      "token_account": "HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C"
+    },
+    {
+      "authority": "HvFdDWS3RqymRAVx1ZdoL2RjiC38r5dtt19Z8op5jqDK",
+      "case_id": "case-02",
+      "case_plan_sha256": "79baa04c80d556146f03ec16e6a491f6bf6640bc6ecb83006eefed00d68dc1d3",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS",
+      "selected_amount_raw": "22348",
+      "selection_reason": "NewStateShape",
+      "state_shape_sha256": "9770754e7cf24a91e3774dad55931407fcbd6f9ed4d1ce4b3db8efc0e4cf1f64",
+      "token_account": "DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS"
+    },
+    {
+      "authority": "CFSf8TXbT4VEwEDkckdLmtbqbZMjeG7T51GhKi8Su19e",
+      "case_id": "case-03",
+      "case_plan_sha256": "86162d592fdadec70614e8d319294206d04179003d196ddb5a7346437620cc9c",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL",
+      "selected_amount_raw": "14692",
+      "selection_reason": "NewBalanceBucket",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL"
+    },
+    {
+      "authority": "2wuePnDJJSKESRU5drsEbzPhEiXekWHW6VsemCrQzrM5",
+      "case_id": "case-04",
+      "case_plan_sha256": "1cfc4ac37ae42d66f2ceac5d9f2eec5a9c50a4642e78101f495f2441501b3d1a",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg",
+      "selected_amount_raw": "8306676",
+      "selection_reason": "NewBalanceBucket",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg"
+    },
+    {
+      "authority": "A6Wch1mJJ1PyooNSAUtctcNmQTxqtkcWManMBQPmKceM",
+      "case_id": "case-05",
+      "case_plan_sha256": "e5ca81e2d3128e4d41acb8113e43443853bb142cf42ef6d19a381acb0f5dc8de",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+      "selected_amount_raw": "1058231581513",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP"
+    },
+    {
+      "authority": "3qTam7huFAGNKQ8mbRcYWZwTesWM3EKKQWCQ6PiXLQgP",
+      "case_id": "case-06",
+      "case_plan_sha256": "1bb39044c2ac73a1b62ace441a1166607c6b7c0cbad0d8a022c7c788b0877b24",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f",
+      "selected_amount_raw": "519958814436",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f"
+    },
+    {
+      "authority": "yusdW9wZDwbvcvyHy7QHjCfQS4wtvwBzgxNoZTSH582",
+      "case_id": "case-07",
+      "case_plan_sha256": "2c15f3e45283e966771ac4f1ee67a83ef3e10858d83ee5d06913114231b04178",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J",
+      "selected_amount_raw": "500215083490",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J"
+    },
+    {
+      "authority": "2sujbbTjp2r5ugbjfHgUNDSwtdVfYpTiCSKPgT84CvD7",
+      "case_id": "case-08",
+      "case_plan_sha256": "2bf507237f7fa78aa161857bc3e58f2b11726a310a9580f6d2d2c1c426f49b80",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS",
+      "selected_amount_raw": "456396236436",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS"
+    },
+    {
+      "authority": "55t97rzPqCLNY1KX4Ypd3BFDCvbKF15i6xzrjLJgWh95",
+      "case_id": "case-09",
+      "case_plan_sha256": "ca5cccbf45b58dd8f30aac9c880cb8251f5b049337e0082aeb450da42462b856",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK",
+      "selected_amount_raw": "284995103905",
+      "selection_reason": "HighestRemainingBalance",
+      "state_shape_sha256": "089759f56a7790643ec47ac16d1d8d077647162a35c95e9262d2e9b22ed7ac21",
+      "token_account": "DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK"
+    }
+  ],
+  "failed_cases": [
+    {
+      "case_id": "case-00",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "execution_fixture_sha256": "7d98231b60cf29ae735c384a8e5fe3b624ccdaa1de5ffe5c3780d5950c9f7c7d",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "10e9eb850b578a32d0957c73dbcc757b0048fe560cdd7957cf4eced48969ca9b",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-01",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C",
+      "execution_fixture_sha256": "1628d811d4ffc5dca32a1db80987b873e1ddfaf517c650b2ea459fd65a21769a",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(2, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "70eb9f51d29b793e2f4b211fe74c3f310a123d6069369bc27e2271e914c1f926",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-02",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS",
+      "execution_fixture_sha256": "e7f22c75037de3b75038d47830bae0feeabe31295812d0adcd79895cbcd6ba87",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "8a19b71a2920ad9c886f3cc0ef7b1ad87122a913df31b5edf4011457b0ed3a23",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-03",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL",
+      "execution_fixture_sha256": "f6d9915fc4d2995afcf98f18b1d4552c6f0b433cc225f587aa10dbc6f5420a8f",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(2, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "92cc9ff27515d5d87accaf748496a6ecb7d57333d295bad174c35982804fdf3f",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-04",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg",
+      "execution_fixture_sha256": "333afd9ba0032207ca809dd21779a8bd7e6c8716a8450ccdb8c9d5249f1b518d",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "d96b43cbddff4e6d18a455a261d62de753585450e3dbf2d5118e3a687ecb3a06",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-05",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+      "execution_fixture_sha256": "c880cd588d7d1e631a624ed01183a0f19e431be73f22a4f663ad3e88baa6b248",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "a1d7797586703691e851f04405f461574386afc14b66bf6905b9d46b395e00d1",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-06",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f",
+      "execution_fixture_sha256": "6806e9e897418639289909d6ecbcff4682687c411870936b48b1d69ac4e33ab5",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "82d6943ddb7970f3495f02c290803746f2c10486241acc970dbd58733122a2da",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-07",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J",
+      "execution_fixture_sha256": "113e9484d53f6a6660c205b31a066d01528af2be79927736878685a469999299",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "9d8be8a8fadcb5c9110c0fe7a64dbf65de9a8b765acf4899f4aeb52f6373bb9d",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-08",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS",
+      "execution_fixture_sha256": "590699e0d8fcafaf8025bec34b8c829ed37ca446a6ade5215accb28fdbaf1077",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "b075493c2a4d62b779f3e661bc3d8d86b41fd32c9e1ba817ee6e4f68927b685c",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-09",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK",
+      "execution_fixture_sha256": "1b3880da7fe2fe0e9d399221748f0e9e3eefc73287127ba7a7f24ebc29aceca9",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "ec54c88ab938712add710b7c5e293bea8c38826b88b70385b7eab069b2595f92",
+      "status": "Failed"
+    }
+  ],
+  "funds_moved": false,
+  "limitations": [
+    "OperatorSupplied package identity does not establish issuer authorization or an official transition.",
+    "Only exact selected accounts, amounts, captured banks and locally assumed signing can receive conversion proof.",
+    "Stress sampling does not establish population rollout readiness.",
+    "No funds moved"
+  ],
+  "official_transition": "NotTested",
+  "population_rollout_readiness": {
+    "policy_sha256": "907b9c39636ee1d943546540a238aba375b9c0619749755b9a411d3d2801ac83",
+    "status": "Incomplete"
+  },
+  "population_summary": {
+    "authority_resolution_completeness": "Complete",
+    "counts": {
+      "account_extension_counts": {
+        "ImmutableOwner": 17832,
+        "PausableAccount": 17870,
+        "TransferFeeAmount": 17870,
+        "TransferHookAccount": 17870
+      },
+      "active_delegation_accounts": 12,
+      "authority_model_counts": {
+        "ProgramOwnedAuthority": 69,
+        "Unknown": 10742,
+        "WalletCompatible": 7059
+      },
+      "close_authority_accounts": 55,
+      "delegate_present_accounts": 12,
+      "distinct_positive_balance_authorities": 10087,
+      "distinct_recorded_authorities": 17861,
+      "frozen_accounts": 0,
+      "observed_public_balance_raw": "8742024540692",
+      "positive_balance_accounts_observed": 10091,
+      "positive_balance_authority_model_counts": {
+        "ProgramOwnedAuthority": 69,
+        "Unknown": 2963,
+        "WalletCompatible": 7059
+      },
+      "terminology": "These are token accounts observed in this capture, not holders. No human ownership, legal ownership, identity or key possession is established anywhere in this milestone. Public base balances exclude encrypted balances and withheld fees; a public zero is not a known confidential zero.",
+      "token_accounts_observed": 17870,
+      "undecodable_rows_observed": 0,
+      "uninitialized_accounts": 0,
+      "zero_balance_accounts_observed": 7779
+    },
+    "enumeration_completeness": "CompleteForQuery",
+    "independent_axes": "Authority resolution is independent of token-account enumeration. An incomplete authority resolution does not mean the token-account enumeration was incomplete, and a complete enumeration does not imply every authority model is known."
+  },
+  "proposed_reserve_raw": "0",
+  "provenance": "OperatorSupplied",
+  "public_owner": "2wCvQzHiDHAHTvzwPeof9H3uEzq8Bzvg38DFbvZMGkuj",
+  "replacement_mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "run_id": "pkg-a4833ff3bdc5-1790059026524",
+  "schema_version": 1,
+  "source_account": "741ZXYKzgjPZucRhPUQFK7kKAgP1ESJwimhumgGpuPHs",
+  "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "stress_results": [
+    {
+      "case_id": "case-00",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+      "execution_fixture_sha256": "7d98231b60cf29ae735c384a8e5fe3b624ccdaa1de5ffe5c3780d5950c9f7c7d",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "10e9eb850b578a32d0957c73dbcc757b0048fe560cdd7957cf4eced48969ca9b",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-01",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:HSj1VpYwsGKAB2mhkjqrAX6xtwpBMDBGoFbdnSQksY4C",
+      "execution_fixture_sha256": "1628d811d4ffc5dca32a1db80987b873e1ddfaf517c650b2ea459fd65a21769a",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(2, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "70eb9f51d29b793e2f4b211fe74c3f310a123d6069369bc27e2271e914c1f926",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-02",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:DtqXUxWuRxmvMN9VKHQac6HfUrSkiqNsd38rhGXUxfhS",
+      "execution_fixture_sha256": "e7f22c75037de3b75038d47830bae0feeabe31295812d0adcd79895cbcd6ba87",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "8a19b71a2920ad9c886f3cc0ef7b1ad87122a913df31b5edf4011457b0ed3a23",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-03",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:AAUmEXtmHnq5hgJrtYTdxNjCTXwbvKocGu2wDp8C9zCL",
+      "execution_fixture_sha256": "f6d9915fc4d2995afcf98f18b1d4552c6f0b433cc225f587aa10dbc6f5420a8f",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(2, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "92cc9ff27515d5d87accaf748496a6ecb7d57333d295bad174c35982804fdf3f",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-04",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:GNVZzYnwVbpRUiFZmoCPK9qi7JLQYMdoS6RcEcXzMqyg",
+      "execution_fixture_sha256": "333afd9ba0032207ca809dd21779a8bd7e6c8716a8450ccdb8c9d5249f1b518d",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "d96b43cbddff4e6d18a455a261d62de753585450e3dbf2d5118e3a687ecb3a06",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-05",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:7jyK6Zm4a2RLnJnoPziCw94TUrKYmJDg8wcVCsnEL9yP",
+      "execution_fixture_sha256": "c880cd588d7d1e631a624ed01183a0f19e431be73f22a4f663ad3e88baa6b248",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "a1d7797586703691e851f04405f461574386afc14b66bf6905b9d46b395e00d1",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-06",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:A4AxSqDyHrULA9riHGRLPvTWUWXgsz3etC7FzCsKLf8f",
+      "execution_fixture_sha256": "6806e9e897418639289909d6ecbcff4682687c411870936b48b1d69ac4e33ab5",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "82d6943ddb7970f3495f02c290803746f2c10486241acc970dbd58733122a2da",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-07",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:J2zsekPPj8oZkuzugeYx2Fna7hDV4YfGfj22Vqra398J",
+      "execution_fixture_sha256": "113e9484d53f6a6660c205b31a066d01528af2be79927736878685a469999299",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "9d8be8a8fadcb5c9110c0fe7a64dbf65de9a8b765acf4899f4aeb52f6373bb9d",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-08",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:AsWmLJUes1uvk9AzeJLYv26JKzgFXzsBfeP3fiR4uqaS",
+      "execution_fixture_sha256": "590699e0d8fcafaf8025bec34b8c829ed37ca446a6ade5215accb28fdbaf1077",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "b075493c2a4d62b779f3e661bc3d8d86b41fd32c9e1ba817ee6e4f68927b685c",
+      "status": "Failed"
+    },
+    {
+      "case_id": "case-09",
+      "entity_id": "current-stress:e2f5a077c58712adcca7a934cf3c84f2cdf737dbc3fa3e343abbe4b11bf9c33a:DSDewtjisWPZA9BGjGBGXSxRR2bcaZntUkvGCXcqHHGK",
+      "execution_fixture_sha256": "1b3880da7fe2fe0e9d399221748f0e9e3eefc73287127ba7a7f24ebc29aceca9",
+      "execution_performed": true,
+      "reason": "The candidate conversion failed in local simulation for this production state: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "result_sha256": "ec54c88ab938712add710b7c5e293bea8c38826b88b70385b7eab069b2595f92",
+      "status": "Failed"
+    }
+  ],
+  "terms": {
+    "denominator": "2",
+    "feeBps": 0,
+    "numerator": "1",
+    "rounding": "floor"
+  },
+  "transition_package_sha256": "a4833ff3bdc555843ed65c90497bc3aa3363b40f9fd444e29075b933369f69df",
+  "unresolved_cases": [],
+  "unsupported_states": [
+    {
+      "positive_balance_accounts": 2261,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "08e742ed5cae50f32001de0c7ef0cd7caadac0b5a4af64c8a279b832cc5100fc"
+    },
+    {
+      "positive_balance_accounts": 567,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "a2c4af6a2cb2b01b5cf3d120ed01daa90c9d1be9e7fda28e15a0d63a197ab7d7"
+    },
+    {
+      "positive_balance_accounts": 102,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "c896d996511af8be4c5f4cb145b7df5241b3abffff2a11b071e379678ced6e6d"
+    },
+    {
+      "positive_balance_accounts": 23,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "e2744ebf01998ed4bd42db87eacf9573f62ba6e60b8817f3df3d4928e394100d"
+    },
+    {
+      "positive_balance_accounts": 14,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "53556cf0dbe63afc2e09b954b758ca3a02b89dbe289a558185841c5864ed79c2"
+    },
+    {
+      "positive_balance_accounts": 9,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "73a03a4f330d75fa766fc3645fb5041ece0a57f2f8b5250cef28f2fb6c49f1eb"
+    },
+    {
+      "positive_balance_accounts": 7,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "157800d7193cb97c78065ca0d8d8191b6aa7a72eb89dfc22cc58f23751f104cb"
+    },
+    {
+      "positive_balance_accounts": 7,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "47d7d19e30b590fcdfcbb6206a3328918f6aff5d6529c3003afceaccdc38c88e"
+    },
+    {
+      "positive_balance_accounts": 4,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "9aca1dc8f8caa74271fae12da985c8c5081e6265578791ff49a7b3be7ccd9b0a"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "52f83d19db2e5aced33525691422d944ac4c71b04ff5d6abfea0f450d637c0c1"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "9d557ab1c9e0c6976428dc85847cf3f0d87660fadcde6a88da93113cf7e17cbc"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "e3fdc5f8a937b317022bdae87d92dba5f21667edfc078590c8c041844fbc5932"
+    },
+    {
+      "positive_balance_accounts": 3,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "fa96f3e460d21956a9f82e2a3bd5b920a101a03cd5591edbb14a97a95216114a"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "1848450fd3b58ffb7bce728e3def738b1cfc9b166140dc8cc8f6be74edc39773"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "679820e564e3db21d00cc5c9bfdc727ba1e03f8702010f12126b64362ab0ad90"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "c37bb9cdebd5be5c1e6a709a9e2b5546681036c81080e37266cc7fcdbe04f65e"
+    },
+    {
+      "positive_balance_accounts": 2,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "ed1b919e8ec18e353db7a1f0da1aacb78bedd2ac04e37ff556b8134d58b321a9"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "1178dd558c913f65813cda4ce8712c092c42c4f209003c6c3b4d3e1522f4a896"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "1f13c137244e31d8ff7917217280fca2ca7bab477f943339f5f0d1f078af60fe"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "39879ee13b4fd0b42a782491256e8695fcb03d985601084698f8de772fce019e"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "4759d2a92fda979dc38af67cf9e7dc304acc788133d3d776b5f6f1dccff23915"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "52d9074c1342ed4246ef1afb064df3fb048cccb4af7dcd85abeaa78c75a4d39f"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "557c5644b2529f5356c4fae6cf70280843989ee8ddddf5323fb855183326aa08"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is off-curve, absent, executable or carries account data. Control is unproven, so no signer is assumed.",
+      "state_shape_sha256": "5704e675943f5a3c863bce958c6bed2513629991ad8802395ec7f8d75e21f0b1"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "765db1c4f5698409603fd924be75e46278b2accf30909ae538a90f7a7ea2bc82"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "8c1c25154a4c02a6336922eca8727a7e876880cefe070337c9a6eb209b37e34e"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "92d559c30a108f2e3fcfdb90601e75c4151603610147e7edc2d543d4bdbd6307"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "a16b897e8a438af7409d5eb6ad050b1ab6de1458506216ddeaaeb82dff8c9391"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "a3b20f60de333fa5698b819320d985dad53a78459238b0f615c65be0c83509d4"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "ab8b730c833c58eccd33e9f37c7f544c92981215a31d928480468f4857cdac86"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "b34be4186c60c2fab1c587bbbc9ca9eee0f11dbccbc01c54a86f4dc9777feeac"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "b3fb8bbc27c4f59d657846409b2d032f8452d762371021a31c67535a4c01b61c"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "bef5427232b144b22a40751f8c1ef934d3e13dcf094c1d5d9b6f6df3d4f2f737"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "d21f28f9ab2d57a2ec8b14462159231671ecb77498cfd815712ba199d5da16e1"
+    },
+    {
+      "positive_balance_accounts": 1,
+      "reason": "The recorded authority is owned by a non-System runtime program. The controlling program's signing path is not implemented, and no wallet signer is substituted for it.",
+      "state_shape_sha256": "fa1c7538cb8022c770e637e60ccaf6040a2909e1e0173906b608feaf86a25c05"
+    }
+  ]
+}
