@@ -37,6 +37,9 @@ enum Command {
         package: PathBuf,
         #[arg(long)]
         out: Option<PathBuf>,
+        /// Deployment policy; defaults to block-only. Analytical results are unchanged.
+        #[arg(long, value_enum, default_value = "block-only")]
+        gate: eplyx_lifecycle_impact::conversion::package_gate::Policy,
     },
     #[command(hide = true)]
     FinishPackagePreflight {
@@ -49,6 +52,9 @@ enum Command {
         package: PathBuf,
         #[arg(long)]
         result: PathBuf,
+        /// Re-evaluate verified saved evidence under this policy without changing artifacts.
+        #[arg(long, value_enum)]
+        gate: Option<eplyx_lifecycle_impact::conversion::package_gate::Policy>,
     },
     /// Validate a transition package entirely offline before any RPC request.
     ValidateTransitionPackage { package: PathBuf },
@@ -778,7 +784,7 @@ fn run() -> Result<ExitCode> {
             );
             Ok(ExitCode::SUCCESS)
         }
-        Command::Preflight { package, out } => {
+        Command::Preflight { package, out, gate } => {
             let out = out.unwrap_or_else(|| {
                 PathBuf::from(format!(
                     "eplyx-preflight-{}",
@@ -786,7 +792,8 @@ fn run() -> Result<ExitCode> {
                 ))
             });
             let report =
-                eplyx_lifecycle_impact::conversion::package_preflight::run(&package, &out)?;
+                eplyx_lifecycle_impact::conversion::package_preflight::run(&package, &out, gate)?;
+            eprintln!("{}", std::fs::read_to_string(out.join("report.md"))?);
             println!(
                 "{}",
                 serde_json::json!({"report":out.join("report.json"),
@@ -794,19 +801,25 @@ fn run() -> Result<ExitCode> {
                 "candidate_plan_readiness":report["candidate_plan_readiness"],
                 "conversion_stress_readiness":report["conversion_stress_readiness"]["status"],
                 "official_transition":report["official_transition"],
-                "declared_preflight_status":report["declared_preflight_status"]})
+                "declared_preflight_status":report["declared_preflight_status"],
+                "gate_policy":report["gate_policy"],"gate_outcome":report["gate_outcome"]})
             );
             Ok(ExitCode::from(
-                eplyx_lifecycle_impact::conversion::package_preflight::exit_code(&report),
+                eplyx_lifecycle_impact::conversion::package_preflight::exit_code(&report)?,
             ))
         }
         Command::FinishPackagePreflight { package, result } => {
             eplyx_lifecycle_impact::conversion::package_preflight::finish(&package, &result)?;
             Ok(ExitCode::SUCCESS)
         }
-        Command::ReplayPackagePreflight { package, result } => {
-            let report =
-                eplyx_lifecycle_impact::conversion::package_preflight::replay(&package, &result)?;
+        Command::ReplayPackagePreflight {
+            package,
+            result,
+            gate,
+        } => {
+            let report = eplyx_lifecycle_impact::conversion::package_preflight::replay_with_policy(
+                &package, &result, gate,
+            )?;
             println!(
                 "{}",
                 serde_json::json!({"report":result.join("report.json"),
@@ -814,10 +827,11 @@ fn run() -> Result<ExitCode> {
                 "candidate_plan_readiness":report["candidate_plan_readiness"],
                 "conversion_stress_readiness":report["conversion_stress_readiness"]["status"],
                 "official_transition":report["official_transition"],
-                "declared_preflight_status":report["declared_preflight_status"]})
+                "declared_preflight_status":report["declared_preflight_status"],
+                "gate_policy":report["gate_policy"],"gate_outcome":report["gate_outcome"]})
             );
             Ok(ExitCode::from(
-                eplyx_lifecycle_impact::conversion::package_preflight::exit_code(&report),
+                eplyx_lifecycle_impact::conversion::package_preflight::exit_code(&report)?,
             ))
         }
         Command::ValidateCurrentPreflight { input } => {

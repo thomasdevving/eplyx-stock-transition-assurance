@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "all_killed": true,
+  "mutations": [
+    {
+      "mutation": "incomplete-blocks-under-block-only",
+      "killed_by": "block_only_warns_on_incomplete_and_blocks_explicit_failure",
+      "compiled": true
+    },
+    {
+      "mutation": "blocked-incorrectly-passes",
+      "killed_by": "block_only_warns_on_incomplete_and_blocks_explicit_failure",
+      "compiled": true
+    },
+    {
+      "mutation": "gate-mutates-analytical-readiness",
+      "killed_by": "gate_policy_preserves_analytical_evidence_and_official_boundary",
+      "compiled": true
+    },
+    {
+      "mutation": "old-evidence-reused-after-package-change",
+      "killed_by": "changing_terms_program_or_config_changes_or_invalidates_identity",
+      "compiled": true
+    },
+    {
+      "mutation": "validated-package-executes-repository-fallback",
+      "killed_by": "packaged_candidate_bytes_are_the_only_vm_program",
+      "compiled": true
+    },
+    {
+      "mutation": "different-candidate-digest-accepted-before-vm",
+      "killed_by": "candidate_program_digest_mismatch_is_rejected_before_vm",
+      "compiled": true
+    }
+  ]
+}

@@ -168,6 +168,13 @@ remain separate from issuer binding. Package, program, config, captured banks,
 frozen selection and VM results are rechecked on offline replay. OfficialTransition
 stays NotTested. See docs/on-demand-milestone-8-package.md.
 
+Milestone 9 adds a deployment gate over the existing verified package report.
+Block-only permits Incomplete with warnings; strict blocks it. Neither policy
+changes analytical findings or grants execution, population or issuer proof.
+The exact packaged candidate bytes must be the only candidate bytes loaded into
+LiteSVM. Saved Milestone 8 reports retain their original replay semantics.
+See docs/on-demand-milestone-9-ci-gate.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.

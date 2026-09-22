@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "kind": "milestone9-ci-gate-validation",
+  "engine_binary_sha256": "d2da9ff629c4ad2321ddd8f908ad59386af105cc10591a36d73a2876dadc979c",
+  "source_sha256": {
+    "engine/src/conversion/package.rs": "d388f0cb438f41d716d1de34a85ad8fd799cd7e7b7c8bf00119c572b5bb1a1a1",
+    "engine/src/conversion/package_gate.rs": "67ab93f4c2fd963042df78c1f615bf46b5bce56f05fbc4a9cfd70e8f26049292",
+    "engine/src/conversion/package_preflight.rs": "d8f9ee73949acf4f4c24ecbf2c3bca1e1136b4d0390053c8a17088ee96251ff4",
+    "engine/src/conversion/demo.rs": "56e8aa3c76b738297386f7b93bd0211ed1ea1c426dec3e20c9c78c6a23f31e0a",
+    "engine/src/conversion/current.rs": "2566f33ef9a8b49a5fd06c8a666ef4aa7baf898fb5503ac8b5e73d00dae12216",
+    "engine/src/stress/execute.rs": "c8a37e2697b140ecc252f3810e31b4653fd92790478c7dba4bc9f0b50e00089f",
+    "engine/src/main.rs": "14dae4178b320bd85240d095002b0c7b184e94bc5c55fe0640a7fa03b91c8dcc"
+  },
+  "cases": [
+    {
+      "case": "healthy-block-only",
+      "policy": "block-only",
+      "outcome": "Warn",
+      "exit": 0,
+      "result_directory": "target/milestone9-healthy-block-only-4VfYCN",
+      "transition_package_sha256": "89bf0a28e3a5617f7a1a6c5c085bbc4030d6c1d3c3d4d735d0937a2ab834f55a",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "selected_cases": 10,
+      "selected_stress_counts": {
+        "Proven": 10
+      },
+      "report_sha256": "baf3644f355376b3cd6ca2223537aea71e0758272f30452c582db298b861346a",
+      "capture_timestamp": "2026-09-22T07:09:43.788Z"
+    },
+    {
+      "case": "healthy-strict",
+      "policy": "strict",
+      "outcome": "Block",
+      "exit": 3,
+      "result_directory": "target/milestone9-healthy-strict-NoSce9",
+      "transition_package_sha256": "89bf0a28e3a5617f7a1a6c5c085bbc4030d6c1d3c3d4d735d0937a2ab834f55a",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "selected_cases": 10,
+      "selected_stress_counts": {
+        "Proven": 10
+      },
+      "report_sha256": "5ed93bcb3bf9b17eaffa8ee12ba5c0e078852928f079a64e6a0800aeedf97ec3",
+      "capture_timestamp": "2026-09-22T07:09:43.788Z"
+    },
+    {
+      "case": "underfunded-block-only",
+      "policy": "block-only",
+      "outcome": "Block",
+      "exit": 3,
+      "result_directory": "target/milestone9-underfunded-block-only-1VdnY0",
+      "transition_package_sha256": "a4833ff3bdc555843ed65c90497bc3aa3363b40f9fd444e29075b933369f69df",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "selected_cases": 10,
+      "selected_stress_counts": {
+        "Failed": 10
+      },
+      "report_sha256": "7a60c4a985c739809968bfdce3efe6c55167ed7882b8b26b004cf6fed52c3725",
+      "capture_timestamp": "2026-09-22T06:37:51.576Z"
+    },
+    {
+      "case": "underfunded-strict",
+      "policy": "strict",
+      "outcome": "Block",
+      "exit": 3,
+      "result_directory": "target/milestone9-underfunded-strict-0OtIeE",
+      "transition_package_sha256": "a4833ff3bdc555843ed65c90497bc3aa3363b40f9fd444e29075b933369f69df",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "selected_cases": 10,
+      "selected_stress_counts": {
+        "Failed": 10
+      },
+      "report_sha256": "b83ad3cdbeef8c844cea51ef6f0e5cfcbd94e03721d54ea5e228e21db9aae2af",
+      "capture_timestamp": "2026-09-22T06:37:51.576Z"
+    },
+    {
+      "case": "second-asset-block-only",
+      "policy": "block-only",
+      "outcome": "Warn",
+      "exit": 0,
+      "result_directory": "target/milestone9-second-asset-block-only-6Au6IR",
+      "transition_package_sha256": "2c3ca7f8c8c23732d8a4ac7650e653f6d9e94d8b40d4998a814cb7de0563a9d2",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "selected_cases": 10,
+      "selected_stress_counts": {
+        "Proven": 10
+      },
+      "report_sha256": "d69492ccbc51307f272e3b0cbb1981e5a3955772fd40247080c4e4641bfb9377",
+      "capture_timestamp": "2026-09-22T06:41:32.598Z"
+    }
+  ],
+  "program_mutation": {
+    "candidate_program_sha256": "820852a312ae354e3e6556b8289b8b359ab4ce85795d431f113360c7ad61d571",
+    "transition_package_sha256": "7d0c61957c98934e0e18023c157f69c3d3b0cd82ffe4b9ca55dd8752de140f13",
+    "old_evidence_exit": 2
+  },
+  "gate_outcome_tamper_rejected": true,
+  "mutation_campaign_sha256": "0bfb6deea2cc0f398dbeebe9808f7adb8f1a06afd2ad35deb8876a813775ee53",
+  "mutations_killed": 6,
+  "rpc_environment_removed_for_replay": true,
+  "historical_tracked_artifacts_unchanged": true
+}

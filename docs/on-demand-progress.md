@@ -1227,3 +1227,23 @@ remains NotTested, population rollout readiness remains Incomplete, and no
 funds moved. The final acceptance artifacts live under
 `reports/milestone8-healthy-worker/`, `reports/milestone8-underfunded/` and
 `reports/milestone8-second-asset/`.
+
+## Milestone 9 — CI deployment gate
+
+An explicit `block-only` or `strict` deployment policy now evaluates the
+verified Milestone 8 package report. It changes CI exit behavior without
+changing CandidatePlanReadiness, ConversionStressReadiness,
+PopulationRolloutReadiness or OfficialTransition. The packaged SBF bytes are
+checked again at the VM loader boundary. New reports include the gate decision;
+saved Milestone 8 reports remain replayable with their original outputs. See
+[Milestone 9 CI gate](on-demand-milestone-9-ci-gate.md).
+
+Fresh bounded mainnet captures on 2026-09-22 produced WARN/exit 0 for the
+healthy first package and second asset, and BLOCK/exit 3 for the underfunded
+package. Offline replay reproduced each result with RPC removed; strict
+re-evaluation of the same healthy capture returned BLOCK/exit 3 without
+changing any analytical finding. Digests and capture times are in
+`reports/milestone9-live-validation.json`; the full local capture directories
+are under ignored `target/`. The five retained-capture policy combinations,
+one-byte program invalidation and six source mutation results are recorded in
+`reports/milestone9-validation.json` and `reports/milestone9-mutations.json`.

@@ -62,6 +62,34 @@ pub fn program_bytes() -> Result<Vec<u8>> {
     })
 }
 
+/// Check the actual VM loader input, after fixture construction and before execution.
+/// The registry supplies the ABI and address, never substitute executable bytes.
+pub fn assert_candidate_program_identity(
+    programs: &[LoadedProgram],
+    expected_bytes: &[u8],
+    expected_sha256: &str,
+) -> Result<()> {
+    ensure!(
+        sha256(expected_bytes) == expected_sha256,
+        "candidate program digest mismatch"
+    );
+    let candidate: Vec<_> = programs
+        .iter()
+        .filter(|p| p.program_id.to_string() == PROGRAM_ID)
+        .collect();
+    ensure!(
+        candidate.len() == 1,
+        "candidate VM program identity mismatch"
+    );
+    ensure!(
+        candidate[0].loader.to_string() == LOADER
+            && candidate[0].bytes == expected_bytes
+            && sha256(&candidate[0].bytes) == expected_sha256,
+        "candidate VM program bytes differ from the validated package"
+    );
+    Ok(())
+}
+
 /// Canonical ProgramData addresses of the captured program headers, in order.
 pub fn programdata_addresses(headers: &[Value]) -> Result<Vec<String>> {
     Ok(headers

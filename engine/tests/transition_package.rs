@@ -1,4 +1,9 @@
-use eplyx_lifecycle_impact::conversion::package::{self, load};
+use eplyx_lifecycle_impact::conversion::{
+    current as conversion, demo,
+    package::{self, load},
+};
+use eplyx_lifecycle_impact::executor::LoadedProgram;
+use eplyx_lifecycle_impact::lifecycle::{current as wallet, decode::MintConfig, RpcEvidence};
 use serde_json::{json, Value};
 use std::{fs, path::PathBuf};
 
@@ -66,6 +71,11 @@ fn schema_adapter_address_and_status_claims_fail_closed() {
         ("adapter", "adapter", json!("arbitrary_program")),
         ("mint", "sourceMint", json!("bad address")),
         ("proof", "officialTransition", json!("Proven")),
+        ("rpc", "rpcEndpoint", json!("https://example.invalid")),
+        ("command", "hostCommand", json!("echo unsafe")),
+        ("transaction", "transactionBytes", json!([1, 2, 3])),
+        ("readiness", "candidatePlanReadiness", json!("Ready")),
+        ("gate", "gateOutcome", json!("Pass")),
     ] {
         let p = PackageDir::new(label);
         let mut manifest = p.manifest();
@@ -82,6 +92,11 @@ fn schema_adapter_address_and_status_claims_fail_closed() {
     );
     fs::write(p.0.join("eplyx.json"), raw).unwrap();
     assert!(p.error().contains("invalid package manifest"));
+    let p = PackageDir::new("alternate-binary");
+    let mut manifest = p.manifest();
+    manifest["candidateProgram"]["alternateArtifact"] = json!("other.so");
+    p.set_manifest(manifest);
+    assert!(p.error().contains("invalid package manifest"));
 }
 
 #[test]
@@ -96,6 +111,35 @@ fn config_and_integer_terms_reject_unknown_or_ambiguous_values() {
     manifest["configSha256"] = json!(eplyx_lifecycle_impact::lifecycle::exposure::sha256(&bytes));
     p.set_manifest(manifest);
     assert!(p.error().contains("invalid package config"));
+
+    for (label, key, value) in [
+        (
+            "config-rpc",
+            "rpcEndpoint",
+            json!("https://example.invalid"),
+        ),
+        ("config-command", "hostCommand", json!("echo unsafe")),
+        ("config-transaction", "transactionBytes", json!([1, 2, 3])),
+        ("config-proof", "proofStatus", json!("Proven")),
+        ("config-gate", "gateOutcome", json!("Pass")),
+        (
+            "config-binary",
+            "alternateCandidateBinary",
+            json!("../other.so"),
+        ),
+    ] {
+        let p = PackageDir::new(label);
+        let mut config: Value =
+            serde_json::from_slice(&fs::read(p.0.join("config.json")).unwrap()).unwrap();
+        config[key] = value;
+        let bytes = serde_json::to_vec(&config).unwrap();
+        fs::write(p.0.join("config.json"), &bytes).unwrap();
+        let mut manifest = p.manifest();
+        manifest["configSha256"] =
+            json!(eplyx_lifecycle_impact::lifecycle::exposure::sha256(&bytes));
+        p.set_manifest(manifest);
+        assert!(p.error().contains("invalid package config"), "{label}");
+    }
 
     for (label, field, value) in [
         ("zero-ratio", "denominator", "0"),
@@ -181,10 +225,200 @@ fn changing_terms_program_or_config_changes_or_invalidates_identity() {
         original,
         load(&program.0).unwrap().transition_package_sha256
     );
+    assert_ne!(
+        load(&base.0).unwrap().program_sha256,
+        load(&program.0).unwrap().program_sha256
+    );
 
     let config = PackageDir::new("config-hash");
     fs::write(config.0.join("config.json"), b"{}").unwrap();
     assert!(config.error().contains("config SHA-256 mismatch"));
+    let bytes = fs::read(config.0.join("config.json")).unwrap();
+    let mut manifest = config.manifest();
+    manifest["configSha256"] = json!(eplyx_lifecycle_impact::lifecycle::exposure::sha256(&bytes));
+    config.set_manifest(manifest);
+    assert!(config.error().contains("invalid package config"));
+
+    let valid_config = PackageDir::new("valid-config-change");
+    let mut config_value: Value =
+        serde_json::from_slice(&fs::read(valid_config.0.join("config.json")).unwrap()).unwrap();
+    config_value["reserveFundedReplacementRaw"] = json!("42");
+    let config_bytes = serde_json::to_vec(&config_value).unwrap();
+    fs::write(valid_config.0.join("config.json"), &config_bytes).unwrap();
+    let mut manifest = valid_config.manifest();
+    manifest["configSha256"] = json!(eplyx_lifecycle_impact::lifecycle::exposure::sha256(
+        &config_bytes
+    ));
+    valid_config.set_manifest(manifest);
+    assert_ne!(
+        original,
+        load(&valid_config.0).unwrap().transition_package_sha256
+    );
+
+    for (label, key, value) in [
+        ("rounding", "rounding", json!("ceiling")),
+        ("fee", "feeBps", json!(7)),
+    ] {
+        let p = PackageDir::new(label);
+        let mut manifest = p.manifest();
+        manifest["terms"][key] = value;
+        p.set_manifest(manifest);
+        assert_ne!(original, load(&p.0).unwrap().transition_package_sha256);
+    }
+
+    for (label, key, value) in [
+        (
+            "source-mint",
+            "sourceMint",
+            "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        ),
+        (
+            "replacement-mint",
+            "replacementMint",
+            "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+        ),
+    ] {
+        let p = PackageDir::new(label);
+        let mut manifest = p.manifest();
+        manifest[key] = json!(value);
+        p.set_manifest(manifest);
+        assert_ne!(original, load(&p.0).unwrap().transition_package_sha256);
+    }
+}
+
+#[test]
+fn packaged_candidate_bytes_are_the_only_vm_program() {
+    let p = PackageDir::new("exact-vm-program");
+    let original = load(&p.0).unwrap();
+    let mut changed = original.program.clone();
+    changed[64] ^= 1;
+    fs::write(p.0.join("program.so"), &changed).unwrap();
+    let mut manifest = p.manifest();
+    manifest["candidateProgram"]["sha256"] = json!(
+        eplyx_lifecycle_impact::lifecycle::exposure::sha256(&changed)
+    );
+    p.set_manifest(manifest);
+    let mutated = load(&p.0).unwrap();
+    assert_ne!(mutated.program_sha256, original.program_sha256);
+    assert_ne!(
+        mutated.transition_package_sha256,
+        original.transition_package_sha256
+    );
+    let stale_repository_fallback = [LoadedProgram {
+        program_id: demo::PROGRAM_ID.parse().unwrap(),
+        loader: demo::LOADER.parse().unwrap(),
+        bytes: original.program,
+    }];
+    assert!(demo::assert_candidate_program_identity(
+        &stale_repository_fallback,
+        &mutated.program,
+        &mutated.program_sha256,
+    )
+    .unwrap_err()
+    .to_string()
+    .contains("bytes differ from the validated package"));
+    let exact_package = [LoadedProgram {
+        program_id: demo::PROGRAM_ID.parse().unwrap(),
+        loader: demo::LOADER.parse().unwrap(),
+        bytes: mutated.program.clone(),
+    }];
+    demo::assert_candidate_program_identity(
+        &exact_package,
+        &mutated.program,
+        &mutated.program_sha256,
+    )
+    .unwrap();
+
+    // Rebuild an actual saved production fixture with the altered package
+    // binary. This catches a build path that silently substitutes repository
+    // bytes after package validation, not merely a broken helper.
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("..");
+    let capture: Value = serde_json::from_slice(
+        &fs::read(root.join("reports/milestone8-healthy-worker/conversion.capture.json")).unwrap(),
+    )
+    .unwrap();
+    let plan: eplyx_lifecycle_impact::conversion::ConversionPlan =
+        serde_json::from_value(capture["plan"].clone()).unwrap();
+    let wallet_capture: wallet::Capture =
+        serde_json::from_str(capture["wallet_capture"].as_str().unwrap()).unwrap();
+    let observed = wallet::evaluate(&wallet_capture).unwrap();
+    let row = observed["wallet_observation"]["token_accounts"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["address"] == plan.source_account)
+        .unwrap();
+    let mint: MintConfig = serde_json::from_value(observed["mint"].clone()).unwrap();
+    let scope = conversion::validate(capture["wallet_capture"].as_str().unwrap(), &plan).unwrap();
+    let context = demo::ConversionContext {
+        genesis_hash: observed["acquisition"]["genesis_hash"]
+            .as_str()
+            .unwrap()
+            .into(),
+        minimum_slot: row["slot"].as_u64().unwrap(),
+        owner: original.config.public_owner,
+        source_program: mint.token_program,
+        source_decimals: mint.decimals,
+        amount: scope["amount_raw"].as_str().unwrap().parse().unwrap(),
+    };
+    let evidence: Vec<RpcEvidence> = capture["observations"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .enumerate()
+        .map(|(id, record)| RpcEvidence {
+            id,
+            method: record["method"].as_str().unwrap().into(),
+            params: record["params"].clone(),
+            result: record["result"].clone(),
+        })
+        .collect();
+    let built = demo::build(
+        &plan,
+        capture["plan_sha256"].as_str().unwrap(),
+        &context,
+        &evidence,
+        &mutated.program,
+    )
+    .unwrap();
+    demo::assert_candidate_program_identity(
+        &built.plan.programs,
+        &mutated.program,
+        &mutated.program_sha256,
+    )
+    .unwrap();
+    let execution = eplyx_lifecycle_impact::executor::execute_probe_message(
+        &built.plan.accounts,
+        &built.plan.watch,
+        built.plan.clock,
+        &built.plan.programs,
+        built.plan.message,
+    );
+    if let Err(error) = execution {
+        assert!(
+            error
+                .to_string()
+                .contains("cannot load captured executable"),
+            "changed binary must execute or be rejected by the VM loader: {error:#}"
+        );
+    }
+}
+
+#[test]
+fn candidate_program_digest_mismatch_is_rejected_before_vm() {
+    let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("..");
+    let package = load(&root.join("examples/transitions/demo-fixed-ratio")).unwrap();
+    let programs = [LoadedProgram {
+        program_id: demo::PROGRAM_ID.parse().unwrap(),
+        loader: demo::LOADER.parse().unwrap(),
+        bytes: package.program.clone(),
+    }];
+    assert!(
+        demo::assert_candidate_program_identity(&programs, &package.program, &"0".repeat(64))
+            .unwrap_err()
+            .to_string()
+            .contains("candidate program digest mismatch")
+    );
 }
 
 #[test]

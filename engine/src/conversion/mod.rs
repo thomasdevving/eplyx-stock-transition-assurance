@@ -8,6 +8,7 @@
 pub mod current;
 pub mod demo;
 pub mod package;
+pub mod package_gate;
 pub mod package_preflight;
 #[cfg(test)]
 mod tests;

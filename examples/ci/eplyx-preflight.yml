@@ -1,0 +1,76 @@
+# Copy to .github/workflows/ after configuring a Linux runner with Rust,
+# cargo-build-sbf, Node and a bounded read-only SOLANA_RPC_URL secret.
+# EPLYX_PACKAGE_TEMPLATE is a repository path to a package manifest/config.
+name: Eplyx pre-flight gate
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    # A fork PR cannot run checked-out code on a runner that holds the RPC secret.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, linux, eplyx-sbf]
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build exact candidate SBF and engine
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p target/ci-sbf
+          cargo-build-sbf --manifest-path programs/eplyx-demo-conversion/Cargo.toml --sbf-out-dir target/ci-sbf
+          cargo build --locked -p eplyx-lifecycle-impact
+      - name: Assemble and validate package
+        shell: bash
+        env:
+          PACKAGE_TEMPLATE: ${{ vars.EPLYX_PACKAGE_TEMPLATE }}
+        run: |
+          set -euo pipefail
+          test -n "$PACKAGE_TEMPLATE"
+          node scripts/assemble-transition-package.mjs "$PACKAGE_TEMPLATE" target/ci-sbf/eplyx_demo_conversion.so target/ci-package
+          target/debug/eplyx-lifecycle validate-transition-package target/ci-package | tee target/ci-package-identity.json
+          sha256sum target/debug/eplyx-lifecycle > target/ci-engine.sha256
+          git rev-parse HEAD > target/ci-source-commit.txt
+      - name: Run gate and verify offline replay
+        id: gate
+        shell: bash
+        env:
+          SOLANA_RPC_URL: ${{ secrets.SOLANA_RPC_URL }}
+        run: |
+          set -uo pipefail
+          test -n "$SOLANA_RPC_URL" || exit 2
+          target/debug/eplyx-lifecycle preflight target/ci-package --gate block-only --out target/ci-preflight
+          gate_exit=$?
+          echo "exit_code=$gate_exit" >> "$GITHUB_OUTPUT"
+          if test -f target/ci-preflight/report.json; then
+            unset SOLANA_RPC_URL
+            target/debug/eplyx-lifecycle replay-package-preflight target/ci-package --result target/ci-preflight > target/ci-preflight/replay.json
+            replay_exit=$?
+            test "$gate_exit" -eq "$replay_exit" || exit 2
+          fi
+          exit "$gate_exit"
+      - name: Job summary
+        if: always()
+        shell: bash
+        run: |
+          if test -f target/ci-preflight/report.md; then
+            cat target/ci-preflight/report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Eplyx pre-flight did not produce a report; inspect the gate log.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Retain package and replay artifacts
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: eplyx-preflight
+          path: |
+            target/ci-package/
+            target/ci-package-identity.json
+            target/ci-engine.sha256
+            target/ci-source-commit.txt
+            target/ci-preflight/
+          if-no-files-found: warn

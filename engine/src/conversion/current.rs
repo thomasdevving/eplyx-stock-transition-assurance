@@ -474,6 +474,7 @@ pub fn replay(
         "message": ProbeMessage::from(&p.message), "account_plan": final_batch.params[0],
     }))?
     .into();
+    demo::assert_candidate_program_identity(&p.programs, program, program_hash)?;
     eprintln!("CURRENT_STAGE:Running candidate conversion locally");
     let execution = executor::execute_probe_message(
         &p.accounts,

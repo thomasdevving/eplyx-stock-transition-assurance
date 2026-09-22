@@ -417,6 +417,7 @@ fn case_result(
     }))?;
     detail["execution_fixture_sha256"] = fixture.clone().into();
 
+    demo::assert_candidate_program_identity(&p.programs, program, program_sha256)?;
     let execution = executor::execute_probe_message(
         &p.accounts,
         &p.watch,

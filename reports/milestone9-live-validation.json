@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "kind": "milestone9-live-validation",
+  "engine_binary_sha256": "d2da9ff629c4ad2321ddd8f908ad59386af105cc10591a36d73a2876dadc979c",
+  "cases": [
+    {
+      "package": "demo-fixed-ratio",
+      "result_directory": "target/milestone9-fresh-1790065342",
+      "current_capture_timestamp": "2026-09-22T08:22:57.798Z",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "gate_policy": "block-only",
+      "gate_outcome": "Warn",
+      "gate_exit": 0,
+      "replay_exit": 0,
+      "selected_stress_counts": {
+        "Proven": 10
+      },
+      "transition_package_sha256": "89bf0a28e3a5617f7a1a6c5c085bbc4030d6c1d3c3d4d735d0937a2ab834f55a",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "report_sha256": "aefab38845950a7b8ff93fc7630d1f0989760a499d0fc4eea8fabaa8dc8ae605"
+    },
+    {
+      "package": "demo-underfunded",
+      "result_directory": "target/milestone9-fresh-underfunded-1790065437",
+      "current_capture_timestamp": "2026-09-22T08:24:34.572Z",
+      "source_mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "candidate_plan_readiness": "Blocked",
+      "conversion_stress_readiness": "Blocked",
+      "population_rollout_readiness": "Incomplete",
+      "gate_policy": "block-only",
+      "gate_outcome": "Block",
+      "gate_exit": 3,
+      "replay_exit": 3,
+      "selected_stress_counts": {
+        "Failed": 10
+      },
+      "transition_package_sha256": "a4833ff3bdc555843ed65c90497bc3aa3363b40f9fd444e29075b933369f69df",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "report_sha256": "e253e77962d46eaf781a8d7f29e968d5a9c2460d6f4181868290a61b45033285"
+    },
+    {
+      "package": "demo-second-asset",
+      "result_directory": "target/milestone9-fresh-second-1790065516",
+      "current_capture_timestamp": "2026-09-22T08:26:52.914Z",
+      "source_mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "gate_policy": "block-only",
+      "gate_outcome": "Warn",
+      "gate_exit": 0,
+      "replay_exit": 0,
+      "selected_stress_counts": {
+        "Proven": 10
+      },
+      "transition_package_sha256": "2c3ca7f8c8c23732d8a4ac7650e653f6d9e94d8b40d4998a814cb7de0563a9d2",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "report_sha256": "b2bed30def061683730d46cd6df22d8dbdc6f9b7f5a63145cf9521863d352089"
+    }
+  ],
+  "healthy_strict_same_evidence_exit": 3,
+  "rpc_environment_removed_for_replay": true,
+  "funds_moved": false
+}

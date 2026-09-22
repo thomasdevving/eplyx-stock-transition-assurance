@@ -1,5 +1,5 @@
 //! Fresh package pre-flight and fully offline replay using the existing M6/M7 paths.
-use super::{current as conversion, package};
+use super::{current as conversion, package, package_gate};
 use crate::{
     lifecycle::{current as wallet, exposure::sha256, rpc::HttpSolanaRpc},
     stress::{execute, population, select, StressBudget},
@@ -27,6 +27,8 @@ const OFFLINE_VM_TIMEOUT: Duration = Duration::from_secs(120);
 #[serde(deny_unknown_fields)]
 struct Bindings {
     schema_version: u32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    gate_policy: Option<package_gate::Policy>,
     transition_package_sha256: String,
     candidate_program_sha256: String,
     config_sha256: String,
@@ -179,8 +181,13 @@ fn summary(
 }
 
 fn markdown(report: &Value) -> String {
-    format!(
-        "# Transition package pre-flight\n\nPackage: `{}`\n\nCandidate program: `{}` (Proposed)\n\nSource: `{}`\nReplacement: `{}`\n\nSelected stress cases: {}\n\nCandidatePlanReadiness: **{}**\nConversionStressReadiness: **{}**\nPopulationRolloutReadiness: **{}**\nOfficialTransition: **NotTested**\nDeclared pre-flight policy: **{}**\n\nNo funds moved. Holder signing was assumed locally; key possession and issuer binding remain unknown.\n",
+    let analytical_label = if report.get("deployment_gate").is_some() {
+        "Analytical pre-flight status"
+    } else {
+        "Declared pre-flight policy" // Preserve historical Milestone 8 Markdown bytes.
+    };
+    let mut output = format!(
+        "# Transition package pre-flight\n\nPackage: `{}`\n\nCandidate program: `{}` (Proposed)\n\nSource: `{}`\nReplacement: `{}`\n\nSelected stress cases: {}\n\nCandidatePlanReadiness: **{}**\nConversionStressReadiness: **{}**\nPopulationRolloutReadiness: **{}**\nOfficialTransition: **NotTested**\n{}: **{}**\n\nNo funds moved. Holder signing was assumed locally; key possession and issuer binding remain unknown.\n",
         report["transition_package_sha256"].as_str().unwrap_or(""),
         report["candidate_program_sha256"].as_str().unwrap_or(""),
         report["source_mint"].as_str().unwrap_or(""),
@@ -189,8 +196,43 @@ fn markdown(report: &Value) -> String {
         report["candidate_plan_readiness"].as_str().unwrap_or("Incomplete"),
         report["conversion_stress_readiness"]["status"].as_str().unwrap_or("Incomplete"),
         report["population_rollout_readiness"]["status"].as_str().unwrap_or("Incomplete"),
+        analytical_label,
         report["declared_preflight_status"].as_str().unwrap_or("Incomplete"),
-    )
+    );
+    if let Some(gate) = report.get("deployment_gate") {
+        output.push_str(&format!(
+            "\n## Deployment gate\n\n**{}** under `{}`.\n\n",
+            match gate["outcome"].as_str().unwrap_or("") {
+                "Pass" => "PASS",
+                "Warn" => "PASS WITH WARNINGS",
+                _ => "BLOCKED",
+            },
+            gate["policy"].as_str().unwrap_or("")
+        ));
+        for reason in gate["reasons"].as_array().into_iter().flatten() {
+            output.push_str(&format!("- {}\n", reason.as_str().unwrap_or("")));
+        }
+        output.push_str("\nReplay offline: `eplyx-lifecycle replay-package-preflight <package> --result <result-directory>`\n");
+    }
+    output
+}
+
+fn with_gate(mut report: Value, policy: package_gate::Policy) -> Result<Value> {
+    let gate = package_gate::evaluate(&report, policy)?;
+    let mut counts = serde_json::Map::new();
+    for result in report["stress_results"].as_array().into_iter().flatten() {
+        if let Some(status) = result["status"].as_str() {
+            let count = counts.entry(status).or_insert_with(|| json!(0));
+            *count = json!(count.as_u64().unwrap_or(0) + 1);
+        }
+    }
+    report["selected_stress_counts"] = Value::Object(counts);
+    report["failures"] = report["failed_cases"].clone();
+    report["gate_policy"] = policy.name().into();
+    report["gate_outcome"] = serde_json::to_value(gate.outcome)?;
+    report["gate_reasons"] = serde_json::to_value(&gate.reasons)?;
+    report["deployment_gate"] = serde_json::to_value(gate)?;
+    Ok(report)
 }
 
 fn evaluate(package: &package::ValidatedPackage, root: &Path, b: &Bindings) -> Result<Value> {
@@ -264,18 +306,40 @@ fn evaluate(package: &package::ValidatedPackage, root: &Path, b: &Bindings) -> R
         stress_value["candidate_plan"] == serde_json::to_value(expected_plan)?,
         "stress plan differs from package"
     );
-    Ok(summary(package, b, conversion_value, &stress_value))
-}
-
-pub fn exit_code(report: &Value) -> u8 {
-    match report["declared_preflight_status"].as_str() {
-        Some("Ready") => 0,
-        Some("Blocked") => 3,
-        _ => 4,
+    let report = summary(package, b, conversion_value, &stress_value);
+    match b.gate_policy {
+        Some(policy) => with_gate(report, policy),
+        None => Ok(report), // Milestone 8 report replay is byte-for-byte compatible.
     }
 }
 
-pub fn run(package_directory: &Path, output_directory: &Path) -> Result<Value> {
+pub fn exit_code(report: &Value) -> Result<u8> {
+    if report.get("deployment_gate").is_some() {
+        let saved: package_gate::DeploymentGate =
+            serde_json::from_value(report["deployment_gate"].clone())?;
+        let expected = package_gate::evaluate(report, saved.policy)?;
+        ensure!(
+            saved == expected
+                && report["gate_policy"] == saved.policy.name()
+                && report["gate_outcome"] == serde_json::to_value(saved.outcome)?
+                && report["gate_reasons"] == serde_json::to_value(&saved.reasons)?,
+            "deployment gate result mismatch"
+        );
+        return Ok(expected.outcome.exit_code());
+    }
+    match report["declared_preflight_status"].as_str() {
+        Some("Ready") => Ok(0),
+        Some("Blocked") => Ok(3),
+        Some("Incomplete") => Ok(4),
+        _ => anyhow::bail!("invalid analytical result"),
+    }
+}
+
+pub fn run(
+    package_directory: &Path,
+    output_directory: &Path,
+    gate_policy: package_gate::Policy,
+) -> Result<Value> {
     // Validate every package byte before the first RPC request.
     let package = package::load(package_directory)?;
     let plan = package.conversion_plan()?;
@@ -338,6 +402,7 @@ pub fn run(package_directory: &Path, output_directory: &Path) -> Result<Value> {
     execute::save(&cases, &output_directory.join(CASES_FILE))?;
     let b = Bindings {
         schema_version: VERSION,
+        gate_policy: Some(gate_policy),
         transition_package_sha256: package.transition_package_sha256.clone(),
         candidate_program_sha256: package.program_sha256.clone(),
         config_sha256: package.config_sha256.clone(),
@@ -427,4 +492,62 @@ pub fn replay(package_directory: &Path, output_directory: &Path) -> Result<Value
         "saved human report differs from offline replay"
     );
     Ok(report)
+}
+
+/// Verify the saved report first, then re-evaluate the same analytical findings
+/// under a requested policy without changing the saved evidence or report.
+pub fn replay_with_policy(
+    package_directory: &Path,
+    output_directory: &Path,
+    policy: Option<package_gate::Policy>,
+) -> Result<Value> {
+    let saved = replay(package_directory, output_directory)?;
+    if let Some(policy) = policy {
+        let mut analytical = saved;
+        if let Some(object) = analytical.as_object_mut() {
+            for field in [
+                "deployment_gate",
+                "gate_policy",
+                "gate_outcome",
+                "gate_reasons",
+            ] {
+                object.remove(field);
+            }
+        }
+        with_gate(analytical, policy)
+    } else {
+        Ok(saved)
+    }
+}
+
+#[cfg(test)]
+mod gate_tests {
+    use super::*;
+
+    #[test]
+    fn gate_policy_preserves_analytical_evidence_and_official_boundary() {
+        let analytical = json!({
+            "candidate_plan_readiness": "Ready",
+            "conversion_stress_readiness": {"status": "Incomplete"},
+            "population_rollout_readiness": {"status": "Incomplete"},
+            "declared_preflight_status": "Incomplete",
+            "official_transition": "NotTested",
+            "funds_moved": false,
+            "stress_results": [], "failed_cases": [],
+        });
+        let original = analytical.clone();
+        let block_only = with_gate(analytical.clone(), package_gate::Policy::BlockOnly).unwrap();
+        let strict = with_gate(analytical, package_gate::Policy::Strict).unwrap();
+        for (name, value) in original.as_object().unwrap() {
+            assert_eq!(block_only[name], *value);
+            assert_eq!(strict[name], *value);
+        }
+        assert_eq!(block_only["gate_outcome"], "Warn");
+        assert_eq!(strict["gate_outcome"], "Block");
+        assert_eq!(block_only["official_transition"], "NotTested");
+        assert_eq!(
+            strict["population_rollout_readiness"]["status"],
+            "Incomplete"
+        );
+    }
 }
