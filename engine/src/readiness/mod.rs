@@ -37,6 +37,10 @@ pub enum FindingEffect {
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EvaluatedScope {
     DemoEntityReadiness,
+    /// One bounded candidate-conversion stress run over a freshly captured
+    /// population. Distinct from both the single-entity gates and population
+    /// rollout readiness: it never claims anything about untested accounts.
+    ConversionStressReadiness,
     PopulationRolloutReadiness,
 }
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -99,12 +103,45 @@ pub enum RequirementCondition {
         program_sha256: String,
         replacement_mint: String,
     },
+    /// Every executable-candidate state shape discovered in a frozen stress plan
+    /// must have at least one exact executed case. Satisfying this says which
+    /// classes were exercised; it never says anything about their other members.
+    SupportedShapeCoverage,
+    /// Outcomes of the exact selected stress cases. A real failed case is the one
+    /// condition here that blocks rather than merely leaving evidence incomplete.
+    SelectedCaseOutcomes {
+        allow_failed: bool,
+        allow_indeterminate: bool,
+        allow_unsupported: bool,
+    },
+    /// How complete the fresh population acquisition had to be. The two axes are
+    /// required independently, because incomplete authority resolution is not the
+    /// same finding as an incomplete token-account enumeration.
+    PopulationAcquisition {
+        required_enumeration: String,
+        required_authority_resolution: String,
+        max_unsupported_positive_balance_accounts: usize,
+    },
+    /// Population-wide candidate conversion: every positive-balance account
+    /// observed in the capture needs its own proven conversion at its own full
+    /// amount. A bounded sample can never satisfy this.
+    PopulationConversionCoverage {
+        plan_sha256: String,
+        program_sha256: String,
+    },
     EvidenceIsolation,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(tag = "kind", deny_unknown_fields)]
 pub enum RequirementTarget {
-    Entity { entity_id: String },
+    Entity {
+        entity_id: String,
+    },
+    /// One bounded stress run as a whole. Deliberately not `Rollout`: run-level
+    /// stress conditions must never be mistaken for population readiness.
+    StressRun {
+        stress_id: String,
+    },
     Rollout,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -237,22 +274,74 @@ impl LifecycleReadinessPolicy {
                         "a candidate-conversion requirement must pin its plan, candidate program and distinct replacement asset"
                     );
                 }
+                RequirementCondition::SupportedShapeCoverage
+                | RequirementCondition::SelectedCaseOutcomes { .. } => {
+                    ensure!(
+                        matches!(r.target, RequirementTarget::StressRun { .. }),
+                        "stress-run conditions must target the stress run, never an entity or a rollout"
+                    );
+                }
+                RequirementCondition::PopulationAcquisition {
+                    required_enumeration,
+                    required_authority_resolution,
+                    ..
+                } => {
+                    ensure!(
+                        matches!(r.target, RequirementTarget::StressRun { .. }),
+                        "population acquisition conditions target the stress run"
+                    );
+                    ensure!(
+                        ["CompleteForQuery", "Partial", "Unavailable", "Unsupported"]
+                            .contains(&required_enumeration.as_str()),
+                        "unknown required enumeration completeness"
+                    );
+                    ensure!(
+                        ["Complete", "Partial", "NotPerformed"]
+                            .contains(&required_authority_resolution.as_str()),
+                        "unknown required authority resolution completeness"
+                    );
+                }
+                RequirementCondition::PopulationConversionCoverage {
+                    plan_sha256,
+                    program_sha256,
+                } => {
+                    ensure!(
+                        r.target == RequirementTarget::Rollout,
+                        "population conversion coverage is a rollout-scope condition"
+                    );
+                    ensure!(
+                        plan_sha256.len() == 64 && program_sha256.len() == 64,
+                        "population conversion coverage must pin its plan and candidate program"
+                    );
+                }
                 RequirementCondition::EvidenceIsolation => {}
             }
         }
-        if p.evaluated_scope == EvaluatedScope::PopulationRolloutReadiness {
-            ensure!(
+        match p.evaluated_scope {
+            EvaluatedScope::PopulationRolloutReadiness => ensure!(
                 p.requirements.iter().any(|r| r.required
-                    && matches!(r.condition, RequirementCondition::PopulationCoverage { .. })),
+                    && matches!(
+                        r.condition,
+                        RequirementCondition::PopulationCoverage { .. }
+                            | RequirementCondition::PopulationConversionCoverage { .. }
+                    )),
                 "population rollout policy must explicitly require population coverage"
-            );
-        } else {
-            ensure!(
+            ),
+            // A stress policy may reason about its own run and its own exact
+            // cases. It may never carry a rollout-scope requirement, so it can
+            // never be read as population readiness.
+            EvaluatedScope::ConversionStressReadiness => ensure!(
                 p.requirements
                     .iter()
                     .all(|r| r.target != RequirementTarget::Rollout),
-                "entity-only policy cannot imply rollout readiness"
-            );
+                "a conversion stress policy cannot imply population rollout readiness"
+            ),
+            EvaluatedScope::DemoEntityReadiness => ensure!(
+                p.requirements
+                    .iter()
+                    .all(|r| matches!(r.target, RequirementTarget::Entity { .. })),
+                "entity-only policy cannot imply stress-run or rollout readiness"
+            ),
         }
         Ok(p)
     }
@@ -340,6 +429,11 @@ pub struct PopulationEntityFact {
     pub account_type: String,
     pub balance_raw: String,
     pub proven_full_amount_paths: Vec<ExitPathType>,
+    /// Whether this exact entity has its own proven candidate conversion at its
+    /// own full observed amount. Default false: historical population evidence
+    /// predates candidate conversion and never carries this fact.
+    #[serde(default)]
+    pub proven_candidate_conversion: bool,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct PopulationEvidence {
@@ -355,19 +449,49 @@ pub struct PopulationEvidence {
     pub evidence_ids: Vec<String>,
     pub entities: Vec<PopulationEntityFact>,
 }
+/// Bounded facts about one frozen stress run. Counts only; every one of them is
+/// derived from exact executed cases and none of them is per-entity evidence.
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+pub struct StressEvidence {
+    pub stress_id: String,
+    pub population_capture_sha256: String,
+    pub stress_plan_sha256: String,
+    pub candidate_plan_sha256: String,
+    pub candidate_program_sha256: String,
+    pub enumeration_completeness: String,
+    pub authority_resolution_completeness: String,
+    pub positive_balance_accounts: usize,
+    pub selected_cases: usize,
+    pub executed_cases: usize,
+    pub proven_cases: usize,
+    pub failed_cases: usize,
+    pub indeterminate_cases: usize,
+    pub unsupported_cases: usize,
+    pub executable_shapes: usize,
+    pub executable_shapes_with_executed_case: usize,
+    pub uncovered_executable_shapes: Vec<String>,
+    pub unsupported_positive_balance_accounts: usize,
+    pub capture_required_positive_balance_accounts: usize,
+    pub failed_case_ids: Vec<String>,
+    pub indeterminate_case_ids: Vec<String>,
+    pub unsupported_case_ids: Vec<String>,
+    pub evidence_ids: Vec<String>,
+}
+
 /// A published measurement is consumed only after input digests and scope relationships are checked.
 /// No public/deserialization constructor; readiness cannot grant new execution proof.
 pub struct VerifiedReadinessEvidence {
-    pub(super) asset_mint: String,
-    pub(super) scenario_sha256: String,
-    pub(super) lifecycle_event: crate::lifecycle::policy::AssetLifecyclePolicy,
-    pub(super) policy_evaluated_at: String,
-    pub(super) path_facts: Vec<PathFact>,
-    pub(super) conversion_facts: Vec<ConversionFact>,
-    pub(super) complete_exits: Vec<CompleteExitFact>,
-    pub(super) population: PopulationEvidence,
-    pub(super) evidence_refs: Vec<EvidenceReference>,
-    pub(super) isolation_verified: bool,
+    pub(crate) asset_mint: String,
+    pub(crate) scenario_sha256: String,
+    pub(crate) lifecycle_event: crate::lifecycle::policy::AssetLifecyclePolicy,
+    pub(crate) policy_evaluated_at: String,
+    pub(crate) path_facts: Vec<PathFact>,
+    pub(crate) conversion_facts: Vec<ConversionFact>,
+    pub(crate) complete_exits: Vec<CompleteExitFact>,
+    pub(crate) population: PopulationEvidence,
+    pub(crate) evidence_refs: Vec<EvidenceReference>,
+    pub(crate) isolation_verified: bool,
+    pub(crate) stress: Option<StressEvidence>,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct ReadinessFinding {
@@ -591,6 +715,116 @@ fn evaluate_requirement(
              "The declared candidate conversion plan must have actually executed and reconciled at this exact account, amount, replacement asset, plan version and candidate program build.",
              "This is evidence about the supplied candidate plan under its declared authority model only. It never establishes an issuer-defined official transition, an issuer relationship or any authorization.")
         }
+        RequirementCondition::SupportedShapeCoverage => {
+            let s = e.stress.as_ref();
+            let effect = match s {
+                Some(s) => {
+                    observed.push(format!("{} of {} discovered executable state shapes have at least one exact executed case. {} positive-balance accounts use states this executor cannot exercise at all.",s.executable_shapes_with_executed_case,s.executable_shapes,s.unsupported_positive_balance_accounts));
+                    for shape in &s.uncovered_executable_shapes {
+                        observed.push(format!(
+                            "Executable state shape {shape} has no executed case."
+                        ));
+                    }
+                    ids.extend(s.evidence_ids.clone());
+                    if s.executable_shapes > 0
+                        && s.executable_shapes_with_executed_case == s.executable_shapes
+                    {
+                        FindingEffect::Satisfied
+                    } else {
+                        FindingEffect::IncompleteEvidence
+                    }
+                }
+                None => FindingEffect::IncompleteEvidence,
+            };
+            (effect,"Every discovered executable-candidate state shape must have at least one exact executed case.","Exercising a state shape records which classes were reached. It never establishes anything about the other accounts sharing that shape; those remain untested.")
+        }
+        RequirementCondition::SelectedCaseOutcomes {
+            allow_failed,
+            allow_indeterminate,
+            allow_unsupported,
+        } => {
+            let s = e.stress.as_ref();
+            let effect = match s {
+                Some(s) => {
+                    observed.push(format!("{} of {} selected cases executed: {} proven, {} failed, {} indeterminate, {} unsupported.",s.executed_cases,s.selected_cases,s.proven_cases,s.failed_cases,s.indeterminate_cases,s.unsupported_cases));
+                    for id in &s.failed_case_ids {
+                        observed.push(format!("Selected case {id} actually executed the candidate conversion and failed, with its watched state rolled back."));
+                    }
+                    for id in &s.indeterminate_case_ids {
+                        observed.push(format!("Selected case {id} could not establish an outcome from public state; this is missing evidence, not an execution failure."));
+                    }
+                    for id in &s.unsupported_case_ids {
+                        observed.push(format!("Selected case {id} is outside the current executor's supported configuration; this is an executor boundary, not a failure."));
+                    }
+                    ids.extend(s.evidence_ids.clone());
+                    if s.failed_cases > 0 && !allow_failed {
+                        FindingEffect::Blocking
+                    } else if s.selected_cases == 0
+                        || s.proven_cases != s.selected_cases
+                            && ((s.indeterminate_cases > 0 && !allow_indeterminate)
+                                || (s.unsupported_cases > 0 && !allow_unsupported)
+                                || s.proven_cases + usize::from(*allow_failed) * s.failed_cases
+                                    != s.selected_cases)
+                    {
+                        FindingEffect::IncompleteEvidence
+                    } else {
+                        FindingEffect::Satisfied
+                    }
+                }
+                None => FindingEffect::IncompleteEvidence,
+            };
+            (effect,"Every exact selected case must have executed and reconciled, with no disallowed failed, indeterminate or unsupported outcome.","A failed case is an actual executed instruction that failed with verified rollback, and it blocks. Unsupported and indeterminate outcomes are executor and evidence boundaries; they leave the finding incomplete and are never collapsed into failure.")
+        }
+        RequirementCondition::PopulationAcquisition {
+            required_enumeration,
+            required_authority_resolution,
+            max_unsupported_positive_balance_accounts,
+        } => {
+            let s = e.stress.as_ref();
+            let effect = match s {
+                Some(s) => {
+                    observed.push(format!("Token-account enumeration completeness: {} (policy requires {}). Authority resolution completeness: {} (policy requires {}). These two axes are independent.",s.enumeration_completeness,required_enumeration,s.authority_resolution_completeness,required_authority_resolution));
+                    observed.push(format!("{} positive-balance accounts are unsupported by the current executor and {} still need authority capture; the policy allows at most {}.",s.unsupported_positive_balance_accounts,s.capture_required_positive_balance_accounts,max_unsupported_positive_balance_accounts));
+                    ids.extend(s.evidence_ids.clone());
+                    if s.enumeration_completeness == *required_enumeration
+                        && s.authority_resolution_completeness == *required_authority_resolution
+                        && s.unsupported_positive_balance_accounts
+                            + s.capture_required_positive_balance_accounts
+                            <= *max_unsupported_positive_balance_accounts
+                    {
+                        FindingEffect::Satisfied
+                    } else {
+                        FindingEffect::IncompleteEvidence
+                    }
+                }
+                None => FindingEffect::IncompleteEvidence,
+            };
+            (effect,"The fresh population acquisition must meet the policy's declared completeness on both independent axes, and leave no more unresolved positive-balance state than the policy allows.","Enumeration completeness and authority-resolution completeness are separate facts. An incomplete acquisition leaves this finding incomplete; it is never evidence that the missing accounts cannot convert.")
+        }
+        RequirementCondition::PopulationConversionCoverage {
+            plan_sha256,
+            program_sha256,
+        } => {
+            let s = e.stress.as_ref();
+            let effect = match s {
+                Some(s)
+                    if s.candidate_plan_sha256 == *plan_sha256
+                        && s.candidate_program_sha256 == *program_sha256 =>
+                {
+                    observed.push(format!("{} of {} positive-balance accounts observed in this capture have their own proven candidate conversion at their own full observed amount.",s.proven_cases,s.positive_balance_accounts));
+                    ids.extend(s.evidence_ids.clone());
+                    if s.positive_balance_accounts > 0
+                        && s.proven_cases == s.positive_balance_accounts
+                    {
+                        FindingEffect::Satisfied
+                    } else {
+                        FindingEffect::IncompleteEvidence
+                    }
+                }
+                _ => FindingEffect::IncompleteEvidence,
+            };
+            (effect,"Every positive-balance account observed in the capture must have its own proven candidate conversion at its own full amount, under the declared plan and candidate program build.","A bounded selected sample cannot satisfy this. Neither a tested entity nor a tested state shape establishes anything about the accounts that were never executed.")
+        }
         RequirementCondition::EvidenceIsolation => {
             observed.push(format!(
                 "Evidence identity/scope isolation verified: {}.",
@@ -680,36 +914,42 @@ pub fn evaluate(
                 _ => None,
             })
             .collect::<Vec<_>>();
+        // A conversion-coverage requirement additionally demands that this exact
+        // entity has its own proven candidate conversion. An entity is satisfied
+        // only when every required population condition holds for it.
+        let conversion_required = policy.requirements.iter().any(|r| {
+            r.required
+                && matches!(
+                    r.condition,
+                    RequirementCondition::PopulationConversionCoverage { .. }
+                )
+        });
+        let satisfied = |entity: &PopulationEntityFact| {
+            entity.balance_raw != "0"
+                && pop_conditions.iter().all(|paths| {
+                    entity
+                        .proven_full_amount_paths
+                        .iter()
+                        .any(|p| paths.contains(p))
+                })
+                && (!conversion_required || entity.proven_candidate_conversion)
+        };
         let n = e
             .population
             .entities
             .iter()
-            .filter(|entity| {
-                entity.balance_raw != "0"
-                    && pop_conditions.iter().all(|paths| {
-                        entity
-                            .proven_full_amount_paths
-                            .iter()
-                            .any(|p| paths.contains(p))
-                    })
-            })
+            .filter(|x| satisfied(x))
             .count();
         Some(PopulationReadiness {
             status: overall_status,
             positive_entities_required: e.population.positive_balance_entities,
             exact_entities_satisfied: n,
-            exhaustive_execution: n == e.population.positive_balance_entities,
+            exhaustive_execution: e.population.positive_balance_entities > 0
+                && n == e.population.positive_balance_entities,
             unresolved_account_types: {
                 let mut counts = BTreeMap::new();
                 for entity in &e.population.entities {
-                    if entity.balance_raw != "0"
-                        && !pop_conditions.iter().all(|paths| {
-                            entity
-                                .proven_full_amount_paths
-                                .iter()
-                                .any(|p| paths.contains(p))
-                        })
-                    {
+                    if entity.balance_raw != "0" && !satisfied(entity) {
                         *counts.entry(entity.account_type.clone()).or_insert(0) += 1;
                     }
                 }

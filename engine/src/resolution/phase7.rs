@@ -238,12 +238,12 @@ pub fn resolve(
                     )?,
                 "evidence disagrees with fresh exact entity/path/context replay"
             );
-            let relative = Path::new(&bundle.execution_index.file)
-                .parent()
-                .unwrap()
-                .join(&r.result_file)
-                .to_string_lossy()
-                .into_owned();
+            let relative = crate::artifact_path(
+                &Path::new(&bundle.execution_index.file)
+                    .parent()
+                    .unwrap()
+                    .join(&r.result_file),
+            );
             verified.push(project(
                 &e,
                 ArtifactRef {

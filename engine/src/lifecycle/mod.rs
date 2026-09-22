@@ -53,14 +53,14 @@ pub struct RpcEvidence {
 }
 
 /// JSON Pointer into an evidence result, carrying the actual observation context.
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EvidenceRef {
     pub rpc_id: usize,
     pub pointer: String,
     pub slot: u64,
 }
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub enum EntityType {
     /// On-curve, existing non-executable System-owned account with empty data.
     /// This proves compatibility with a wallet authority, not a human or signer identity.
@@ -344,6 +344,18 @@ impl<R: SolanaRpc> LifecycleStateSource for SolanaTokenAssetSource<R> {
             evidence,
         )
     }
+}
+
+/// The generic authority classifier, reusable by any capture that has a recorded
+/// owner authority and its raw account. It is deliberately conservative: only an
+/// on-curve, existing, non-executable, empty System-owned account is called
+/// wallet-compatible, and that is compatibility with a wallet authority, never a
+/// human identity, legal ownership or signing access.
+pub fn classify_authority(
+    owner: &str,
+    raw: &Value,
+) -> Result<(EntityType, AuthorityObservation, String)> {
+    classify(owner, raw)
 }
 
 fn classify(owner: &str, raw: &Value) -> Result<(EntityType, AuthorityObservation, String)> {

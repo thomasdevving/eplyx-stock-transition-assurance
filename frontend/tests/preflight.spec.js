@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {engineExecutable} from '../analysis-service.mjs';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {execFileSync,spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -21,7 +22,7 @@ async function proposal(page,parent,successor,label,{deadline=true,days=30}={}){
  await page.locator('[name="proposed_change"]').selectOption('replacement');await page.locator('[name="successor_mint"]').fill(successor);const future=new Date(Date.now()+days*86400000);const local=d=>new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,16);await page.locator('[name="effective_at"]').fill(local(future));if(deadline)await page.locator('[name="deadline"]').fill(local(new Date(future.getTime()+30*86400000)));
  const accepted=page.waitForResponse(r=>r.url().endsWith(`/api/runs/${parent.id}/preflights`)&&r.request().method()==='POST');await page.getByRole('button',{name:'Run pre-flight',exact:true}).click();const response=await accepted;expect(response.status()).toBe(202);let job=await response.json();await expect.poll(async()=>{job=await get(page,`/api/runs/${job.id}`);return job.status;},{timeout:180000}).toBe('Completed');await expect(page.locator(`[data-preflight="${job.id}"]`)).toBeVisible({timeout:10000});
  const bytes=await(await page.request.get(new URL(`/api/runs/${job.id}/capture`,page.url()).href)).body();const path=`${dir}/${label}.capture.json`;await writeFile(path,bytes);expect(hash(bytes)).toBe(job.capture_sha256);
- const replay=execFileSync('target/debug/eplyx-lifecycle',['replay-current-preflight','--input',path,'--run-id',parent.id,'--preflight-id',job.id,'--wallet-sha256',parent.capture_sha256,'--scenario-sha256',job.scenario_sha256,'--capture-sha256',job.capture_sha256],{env:{PATH:process.env.PATH},maxBuffer:32*1024*1024});expect(hash(replay)).toBe(job.canonical_sha256);await writeFile(`${dir}/${label}.result.json`,replay);await writeFile(`${dir}/${label}.job.json`,JSON.stringify(job,null,2));return job;
+ const replay=execFileSync(engineExecutable,['replay-current-preflight','--input',path,'--run-id',parent.id,'--preflight-id',job.id,'--wallet-sha256',parent.capture_sha256,'--scenario-sha256',job.scenario_sha256,'--capture-sha256',job.capture_sha256],{env:{PATH:process.env.PATH},maxBuffer:32*1024*1024});expect(hash(replay)).toBe(job.canonical_sha256);await writeFile(`${dir}/${label}.result.json`,replay);await writeFile(`${dir}/${label}.job.json`,JSON.stringify(job,null,2));return job;
 }
 async function vertical(page,base,prefix,asset=spacex){
  await mkdir(dir,{recursive:true});await page.goto(`${base}/analysis#analysis`);await page.addStyleTag({content:'html{scroll-behavior:auto!important}'});const parent=await fetchWallet(page,asset);const original=await(await page.request.get(`${base}/api/runs/${parent.id}/capture`)).body();

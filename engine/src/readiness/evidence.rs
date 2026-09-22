@@ -162,7 +162,7 @@ impl ReadinessEvidenceManifest {
                     .parent()
                     .unwrap_or(Path::new("."));
                 let r = ArtifactRef {
-                    file: parent.join(&b.fixture_file).to_string_lossy().into(),
+                    file: crate::artifact_path(&parent.join(&b.fixture_file)),
                     sha256: hash.clone(),
                 };
                 let bytes = r.read(base)?;
@@ -192,7 +192,7 @@ impl ReadinessEvidenceManifest {
                 .parent()
                 .unwrap_or(Path::new("."));
             let r = ArtifactRef {
-                file: parent.join(&e.result_file).to_string_lossy().into(),
+                file: crate::artifact_path(&parent.join(&e.result_file)),
                 sha256: e.result_sha256.clone(),
             };
             let m: ExecutionEvidence = read(&r, base)?;
@@ -627,6 +627,7 @@ impl ReadinessEvidenceManifest {
                 account_type: e.account_type.clone(),
                 balance_raw: e.represented_balance_raw.clone(),
                 proven_full_amount_paths: paths,
+                proven_candidate_conversion: false,
             });
         }
         let a = &delta.after.portfolio;
@@ -677,6 +678,7 @@ impl ReadinessEvidenceManifest {
             },
             evidence_refs: refs,
             isolation_verified: true,
+            stress: None,
         })
     }
 }

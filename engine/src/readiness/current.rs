@@ -148,6 +148,7 @@ pub(crate) fn evaluate_selected(
         conversion_facts: conversions.to_vec(),
         complete_exits: vec![],
         isolation_verified: true,
+        stress: None,
         evidence_refs: vec![EvidenceReference {
             id: run.into(),
             artifact: ArtifactRef {

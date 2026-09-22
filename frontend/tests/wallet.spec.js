@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {engineExecutable} from '../analysis-service.mjs';
 import {createServer} from 'node:http';
 import {spawn,execFileSync} from 'node:child_process';
 import {once} from 'node:events';
@@ -13,7 +14,7 @@ const token2022='TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb';
 const decode58=s=>{let n=0n;for(const c of s)n=n*58n+BigInt('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'.indexOf(c));return Buffer.from(n.toString(16).padStart(64,'0'),'hex');};
 const raw=(b,program)=>({owner:program,executable:false,space:b.length,data:[b.toString('base64'),'base64']});
 async function submit(page){const accepted=page.waitForResponse(r=>r.url().endsWith('/api/runs')&&r.request().method()==='POST');await page.locator('#run-analysis').click();const response=await accepted;expect(response.status()).toBe(202);const q=await response.json();await expect(page.locator(`.analysis-output[data-run="${q.id}"]`)).toBeVisible({timeout:100000});return(await page.request.get(new URL(`/api/runs/${q.id}`,page.url()).href)).json();}
-async function retain(page,job,label){const base=new URL(page.url()).origin;const capture=await(await page.request.get(`${base}/api/runs/${job.id}/capture`)).body();expect(createHash('sha256').update(capture).digest('hex')).toBe(job.capture_sha256);const path=`${dir}/${label}.capture.json`;await writeFile(path,capture);const replay=execFileSync('target/debug/eplyx-lifecycle',['replay-current','--input',path]);expect(createHash('sha256').update(replay).digest('hex')).toBe(job.canonical_sha256);await writeFile(`${dir}/${label}.result.json`,replay);return JSON.parse(capture);}
+async function retain(page,job,label){const base=new URL(page.url()).origin;const capture=await(await page.request.get(`${base}/api/runs/${job.id}/capture`)).body();expect(createHash('sha256').update(capture).digest('hex')).toBe(job.capture_sha256);const path=`${dir}/${label}.capture.json`;await writeFile(path,capture);const replay=execFileSync(engineExecutable,['replay-current','--input',path]);expect(createHash('sha256').update(replay).digest('hex')).toBe(job.canonical_sha256);await writeFile(`${dir}/${label}.result.json`,replay);return JSON.parse(capture);}
 
 test('deterministic wallet browser/service/engine: multiple accounts, precision, focus, zero, errors, refresh and isolation',async({page,browser})=>{
  test.setTimeout(180000);await mkdir(dir,{recursive:true});let lookup=0,fail=false,partial=false;const calls=[];

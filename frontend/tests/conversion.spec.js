@@ -1,4 +1,5 @@
 import {test,expect} from '@playwright/test';
+import {engineExecutable} from '../analysis-service.mjs';
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {execFileSync,spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
@@ -161,7 +162,7 @@ test('operator-supplied candidate conversion through browser, service and VM',as
   const capturePath=`${dir}/candidate-conversion.capture.json`;
   await writeFile(capturePath,bytes);
   expect(hash(bytes)).toBe(proven.capture_sha256);
-  const replay=execFileSync('target/debug/eplyx-lifecycle',['replay-conversion-check','--input',capturePath,'--run-id',parent.id,'--check-id',proven.id,'--wallet-sha256',parent.capture_sha256,'--capture-sha256',proven.capture_sha256,'--plan-sha256',proven.plan_sha256,'--program-sha256',proven.candidate_program_sha256],{env:{PATH:process.env.PATH},maxBuffer:32*1024*1024});
+  const replay=execFileSync(engineExecutable,['replay-conversion-check','--input',capturePath,'--run-id',parent.id,'--check-id',proven.id,'--wallet-sha256',parent.capture_sha256,'--capture-sha256',proven.capture_sha256,'--plan-sha256',proven.plan_sha256,'--program-sha256',proven.candidate_program_sha256],{env:{PATH:process.env.PATH},maxBuffer:32*1024*1024});
   expect(hash(replay)).toBe(proven.canonical_sha256);
   await writeFile(`${dir}/candidate-conversion.result.json`,replay);
 

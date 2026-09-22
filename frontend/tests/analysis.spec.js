@@ -1,5 +1,6 @@
 const reports=process.env.EPLYX_REPORT_DIR||'reports/milestone2-validation';
 import { test, expect } from '@playwright/test';
+import {engineExecutable} from '../analysis-service.mjs';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 const choose=async(page,review,check)=>{await page.locator('[name="review"]').selectOption(review);if(check)await page.locator('[name="check"]').selectOption(check);};
@@ -22,7 +23,7 @@ test('new visitor uses overview, existing hero toggle preserves selections witho
 
 test('real frontend runs four engine cases with typed outcomes, reload and mode changes never authorize rollout',async({page,request})=>{
  test.setTimeout(2500000);
- const engineHash=createHash('sha256').update(await readFile('target/debug/eplyx-lifecycle')).digest('hex');
+ const engineHash=createHash('sha256').update(await readFile(engineExecutable)).digest('hex');
  await page.goto('/analysis#analysis');
  const rows=[['overview',null,'Incomplete',0,'after_transition'],['assumption','complete-exit','Incomplete',4,'after_transition'],['assumption','required-sale','Blocked',3,'after_transition'],['assumption','principal-removal','Ready',0,'after_deadline']];
  let submissions=0;page.on('request',r=>{if(r.method()==='POST'&&r.url().endsWith('/api/runs'))submissions++;});

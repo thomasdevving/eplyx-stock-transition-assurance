@@ -1,0 +1,28 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (C:\Users\Thomas\eplyx-stock-transition-assurance\engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 15.55s
+     Running tests\conversion_stress.rs (target\debug\deps\conversion_stress-e77d65a58860262a.exe)
+
+running 1 test
+test a_program_controlled_authority_is_surfaced_and_never_given_a_wallet_signer ... FAILED
+
+failures:
+
+---- a_program_controlled_authority_is_surfaced_and_never_given_a_wallet_signer stdout ----
+CURRENT_STAGE:Verifying population capture
+CURRENT_STAGE:Verifying frozen selection plan
+CURRENT_STAGE:Running candidate conversion locally for case 1/3
+CURRENT_STAGE:Running candidate conversion locally for case 2/3
+CURRENT_STAGE:Running candidate conversion locally for case 3/3
+CURRENT_STAGE:Aggregating stress coverage
+
+thread 'a_program_controlled_authority_is_surfaced_and_never_given_a_wallet_signer' (7152) panicked at engine\tests\conversion_stress.rs:170:5:
+unsupported_authorities_must_stay_visible
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    a_program_controlled_authority_is_surfaced_and_never_given_a_wallet_signer
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 12 filtered out; finished in 1.79s
+
+error: test failed, to rerun pass `-p eplyx-lifecycle-impact --test conversion_stress`

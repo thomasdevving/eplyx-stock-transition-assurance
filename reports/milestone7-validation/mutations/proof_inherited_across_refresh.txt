@@ -1,0 +1,9 @@
+   Compiling eplyx-lifecycle-impact v0.1.0 (C:\Users\Thomas\eplyx-stock-transition-assurance\engine)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 13.47s
+     Running tests\conversion_stress.rs (target\debug\deps\conversion_stress-e77d65a58860262a.exe)
+
+running 1 test
+test a_refreshed_population_starts_untested_and_inherits_no_proof ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 12 filtered out; finished in 4.59s
+

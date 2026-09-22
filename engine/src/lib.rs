@@ -60,6 +60,16 @@ pub fn fixture_program_id() -> Address {
         .expect("fixtures/program-id.txt must contain a valid base58 address")
 }
 
+/// A path rendered as a stable, platform-independent artifact reference.
+///
+/// Evidence files record their references with forward slashes, so a report
+/// generated on any platform stays byte-identical and its digests keep matching.
+/// This normalizes the separator only; it never resolves or rewrites the path.
+pub fn artifact_path(path: &Path) -> String {
+    path.to_string_lossy()
+        .replace(std::path::MAIN_SEPARATOR, "/")
+}
+
 /// Repository root, resolved from the crate location rather than the working
 /// directory so the CLI and the test suite agree regardless of where they run.
 pub fn repo_root() -> PathBuf {
@@ -203,3 +213,10 @@ pub mod preflight;
 
 /// Operator-supplied candidate conversion plans, executed against current state.
 pub mod conversion;
+
+/// Milestone 7: bounded production-state conversion stress testing. One frozen,
+/// deterministically selected set of exact accounts from a freshly captured
+/// current population, each executed separately through the existing candidate
+/// conversion adapter. Sampled evidence never becomes population or state-shape
+/// proof, and stress readiness never becomes population readiness.
+pub mod stress;

@@ -627,6 +627,11 @@ html:not([data-mode="technical"]) .core-scene :is(.orbit-body,.orbit-label)[data
 .conversion-form button { justify-self:start; }
 .conversion-ratio { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr)); gap:1rem; }
 .conversion-result { padding:1.25rem 0; overflow-wrap:anywhere; }
+.stress { margin-top:1.5rem; padding-top:1.25rem; border-top:1px dashed #748ead; }
+.stress > button { margin-top:.5rem; }
+.stress-result { padding:1.25rem 0; overflow-wrap:anywhere; }
+.stress-failure { margin:1rem 0; padding:1rem; border:1px solid #748ead; border-left-width:4px; border-radius:.4rem; }
+.stress-failure h5 { margin:0 0 .5rem; }
 .preflight-result { padding:1.5rem 0; overflow-wrap:anywhere; }
 .preflight-views { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:1rem; }
 .preflight-views section { border:1px solid #748ead; border-radius:.4rem; padding:1rem; }

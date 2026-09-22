@@ -1,5 +1,6 @@
 const reports=process.env.EPLYX_REPORT_DIR||'reports/milestone2-validation';
 import {test,expect} from '@playwright/test';
+import {engineExecutable} from '../analysis-service.mjs';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -32,7 +33,7 @@ test('live generic browser-to-engine inspection: two catalogue stocks, custom mi
   const job=await(await page.request.get(`/api/runs/${queued.id}`)).json();expect(job.status).toBe('Completed');expect(job.selection.mint).toBe(mint);expect(job.pinned_selection.mint).toBe(mint);expect(job.result.asset.mint).toBe(mint);expect(job.result.selection.mint).toBe(mint);
   expect(job.result.lifecycle_event).toBeNull();expect(job.result.readiness).toBeNull();expect(job.result.execution_performed).toBe(false);expect(job.result.authorization).toBe(false);expect(job.result.paths.every(p=>p.status==='NotTested')).toBe(true);expect(job.resolved.policy).toBeNull();expect(job.resolved.trusted_bundle).toBeNull();
   const capture=await(await page.request.get(`/api/runs/${job.id}/capture`)).body();expect(createHash('sha256').update(capture).digest('hex')).toBe(job.capture_sha256);const parsed=JSON.parse(capture);expect(parsed.observations[1].params[0]).toBe(mint);expect(parsed.asset.mint).toBe(mint);
-  const path=`${reports}/${label}.capture.json`;await writeFile(path,capture);const replay=execFileSync('target/debug/eplyx-lifecycle',['replay-current','--input',path],{encoding:'utf8'});expect(createHash('sha256').update(replay).digest('hex')).toBe(job.canonical_sha256);await writeFile(`${reports}/${label}.result.json`,replay);
+  const path=`${reports}/${label}.capture.json`;await writeFile(path,capture);const replay=execFileSync(engineExecutable,['replay-current','--input',path],{encoding:'utf8'});expect(createHash('sha256').update(replay).digest('hex')).toBe(job.canonical_sha256);await writeFile(`${reports}/${label}.result.json`,replay);
   jobs.push({label,...job});await writeFile(`${reports}/live-browser-runs.json`,JSON.stringify(jobs,null,2)+'\n');return job;
  }
  await page.locator('[name="asset"]').selectOption(spacex.mint);await page.locator('[name="sample"]').selectOption('yes');const first=await run('spacex',spacex.mint);expect(first.result.inspection.status).toBe('Completed');expect(first.result.selection.reference.version).toBe(catalogue.version);

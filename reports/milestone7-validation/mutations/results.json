@@ -1,0 +1,235 @@
+{
+  "injected": 7,
+  "killed": 6,
+  "compiler_error_kills": 0,
+  "sources_restored": true,
+  "source_sha256": {
+    "engine/src/stress/execute.rs": "25d4a9d3de2f4338951731eaf9b0747968fe1207700cb7cf164d2efe5563bbdd",
+    "engine/src/stress/mod.rs": "65dbc1b865ff3babc6ed97180d453803901c4f96e2defd5505025e9470096aed",
+    "engine/src/stress/population.rs": "52a0f4fff497d7f7fda955ce50e05a4cfbf2a0610ae36c34508cd9c08ded8c94",
+    "engine/src/readiness/mod.rs": "5b2654d3a4483df0f0b02f7bb914e521231d8774f5ef52bc08c610a3952cf4fe"
+  },
+  "results": [
+    {
+      "mutation": "entity_proves_its_peers",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "distinct_amounts_prove_that_cases_run_independently_and_are_never_summed",
+        "--",
+        "--exact"
+      ],
+      "test": "distinct_amounts_prove_that_cases_run_independently_and_are_never_summed",
+      "named_assertion": "one_tested_entity_must_not_prove_its_peers",
+      "killed_by_named_assertion": true,
+      "compiled": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "    let proven_ids: BTreeSet<String> = results\n        .iter()\n        .filter(|r| r.status == PathStatus::Proven)\n        .map(|r| r.entity_id.clone())\n        .collect();",
+          "after": "    let proven_shapes: BTreeSet<String> = results\n        .iter()\n        .filter(|r| r.status == PathStatus::Proven)\n        .map(|r| r.state_shape_sha256.clone())\n        .collect();\n    let proven_ids: BTreeSet<String> = plan\n        .state_shapes\n        .iter()\n        .filter(|s| proven_shapes.contains(&s.state_shape_sha256))\n        .flat_map(|s| {\n            s.highest_balance_entities\n                .iter()\n                .map(|a| super::entity_id(&plan.population_capture_sha256, a))\n        })\n        .collect();",
+          "mutated_sha256": "f7d42ee07788dfefe3f70ba732cbd33fa8462c3bd744f8e77a6abbcb716ebdb1"
+        }
+      ],
+      "log_sha256": "acc93f938996954c054d056bf772c7c1ca2f09e2ae5bc1408b276ddc1809fbb2"
+    },
+    {
+      "mutation": "shape_proves_its_members",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "shape_coverage_never_becomes_entity_coverage",
+        "--",
+        "--exact"
+      ],
+      "test": "shape_coverage_never_becomes_entity_coverage",
+      "named_assertion": "one_tested_shape_must_not_prove_its_members",
+      "killed_by_named_assertion": true,
+      "compiled": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "            entities_executed: executed_ids.len(),\n            executed_entity_ids: executed_ids.iter().cloned().collect(),\n            entities_untested: shape.entities_in_shape - executed_ids.len(),",
+          "after": "            entities_executed: if executed_ids.is_empty() {\n                0\n            } else {\n                shape.entities_in_shape\n            },\n            executed_entity_ids: executed_ids.iter().cloned().collect(),\n            entities_untested: 0,",
+          "mutated_sha256": "d35ab65e7c3502ce7856745752c8e8d7687d60bd1d756a582d06904a447071e6"
+        },
+        {
+          "file": "engine/src/stress/mod.rs",
+          "before": "        ensure!(\n            shape.executed_entity_ids.len() == shape.entities_executed\n                && shape.entities_executed <= shape.entities_selected\n                && shape.entities_selected <= shape.entities_in_shape\n                && shape.entities_untested == shape.entities_in_shape - shape.entities_executed,\n            \"shape coverage counts must stay consistent with exact executed entities\"\n        );",
+          "after": "        ensure!(\n            shape.entities_selected <= shape.entities_in_shape,\n            \"shape coverage counts must stay consistent with exact executed entities\"\n        );",
+          "mutated_sha256": "2e39efbbbbca056e292ab912f22b18c2295bf2c68d79e54e9f6613537d392c48"
+        }
+      ],
+      "log_sha256": "7a56fd8eca4970507f4f29d14dc56cfc1e8400d5c1786305df72c94ac5b1fb5f"
+    },
+    {
+      "mutation": "selection_rewritten_after_execution",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "the_plan_is_frozen_before_execution_and_cannot_be_rewritten_afterwards",
+        "--",
+        "--exact"
+      ],
+      "test": "the_plan_is_frozen_before_execution_and_cannot_be_rewritten_afterwards",
+      "named_assertion": "selection_must_not_be_rewritten_after_execution",
+      "killed_by_named_assertion": true,
+      "compiled": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "    plan.validate(&observation, &plan.candidate_plan, program_sha256)?;",
+          "after": "    let _ = plan.validate(&observation, &plan.candidate_plan, program_sha256);",
+          "mutated_sha256": "32044ebb7346c90bcbf74a0163a62e9f48c59eebef0cdbfff07290733fd536e4"
+        }
+      ],
+      "log_sha256": "5441a7ddb21dc5888275690782d71b8acbbb822896827d02f24eb0bf051664b9"
+    },
+    {
+      "mutation": "unsupported_authority_hidden",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "a_program_controlled_authority_is_surfaced_and_never_given_a_wallet_signer",
+        "--",
+        "--exact"
+      ],
+      "test": "a_program_controlled_authority_is_surfaced_and_never_given_a_wallet_signer",
+      "named_assertion": "unsupported_authorities_must_stay_visible",
+      "killed_by_named_assertion": true,
+      "compiled": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "    let mut unsupported_summary: Vec<UnsupportedState> = plan\n        .state_shapes\n        .iter()\n        .filter(|s| s.eligibility != Eligibility::ExecutableCandidate)",
+          "after": "    let mut unsupported_summary: Vec<UnsupportedState> = plan\n        .state_shapes\n        .iter()\n        .filter(|s| s.eligibility == Eligibility::Invalid)",
+          "mutated_sha256": "bf964f1e04ce4a499df11b110e80c5156ccf656e0d366070d123e4ce1a20c487"
+        }
+      ],
+      "log_sha256": "77f0427ce3dd58299fa022696a0034a9bae8d3aceab2ecbe8008a40614aadf62"
+    },
+    {
+      "mutation": "zero_balance_counted_as_exposure",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "distinct_amounts_prove_that_cases_run_independently_and_are_never_summed",
+        "--",
+        "--exact"
+      ],
+      "test": "distinct_amounts_prove_that_cases_run_independently_and_are_never_summed",
+      "named_assertion": "zero_balance_must_not_count_as_exposure",
+      "killed_by_named_assertion": true,
+      "compiled": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/stress/population.rs",
+          "before": "        if balance > 0 {\n            summary.positive_balance_accounts_observed += 1;\n            *summary\n                .positive_balance_authority_model_counts\n                .entry(key)\n                .or_insert(0) += 1;\n            balances.insert(e.entity_id.clone(), balance);\n        } else {\n            summary.zero_balance_accounts_observed += 1;\n        }",
+          "after": "        summary.positive_balance_accounts_observed += 1;\n        *summary\n            .positive_balance_authority_model_counts\n            .entry(key)\n            .or_insert(0) += 1;\n        balances.insert(e.entity_id.clone(), balance);\n        if balance == 0 {\n            summary.zero_balance_accounts_observed += 1;\n        }",
+          "mutated_sha256": "f7d0687ceceacd2feaade6cbe6f5d0cddb5aa5a40198591ea6ca39d38a69b601"
+        }
+      ],
+      "log_sha256": "2dd68ebfd58613ccfd053a7e17ddacb733535c446d525c505a1973e04944441a"
+    },
+    {
+      "mutation": "outputs_summed_as_capacity",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "distinct_amounts_prove_that_cases_run_independently_and_are_never_summed",
+        "--",
+        "--exact"
+      ],
+      "test": "distinct_amounts_prove_that_cases_run_independently_and_are_never_summed",
+      "named_assertion": "independent_outputs_must_not_be_summed_as_capacity",
+      "killed_by_named_assertion": true,
+      "compiled": true,
+      "exit_code": 101,
+      "edits": [
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "        tested_public_balance_raw: sum_once(&pick(&selected_ids)),",
+          "after": "        tested_public_balance_raw: sum_once(&balances),",
+          "mutated_sha256": "77a7d67b8741404d75a6fc87915f4c06eff3ae23f5470cae4345cc1cd26b6994"
+        }
+      ],
+      "log_sha256": "373e73eda012cfa15b18cf2bc7fab7e648fef12a331ba9c4ccb419d2b82e1424"
+    },
+    {
+      "mutation": "proof_inherited_across_refresh",
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "-p",
+        "eplyx-lifecycle-impact",
+        "--test",
+        "conversion_stress",
+        "a_refreshed_population_starts_untested_and_inherits_no_proof",
+        "--",
+        "--exact"
+      ],
+      "test": "a_refreshed_population_starts_untested_and_inherits_no_proof",
+      "named_assertion": "refreshed_world_must_not_inherit_stress_proof",
+      "killed_by_named_assertion": false,
+      "compiled": true,
+      "exit_code": 0,
+      "edits": [
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "            && plan.population_capture_sha256 == population_sha256\n",
+          "after": "",
+          "mutated_sha256": "2df23036c5dab6c2fa60a2caadca7d85e2faa6d1acdac97e5f29f06d16ff05ba"
+        },
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "    ensure!(\n        observation.capture_sha256 == population_sha256\n            && observation.run_id == run_id\n            && observation.stress_id == stress_id,\n        \"population capture identity mismatch\"\n    );",
+          "after": "    ensure!(\n        observation.run_id == run_id && observation.stress_id == stress_id,\n        \"population capture identity mismatch\"\n    );",
+          "mutated_sha256": "2df23036c5dab6c2fa60a2caadca7d85e2faa6d1acdac97e5f29f06d16ff05ba"
+        },
+        {
+          "file": "engine/src/stress/execute.rs",
+          "before": "    plan.validate(&observation, &plan.candidate_plan, program_sha256)?;",
+          "after": "    let _ = plan.validate(&observation, &plan.candidate_plan, program_sha256);",
+          "mutated_sha256": "2df23036c5dab6c2fa60a2caadca7d85e2faa6d1acdac97e5f29f06d16ff05ba"
+        }
+      ],
+      "log_sha256": "41b144e20ea103b3f95d0e3dbd5d3615fc987aa7ae7b7e9257565103217ea881"
+    }
+  ]
+}

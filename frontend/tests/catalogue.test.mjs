@@ -5,7 +5,7 @@ import {resolve} from 'node:path';
 import {tmpdir} from 'node:os';
 import {randomUUID,createHash} from 'node:crypto';
 import {CatalogueStore,parseProducts,catalogueFromCapture,SOURCE_URL} from '../catalogue.mjs';
-import {AnalysisService,validateSelection,parseEngineResult,executeEngine} from '../analysis-service.mjs';
+import {AnalysisService,validateSelection,parseEngineResult,executeEngine, engineExecutable} from '../analysis-service.mjs';
 import {CurrentResult} from '../src/analysis.js';
 const root=resolve('.'),store=new CatalogueStore(root),catalogue=await store.current();
 const retained=JSON.parse(await readFile(resolve(store.directory,`${catalogue.version}.json`),'utf8'));
@@ -32,8 +32,8 @@ test('catalogue binding rejects a reviewed version combined with another mint',a
  for(const bad of [{...request(catalogue.entries[0]),cluster:'devnet'},{...request(catalogue.entries[0]),mint:'bad'},{...request(catalogue.entries[0]),source_url:'https://attacker'},{...request(catalogue.entries[0]),sample_accounts:'true'}])assert.throws(()=>validateSelection(bad));
 });
 test('real Solana parser accepts custom and off-curve addresses and rejects malformed addresses',async()=>{
- const {stdout}=await executeEngine(resolve(root,'target/debug/eplyx-lifecycle'),['validate-address','--mint','So11111111111111111111111111111111111111112','--mint','11111111111111111111111111111111'],{cwd:root});assert.equal(JSON.parse(stdout).length,2);
- await assert.rejects(executeEngine(resolve(root,'target/debug/eplyx-lifecycle'),['validate-address','--mint','O'.repeat(44)],{cwd:root}));
+ const {stdout}=await executeEngine(resolve(root,engineExecutable),['validate-address','--mint','So11111111111111111111111111111111111111112','--mint','11111111111111111111111111111111'],{cwd:root});assert.equal(JSON.parse(stdout).length,2);
+ await assert.rejects(executeEngine(resolve(root,engineExecutable),['validate-address','--mint','O'.repeat(44)],{cwd:root}));
 });
 test('same mint and immutable source reference flow into structured arguments, captures, result, refresh and restart',async()=>{
  const directory=await mkdtemp(resolve(tmpdir(),'eplyx-m2-service-'));let calls=0;

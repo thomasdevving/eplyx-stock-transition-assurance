@@ -116,17 +116,20 @@ fn evidence(facts: Vec<PathFact>) -> VerifiedReadinessEvidence {
                     account_type: "WalletCompatible".into(),
                     balance_raw: "100".into(),
                     proven_full_amount_paths: vec![ExitPathType::Transfer],
+                    proven_candidate_conversion: false,
                 },
                 PopulationEntityFact {
                     entity_id: "entity-b".into(),
                     account_type: "Unknown".into(),
                     balance_raw: "100".into(),
                     proven_full_amount_paths: vec![],
+                    proven_candidate_conversion: false,
                 },
             ],
         },
         evidence_refs: vec![],
         isolation_verified: true,
+        stress: None,
     }
 }
 fn status(p: &LifecycleReadinessPolicy, e: &VerifiedReadinessEvidence) -> ReadinessStatus {

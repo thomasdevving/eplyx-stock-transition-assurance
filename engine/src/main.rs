@@ -105,6 +105,61 @@ enum Command {
         #[arg(long)]
         program_sha256: String,
     },
+    /// Report the bounded server-side conversion stress budget. No RPC, no execution.
+    ConversionStressBudget,
+    /// Fresh bounded read-only current population capture for one selected mint.
+    /// Never reads, imports or substitutes a historical population.
+    CaptureConversionStressPopulation {
+        #[arg(long)]
+        mint: String,
+        #[arg(long)]
+        run_id: String,
+        #[arg(long)]
+        stress_id: String,
+        #[arg(long)]
+        out: PathBuf,
+    },
+    /// Freeze the deterministic stress-test plan offline. This must run before any
+    /// case capture or execution, so selection can never see a result.
+    PlanConversionStress {
+        #[arg(long)]
+        population: PathBuf,
+        #[arg(long)]
+        plan: PathBuf,
+        #[arg(long)]
+        out: PathBuf,
+    },
+    /// Fresh bounded read-only capture for every frozen selected case, in plan order.
+    CaptureConversionStressCases {
+        #[arg(long)]
+        population: PathBuf,
+        #[arg(long)]
+        stress_plan: PathBuf,
+        #[arg(long)]
+        out: PathBuf,
+    },
+    /// Rerun every selected candidate conversion offline and reproduce the whole
+    /// stress result, coverage and readiness. This is also the replay command.
+    ReplayConversionStress {
+        #[arg(long)]
+        population: PathBuf,
+        #[arg(long)]
+        stress_plan: PathBuf,
+        #[arg(long)]
+        cases: PathBuf,
+        #[arg(long)]
+        run_id: String,
+        #[arg(long)]
+        stress_id: String,
+        #[arg(long)]
+        population_sha256: String,
+        #[arg(long)]
+        stress_plan_sha256: String,
+        #[arg(long)]
+        cases_sha256: String,
+        #[arg(long)]
+        program_sha256: String,
+    },
     /// Fetch bounded current mainnet observations; never constructs execution proof.
     InspectCurrent(CurrentArgs),
     /// Validate a typed current transfer request entirely offline.
@@ -808,6 +863,149 @@ fn run() -> Result<ExitCode> {
             println!("{}", verified.value());
             Ok(ExitCode::SUCCESS)
         }
+        Command::ConversionStressBudget => {
+            use eplyx_lifecycle_impact::stress::{classify, select, StressBudget};
+            let budget = StressBudget::from_env();
+            budget.validate()?;
+            println!(
+                "{}",
+                serde_json::json!({
+                    "budget": budget,
+                    "classifier_version": classify::CLASSIFIER_VERSION,
+                    "selector_version": select::SELECTOR_VERSION,
+                    "ordering_rule": select::ORDERING_RULE,
+                    "selection_strategy": select::SELECTION_STRATEGY,
+                    "bucket_method": select::BUCKET_METHOD,
+                    "accepts_browser_supplied_budget": false,
+                    "historical_population_used": false,
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::CaptureConversionStressPopulation {
+            mint,
+            run_id,
+            stress_id,
+            out,
+        } => {
+            use eplyx_lifecycle_impact::stress::{population, StressBudget};
+            let budget = StressBudget::from_env();
+            budget.validate()?;
+            let url = std::env::var("SOLANA_RPC_URL")
+                .unwrap_or_else(|_| "https://api.mainnet-beta.solana.com".into());
+            let rpc = HttpSolanaRpc::bounded_population(
+                &url,
+                budget.max_response_bytes,
+                budget.population_timeout_seconds,
+            )?;
+            let capture = population::capture(mint, run_id, stress_id, budget, &rpc)?;
+            population::save(&capture, &out)?;
+            println!("{{}}");
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::PlanConversionStress {
+            population: population_path,
+            plan,
+            out,
+        } => {
+            use eplyx_lifecycle_impact::{
+                conversion::{demo, ConversionPlan},
+                lifecycle::exposure::sha256,
+                stress::{population, select, StressBudget},
+            };
+            let budget = StressBudget::from_env();
+            let observation =
+                population::evaluate_bytes(&std::fs::read(&population_path)?, &budget)?;
+            let candidate: ConversionPlan = serde_json::from_slice(&std::fs::read(plan)?)?;
+            let program_sha256 = sha256(&demo::program_bytes()?);
+            let frozen_at = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
+            let stress_plan = select::build(&observation, &candidate, &program_sha256, &frozen_at)?;
+            let stress_plan_sha256 = stress_plan.sha256()?;
+            stress_plan.save(&out)?;
+            println!(
+                "{}",
+                serde_json::json!({
+                    "stress_plan_sha256": stress_plan_sha256,
+                    "population_capture_sha256": observation.capture_sha256,
+                    "candidate_plan_sha256": stress_plan.candidate_plan_sha256,
+                    "candidate_program_sha256": program_sha256,
+                    "enumeration_completeness": stress_plan.enumeration_completeness,
+                    "authority_resolution_completeness": stress_plan.authority_resolution_completeness,
+                    "accounts_observed": observation.summary.token_accounts_observed,
+                    "positive_balance_accounts_observed": observation.summary.positive_balance_accounts_observed,
+                    "state_shapes_discovered": stress_plan.state_shapes.len(),
+                    "eligibility_counts": stress_plan.eligibility_counts,
+                    "selected_cases": stress_plan.selected.len(),
+                    "frozen_at": stress_plan.frozen_at,
+                    "frozen_before_execution": true,
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::CaptureConversionStressCases {
+            population: population_path,
+            stress_plan,
+            out,
+        } => {
+            use eplyx_lifecycle_impact::stress::{execute, population, select, StressBudget};
+            let budget = StressBudget::from_env();
+            let observation =
+                population::evaluate_bytes(&std::fs::read(&population_path)?, &budget)?;
+            let plan: select::StressTestPlan =
+                serde_json::from_slice(&std::fs::read(&stress_plan)?)?;
+            // Re-derive the frozen selection before capturing anything for it.
+            plan.validate(
+                &observation,
+                &plan.candidate_plan,
+                &plan.candidate_program_sha256,
+            )?;
+            let token_program = observation
+                .mint_config
+                .as_ref()
+                .context("the population capture has no decoded current mint")?
+                .token_program
+                .clone();
+            let url = std::env::var("SOLANA_RPC_URL")
+                .unwrap_or_else(|_| "https://api.mainnet-beta.solana.com".into());
+            let rpc = HttpSolanaRpc::bounded_execution(&url)?;
+            let bundle = execute::capture_cases(&plan, &plan.sha256()?, &token_program, &rpc)?;
+            execute::save(&bundle, &out)?;
+            println!("{{}}");
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ReplayConversionStress {
+            population: population_path,
+            stress_plan,
+            cases,
+            run_id,
+            stress_id,
+            population_sha256,
+            stress_plan_sha256,
+            cases_sha256,
+            program_sha256,
+        } => {
+            use eplyx_lifecycle_impact::{
+                conversion::demo,
+                stress::{execute, StressBudget},
+            };
+            let budget = StressBudget::from_env();
+            let verified = execute::replay(
+                &std::fs::read(&population_path)?,
+                &std::fs::read(&stress_plan)?,
+                &std::fs::read(&cases)?,
+                &stress_id,
+                &run_id,
+                &population_sha256,
+                &stress_plan_sha256,
+                &cases_sha256,
+                &demo::program_bytes()?,
+                &program_sha256,
+                &budget,
+                &chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+            )?;
+            println!("{}", verified.to_json()?);
+            Ok(ExitCode::SUCCESS)
+        }
         Command::CurrentCheckCapabilities { input } => {
             println!(
                 "{}",
@@ -1366,11 +1564,9 @@ fn lifecycle_coverage_plan(args: CoveragePlanArgs) -> Result<ExitCode> {
         )?;
         // Retain portability for sibling fixture references, use a resolved path
         // when seeds come from another directory. No new path dependency.
-        spec.fixture = fixture
-            .strip_prefix(&parent)
-            .unwrap_or(&fixture)
-            .to_string_lossy()
-            .into_owned();
+        spec.fixture = eplyx_lifecycle_impact::artifact_path(
+            fixture.strip_prefix(&parent).unwrap_or(&fixture),
+        );
         seeds.push(spec);
     }
     let plan = eplyx_lifecycle_impact::coverage::build_plan(
@@ -1427,11 +1623,11 @@ fn capture_execution_probe(args: ProbeCaptureArgs) -> Result<ExitCode> {
     } else {
         std::env::current_dir()?.join(&args.probe_out)
     };
-    let fixture_reference = fixture_path
-        .strip_prefix(probe_path.parent().context("probe path has no parent")?)
-        .context("keep the fixture beneath the probe directory for portable replay")?
-        .to_string_lossy()
-        .into();
+    let fixture_reference = eplyx_lifecycle_impact::artifact_path(
+        fixture_path
+            .strip_prefix(probe_path.parent().context("probe path has no parent")?)
+            .context("keep the fixture beneath the probe directory for portable replay")?,
+    );
     let (spec, fixture) = eplyx_lifecycle_impact::probe::capture::capture(
         &snapshot,
         &scenario,

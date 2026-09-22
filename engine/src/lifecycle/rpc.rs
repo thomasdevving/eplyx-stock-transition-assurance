@@ -16,6 +16,9 @@ pub struct HttpSolanaRpc {
     url: reqwest::Url,
     bounded: bool,
     response_limit: u64,
+    /// Attempts per request. A long sequential scan needs more patience with a
+    /// rate-limited provider than a single small observation does.
+    attempts: u32,
 }
 
 impl HttpSolanaRpc {
@@ -31,6 +34,7 @@ impl HttpSolanaRpc {
             url,
             bounded: false,
             response_limit: 2 * 1024 * 1024,
+            attempts: 6,
         })
     }
 
@@ -38,6 +42,24 @@ impl HttpSolanaRpc {
     pub fn bounded_execution(url: &str) -> Result<Self> {
         let mut rpc = Self::bounded(url)?;
         rpc.response_limit = 16 * 1024 * 1024;
+        Ok(rpc)
+    }
+
+    /// One bounded current-population enumeration. The response ceiling and the
+    /// request timeout are server-supplied budget values; nothing from a browser
+    /// reaches this constructor.
+    pub fn bounded_population(
+        url: &str,
+        response_limit: u64,
+        timeout_seconds: u64,
+    ) -> Result<Self> {
+        let mut rpc = Self::new(url)?;
+        rpc.client = Client::builder()
+            .timeout(Duration::from_secs(timeout_seconds))
+            .redirect(reqwest::redirect::Policy::none())
+            .build()?;
+        rpc.bounded = true;
+        rpc.response_limit = response_limit;
         Ok(rpc)
     }
 
@@ -49,6 +71,7 @@ impl HttpSolanaRpc {
             .redirect(reqwest::redirect::Policy::none())
             .build()?;
         rpc.bounded = true;
+        rpc.attempts = 2;
         Ok(rpc)
     }
 }
@@ -59,7 +82,7 @@ impl SolanaRpc for HttpSolanaRpc {
     }
 
     fn call(&self, method: &str, params: Value) -> Result<Value> {
-        let attempts = if self.bounded { 2 } else { 6 };
+        let attempts = self.attempts;
         for attempt in 0..attempts {
             // Pacing keeps a full authority scan within public RPC request limits.
             std::thread::sleep(Duration::from_millis(250));

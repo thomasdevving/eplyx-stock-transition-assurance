@@ -1,11 +1,16 @@
 import {createPreflight,executePreflight} from './preflight-service.mjs';
 import {createConversion,executeConversion,conversionMechanism} from './conversion-service.mjs';
+import {createStress,executeStress,stressBudget} from './stress-service.mjs';
 import { CatalogueStore, CLUSTER, isDigest } from './catalogue.mjs';
 import { spawn } from 'node:child_process';
 import { randomUUID, createHash } from 'node:crypto';
 import { readFile, writeFile, mkdir, readdir, access, rename, unlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
+/** The built engine. Windows needs the .exe suffix; other platforms do not. */
+export const engineExecutable = process.platform === 'win32'
+ ? 'target/debug/eplyx-lifecycle.exe'
+ : 'target/debug/eplyx-lifecycle';
 export const stages = ['before_transition', 'after_transition', 'after_deadline'];
 export const checks = Object.freeze({
  'complete-exit': 'lp-complete-exit.json',
@@ -81,7 +86,7 @@ export function executeEngine(executable, args, { cwd, timeoutMs=600000, fresh=f
 }
 export class AnalysisService {
  constructor({ root, directory=resolve(root,'.analysis-runs'), runner=executeEngine, timeoutMs=600000 }={}) {
-  this.root=root;this.catalogue=new CatalogueStore(root);this.directory=directory;this.executable=resolve(root,'target/debug/eplyx-lifecycle');
+  this.root=root;this.catalogue=new CatalogueStore(root);this.directory=directory;this.executable=resolve(root,engineExecutable);
   this.runner=runner;this.timeoutMs=timeoutMs;this.jobs=new Map();this.keys=new Map();this.queue=[];this.running=false;
  }
  async initialize() {
@@ -135,7 +140,12 @@ export class AnalysisService {
   const operation=(this.submitting||Promise.resolve()).then(()=>createConversion(this,parentId,request,key,owner));
   this.submitting=operation.catch(()=>{});return operation;
  }
+ async submitStress(parentId, key, owner) {
+  const operation=(this.submitting||Promise.resolve()).then(()=>createStress(this,parentId,key,owner));
+  this.submitting=operation.catch(()=>{});return operation;
+ }
  async mechanism() { return conversionMechanism(this); }
+ async stressBudget() { return stressBudget(this); }
  async submitCheck(parentId, request, key, owner) {
   const operation=(this.submitting||Promise.resolve()).then(()=>this.createCheck(parentId,request,key,owner));
   this.submitting=operation.catch(()=>{});return operation;
@@ -190,7 +200,7 @@ export class AnalysisService {
     const job=this.queue.shift();job.status='Running';job.started_at=new Date().toISOString();await this.save(job);
     try {
      job.engine_sha256=hash(await readFile(this.executable));
-     if(job.preflight_request){await executePreflight(this,job);}else if(job.conversion_request){await executeConversion(this,job);}else if(job.check_request){await this.executeCheck(job);}else{
+     if(job.stress_request){await executeStress(this,job);}else if(job.preflight_request){await executePreflight(this,job);}else if(job.conversion_request){await executeConversion(this,job);}else if(job.check_request){await this.executeCheck(job);}else{
      const referencePath=resolve(this.directory,`${job.id}.selection.json`);
      if(job.selection.review==='current')await writeFile(referencePath,JSON.stringify(job.pinned_selection),{flag:'wx'});
      const {code,stdout}=await this.runner(this.executable,engineArguments(job.selection,resolve(this.directory,`${job.id}.capture.json`),referencePath),{cwd:this.root,timeoutMs:job.selection.review==='current'?Math.min(this.timeoutMs,90000):this.timeoutMs,fresh:job.selection.review==='current',onStage:stage=>{job.stage=stage;}});
@@ -204,7 +214,7 @@ export class AnalysisService {
      job.status='Completed';
     } catch(error) {
      const known=['BackendUnavailable','AnalysisTimeout','ResultTooLarge','EvidenceVerificationFailed','EngineFailure'];
-     job.status='Error';job.result=null;job.error={code:known.includes(error.message)?error.message:'InvalidEngineResult',message:job.preflight_request?'The pre-flight preparation or evidence verification could not complete. The original wallet and local checks remain available; no readiness was granted.':job.conversion_request?'The candidate conversion check could not complete. The wallet observation is still available. No conversion proof was granted and no funds moved.':job.check_request?'The local execution check could not complete. The wallet observation is still available. No execution proof was granted.':job.selection.review==='current'?'Current mainnet acquisition or decoding could not finish. No saved example was substituted. Retry with a new capture; the server operator can check the configured RPC provider.':error.message==='AnalysisTimeout'?'The analysis timed out. You can try again.':'The saved inputs could not be verified or the local engine could not finish. No readiness result was granted.'};
+     job.status='Error';job.result=null;job.error={code:known.includes(error.message)?error.message:'InvalidEngineResult',message:job.stress_request?'The production-state stress test could not complete. The earlier candidate conversion result is still available. No stress evidence, coverage or readiness was granted and no funds moved.':job.preflight_request?'The pre-flight preparation or evidence verification could not complete. The original wallet and local checks remain available; no readiness was granted.':job.conversion_request?'The candidate conversion check could not complete. The wallet observation is still available. No conversion proof was granted and no funds moved.':job.check_request?'The local execution check could not complete. The wallet observation is still available. No execution proof was granted.':job.selection.review==='current'?'Current mainnet acquisition or decoding could not finish. No saved example was substituted. Retry with a new capture; the server operator can check the configured RPC provider.':error.message==='AnalysisTimeout'?'The analysis timed out. You can try again.':'The saved inputs could not be verified or the local engine could not finish. No readiness result was granted.'};
     }
     job.completed_at=new Date().toISOString();await this.save(job);
    }
@@ -220,6 +230,10 @@ export async function handleAnalysisAPI(service,request,response,origin) {
  if(request.headers.host!==new URL(origin).host || (request.headers.origin && request.headers.origin!==origin) || request.headers['sec-fetch-site']==='cross-site'){json(403,{error:{code:'OriginRejected',message:'Use the local application origin.'}});return true;}
  if(pathname==='/api/catalogue' && request.method==='GET'){json(200,await service.catalogue.current());return true;}
  if(pathname==='/api/health' && request.method==='GET'){json(200,{available:await service.available()});return true;}
+ if(pathname==='/api/conversion-stress-budget' && request.method==='GET'){
+  try{json(200,await service.stressBudget());}catch{json(503,{error:{code:'BudgetUnavailable',message:'The local engine is not built.'}});}
+  return true;
+ }
  if(pathname==='/api/conversion-mechanism' && request.method==='GET'){
   try{json(200,await service.mechanism());}catch{json(503,{error:{code:'MechanismUnavailable',message:'The registered candidate conversion mechanism is not built. Run ./scripts/build-programs.sh.'}});}
   return true;
@@ -257,6 +271,23 @@ export async function handleAnalysisAPI(service,request,response,origin) {
     const value=JSON.parse(body);if(!value||Object.keys(value).some(k=>!['request','request_key'].includes(k)))throw new Error('InvalidConversion');
     json(202,await service.submitConversion(parent.id,value.request,value.request_key,owner));
    }catch(error){json(error.message==='QueueFull'?503:400,{error:{code:error.message==='QueueFull'?'QueueFull':'InvalidConversion',message:'Choose an account discovered in this wallet run, a different existing replacement mint, a positive whole-number ratio, a supported rounding rule, a conversion fee between 0 and 10000 bps and a proposed reserve amount. Only the registered demonstration mechanism runs; program code, instructions and accounts cannot be supplied.'}});}
+   return true;
+  }
+ }
+ const stressMatch=pathname.match(/^\/api\/runs\/([a-f0-9-]+)\/stress$/);
+ if(stressMatch){
+  const parent=service.get(stressMatch[1]);if(!parent||parent.owner!==owner){json(404,{error:{code:'RunNotFound'}});return true;}
+  if(request.method==='GET'){json(200,[...service.jobs.values()].filter(j=>j.parent_run_id===parent.id&&j.owner===owner&&j.stress_request));return true;}
+  if(request.method==='POST'){
+   try{
+    if(!String(request.headers['content-type']).startsWith('application/json'))throw new Error('InvalidStress');
+    let body='';for await(const chunk of request){body+=chunk;if(Buffer.byteLength(body)>512)throw new Error('RequestTooLarge');}
+    const value=JSON.parse(body);
+    // The browser supplies a request key and nothing else: no budget, mint,
+    // account, amount, program, endpoint, path or claimed status.
+    if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).some(k=>k!=='request_key'))throw new Error('InvalidStress');
+    json(202,await service.submitStress(parent.id,value.request_key,owner));
+   }catch(error){json(error.message==='QueueFull'?503:400,{error:{code:error.message==='QueueFull'?'QueueFull':'InvalidStress',message:'Stress-testing needs a completed candidate conversion for this run. The plan, population discovery, selection and execution budget are all controlled by this local server.'}});}
    return true;
   }
  }
