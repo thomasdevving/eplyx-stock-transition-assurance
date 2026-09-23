@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "milestone13-rebinding-mutations",
+  "results": [
+    {
+      "id": "peer_replacement",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "peer_replacement_rejected"
+    },
+    {
+      "id": "execute_stale_population_bytes",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "final_current_amount_must_execute"
+    },
+    {
+      "id": "reuse_discovery_amount",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "final_current_amount_must_execute"
+    },
+    {
+      "id": "vm_outcome_rewrites_execution_plan",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "vm_result_cannot_rewrite_frozen_execution_plan"
+    },
+    {
+      "id": "hide_bucket_drift",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "bucket_drift_cannot_silently_satisfy_original_coverage"
+    },
+    {
+      "id": "unsupported_authority_as_executable",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "unsupported_authority_drift_never_executes"
+    },
+    {
+      "id": "claim_stale_discovery_proof",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "proof_scope_binds_final_not_stale_discovery_state"
+    }
+  ],
+  "restored_sources": true
+}

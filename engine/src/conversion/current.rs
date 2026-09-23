@@ -270,7 +270,7 @@ pub fn capture(
         let _ = acquire(&s, &plan, &recorder);
     }
     Ok(Capture {
-        schema_version: 2,
+        schema_version: 3,
         run_id,
         check_id,
         wallet_capture_sha256: sha256(wallet.as_bytes()),
@@ -312,7 +312,7 @@ pub fn replay(
     );
     let c: Capture = serde_json::from_slice(bytes)?;
     ensure!(
-        (c.schema_version == 1 || c.schema_version == 2)
+        (c.schema_version == 1 || c.schema_version == 2 || c.schema_version == 3)
             && c.run_id == run_id
             && c.check_id == check_id
             && c.wallet_capture_sha256 == wallet_hash
@@ -373,7 +373,7 @@ pub fn replay(
             "consistency": "Wallet discovery and this candidate check are separate observations. The final captured batch is authoritative for the conversion result."},
         "scope": "Only this exact source account, source mint, amount, replacement mint, destination, candidate plan version, candidate program build, proposed overlay, captured bank and assumed local signing. No other account, amount, plan or mechanism inherits this evidence.",
     });
-    if c.schema_version == 2 {
+    if c.schema_version >= 2 {
         result["execution_context"] = coherence::diagnostics(&c.observations);
     }
     let fail = |mut result: Value,
@@ -388,7 +388,7 @@ pub fn replay(
         return fail(result, PathStatus::Unsupported, reason);
     }
     if c.observations.len() < 5 || c.observations.iter().any(|r| r.error.is_some()) {
-        let final_capture_started = c.schema_version == 2
+        let final_capture_started = c.schema_version >= 2
             && c.observations
                 .get(3)
                 .is_some_and(|record| record.result.is_some());
@@ -416,6 +416,47 @@ pub fn replay(
             result: r.result.clone().unwrap(),
         })
         .collect();
+    if c.schema_version == 3 {
+        let verified_final = (|| -> Result<coherence::ExecutionContext> {
+            let replacement_program = evidence[2].result["value"]["owner"]
+                .as_str()
+                .context("missing replacement token program")?;
+            let headers = evidence[3].result["value"]
+                .as_array()
+                .context("missing program headers")?;
+            let programdata = demo::programdata_addresses(headers)?;
+            let overlay = demo::derive(
+                &c.plan_sha256,
+                &s.context.owner,
+                &c.plan.replacement_mint,
+                replacement_program,
+            )?;
+            let addresses = demo::address_plan(
+                &c.plan,
+                &overlay,
+                &s.context.owner,
+                &s.context.source_program,
+                replacement_program,
+                &programdata,
+            );
+            coherence::verify(
+                &evidence,
+                &addresses,
+                crate::probe::meteora_dlmm::slot(&evidence[3].result)?,
+                &c.plan.source_account,
+            )
+        })();
+        match verified_final {
+            Ok(context) => result["execution_context"] = serde_json::to_value(context)?,
+            Err(error) => {
+                return fail(
+                    result,
+                    PathStatus::Indeterminate,
+                    format!("{}: {error:#}", coherence::COHERENCE_FAILURE),
+                )
+            }
+        }
+    }
     // The selected account must not have moved between discovery and this check.
     let final_batch = evidence.last().context("missing final account batch")?;
     let index = final_batch.params[0]
@@ -425,18 +466,115 @@ pub fn replay(
         .position(|a| a == &Value::String(c.plan.source_account.clone()))
         .context("source account missing from the conversion plan")?;
     let final_source = &final_batch.result["value"][index];
-    if ["data", "owner", "executable", "lamports"]
-        .iter()
-        .any(|field| final_source[field] != s.source_raw[field])
-    {
-        return fail(result, PathStatus::Indeterminate, "SourceStateChanged: the selected account changed while this candidate conversion was being prepared. Refresh current state and reconfirm the plan.".into());
-    }
-    result["source_revalidated"] =
-        json!({"unchanged_since_discovery": true, "execution_fixture_is_authoritative": true});
-    let built = match if c.schema_version == 2 {
-        demo::build_coherent(&c.plan, &c.plan_sha256, &s.context, &evidence, program)
+    let mut execution_amount = s.amount;
+    if c.schema_version == 3 {
+        if final_source.is_null() {
+            return fail(
+                result,
+                PathStatus::Indeterminate,
+                "IdentityChanged: selected source account is absent at final capture.".into(),
+            );
+        }
+        let final_state = match decode::decode_token_account(
+            final_source,
+            &s.context.source_program,
+            &c.plan.source_mint,
+            s.context.source_decimals,
+        ) {
+            Ok(state) => state,
+            Err(error) => {
+                return fail(
+                    result,
+                    PathStatus::Indeterminate,
+                    format!(
+                    "IdentityChanged: final selected source token account is invalid: {error:#}"
+                ),
+                )
+            }
+        };
+        if final_state.owner != s.context.owner
+            || !final_state.is_initialized
+            || final_state.is_frozen
+            || final_state
+                .extensions
+                .iter()
+                .any(|extension| extension.extension_type.contains("Confidential"))
+        {
+            return fail(
+                result,
+                PathStatus::Indeterminate,
+                "NoLongerExecutable: final source authority or supported token state changed."
+                    .into(),
+            );
+        }
+        let final_balance: u64 = final_state.raw_balance.parse()?;
+        if c.plan.amount_mode == AmountMode::Full {
+            execution_amount = final_balance;
+        }
+        if execution_amount == 0 || execution_amount > final_balance {
+            return fail(
+                result,
+                PathStatus::Indeterminate,
+                "NoLongerExecutable: the exact requested amount is unavailable at final capture."
+                    .into(),
+            );
+        }
+        result["discovery_amount_raw"] = s.amount.to_string().into();
+        result["amount_raw"] = execution_amount.to_string().into();
+        result["amount_decimal"] = decode::decimal_amount(execution_amount, s.decimals).into();
+        result["source_revalidated"] = json!({
+            "unchanged_since_discovery": final_source == &s.source_raw,
+            "discovery_data_sha256": sha256(&decode::raw_account_bytes(&s.source_raw)?),
+            "final_data_sha256": sha256(&decode::raw_account_bytes(final_source)?),
+            "discovery_amount_raw": s.amount.to_string(),
+            "final_amount_raw": final_balance.to_string(),
+            "execution_amount_raw": execution_amount.to_string(),
+            "discovery_lamports": s.source_raw["lamports"],
+            "final_lamports": final_source["lamports"],
+            "execution_fixture_is_authoritative": true,
+        });
     } else {
-        demo::build(&c.plan, &c.plan_sha256, &s.context, &evidence, program)
+        if ["data", "owner", "executable", "lamports"]
+            .iter()
+            .any(|field| final_source[field] != s.source_raw[field])
+        {
+            return fail(result, PathStatus::Indeterminate, "SourceStateChanged: the selected account changed while this candidate conversion was being prepared. Refresh current state and reconfirm the plan.".into());
+        }
+        result["source_revalidated"] =
+            json!({"unchanged_since_discovery": true, "execution_fixture_is_authoritative": true});
+    }
+    let execution_context = demo::ConversionContext {
+        genesis_hash: s.context.genesis_hash.clone(),
+        minimum_slot: s.context.minimum_slot,
+        owner: s.context.owner.clone(),
+        source_program: s.context.source_program.clone(),
+        source_decimals: s.context.source_decimals,
+        amount: execution_amount,
+    };
+    let built = match if c.schema_version == 3 {
+        demo::build_coherent_rebound(
+            &c.plan,
+            &c.plan_sha256,
+            &execution_context,
+            &evidence,
+            program,
+        )
+    } else if c.schema_version == 2 {
+        demo::build_coherent(
+            &c.plan,
+            &c.plan_sha256,
+            &execution_context,
+            &evidence,
+            program,
+        )
+    } else {
+        demo::build(
+            &c.plan,
+            &c.plan_sha256,
+            &execution_context,
+            &evidence,
+            program,
+        )
     } {
         Ok(built) => built,
         Err(error) => {
@@ -453,7 +591,29 @@ pub fn replay(
         }
     };
     let p = &built.plan;
-    if c.schema_version == 2 {
+    if c.schema_version == 3 {
+        let final_values = final_batch.result["value"]
+            .as_array()
+            .context("missing final bank")?;
+        let addresses = final_batch.params[0]
+            .as_array()
+            .context("missing final addresses")?;
+        let final_mint = |address: &str| -> Result<&Value> {
+            let index = addresses
+                .iter()
+                .position(|value| value == address)
+                .context("mint omitted from final bank")?;
+            Ok(&final_values[index])
+        };
+        result["mint_revalidated"] = json!({
+            "source_discovery_data_sha256": sha256(&decode::raw_account_bytes(&evidence[1].result["value"])?),
+            "source_final_data_sha256": sha256(&decode::raw_account_bytes(final_mint(&c.plan.source_mint)?)?),
+            "replacement_discovery_data_sha256": sha256(&decode::raw_account_bytes(&evidence[2].result["value"])?),
+            "replacement_final_data_sha256": sha256(&decode::raw_account_bytes(final_mint(&c.plan.replacement_mint)?)?),
+            "final_bank_is_authoritative": true,
+        });
+    }
+    if c.schema_version >= 2 {
         result["execution_context"] = serde_json::to_value(&built.execution_context)?;
     }
     result["destination"] = built.overlay.destination.clone().into();
@@ -512,7 +672,7 @@ pub fn replay(
     result["local_execution_performed"] = true.into();
     result["signer_assumed_locally"] = true.into();
     result["execution"] = serde_json::to_value(&execution)?;
-    let deltas = match demo::reconcile(&c.plan, &built, s.amount, &execution) {
+    let deltas = match demo::reconcile(&c.plan, &built, execution_amount, &execution) {
         Ok(deltas) => deltas,
         Err(error) => {
             return fail(

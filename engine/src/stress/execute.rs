@@ -185,7 +185,7 @@ pub fn capture_cases(
         });
     }
     Ok(CaptureBundle {
-        schema_version: 2,
+        schema_version: if plan.schema_version == 2 { 3 } else { 2 },
         kind: BUNDLE_KIND.into(),
         stress_id: plan.stress_id.clone(),
         run_id: plan.run_id.clone(),
@@ -208,6 +208,82 @@ pub fn save<T: Serialize>(value: &T, path: &Path) -> Result<()> {
     Ok(())
 }
 
+/// Compare a final raw amount to the frozen population's quartile boundaries.
+/// This is a comparison to historical thresholds, not a claim to know the
+/// account's rank in a newly enumerated population.
+fn bucket_at_frozen_thresholds(plan: &StressTestPlan, amount: u64) -> Option<u8> {
+    if amount == 0 {
+        return None;
+    }
+    plan.buckets
+        .boundaries
+        .iter()
+        .find(|boundary| {
+            boundary
+                .max_raw
+                .parse::<u64>()
+                .is_ok_and(|maximum| amount <= maximum)
+        })
+        .or_else(|| plan.buckets.boundaries.last())
+        .map(|boundary| boundary.bucket)
+}
+
+fn source_field_changes(
+    original: &Value,
+    final_raw: &Value,
+    old: &crate::lifecycle::decode::TokenAccountState,
+    new: &crate::lifecycle::decode::TokenAccountState,
+) -> Result<Vec<String>> {
+    let mut changed = Vec::new();
+    for (key, label) in [
+        ("mint", "source_mint"),
+        ("owner", "recorded_authority"),
+        ("raw_balance", "token_raw_amount"),
+        ("delegate", "delegate"),
+        ("delegated_amount", "delegated_amount"),
+        ("account_state", "account_state"),
+        ("close_authority", "close_authority"),
+        ("native_reserve", "native_reserve"),
+        ("extensions", "account_extensions"),
+    ] {
+        let before = serde_json::to_value(old)?;
+        let after = serde_json::to_value(new)?;
+        if before[key] != after[key] {
+            changed.push(label.to_string());
+            if key == "extensions" {
+                let withheld = |value: &Value| {
+                    value["extensions"]
+                        .as_array()
+                        .and_then(|extensions| {
+                            extensions.iter().find(|extension| {
+                                extension["extension_type"] == "TransferFeeAmount"
+                            })
+                        })
+                        .map(|extension| extension["config"]["withheldAmount"].clone())
+                };
+                if withheld(&before) != withheld(&after) {
+                    changed.push("withheld_amount".into());
+                }
+            }
+        }
+    }
+    for (key, label) in [
+        ("owner", "runtime_owner"),
+        ("executable", "executable"),
+        ("lamports", "lamports"),
+        ("rentEpoch", "rent_epoch"),
+        ("space", "space"),
+    ] {
+        if original[key] != final_raw[key] {
+            changed.push(label.into());
+        }
+    }
+    if original["data"] != final_raw["data"] {
+        changed.push("raw_data_bytes".into());
+    }
+    Ok(changed)
+}
+
 fn case_result(
     case: &SelectedCase,
     capture: &CaseCapture,
@@ -218,6 +294,7 @@ fn case_result(
     program_sha256: &str,
 ) -> Result<CaseResult> {
     let enforce_source_revalidation = original_capture.is_some();
+    let rebinding = original_capture.is_some_and(|capture| capture.schema_version == 2);
     let mint = observation
         .mint_config
         .as_ref()
@@ -231,7 +308,8 @@ fn case_result(
     // model alone. A program-owned, multisig or unresolved authority never gets it.
     let assumed_signer =
         classify::assumed_local_signer(&entity.authority_model, entity.authority_resolution);
-    let amount: u64 = case.selected_amount_raw.parse()?;
+    let mut amount: u64 = case.selected_amount_raw.parse()?;
+    let mut execution_case_plan = case.case_plan.clone();
 
     let mut detail = json!({
         "population_capture_sha256": plan.population_capture_sha256,
@@ -349,24 +427,211 @@ fn case_result(
             .position(|address| address == &case.token_account)
             .context("frozen source omitted from final bank")?;
         let final_source = &final_batch.result["value"][source_index];
+        let original_capture = original_capture.context("missing source population capture")?;
         let original_source = original_capture
-            .context("missing source population capture")?
             .observations
             .get(entity.token_account_evidence.rpc_id)
             .and_then(|record| record.result.as_ref())
             .and_then(|result| result.pointer(&entity.token_account_evidence.pointer))
             .context("selected source population evidence missing")?;
-        if ["data", "owner", "executable", "lamports"]
+        if rebinding {
+            let verified_final = (|| -> Result<coherence::ExecutionContext> {
+                let replacement_program = evidence[2].result["value"]["owner"]
+                    .as_str()
+                    .context("missing replacement token program")?;
+                let headers = evidence[3].result["value"]
+                    .as_array()
+                    .context("missing program headers")?;
+                let programdata = demo::programdata_addresses(headers)?;
+                let overlay = demo::derive(
+                    &case.case_plan_sha256,
+                    &case.authority,
+                    &case.case_plan.replacement_mint,
+                    replacement_program,
+                )?;
+                let expected_addresses = demo::address_plan(
+                    &case.case_plan,
+                    &overlay,
+                    &case.authority,
+                    &mint.token_program,
+                    replacement_program,
+                    &programdata,
+                );
+                coherence::verify(
+                    &evidence,
+                    &expected_addresses,
+                    shared::slot(&evidence[3].result)?,
+                    &case.token_account,
+                )
+            })();
+            let verified_final = match verified_final {
+                Ok(context) => context,
+                Err(error) => {
+                    return finish(
+                        detail,
+                        PathStatus::Indeterminate,
+                        Some(format!("{}: {error:#}", coherence::COHERENCE_FAILURE)),
+                        false,
+                        None,
+                    );
+                }
+            };
+            detail["execution_context"] = serde_json::to_value(&verified_final)?;
+            let row_pointer = entity
+                .token_account_evidence
+                .pointer
+                .strip_suffix("/account")
+                .context("v2 population source pointer does not address an account")?;
+            let row = original_capture.observations[entity.token_account_evidence.rpc_id]
+                .result
+                .as_ref()
+                .context("missing population result")?
+                .pointer(row_pointer)
+                .context("missing original population row")?;
+            ensure!(
+                row["pubkey"] == case.token_account && row["account"] == *original_source,
+                "population source pointer does not bind the selected address"
+            );
+            let old_state = crate::lifecycle::decode::decode_token_account(
+                original_source,
+                &mint.token_program,
+                &plan.asset_mint,
+                mint.decimals,
+            )?;
+            ensure!(
+                old_state == entity.state,
+                "selected population state differs from its pinned raw bytes"
+            );
+            if final_source.is_null() {
+                detail["revalidation"] = json!({"classification":"IdentityChanged", "changed_fields":["account_missing"]});
+                return finish(
+                    detail,
+                    PathStatus::Indeterminate,
+                    Some(
+                        "IdentityChanged: selected source account is absent at final capture."
+                            .into(),
+                    ),
+                    false,
+                    None,
+                );
+            }
+            let final_state = match crate::lifecycle::decode::decode_token_account(
+                final_source,
+                &mint.token_program,
+                &plan.asset_mint,
+                mint.decimals,
+            ) {
+                Ok(state) => state,
+                Err(error) => {
+                    detail["revalidation"] = json!({"classification":"IdentityChanged", "changed_fields":["source_mint_or_token_program_or_layout"]});
+                    return finish(detail, PathStatus::Indeterminate, Some(format!("IdentityChanged: final source is not the selected mint's valid token account: {error:#}")), false, None);
+                }
+            };
+            let mut changed_fields =
+                source_field_changes(original_source, final_source, &old_state, &final_state)?;
+            let mint_index = addresses
+                .iter()
+                .position(|address| address == &plan.asset_mint)
+                .context("source mint omitted from final account set")?;
+            let final_mint_raw = &final_batch.result["value"][mint_index];
+            let final_mint = match crate::lifecycle::decode::decode_mint(final_mint_raw) {
+                Ok(mint_state)
+                    if mint_state.token_program == mint.token_program
+                        && mint_state.decimals == mint.decimals =>
+                {
+                    mint_state
+                }
+                _ => {
+                    detail["revalidation"] = json!({"classification":"IdentityChanged", "changed_fields":["source_mint_identity"]});
+                    return finish(detail, PathStatus::Indeterminate, Some("IdentityChanged: source mint identity or decimal basis changed at final capture.".into()), false, None);
+                }
+            };
+            if final_mint.raw_supply != mint.raw_supply {
+                changed_fields.push("source_mint_supply".into());
+            }
+            if final_mint.extensions != mint.extensions {
+                changed_fields.push("source_mint_extensions".into());
+            }
+            let replacement_index = addresses
+                .iter()
+                .position(|address| address == &case.case_plan.replacement_mint)
+                .context("replacement mint omitted from final account set")?;
+            let replacement_final = &final_batch.result["value"][replacement_index];
+            if replacement_final["data"] != evidence[2].result["value"]["data"] {
+                changed_fields.push("replacement_mint_data".into());
+            }
+            let final_bytes = crate::lifecycle::decode::raw_account_bytes(final_source)?;
+            let original_bytes = crate::lifecycle::decode::raw_account_bytes(original_source)?;
+            let final_amount: u64 = final_state.raw_balance.parse()?;
+            let final_bucket = bucket_at_frozen_thresholds(plan, final_amount);
+            let mut final_entity = entity.clone();
+            final_entity.state = final_state.clone();
+            let final_dimensions = classify::dimensions(&final_entity, &final_mint)?;
+            let final_shape_sha256 = classify::shape_key(&final_dimensions)?;
+            let shape_preserved = final_shape_sha256 == case.state_shape_sha256;
+            let bucket_preserved = final_bucket == Some(case.balance_bucket);
+            let eligible =
+                classify::eligibility(&final_dimensions).0 == Eligibility::ExecutableCandidate;
+            let no_longer_executable =
+                final_state.owner != case.authority || final_amount == 0 || !eligible;
+            let unclassified_data_change =
+                original_bytes != final_bytes && old_state == final_state;
+            let classification = if no_longer_executable {
+                "NoLongerExecutable"
+            } else if unclassified_data_change {
+                "UnclassifiedSourceDataChange"
+            } else if !shape_preserved || !bucket_preserved {
+                "SelectionStateChangedButExecutable"
+            } else {
+                "ExecutableCurrentState"
+            };
+            detail["revalidation"] = json!({
+                "classification": classification,
+                "changed_fields": changed_fields,
+                "discovery_context_slot": case.discovery_slot,
+                "final_context_slot": final_batch.result["context"]["slot"],
+                "discovery_data_sha256": sha256(&original_bytes),
+                "final_data_sha256": sha256(&final_bytes),
+                "discovery_amount_raw": case.observed_balance_raw,
+                "final_amount_raw": final_state.raw_balance,
+                "selection_bucket": case.balance_bucket,
+                "final_bucket_at_discovery_thresholds": final_bucket,
+                "selection_bucket_preserved": bucket_preserved,
+                "selection_shape_sha256": case.state_shape_sha256,
+                "final_shape_sha256": final_shape_sha256,
+                "selection_shape_preserved": shape_preserved,
+                "population_lamports": original_source["lamports"],
+                "final_lamports": final_source["lamports"],
+                "source_mint_final_supply_raw": final_mint.raw_supply,
+                "source_mint_final_data_sha256": sha256(&crate::lifecycle::decode::raw_account_bytes(final_mint_raw)?),
+                "replacement_mint_final_data_sha256": sha256(&crate::lifecycle::decode::raw_account_bytes(replacement_final)?),
+                "source_runtime_owner": final_source["owner"],
+                "source_executable": final_source["executable"],
+                "final_state": final_state,
+            });
+            if no_longer_executable || unclassified_data_change {
+                return finish(detail, PathStatus::Indeterminate, Some(format!("{classification}: the frozen selected account cannot be executed under the final state; no peer or amount substitute was used.")), false, None);
+            }
+            amount = final_amount;
+            execution_case_plan.amount_decimal = Some(crate::lifecycle::decode::decimal_amount(
+                amount,
+                mint.decimals,
+            ));
+            execution_case_plan.validate()?;
+            detail["resolved_case_plan_sha256"] = execution_case_plan.sha256()?.into();
+            detail["source_revalidated"] = json!({
+                "unchanged_since_population_capture": original_source == final_source,
+                "execution_fixture_is_authoritative": true,
+                "discovery_amount_raw": case.observed_balance_raw,
+                "final_execution_amount_raw": amount.to_string(),
+                "overlay_seed": "frozen selected-case plan digest",
+            });
+            detail["scope"] = json!("Only the frozen selected account identity and its verified final coherent state, exact final positive amount, resolved case plan, candidate program, proposed overlay and local assumed signer. Discovery state remains separate; no peer, earlier bytes or official mechanism inherits proof.");
+        } else if ["data", "owner", "executable", "lamports"]
             .iter()
             .any(|field| final_source[field] != original_source[field])
         {
-            return finish(
-                detail,
-                PathStatus::Indeterminate,
-                Some("SourceStateChanged: the frozen selected account changed after population discovery; the amount and peer selection were not altered.".into()),
-                false,
-                None,
-            );
+            return finish(detail, PathStatus::Indeterminate, Some("SourceStateChanged: the frozen selected account changed after population discovery; the amount and peer selection were not altered.".into()), false, None);
         }
     }
     let context = demo::ConversionContext {
@@ -377,13 +642,15 @@ fn case_result(
         source_decimals: mint.decimals,
         amount,
     };
-    let build = if enforce_source_revalidation {
+    let build = if rebinding {
+        demo::build_coherent_rebound
+    } else if enforce_source_revalidation {
         demo::build_coherent
     } else {
         demo::build
     };
     let built = match build(
-        &case.case_plan,
+        &execution_case_plan,
         &case.case_plan_sha256,
         &context,
         &evidence,
@@ -410,12 +677,14 @@ fn case_result(
     };
     // Whether this exact account still matches the frozen population observation.
     // Reported either way; the execution fixture remains authoritative.
-    detail["source_revalidated"] = json!({
-        "population_balance_raw": case.observed_balance_raw,
-        "execution_bank_balance_raw": built.source_before_raw,
-        "unchanged_since_population_capture": built.source_before_raw == case.observed_balance_raw,
-        "execution_fixture_is_authoritative": true,
-    });
+    if !rebinding {
+        detail["source_revalidated"] = json!({
+            "population_balance_raw": case.observed_balance_raw,
+            "execution_bank_balance_raw": built.source_before_raw,
+            "unchanged_since_population_capture": built.source_before_raw == case.observed_balance_raw,
+            "execution_fixture_is_authoritative": true,
+        });
+    }
     let p = &built.plan;
     detail["destination"] = built.overlay.destination.clone().into();
     detail["proposed_overlay"] = json!({
@@ -465,6 +734,35 @@ fn case_result(
     }))?;
     detail["execution_fixture_sha256"] = fixture.clone().into();
 
+    if rebinding {
+        let final_record = capture
+            .observations
+            .last()
+            .context("missing final recapture")?;
+        let execution_plan = json!({
+            "version": "stress-execution-plan/v1",
+            "selected_case_id": case.case_id,
+            "selected_token_account": case.token_account,
+            "selection_observation_digest": digest(&json!({
+                "population_capture_sha256": plan.population_capture_sha256,
+                "selected_case": case,
+                "population_state": entity.state,
+                "population_evidence": entity.token_account_evidence,
+            }))?,
+            "final_capture_digest": digest(final_record)?,
+            "final_source_state": detail["revalidation"]["final_state"],
+            "final_source_data_sha256": detail["revalidation"]["final_data_sha256"],
+            "final_amount_raw": amount.to_string(),
+            "frozen_case_plan_sha256": case.case_plan_sha256,
+            "resolved_case_plan_sha256": execution_case_plan.sha256()?,
+            "coherence_evidence": built.execution_context,
+            "execution_fixture_sha256": fixture,
+            "candidate_program_sha256": program_sha256,
+        });
+        detail["execution_plan_sha256"] = digest(&execution_plan)?.into();
+        detail["execution_plan"] = execution_plan;
+    }
+
     demo::assert_candidate_program_identity(&p.programs, program, program_sha256)?;
     let execution = executor::execute_probe_message(
         &p.accounts,
@@ -474,7 +772,7 @@ fn case_result(
         p.message.clone(),
     )?;
     detail["execution"] = serde_json::to_value(&execution)?;
-    let deltas = match demo::reconcile(&case.case_plan, &built, amount, &execution) {
+    let deltas = match demo::reconcile(&execution_case_plan, &built, amount, &execution) {
         Ok(deltas) => deltas,
         Err(error) => {
             return finish(
@@ -563,7 +861,7 @@ pub fn replay(
     );
     let plan: StressTestPlan = serde_json::from_slice(plan_bytes)?;
     ensure!(
-        plan.schema_version == 1
+        (plan.schema_version == 1 || plan.schema_version == 2)
             && plan.kind == super::select::PLAN_KIND
             && plan.stress_id == stress_id
             && plan.run_id == run_id
@@ -579,7 +877,9 @@ pub fn replay(
 
     let bundle: CaptureBundle = serde_json::from_slice(bundle_bytes)?;
     ensure!(
-        (bundle.schema_version == 1 || bundle.schema_version == 2)
+        (bundle.schema_version == 1 || bundle.schema_version == 2 || bundle.schema_version == 3)
+            && (bundle.schema_version != 3 || plan.schema_version == 2)
+            && (bundle.schema_version == 3 || plan.schema_version == 1)
             && bundle.kind == BUNDLE_KIND
             && bundle.stress_id == stress_id
             && bundle.run_id == run_id
@@ -635,7 +935,7 @@ pub fn replay(
             case,
             capture,
             &observation,
-            (bundle.schema_version == 2).then_some(&original_capture),
+            (bundle.schema_version >= 2).then_some(&original_capture),
             &plan,
             program,
             program_sha256,
@@ -663,6 +963,7 @@ fn aggregate(
     program_sha256: &str,
     evaluated_at: &str,
 ) -> Result<VerifiedConversionStressTest> {
+    let rebinding = bundle.schema_version == 3;
     // One balance per exact entity id, so nothing is double counted across views.
     let balances: BTreeMap<String, u64> = observation
         .positive_entities()
@@ -679,7 +980,14 @@ fn aggregate(
         plan.selected.iter().map(|c| c.entity_id.clone()).collect();
     let proven_ids: BTreeSet<String> = results
         .iter()
-        .filter(|r| r.status == PathStatus::Proven)
+        .filter(|r| {
+            r.status == PathStatus::Proven
+                && (!rebinding
+                    || (r.detail["revalidation"]["selection_shape_preserved"] == true
+                        && r.detail["revalidation"]["selection_bucket_preserved"] == true
+                        && r.detail["revalidation"]["discovery_amount_raw"]
+                            == r.detail["revalidation"]["final_amount_raw"]))
+        })
         .map(|r| r.entity_id.clone())
         .collect();
 
@@ -687,7 +995,11 @@ fn aggregate(
     for shape in &plan.state_shapes {
         let executed: Vec<&CaseResult> = results
             .iter()
-            .filter(|r| r.state_shape_sha256 == shape.state_shape_sha256 && r.execution_performed)
+            .filter(|r| {
+                r.state_shape_sha256 == shape.state_shape_sha256
+                    && r.execution_performed
+                    && (!rebinding || r.detail["revalidation"]["selection_shape_preserved"] == true)
+            })
             .collect();
         let executed_ids: BTreeSet<String> = executed.iter().map(|r| r.entity_id.clone()).collect();
         shape_coverage.push(ShapeCoverage {
@@ -817,8 +1129,8 @@ fn aggregate(
         .cloned()
         .collect();
 
-    let result = ConversionStressTestResult {
-        schema_version: 1,
+    let mut result = ConversionStressTestResult {
+        schema_version: if rebinding { 2 } else { 1 },
         kind: RESULT_KIND.into(),
         stress_id: plan.stress_id.clone(),
         run_id: plan.run_id.clone(),
@@ -910,7 +1222,30 @@ fn aggregate(
             "Refreshing current state creates a new stress world. This result does not carry over to any later capture.".into(),
         ],
     };
+    if rebinding {
+        let count = |classification: &str| results_count(&result.results, classification);
+        result.selection_plan["rebinding"] = json!({
+            "policy": super::FULL_AT_FINAL_POLICY,
+            "selected_identities": result.selected_cases.len(),
+            "executable_current_state": count("ExecutableCurrentState"),
+            "selection_state_changed_but_executable": count("SelectionStateChangedButExecutable"),
+            "no_longer_executable": count("NoLongerExecutable"),
+            "identity_changed": count("IdentityChanged"),
+            "exact_final_state_executions": result.results.iter().filter(|r| r.execution_performed).count(),
+            "discovery_shapes_preserved_at_execution": result.results.iter().filter(|r| r.execution_performed && r.detail["revalidation"]["selection_shape_preserved"] == true).count(),
+            "discovery_buckets_preserved_at_execution": result.results.iter().filter(|r| r.execution_performed && r.detail["revalidation"]["selection_bucket_preserved"] == true).count(),
+            "bucket_comparison": "Final amount compared with frozen discovery thresholds; no current population rank is claimed.",
+        });
+        result.limitations.push("FullAtFinalCapture evidence is bound to the final coherent account bytes and amount. Population selection bytes remain historical; drifted discovery shapes or buckets do not inherit final execution coverage.".into());
+    }
     Ok(VerifiedConversionStressTest { result })
+}
+
+fn results_count(results: &[CaseResult], classification: &str) -> usize {
+    results
+        .iter()
+        .filter(|r| r.detail["revalidation"]["classification"] == classification)
+        .count()
 }
 
 fn count(results: &[CaseResult], status: PathStatus) -> usize {

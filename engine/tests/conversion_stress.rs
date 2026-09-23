@@ -5,6 +5,7 @@
 //! population proof, and stress readiness never becomes population readiness.
 #[path = "common/stress.rs"]
 mod harness;
+use base64::{engine::general_purpose::STANDARD, Engine};
 use eplyx_lifecycle_impact::{
     expansion::Eligibility,
     lifecycle::exposure::sha256,
@@ -13,11 +14,423 @@ use eplyx_lifecycle_impact::{
 use harness::candidate::{OPENAI_MINT, USDC_MINT};
 use harness::*;
 use serde_json::{json, Value};
+use solana_program_pack::Pack;
+use spl_token_2022_interface::state::{Account, AccountState};
 
 fn standard() -> Value {
     let p = Population::standard();
     let prepared = prepare(&p, OPENAI_MINT);
     run(&prepared).unwrap()
+}
+
+/// A new-schema capture deliberately arrives in reverse RPC row order. Its
+/// selector remains address ordered, while every evidence pointer must still
+/// target the original contextual response's account object.
+fn prepare_rebound() -> Prepared {
+    prepare_rebound_with_reserve("1000000000000")
+}
+
+fn prepare_rebound_with_reserve(reserve: &str) -> Prepared {
+    let p = Population::standard();
+    let program = candidate::program();
+    let program_sha256 = sha256(&program);
+    let mut capture = p.capture();
+    capture.schema_version = 2;
+    capture.decoder = population::DECODER_V2.into();
+    capture.observations[2].result.as_mut().unwrap()["value"]
+        .as_array_mut()
+        .unwrap()
+        .reverse();
+    let population_bytes = serde_json::to_vec(&capture).unwrap();
+    let population_sha256 = sha256(&population_bytes);
+    let observation = population::evaluate_bytes(&population_bytes, &p.budget).unwrap();
+    let mut candidate = candidate_plan(&p.corpus.source_mint, OPENAI_MINT);
+    candidate.reserve.funded_replacement_raw = reserve.into();
+    let plan = select::build(&observation, &candidate, &program_sha256, FROZEN_AT).unwrap();
+    assert_eq!(plan.schema_version, 2);
+    let plan_bytes = eplyx_lifecycle_impact::expansion::canonical(&plan)
+        .unwrap()
+        .into_bytes();
+    let plan_sha256 = plan.sha256().unwrap();
+    let mut cases = bundle(&p, &plan, &plan_sha256);
+    cases.schema_version = 3;
+    let bundle_bytes = serde_json::to_vec(&cases).unwrap();
+    Prepared {
+        population_bytes,
+        population_sha256,
+        plan,
+        plan_bytes,
+        plan_sha256,
+        bundle_sha256: sha256(&bundle_bytes),
+        bundle_bytes,
+        program,
+        program_sha256,
+        budget: p.budget,
+    }
+}
+
+#[test]
+fn final_bucket_drift_is_disclosed_without_rewriting_discovery_selection() {
+    let mut prepared = prepare_rebound();
+    let case_index = prepared
+        .plan
+        .selected
+        .iter()
+        .position(|case| case.balance_bucket != 0)
+        .unwrap();
+    let selected_bucket = prepared.plan.selected[case_index].balance_bucket;
+    alter_final_source_at(&mut prepared, case_index, |raw| {
+        alter_token_base(raw, |account| account.amount = 2)
+    });
+    let result = run(&prepared).unwrap();
+    let case = &result["results"][case_index];
+    assert_eq!(
+        case["status"], "Proven",
+        "bucket_drift_does_not_erase_exact_final_execution"
+    );
+    assert_eq!(
+        case["balance_bucket"], selected_bucket,
+        "discovery_bucket_stays_frozen"
+    );
+    assert_eq!(
+        case["detail"]["revalidation"]["final_bucket_at_discovery_thresholds"],
+        0
+    );
+    assert_eq!(
+        case["detail"]["revalidation"]["selection_bucket_preserved"], false,
+        "bucket_drift_cannot_silently_satisfy_original_coverage"
+    );
+    assert_eq!(case["detail"]["execution_plan"]["final_amount_raw"], "2");
+}
+
+#[test]
+fn executable_shape_drift_proves_only_final_state_and_qualifies_shape_coverage() {
+    let mut prepared = prepare_rebound();
+    alter_final_source(&mut prepared, |raw| {
+        alter_token_base(raw, |account| {
+            account.delegate = Some(solana_address::Address::new_from_array([77; 32])).into();
+            account.delegated_amount = 0;
+        })
+    });
+    let result = run(&prepared).unwrap();
+    let case = &result["results"][0];
+    assert_eq!(
+        case["status"], "Proven",
+        "execution_safe_shape_drift_can_rebind"
+    );
+    assert_eq!(
+        case["detail"]["revalidation"]["classification"],
+        "SelectionStateChangedButExecutable"
+    );
+    assert_eq!(
+        case["detail"]["revalidation"]["selection_shape_preserved"],
+        false
+    );
+    let discovery_shape = case["state_shape_sha256"].as_str().unwrap();
+    let coverage = result["shape_coverage"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|shape| shape["state_shape_sha256"] == discovery_shape)
+        .unwrap();
+    assert!(
+        !coverage["executed_entity_ids"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|id| id == &case["entity_id"]),
+        "drifted_final_shape_cannot_cover_discovery_shape"
+    );
+}
+
+#[test]
+fn underfunded_final_amount_fails_in_vm_with_exact_rollback() {
+    let mut prepared = prepare_rebound_with_reserve("1");
+    alter_final_source(&mut prepared, |raw| {
+        alter_token_base(raw, |account| account.amount -= 1)
+    });
+    let result = run(&prepared).unwrap();
+    let case = &result["results"][0];
+    assert_eq!(
+        case["status"], "Failed",
+        "underfunded_reserve_must_genuinely_fail"
+    );
+    assert_eq!(case["execution_performed"], true);
+    assert_eq!(
+        case["detail"]["rollback_verified"], true,
+        "failed_vm_execution_must_roll_back"
+    );
+    assert_eq!(
+        case["detail"]["execution_plan"]["final_amount_raw"],
+        case["detail"]["revalidation"]["final_amount_raw"]
+    );
+}
+
+fn alter_final_source(prepared: &mut Prepared, modify: impl FnOnce(&mut Value)) {
+    alter_final_source_at(prepared, 0, modify);
+}
+
+fn alter_final_source_at(
+    prepared: &mut Prepared,
+    case_index: usize,
+    modify: impl FnOnce(&mut Value),
+) {
+    let mut bundle: execute::CaptureBundle =
+        serde_json::from_slice(&prepared.bundle_bytes).unwrap();
+    let selected = bundle.cases[case_index].token_account.clone();
+    let final_record = bundle.cases[case_index].observations.last_mut().unwrap();
+    let index = final_record.params[0]
+        .as_array()
+        .unwrap()
+        .iter()
+        .position(|address| address == &selected)
+        .unwrap();
+    modify(&mut final_record.result.as_mut().unwrap()["value"][index]);
+    prepared.bundle_bytes = serde_json::to_vec(&bundle).unwrap();
+    prepared.bundle_sha256 = sha256(&prepared.bundle_bytes);
+}
+
+fn alter_token_base(raw: &mut Value, modify: impl FnOnce(&mut Account)) {
+    let mut bytes = STANDARD.decode(raw["data"][0].as_str().unwrap()).unwrap();
+    let mut account = Account::unpack_unchecked(&bytes[..Account::LEN]).unwrap();
+    modify(&mut account);
+    account.pack_into_slice(&mut bytes[..Account::LEN]);
+    raw["data"][0] = STANDARD.encode(bytes).into();
+}
+
+#[test]
+fn changed_final_amount_after_capture_digest_freeze_is_rejected_before_execution() {
+    let mut prepared = prepare_rebound();
+    let original_digest = prepared.bundle_sha256.clone();
+    alter_final_source(&mut prepared, |raw| {
+        alter_token_base(raw, |account| account.amount -= 1)
+    });
+    prepared.bundle_sha256 = original_digest;
+    let error = run(&prepared).unwrap_err();
+    assert!(
+        error.to_string().contains("stress input digest mismatch"),
+        "final_amount_change_after_freeze_rejected"
+    );
+}
+
+#[test]
+fn peer_capture_cannot_replace_a_frozen_selected_identity() {
+    let mut prepared = prepare_rebound();
+    let mut bundle: execute::CaptureBundle =
+        serde_json::from_slice(&prepared.bundle_bytes).unwrap();
+    bundle.cases[0].token_account = bundle.cases[1].token_account.clone();
+    prepared.bundle_bytes = serde_json::to_vec(&bundle).unwrap();
+    prepared.bundle_sha256 = sha256(&prepared.bundle_bytes);
+    let error = match run(&prepared) {
+        Ok(_) => panic!("peer_replacement_rejected"),
+        Err(error) => error,
+    };
+    assert!(
+        error
+            .to_string()
+            .contains("selected cases may not be reordered or replaced"),
+        "peer_replacement_rejected"
+    );
+}
+
+#[test]
+fn unverified_final_context_cannot_claim_state_rebinding_or_execute() {
+    let mut prepared = prepare_rebound();
+    let mut bundle: execute::CaptureBundle =
+        serde_json::from_slice(&prepared.bundle_bytes).unwrap();
+    let first = &mut bundle.cases[0].observations[4];
+    let clock_index = first.params[0]
+        .as_array()
+        .unwrap()
+        .iter()
+        .position(|address| address == "SysvarC1ock11111111111111111111111111111111")
+        .unwrap();
+    let raw = &mut first.result.as_mut().unwrap()["value"][clock_index];
+    let mut bytes = STANDARD.decode(raw["data"][0].as_str().unwrap()).unwrap();
+    bytes[..8].copy_from_slice(&999_999u64.to_le_bytes());
+    raw["data"][0] = STANDARD.encode(bytes).into();
+    prepared.bundle_bytes = serde_json::to_vec(&bundle).unwrap();
+    prepared.bundle_sha256 = sha256(&prepared.bundle_bytes);
+    let result = run(&prepared).unwrap();
+    let case = &result["results"][0];
+    assert_eq!(case["status"], "Indeterminate");
+    assert_eq!(case["execution_performed"], false);
+    assert!(
+        case["reason"]
+            .as_str()
+            .unwrap()
+            .contains("CouldNotEstablishCoherentExecutionContext"),
+        "coherence_precedes_rebinding"
+    );
+    assert!(case["detail"].get("revalidation").is_none());
+}
+
+#[test]
+fn new_population_pointer_targets_the_selected_raw_account_after_provider_reordering() {
+    let prepared = prepare_rebound();
+    let capture: population::Capture = serde_json::from_slice(&prepared.population_bytes).unwrap();
+    let observation =
+        population::evaluate_bytes(&prepared.population_bytes, &prepared.budget).unwrap();
+    for entity in observation
+        .entities
+        .iter()
+        .filter(|e| e.state.raw_balance != "0")
+    {
+        let pointer = &entity.token_account_evidence.pointer;
+        let row = capture.observations[2]
+            .result
+            .as_ref()
+            .unwrap()
+            .pointer(pointer.strip_suffix("/account").unwrap())
+            .unwrap();
+        assert_eq!(
+            row["pubkey"], entity.token_account,
+            "provider_order_cannot_repoint_selection_evidence"
+        );
+        assert_eq!(
+            &row["account"],
+            capture.observations[2]
+                .result
+                .as_ref()
+                .unwrap()
+                .pointer(pointer)
+                .unwrap()
+        );
+    }
+    let result = run(&prepared).unwrap();
+    for case in result["results"].as_array().unwrap() {
+        assert_eq!(case["status"], "Proven", "unchanged_final_state_executes");
+        assert_eq!(case["detail"]["revalidation"]["changed_fields"], json!([]));
+        assert!(case["detail"]["execution_plan_sha256"].as_str().is_some());
+    }
+}
+
+#[test]
+fn lamports_only_change_uses_final_bank_and_does_not_invalidate_conversion() {
+    let mut prepared = prepare_rebound();
+    alter_final_source(&mut prepared, |raw| {
+        raw["lamports"] = json!(raw["lamports"].as_u64().unwrap() + 1)
+    });
+    let result = run(&prepared).unwrap();
+    let case = &result["results"][0];
+    assert_eq!(
+        case["status"], "Proven",
+        "irrelevant_discovery_lamports_must_not_block_final_bank"
+    );
+    assert_eq!(
+        case["detail"]["revalidation"]["changed_fields"],
+        json!(["lamports"])
+    );
+    assert_eq!(
+        case["detail"]["revalidation"]["selection_shape_preserved"],
+        true
+    );
+}
+
+#[test]
+fn full_at_final_capture_resolves_drifted_amount_before_vm_without_replacing_identity() {
+    let mut prepared = prepare_rebound();
+    let selected = prepared.plan.selected[0].token_account.clone();
+    let discovery_amount: u64 = prepared.plan.selected[0]
+        .selected_amount_raw
+        .parse()
+        .unwrap();
+    alter_final_source(&mut prepared, |raw| {
+        alter_token_base(raw, |account| account.amount -= 1)
+    });
+    let result = run(&prepared).unwrap();
+    let case = &result["results"][0];
+    assert_eq!(
+        case["token_account"], selected,
+        "drifted_selected_identity_never_replaced"
+    );
+    assert_eq!(
+        case["status"], "Proven",
+        "final_current_amount_must_execute"
+    );
+    assert_eq!(case["selected_amount_raw"], discovery_amount.to_string());
+    assert_eq!(
+        case["detail"]["execution_plan"]["final_amount_raw"],
+        (discovery_amount - 1).to_string()
+    );
+    assert_eq!(
+        case["detail"]["reconciliation"]["source_burned_raw"],
+        (discovery_amount - 1).to_string()
+    );
+    assert_ne!(
+        case["detail"]["resolved_case_plan_sha256"],
+        case["case_plan_sha256"]
+    );
+    assert_eq!(
+        case["detail"]["execution_plan"]["final_source_data_sha256"],
+        case["detail"]["revalidation"]["final_data_sha256"],
+        "execution_plan_uses_final_source_bytes"
+    );
+    assert_ne!(
+        case["detail"]["execution_plan"]["final_source_data_sha256"],
+        case["detail"]["revalidation"]["discovery_data_sha256"],
+        "stale_population_bytes_cannot_supply_final_proof"
+    );
+    assert!(
+        case["detail"]["scope"]
+            .as_str()
+            .unwrap()
+            .contains("final coherent state"),
+        "proof_scope_binds_final_not_stale_discovery_state"
+    );
+    assert_eq!(
+        case["detail"]["execution_plan_sha256"],
+        eplyx_lifecycle_impact::expansion::digest(&case["detail"]["execution_plan"]).unwrap(),
+        "vm_result_cannot_rewrite_frozen_execution_plan"
+    );
+}
+
+#[test]
+fn zero_frozen_authority_and_token_program_drift_never_execute_a_peer() {
+    for (name, mutate) in [
+        ("zero", 0u8),
+        ("frozen", 1),
+        ("authority", 2),
+        ("runtime_owner", 3),
+        ("mint", 4),
+        ("extension", 5),
+    ] {
+        let mut prepared = prepare_rebound();
+        let selected = prepared.plan.selected[0].token_account.clone();
+        alter_final_source(&mut prepared, |raw| match mutate {
+            0 => alter_token_base(raw, |account| account.amount = 0),
+            1 => alter_token_base(raw, |account| account.state = AccountState::Frozen),
+            2 => alter_token_base(raw, |account| {
+                account.owner = solana_address::Address::new_from_array([77; 32])
+            }),
+            3 => raw["owner"] = "11111111111111111111111111111111".into(),
+            4 => alter_token_base(raw, |account| {
+                account.mint = solana_address::Address::new_from_array([88; 32])
+            }),
+            _ => {
+                let mut bytes = STANDARD.decode(raw["data"][0].as_str().unwrap()).unwrap();
+                bytes[166] = 255;
+                raw["data"][0] = STANDARD.encode(bytes).into();
+            }
+        });
+        let result = run(&prepared).unwrap();
+        let case = &result["results"][0];
+        assert_eq!(
+            case["token_account"], selected,
+            "{name}: selected_identity_never_replaced"
+        );
+        assert_eq!(
+            case["status"], "Indeterminate",
+            "{name}: unsupported_final_state_never_executes"
+        );
+        assert_eq!(case["execution_performed"], false);
+        if name == "authority" {
+            assert_eq!(
+                case["detail"]["revalidation"]["classification"], "NoLongerExecutable",
+                "unsupported_authority_drift_never_executes"
+            );
+        }
+    }
 }
 
 #[test]

@@ -97,6 +97,11 @@ fn summary(
         if let Some(context) = r["detail"].get("execution_context") {
             outcome["execution_context"] = context.clone();
         }
+        if let Some(revalidation) = r["detail"].get("revalidation") {
+            outcome["revalidation"] = revalidation.clone();
+            outcome["execution_plan_sha256"] = r["detail"]["execution_plan_sha256"].clone();
+            outcome["resolved_case_plan_sha256"] = r["detail"]["resolved_case_plan_sha256"].clone();
+        }
         outcome
     }).collect();
     let failed: Vec<Value> = outcomes
@@ -194,6 +199,28 @@ fn summary(
     if let Some(context) = conversion.get("execution_context") {
         report["conversion_result"]["execution_context"] = context.clone();
     }
+    if let Some(revalidation) = conversion.get("mint_revalidated") {
+        report["conversion_result"]["mint_revalidated"] = revalidation.clone();
+        report["conversion_result"]["source_revalidated"] =
+            conversion["source_revalidated"].clone();
+        report["conversion_result"]["discovery_amount_raw"] =
+            conversion["discovery_amount_raw"].clone();
+        report["conversion_result"]["final_execution_amount_raw"] =
+            conversion["amount_raw"].clone();
+    }
+    if let Some(rebinding) = stress["selection_plan"].get("rebinding") {
+        report["stress_rebinding"] = rebinding.clone();
+        for (selected, case) in report["exact_selected_cases"]
+            .as_array_mut()
+            .into_iter()
+            .flatten()
+            .zip(stress["selected_cases"].as_array().into_iter().flatten())
+        {
+            selected["selection_bucket"] = case["balance_bucket"].clone();
+            selected["discovery_amount_raw"] = case["observed_balance_raw"].clone();
+            selected["amount_policy"] = case["amount_policy"].clone();
+        }
+    }
     if let Some(authority) = authority {
         report["non_standard_account_control"] = serde_json::to_value(authority).unwrap();
         report["refined_stress_world_sha256"] = json!(crate::expansion::digest(&(
@@ -225,6 +252,27 @@ fn markdown(report: &Value) -> String {
         analytical_label,
         report["declared_preflight_status"].as_str().unwrap_or("Incomplete"),
     );
+    if let Some(rebinding) = report.get("stress_rebinding") {
+        output.push_str(&format!(
+            "\n## Final-state stress evidence\n\nFrozen identities: {}; executable at final capture: {}; locally tested: {}; no longer executable: {}; identity changed: {}. Discovery shapes preserved among executions: {}; discovery balance buckets preserved among executions: {}. Execution evidence applies only to the exact final account state and amount.\n",
+            rebinding["selected_identities"].as_u64().unwrap_or(0),
+            rebinding["executable_current_state"].as_u64().unwrap_or(0)
+                + rebinding["selection_state_changed_but_executable"]
+                    .as_u64()
+                    .unwrap_or(0),
+            rebinding["exact_final_state_executions"]
+                .as_u64()
+                .unwrap_or(0),
+            rebinding["no_longer_executable"].as_u64().unwrap_or(0),
+            rebinding["identity_changed"].as_u64().unwrap_or(0),
+            rebinding["discovery_shapes_preserved_at_execution"]
+                .as_u64()
+                .unwrap_or(0),
+            rebinding["discovery_buckets_preserved_at_execution"]
+                .as_u64()
+                .unwrap_or(0),
+        ));
+    }
     if let Some(findings) = report.get("invariants").and_then(Value::as_array) {
         output.push_str("\n## Rollout invariants\n\n");
         for finding in findings {
@@ -576,8 +624,10 @@ pub fn run(
         }
         std::thread::sleep(Duration::from_millis(100));
     }
+    // Rebinding reports include exact per-case final-state diagnostics. Keep
+    // this worker handoff bounded while allowing the ten selected case rows.
     let report: Value =
-        serde_json::from_slice(&read(output_directory, "report.json", 128 * 1024)?)?;
+        serde_json::from_slice(&read(output_directory, "report.json", 4 * 1024 * 1024)?)?;
     ensure!(
         report["transition_package_sha256"] == b.transition_package_sha256,
         "worker package identity mismatch"

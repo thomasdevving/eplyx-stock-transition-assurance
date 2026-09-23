@@ -349,7 +349,7 @@ pub fn build(
     evidence: &[crate::lifecycle::RpcEvidence],
     program: &[u8],
 ) -> Result<BuiltConversion> {
-    build_inner(plan, plan_sha256, context, evidence, program, false)
+    build_inner(plan, plan_sha256, context, evidence, program, false, false)
 }
 
 pub fn build_coherent(
@@ -359,7 +359,28 @@ pub fn build_coherent(
     evidence: &[crate::lifecycle::RpcEvidence],
     program: &[u8],
 ) -> Result<BuiltConversion> {
-    build_inner(plan, plan_sha256, context, evidence, program, true)
+    build_inner(plan, plan_sha256, context, evidence, program, true, false)
+}
+
+/// Rebinding-aware execution reads mint supply and configuration from the final
+/// coherent bank. Discovery mint bytes remain historical; identity, token
+/// program, decimals and supported semantics are checked again below.
+pub fn build_coherent_rebound(
+    plan: &ConversionPlan,
+    overlay_seed_sha256: &str,
+    context: &ConversionContext,
+    evidence: &[crate::lifecycle::RpcEvidence],
+    program: &[u8],
+) -> Result<BuiltConversion> {
+    build_inner(
+        plan,
+        overlay_seed_sha256,
+        context,
+        evidence,
+        program,
+        true,
+        true,
+    )
 }
 
 fn build_inner(
@@ -369,6 +390,7 @@ fn build_inner(
     evidence: &[crate::lifecycle::RpcEvidence],
     program: &[u8],
     coherent_recapture: bool,
+    allow_mint_rebinding: bool,
 ) -> Result<BuiltConversion> {
     ensure!(
         if coherent_recapture {
@@ -551,7 +573,7 @@ fn build_inner(
             "ReplacementStateChanged",
         ),
     ] {
-        if !coherent_recapture {
+        if !coherent_recapture || allow_mint_rebinding {
             break;
         }
         let final_account = get(address)?;

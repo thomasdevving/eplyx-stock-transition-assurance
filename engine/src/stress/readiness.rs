@@ -62,12 +62,20 @@ fn case_scope(
     case: &SelectedCase,
     result: &CaseResult,
 ) -> EvidenceScope {
+    let rebound = plan.schema_version == 2;
     EvidenceScope {
         asset_mint: asset_mint.into(),
         entity_id: case.entity_id.clone(),
         state_shape: StateShape::DirectTokenAccount,
         authority: case.authority.clone(),
-        exact_amount_raw: Some(case.selected_amount_raw.clone()),
+        exact_amount_raw: Some(if rebound {
+            result.detail["execution_plan"]["final_amount_raw"]
+                .as_str()
+                .unwrap_or(&case.selected_amount_raw)
+                .to_string()
+        } else {
+            case.selected_amount_raw.clone()
+        }),
         range: None,
         bps_to_remove: None,
         venue: None,
@@ -77,9 +85,23 @@ fn case_scope(
         capture_context: Some(
             crate::expansion::pipeline::CaptureContext::CurrentFinalizedProduction,
         ),
-        captured_state_sha256: Some(plan.population_capture_sha256.clone()),
+        captured_state_sha256: Some(if rebound {
+            result.detail["execution_plan"]["final_capture_digest"]
+                .as_str()
+                .unwrap_or(&plan.population_capture_sha256)
+                .to_string()
+        } else {
+            plan.population_capture_sha256.clone()
+        }),
         fixture_sha256: result.execution_fixture_sha256.clone(),
-        source_before_raw: Some(case.observed_balance_raw.clone()),
+        source_before_raw: Some(if rebound {
+            result.detail["revalidation"]["final_amount_raw"]
+                .as_str()
+                .unwrap_or(&case.observed_balance_raw)
+                .to_string()
+        } else {
+            case.observed_balance_raw.clone()
+        }),
         scenario_sha256: scenario_digest(),
     }
 }
@@ -96,7 +118,10 @@ fn conversion_facts(
             scope: case_scope(asset_mint, plan, case, result),
             status: result.status,
             provenance: case.case_plan.provenance,
-            plan_sha256: case.case_plan_sha256.clone(),
+            plan_sha256: if plan.schema_version == 2 {
+                result.detail["resolved_case_plan_sha256"].as_str()
+                    .unwrap_or(&case.case_plan_sha256).to_string()
+            } else { case.case_plan_sha256.clone() },
             program_sha256: result.candidate_program_sha256.clone(),
             replacement_mint: case.case_plan.replacement_mint.clone(),
             destination: result.detail["destination"]
@@ -321,7 +346,7 @@ pub fn evaluate_stress(
             },
             RequirementCondition::CandidateConversion {
                 scope: Box::new(fact.scope.clone()),
-                plan_sha256: case.case_plan_sha256.clone(),
+                plan_sha256: fact.plan_sha256.clone(),
                 program_sha256: plan.candidate_program_sha256.clone(),
                 replacement_mint: case.case_plan.replacement_mint.clone(),
             },

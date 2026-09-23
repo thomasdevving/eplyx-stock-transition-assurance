@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "kind": "milestone13-final-state-rebinding-validation",
+  "engine_binary_sha256": "a072da0609bfc58dd9c5d18173be2fc8b9932ec41572119e8ae7f6588960173c",
+  "source_sha256": {
+    "engine/src/stress/population.rs": "003d46625f26173708ae145f58e8dc1e89a8c0edfc46568da94acfcf4f738520",
+    "engine/src/stress/select.rs": "7b415e372f3ca0fe4201f5ef163347236bba685c2651b7eb829fceb5df7465fc",
+    "engine/src/stress/execute.rs": "f60b06bd80c4dc4ab724a06fbd51f8fea0b44b00d6bf755796cc0ad34b327a66",
+    "engine/src/stress/readiness.rs": "7f58e398cf68582a453418beacb13e1a7b7922a0b529c6cd38a699e62444619a",
+    "engine/src/conversion/current.rs": "594f3734159226903b828d4f167956ebeb4576da73b10fdb5bf33fa841b7e733",
+    "engine/src/conversion/demo.rs": "74bfeefde79c989e6d04ba41704e38c2867ba242523138f5c5558280279a098d",
+    "engine/src/conversion/package_preflight.rs": "99e42bb32ff4b98d3d0c491c6394b1b18b20913fe1af60baf860619f1e1f3c51"
+  },
+  "saved_retry_field_audit_sha256": "4460eb5ba855c1c9dd16c4858cfb1664faf66809ef74c119fef13134270dbaf3",
+  "saved_retry_field_audit": {
+    "cases": 30,
+    "changed_token_bytes": 0,
+    "changed_decoded_fields": 0,
+    "changed_runtime_fields": 0,
+    "mismatched_population_pointers": 30
+  },
+  "mutation_report_sha256": "0ecea374c7a2230fffbe7a0bcf8a218136b3099ce0be1cb8dc9e46202a8ba201",
+  "live_acceptance": [
+    {
+      "name": "healthy",
+      "provider": "FastRPC read-only mainnet",
+      "artifact_directory": "target/milestone13-acceptance-healthy",
+      "captured_at": "2026-09-23T22:50:38.462Z",
+      "transition_package_sha256": "8b63840c8d71066822462c4dc610f22228f308f2d044ebb40909dc8cdac5ecfa",
+      "artifact_sha256": {
+        "population.capture.json": "2e05558e984695856dd85b813f7053799521e6048e55f93e59212fce041e4065",
+        "conversion.capture.json": "f4df72865f423fc35186b1dcbf8763f2541c66f668c1b7d963535244988faf4c",
+        "authority.plan.json": "282440be28028ce18f0a3923e507a4d246be97a219e41841f62699f0e1ed6b02",
+        "authority.report.json": "00ee0c911e97e425501adc0b92d3fbdf41c05181ac37ce1eddee7f2a46e5c2f9",
+        "stress.plan.json": "d0fe6be40519c49c88a7d858041ebe3a939af8777c8be6791d8c70c688090445",
+        "stress.cases.json": "249311564c64746e99f5c6f38466e633a5ddae2279b0d29047dca18d09f12b40",
+        "report.json": "12fe5acd694ade2a2066380328146298ffcd1ce4500d6dcc398944520112d546",
+        "report.md": "9de1a89adcd4050e82c0300bdff9ba8f8b57d628c055716ca9347cb34cc4e375"
+      },
+      "enumeration_completeness": "CompleteForQuery",
+      "token_accounts_observed": 17849,
+      "positive_balance_accounts_observed": 10038,
+      "authority_resolution_completeness": "Complete",
+      "selected_authority_cases": 20,
+      "selected_stress_cases": 10,
+      "stress_classifications": {
+        "ExecutableCurrentState": 10
+      },
+      "stress_statuses": {
+        "Proven": 10
+      },
+      "stress_rebinding": {
+        "bucket_comparison": "Final amount compared with frozen discovery thresholds; no current population rank is claimed.",
+        "discovery_buckets_preserved_at_execution": 10,
+        "discovery_shapes_preserved_at_execution": 10,
+        "exact_final_state_executions": 10,
+        "executable_current_state": 10,
+        "identity_changed": 0,
+        "no_longer_executable": 0,
+        "policy": "FullAtFinalCapture: freeze the selected account and policy before execution, then use its entire positive public balance from the verified final account batch",
+        "selected_identities": 10,
+        "selection_state_changed_but_executable": 0
+      },
+      "candidate_conversion": "Proven",
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "invariant_statuses": {
+        "authority_model_supported": "Violated",
+        "conversion_output_matches": "Satisfied",
+        "no_positive_balance_stranded": "Indeterminate",
+        "no_selected_case_failed": "Satisfied"
+      },
+      "gate_policy": "block-only",
+      "gate_outcome": "Warn",
+      "live_preflight_exit": 0,
+      "offline_replay_exit": 0,
+      "strict_replay_exit": 3,
+      "funds_moved": false
+    },
+    {
+      "name": "underfunded",
+      "provider": "FastRPC read-only mainnet",
+      "artifact_directory": "target/milestone13-acceptance-underfunded",
+      "captured_at": "2026-09-23T22:52:06.657Z",
+      "transition_package_sha256": "b48aae0c5641caec784d475d6b4a5b10c2e59a011ae838ffa5687861b0cfd8b0",
+      "artifact_sha256": {
+        "population.capture.json": "482dbf9132baf488eeac9db86f30841fc08ed3db5207707fb8190dd62a7996a0",
+        "conversion.capture.json": "00705e7ee5aab00e01bb80e8d48b8a2dfd4a4edae6d9016d332e9165aedffd6d",
+        "authority.plan.json": "5671aa1013fb6abef13325eb23fd8f847876067a93ad8ed87e09c32ca6cfc53c",
+        "authority.report.json": "1d271ae2ef7ce41cc0e8b7963d765a62c3fb82edaad02fe59a293b54abfc8446",
+        "stress.plan.json": "5b917aaf645a444dc8bbd0da4928164ec352bf4de1427644717d9046285a8df7",
+        "stress.cases.json": "2313f5f9cf924c7a1baf8cf745a767354a1852367ec3d6e6904152d849934066",
+        "report.json": "9d7cd2aabc76c3717f2013fb89af599fbdc1f2e31b83473a4192ecb3bf1a3681",
+        "report.md": "a526bcfb83d0fd5e3fe47dc21c100514c9df2e31854492b758d06714debe0066"
+      },
+      "enumeration_completeness": "CompleteForQuery",
+      "token_accounts_observed": 17849,
+      "positive_balance_accounts_observed": 10039,
+      "authority_resolution_completeness": "Complete",
+      "selected_authority_cases": 20,
+      "selected_stress_cases": 10,
+      "stress_classifications": {
+        "ExecutableCurrentState": 10
+      },
+      "stress_statuses": {
+        "Failed": 10
+      },
+      "stress_rebinding": {
+        "bucket_comparison": "Final amount compared with frozen discovery thresholds; no current population rank is claimed.",
+        "discovery_buckets_preserved_at_execution": 10,
+        "discovery_shapes_preserved_at_execution": 10,
+        "exact_final_state_executions": 10,
+        "executable_current_state": 10,
+        "identity_changed": 0,
+        "no_longer_executable": 0,
+        "policy": "FullAtFinalCapture: freeze the selected account and policy before execution, then use its entire positive public balance from the verified final account batch",
+        "selected_identities": 10,
+        "selection_state_changed_but_executable": 0
+      },
+      "candidate_conversion": "Failed",
+      "candidate_plan_readiness": "Blocked",
+      "conversion_stress_readiness": "Blocked",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "invariant_statuses": {
+        "authority_model_supported": "Violated",
+        "conversion_output_matches": "Violated",
+        "no_positive_balance_stranded": "Indeterminate",
+        "no_selected_case_failed": "Violated"
+      },
+      "gate_policy": "block-only",
+      "gate_outcome": "Block",
+      "live_preflight_exit": 3,
+      "offline_replay_exit": 3,
+      "strict_replay_exit": 3,
+      "funds_moved": false
+    },
+    {
+      "name": "second",
+      "provider": "FastRPC read-only mainnet",
+      "artifact_directory": "target/milestone13-acceptance-second",
+      "captured_at": "2026-09-23T22:54:46.361Z",
+      "transition_package_sha256": "4a72bca33b2d71a1561e70df0568604523a0f440a4a12840c195e940ec4036dd",
+      "artifact_sha256": {
+        "population.capture.json": "9dca6371ea57c56332f77dc529840a77563315c03636df7faca7cd1a441ae65b",
+        "conversion.capture.json": "dd12f44ec8f5d3947f42c087fe6ec97bdeecb199750c40da2a85e23dbcb5c18f",
+        "authority.plan.json": "d3c0cd30b7291c1ce955969e835a1cdea88750c80d60589dc13f32e22928dcc3",
+        "authority.report.json": "e243ba231e29e020ca5005f772f742f1a9dcdae647ef01962d4f2afd546376f5",
+        "stress.plan.json": "ba00999bbb5b5b5d9b235e06761d9f2c86bbf01e3209657d5f90e1b44196b64f",
+        "stress.cases.json": "962f7930dc9f9737569f2a15338a49e2f0ddae6e0505a4ef484941a5aa5527c9",
+        "report.json": "e7326beab2a7c0158f97cbb72b0539bb6432f74b023df9ad7af032162a68c99d",
+        "report.md": "9b38e6db68028c71d617ebbc405b68280bb52ec02f1c807a3c29a3dc1088f562"
+      },
+      "enumeration_completeness": "CompleteForQuery",
+      "token_accounts_observed": 65298,
+      "positive_balance_accounts_observed": 33990,
+      "authority_resolution_completeness": "Complete",
+      "selected_authority_cases": 20,
+      "selected_stress_cases": 10,
+      "stress_classifications": {
+        "ExecutableCurrentState": 10
+      },
+      "stress_statuses": {
+        "Proven": 10
+      },
+      "stress_rebinding": {
+        "bucket_comparison": "Final amount compared with frozen discovery thresholds; no current population rank is claimed.",
+        "discovery_buckets_preserved_at_execution": 10,
+        "discovery_shapes_preserved_at_execution": 10,
+        "exact_final_state_executions": 10,
+        "executable_current_state": 10,
+        "identity_changed": 0,
+        "no_longer_executable": 0,
+        "policy": "FullAtFinalCapture: freeze the selected account and policy before execution, then use its entire positive public balance from the verified final account batch",
+        "selected_identities": 10,
+        "selection_state_changed_but_executable": 0
+      },
+      "candidate_conversion": "Proven",
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "invariant_statuses": {
+        "authority_model_supported": "Violated",
+        "conversion_output_matches": "Satisfied",
+        "no_positive_balance_stranded": "Indeterminate",
+        "no_selected_case_failed": "Satisfied"
+      },
+      "gate_policy": "block-only",
+      "gate_outcome": "Warn",
+      "live_preflight_exit": 0,
+      "offline_replay_exit": 0,
+      "strict_replay_exit": 3,
+      "funds_moved": false
+    }
+  ],
+  "validation": {
+    "workspace_cargo_test": "Passed after final executable change; cargo test --locked --workspace, exit 0",
+    "host_program_tests": "Fixture v1: 7 passed; fixture v2: 7 passed; candidate conversion: 4 passed",
+    "cargo_fmt_check": "Passed for workspace and both program manifests",
+    "cargo_clippy_deny_warnings": "Passed for workspace and all three program variants",
+    "node_service_tests": "47 passed",
+    "frontend_build_check": "Build and syntax/report-digest check passed",
+    "mutations_killed": "7/7 named assertions; original source restored",
+    "offline_replay_exit": {
+      "healthy": 0,
+      "underfunded": 3,
+      "second": 0
+    },
+    "strict_replay_exit": {
+      "healthy": 3,
+      "underfunded": 3,
+      "second": 3
+    },
+    "historical_m8_m12_replay_exit": {
+      "m8": 4,
+      "m9": 0,
+      "m10": 0,
+      "m11": 0,
+      "m12": 0
+    },
+    "historical_m8_replay_note": "Exit 4 is its unchanged analytical Incomplete status; saved bytes matched.",
+    "git_diff_check": "Passed"
+  },
+  "limitations": [
+    "Finalized coherent account batches are verified capture contracts, not claims of an atomic validator snapshot across discovery and execution.",
+    "The candidate program is locally proposed; no issuer authorization, signer possession, OfficialTransition or population rollout is established.",
+    "No mainnet transaction was submitted and no funds moved."
+  ]
+}

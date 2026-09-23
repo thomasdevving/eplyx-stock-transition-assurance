@@ -24,6 +24,47 @@ fn set_final_clock_slot(capture: &mut conversion::Capture, record: usize, slot: 
 }
 
 #[test]
+fn rebound_full_candidate_uses_final_source_amount_and_final_mint_supply() {
+    let mut p = plan(OPENAI_MINT);
+    p.amount_mode = AmountMode::Full;
+    p.amount_decimal = None;
+    let mut c = capture(&p, RUN, CHECK);
+    c.schema_version = 3;
+    let addresses = c.observations[4].params[0].as_array().unwrap().clone();
+    let final_values = c.observations[4].result.as_mut().unwrap()["value"]
+        .as_array_mut()
+        .unwrap();
+    let source_index = addresses
+        .iter()
+        .position(|address| address == &p.source_account)
+        .unwrap();
+    let mut source = base64_decode(final_values[source_index]["data"][0].as_str().unwrap());
+    let discovery = u64::from_le_bytes(source[64..72].try_into().unwrap());
+    source[64..72].copy_from_slice(&900u64.to_le_bytes());
+    final_values[source_index]["data"][0] = json!(base64_encode(&source));
+    let mint_index = addresses
+        .iter()
+        .position(|address| address == &p.replacement_mint)
+        .unwrap();
+    let mut replacement = base64_decode(final_values[mint_index]["data"][0].as_str().unwrap());
+    let supply = u64::from_le_bytes(replacement[36..44].try_into().unwrap());
+    replacement[36..44].copy_from_slice(&(supply + 1).to_le_bytes());
+    final_values[mint_index]["data"][0] = json!(base64_encode(&replacement));
+    let v = run_capture(&c).unwrap();
+    assert_eq!(
+        v["status"], "Proven",
+        "final_current_state_rebinds_candidate"
+    );
+    assert_eq!(v["discovery_amount_raw"], discovery.to_string());
+    assert_eq!(v["amount_raw"], "900");
+    assert_eq!(v["reconciliation"]["source_burned_raw"], "900");
+    assert_ne!(
+        v["mint_revalidated"]["replacement_discovery_data_sha256"],
+        v["mint_revalidated"]["replacement_final_data_sha256"]
+    );
+}
+
+#[test]
 fn coherent_retry_replays_the_exact_final_bank_and_not_discovery_bytes() {
     let mut capture = capture(&plan(OPENAI_MINT), RUN, CHECK);
     capture.schema_version = 2;

@@ -8,7 +8,8 @@ use super::{
     classify::{self, ShapeDimensions},
     population::PopulationObservation,
     AuthorityResolutionCompleteness, EnumerationCompleteness, SelectedCase, SelectionReason,
-    ShapeGroup, StressBudget, StressEntity, FULL_BALANCE_POLICY, MAX_SHAPE_EXAMPLES,
+    ShapeGroup, StressBudget, StressEntity, FULL_AT_FINAL_POLICY, FULL_BALANCE_POLICY,
+    MAX_SHAPE_EXAMPLES,
 };
 use crate::{
     conversion::{AmountMode, ConversionPlan},
@@ -23,6 +24,7 @@ use std::io::Write;
 use std::path::Path;
 
 pub const SELECTOR_VERSION: &str = "eplyx-conversion-stress-select/v1";
+pub const SELECTOR_VERSION_V2: &str = "eplyx-conversion-stress-select/v2";
 pub const PLAN_KIND: &str = "conversion-stress-plan";
 pub const ORDERING_RULE: &str = "Within any group: observed raw public balance descending, then token account address ascending. Fully deterministic and independent of execution outcomes.";
 pub const BUCKET_METHOD: &str = "Rank quartiles over the positive-balance accounts observed in this exact capture, ordered by raw balance ascending then address ascending. Buckets order tests; they are not economic classes and carry no valuation.";
@@ -143,7 +145,10 @@ fn classify_all<'a>(
 /// Deterministic digest over the complete classification of every positive
 /// entity. Binding this into the plan pins all candidate classifications exactly
 /// without publishing a multi-million-row listing; replay recomputes and compares.
-fn classification_digest(rows: &[Classified<'_>]) -> Result<(String, Vec<Classification>)> {
+fn classification_digest(
+    rows: &[Classified<'_>],
+    selector_version: &str,
+) -> Result<(String, Vec<Classification>)> {
     let mut full: Vec<Classification> = rows
         .iter()
         .map(|c| Classification {
@@ -157,7 +162,7 @@ fn classification_digest(rows: &[Classified<'_>]) -> Result<(String, Vec<Classif
         .collect();
     full.sort_by(|a, b| a.token_account.cmp(&b.token_account));
     Ok((
-        digest(&(SELECTOR_VERSION, classify::CLASSIFIER_VERSION, &full))?,
+        digest(&(selector_version, classify::CLASSIFIER_VERSION, &full))?,
         full,
     ))
 }
@@ -265,6 +270,12 @@ pub fn build(
     candidate_program_sha256: &str,
     frozen_at: &str,
 ) -> Result<StressTestPlan> {
+    let rebound = observation.schema_version == 2;
+    let selector_version = if rebound {
+        SELECTOR_VERSION_V2
+    } else {
+        SELECTOR_VERSION
+    };
     candidate_plan.validate()?;
     observation.budget.validate()?;
     ensure!(
@@ -283,7 +294,7 @@ pub fn build(
         .decimals;
     let (buckets, assignment) = buckets(observation)?;
     let rows = classify_all(observation, &assignment)?;
-    let (classification_sha256, _) = classification_digest(&rows)?;
+    let (classification_sha256, _) = classification_digest(&rows, selector_version)?;
 
     let mut eligibility_counts: BTreeMap<String, usize> = BTreeMap::new();
     let mut shape_members: BTreeMap<String, Vec<usize>> = BTreeMap::new();
@@ -401,7 +412,12 @@ pub fn build(
             discovery_slot: row.entity.token_account_evidence.slot,
             selected_amount_raw: row.balance.to_string(),
             selected_amount_decimal: amount_decimal,
-            amount_policy: FULL_BALANCE_POLICY.into(),
+            amount_policy: if rebound {
+                FULL_AT_FINAL_POLICY
+            } else {
+                FULL_BALANCE_POLICY
+            }
+            .into(),
             amount_capped: false,
             case_plan_sha256: plan.sha256()?,
             case_plan: plan,
@@ -450,7 +466,11 @@ pub fn build(
     }
 
     let mut limitations = vec![
-        "This plan was frozen before any capture or execution. Selected cases, amounts and expected classifications may not be rewritten afterwards.".to_string(),
+        if rebound {
+            "This plan freezes selected identities, discovery observations and FullAtFinalCapture amount policy before results. Each positive final amount is resolved and bound before its one local VM execution.".to_string()
+        } else {
+            "This plan was frozen before any capture or execution. Selected cases, amounts and expected classifications may not be rewritten afterwards.".to_string()
+        },
         "A state shape prioritizes and describes tests. It is never a proof equivalence class: no tested entity establishes anything about its peers.".to_string(),
         "Balance buckets order tests across the observed range. They are not economic classes and the selected cases are not a representative sample.".to_string(),
         "Only the registered repository candidate mechanism is executed, always locally, against a freshly captured bank plus an explicitly proposed rollout overlay.".to_string(),
@@ -463,7 +483,7 @@ pub fn build(
     }
 
     Ok(StressTestPlan {
-        schema_version: 1,
+        schema_version: if rebound { 2 } else { 1 },
         kind: PLAN_KIND.into(),
         stress_id: observation.stress_id.clone(),
         run_id: observation.run_id.clone(),
@@ -475,7 +495,7 @@ pub fn build(
         candidate_plan: candidate_plan.clone(),
         candidate_program_sha256: candidate_program_sha256.into(),
         classifier_version: classify::CLASSIFIER_VERSION.into(),
-        selector_version: SELECTOR_VERSION.into(),
+        selector_version: selector_version.into(),
         ordering_rule: ORDERING_RULE.into(),
         selection_strategy: SELECTION_STRATEGY.iter().map(|s| s.to_string()).collect(),
         budget: observation.budget.clone(),

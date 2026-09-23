@@ -281,6 +281,7 @@ pub struct SelectedCase {
     pub case_plan_sha256: String,
 }
 pub const FULL_BALANCE_POLICY: &str = "FullObservedPublicBalance: the entire public balance observed for this exact account in the frozen population capture";
+pub const FULL_AT_FINAL_POLICY: &str = "FullAtFinalCapture: freeze the selected account and policy before execution, then use its entire positive public balance from the verified final account batch";
 
 /// A group of entities sharing execution-relevant characteristics.
 ///

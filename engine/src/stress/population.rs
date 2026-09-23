@@ -39,6 +39,7 @@ use std::path::Path;
 
 const MAINNET: &str = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d";
 pub const DECODER: &str = "spl-token-2022-interface/3.1.1; conversion-stress-population/v1";
+pub const DECODER_V2: &str = "spl-token-2022-interface/3.1.1; conversion-stress-population/v2";
 pub const KIND: &str = "conversion-stress-population";
 
 fn now() -> String {
@@ -158,7 +159,7 @@ pub fn capture(
     budget.validate()?;
     let _: Address = mint.parse().context("invalid asset mint")?;
     let mut c = Capture {
-        schema_version: 1,
+        schema_version: 2,
         kind: KIND.into(),
         run_id,
         stress_id,
@@ -167,7 +168,7 @@ pub fn capture(
         rpc_origin: rpc.origin(),
         started_at: now(),
         completed_at: String::new(),
-        decoder: DECODER.into(),
+        decoder: DECODER_V2.into(),
         observations: vec![],
     };
     eprintln!("CURRENT_STAGE:Validating mainnet identity");
@@ -392,7 +393,9 @@ pub fn evaluate_bytes(bytes: &[u8], budget: &StressBudget) -> Result<PopulationO
 /// status, count or classification is ever read out of the capture file.
 pub fn evaluate(c: &Capture, capture_sha256: &str) -> Result<PopulationObservation> {
     ensure!(
-        c.schema_version == 1 && c.kind == KIND && c.decoder == DECODER,
+        ((c.schema_version == 1 && c.decoder == DECODER)
+            || (c.schema_version == 2 && c.decoder == DECODER_V2))
+            && c.kind == KIND,
         "unsupported population capture version"
     );
     c.budget.validate()?;
@@ -494,6 +497,18 @@ pub fn evaluate(c: &Capture, capture_sha256: &str) -> Result<PopulationObservati
                         slots.push(enumeration_slot);
                         enumeration.enumeration_slot = Some(enumeration_slot);
                         let (returned, rows) = ordered_rows(value, &c.budget)?;
+                        // v1 retained the sorted index as a pointer into the
+                        // unsorted RPC response. Keep its replay bytes intact;
+                        // v2 points to the exact raw row's account object.
+                        let original_indices: BTreeMap<&str, usize> = value["value"]
+                            .as_array()
+                            .context("missing enumeration rows")?
+                            .iter()
+                            .enumerate()
+                            .filter_map(|(index, row)| {
+                                row["pubkey"].as_str().map(|address| (address, index))
+                            })
+                            .collect();
                         enumeration.rows_returned = returned;
                         let truncated = returned > rows.len();
                         if truncated {
@@ -510,7 +525,11 @@ pub fn evaluate(c: &Capture, capture_sha256: &str) -> Result<PopulationObservati
                         for (index, (address, raw)) in rows.iter().enumerate() {
                             let evidence = EvidenceRef {
                                 rpc_id: 2,
-                                pointer: format!("/value/{index}"),
+                                pointer: if c.schema_version == 2 {
+                                    format!("/value/{}/account", original_indices[address.as_str()])
+                                } else {
+                                    format!("/value/{index}")
+                                },
                                 slot: enumeration_slot,
                             };
                             let verified =
@@ -663,7 +682,11 @@ pub fn evaluate(c: &Capture, capture_sha256: &str) -> Result<PopulationObservati
                         for (index, (address, state)) in decoded.into_iter().enumerate() {
                             let evidence = EvidenceRef {
                                 rpc_id: 2,
-                                pointer: format!("/value/{index}"),
+                                pointer: if c.schema_version == 2 {
+                                    format!("/value/{}/account", original_indices[address.as_str()])
+                                } else {
+                                    format!("/value/{index}")
+                                },
                                 slot: enumeration_slot,
                             };
                             let found = resolved.get(&state.owner);
@@ -812,7 +835,7 @@ pub fn evaluate(c: &Capture, capture_sha256: &str) -> Result<PopulationObservati
     slots.dedup();
 
     Ok(PopulationObservation {
-        schema_version: 1,
+        schema_version: c.schema_version,
         kind: KIND.into(),
         run_id: c.run_id.clone(),
         stress_id: c.stress_id.clone(),

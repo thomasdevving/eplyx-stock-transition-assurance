@@ -1301,3 +1301,20 @@ provider's authority batch limit left live stress coverage incomplete; the
 population invariant stayed Indeterminate. See
 [Milestone 12 invariants](on-demand-milestone-12-invariants.md) and
 `reports/milestone12-validation.json`.
+
+## Milestone 13 — final-state stress rebinding
+
+The saved FastRPC retry audit found identical population and final token-account
+bytes for all 30 selected cases. The prior 10/10 `SourceStateChanged` reports
+per asset came from a sorted-index pointer into unsorted RPC rows. A new
+population schema binds each selected address to its original account bytes.
+The frozen selector keeps account identities, reasons, shapes and buckets;
+`FullAtFinalCapture` resolves each exact amount from the coherent final bank
+before local execution. Results separate exact final-state proof from discovery
+shape and bucket coverage. Historical schemas retain their original replay.
+Fresh healthy SPACEX and second-asset FastRPC runs locally proved ten selected
+wallet conversions each; the intentionally underfunded run produced ten actual
+VM failures with rollback. Population rollout remains Incomplete and
+OfficialTransition NotTested. See
+[Milestone 13 rebinding](on-demand-milestone-13-rebinding.md) and
+`reports/milestone13-validation.json`.

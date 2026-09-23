@@ -201,6 +201,16 @@ approximate-bank execution. Static code identity and proposed overlay inputs
 remain separately bound. Historical schema 1 reports keep original replay
 semantics. See docs/on-demand-milestone-11-coherence.md.
 
+Milestone 13 freezes stress account identities and discovery classifications
+before outcomes, then revalidates and executes each same selected account against
+its exact coherent final state. FullAtFinalCapture resolves the entire positive
+raw amount before local VM execution and binds an immutable per-case execution
+plan. Selection shape and bucket remain historical, and drift can qualify their
+coverage even when exact final-state conversion is Proven. No peer substitution,
+stale population execution, retrospective proof for older schemas, issuer
+authorization, wallet key possession or population-wide readiness is introduced.
+See docs/on-demand-milestone-13-rebinding.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.
