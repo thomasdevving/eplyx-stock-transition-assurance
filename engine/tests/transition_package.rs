@@ -64,6 +64,101 @@ fn valid_package_has_deterministic_identity_and_proposed_origin() {
     assert_eq!(plan.replacement_mint, a.manifest.replacement_mint);
 }
 
+fn invariant_manifest(p: &PackageDir) -> Value {
+    let mut manifest = p.manifest();
+    manifest["schemaVersion"] = json!(2);
+    manifest["invariantSchemaVersion"] = json!(1);
+    manifest["invariants"] = json!([
+        {"type": "conversion_output_matches", "severity": "blocking"},
+        {"type": "no_selected_case_failed", "severity": "blocking"},
+        {"type": "authority_model_supported", "severity": "warning"}
+    ]);
+    manifest
+}
+
+#[test]
+fn invariant_schema_rejects_unknown_malformed_and_duplicate_definitions() {
+    for (label, definition) in [
+        (
+            "unknown",
+            json!({"type":"operator_script", "severity":"blocking"}),
+        ),
+        (
+            "missing-severity",
+            json!({"type":"conversion_output_matches"}),
+        ),
+        (
+            "extra-field",
+            json!({"type":"conversion_output_matches", "severity":"blocking", "status":"Satisfied"}),
+        ),
+        (
+            "arbitrary-path",
+            json!({"type":"required_path_available", "severity":"blocking", "path":"/any/json/path"}),
+        ),
+    ] {
+        let p = PackageDir::new(label);
+        let mut manifest = invariant_manifest(&p);
+        manifest["invariants"] = json!([definition]);
+        p.set_manifest(manifest);
+        assert!(p.error().contains("invalid package manifest"), "{label}");
+    }
+    let p = PackageDir::new("duplicate-invariant");
+    let mut manifest = invariant_manifest(&p);
+    manifest["invariants"] = json!([
+        {"type":"conversion_output_matches", "severity":"blocking"},
+        {"type":"conversion_output_matches", "severity":"warning"}
+    ]);
+    p.set_manifest(manifest);
+    assert!(p.error().contains("duplicate invariant"));
+}
+
+#[test]
+fn invariant_identity_binds_type_severity_config_and_is_order_independent() {
+    let a = PackageDir::new("invariant-identity-a");
+    let original = invariant_manifest(&a);
+    a.set_manifest(original.clone());
+    let original_hash = load(&a.0).unwrap().transition_package_sha256;
+
+    let reordered = PackageDir::new("invariant-order");
+    let mut reversed = original.clone();
+    reversed["invariants"].as_array_mut().unwrap().reverse();
+    reordered.set_manifest(reversed);
+    assert_eq!(
+        original_hash,
+        load(&reordered.0).unwrap().transition_package_sha256
+    );
+
+    for (label, changed) in [
+        (
+            "severity",
+            json!({"type":"authority_model_supported", "severity":"blocking"}),
+        ),
+        (
+            "type",
+            json!({"type":"no_positive_balance_stranded", "severity":"warning"}),
+        ),
+        (
+            "config",
+            json!({"type":"required_path_available", "severity":"warning", "path":"OfficialTransition"}),
+        ),
+    ] {
+        let p = PackageDir::new(label);
+        let mut manifest = original.clone();
+        manifest["invariants"][2] = changed;
+        p.set_manifest(manifest);
+        assert_ne!(
+            original_hash,
+            load(&p.0).unwrap().transition_package_sha256,
+            "{label}"
+        );
+    }
+    let old = PackageDir::new("schema-one-old-identity");
+    assert_ne!(
+        original_hash,
+        load(&old.0).unwrap().transition_package_sha256
+    );
+}
+
 #[test]
 fn schema_adapter_address_and_status_claims_fail_closed() {
     for (label, path, replacement) in [

@@ -2,9 +2,10 @@
 //!
 //! A package is a proposal. Validation never grants conversion or issuer proof.
 use super::{
-    demo, AmountMode, AuthorityModel, CandidateAuthority, ConversionPlan, ConversionTerms,
-    MechanismId, PlanProvenance, ReplacementDelivery, ReserveConfig, Rounding, SourceConsumption,
-    ADAPTER_ID,
+    demo,
+    invariants::{RequiredPath, Severity},
+    AmountMode, AuthorityModel, CandidateAuthority, ConversionPlan, ConversionTerms, MechanismId,
+    PlanProvenance, ReplacementDelivery, ReserveConfig, Rounding, SourceConsumption, ADAPTER_ID,
 };
 use crate::lifecycle::exposure::sha256;
 use anyhow::{ensure, Context, Result};
@@ -15,6 +16,9 @@ use std::path::{Component, Path, PathBuf};
 
 pub const ADAPTER: &str = "fixed_ratio_conversion_v1";
 pub const VERSION: u32 = 1;
+pub const INVARIANT_PACKAGE_VERSION: u32 = 2;
+pub const INVARIANT_SCHEMA_VERSION: u32 = 1;
+pub const MAX_INVARIANTS: usize = 16;
 pub const MAX_MANIFEST_BYTES: u64 = 16 * 1024;
 pub const MAX_CONFIG_BYTES: u64 = 16 * 1024;
 pub const MAX_PROGRAM_BYTES: u64 = 2 * 1024 * 1024;
@@ -48,6 +52,78 @@ pub struct Manifest {
     pub effective_at: DateTime<Utc>,
     pub config: String,
     pub config_sha256: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub invariant_schema_version: Option<u32>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub invariants: Option<Vec<InvariantDefinition>>,
+}
+
+#[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(tag = "type", rename_all = "snake_case", deny_unknown_fields)]
+pub enum InvariantDefinition {
+    ConversionOutputMatches {
+        severity: Severity,
+    },
+    NoSelectedCaseFailed {
+        severity: Severity,
+    },
+    RequiredPathAvailable {
+        severity: Severity,
+        path: RequiredPath,
+    },
+    AuthorityModelSupported {
+        severity: Severity,
+    },
+    NoPositiveBalanceStranded {
+        severity: Severity,
+    },
+}
+
+impl InvariantDefinition {
+    pub fn severity(&self) -> Severity {
+        match self {
+            Self::ConversionOutputMatches { severity }
+            | Self::NoSelectedCaseFailed { severity }
+            | Self::RequiredPathAvailable { severity, .. }
+            | Self::AuthorityModelSupported { severity }
+            | Self::NoPositiveBalanceStranded { severity } => *severity,
+        }
+    }
+    pub fn kind(&self) -> &'static str {
+        match self {
+            Self::ConversionOutputMatches { .. } => "conversion_output_matches",
+            Self::NoSelectedCaseFailed { .. } => "no_selected_case_failed",
+            Self::RequiredPathAvailable { .. } => "required_path_available",
+            Self::AuthorityModelSupported { .. } => "authority_model_supported",
+            Self::NoPositiveBalanceStranded { .. } => "no_positive_balance_stranded",
+        }
+    }
+    pub fn scope(&self) -> &'static str {
+        match self {
+            Self::ConversionOutputMatches { .. }
+            | Self::RequiredPathAvailable {
+                path: RequiredPath::ReplacementConversion,
+                ..
+            } => "ExactCandidateConversion",
+            Self::RequiredPathAvailable {
+                path: RequiredPath::OfficialTransition,
+                ..
+            } => "ExactOfficialTransition",
+            Self::NoSelectedCaseFailed { .. } => "SelectedStressCases",
+            Self::AuthorityModelSupported { .. } => "SelectedAuthorityCases",
+            Self::NoPositiveBalanceStranded { .. } => "ObservedPositiveBalancePopulation",
+        }
+    }
+    pub fn config(&self) -> serde_json::Value {
+        match self {
+            Self::RequiredPathAvailable { path, .. } => serde_json::json!({"path": path}),
+            _ => serde_json::json!({}),
+        }
+    }
+    pub fn id(&self) -> String {
+        let identity = crate::expansion::canonical(self).expect("typed invariant is serializable");
+        format!("inv-{}", &sha256(identity.as_bytes())[..20])
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
@@ -170,12 +246,43 @@ pub fn load(directory: &Path) -> Result<ValidatedPackage> {
         .context("package directory missing")?;
     ensure!(root.is_dir(), "package root is not a directory");
     let manifest_bytes = bounded_read(&member(&root, "eplyx.json")?, MAX_MANIFEST_BYTES)?;
-    let manifest: Manifest =
+    let mut manifest: Manifest =
         serde_json::from_slice(&manifest_bytes).context("invalid package manifest")?;
-    ensure!(
-        manifest.schema_version == VERSION,
-        "unsupported package schema"
-    );
+    match manifest.schema_version {
+        VERSION => ensure!(
+            manifest.invariant_schema_version.is_none() && manifest.invariants.is_none(),
+            "schema 1 cannot declare invariants"
+        ),
+        INVARIANT_PACKAGE_VERSION => {
+            ensure!(
+                manifest.invariant_schema_version == Some(INVARIANT_SCHEMA_VERSION),
+                "unsupported invariant schema"
+            );
+            let definitions = manifest
+                .invariants
+                .as_mut()
+                .context("schema 2 requires invariants")?;
+            ensure!(
+                !definitions.is_empty() && definitions.len() <= MAX_INVARIANTS,
+                "invariant count exceeds bounds"
+            );
+            let mut keys = definitions
+                .iter()
+                .map(|definition| {
+                    crate::expansion::canonical(&(definition.kind(), definition.config()))
+                })
+                .collect::<Result<Vec<_>>>()?;
+            keys.sort();
+            ensure!(
+                keys.windows(2).all(|pair| pair[0] != pair[1]),
+                "duplicate invariant definition"
+            );
+            definitions.sort_by_key(|definition| {
+                crate::expansion::canonical(definition).expect("typed invariant is serializable")
+            });
+        }
+        _ => anyhow::bail!("unsupported package schema"),
+    }
     ensure!(manifest.adapter == ADAPTER, "unsupported package adapter");
     let source: Address = manifest
         .source_mint
@@ -240,7 +347,7 @@ pub fn load(directory: &Path) -> Result<ValidatedPackage> {
     }
     let canonical = crate::expansion::canonical(&manifest)?;
     let identity = crate::expansion::canonical(&serde_json::json!({
-        "schema_version": VERSION,
+        "schema_version": manifest.schema_version,
         "adapter": ADAPTER,
         "manifest": canonical,
         "program_sha256": program_sha256,

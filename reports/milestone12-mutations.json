@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "milestone12-invariant-mutations",
+  "results": [
+    {
+      "id": "indeterminate_as_satisfied",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "conversion_output_uses_reconciled_vm_evidence_only"
+    },
+    {
+      "id": "sample_as_population",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "bounded_sample_never_satisfies_population_requirement"
+    },
+    {
+      "id": "replacement_as_official",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "replacement_proof_cannot_satisfy_official_path"
+    },
+    {
+      "id": "ignore_invariant_identity",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "invariant_identity_binds_type_severity_config_and_is_order_independent"
+    },
+    {
+      "id": "ignore_blocking_violation",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "invariant_severity_and_certainty_affect_gate_without_mutating_evidence"
+    },
+    {
+      "id": "trust_serialized_invariants",
+      "killed": true,
+      "exit_code": 1,
+      "compiler_error": false,
+      "named_assertion": "serialized_invariant_evidence_ref_rejected"
+    },
+    {
+      "id": "ignore_existing_reconciliation",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "conversion_output_uses_reconciled_vm_evidence_only"
+    }
+  ],
+  "restored_sources": true
+}

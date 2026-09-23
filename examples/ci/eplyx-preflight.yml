@@ -1,6 +1,9 @@
 # Copy to .github/workflows/ after configuring a Linux runner with Rust,
 # cargo-build-sbf, Node and a bounded read-only SOLANA_RPC_URL secret.
 # EPLYX_PACKAGE_TEMPLATE is a repository path to a package manifest/config.
+# For typed rollout invariants, use a schema 2 template such as
+# examples/transitions/demo-invariants-healthy. Its invariant findings flow
+# into report.md and this workflow's Job Summary.
 name: Eplyx pre-flight gate
 on:
   pull_request:

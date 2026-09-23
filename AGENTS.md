@@ -183,6 +183,15 @@ private approvals. No non-wallet account gains a wallet signer or conversion pro
 from resolution. Historical package replay remains unchanged; fresh stress worlds
 bind the authority plan. See docs/on-demand-milestone-10-authority.md.
 
+Milestone 12 adds bounded typed operator invariants to schema 2 transition
+packages. Definitions and severity are part of canonical package identity;
+evaluation consumes verified conversion, stress, authority and population
+evidence only after execution. No invariant grants proof or changes analytical
+readiness. A bounded sample cannot satisfy a population requirement. Gate policy
+handles invariant findings separately, and offline replay recomputes them before
+comparing saved reports. Schema 1 packages retain their historical identity and
+replay semantics. See docs/on-demand-milestone-12-invariants.md.
+
 Milestone 11 adds a bounded coherent final execution recapture after discovery
 and frozen selection. The exact final account set and Clock/context rule are
 reverified offline before candidate VM execution; at most three serial final

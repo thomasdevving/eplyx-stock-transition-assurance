@@ -1,5 +1,5 @@
 //! Fresh package pre-flight and fully offline replay using the existing M6/M7 paths.
-use super::{current as conversion, package, package_gate};
+use super::{current as conversion, invariants, package, package_gate};
 use crate::{
     lifecycle::{current as wallet, exposure::sha256, rpc::HttpSolanaRpc},
     stress::{authority, execute, population, select, StressBudget},
@@ -225,6 +225,19 @@ fn markdown(report: &Value) -> String {
         analytical_label,
         report["declared_preflight_status"].as_str().unwrap_or("Incomplete"),
     );
+    if let Some(findings) = report.get("invariants").and_then(Value::as_array) {
+        output.push_str("\n## Rollout invariants\n\n");
+        for finding in findings {
+            output.push_str(&format!(
+                "- **{}** {} ({}, {}): {}\n",
+                finding["status"].as_str().unwrap_or("Indeterminate"),
+                finding["invariant_type"].as_str().unwrap_or("unknown"),
+                finding["severity"].as_str().unwrap_or("unknown"),
+                finding["scope"].as_str().unwrap_or("unknown"),
+                finding["explanation"].as_str().unwrap_or("")
+            ));
+        }
+    }
     if let Some(gate) = report.get("deployment_gate") {
         output.push_str(&format!(
             "\n## Deployment gate\n\n**{}** under `{}`.\n\n",
@@ -370,13 +383,27 @@ fn evaluate(package: &package::ValidatedPackage, root: &Path, b: &Bindings) -> R
         (None, None) => None, // Historical Milestone 8/9 package reports.
         _ => anyhow::bail!("incomplete authority resolution binding"),
     };
-    let report = summary(
+    let mut report = summary(
         package,
         b,
         conversion_value,
         &stress_value,
         authority.as_ref(),
     );
+    if let Some(definitions) = &package.manifest.invariants {
+        let evidence = invariants::Evidence {
+            conversion: conversion_value,
+            stress: &stress_value,
+            authority: authority.as_ref(),
+            population: &stress_value["population_summary"],
+            conversion_capture_sha256: &b.conversion_capture_sha256,
+            stress_cases_sha256: &b.cases_sha256,
+            population_sha256: &b.population_sha256,
+            authority_report_sha256: b.authority_report_sha256.as_deref(),
+        };
+        report["invariants"] = serde_json::to_value(invariants::evaluate(definitions, &evidence))?;
+        report["invariant_schema_version"] = json!(package::INVARIANT_SCHEMA_VERSION);
+    }
     match b.gate_policy {
         Some(policy) => with_gate(report, policy),
         None => Ok(report), // Milestone 8 report replay is byte-for-byte compatible.

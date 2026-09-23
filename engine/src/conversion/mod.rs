@@ -8,6 +8,7 @@
 pub mod coherence;
 pub mod current;
 pub mod demo;
+pub mod invariants;
 pub mod package;
 pub mod package_gate;
 pub mod package_preflight;

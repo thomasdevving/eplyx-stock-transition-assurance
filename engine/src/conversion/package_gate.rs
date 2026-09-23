@@ -1,4 +1,5 @@
 //! A deployment decision over verified analytical findings, never new evidence.
+use super::invariants::{Result as InvariantResult, Severity, Status};
 use anyhow::{ensure, Result};
 use clap::ValueEnum;
 use serde::{Deserialize, Serialize};
@@ -124,6 +125,24 @@ pub fn evaluate(report: &Value, policy: Policy) -> Result<DeploymentGate> {
         report["funds_moved"] == false,
         "unexpected funds movement claim"
     );
+    let mut invariant_warning = false;
+    if let Some(findings) = report.get("invariants") {
+        let findings: Vec<InvariantResult> = serde_json::from_value(findings.clone())?;
+        for finding in findings {
+            match (finding.severity, finding.status) {
+                (Severity::Blocking, Status::Violated) => blocked = true,
+                (Severity::Blocking, Status::Indeterminate) if policy == Policy::Strict => {
+                    blocked = true
+                }
+                (_, Status::Violated | Status::Indeterminate) => invariant_warning = true,
+                _ => continue,
+            }
+            reasons.push(format!(
+                "invariant {} ({}) is {:?}: {}",
+                finding.invariant_id, finding.invariant_type, finding.status, finding.explanation
+            ));
+        }
+    }
     let analytical = report["declared_preflight_status"].as_str().unwrap_or("");
     let expected_analytical = if report["candidate_plan_readiness"] == "Blocked"
         || report["conversion_stress_readiness"]["status"] == "Blocked"
@@ -142,7 +161,7 @@ pub fn evaluate(report: &Value, policy: Policy) -> Result<DeploymentGate> {
     );
     let outcome = if blocked || (policy == Policy::Strict && incomplete) {
         Outcome::Block
-    } else if incomplete {
+    } else if incomplete || invariant_warning {
         Outcome::Warn
     } else {
         Outcome::Pass
@@ -231,5 +250,65 @@ mod tests {
                 == Outcome::Block
         );
         assert!(evaluate(&report("Invalid", "Ready", "Ready"), Policy::Strict).is_err());
+    }
+
+    #[test]
+    fn invariant_severity_and_certainty_affect_gate_without_mutating_evidence() {
+        let base = report("Ready", "Ready", "Ready");
+        for (severity, status, block_only, strict) in [
+            (
+                Severity::Blocking,
+                Status::Violated,
+                Outcome::Block,
+                Outcome::Block,
+            ),
+            (
+                Severity::Warning,
+                Status::Violated,
+                Outcome::Warn,
+                Outcome::Warn,
+            ),
+            (
+                Severity::Blocking,
+                Status::Indeterminate,
+                Outcome::Warn,
+                Outcome::Block,
+            ),
+            (
+                Severity::Warning,
+                Status::Indeterminate,
+                Outcome::Warn,
+                Outcome::Warn,
+            ),
+            (
+                Severity::Blocking,
+                Status::Satisfied,
+                Outcome::Pass,
+                Outcome::Pass,
+            ),
+        ] {
+            let mut analytical = base.clone();
+            analytical["invariants"] = json!([InvariantResult {
+                invariant_id: "inv-test".into(),
+                invariant_type: "conversion_output_matches".into(),
+                severity,
+                status,
+                scope: "ExactCandidateConversion".into(),
+                config: json!({}),
+                evidence_refs: vec!["digest".into()],
+                explanation: "test finding".into(),
+                evaluation_version: "eplyx-package-invariants/v1".into(),
+            }]);
+            let original = analytical.clone();
+            assert_eq!(
+                evaluate(&analytical, Policy::BlockOnly).unwrap().outcome,
+                block_only
+            );
+            assert_eq!(
+                evaluate(&analytical, Policy::Strict).unwrap().outcome,
+                strict
+            );
+            assert_eq!(analytical, original);
+        }
     }
 }

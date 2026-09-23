@@ -1287,3 +1287,17 @@ selected, rollout readiness remains Incomplete and OfficialTransition NotTested.
 The final full regression passed after the last executable change. See
 [Milestone 11 coherent capture](on-demand-milestone-11-coherence.md) and
 `reports/milestone11-validation.json`.
+
+## Milestone 12 — operator rollout invariants
+
+Schema 2 transition packages can declare a bounded set of typed, severity-tagged
+requirements. Eplyx evaluates them after the existing exact conversion, stress,
+authority and readiness evidence, then incorporates the findings into the CI gate.
+The saved report carries exact scope and evidence references; offline replay
+recomputes every finding. Schema 1 package identity and replay stay compatible.
+FastRPC live runs confirmed a healthy exact candidate output, an underfunded
+candidate execution failure and the same mechanism on a second asset. The
+provider's authority batch limit left live stress coverage incomplete; the
+population invariant stayed Indeterminate. See
+[Milestone 12 invariants](on-demand-milestone-12-invariants.md) and
+`reports/milestone12-validation.json`.
