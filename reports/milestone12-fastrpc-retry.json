@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "kind": "milestone12-fastrpc-authority-retry",
+  "captured_on": "2026-09-23",
+  "engine_binary_sha256": "83ab63dd919d44fba0c8a30d54967f5963ba177b7bfe578984113fd2564b3fed",
+  "previous_observation": "reports/milestone12-validation.json",
+  "provider": "FastRPC read-only mainnet",
+  "initial_authority_batch_diagnostic": {
+    "requested_accounts": 100,
+    "returned_accounts": 100,
+    "response_context_slot": 449821548
+  },
+  "runs": [
+    {
+      "name": "healthy",
+      "artifact_directory": "target/milestone12-retry-healthy-fastrpc",
+      "captured_at": "2026-09-23T21:13:08.523Z",
+      "transition_package_sha256": "8b63840c8d71066822462c4dc610f22228f308f2d044ebb40909dc8cdac5ecfa",
+      "artifact_sha256": {
+        "population.capture.json": "ea3038e64bb3c255babe5d393ed7b65a8a6b854d4038c845919de05cda0f5019",
+        "conversion.capture.json": "74df6c30f20b2b2acabe1d15b0c7d39c8d63c2e34c8ac330c9ff6265fdd34136",
+        "authority.plan.json": "853e7240f91b8e819dd5767da1daeeee40225cd20ba3441435cd663cc6a94811",
+        "authority.report.json": "3d44735fee3ed270b9091aacedea23c38ec542be2389031b560a22d802ed3261",
+        "stress.plan.json": "6b70b6044f78d473b66ada7a6ebfbb9e86d95d1cb16fc3b7eddf9c1e2f6f53e2",
+        "stress.cases.json": "a810598733fd810e3fb3e72f832b2a4baa34b2ba632988fd713c50d802b91de6",
+        "report.json": "8ece510bfba75e10cbb94bb7267b1f70f7c54e4a975f51d30dd5fd0784722bd0"
+      },
+      "enumeration_completeness": "CompleteForQuery",
+      "token_accounts_observed": 17848,
+      "positive_balance_accounts_observed": 10039,
+      "authority_resolution_completeness": "Complete",
+      "selected_authority_cases": 20,
+      "selected_stress_cases": 10,
+      "stress_source_state_changed": 10,
+      "stress_indeterminate": 10,
+      "stress_proven": 0,
+      "candidate_conversion": "Proven",
+      "candidate_reason": null,
+      "candidate_plan_readiness": "Ready",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "invariant_statuses": {
+        "authority_model_supported": "Violated",
+        "conversion_output_matches": "Satisfied",
+        "no_positive_balance_stranded": "Indeterminate",
+        "no_selected_case_failed": "Indeterminate"
+      },
+      "gate_policy": "block-only",
+      "gate_outcome": "Warn",
+      "offline_replay_exit": 0,
+      "funds_moved": false
+    },
+    {
+      "name": "second",
+      "artifact_directory": "target/milestone12-retry-second-fastrpc",
+      "captured_at": "2026-09-23T21:16:29.186Z",
+      "transition_package_sha256": "4a72bca33b2d71a1561e70df0568604523a0f440a4a12840c195e940ec4036dd",
+      "artifact_sha256": {
+        "population.capture.json": "4495b557de24872b218dd58357f2029a00fc4367609a02a280c2fb6ad48200f2",
+        "conversion.capture.json": "6e4056dd2e0913720ee9d774a9d5c63e13f5c4246c3203366a9c35311ea0a5ba",
+        "authority.plan.json": "6ad28c664fe1411fae876b5539c4e9be0fbd672e8740da327e7ad81abf0318d5",
+        "authority.report.json": "3bcba82d2d534926ce70f3096010b75f766a6b853b637607da800e0310e6b154",
+        "stress.plan.json": "b9427d8b5e4f4be743ba7d06a5f0d922bb6692952173814fc9a9fbf712ad7b03",
+        "stress.cases.json": "cef36bcbc9a8988f2143c53d6c27f299ce2f28d4ff56552093575597d5b2fdab",
+        "report.json": "8ccceed732c0f654cd9c966568371817f4c4f48479ae84f4a503dc8089527107"
+      },
+      "enumeration_completeness": "CompleteForQuery",
+      "token_accounts_observed": 65321,
+      "positive_balance_accounts_observed": 33967,
+      "authority_resolution_completeness": "Complete",
+      "selected_authority_cases": 20,
+      "selected_stress_cases": 10,
+      "stress_source_state_changed": 10,
+      "stress_indeterminate": 10,
+      "stress_proven": 0,
+      "candidate_conversion": "Indeterminate",
+      "candidate_reason": "Candidate conversion precondition could not be established: SourceStateChanged",
+      "candidate_plan_readiness": "Incomplete",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "invariant_statuses": {
+        "authority_model_supported": "Violated",
+        "conversion_output_matches": "Indeterminate",
+        "no_positive_balance_stranded": "Indeterminate",
+        "no_selected_case_failed": "Indeterminate"
+      },
+      "gate_policy": "block-only",
+      "gate_outcome": "Warn",
+      "offline_replay_exit": 0,
+      "funds_moved": false
+    },
+    {
+      "name": "underfunded",
+      "artifact_directory": "target/milestone12-retry-underfunded-fastrpc",
+      "captured_at": "2026-09-23T21:19:12.935Z",
+      "transition_package_sha256": "b48aae0c5641caec784d475d6b4a5b10c2e59a011ae838ffa5687861b0cfd8b0",
+      "artifact_sha256": {
+        "population.capture.json": "d87bc2415168af4d2b25feed405833314610df04ebd7fe11240987cd1e9cb536",
+        "conversion.capture.json": "1e74117e6923beb0ebabe0db5cc5a707fc16630e27e8d5e3adfa22a149751431",
+        "authority.plan.json": "17daf5b2d8a81decf0f170996f275f883a37a1083a067addc0ea74bc013909de",
+        "authority.report.json": "093ce74f208e73a99a0134745419e36ba71abfa959ad24c30115bfc66cfea159",
+        "stress.plan.json": "e20b86ad7e05e140eccf36c18e5062ac0ed13b0356e6ab0b6ae3ad023ef77109",
+        "stress.cases.json": "2281688324304824919a4cec5ca01db97ee1993f68ecde50101003a312d23efc",
+        "report.json": "883a3db77ae01bcf6ed0b0263b2da0df2e6fd608ad4be0157d69e8e9fd027e8e"
+      },
+      "enumeration_completeness": "CompleteForQuery",
+      "token_accounts_observed": 17848,
+      "positive_balance_accounts_observed": 10039,
+      "authority_resolution_completeness": "Complete",
+      "selected_authority_cases": 20,
+      "selected_stress_cases": 10,
+      "stress_source_state_changed": 10,
+      "stress_indeterminate": 10,
+      "stress_proven": 0,
+      "candidate_conversion": "Failed",
+      "candidate_reason": "The candidate conversion failed in local simulation: InstructionError(1, Custom(13)). No mainnet funds moved and the watched accounts rolled back.",
+      "candidate_plan_readiness": "Blocked",
+      "conversion_stress_readiness": "Incomplete",
+      "population_rollout_readiness": "Incomplete",
+      "official_transition": "NotTested",
+      "invariant_statuses": {
+        "authority_model_supported": "Violated",
+        "conversion_output_matches": "Violated",
+        "no_positive_balance_stranded": "Indeterminate",
+        "no_selected_case_failed": "Indeterminate"
+      },
+      "gate_policy": "block-only",
+      "gate_outcome": "Block",
+      "offline_replay_exit": 3,
+      "funds_moved": false
+    }
+  ],
+  "txstream": {
+    "supplied_product": "Aperture TxStream",
+    "used_for_this_retry": false,
+    "reason": "The retry required finalized account snapshots via JSON-RPC; TxStream is a transaction stream."
+  },
+  "limitations": [
+    "Selected stress cases were frozen and never replaced after SourceStateChanged.",
+    "No candidate or stress result establishes OfficialTransition, issuer authorization, signer possession, or population rollout readiness.",
+    "Only read-only mainnet RPC capture and offline local execution/replay were performed; no funds moved."
+  ]
+}
