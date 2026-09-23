@@ -9,6 +9,94 @@ use eplyx_lifecycle_impact::{
 };
 use harness::*;
 use serde_json::{json, Value};
+
+fn set_final_clock_slot(capture: &mut conversion::Capture, record: usize, slot: u64) {
+    let addresses = capture.observations[record].params[0].as_array().unwrap();
+    let index = addresses
+        .iter()
+        .position(|address| address == "SysvarC1ock11111111111111111111111111111111")
+        .unwrap();
+    let response = capture.observations[record].result.as_mut().unwrap();
+    let raw = &mut response["value"][index];
+    let mut bytes = base64_decode(raw["data"][0].as_str().unwrap());
+    bytes[..8].copy_from_slice(&slot.to_le_bytes());
+    raw["data"][0] = json!(base64_encode(&bytes));
+}
+
+#[test]
+fn coherent_retry_replays_the_exact_final_bank_and_not_discovery_bytes() {
+    let mut capture = capture(&plan(OPENAI_MINT), RUN, CHECK);
+    capture.schema_version = 2;
+    let slot = capture.observations[4].result.as_ref().unwrap()["context"]["slot"]
+        .as_u64()
+        .unwrap();
+    let mut final_record = capture.observations[4].clone();
+    final_record.params[1]["minContextSlot"] = json!(slot + 3);
+    final_record.result.as_mut().unwrap()["context"]["slot"] = json!(slot + 3);
+    final_record.started_at = "2026-09-21T00:00:10Z".into();
+    final_record.completed_at = "2026-09-21T00:00:11Z".into();
+    capture.observations.push(final_record);
+    set_final_clock_slot(&mut capture, 4, slot + 2);
+    set_final_clock_slot(&mut capture, 5, slot + 3);
+    let result = run_capture(&capture).unwrap();
+    assert_eq!(result["status"], "Proven", "final_recapture_bytes_used");
+    assert_eq!(result["execution_context"]["final_context_slot"], slot + 3);
+    assert_eq!(
+        result["execution_context"]["attempts"][1]["min_context_slot"],
+        slot + 3
+    );
+    assert_eq!(result["execution_context"]["atomic_single_slot"], false);
+    assert_eq!(result["execution_context"]["clock_slot"], slot + 3);
+    assert_eq!(
+        result["execution_context"]["discovery_contexts"][3]["response_context_slot"],
+        capture.observations[3].result.as_ref().unwrap()["context"]["slot"]
+    );
+}
+
+#[test]
+fn exhausted_coherence_capture_is_indeterminate_and_never_failed_execution() {
+    let mut capture = capture(&plan(OPENAI_MINT), RUN, CHECK);
+    capture.schema_version = 2;
+    let slot = capture.observations[4].result.as_ref().unwrap()["context"]["slot"]
+        .as_u64()
+        .unwrap();
+    set_final_clock_slot(&mut capture, 4, slot + 2);
+    let result = run_capture(&capture).unwrap();
+    assert_eq!(
+        result["status"], "Indeterminate",
+        "stabilization_never_becomes_failed_or_proven"
+    );
+    assert_eq!(result["execution_performed"], false);
+    assert!(result["reason"]
+        .as_str()
+        .unwrap()
+        .contains("CouldNotEstablishCoherentExecutionContext"));
+    assert_eq!(
+        result["execution_context"]["coherence_status"],
+        "Unverified"
+    );
+}
+
+#[test]
+fn proposed_candidate_config_keeps_the_exact_operator_fee() {
+    let mut candidate = plan(OPENAI_MINT);
+    candidate.terms.conversion_fee_bps = 37;
+    let c = corpus();
+    let replacement_program = c.raw[OPENAI_MINT]["owner"].as_str().unwrap();
+    let overlay = demo::derive(
+        &candidate.sha256().unwrap(),
+        &c.owner,
+        OPENAI_MINT,
+        replacement_program,
+    )
+    .unwrap();
+    let bytes = demo::config_data(&candidate, &overlay, c.source_decimals, 6).unwrap();
+    assert_eq!(
+        &bytes[146..148],
+        &37u16.to_le_bytes(),
+        "candidate_config_fee_bound"
+    );
+}
 #[test]
 fn candidate_conversion_executes_the_actual_program_and_reconciles_exactly() {
     let v = proven(OPENAI_MINT);

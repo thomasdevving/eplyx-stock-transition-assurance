@@ -97,6 +97,25 @@ pub fn evaluate(report: &Value, policy: Policy) -> Result<DeploymentGate> {
             "{failed} exact selected stress cases failed in local execution"
         ));
     }
+    if let Some(coverage) = report
+        .get("non_standard_account_control")
+        .and_then(|r| r.get("coverage"))
+    {
+        let selected = coverage["cases_selected"].as_u64().unwrap_or(0);
+        let remaining = coverage["unselected_non_wallet_accounts"]
+            .as_u64()
+            .unwrap_or(0);
+        match report["population_summary"]["enumeration_completeness"].as_str() {
+            Some(completeness) if completeness != "CompleteForQuery" => {
+                reasons.push(format!(
+                    "Authority control inspected for {selected} selected non-wallet accounts among observed accounts; {remaining} more were observed outside the bounded selection. Enumeration is {completeness}, so the full population is unknown"
+                ));
+            }
+            _ => reasons.push(format!(
+                "Authority control inspected for {selected} selected non-wallet accounts; {remaining} remain outside the bounded selection"
+            )),
+        }
+    }
     ensure!(
         report["official_transition"] == "NotTested",
         "unexpected official transition claim"

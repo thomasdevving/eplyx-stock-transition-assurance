@@ -175,6 +175,23 @@ The exact packaged candidate bytes must be the only candidate bytes loaded into
 LiteSVM. Saved Milestone 8 reports retain their original replay semantics.
 See docs/on-demand-milestone-9-ci-gate.md.
 
+Milestone 10 adds a frozen bounded second-layer authority-resolution plan over the
+fresh population's already captured recorded-authority accounts. Coarse classes,
+control resolution and conversion outcomes remain separate. Exact DLMM pool/vault
+PDA proof establishes protocol custody only; SPL multisig decoding cannot supply
+private approvals. No non-wallet account gains a wallet signer or conversion proof
+from resolution. Historical package replay remains unchanged; fresh stress worlds
+bind the authority plan. See docs/on-demand-milestone-10-authority.md.
+
+Milestone 11 adds a bounded coherent final execution recapture after discovery
+and frozen selection. The exact final account set and Clock/context rule are
+reverified offline before candidate VM execution; at most three serial final
+attempts use a monotonic minContextSlot chain. Source drift or failed coherence
+is Indeterminate and never triggers peer replacement, amount adjustment or
+approximate-bank execution. Static code identity and proposed overlay inputs
+remain separately bound. Historical schema 1 reports keep original replay
+semantics. See docs/on-demand-milestone-11-coherence.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.

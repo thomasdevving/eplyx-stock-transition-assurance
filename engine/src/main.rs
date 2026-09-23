@@ -146,6 +146,22 @@ enum Command {
         #[arg(long)]
         out: PathBuf,
     },
+    /// Freeze a bounded non-wallet authority subset before any control adapter runs.
+    PlanAuthorityResolution {
+        #[arg(long)]
+        population: PathBuf,
+        #[arg(long)]
+        out: PathBuf,
+    },
+    /// Resolve the frozen authority subset from the captured population, offline.
+    ResolveAuthorityResolution {
+        #[arg(long)]
+        population: PathBuf,
+        #[arg(long)]
+        authority_plan: PathBuf,
+        #[arg(long)]
+        out: PathBuf,
+    },
     /// Freeze the deterministic stress-test plan offline. This must run before any
     /// case capture or execution, so selection can never see a result.
     PlanConversionStress {
@@ -186,6 +202,10 @@ enum Command {
         cases_sha256: String,
         #[arg(long)]
         program_sha256: String,
+        #[arg(long)]
+        authority_plan: Option<PathBuf>,
+        #[arg(long)]
+        authority_report: Option<PathBuf>,
     },
     /// Fetch bounded current mainnet observations; never constructs execution proof.
     InspectCurrent(CurrentArgs),
@@ -997,6 +1017,61 @@ fn run() -> Result<ExitCode> {
             println!("{{}}");
             Ok(ExitCode::SUCCESS)
         }
+        Command::PlanAuthorityResolution { population, out } => {
+            use eplyx_lifecycle_impact::stress::{
+                authority, population as acquisition, StressBudget,
+            };
+            let bytes = std::fs::read(population)?;
+            let observed = acquisition::evaluate_bytes(&bytes, &StressBudget::from_env())?;
+            let frozen = authority::plan(&observed)?;
+            let canonical = eplyx_lifecycle_impact::expansion::canonical(&frozen)?;
+            let mut file = std::fs::OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .open(out)?;
+            std::io::Write::write_all(&mut file, canonical.as_bytes())?;
+            file.sync_all()?;
+            println!(
+                "{}",
+                serde_json::json!({
+                    "authority_plan_sha256": eplyx_lifecycle_impact::expansion::digest(&frozen)?,
+                    "population_capture_sha256": observed.capture_sha256,
+                    "selected": frozen.selected.len(),
+                    "frozen_before_resolution": true,
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ResolveAuthorityResolution {
+            population,
+            authority_plan,
+            out,
+        } => {
+            use eplyx_lifecycle_impact::stress::{
+                authority, population as acquisition, StressBudget,
+            };
+            let bytes = std::fs::read(population)?;
+            let observed = acquisition::evaluate_bytes(&bytes, &StressBudget::from_env())?;
+            let capture: acquisition::Capture = serde_json::from_slice(&bytes)?;
+            let frozen: authority::Plan = serde_json::from_slice(&std::fs::read(authority_plan)?)?;
+            let resolved = authority::resolve(&frozen, &observed, &capture)?;
+            let canonical = eplyx_lifecycle_impact::expansion::canonical(&resolved)?;
+            let mut file = std::fs::OpenOptions::new()
+                .write(true)
+                .create_new(true)
+                .open(out)?;
+            std::io::Write::write_all(&mut file, canonical.as_bytes())?;
+            file.sync_all()?;
+            println!(
+                "{}",
+                serde_json::json!({
+                    "authority_report_sha256": eplyx_lifecycle_impact::expansion::digest(&resolved)?,
+                    "authority_plan_sha256": resolved.plan_sha256,
+                    "coverage": resolved.coverage,
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
         Command::PlanConversionStress {
             population: population_path,
             plan,
@@ -1077,14 +1152,17 @@ fn run() -> Result<ExitCode> {
             stress_plan_sha256,
             cases_sha256,
             program_sha256,
+            authority_plan,
+            authority_report,
         } => {
             use eplyx_lifecycle_impact::{
                 conversion::demo,
-                stress::{execute, StressBudget},
+                stress::{authority, execute, population, StressBudget},
             };
             let budget = StressBudget::from_env();
+            let population_bytes = std::fs::read(&population_path)?;
             let verified = execute::replay(
-                &std::fs::read(&population_path)?,
+                &population_bytes,
                 &std::fs::read(&stress_plan)?,
                 &std::fs::read(&cases)?,
                 &stress_id,
@@ -1097,7 +1175,32 @@ fn run() -> Result<ExitCode> {
                 &budget,
                 &chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
             )?;
-            println!("{}", verified.to_json()?);
+            match (authority_plan, authority_report) {
+                (Some(plan_path), Some(report_path)) => {
+                    let mut value: serde_json::Value = serde_json::from_str(&verified.to_json()?)?;
+                    let observed = population::evaluate_bytes(&population_bytes, &budget)?;
+                    let capture: population::Capture = serde_json::from_slice(&population_bytes)?;
+                    let frozen: authority::Plan =
+                        serde_json::from_slice(&std::fs::read(&plan_path)?)?;
+                    let saved: authority::Report =
+                        serde_json::from_slice(&std::fs::read(&report_path)?)?;
+                    let reconstructed = authority::resolve(&frozen, &observed, &capture)?;
+                    anyhow::ensure!(
+                        saved == reconstructed,
+                        "authority resolution replay mismatch"
+                    );
+                    value["non_standard_account_control"] = serde_json::to_value(&reconstructed)?;
+                    value["refined_stress_world_sha256"] =
+                        serde_json::json!(eplyx_lifecycle_impact::expansion::digest(&(
+                            population_sha256,
+                            reconstructed.plan_sha256,
+                            stress_plan_sha256,
+                        ))?);
+                    println!("{}", serde_json::to_string(&value)?);
+                }
+                (None, None) => println!("{}", verified.to_json()?),
+                _ => anyhow::bail!("authority plan and report must be supplied together"),
+            }
             Ok(ExitCode::SUCCESS)
         }
         Command::CurrentCheckCapabilities { input } => {

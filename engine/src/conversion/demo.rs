@@ -6,7 +6,8 @@
 //! against is freshly captured current production state plus an explicitly proposed
 //! rollout overlay; every account keeps its origin.
 use super::{
-    expected_output, AccountOrigin, ConversionExpectation, ConversionPlan, FixtureAccount,
+    coherence, expected_output, AccountOrigin, ConversionExpectation, ConversionPlan,
+    FixtureAccount,
 };
 use crate::{
     executor::{LoadedProgram, ProbeTransactionExecution},
@@ -326,6 +327,7 @@ pub fn unsupported(
 /// What the adapter proved about the bank it built, before execution.
 pub struct BuiltConversion {
     pub plan: ProbeExecutionPlan,
+    pub execution_context: coherence::ExecutionContext,
     pub overlay: CandidateOverlay,
     pub accounts: Vec<FixtureAccount>,
     pub expectation: ConversionExpectation,
@@ -347,7 +349,35 @@ pub fn build(
     evidence: &[crate::lifecycle::RpcEvidence],
     program: &[u8],
 ) -> Result<BuiltConversion> {
-    ensure!(evidence.len() == 5, "incomplete conversion RPC transcript");
+    build_inner(plan, plan_sha256, context, evidence, program, false)
+}
+
+pub fn build_coherent(
+    plan: &ConversionPlan,
+    plan_sha256: &str,
+    context: &ConversionContext,
+    evidence: &[crate::lifecycle::RpcEvidence],
+    program: &[u8],
+) -> Result<BuiltConversion> {
+    build_inner(plan, plan_sha256, context, evidence, program, true)
+}
+
+fn build_inner(
+    plan: &ConversionPlan,
+    plan_sha256: &str,
+    context: &ConversionContext,
+    evidence: &[crate::lifecycle::RpcEvidence],
+    program: &[u8],
+    coherent_recapture: bool,
+) -> Result<BuiltConversion> {
+    ensure!(
+        if coherent_recapture {
+            (5..=4 + coherence::MAX_FINAL_ATTEMPTS).contains(&evidence.len())
+        } else {
+            evidence.len() == 5
+        },
+        "incomplete conversion RPC transcript"
+    );
     for (i, record) in evidence.iter().enumerate() {
         ensure!(record.id == i, "noncanonical conversion evidence ids");
     }
@@ -432,19 +462,68 @@ pub fn build(
         &replacement_program,
         &programdata,
     );
-    ensure!(
-        evidence[4].method == "getMultipleAccounts"
-            && evidence[4].params == json!([addresses, config(header_slot)]),
-        "invalid final conversion account batch"
-    );
-    let values = evidence[4].result["value"]
+    if !coherent_recapture {
+        ensure!(
+            evidence[4].method == "getMultipleAccounts"
+                && evidence[4].params == json!([addresses, config(header_slot)]),
+            "invalid final conversion account batch"
+        );
+    }
+    let mut execution_context = if coherent_recapture {
+        coherence::verify(evidence, &addresses, header_slot, &plan.source_account)?
+    } else {
+        // Retained Milestone 8-10 transcripts keep their original replay reason
+        // and result bytes. They never gain a new coherence claim.
+        let legacy_slot = shared::slot(&evidence[4].result)?;
+        let legacy_values = evidence[4].result["value"]
+            .as_array()
+            .context("missing final conversion accounts")?;
+        let clock_index = addresses
+            .iter()
+            .position(|address| address == CLOCK)
+            .context("missing Clock")?;
+        ensure!(
+            shared::clock(&legacy_values[clock_index])?.slot == legacy_slot,
+            "Clock does not match final bank"
+        );
+        coherence::verify(evidence, &addresses, header_slot, &plan.source_account)?
+    };
+    for required in &mut execution_context.required_accounts {
+        if programs.contains(&required.address) || programdata.contains(&required.address) {
+            required.class = coherence::InputClass::StaticCodeIdentity;
+        }
+    }
+    execution_context.separate_inputs = vec![
+        coherence::SeparateInput {
+            identity: "wallet-or-population-selection".into(),
+            class: coherence::InputClass::DiscoveryOnly,
+            origin: "Earlier finalized observation",
+        },
+        coherence::SeparateInput {
+            identity: "candidate-config".into(),
+            class: coherence::InputClass::ProposedOverlay,
+            origin: "Deterministically derived from exact plan",
+        },
+        coherence::SeparateInput {
+            identity: "candidate-reserve".into(),
+            class: coherence::InputClass::ProposedOverlay,
+            origin: "Deterministically derived from exact plan",
+        },
+        coherence::SeparateInput {
+            identity: "candidate-program".into(),
+            class: coherence::InputClass::ProposedOverlay,
+            origin: "Validated package or registered artifact digest",
+        },
+    ];
+    let final_record = evidence.len() - 1;
+    let values = evidence[final_record].result["value"]
         .as_array()
         .context("missing final conversion accounts")?;
     ensure!(
         values.len() == addresses.len(),
         "missing final conversion accounts"
     );
-    let final_slot = shared::slot(&evidence[4].result)?;
+    let final_slot = execution_context.final_context_slot;
     ensure!(final_slot >= header_slot, "old final conversion context");
     let raw: BTreeMap<&str, &Value> = addresses
         .iter()
@@ -460,6 +539,29 @@ pub fn build(
     };
     let clock: Clock = shared::clock(get(CLOCK)?)?;
     ensure!(clock.slot == final_slot, "Clock does not match final bank");
+    for (address, earlier, label) in [
+        (
+            &plan.source_mint,
+            &evidence[1].result["value"],
+            "SourceStateChanged",
+        ),
+        (
+            &plan.replacement_mint,
+            replacement_raw,
+            "ReplacementStateChanged",
+        ),
+    ] {
+        if !coherent_recapture {
+            break;
+        }
+        let final_account = get(address)?;
+        ensure!(
+            ["data", "owner", "executable", "lamports"]
+                .iter()
+                .all(|field| final_account[field] == earlier[field]),
+            "{label}"
+        );
+    }
 
     // Observed identities, re-derived from the final authoritative batch.
     let source_mint = decode::decode_mint(get(&plan.source_mint)?)?;
@@ -582,7 +684,7 @@ pub fn build(
         let value = &values[index];
         account_evidence.push(ExecutionAccountEvidence {
             address: address.clone(),
-            rpc_record: 4,
+            rpc_record: final_record,
             pointer: format!("/value/{index}"),
             slot: final_slot,
             exists: !value.is_null(),
@@ -606,7 +708,7 @@ pub fn build(
             executable: value["executable"].as_bool().context("executable")?,
             data_len: bytes.len(),
             data_sha256: sha256(&bytes),
-            rpc_record: Some(4),
+            rpc_record: Some(final_record),
             pointer: Some(format!("/value/{index}")),
             slot: Some(final_slot),
             derivation: None,
@@ -772,6 +874,7 @@ pub fn build(
     };
     Ok(BuiltConversion {
         plan: execution,
+        execution_context,
         overlay,
         accounts: fixture_accounts,
         expectation,

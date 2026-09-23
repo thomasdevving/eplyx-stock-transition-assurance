@@ -67,6 +67,30 @@ test('a structurally sound bounded stress result is accepted', () => {
  verifyStressResult(result(), job(), parent(), mechanism(), 0);
 });
 
+test('resolved non-wallet control never grants a signer or conversion proof', () => {
+ const scopedJob={...job(),authority_plan_sha256:digest('a')};
+ const controlCase={signer_assumed_locally:false,execution_supported:false,conversion:'Unsupported'};
+ const value=result({
+  non_standard_account_control:{plan_sha256:scopedJob.authority_plan_sha256,
+   population_digest:scopedJob.population_capture_sha256,
+   coverage:{cases_selected:1},cases:[controlCase]},
+  refined_stress_world_sha256:hash(JSON.stringify([
+   scopedJob.population_capture_sha256,scopedJob.authority_plan_sha256,scopedJob.stress_plan_sha256])),
+ });
+ verifyStressResult(value,scopedJob,parent(),mechanism(),0);
+ for(const change of [
+  v=>{v.non_standard_account_control.cases[0].signer_assumed_locally=true;},
+  v=>{v.non_standard_account_control.cases[0].execution_supported=true;},
+  v=>{v.non_standard_account_control.cases[0].conversion='Proven';},
+  v=>{v.non_standard_account_control.population_digest=digest('b');},
+  v=>{v.refined_stress_world_sha256=digest('c');},
+ ]){
+  const mutated=structuredClone(value);
+  change(mutated);
+  assert.throws(()=>verifyStressResult(mutated,scopedJob,parent(),mechanism(),0),/InvalidEngineResult/);
+ }
+});
+
 test('a bounded sample can never be reported as population readiness', () => {
  // Two exact accounts proven out of ten thousand observed cannot make the
  // separate population scope Ready.

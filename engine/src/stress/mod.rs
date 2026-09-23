@@ -16,6 +16,7 @@
 //!   token accounts themselves were incompletely enumerated.
 //! * Stress readiness is a finding under one explicit demonstration policy. It is
 //!   not population-wide readiness and it is never an asset safety judgment.
+pub mod authority;
 pub mod classify;
 pub mod execute;
 pub mod population;

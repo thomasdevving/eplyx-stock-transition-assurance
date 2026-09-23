@@ -62,6 +62,24 @@ export async function executeStress(service,job){
  if(hash(await readFile(service.executable))!==job.engine_sha256)throw new Error('EvidenceVerificationFailed');
  job.population_capture_sha256=hash(await readFile(file('population.json')));
 
+ // Freeze the non-wallet control subset before attempting any adapter.
+ job.stage='Freezing non-standard authority selection';
+ const authorityPlan=JSON.parse((await service.runner(service.executable,
+  ['plan-authority-resolution','--population',file('population.json'),'--out',file('authority-plan.json')],
+  {...options,timeoutMs:300000,fresh:false})).stdout);
+ job.authority_plan_sha256=hash(await readFile(file('authority-plan.json')));
+ if(authorityPlan.authority_plan_sha256!==job.authority_plan_sha256
+  ||authorityPlan.population_capture_sha256!==job.population_capture_sha256
+  ||authorityPlan.frozen_before_resolution!==true)throw new Error('EvidenceVerificationFailed');
+ await service.save(job);
+ job.stage='Resolving selected authority controls';
+ const authorityResult=JSON.parse((await service.runner(service.executable,
+  ['resolve-authority-resolution','--population',file('population.json'),'--authority-plan',file('authority-plan.json'),'--out',file('authority-report.json')],
+  {...options,timeoutMs:300000,fresh:false})).stdout);
+ job.authority_report_sha256=hash(await readFile(file('authority-report.json')));
+ if(authorityResult.authority_report_sha256!==job.authority_report_sha256
+  ||authorityResult.authority_plan_sha256!==job.authority_plan_sha256)throw new Error('EvidenceVerificationFailed');
+
  // 2. Freeze the plan before any case is captured or executed.
  job.stage='Freezing the test plan';
  const planned=await service.runner(service.executable,
@@ -91,7 +109,8 @@ export async function executeStress(service,job){
  const {code,stdout}=await service.runner(service.executable,
   ['replay-conversion-stress','--population',file('population.json'),'--stress-plan',file('stressplan.json'),'--cases',file('cases.json'),
    '--run-id',job.wallet_run_id,'--stress-id',job.id,'--population-sha256',job.population_capture_sha256,
-   '--stress-plan-sha256',job.stress_plan_sha256,'--cases-sha256',job.cases_capture_sha256,'--program-sha256',mechanism.program_sha256],
+   '--stress-plan-sha256',job.stress_plan_sha256,'--cases-sha256',job.cases_capture_sha256,'--program-sha256',mechanism.program_sha256,
+   '--authority-plan',file('authority-plan.json'),'--authority-report',file('authority-report.json')],
   {...options,timeoutMs:900000,fresh:false});
  if(hash(await readFile(service.executable))!==job.engine_sha256)throw new Error('EvidenceVerificationFailed');
  const result=JSON.parse(stdout);
@@ -103,10 +122,12 @@ export async function executeStress(service,job){
   population_capture_sha256:job.population_capture_sha256,stress_plan_sha256:job.stress_plan_sha256,
   cases_capture_sha256:job.cases_capture_sha256,candidate_plan_sha256:job.parent_plan_sha256,
   candidate_program_sha256:mechanism.program_sha256,result_sha256:job.canonical_sha256,engine_sha256:job.engine_sha256,
+  authority_plan_sha256:job.authority_plan_sha256,authority_report_sha256:job.authority_report_sha256,
   replay_command:['replay-conversion-stress','--population',`${job.id}.population.json`,'--stress-plan',`${job.id}.stressplan.json`,
    '--cases',`${job.id}.cases.json`,'--run-id',job.wallet_run_id,'--stress-id',job.id,
    '--population-sha256',job.population_capture_sha256,'--stress-plan-sha256',job.stress_plan_sha256,
-   '--cases-sha256',job.cases_capture_sha256,'--program-sha256',mechanism.program_sha256]}),{flag:'wx'});
+   '--cases-sha256',job.cases_capture_sha256,'--program-sha256',mechanism.program_sha256,
+   '--authority-plan',`${job.id}.authority-plan.json`,'--authority-report',`${job.id}.authority-report.json`]}),{flag:'wx'});
 }
 
 /**
@@ -165,4 +186,15 @@ export function verifyStressResult(result,job,parent,mechanism,code){
   ||shapeExecuted>result.results.filter(r=>r.execution_performed).length)throw new Error('InvalidEngineResult');
  if(!isDigest(job.population_capture_sha256)||!isDigest(job.stress_plan_sha256)||!isDigest(job.cases_capture_sha256))throw new Error('InvalidEngineResult');
  if(parent.selection.mint!==result.asset_mint)throw new Error('InvalidEngineResult');
+ if(job.authority_plan_sha256){
+  const control=result.non_standard_account_control;
+  if(control?.plan_sha256!==job.authority_plan_sha256
+   ||control?.population_digest!==job.population_capture_sha256
+   ||!Array.isArray(control?.cases)
+   ||control?.coverage?.cases_selected!==control?.cases?.length
+   ||result.refined_stress_world_sha256!==hash(JSON.stringify([
+     job.population_capture_sha256,job.authority_plan_sha256,job.stress_plan_sha256]))
+   ||control.cases.some(c=>c.signer_assumed_locally!==false||c.execution_supported!==false
+     ||c.conversion==='Proven'))throw new Error('InvalidEngineResult');
+ }
 }

@@ -7,16 +7,52 @@
 mod harness;
 use eplyx_lifecycle_impact::{
     expansion::Eligibility,
+    lifecycle::exposure::sha256,
     stress::{execute, population, select},
 };
 use harness::candidate::{OPENAI_MINT, USDC_MINT};
 use harness::*;
-use serde_json::Value;
+use serde_json::{json, Value};
 
 fn standard() -> Value {
     let p = Population::standard();
     let prepared = prepare(&p, OPENAI_MINT);
     run(&prepared).unwrap()
+}
+
+#[test]
+fn changed_selected_source_stays_selected_and_indeterminate() {
+    let mut prepared = prepare(&Population::standard(), OPENAI_MINT);
+    let mut bundle: execute::CaptureBundle =
+        serde_json::from_slice(&prepared.bundle_bytes).unwrap();
+    bundle.schema_version = 2;
+    let selected = bundle.cases[0].token_account.clone();
+    let last = bundle.cases[0].observations.last_mut().unwrap();
+    let index = last.params[0]
+        .as_array()
+        .unwrap()
+        .iter()
+        .position(|address| address == &selected)
+        .unwrap();
+    let source = &mut last.result.as_mut().unwrap()["value"][index];
+    source["lamports"] = json!(source["lamports"].as_u64().unwrap() + 1);
+    prepared.bundle_bytes = serde_json::to_vec(&bundle).unwrap();
+    prepared.bundle_sha256 = sha256(&prepared.bundle_bytes);
+    let result = run(&prepared).unwrap_or_else(|_| panic!("frozen_selected_case_never_replaced"));
+    assert_eq!(
+        result["results"][0]["token_account"], selected,
+        "frozen_selected_case_never_replaced"
+    );
+    assert_eq!(result["results"][0]["status"], "Indeterminate");
+    assert_eq!(result["results"][0]["execution_performed"], false);
+    assert!(result["results"][0]["reason"]
+        .as_str()
+        .unwrap()
+        .contains("SourceStateChanged"));
+    assert_eq!(
+        result["selected_cases"].as_array().unwrap().len(),
+        bundle.cases.len()
+    );
 }
 
 #[test]

@@ -1,7 +1,7 @@
 //! Current-run candidate conversion: bounded read-only capture, then offline
 //! execution of the registered candidate mechanism. Evidence is created only by
 //! rebuilding and running the actual program; no serialized status is accepted.
-use super::{demo, AmountMode, ConversionPlan, VerifiedReplacementConversion};
+use super::{coherence, demo, AmountMode, ConversionPlan, VerifiedReplacementConversion};
 use crate::{
     executor,
     expansion::digest,
@@ -195,8 +195,9 @@ impl<R: SolanaRpc> SolanaRpc for Recorder<'_, R> {
 fn config(slot: u64) -> Value {
     json!({"encoding":"base64","commitment":"finalized","minContextSlot":slot})
 }
-/// Exactly five bounded read-only requests. The replacement mint is inspected
-/// independently here; existence never establishes an issuer relationship.
+/// Four discovery requests, then at most three serial final-bank attempts.
+/// The replacement mint is inspected independently here; existence never
+/// establishes an issuer relationship.
 fn acquire(s: &Scope, plan: &ConversionPlan, rpc: &impl SolanaRpc) -> Result<()> {
     rpc.call("getGenesisHash", json!([]))?;
     let source_mint = rpc.call(
@@ -243,13 +244,11 @@ fn acquire(s: &Scope, plan: &ConversionPlan, rpc: &impl SolanaRpc) -> Result<()>
         &replacement_program,
         &programdata,
     );
-    rpc.call(
-        "getMultipleAccounts",
-        json!([
-            addresses,
-            config(crate::probe::meteora_dlmm::slot(&headers)?)
-        ]),
-    )?;
+    coherence::capture_final(
+        &addresses,
+        crate::probe::meteora_dlmm::slot(&headers)?,
+        |params| rpc.call("getMultipleAccounts", params).ok(),
+    );
     Ok(())
 }
 pub fn capture(
@@ -271,7 +270,7 @@ pub fn capture(
         let _ = acquire(&s, &plan, &recorder);
     }
     Ok(Capture {
-        schema_version: 1,
+        schema_version: 2,
         run_id,
         check_id,
         wallet_capture_sha256: sha256(wallet.as_bytes()),
@@ -313,7 +312,7 @@ pub fn replay(
     );
     let c: Capture = serde_json::from_slice(bytes)?;
     ensure!(
-        c.schema_version == 1
+        (c.schema_version == 1 || c.schema_version == 2)
             && c.run_id == run_id
             && c.check_id == check_id
             && c.wallet_capture_sha256 == wallet_hash
@@ -332,7 +331,7 @@ pub fn replay(
     let start = chrono::DateTime::parse_from_rfc3339(&c.started_at)?;
     let end = chrono::DateTime::parse_from_rfc3339(&c.completed_at)?;
     ensure!(
-        start <= end && c.observations.len() <= 5,
+        start <= end && c.observations.len() <= 4 + coherence::MAX_FINAL_ATTEMPTS,
         "invalid conversion acquisition interval or budget"
     );
     let mut previous = start;
@@ -374,6 +373,9 @@ pub fn replay(
             "consistency": "Wallet discovery and this candidate check are separate observations. The final captured batch is authoritative for the conversion result."},
         "scope": "Only this exact source account, source mint, amount, replacement mint, destination, candidate plan version, candidate program build, proposed overlay, captured bank and assumed local signing. No other account, amount, plan or mechanism inherits this evidence.",
     });
+    if c.schema_version == 2 {
+        result["execution_context"] = coherence::diagnostics(&c.observations);
+    }
     let fail = |mut result: Value,
                 status: PathStatus,
                 reason: String|
@@ -385,8 +387,23 @@ pub fn replay(
     if let Some(reason) = s.unsupported {
         return fail(result, PathStatus::Unsupported, reason);
     }
-    if c.observations.len() != 5 || c.observations.iter().any(|r| r.error.is_some()) {
-        return fail(result, PathStatus::Indeterminate, "Required public state for this candidate conversion could not be captured within the bounded request budget.".into());
+    if c.observations.len() < 5 || c.observations.iter().any(|r| r.error.is_some()) {
+        let final_capture_started = c.schema_version == 2
+            && c.observations
+                .get(3)
+                .is_some_and(|record| record.result.is_some());
+        return fail(
+            result,
+            PathStatus::Indeterminate,
+            if final_capture_started {
+                format!(
+                    "{}: the final account batch was unavailable within the fixed capture budget.",
+                    coherence::COHERENCE_FAILURE
+                )
+            } else {
+                "Required public state for this candidate conversion could not be captured within the bounded request budget.".into()
+            },
+        );
     }
     let evidence: Vec<RpcEvidence> = c
         .observations
@@ -400,7 +417,7 @@ pub fn replay(
         })
         .collect();
     // The selected account must not have moved between discovery and this check.
-    let final_batch = &evidence[4];
+    let final_batch = evidence.last().context("missing final account batch")?;
     let index = final_batch.params[0]
         .as_array()
         .context("missing conversion account plan")?
@@ -412,11 +429,15 @@ pub fn replay(
         .iter()
         .any(|field| final_source[field] != s.source_raw[field])
     {
-        return fail(result, PathStatus::Indeterminate, "The selected account changed while this candidate conversion was being prepared. Refresh current state and reconfirm the plan.".into());
+        return fail(result, PathStatus::Indeterminate, "SourceStateChanged: the selected account changed while this candidate conversion was being prepared. Refresh current state and reconfirm the plan.".into());
     }
     result["source_revalidated"] =
         json!({"unchanged_since_discovery": true, "execution_fixture_is_authoritative": true});
-    let built = match demo::build(&c.plan, &c.plan_sha256, &s.context, &evidence, program) {
+    let built = match if c.schema_version == 2 {
+        demo::build_coherent(&c.plan, &c.plan_sha256, &s.context, &evidence, program)
+    } else {
+        demo::build(&c.plan, &c.plan_sha256, &s.context, &evidence, program)
+    } {
         Ok(built) => built,
         Err(error) => {
             let text = format!("{error:#}");
@@ -432,6 +453,9 @@ pub fn replay(
         }
     };
     let p = &built.plan;
+    if c.schema_version == 2 {
+        result["execution_context"] = serde_json::to_value(&built.execution_context)?;
+    }
     result["destination"] = built.overlay.destination.clone().into();
     result["proposed_overlay"] = json!({
         "origin": "Proposed",

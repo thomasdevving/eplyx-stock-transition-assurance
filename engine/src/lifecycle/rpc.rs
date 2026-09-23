@@ -42,6 +42,9 @@ impl HttpSolanaRpc {
     pub fn bounded_execution(url: &str) -> Result<Self> {
         let mut rpc = Self::bounded(url)?;
         rpc.response_limit = 16 * 1024 * 1024;
+        // The coherent final-bank controller owns its three visible attempts.
+        // Hidden transport retries would break the recorded request budget.
+        rpc.attempts = 1;
         Ok(rpc)
     }
 

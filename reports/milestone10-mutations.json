@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "kind": "milestone10-authority-mutations",
+  "results": [
+    {
+      "id": "off_curve_as_pda",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "off-curve alone must not resolve a PDA"
+    },
+    {
+      "id": "program_authority_wallet_signer",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "non-wallet authority cannot inherit a direct signer or execution proof"
+    },
+    {
+      "id": "multisig_without_approvals",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "multisig approvals are not conversion proof"
+    },
+    {
+      "id": "resolved_authority_proves_peers",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "one resolved pool cannot prove its peers"
+    },
+    {
+      "id": "ignore_controller_program",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "wrong controller program must be rejected"
+    },
+    {
+      "id": "inherit_resolution_after_refresh",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "refreshed population cannot inherit authority resolution"
+    },
+    {
+      "id": "promote_unsupported_to_executable",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "non-wallet authority cannot inherit a direct signer or execution proof"
+    }
+  ],
+  "inapplicable": [
+    "independent-banks-as-sequence: no selected executable sequential control path exists"
+  ],
+  "restored_sources": true
+}

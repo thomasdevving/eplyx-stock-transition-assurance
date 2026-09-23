@@ -15,7 +15,7 @@ use super::{
     SHAPE_PROOF_SCOPE,
 };
 use crate::{
-    conversion::demo,
+    conversion::{coherence, demo},
     executor,
     expansion::{digest, Eligibility},
     lifecycle::{current::Observation, exposure::sha256, rpc::SolanaRpc, RpcEvidence},
@@ -88,9 +88,8 @@ fn record(
     result
 }
 
-/// Exactly five bounded read-only requests for one case, in the same shape the
-/// Milestone 6 adapter validates. An incomplete acquisition leaves the case
-/// unexecuted; it never becomes a Failed conversion.
+/// Four discovery requests followed by at most three serial final-bank reads.
+/// An incomplete acquisition leaves the frozen case unexecuted.
 fn acquire_case(
     case: &SelectedCase,
     source_program: &str,
@@ -144,12 +143,9 @@ fn acquire_case(
             &replacement_program,
             &programdata,
         );
-        record(
-            rpc,
-            &mut records,
-            "getMultipleAccounts",
-            json!([addresses, config(shared::slot(&headers).ok()?)]),
-        )?;
+        coherence::capture_final(&addresses, shared::slot(&headers).ok()?, |params| {
+            record(rpc, &mut records, "getMultipleAccounts", params)
+        });
         Some(())
     })();
     let _ = attempt;
@@ -189,7 +185,7 @@ pub fn capture_cases(
         });
     }
     Ok(CaptureBundle {
-        schema_version: 1,
+        schema_version: 2,
         kind: BUNDLE_KIND.into(),
         stress_id: plan.stress_id.clone(),
         run_id: plan.run_id.clone(),
@@ -216,10 +212,12 @@ fn case_result(
     case: &SelectedCase,
     capture: &CaseCapture,
     observation: &PopulationObservation,
+    original_capture: Option<&super::population::Capture>,
     plan: &StressTestPlan,
     program: &[u8],
     program_sha256: &str,
 ) -> Result<CaseResult> {
+    let enforce_source_revalidation = original_capture.is_some();
     let mint = observation
         .mint_config
         .as_ref()
@@ -248,6 +246,9 @@ fn case_result(
         "authority_classification_reason": entity.classification_reason,
         "scope": "Only this exact source account, source mint, frozen amount, replacement mint, case plan version, candidate program build, proposed overlay, captured bank and assumed local signing. No other account, amount, plan, state shape or population member inherits this evidence.",
     });
+    if enforce_source_revalidation {
+        detail["execution_context"] = coherence::diagnostics(&capture.observations);
+    }
     let acquisition = json!({
         "started_at": capture.started_at,
         "completed_at": capture.completed_at,
@@ -303,13 +304,22 @@ fn case_result(
         assumed_signer,
         "a selected stress case must be an executable wallet-compatible authority; no other authority model may receive an assumed local signer"
     );
-    if capture.observations.len() != plan.budget.rpc_requests_per_case
+    if capture.observations.len() < plan.budget.rpc_requests_per_case
         || capture.observations.iter().any(|r| r.error.is_some())
     {
+        let final_capture_started = enforce_source_revalidation
+            && capture
+                .observations
+                .get(3)
+                .is_some_and(|record| record.result.is_some());
         return finish(
             detail,
             PathStatus::Indeterminate,
-            Some("Required public state for this case could not be captured within the bounded request budget. No execution was attempted and no outcome is claimed.".into()),
+            Some(if final_capture_started {
+                format!("{}: the selected case's final account batch was unavailable within the fixed capture budget. No execution was attempted.", coherence::COHERENCE_FAILURE)
+            } else {
+                "Required public state for this case could not be captured within the bounded request budget. No execution was attempted and no outcome is claimed.".into()
+            }),
             false,
             None,
         );
@@ -329,6 +339,36 @@ fn case_result(
         evidence[0].result.as_str() == Some(observation.acquisition.genesis_hash.as_str()),
         "a stress case was captured on a different chain than its population"
     );
+    if enforce_source_revalidation {
+        let final_batch = evidence.last().context("missing final batch")?;
+        let addresses = final_batch.params[0]
+            .as_array()
+            .context("missing final account plan")?;
+        let source_index = addresses
+            .iter()
+            .position(|address| address == &case.token_account)
+            .context("frozen source omitted from final bank")?;
+        let final_source = &final_batch.result["value"][source_index];
+        let original_source = original_capture
+            .context("missing source population capture")?
+            .observations
+            .get(entity.token_account_evidence.rpc_id)
+            .and_then(|record| record.result.as_ref())
+            .and_then(|result| result.pointer(&entity.token_account_evidence.pointer))
+            .context("selected source population evidence missing")?;
+        if ["data", "owner", "executable", "lamports"]
+            .iter()
+            .any(|field| final_source[field] != original_source[field])
+        {
+            return finish(
+                detail,
+                PathStatus::Indeterminate,
+                Some("SourceStateChanged: the frozen selected account changed after population discovery; the amount and peer selection were not altered.".into()),
+                false,
+                None,
+            );
+        }
+    }
     let context = demo::ConversionContext {
         genesis_hash: observation.acquisition.genesis_hash.clone(),
         minimum_slot: case.discovery_slot,
@@ -337,7 +377,12 @@ fn case_result(
         source_decimals: mint.decimals,
         amount,
     };
-    let built = match demo::build(
+    let build = if enforce_source_revalidation {
+        demo::build_coherent
+    } else {
+        demo::build
+    };
+    let built = match build(
         &case.case_plan,
         &case.case_plan_sha256,
         &context,
@@ -392,7 +437,10 @@ fn case_result(
     detail["clock"] = serde_json::to_value(ProbeClock::from(&p.clock))?;
     detail["message"] = serde_json::to_value(ProbeMessage::from(&p.message))?;
     detail["account_evidence"] = serde_json::to_value(&p.account_evidence)?;
-    detail["account_plan"] = evidence[4].params[0].clone();
+    detail["account_plan"] = evidence.last().context("missing final batch")?.params[0].clone();
+    if enforce_source_revalidation {
+        detail["execution_context"] = serde_json::to_value(&built.execution_context)?;
+    }
     detail["deployed_programs"] = json!(p
         .programs
         .iter()
@@ -413,7 +461,7 @@ fn case_result(
         "accounts": built.accounts,
         "clock": ProbeClock::from(&p.clock),
         "message": ProbeMessage::from(&p.message),
-        "account_plan": evidence[4].params[0],
+        "account_plan": evidence.last().context("missing final batch")?.params[0],
     }))?;
     detail["execution_fixture_sha256"] = fixture.clone().into();
 
@@ -506,6 +554,7 @@ pub fn replay(
     );
     eprintln!("CURRENT_STAGE:Verifying population capture");
     let observation = super::population::evaluate_bytes(population_bytes, budget)?;
+    let original_capture: super::population::Capture = serde_json::from_slice(population_bytes)?;
     ensure!(
         observation.capture_sha256 == population_sha256
             && observation.run_id == run_id
@@ -530,7 +579,7 @@ pub fn replay(
 
     let bundle: CaptureBundle = serde_json::from_slice(bundle_bytes)?;
     ensure!(
-        bundle.schema_version == 1
+        (bundle.schema_version == 1 || bundle.schema_version == 2)
             && bundle.kind == BUNDLE_KIND
             && bundle.stress_id == stress_id
             && bundle.run_id == run_id
@@ -557,7 +606,8 @@ pub fn replay(
             "a captured case is not the frozen case at this position; selected cases may not be reordered or replaced"
         );
         ensure!(
-            capture.observations.len() <= budget.rpc_requests_per_case,
+            capture.observations.len()
+                < budget.rpc_requests_per_case + coherence::MAX_FINAL_ATTEMPTS,
             "a stress case exceeded its declared request budget"
         );
         let start = chrono::DateTime::parse_from_rfc3339(&capture.started_at)?;
@@ -566,13 +616,15 @@ pub fn replay(
             bundle_start <= start && start <= end && end <= bundle_end,
             "invalid case acquisition interval"
         );
+        let mut previous = start;
         for r in &capture.observations {
             let a = chrono::DateTime::parse_from_rfc3339(&r.started_at)?;
             let b = chrono::DateTime::parse_from_rfc3339(&r.completed_at)?;
             ensure!(
-                start <= a && a <= b && b <= end && r.result.is_some() != r.error.is_some(),
+                previous <= a && a <= b && b <= end && r.result.is_some() != r.error.is_some(),
                 "invalid case acquisition record"
             );
+            previous = b;
         }
         eprintln!(
             "CURRENT_STAGE:Running candidate conversion locally for case {}/{}",
@@ -583,6 +635,7 @@ pub fn replay(
             case,
             capture,
             &observation,
+            (bundle.schema_version == 2).then_some(&original_capture),
             &plan,
             program,
             program_sha256,

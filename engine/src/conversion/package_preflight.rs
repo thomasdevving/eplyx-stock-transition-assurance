@@ -2,7 +2,7 @@
 use super::{current as conversion, package, package_gate};
 use crate::{
     lifecycle::{current as wallet, exposure::sha256, rpc::HttpSolanaRpc},
-    stress::{execute, population, select, StressBudget},
+    stress::{authority, execute, population, select, StressBudget},
 };
 use anyhow::{ensure, Context, Result};
 use chrono::{SecondsFormat, Utc};
@@ -21,6 +21,8 @@ const CONVERSION_FILE: &str = "conversion.capture.json";
 const POPULATION_FILE: &str = "population.capture.json";
 const PLAN_FILE: &str = "stress.plan.json";
 const CASES_FILE: &str = "stress.cases.json";
+const AUTHORITY_PLAN_FILE: &str = "authority.plan.json";
+const AUTHORITY_REPORT_FILE: &str = "authority.report.json";
 const OFFLINE_VM_TIMEOUT: Duration = Duration::from_secs(120);
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -38,6 +40,10 @@ struct Bindings {
     population_sha256: String,
     stress_plan_sha256: String,
     cases_sha256: String,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    authority_plan_sha256: Option<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    authority_report_sha256: Option<String>,
     run_id: String,
     check_id: String,
     stress_id: String,
@@ -74,6 +80,7 @@ fn summary(
     bindings: &Bindings,
     conversion: &Value,
     stress: &Value,
+    authority: Option<&authority::Report>,
 ) -> Value {
     let selected: Vec<Value> = stress["selected_cases"].as_array().into_iter().flatten().map(|c| json!({
         "case_id": c["case_id"], "entity_id": c["entity_id"], "token_account": c["token_account"],
@@ -81,11 +88,17 @@ fn summary(
         "case_plan_sha256": c["case_plan_sha256"], "state_shape_sha256": c["state_shape_sha256"],
         "selection_reason": c["selection_reason"],
     })).collect();
-    let outcomes: Vec<Value> = stress["results"].as_array().into_iter().flatten().map(|r| json!({
-        "case_id": r["case_id"], "entity_id": r["entity_id"], "status": r["status"],
-        "reason": r["reason"], "execution_performed": r["execution_performed"],
-        "execution_fixture_sha256": r["execution_fixture_sha256"], "result_sha256": r["result_sha256"],
-    })).collect();
+    let outcomes: Vec<Value> = stress["results"].as_array().into_iter().flatten().map(|r| {
+        let mut outcome = json!({
+            "case_id": r["case_id"], "entity_id": r["entity_id"], "status": r["status"],
+            "reason": r["reason"], "execution_performed": r["execution_performed"],
+            "execution_fixture_sha256": r["execution_fixture_sha256"], "result_sha256": r["result_sha256"],
+        });
+        if let Some(context) = r["detail"].get("execution_context") {
+            outcome["execution_context"] = context.clone();
+        }
+        outcome
+    }).collect();
     let failed: Vec<Value> = outcomes
         .iter()
         .filter(|r| r["status"] == "Failed")
@@ -125,7 +138,7 @@ fn summary(
     } else {
         "Incomplete"
     };
-    json!({
+    let mut report = json!({
         "schema_version": VERSION,
         "transition_package_sha256": bindings.transition_package_sha256,
         "candidate_program_sha256": bindings.candidate_program_sha256,
@@ -177,7 +190,20 @@ fn summary(
             "No funds moved"
         ],
         "funds_moved": false,
-    })
+    });
+    if let Some(context) = conversion.get("execution_context") {
+        report["conversion_result"]["execution_context"] = context.clone();
+    }
+    if let Some(authority) = authority {
+        report["non_standard_account_control"] = serde_json::to_value(authority).unwrap();
+        report["refined_stress_world_sha256"] = json!(crate::expansion::digest(&(
+            &bindings.population_sha256,
+            &authority.plan_sha256,
+            &bindings.stress_plan_sha256,
+        ))
+        .unwrap());
+    }
+    report
 }
 
 fn markdown(report: &Value) -> String {
@@ -213,6 +239,22 @@ fn markdown(report: &Value) -> String {
             output.push_str(&format!("- {}\n", reason.as_str().unwrap_or("")));
         }
         output.push_str("\nReplay offline: `eplyx-lifecycle replay-package-preflight <package> --result <result-directory>`\n");
+    }
+    if let Some(control) = report.get("non_standard_account_control") {
+        let selected = control["coverage"]["cases_selected"].as_u64().unwrap_or(0);
+        let remaining = control["coverage"]["unselected_non_wallet_accounts"]
+            .as_u64()
+            .unwrap_or(0);
+        match report["population_summary"]["enumeration_completeness"].as_str() {
+            Some(completeness) if completeness != "CompleteForQuery" => {
+                output.push_str(&format!(
+                    "\n## Non-standard account control\n\nSelected from observed accounts: {selected}; further observed accounts outside budget: {remaining}; enumeration: {completeness}. Full population is unknown. Proven program-mediated conversions: 0. Resolution does not provide authorization or conversion proof.\n"
+                ));
+            }
+            _ => output.push_str(&format!(
+                "\n## Non-standard account control\n\nSelected: {selected}; unresolved outside budget: {remaining}; proven program-mediated conversions: 0. Resolution does not provide authorization or conversion proof.\n"
+            )),
+        }
     }
     output
 }
@@ -285,6 +327,7 @@ fn evaluate(package: &package::ValidatedPackage, root: &Path, b: &Bindings) -> R
         "conversion plan differs from package"
     );
     let population_bytes = read(root, POPULATION_FILE, b.budget.max_artifact_bytes)?;
+    let observation = population::evaluate_bytes(&population_bytes, &b.budget)?;
     let stress_plan_bytes = read(root, PLAN_FILE, b.budget.max_artifact_bytes)?;
     let cases_bytes = read(root, CASES_FILE, b.budget.max_artifact_bytes)?;
     let stress = execute::replay(
@@ -306,7 +349,34 @@ fn evaluate(package: &package::ValidatedPackage, root: &Path, b: &Bindings) -> R
         stress_value["candidate_plan"] == serde_json::to_value(expected_plan)?,
         "stress plan differs from package"
     );
-    let report = summary(package, b, conversion_value, &stress_value);
+    let authority = match (&b.authority_plan_sha256, &b.authority_report_sha256) {
+        (Some(plan_sha), Some(report_sha)) => {
+            let plan_bytes = read(root, AUTHORITY_PLAN_FILE, 4 * 1024 * 1024)?;
+            let report_bytes = read(root, AUTHORITY_REPORT_FILE, 4 * 1024 * 1024)?;
+            ensure!(
+                sha256(&plan_bytes) == *plan_sha && sha256(&report_bytes) == *report_sha,
+                "authority resolution artifact digest mismatch"
+            );
+            let resolution_plan: authority::Plan = serde_json::from_slice(&plan_bytes)?;
+            let saved: authority::Report = serde_json::from_slice(&report_bytes)?;
+            let capture: population::Capture = serde_json::from_slice(&population_bytes)?;
+            let reconstructed = authority::resolve(&resolution_plan, &observation, &capture)?;
+            ensure!(
+                saved == reconstructed,
+                "saved authority resolution differs from offline replay"
+            );
+            Some(reconstructed)
+        }
+        (None, None) => None, // Historical Milestone 8/9 package reports.
+        _ => anyhow::bail!("incomplete authority resolution binding"),
+    };
+    let report = summary(
+        package,
+        b,
+        conversion_value,
+        &stress_value,
+        authority.as_ref(),
+    );
     match b.gate_policy {
         Some(policy) => with_gate(report, policy),
         None => Ok(report), // Milestone 8 report replay is byte-for-byte compatible.
@@ -365,14 +435,6 @@ pub fn run(
     let wallet_capture = wallet::capture_selected(selection, &HttpSolanaRpc::bounded(&rpc_url)?)?;
     wallet::save(&wallet_capture, &output_directory.join(WALLET_FILE))?;
     let wallet_bytes = read(output_directory, WALLET_FILE, 10 * 1024 * 1024)?;
-    let conversion_capture = conversion::capture(
-        String::from_utf8(wallet_bytes.clone())?,
-        plan.clone(),
-        run_id.clone(),
-        check_id.clone(),
-        &HttpSolanaRpc::bounded_execution(&rpc_url)?,
-    )?;
-    conversion::save(&conversion_capture, &output_directory.join(CONVERSION_FILE))?;
     let population_capture = population::capture(
         plan.source_mint.clone(),
         run_id.clone(),
@@ -387,8 +449,31 @@ pub fn run(
     population::save(&population_capture, &output_directory.join(POPULATION_FILE))?;
     let population_bytes = read(output_directory, POPULATION_FILE, budget.max_artifact_bytes)?;
     let observed = population::evaluate_bytes(&population_bytes, &budget)?;
+    let authority_plan = authority::plan(&observed)?;
+    write(
+        output_directory,
+        AUTHORITY_PLAN_FILE,
+        crate::expansion::canonical(&authority_plan)?.as_bytes(),
+    )?;
+    // The plan is already durable and immutable before the first control adapter runs.
+    let authority_result = authority::resolve(&authority_plan, &observed, &population_capture)?;
+    write(
+        output_directory,
+        AUTHORITY_REPORT_FILE,
+        crate::expansion::canonical(&authority_result)?.as_bytes(),
+    )?;
     let stress_plan = select::build(&observed, &plan, &package.program_sha256, &now())?;
     stress_plan.save(&output_directory.join(PLAN_FILE))?;
+    // Freeze population and the exact stress selection before any execution-bank
+    // recapture. The standalone wallet plan uses the same generic capture rule.
+    let conversion_capture = conversion::capture(
+        String::from_utf8(wallet_bytes.clone())?,
+        plan.clone(),
+        run_id.clone(),
+        check_id.clone(),
+        &HttpSolanaRpc::bounded_execution(&rpc_url)?,
+    )?;
+    conversion::save(&conversion_capture, &output_directory.join(CONVERSION_FILE))?;
     let mint = observed
         .mint_config
         .as_ref()
@@ -420,6 +505,16 @@ pub fn run(
             CASES_FILE,
             budget.max_artifact_bytes,
         )?),
+        authority_plan_sha256: Some(sha256(&read(
+            output_directory,
+            AUTHORITY_PLAN_FILE,
+            4 * 1024 * 1024,
+        )?)),
+        authority_report_sha256: Some(sha256(&read(
+            output_directory,
+            AUTHORITY_REPORT_FILE,
+            4 * 1024 * 1024,
+        )?)),
         run_id,
         check_id,
         stress_id,
@@ -549,5 +644,63 @@ mod gate_tests {
             strict["population_rollout_readiness"]["status"],
             "Incomplete"
         );
+    }
+
+    #[test]
+    fn resolved_custody_does_not_escalate_readiness_or_change_gate_policy() {
+        let analytical = json!({
+            "candidate_plan_readiness": "Ready",
+            "conversion_stress_readiness": {"status": "Incomplete"},
+            "population_rollout_readiness": {"status": "Incomplete"},
+            "declared_preflight_status": "Incomplete",
+            "official_transition": "NotTested",
+            "funds_moved": false,
+            "stress_results": [], "failed_cases": [],
+            "non_standard_account_control": {"coverage": {
+                "cases_selected": 20,
+                "unselected_non_wallet_accounts": 3000,
+                "resolved": {"ResolvedProtocolInternal": {"accounts": 1}}
+            }}
+        });
+        let block_only = with_gate(analytical.clone(), package_gate::Policy::BlockOnly).unwrap();
+        let strict = with_gate(analytical, package_gate::Policy::Strict).unwrap();
+        assert_eq!(block_only["gate_outcome"], "Warn");
+        assert_eq!(strict["gate_outcome"], "Block");
+        assert_eq!(
+            block_only["conversion_stress_readiness"]["status"],
+            "Incomplete"
+        );
+        assert_eq!(
+            block_only["population_rollout_readiness"]["status"],
+            "Incomplete"
+        );
+        assert_eq!(block_only["official_transition"], "NotTested");
+    }
+
+    #[test]
+    fn unavailable_enumeration_does_not_report_zero_remaining_population() {
+        let report = with_gate(
+            json!({
+                "candidate_plan_readiness": "Ready",
+                "conversion_stress_readiness": {"status": "Incomplete"},
+                "population_rollout_readiness": {"status": "Incomplete"},
+                "declared_preflight_status": "Incomplete",
+                "official_transition": "NotTested",
+                "funds_moved": false,
+                "stress_results": [], "failed_cases": [],
+                "population_summary": {"enumeration_completeness": "Unavailable"},
+                "non_standard_account_control": {"coverage": {
+                    "cases_selected": 0,
+                    "unselected_non_wallet_accounts": 0
+                }}
+            }),
+            package_gate::Policy::BlockOnly,
+        )
+        .unwrap();
+        assert!(report["gate_reasons"][2]
+            .as_str()
+            .unwrap()
+            .contains("full population is unknown"));
+        assert!(markdown(&report).contains("Full population is unknown"));
     }
 }

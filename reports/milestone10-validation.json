@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "kind": "milestone10-validation",
+  "engine_sha256": "243d6848ea895240de4f5b39ae4b91f34a22f766ad2402058ac1430130bfd715",
+  "case_source": "retained Milestone 8 production captures replayed offline; new Solami mainnet SPACEX population captured completely; second-asset Solami enumeration unsupported for the exact one-response query",
+  "cases": [
+    {
+      "name": "spacex",
+      "mint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+      "captured_at": "2026-09-22T07:09:43.788Z",
+      "source_capture": "reports/milestone8-healthy-worker/population.capture.json",
+      "population_sha256": "3951fab78b8f876cf05c813162c2b0fc1eb267a6ef63cbeb0cccfb5a54e8848b",
+      "authority_plan_sha256": "5241baf1faef382bd70daac913dcdca17bdb286bbc1c69b4f28c8aa38ca79da7",
+      "authority_report_sha256": "0e233e26d4026e1a45abe916013c65b3a98d6225d5c9978b358b8d0129543963",
+      "coverage": {
+        "positive_balance_accounts_observed": 10091,
+        "cases_selected": 20,
+        "population_initial": {
+          "ProgramOwnedAuthority": {
+            "accounts": 69,
+            "public_balance_raw": "306617923930"
+          },
+          "TokenMultisig": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "Unknown": {
+            "accounts": 2963,
+            "public_balance_raw": "497452650443"
+          },
+          "Unresolved": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          }
+        },
+        "initial": {
+          "ProgramOwnedAuthority": {
+            "accounts": 17,
+            "public_balance_raw": "100358653621"
+          },
+          "Unknown": {
+            "accounts": 3,
+            "public_balance_raw": "131469185650"
+          }
+        },
+        "resolved": {
+          "PartiallyResolved": {
+            "accounts": 16,
+            "public_balance_raw": "10924835951"
+          },
+          "ResolvedExecutable": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "ResolvedExecutionUnsupported": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "ResolvedNeedsPrivateAuthorization": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "ResolvedProtocolInternal": {
+            "accounts": 1,
+            "public_balance_raw": "89433817670"
+          },
+          "StillUnresolved": {
+            "accounts": 3,
+            "public_balance_raw": "131469185650"
+          }
+        },
+        "unselected_non_wallet_accounts": 3012,
+        "unselected_non_wallet_raw": "572242735102"
+      },
+      "all_selected_conversion_proven": false
+    },
+    {
+      "name": "second",
+      "mint": "PreweJYECqtQwBtpxHL171nL2K6umo692gTm7Q3rpgF",
+      "captured_at": "2026-09-22T06:41:32.598Z",
+      "source_capture": "reports/milestone8-second-asset/population.capture.json",
+      "population_sha256": "156ee77e30295e271e1aad19942a2ec2d68c0d47d79a408751baac85ccca05e0",
+      "authority_plan_sha256": "8861991bc3969da298b8930ecca098bcd7db1be9007f79ec69df93543589c531",
+      "authority_report_sha256": "b772a56f27322e8427b8351129a6451d0f2163c9fe3a924490f1978ef90af63c",
+      "coverage": {
+        "positive_balance_accounts_observed": 32760,
+        "cases_selected": 20,
+        "population_initial": {
+          "ProgramOwnedAuthority": {
+            "accounts": 2666,
+            "public_balance_raw": "107748228221"
+          },
+          "TokenMultisig": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "Unknown": {
+            "accounts": 9278,
+            "public_balance_raw": "515885026571"
+          },
+          "Unresolved": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          }
+        },
+        "initial": {
+          "ProgramOwnedAuthority": {
+            "accounts": 18,
+            "public_balance_raw": "41472089633"
+          },
+          "Unknown": {
+            "accounts": 2,
+            "public_balance_raw": "265406087711"
+          }
+        },
+        "resolved": {
+          "PartiallyResolved": {
+            "accounts": 17,
+            "public_balance_raw": "10953053690"
+          },
+          "ResolvedExecutable": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "ResolvedExecutionUnsupported": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "ResolvedNeedsPrivateAuthorization": {
+            "accounts": 0,
+            "public_balance_raw": "0"
+          },
+          "ResolvedProtocolInternal": {
+            "accounts": 1,
+            "public_balance_raw": "30519035943"
+          },
+          "StillUnresolved": {
+            "accounts": 2,
+            "public_balance_raw": "265406087711"
+          }
+        },
+        "unselected_non_wallet_accounts": 11924,
+        "unselected_non_wallet_raw": "316755077448"
+      },
+      "all_selected_conversion_proven": false
+    }
+  ],
+  "package_replay": {
+    "report_sha256": "f9275c72f831b0528ecb46379fd408fa617a821955a1fba2a1cd899a85bdd111",
+    "refined_stress_world_sha256": "53dec050782633e75875b44d4189e23e4787ac15be6b6642ae7fd0121628d77a",
+    "candidate_plan_readiness": "Ready",
+    "conversion_stress_readiness": "Incomplete",
+    "population_rollout_readiness": "Incomplete",
+    "official_transition": "NotTested",
+    "gate_policy": "block-only",
+    "gate_outcome": "Warn",
+    "offline_replay_exit": 0
+  },
+  "fresh_spacex_attempt": {
+    "status": "Incomplete",
+    "captured_at": "2026-09-22T22:33:32.778Z",
+    "artifact_directory": "target/milestone10-fresh-spacex-verified",
+    "population_sha256": "63bdd88b8ae67bf4a4d8eb1e3726af47be04e0528ac546f6176c3bd9038e74f5",
+    "authority_plan_sha256": "1884a6578c0ac8faee5b2f700b1b29de2ea8e58beec3105762ad0c4a91970073",
+    "authority_report_sha256": "1483715c55ce2c2935949afb4a586d79f7f13752e7807ed202b5645d19a5648f",
+    "report_sha256": "0a6b1b5334176619c1775bf8f2120ec7c843122faf862e1a69e11f00caca34e6",
+    "enumeration_completeness": "Unavailable",
+    "get_program_accounts_error_code": -32600,
+    "provider_diagnostic": "Too many accounts requested (Large number of pubkeys)",
+    "authority_cases_selected": 0,
+    "candidate_plan_readiness": "Ready",
+    "conversion_stress_readiness": "Incomplete",
+    "population_rollout_readiness": "Incomplete",
+    "official_transition": "NotTested",
+    "gate_outcome": "Warn",
+    "offline_replay_exit": 0,
+    "reason": "The configured mainnet RPC served wallet and mint inspection but rejected Token-2022 getProgramAccounts; no complete current population or live authority selection is available.",
+    "funds_moved": false
+  },
+  "fresh_second_asset_attempt": {
+    "status": "Incomplete",
+    "captured_at": "2026-09-22T22:33:44.655Z",
+    "artifact_directory": "target/milestone10-fresh-second-asset-verified",
+    "population_sha256": "3a183e555bb518dced39084aee8580ae406f4103c8c4d77578cd0646414aa069",
+    "authority_plan_sha256": "120e4bfa367759cb75b44921e77834b3f8cad83fc31b3e78cfaccc751a9e992e",
+    "authority_report_sha256": "e6552f14e1f4798e9ef6723e44e08347d31f1b62200012ab0e6aa15a96ff9ea9",
+    "report_sha256": "783e3963f7cd93637e4c2072727d9a7b6ca58e31f0bec3bdd0634df9c1553fac",
+    "enumeration_completeness": "Unavailable",
+    "get_program_accounts_error_code": -32600,
+    "provider_diagnostic": "Too many accounts requested (Large number of pubkeys)",
+    "authority_cases_selected": 0,
+    "candidate_plan_readiness": "Ready",
+    "conversion_stress_readiness": "Incomplete",
+    "population_rollout_readiness": "Incomplete",
+    "official_transition": "NotTested",
+    "gate_outcome": "Warn",
+    "offline_replay_exit": 0,
+    "reason": "The configured mainnet RPC served wallet and mint inspection but rejected Token-2022 getProgramAccounts; no complete current population or live authority selection is available.",
+    "funds_moved": false
+  },
+  "solami_spacex_run": {
+    "status": "FreshPopulationCaptured",
+    "captured_at": "2026-09-22T23:22:21.267Z",
+    "artifact_directory": "target/milestone10-fresh-spacex-solami",
+    "population_sha256": "16d2167cdc2108054ac6aea1735ebd9a18d87597f0ad78d6ff7d0ff4924aa9ea",
+    "authority_plan_sha256": "c0e6408880018be05d7b146bdd78bcc762f2e3c6991f289b7fd0179c54dc8cf3",
+    "authority_report_sha256": "d78021653e1c3afabf8f904f2a2c2b859d04b8134f8631e01847022780b52330",
+    "report_sha256": "f6782308b38317d277d8554d0e093a9befa3e17f36568c3fe8701014dd5d7971",
+    "refined_stress_world_sha256": "39fce0f359df95552dadec57d1ccff35b01783e105c57bc765cd5cb63de740c7",
+    "enumeration_completeness": "CompleteForQuery",
+    "authority_resolution_completeness": "Complete",
+    "token_accounts_observed": 17861,
+    "positive_balance_accounts_observed": 10059,
+    "authority_cases_selected": 20,
+    "authority_resolved_protocol_internal": 1,
+    "authority_resolved_protocol_internal_raw": "89500557576",
+    "authority_partially_resolved": 16,
+    "authority_still_unresolved": 3,
+    "unselected_non_wallet_accounts": 3008,
+    "stress_cases_selected": 10,
+    "stress_results": { "Indeterminate": 10 },
+    "candidate_plan_readiness": "Incomplete",
+    "candidate_conversion_reason": "Clock does not match final bank",
+    "final_batch_context_slot": 449525292,
+    "captured_clock_slot": 449525294,
+    "conversion_stress_readiness": "Incomplete",
+    "population_rollout_readiness": "Incomplete",
+    "official_transition": "NotTested",
+    "block_only_gate_outcome": "Warn",
+    "strict_gate_outcome": "Block",
+    "offline_replay_exit": 0,
+    "funds_moved": false
+  },
+  "solami_second_asset_attempt": {
+    "status": "Incomplete",
+    "captured_at": "2026-09-22T23:27:29.423Z",
+    "artifact_directory": "target/milestone10-fresh-second-asset-solami-final",
+    "population_sha256": "198f81a7c8fb7de74f88fbf572f6da19e09721ca2cef050196b25cff63d88408",
+    "authority_plan_sha256": "22ca8b78b77774d26e577b1c72e5b7a0981127d776511fae4dabe018936556fb",
+    "authority_report_sha256": "df02481f008d5923d3ebad7d93c2a634a976b70fde734eafad4a726acaeb5d02",
+    "report_sha256": "2a48dcbc844473b2048755236e82540f1b688e9bebff25fa167723cce8f37f5b",
+    "enumeration_completeness": "Unsupported",
+    "get_program_accounts_error_code": -32010,
+    "provider_diagnostic": "The account set is too large to return in full; use getTokenAccountsByMintV2 with paginationKey.",
+    "authority_cases_selected": 0,
+    "candidate_plan_readiness": "Incomplete",
+    "candidate_conversion_reason": "Clock does not match final bank",
+    "conversion_stress_readiness": "Incomplete",
+    "population_rollout_readiness": "Incomplete",
+    "official_transition": "NotTested",
+    "gate_outcome": "Warn",
+    "offline_replay_exit": 0,
+    "pagination_probe": {
+      "diagnostic_only": true,
+      "method": "getTokenAccountsByMintV2",
+      "first_page_slot": 449526070,
+      "second_page_slot": 449526071,
+      "accounts_per_page": 1000,
+      "conclusion": "The two observed pages were from different slots and were not used to claim one frozen population."
+    },
+    "funds_moved": false
+  },
+  "validation": {
+    "workspace_cargo_test": "Passed with cargo test --locked --workspace after the final Milestone 10 executable change; all workspace unit, integration, and doc tests passed",
+    "host_program_tests": "Passed for fixture v1, fixture v2, candidate conversion",
+    "cargo_clippy": "Passed with -D warnings",
+    "cargo_fmt_check": "Passed",
+    "frontend_service_tests": "47 passed",
+    "frontend_build": "Passed",
+    "mutations_killed": 7,
+    "mutations_total": 7,
+    "sequence_mutation": "Inapplicable without a real selected executable sequence",
+    "make_command": "Unavailable on Windows; equivalent commands run separately",
+    "historical_milestone9_replay": "Passed unchanged, exit 0",
+    "browser_stress_cli_replay": "Passed against retained capture with authority artifacts; 20 resolved cases, 10 exact wallet stress cases, both readiness scopes Incomplete",
+    "strict_gate_same_evidence": "Block; analytical findings unchanged",
+    "final_binary_package_replay": "Passed after final lamports validation; saved report byte-identical",
+    "unavailable_enumeration_reporting": "Focused test passed; fresh reports state that the full population is unknown",
+    "solami_fresh_replays": "SPACEX and second-asset saved packages replayed offline with the final binary; both exit 0",
+    "solami_provider_boundary": "SPACEX single-response population complete; second asset requires pagination across observed changing slots; candidate clock differs from final batch context by two slots",
+    "final_stress_tests": "37 passed",
+    "final_cargo_clippy": "Passed with -D warnings after Solami provider-boundary wording change",
+    "rpc_handoff_cleanup": "Temporary Solami URL file removed; full URL absent from saved Solami artifacts",
+    "final_milestone10_regression": {
+      "engine_binary_sha256": "243d6848ea895240de4f5b39ae4b91f34a22f766ad2402058ac1430130bfd715",
+      "after_last_executable_change": true,
+      "workspace_cargo_test": "Passed",
+      "host_program_tests": "Fixture v1: 7 passed; fixture v2: 7 passed; candidate conversion: 4 passed",
+      "fmt_check": "Passed for workspace and both program manifests",
+      "clippy_deny_warnings": "Passed for workspace and fixture v1/v2 and candidate program manifests",
+      "node_service_tests": "47 passed",
+      "frontend_build_check": "Passed",
+      "authority_focused_tests": "6 passed",
+      "milestone10_package_replay_exit": 0,
+      "historical_milestone9_package_replay_exit": 0
+    }
+  }
+}

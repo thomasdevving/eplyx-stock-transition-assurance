@@ -5,6 +5,7 @@
 //! candidate conversion is evidence about the supplied plan under its declared
 //! authority model, never evidence that an issuer defined, authorized or controls
 //! that mechanism. OfficialTransition is a separate fact with separate requirements.
+pub mod coherence;
 pub mod current;
 pub mod demo;
 pub mod package;

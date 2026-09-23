@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "kind": "milestone11-coherence-mutations",
+  "results": [
+    {
+      "id": "accept_later_clock",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "later_clock_earlier_bank_rejected"
+    },
+    {
+      "id": "ignore_recapture_source_drift",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "recapture_source_drift_rejected"
+    },
+    {
+      "id": "reuse_first_batch_instead_of_final",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "final_recapture_bytes_used"
+    },
+    {
+      "id": "replace_frozen_selected_case",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "frozen_selected_case_never_replaced"
+    },
+    {
+      "id": "ignore_candidate_config_fee",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "candidate_config_fee_bound"
+    },
+    {
+      "id": "stabilization_failure_as_failed",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "stabilization_never_becomes_failed_or_proven"
+    },
+    {
+      "id": "trust_serialized_coherence_flag",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "serialized_coherence_flag_rejected"
+    }
+  ],
+  "restored_sources": true
+}

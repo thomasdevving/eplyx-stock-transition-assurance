@@ -1247,3 +1247,43 @@ changing any analytical finding. Digests and capture times are in
 are under ignored `target/`. The five retained-capture policy combinations,
 one-byte program invalidation and six source mutation results are recorded in
 `reports/milestone9-validation.json` and `reports/milestone9-mutations.json`.
+
+## Milestone 10 — authority resolution
+
+Fresh stress and package runs now freeze a bounded non-wallet authority plan,
+inspect the captured recorded-authority bytes with narrow trusted adapters,
+and replay exact control findings offline. The retained SPACEX and second-asset
+captures each resolve one selected Meteora pool/vault custody relationship;
+neither provides a position, private authorization or a supported sequential
+candidate conversion path. The separate authority and conversion statuses remain
+Unsupported/Indeterminate where appropriate. Fresh SPACEX and second-asset runs
+reached a configured mainnet RPC, but its Token-2022 `getProgramAccounts` requests
+failed with `-32600` (too many accounts). Both population scans are Unavailable,
+so fresh authority acceptance remains pending; both reports replay offline.
+With a separate Solami read-only endpoint, a later fresh SPACEX query completed:
+17,861 token accounts, 10,059 positive balances, 20 frozen authority cases and
+one verified DLMM pool/vault custody path. Candidate and stress execution stayed
+Incomplete because the captured Clock slot differed from the finalized batch
+context; no proof was promoted. Solami rejected the larger second-asset one-shot
+enumeration with `-32010` and suggested pagination. Two diagnostic pages had
+different slots, so they were not treated as one frozen world. Both saved Solami
+reports replay offline. Exact hashes and statuses are in the validation report.
+See [Milestone 10 authority resolution](on-demand-milestone-10-authority.md).
+
+## Milestone 11 — coherent execution capture
+
+Candidate conversion and stress-case capture now retry the exact final execution
+account set at most three times with a monotonic `minContextSlot` chain. Offline
+replay verifies the final Clock/context equality, account bytes, source state,
+program identity and frozen selection before running the VM. A provider that
+cannot establish the contract leaves conversion Indeterminate; no nearby-slot
+approximation is used. Historical schema 1 reports retain their original replay
+semantics. An earlier FastRPC request rejected the 11-account final batch and
+remains Indeterminate on offline replay. Later final FastRPC runs enumerated both
+current asset populations and served coherent 11-account candidate banks, so
+each exact proposed candidate conversion executed and reconciled locally. The
+provider still rejected 100-account authority batches; no live stress case was
+selected, rollout readiness remains Incomplete and OfficialTransition NotTested.
+The final full regression passed after the last executable change. See
+[Milestone 11 coherent capture](on-demand-milestone-11-coherence.md) and
+`reports/milestone11-validation.json`.

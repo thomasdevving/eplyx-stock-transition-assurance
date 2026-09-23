@@ -335,7 +335,7 @@ fn scan_failure(error: &str) -> (EnumerationCompleteness, String) {
     if error.contains("-32601") || error.contains("-32010") {
         (
             EnumerationCompleteness::Unsupported,
-            "The configured provider does not serve a filtered getProgramAccounts enumeration for this token program. Population discovery is unsupported here; no saved population was substituted.".into(),
+            "The configured provider cannot return this filtered getProgramAccounts enumeration as one complete response. Population discovery is unsupported for this query; no saved population was substituted.".into(),
         )
     } else if error.contains("exceeds observation budget") {
         (
