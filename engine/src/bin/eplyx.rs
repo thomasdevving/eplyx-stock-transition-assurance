@@ -3,6 +3,7 @@ use anyhow::{bail, ensure, Context, Result};
 use chrono::{DateTime, SecondsFormat, Utc};
 use clap::{Parser, Subcommand};
 use eplyx_lifecycle_impact::{
+    build_info,
     conversion::{
         demo, package,
         package_gate::{Outcome, Policy},
@@ -30,10 +31,15 @@ use std::{
 
 const MAINNET_GENESIS: &str = "5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d";
 
+static LONG_VERSION: std::sync::LazyLock<String> =
+    std::sync::LazyLock::new(build_info::long_version);
+
 #[derive(Parser)]
 #[command(
     name = "eplyx",
-    about = "Local Solana transition preflight and counterexample search"
+    about = "Local Solana transition preflight and counterexample search",
+    version = build_info::VERSION,
+    long_version = LONG_VERSION.as_str()
 )]
 struct Cli {
     #[arg(long, global = true, default_value = "eplyx.toml")]
@@ -50,7 +56,17 @@ enum Action {
         #[arg(long)]
         minimal: bool,
     },
-    Doctor,
+    /// Check this install, the project config, the candidate and the RPC.
+    Doctor {
+        /// Skip the RPC check; validate the install and project only.
+        #[arg(long)]
+        offline: bool,
+    },
+    /// Print the release identity of this binary.
+    Version {
+        #[arg(long)]
+        json: bool,
+    },
     Preflight {
         #[arg(long, value_enum)]
         gate: Option<Policy>,
@@ -398,9 +414,108 @@ fn rpc_url() -> Result<String> {
     Ok(url)
 }
 
-fn check_rpc() -> Result<()> {
-    let rpc = HttpSolanaRpc::bounded(&rpc_url()?)?;
-    check_genesis(&rpc)
+/// Check the provider without ever echoing its URL, which may carry a key.
+fn check_rpc(url: &str) -> Result<()> {
+    let checked = HttpSolanaRpc::bounded(url).and_then(|rpc| check_genesis(&rpc));
+    checked.map_err(|error| {
+        anyhow::anyhow!("{}", format!("{error:#}").replace(url, "<SOLANA_RPC_URL>"))
+    })
+}
+
+/// A checklist that separates what Eplyx needs (this binary, a project config,
+/// a read-only RPC) from the developer's own project (their candidate `.so`).
+fn doctor(root: &Path, path: &Path, offline: bool) -> Result<u8> {
+    let mut failed = false;
+    let mut mark = |ok: bool| {
+        failed |= !ok;
+        if ok {
+            "✓"
+        } else {
+            "✗"
+        }
+    };
+    let mut eplyx = vec![format!(
+        "  ✓ Installed binary    eplyx {} ({}, {})",
+        build_info::VERSION,
+        build_info::short_commit(),
+        build_info::platform()
+    )];
+    let mut project = Vec::new();
+    let config = if !path.exists() {
+        eplyx.push(format!(
+            "  {} Project config      no {} here; run `eplyx init` in your Solana project",
+            mark(false),
+            path.file_name()
+                .map_or("eplyx.toml".into(), |n| n.to_string_lossy())
+        ));
+        None
+    } else {
+        match read_config(path) {
+            Ok(config) => {
+                eplyx.push(format!(
+                    "  {} Project config      {}",
+                    mark(true),
+                    path.file_name()
+                        .map_or("eplyx.toml".into(), |n| n.to_string_lossy())
+                ));
+                Some(config)
+            }
+            Err(error) => {
+                eplyx.push(format!("  {} Project config      {error:#}", mark(false)));
+                None
+            }
+        }
+    };
+    if let Some(config) = &config {
+        match program_path(root, config) {
+            Ok(_) => {
+                project.push(format!("  {} Candidate program   {}", mark(true), config.program.path));
+                let base = store(root, &config.project.name)?;
+                match validate_ephemeral(root, config, &base) {
+                    Ok(package) => project.push(format!(
+                        "  {} Transition package  program {} · {}",
+                        mark(true),
+                        &package.program_sha256[..12],
+                        config.transition.adapter
+                    )),
+                    Err(error) => project.push(format!(
+                        "  {} Transition package  {error:#}; fix eplyx.toml",
+                        mark(false)
+                    )),
+                }
+                eplyx.push(format!("  {} Local run store     .eplyx/", mark(true)));
+            }
+            Err(_) => project.push(format!(
+                "  {} Candidate program   {} not found; build your program (for example `cargo build-sbf`) and set [program].path",
+                mark(false),
+                config.program.path
+            )),
+        }
+    }
+    if offline {
+        eplyx.push("  - RPC                 skipped (--offline)".into());
+    } else {
+        match rpc_url() {
+            Ok(url) => match check_rpc(&url) {
+                Ok(()) => eplyx.push(format!(
+                    "  {} RPC                 Solana mainnet (read-only; never receives the candidate)",
+                    mark(true)
+                )),
+                Err(error) => eplyx.push(format!("  {} RPC                 {error:#}", mark(false))),
+            },
+            Err(_) => eplyx.push(format!(
+                "  {} RPC                 set SOLANA_RPC_URL to a Solana mainnet provider",
+                mark(false)
+            )),
+        }
+    }
+    println!(
+        "Eplyx doctor\n\nEplyx\n{}\n\nYour project\n{}\n  Building the candidate uses your own Solana toolchain. Eplyx itself needs no Rust, Node or Eplyx checkout.\n\n{}",
+        eplyx.join("\n"),
+        if project.is_empty() { "  - Candidate program   checked after the config is valid".to_string() } else { project.join("\n") },
+        if failed { "Fix the ✗ items above." } else if offline { "Ready to preflight once SOLANA_RPC_URL is set." } else { "Ready to preflight." }
+    );
+    Ok(if failed { 2 } else { 0 })
 }
 
 fn check_genesis(rpc: &impl SolanaRpc) -> Result<()> {
@@ -415,7 +530,7 @@ fn check_genesis(rpc: &impl SolanaRpc) -> Result<()> {
 fn git(root: &Path, args: &[&str]) -> Option<String> {
     let output = Command::new("git")
         .arg("-C")
-        .arg(root)
+        .arg(eplyx_lifecycle_impact::plain_path(root))
         .args(args)
         .output()
         .ok()?;
@@ -809,7 +924,11 @@ fn record_reproduction(
 /// Project facts for the dashboard that live outside `.eplyx/`: the current
 /// config and candidate, and Git state. Read once, locally; never an RPC URL.
 fn dashboard_context(root: &Path, path: &Path) -> Value {
-    let hide_root = |text: String| text.replace(&root.to_string_lossy().into_owned(), "<project>");
+    let plain = eplyx_lifecycle_impact::plain_path(root);
+    let hide_root = |text: String| {
+        text.replace(&root.to_string_lossy().into_owned(), "<project>")
+            .replace(&plain.to_string_lossy().into_owned(), "<project>")
+    };
     let config_path = path
         .strip_prefix(root)
         .map(eplyx_lifecycle_impact::artifact_path)
@@ -959,7 +1078,19 @@ fn init(root: &Path, path: &Path, force: bool, minimal: bool) -> Result<()> {
 }
 
 fn execute(cli: Cli) -> Result<u8> {
+    // Version needs no project, config, store or network.
+    if let Action::Version { json } = cli.command {
+        if json {
+            println!("{}", serde_json::to_string_pretty(&build_info::json())?);
+        } else {
+            println!("eplyx {}", build_info::long_version());
+        }
+        return Ok(0);
+    }
     let (root, path) = root_and_config(&cli.config)?;
+    if let Action::Doctor { offline } = cli.command {
+        return doctor(&root, &path, offline);
+    }
     if let Action::FinishPackagePreflight { package, result } = &cli.command {
         package_preflight::finish(package, result)?;
         return Ok(0);
@@ -984,15 +1115,6 @@ fn execute(cli: Cli) -> Result<u8> {
         None => existing_store(&root)?,
     };
     match cli.command {
-        Action::Doctor => {
-            let config = config.as_ref().context("config required for doctor")?;
-            let package = validate_ephemeral(&root, config, &base)
-                .context("fix eplyx.toml or rebuild the candidate SBF program")?;
-            check_rpc()?;
-            println!("Eplyx doctor\n\n✓ Config              {}\n✓ Candidate program  {}\n✓ Program hash       {}\n✓ Adapter            {}\n✓ RPC                Solana mainnet\n✓ Local run store    {}\n\nReady to preflight.",
-                path.display(), config.program.path, &package.program_sha256[..12], config.transition.adapter, base.display());
-            Ok(0)
-        }
         Action::Preflight { gate, verbose } => {
             let config = config.as_ref().context("config required for preflight")?;
             if !verbose {
@@ -1053,7 +1175,10 @@ fn execute(cli: Cli) -> Result<u8> {
             dashboard(&root, &path, port, no_open)?;
             Ok(0)
         }
-        Action::Init { .. } | Action::FinishPackagePreflight { .. } => {
+        Action::Init { .. }
+        | Action::FinishPackagePreflight { .. }
+        | Action::Doctor { .. }
+        | Action::Version { .. } => {
             bail!("internal command dispatch error")
         }
     }

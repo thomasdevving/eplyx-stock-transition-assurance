@@ -1,15 +1,25 @@
 # Eplyx local CLI quick start
 
-Build the CLI from this repository and make `eplyx` available on your `PATH`:
+## Install Eplyx
 
 ```sh
-cargo build --release -p eplyx-lifecycle-impact --bin eplyx
-export PATH="$(pwd)/target/release:$PATH"
+# macOS (Apple Silicon) / Linux (x86_64)
+curl -fsSL https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases/latest/download/install.sh | sh
+```
+```powershell
+# Windows (x86_64)
+irm https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases/latest/download/install.ps1 | iex
 ```
 
-In a Solana project, run:
+The installer verifies the release archive's SHA-256 before installing the single
+`eplyx` binary into a user-owned directory, and prints a PATH command if needed.
+Check the install with `eplyx --version` (or `eplyx version --json` in CI). See the
+[README](../README.md#install) for manual downloads and checksum verification.
+
+## Use it in your Solana project
 
 ```sh
+cd my-solana-project
 eplyx init
 # Edit eplyx.toml: public mints, owner, source token account, proposed reserve and terms.
 cargo build-sbf
@@ -21,6 +31,11 @@ eplyx dashboard
 eplyx runs
 eplyx reproduce cx_<id>
 ```
+
+Eplyx itself needs no Rust, Node or Eplyx checkout. `cargo build-sbf` builds your
+own candidate program with your Solana toolchain. `eplyx doctor` lists what Eplyx
+needs (the installed binary, `eplyx.toml` and a read-only mainnet RPC) separately
+from your project (the candidate `.so`). `eplyx doctor --offline` skips the RPC check.
 
 `eplyx init` creates `eplyx.toml` and `.eplyx/` and ignores the local store in Git. It detects a single `target/deploy/*.so` program when one exists. It leaves addresses blank. `--force` is required to replace a config; `--minimal` omits example invariants.
 
@@ -44,3 +59,16 @@ The dashboard is a read-only view of `.eplyx/`, which remains the local source o
 Exit codes: preflight `0` for gate pass or warnings, `3` for gate block, `2` for invalid input or engine failure. Search returns `0` when completed even if it finds a counterexample, otherwise `2`. Reproduce returns `0` when verified, otherwise `2`.
 
 Only the registered fixed-ratio candidate adapter is supported. A proven candidate conversion is an exact local execution result under the declared authority model. OfficialTransition remains NotTested; issuer authorization, key possession, and population-wide readiness are separate questions. A bounded search with no finding states only its recorded domain and budget.
+
+## Contributor / development builds
+
+Build the CLI from this repository instead of installing a release:
+
+```sh
+cargo build --release --locked -p eplyx-lifecycle-impact --bin eplyx
+export PATH="$(pwd)/target/release:$PATH"
+```
+
+A source-built binary and a release binary read and write the same `.eplyx/`
+formats. Release packaging, checksums and installer tests are described in
+[Milestone 17](on-demand-milestone-17-release.md).

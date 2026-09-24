@@ -1356,3 +1356,16 @@ observed account and dimension. A counterexample missing from a later run is
 reported as resolved only under identical search conditions and exact
 re-execution. `eplyx reproduce` now records its attempts as local history, and
 new run metadata records its `run_source`. See [Milestone 16 dashboard](on-demand-milestone-16-dashboard.md).
+
+## Milestone 17 — release binaries and install
+
+The `eplyx` binary is packaged for darwin-arm64, linux-x86_64 and windows-x86_64,
+each archive holding only the binary. Releases add `SHA256SUMS`, a manifest and
+sh/PowerShell installers. Installers verify the SHA-256 and the exact archive
+layout before installing into a user-owned directory, and print PATH guidance
+instead of editing profiles. `eplyx --version` and `eplyx version --json` report
+the semantic version, embedded commit, target and engine schema versions.
+`eplyx doctor` separates Eplyx requirements from the developer's own candidate
+build. A tag-triggered workflow publishes only archives that were smoke-tested
+and installed on native runners. See
+[Milestone 17 release](on-demand-milestone-17-release.md).

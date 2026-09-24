@@ -1,0 +1,12 @@
+# Evidence, fixtures and packages are pinned by SHA-256; never rewrite their
+# line endings on checkout (for example on Windows with core.autocrlf).
+fixtures/** -text
+examples/** -text
+evidence/** -text
+reports/** -text
+snapshots/** -text
+policies/** -text
+scenarios/** -text
+probes/** -text
+# Shell scripts, including the installer, must keep LF to run under sh.
+*.sh text eol=lf

@@ -232,6 +232,15 @@ dimension; "resolved" requires identical search conditions and exact re-executio
 history, never as evidence. Metadata schema 2 records `run_source`; older runs stay unrecorded. No accounts, sync, telemetry or editable config are introduced.
 See docs/on-demand-milestone-16-dashboard.md.
 
+Milestone 17 packages the same `eplyx` binary as verified release archives for darwin-arm64,
+linux-x86_64 and windows-x86_64 with SHA256SUMS, a versioned manifest and sh/PowerShell
+installers. Installers verify checksums before extracting exactly one expected binary into a
+user-owned directory, never edit PATH or profiles, and send nothing. Release builds embed
+commit and target only; the semantic version is the compatibility identity. Published bytes
+are exactly the smoke-tested and install-tested archives. Do not claim platforms that are not
+built and tested, and do not change analytical semantics for packaging.
+See docs/on-demand-milestone-17-release.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.
@@ -299,6 +308,10 @@ See docs/on-demand-milestone-16-dashboard.md.
 - programs/eplyx-demo-conversion/ is the registered candidate mechanism. It enforces the ratio,
   rounding and conversion fee itself in checked integer arithmetic and performs real token
   CPIs, so host-side calculation can never stand in for execution. It is not deployed anywhere.
+- build_info.rs holds the release identity (version, embedded commit and target, schema
+  versions) behind `eplyx --version` and `eplyx version --json`.
+- scripts/install/ holds the release installers; scripts/release/ packages, assembles,
+  smoke-tests and installer-tests release archives.
 - local_store.rs holds the `.eplyx/` metadata, saved-counterexample and ID formats shared by
   the CLI and dashboard.
 - dashboard/ is the Milestone 16 loopback server: guarded store reads, a fingerprinted summary

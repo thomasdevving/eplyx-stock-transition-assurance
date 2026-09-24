@@ -12,6 +12,7 @@
 //! economic interpretation, reports and counterexample minimization are retained
 //! as a synthetic regression harness, not a lifecycle consequence model.
 
+pub mod build_info;
 pub mod cluster;
 pub mod corpus;
 pub mod coverage;
@@ -81,6 +82,24 @@ pub fn fixture_program_id() -> Address {
 pub fn artifact_path(path: &Path) -> String {
     path.to_string_lossy()
         .replace(std::path::MAIN_SEPARATOR, "/")
+}
+
+/// A canonical path in the plain form other tools and people expect. On
+/// Windows `canonicalize` returns verbatim `\\?\C:\...` paths, which `git -C`
+/// and display text handle poorly; this drops only that drive-letter prefix.
+/// Equality checks keep using the canonical form.
+pub fn plain_path(path: &Path) -> PathBuf {
+    let text = path.to_string_lossy();
+    match text.strip_prefix(r"\\?\") {
+        Some(rest)
+            if rest.len() >= 3
+                && rest.as_bytes()[1] == b':'
+                && rest.as_bytes()[0].is_ascii_alphabetic() =>
+        {
+            PathBuf::from(rest)
+        }
+        _ => path.to_path_buf(),
+    }
 }
 
 /// Repository root, resolved from the crate location rather than the working

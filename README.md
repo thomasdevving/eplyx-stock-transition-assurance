@@ -1,3 +1,81 @@
+# Eplyx
+
+Eplyx tests a Solana token-transition program against current production state
+before you ship it. It runs on your machine: read-only capture, local execution,
+local results.
+
+## Install
+
+**macOS (Apple Silicon) and Linux (x86_64):**
+
+```sh
+curl -fsSL https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases/latest/download/install.sh | sh
+```
+
+**Windows (x86_64, PowerShell):**
+
+```powershell
+irm https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases/latest/download/install.ps1 | iex
+```
+
+The installer picks your platform's archive and checks its SHA-256 against the
+release `SHA256SUMS` before installing anything. It installs one file:
+`~/.local/bin/eplyx` on macOS/Linux, or
+`%LOCALAPPDATA%\Programs\eplyx\bin\eplyx.exe` on Windows. It needs no
+sudo or Administrator rights and never edits your shell profile, PATH or
+registry; if the directory is not on your PATH it prints the command to add it.
+Set `EPLYX_INSTALL_DIR` to choose another directory, or `EPLYX_VERSION=v0.1.0`
+to pin a release.
+
+**Manual download:** take the archive for your platform from
+[GitHub Releases](https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases),
+together with `SHA256SUMS`, and verify it before extracting:
+
+```sh
+shasum -a 256 -c SHA256SUMS --ignore-missing       # macOS
+sha256sum -c SHA256SUMS --ignore-missing           # Linux
+```
+```powershell
+(Get-FileHash .\eplyx-v0.1.0-windows-x86_64.zip -Algorithm SHA256).Hash   # compare with SHA256SUMS
+```
+
+Each archive contains only the `eplyx` binary. Supported builds:
+`darwin-arm64`, `linux-x86_64` (glibc 2.35 or newer) and `windows-x86_64`.
+Other platforms can build from source (see below).
+
+## Use it in your Solana project
+
+```sh
+eplyx --version
+cd my-solana-project
+eplyx init                 # writes eplyx.toml and .eplyx/
+cargo build-sbf            # your own program build, as usual
+export SOLANA_RPC_URL='https://your-mainnet-provider.example'
+eplyx doctor
+eplyx preflight
+eplyx search
+eplyx dashboard
+```
+
+Eplyx itself needs no Rust, Node or Eplyx checkout; only building your own
+candidate program uses your Solana toolchain. See the
+[developer quick start](docs/developer-cli.md).
+
+**What stays local.** Installing or running Eplyx creates no account, contacts
+no Eplyx service, sends no telemetry and uploads no run artifacts, source code or
+candidate binary. The only network use is the read-only Solana RPC you set in
+`SOLANA_RPC_URL` for `doctor`, `preflight` and `search`; it never receives your
+candidate program, which executes only in the local VM. Runs, counterexamples and
+reproduction history stay in each project's `.eplyx/`. To uninstall, delete the
+installed binary.
+
+**Build from source (contributors):**
+`cargo build --release --locked -p eplyx-lifecycle-impact --bin eplyx`.
+Releases are produced by [.github/workflows/release.yml](.github/workflows/release.yml);
+see [Milestone 17](docs/on-demand-milestone-17-release.md).
+
+---
+
 > **Prospective on-demand pre-flight:** Open `/analysis#analysis`, select a catalogue
 > asset or custom mint, and fetch a public wallet. Focus an account, optionally run
 > fresh local Transfer / supported market-exit checks, then prepare a hypothetical

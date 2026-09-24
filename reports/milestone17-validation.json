@@ -1,0 +1,33 @@
+{
+  "kind": "milestone17-release-install-validation",
+  "schema_version": 1,
+  "boundary": "Packaging and installation only. The released binary is the Milestone 8-16 engine and embedded dashboard; no analytical semantics changed.",
+  "local_checks_macos_arm64": {
+    "make_test": "Passed (585 tests, 0 failed, including SBF program builds and tests)",
+    "make_fmt_check": "Passed",
+    "make_lint": "Passed (clippy -D warnings)",
+    "release_cli_tests": "4 passed (version identity, doctor checklist, RPC URL never echoed, Milestone 16 store compatibility)",
+    "dashboard_integration_tests": "16 passed",
+    "cli_unit_tests": "12 passed",
+    "dashboard_browser_tests": "11 passed",
+    "node_service_tests": "47 passed",
+    "release_assembler_tests": "4 passed",
+    "unix_installer_tests": "24 passed against the exact darwin-arm64 archive",
+    "powershell_installer_rejection_tests": "12 passed with pwsh on macOS; the install success path runs only on Windows",
+    "exact_archive_smoke": "Passed on eplyx-v0.1.0-darwin-arm64.tar.gz; archive sha256 unchanged after smoke, installer and PowerShell tests",
+    "secret_scan": "No saved RPC URL or token patterns in 23 changed files or in the release archives",
+    "git_diff_check": "Passed"
+  },
+  "local_acceptance_macos_arm64": {
+    "source_independence": "Release binary built from a temporary copy of the working tree; the copy was deleted before installation and use",
+    "installer": "install.sh from a file:// release into a fresh HOME: checksum verified, only ~/.local/bin/eplyx written, PATH guidance printed, no profile changed",
+    "fresh_project": "--version, init, runs, doctor --offline (exit 2 with candidate guidance), dashboard API responded on loopback",
+    "existing_store": "Milestone 15/16 acceptance store: runs, show, and eplyx reproduce cx_2ab4735232a3f228da1a29d1 verified offline in 2.96 s with a new reproduction record and no RPC secret recorded"
+  },
+  "pending": {
+    "linux_x86_64": "Not yet built or tested; runs on the native ubuntu-22.04 jobs in .github/workflows/release.yml",
+    "windows_x86_64": "Not yet built or tested; runs on the native windows-2022 jobs, including the PowerShell install success path",
+    "published_release": "No GitHub Release has been created",
+    "live_preflight_with_release_binary": "Not run; requires a mainnet RPC provider"
+  }
+}

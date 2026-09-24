@@ -15,6 +15,7 @@
     "test:frontend": "playwright test",
     "test:service": "node --test frontend/tests/*.test.mjs",
     "test:dashboard": "playwright test --config playwright.dashboard.config.js",
+    "test:release": "node --test scripts/release/*.test.mjs",
     "build:engine": "cargo build --locked -p eplyx-lifecycle-impact",
     "import:catalogue": "node scripts/import-catalogue.mjs"
   },

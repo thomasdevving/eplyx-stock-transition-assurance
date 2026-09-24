@@ -1,0 +1,236 @@
+name: Release
+
+# A `v*` tag builds, tests and publishes a GitHub Release. A manual run does
+# everything except publishing. Published bytes are exactly the archives that
+# were smoke-tested and installed below; nothing is rebuilt after testing.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_BUILD_SBF_VERSION: 4.4.0
+
+jobs:
+  validate:
+    name: Validate workspace
+    runs-on: ubuntu-22.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag matches the workspace version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          version=$(sed -n 's/^version = "\(.*\)"/\1/p' Cargo.toml | head -n 1)
+          test "${GITHUB_REF_NAME}" = "v${version}" || { echo "tag ${GITHUB_REF_NAME} != v${version}"; exit 1; }
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Install the pinned SBF build tool
+        run: cargo install cargo-build-sbf --version "$CARGO_BUILD_SBF_VERSION" --locked
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: make fmt-check
+      - run: make lint
+      - name: Workspace, program and engine tests
+        run: make test
+      - run: npm run check:frontend
+      - run: npm run build:engine
+      - run: npm run test:service
+      - run: npm run test:release
+      - name: Dashboard browser tests
+        run: npm run test:dashboard
+
+  build:
+    name: Build ${{ matrix.platform }}
+    needs: validate
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 90
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - { platform: darwin-arm64, os: macos-14, exe: '' }
+          - { platform: linux-x86_64, os: ubuntu-22.04, exe: '' }
+          - { platform: windows-x86_64, os: windows-2022, exe: .exe }
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: CLI, dashboard and release CLI tests on this platform
+        run: cargo test --locked -p eplyx-lifecycle-impact --bin eplyx --test local_dashboard --test release_cli
+      - name: Build the release binary
+        env:
+          EPLYX_BUILD_COMMIT: ${{ github.sha }}
+        run: cargo build --release --locked -p eplyx-lifecycle-impact --bin eplyx
+      - name: Archive
+        id: archive
+        run: echo "path=$(scripts/release/package.sh target/release/eplyx${{ matrix.exe }} ${{ matrix.platform }} dist)" >> "$GITHUB_OUTPUT"
+      - name: Smoke-test the archived binary
+        run: bash scripts/release/smoke.sh "${{ steps.archive.outputs.path }}"
+      - name: Installer tests (sh)
+        if: matrix.platform != 'windows-x86_64'
+        run: bash scripts/release/test-installers.sh "${{ steps.archive.outputs.path }}"
+      - name: Installer tests (PowerShell)
+        if: matrix.platform == 'windows-x86_64'
+        shell: pwsh
+        run: ./scripts/release/test-install-ps1.ps1 -Archive "${{ steps.archive.outputs.path }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.platform }}
+          path: ${{ steps.archive.outputs.path }}
+          if-no-files-found: error
+
+  assemble:
+    name: Checksums and manifest
+    needs: build
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: release-*
+          merge-multiple: true
+          path: dist
+      - run: node scripts/release/assemble.mjs dist "$GITHUB_SHA"
+      - run: cd dist && sha256sum -c SHA256SUMS && ls -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-bundle
+          path: dist/*
+          if-no-files-found: error
+
+  install-acceptance:
+    # No checkout: the installed binary must work without the repository.
+    name: Install on ${{ matrix.os }}
+    needs: assemble
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [macos-14, ubuntu-22.04, windows-2022]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+          path: ${{ runner.temp }}/bundle
+      - name: Install with install.sh and use the binary
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          set -euo pipefail
+          bundle="$RUNNER_TEMP/bundle"
+          (cd "$bundle" && { sha256sum -c SHA256SUMS 2>/dev/null || shasum -a 256 -c SHA256SUMS; })
+          EPLYX_DOWNLOAD_BASE="file://$bundle" EPLYX_INSTALL_DIR="$RUNNER_TEMP/bin" sh "$bundle/install.sh"
+          eplyx="$RUNNER_TEMP/bin/eplyx"
+          "$eplyx" --version
+          "$eplyx" version --json
+          mkdir "$RUNNER_TEMP/project" && cd "$RUNNER_TEMP/project"
+          "$eplyx" init
+          test "$("$eplyx" runs --json | tr -d '[:space:]')" = "[]"
+          set +e; "$eplyx" doctor --offline; code=$?; set -e
+          test "$code" = 2
+          "$eplyx" dashboard --no-open --port 0 > dashboard.log 2>&1 &
+          pid=$!
+          for _ in $(seq 1 100); do url=$(grep -o 'http://127\.0\.0\.1:[0-9]*' dashboard.log | head -n 1 || true); [ -n "$url" ] && break; sleep 0.2; done
+          curl -fsS "$url/api/project" | grep -q '"runs":0'
+          curl -fsS "$url/" | grep -q '/assets/dashboard.js'
+          kill "$pid"
+          # A tampered archive must never be installed.
+          cp -R "$bundle" "$RUNNER_TEMP/tampered"
+          case "$(uname -s)" in Darwin) platform=darwin-arm64 ;; *) platform=linux-x86_64 ;; esac
+          archive=$(ls "$RUNNER_TEMP/tampered"/eplyx-v*-"$platform".tar.gz)
+          printf 'x' >> "$archive"
+          if EPLYX_DOWNLOAD_BASE="file://$RUNNER_TEMP/tampered" EPLYX_INSTALL_DIR="$RUNNER_TEMP/bin2" sh "$RUNNER_TEMP/tampered/install.sh"; then echo "tampered archive installed"; exit 1; fi
+          test ! -e "$RUNNER_TEMP/bin2/eplyx"
+          rm "$eplyx" && test ! -e "$eplyx"
+      - name: Install with install.ps1 and use the binary
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $bundle = Join-Path $env:RUNNER_TEMP 'bundle'
+          $bin = Join-Path $env:RUNNER_TEMP 'bin'
+          $env:EPLYX_DOWNLOAD_BASE = 'file:///' + ($bundle -replace '\\', '/')
+          $env:EPLYX_INSTALL_DIR = $bin
+          & (Join-Path $bundle 'install.ps1')
+          $eplyx = Join-Path $bin 'eplyx.exe'
+          & $eplyx --version; if ($LASTEXITCODE) { throw 'version failed' }
+          & $eplyx version --json; if ($LASTEXITCODE) { throw 'version --json failed' }
+          $project = Join-Path $env:RUNNER_TEMP 'project'
+          New-Item -ItemType Directory -Path $project | Out-Null
+          Set-Location $project
+          & $eplyx init; if ($LASTEXITCODE) { throw 'init failed' }
+          if (((& $eplyx runs --json) -join '').Trim() -ne '[]') { throw 'runs not empty' }
+          & $eplyx doctor --offline; if ($LASTEXITCODE -ne 2) { throw "doctor exit $LASTEXITCODE" }
+          $log = Join-Path $project 'dashboard.log'
+          $server = Start-Process -FilePath $eplyx -ArgumentList 'dashboard', '--no-open', '--port', '0' -RedirectStandardOutput $log -PassThru -NoNewWindow
+          $url = $null
+          for ($i = 0; $i -lt 100 -and -not $url; $i++) { Start-Sleep -Milliseconds 200; if (Test-Path $log) { $url = (Select-String -Path $log -Pattern 'http://127\.0\.0\.1:\d+' | Select-Object -First 1).Matches.Value } }
+          if (-not $url) { throw 'dashboard did not start' }
+          if ((Invoke-WebRequest -UseBasicParsing "$url/api/project").Content -notmatch '"runs":0') { throw 'dashboard API mismatch' }
+          if ((Invoke-WebRequest -UseBasicParsing "$url/").Content -notmatch '/assets/dashboard.js') { throw 'dashboard page mismatch' }
+          Stop-Process -Id $server.Id
+          $tampered = Join-Path $env:RUNNER_TEMP 'tampered'
+          Copy-Item -Recurse $bundle $tampered
+          $zip = Get-ChildItem $tampered -Filter 'eplyx-v*-windows-x86_64.zip' | Select-Object -First 1
+          Add-Content -LiteralPath $zip.FullName -Value 'x'
+          $env:EPLYX_DOWNLOAD_BASE = 'file:///' + ($tampered -replace '\\', '/')
+          $env:EPLYX_INSTALL_DIR = Join-Path $env:RUNNER_TEMP 'bin2'
+          $rejected = $false
+          try { & (Join-Path $tampered 'install.ps1') } catch { $rejected = $_.Exception.Message -match 'checksum mismatch' }
+          if (-not $rejected -or (Test-Path (Join-Path $env:RUNNER_TEMP 'bin2\eplyx.exe'))) { throw 'tampered archive was not rejected' }
+          Remove-Item $eplyx; if (Test-Path $eplyx) { throw 'uninstall failed' }
+
+  publish:
+    name: Publish GitHub Release
+    needs: install-acceptance
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-bundle
+          path: dist
+      - name: Verify the tested bytes once more
+        run: cd dist && sha256sum -c SHA256SUMS
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          {
+            echo "Install on macOS (Apple Silicon) or Linux (x86_64):"
+            echo
+            echo '    curl -fsSL https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/install.sh | sh'
+            echo
+            echo "Install on Windows (x86_64, PowerShell):"
+            echo
+            echo '    irm https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/install.ps1 | iex'
+            echo
+            echo "Every archive is listed in SHA256SUMS and eplyx-release.json. Built from ${{ github.sha }}."
+            echo
+            echo '```'
+            cat dist/SHA256SUMS
+            echo '```'
+          } > notes.md
+          gh release create "${{ github.ref_name }}" dist/* --repo "${{ github.repository }}" --title "Eplyx ${{ github.ref_name }}" --notes-file notes.md --verify-tag

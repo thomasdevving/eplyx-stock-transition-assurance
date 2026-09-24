@@ -5,6 +5,7 @@ edition.workspace = true
 license.workspace = true
 description = "Change scenarios, state diffs and economic impact for Eplyx Lifecycle Impact."
 default-run = "eplyx-lifecycle"
+build = "build.rs"
 
 [[bin]]
 name = "eplyx-lifecycle"

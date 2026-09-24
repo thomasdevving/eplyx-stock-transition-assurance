@@ -112,7 +112,7 @@ fn reason(status: u16) -> &'static str {
 /// Presentation-only path: the home directory becomes `~` so screenshots and
 /// shared views do not expose a local user name.
 pub fn display_path(path: &Path) -> String {
-    let text = path.to_string_lossy().into_owned();
+    let text = crate::plain_path(path).to_string_lossy().into_owned();
     ["HOME", "USERPROFILE"]
         .iter()
         .filter_map(|variable| std::env::var(variable).ok())
@@ -626,6 +626,22 @@ mod tests {
                 ("left".into(), "run_a".into()),
                 ("right".into(), "run_b".into())
             ]
+        );
+    }
+
+    #[test]
+    fn verbatim_windows_paths_become_plain() {
+        assert_eq!(
+            crate::plain_path(Path::new(r"\\?\C:\Users\dev\app")),
+            Path::new(r"C:\Users\dev\app")
+        );
+        assert_eq!(
+            crate::plain_path(Path::new(r"\\?\UNC\server\share")),
+            Path::new(r"\\?\UNC\server\share")
+        );
+        assert_eq!(
+            crate::plain_path(Path::new("/home/dev/app")),
+            Path::new("/home/dev/app")
         );
     }
 
