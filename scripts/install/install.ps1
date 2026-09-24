@@ -113,8 +113,11 @@
       $zip.Dispose()
     }
 
-    $installed = (& $binary --version | Select-Object -First 1)
-    if ($LASTEXITCODE -ne 0) { Fail 'the verified binary does not run on this system' }
+    # Capture all output first: stopping the pipeline early (Select-Object
+    # -First) terminates the process and leaves no exit code to check.
+    $versionOutput = @(& $binary --version)
+    if ($LASTEXITCODE -ne 0 -or $versionOutput.Count -eq 0) { Fail 'the verified binary does not run on this system' }
+    $installed = $versionOutput[0]
 
     New-Item -ItemType Directory -Force -Path $installDir | Out-Null
     $target = Join-Path $installDir 'eplyx.exe'
