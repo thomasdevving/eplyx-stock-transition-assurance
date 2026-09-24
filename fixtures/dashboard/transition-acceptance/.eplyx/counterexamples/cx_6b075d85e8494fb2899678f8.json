@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "id": "cx_6b075d85e8494fb2899678f8",
+  "parent_run": "run_20260924123736483_ce7b4d55310c",
+  "search_sha256": "3c885c64273870504d0461320a0654ad9ce4cd0f525352f48c52f6bc84827101",
+  "replay_inputs": {
+    "package": "runs/run_20260924123736483_ce7b4d55310c/package",
+    "result": "runs/run_20260924123736483_ce7b4d55310c/result",
+    "search": "runs/run_20260924123736483_ce7b4d55310c/search"
+  },
+  "counterexample": {
+    "kind": "Derived",
+    "id": "derived-amount-case-00",
+    "parent_run": "pkg-0958e335110b-1790253456505",
+    "transition_package_sha256": "0958e335110b1185d77818ace1651cf8b8c24b7f7926397fd82a66441f8502e0",
+    "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+    "observed_source_account": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+    "observed_state_digest": "569738b268c2ea1046de4b03f5b551d295d0f763fc6031491457fb43dec4e1d2",
+    "observed_amount_raw": "1495550809244",
+    "search_dimension": "SourceAmount",
+    "original_value_raw": "1495550809244",
+    "derived_value_raw": "84675242",
+    "execution_plan_sha256": "fbb69b5dedcb4aad1d1ca5cfbe27448279fa74493f2dc3d1f80cf4eb96257a9c",
+    "execution_fixture_sha256": "6118983b6213fcf278906f6a808b4c3e7c2e6a2976e77aa07bf7bf4bc44f9aa5",
+    "failure_signature": {
+      "stage": "ExecutedInstruction",
+      "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "instruction_error": "InstructionError(1, Custom(13))",
+      "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+      "rollback_verified": true
+    },
+    "original_failure_signature": {
+      "stage": "ExecutedInstruction",
+      "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "instruction_error": "InstructionError(1, Custom(13))",
+      "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+      "rollback_verified": true
+    },
+    "signature_preserved": true,
+    "minimized": true,
+    "last_passing_value_raw": null,
+    "first_passing_value_raw": null,
+    "minimization_trace": [
+      {
+        "dimension": "SourceAmount",
+        "value_raw": "84675242",
+        "method": "BinarySearch",
+        "status": "Failed",
+        "execution_plan_sha256": "fbb69b5dedcb4aad1d1ca5cfbe27448279fa74493f2dc3d1f80cf4eb96257a9c",
+        "execution_fixture_sha256": "6118983b6213fcf278906f6a808b4c3e7c2e6a2976e77aa07bf7bf4bc44f9aa5",
+        "failure_signature": {
+          "stage": "ExecutedInstruction",
+          "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+          "instruction_error": "InstructionError(1, Custom(13))",
+          "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+          "rollback_verified": true
+        },
+        "origin": "DerivedForSearch from observed account and mint, reconstructed through typed Token-2022 state"
+      }
+    ],
+    "provenance": "DerivedForSearch from ObservedOnChain source account and mint",
+    "limitations": "Typed local state variant; this exact amount and adjusted mint supply are not claimed to exist on mainnet."
+  }
+}

@@ -221,6 +221,17 @@ readiness and OfficialTransition stay unchanged. No generic byte mutation,
 random fuzzing, issuer signing or broadcast is introduced. See
 docs/on-demand-milestone-14-search.md.
 
+Milestone 16 adds `eplyx dashboard`, a read-only loopback workspace over one project's
+`.eplyx/` store. Engine artifacts stay the single analytical truth: the dashboard copies
+statuses, counts and compares fields, and reuses the engine gate evaluator for policy views.
+It never replays, executes, edits, uploads or reads an RPC URL. Browser input never names a
+filesystem path; IDs resolve through the index and symlinks are rejected. The summary index
+is a rebuildable cache, never evidence. Counterexample diffs use observed account and
+dimension; "resolved" requires identical search conditions and exact re-execution, and
+"fixed" is never claimed. `eplyx reproduce` records each attempt in `.eplyx/reproductions/` as
+history, never as evidence. Metadata schema 2 records `run_source`; older runs stay unrecorded. No accounts, sync, telemetry or editable config are introduced.
+See docs/on-demand-milestone-16-dashboard.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.
@@ -288,6 +299,11 @@ docs/on-demand-milestone-14-search.md.
 - programs/eplyx-demo-conversion/ is the registered candidate mechanism. It enforces the ratio,
   rounding and conversion fee itself in checked integer arithmetic and performs real token
   CPIs, so host-side calculation can never stand in for execution. It is not deployed anywhere.
+- local_store.rs holds the `.eplyx/` metadata, saved-counterexample and ID formats shared by
+  the CLI and dashboard.
+- dashboard/ is the Milestone 16 loopback server: guarded store reads, a fingerprinted summary
+  cache, presentation views and semantic comparison. frontend/dashboard/ holds its embedded
+  browser assets. Views select and compare engine fields; they never decide readiness.
 - corpus.rs, interpret.rs, impact.rs, cluster.rs, shrink.rs and report.rs retain
   synthetic lending regression/demo behavior, not lifecycle domain semantics.
 - interface/ and programs/fixture-lending/ are the synthetic harness only.

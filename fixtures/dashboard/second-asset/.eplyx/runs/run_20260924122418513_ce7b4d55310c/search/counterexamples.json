@@ -1,0 +1,224 @@
+{
+  "version": "eplyx-counterexample-search/v1",
+  "parent_run": "pkg-0d5c60ceaabd-1790252658528",
+  "transition_package_sha256": "0d5c60ceaabd4f0dcea3aeab29b58c49f0e9b5b08869c75914b77832c7f21d7a",
+  "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+  "population_capture_sha256": "5b8169769acda28791a168038d953ff5907c2c358489eb1d39402a18ed8afd0c",
+  "stress_plan_sha256": "73bf2bbc2dd154fc188f8ddfdfa45a2eaea08ca6037c37b3fea6c680170f8d04",
+  "case_capture_sha256": "cdbeacc1d3932f02d98922ea03b7f771eb0f44cf4c7e174f881856cb92c68f94",
+  "budget": {
+    "max_observed_executions": 25,
+    "max_boundary_executions": 20,
+    "max_minimization_executions": 20,
+    "observed_cases_selected": 25,
+    "observed_executions": 25,
+    "boundary_executions": 0,
+    "minimization_executions": 0
+  },
+  "search_domain": "Wave 0 exact selected coherent final states plus 3 frozen additional observed waves (at most 25 account selections); derived source amount and proposed reserve are limited by derived_domain, including captured replacement mint supply. One deterministic seed and at most two exact VM boundary witnesses per dimension.",
+  "derived_domain": {
+    "observed_source_account": "5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+    "seed_selection_reason": "Executed failure first; then highest final captured amount; then token-account address. Deterministic across all prior observed waves.",
+    "source_amount_min_raw": "1",
+    "source_amount_max_raw": "247169964713",
+    "source_amount_mutation_available": true,
+    "proposed_reserve_min_raw": "1000000000000",
+    "proposed_reserve_max_raw": "1000000000000",
+    "replacement_mint_captured_supply_raw": "8277969252188383"
+  },
+  "observed_wave": [
+    "5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+    "3REFKe95C1VCt9ZHb5EBfbcsRzWJGNd7jVPBbPQuHQpB",
+    "5U9BBCA3DfpoixgEEnLtyorxE1dRzxwJw8Gtxg7M9Sen",
+    "DnWEo3DRkrKRFNhAwdk8RYWcUWzhsnDtRbSmeCBfgx3y",
+    "4DGBa9xArs3xFRVCYRk66dhZBRe5dAkMUaJxJTwsNWAp",
+    "F92KFTXGYUJfFsdaUw3uEA7HStnKARFxFcHiTRmEbeQB",
+    "BzfeaPxDiNwt9EV2tYiHPQyAmPZVZvmwY85FiAXwLa6T",
+    "F3L4drnkirxAnqeFVpJiRgTUeNMdBFZnV4bwZKuyrSpy",
+    "2yKhrq4JNmudZtA5cy5aKHcvRuVGoJbo3QjAxGYUsBeQ",
+    "VSesNVc9yAnFbESNMKBmr2KWtckNowLWTSsSKfAUUDx"
+  ],
+  "additional_waves": [
+    {
+      "wave": 1,
+      "freeze_sha256": "d15edfdf1ea72f98e12be59e8e2ad6638c5961a6a717079d4ad2f68fffcaf158",
+      "frozen_plan_sha256": "7f3595512af5b0e3a6ee5b4e06e82a04a95715cda091e8adfe03567ed189bdad",
+      "case_capture_sha256": "7c1e73de81c554198319c0f576930120a278077663a995e06f8e12fb9c726563",
+      "selected_exact_accounts": [
+        "Fkhvv8ynXhzbYuKz1QUX5nQ2gKp7dwBwkriSg2xZB1jP",
+        "4gYBPfKx2QKQyj9CnxHF6vttCSdH1fv4E9tU87urpxxY",
+        "HgWVHPJZnDKfyimKotWyAo6vWeWqWdXqn44M2DASXp7q",
+        "79xEVAZDy2VQYTtAvVpxRgmuG2TbmsEdunqePSbqqmU8",
+        "F1rs5o6x96QzTRyezEBFCtKjUYz53Ciq5Dwo3AvzeM5q",
+        "G78Ppv7MuYryqRudwYQhxaWMUipucLY4MqgL2KAVZVst",
+        "3gbzgS6FJBfFqdg86LoXTNX2XXeNXq28Co7mUa8Ljgvg",
+        "7Hq9MNf1eVKGZFkYyxZ2kJcvugfYXUtPgmfv8tN4fBb8",
+        "FwgntZg9cgkBNhDQd4cA1z3kqGes3qwfee9WQ2xFHgMp",
+        "Go5vXcXSEKt6asp3XhmCCvi1M1feiPYcjML6gy3fJBC6"
+      ],
+      "selection_reasons": [
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class."
+      ],
+      "result_sha256": [
+        "7dfe6b9a7b4c31a44166b2ad7cea49e2191f72991a1718c3fd09205e50acabea",
+        "41762a8500132b4fb708087c9a91fde86e43e5aba74b5417d735707de3af23ed",
+        "34d421a6a5ad191a6777b6e3c178292b6f14740f29af5a4d6c0d1e4dcd1b00b6",
+        "d1f6460367cdc876691156c93cb4beac65a90be2bde430354ef53688fd8e469e",
+        "0b94fc852fa09c4cfa35c1b80e1c02f3500ca8213b53e9b32964573c30292ead",
+        "d66b12b59b2325a6abfc575c1edfb86e064f69599516a99f23d611511c4470ca",
+        "77d73cfaae38410a9e6e028b3cdd93bd7c81ac8a3e188c58f877ecc43220afde",
+        "e528553ba6343157ab86862ed1ca92ea5d7c2881d63b6f5a3a0edbbbc3e3a6f0",
+        "dded90dcb7590b7d4431ed67c3e13f4f78935d3c3871965bca9126bca2d4952b",
+        "83b1f66875c623e9dc4e1d0b1c72d45cc9276aa15851fcc41a43e81da3cc518b"
+      ],
+      "outcomes": [
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven"
+      ],
+      "failure_signatures": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "next_search_decision": "Recompute the next frozen selection from all prior-wave outcomes and remaining observed accounts."
+    },
+    {
+      "wave": 2,
+      "freeze_sha256": "0b612e114883ec7cc9c31c839ee382143dd45bc59502bafa1e90db859713cda8",
+      "frozen_plan_sha256": "5af6724c0ad62109f2b914357105dc46dae8ae8db57636c463acb5e081b04724",
+      "case_capture_sha256": "62f7f2b472b2d7d830b1739fd47f56467fd5410be3e30c230766c7fc36d3a680",
+      "selected_exact_accounts": [
+        "2cjft1gLpBsHbhV78ZLW8KUdF7CX21CvyigchN2SPfPM",
+        "EZEGgJ8kNy29MQP5ppEQJvV9G8YAVz6v6RGA5ywgUH4Z",
+        "BADn8Fi6FeZ4YCfMNDU1up9WUe7AgX2gMtKHRWE4ydWy",
+        "5cbx7gTY29v6Xpsv1DcY4FhfXyGRcaNaSiGFm5DNSrb",
+        "8eGn4RCfzuSUnHES67K1PUb4zMyoyu684pdJWoK3ffaD",
+        "5P1oAU7YLCpuvTSNA3U1tjU1DZcALXwpLmaQFHsjgyc7",
+        "Eq4s5TRkbsLZh8jVQ9uha3nZBP8iWbm81mvAXCwJLSPj",
+        "J2iBJ84K6W3PN2imR4LHSbMBPVHCTXzMTnPDQvmrgHjs",
+        "6KYZhmSMdsk8hUTYFNNkpGaDXehMxfndP73Jq2nPkXqE",
+        "BAWNCNEP3guL77sCxqSYsoFc9W86d2UHGY7AusGz7yd"
+      ],
+      "selection_reasons": [
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class."
+      ],
+      "result_sha256": [
+        "b06d93d612ad9da2423cd0f38358b8f0384dc4214a36b18042d54c6126b66f3d",
+        "ec1b1ea42c347e94a5202e973ab4b0295a7a7182b9d4e649fba803db4ea400f3",
+        "40cdf5b3a43160ad0f991e6c08ba5ddd700d2313b10801ba5ff961864c0bdbb5",
+        "3d5a626a892a4d7cb2c90ecda95d440f995fdb792173f5f021180220f66f533b",
+        "9825354755b1a15ee789573441f223833357b194768f3e70fb7b7d29aa074cf8",
+        "9f1ab3ebf688d012f3e4a5210c94243c497421749f1cdc97be46f68661f0522c",
+        "97f17531fdad714a54dc53278b1a67afd7a79320157493a0a11ac548f96c65fe",
+        "abd13f7724fea21c297948248112d937c3bd515b1c41f82c7e47f59b57e7c246",
+        "8681fb04170dc5e8ac03672429dae30e89905fc8db47d8e1f3e940903631c60e",
+        "c53c65386e1fbbb999c49b5fdd1126db518ec0e26f1e0f6959825061c874534d"
+      ],
+      "outcomes": [
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven"
+      ],
+      "failure_signatures": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "next_search_decision": "Recompute the next frozen selection from all prior-wave outcomes and remaining observed accounts."
+    },
+    {
+      "wave": 3,
+      "freeze_sha256": "e8c997016e0ffe4d303ce888fedef84ce0231b353a5debeefc9122b8f18b4855",
+      "frozen_plan_sha256": "eb3010698636258d5c8aa6920c6dceb0347c4943cdc09386e84445e04dccfc28",
+      "case_capture_sha256": "5053a90ab5557b9850b1047ecbe9947b3a65774ec12e968be305a55b7d2b4a8b",
+      "selected_exact_accounts": [
+        "GMosmxAoraSNfXRaGcBsKF71NrAVr2n46heo5CuGVHdZ",
+        "HKAgvtnnwhxDcGLjq7kNnRtBbmB6GYqwa1yiP6dszSxh",
+        "3hfQvs8q9UKgt6sXgibCwJh8HSZVbwjdaH81bmhqF7n1",
+        "CHPpfDM5CHRQ6htMxcoF5cmZu7MFSkJGVntwen6VmNCx",
+        "35kMXvhYzYtCuM9ynNRoXugNTeVD964fURjoK7UkDM52"
+      ],
+      "selection_reasons": [
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class.",
+        "Untested exact account has an extreme balance in the supported class."
+      ],
+      "result_sha256": [
+        "724edda1acba5e58dad9e66e65381908ad5d3b1709e61863d9f91d2ede5d21d6",
+        "62618b39975773d9fa7c183d89448c4f2af2a6c18681b47ff2fad0145d90ac5c",
+        "1411d412fc195aeb1f0703d51c7c1eefe09df32f7d51f215cdf3cd50e42136dc",
+        "6a4389ad454813ae8662ade960f450ab18e4fda0d2ca54a484566bf83cc3aa27",
+        "6b616b9d1fb036a9c81730b50a496c8b5d52d06600234a34dc9c4e886cc45955"
+      ],
+      "outcomes": [
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven",
+        "Proven"
+      ],
+      "failure_signatures": [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "next_search_decision": "Observed execution budget reached; move to typed derived boundary search."
+    }
+  ],
+  "trace": [],
+  "counterexamples": [],
+  "conclusion": "No counterexample found within this search domain and budget.",
+  "official_transition": "NotTested",
+  "funds_moved": false
+}

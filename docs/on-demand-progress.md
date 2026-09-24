@@ -1342,3 +1342,17 @@ package terms, execution scope, invariants and gate. `init`, `doctor`, `prefligh
 `search`, `reproduce`, `runs` and `show` keep engine evidence and gate semantics
 unchanged. The CLI uses a read-only mainnet RPC environment variable for live
 checks and saves no credentials. See [developer quick start](developer-cli.md).
+
+## Milestone 16 — local developer dashboard
+
+`eplyx dashboard` serves a read-only, loopback-only workspace over the project's
+`.eplyx/` store: overview, run history, run detail, counterexamples, semantic run
+comparison, and production-state, invariant, gate and project summaries. The
+server is built into the CLI binary and embeds its assets. Statuses are copied
+from engine artifacts, and alternative gate policies come from the engine's own
+gate evaluator. Nothing is replayed, executed, edited or uploaded. A rebuildable
+summary cache is its only write. Counterexamples are matched across runs by
+observed account and dimension. A counterexample missing from a later run is
+reported as resolved only under identical search conditions and exact
+re-execution. `eplyx reproduce` now records its attempts as local history, and
+new run metadata records its `run_source`. See [Milestone 16 dashboard](on-demand-milestone-16-dashboard.md).

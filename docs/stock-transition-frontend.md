@@ -87,6 +87,7 @@ The Phase 15 local API performs fresh offline evaluations through the existing b
 npm run check:frontend
 npm run build
 npm run test:frontend
+npm run test:dashboard   # local dashboard; set EPLYX_CHROME if Chrome is not installed
 make test
 make fmt-check
 make lint

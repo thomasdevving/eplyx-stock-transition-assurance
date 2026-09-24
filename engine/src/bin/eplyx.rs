@@ -13,8 +13,13 @@ use eplyx_lifecycle_impact::{
         exposure::sha256,
         rpc::{HttpSolanaRpc, SolanaRpc},
     },
+    local_store::{
+        counterexample_id, replay_inputs, reproduction_id, safe_id, Metadata, Reproduction,
+        ReproductionOutcome, RunSource, SavedCounterexample, METADATA_VERSION,
+        REPRODUCTION_VERSION,
+    },
 };
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use serde_json::{json, Value};
 use std::{
     fs::{self, OpenOptions},
@@ -67,6 +72,15 @@ enum Action {
     },
     Show {
         id: String,
+    },
+    /// Serve a read-only local dashboard over `.eplyx/` on 127.0.0.1.
+    Dashboard {
+        /// Port on 127.0.0.1; defaults to the first free port from 4173.
+        #[arg(long)]
+        port: Option<u16>,
+        /// Print the URL without opening a browser.
+        #[arg(long)]
+        no_open: bool,
     },
     #[command(hide = true)]
     FinishPackagePreflight {
@@ -133,51 +147,6 @@ struct Execution {
 #[serde(deny_unknown_fields)]
 struct Gate {
     policy: Policy,
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
-struct Metadata {
-    schema_version: u32,
-    run_id: String,
-    timestamp: String,
-    eplyx_version: String,
-    engine_binary_sha256: String,
-    git_commit: Option<String>,
-    git_branch: Option<String>,
-    git_dirty: Option<bool>,
-    candidate_program_sha256: String,
-    transition_package_sha256: String,
-    gate_policy: String,
-    gate_outcome: String,
-}
-
-#[derive(Serialize, Deserialize)]
-#[serde(deny_unknown_fields)]
-struct SavedCounterexample {
-    schema_version: u32,
-    id: String,
-    parent_run: String,
-    search_sha256: String,
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    replay_inputs: Option<ReplayInputs>,
-    counterexample: search::Counterexample,
-}
-
-#[derive(Serialize, Deserialize, PartialEq, Eq)]
-#[serde(deny_unknown_fields)]
-struct ReplayInputs {
-    package: String,
-    result: String,
-    search: String,
-}
-
-fn replay_inputs(run: &str) -> ReplayInputs {
-    ReplayInputs {
-        package: format!("runs/{run}/package"),
-        result: format!("runs/{run}/result"),
-        search: format!("runs/{run}/search"),
-    }
 }
 
 fn main() -> ExitCode {
@@ -465,7 +434,7 @@ fn metadata(
 ) -> Result<Metadata> {
     let status = git(root, &["status", "--porcelain"]);
     Ok(Metadata {
-        schema_version: 1,
+        schema_version: METADATA_VERSION,
         run_id: id.into(),
         timestamp: Utc::now().to_rfc3339_opts(SecondsFormat::Millis, true),
         eplyx_version: env!("CARGO_PKG_VERSION").into(),
@@ -477,19 +446,8 @@ fn metadata(
         transition_package_sha256: package.transition_package_sha256.clone(),
         gate_policy: policy.name().into(),
         gate_outcome: outcome.into(),
+        run_source: Some(RunSource::detect()),
     })
-}
-
-fn safe_id(id: &str, prefix: &str) -> Result<()> {
-    ensure!(
-        id.starts_with(prefix)
-            && id.len() <= 100
-            && id
-                .bytes()
-                .all(|b| b.is_ascii_lowercase() || b.is_ascii_digit() || b == b'_'),
-        "invalid local ID"
-    );
-    Ok(())
 }
 
 fn run_dir(base: &Path, id: &str) -> Result<PathBuf> {
@@ -609,13 +567,6 @@ fn verify_run(
     );
     let report = package_preflight::replay(&path.join("package"), &path.join("result"))?;
     Ok((path, report))
-}
-
-fn counterexample_id(counterexample: &search::Counterexample) -> Result<String> {
-    Ok(format!(
-        "cx_{}",
-        &sha256(canonical(counterexample)?.as_bytes())[..24]
-    ))
 }
 
 fn counterexample_count(base: &Path, run: &str) -> Result<usize> {
@@ -755,9 +706,30 @@ fn search_run(
 fn reproduce(base: &Path, id: &str) -> Result<()> {
     safe_id(id, "cx_")?;
     std::env::remove_var("SOLANA_RPC_URL");
+    let mut parent = None;
+    let result = verify_reproduction(base, id, &mut parent);
+    // History is recorded for successes and failures alike; a recording
+    // problem is reported but never changes the verification outcome.
+    match record_reproduction(base, id, parent, &result) {
+        Ok(path) => {
+            if result.is_ok() {
+                println!("Reproduced {id} successfully. Failure signature and rollback verified by offline VM replay.\nNo network used.\nRecorded {path}");
+            }
+        }
+        Err(error) => eprintln!("warning: reproduction history not recorded: {error:#}"),
+    }
+    result
+}
+
+fn verify_reproduction(
+    base: &Path,
+    id: &str,
+    parent: &mut Option<SavedCounterexample>,
+) -> Result<()> {
     let saved: SavedCounterexample = serde_json::from_slice(&fs::read(
         base.join("counterexamples").join(format!("{id}.json")),
     )?)?;
+    *parent = Some(saved.clone());
     ensure!(
         saved.schema_version == 1
             && saved.id == id
@@ -787,8 +759,139 @@ fn reproduce(base: &Path, id: &str) -> Result<()> {
         verified.counterexamples.contains(&saved.counterexample),
         "counterexample missing from offline replay"
     );
-    println!("Reproduced {id} successfully. Failure signature and rollback verified by offline VM replay.\nNo network used.");
     Ok(())
+}
+
+fn record_reproduction(
+    base: &Path,
+    id: &str,
+    saved: Option<SavedCounterexample>,
+    result: &Result<()>,
+) -> Result<String> {
+    let directory = base.join("reproductions");
+    if directory.exists() {
+        ensure!(
+            directory.canonicalize()? == directory && directory.is_dir(),
+            "invalid .eplyx/reproductions"
+        );
+    } else {
+        fs::create_dir(&directory)?;
+    }
+    let now = Utc::now();
+    let record = Reproduction {
+        schema_version: REPRODUCTION_VERSION,
+        id: reproduction_id(&now.format("%Y%m%d%H%M%S%3f").to_string(), id),
+        counterexample_id: id.into(),
+        parent_run: saved.as_ref().map(|s| s.parent_run.clone()),
+        search_sha256: saved.as_ref().map(|s| s.search_sha256.clone()),
+        timestamp: now.to_rfc3339_opts(SecondsFormat::Millis, true),
+        outcome: if result.is_ok() {
+            ReproductionOutcome::Reproduced
+        } else {
+            ReproductionOutcome::Failed
+        },
+        failure_signature_matched: result.is_ok(),
+        error: result.as_ref().err().map(|error| {
+            format!("{error:#}").replace(&base.to_string_lossy().into_owned(), ".eplyx")
+        }),
+        eplyx_version: env!("CARGO_PKG_VERSION").into(),
+        engine_binary_sha256: sha256(&fs::read(std::env::current_exe()?)?),
+        no_rpc: std::env::var_os("SOLANA_RPC_URL").is_none(),
+    };
+    let name = format!("{}.json", record.id);
+    write_new(
+        &directory.join(&name),
+        serde_json::to_vec_pretty(&record)?.as_slice(),
+    )?;
+    Ok(format!(".eplyx/reproductions/{name}"))
+}
+
+/// Project facts for the dashboard that live outside `.eplyx/`: the current
+/// config and candidate, and Git state. Read once, locally; never an RPC URL.
+fn dashboard_context(root: &Path, path: &Path) -> Value {
+    let hide_root = |text: String| text.replace(&root.to_string_lossy().into_owned(), "<project>");
+    let config_path = path
+        .strip_prefix(root)
+        .map(eplyx_lifecycle_impact::artifact_path)
+        .unwrap_or_else(|_| "eplyx.toml".into());
+    let (config, candidate) = if !path.exists() {
+        (
+            json!({"path": config_path, "state": "Missing"}),
+            json!({"error": "eplyx.toml is missing"}),
+        )
+    } else {
+        match read_config(path) {
+            Ok(config) => (
+                json!({
+                    "path": config_path,
+                    "state": "Valid",
+                    "name": config.project.name,
+                    "program_path": config.program.path,
+                    "adapter": config.transition.adapter,
+                    "gate_policy": config.gate.policy.name(),
+                    "source_mint": config.transition.source_mint,
+                    "replacement_mint": config.transition.replacement_mint,
+                }),
+                match candidate_bytes(root, &config) {
+                    Ok(bytes) => json!({"path": config.program.path, "sha256": sha256(&bytes)}),
+                    Err(error) => {
+                        json!({"path": config.program.path, "error": hide_root(format!("{error:#}"))})
+                    }
+                },
+            ),
+            Err(error) => (
+                json!({"path": config_path, "state": "Invalid", "error": hide_root(format!("{error:#}"))}),
+                json!({"error": "eplyx.toml is invalid"}),
+            ),
+        }
+    };
+    json!({
+        "config": config,
+        "candidate": candidate,
+        "git": {
+            "branch": git(root, &["branch", "--show-current"]).filter(|b| !b.is_empty()),
+            "commit": git(root, &["rev-parse", "HEAD"]),
+            "dirty": git(root, &["status", "--porcelain"]).map(|s| !s.is_empty()),
+        },
+        "version": env!("CARGO_PKG_VERSION"),
+    })
+}
+
+fn open_browser(url: &str) {
+    #[cfg(target_os = "macos")]
+    let mut command = Command::new("open");
+    #[cfg(target_os = "windows")]
+    let mut command = {
+        let mut command = Command::new("cmd");
+        command.args(["/C", "start", ""]);
+        command
+    };
+    #[cfg(all(unix, not(target_os = "macos")))]
+    let mut command = Command::new("xdg-open");
+    let _ = command
+        .arg(url)
+        .stdin(std::process::Stdio::null())
+        .stdout(std::process::Stdio::null())
+        .stderr(std::process::Stdio::null())
+        .spawn();
+}
+
+fn dashboard(root: &Path, path: &Path, port: Option<u16>, no_open: bool) -> Result<()> {
+    use std::io::IsTerminal;
+    // The dashboard reads local artifacts only; it never needs a provider.
+    std::env::remove_var("SOLANA_RPC_URL");
+    let server = eplyx_lifecycle_impact::dashboard::Dashboard::bind(
+        root,
+        port,
+        dashboard_context(root, path),
+    )?;
+    let (name, runs, counterexamples) = server.banner()?;
+    let url = server.url();
+    println!("Eplyx dashboard\nProject: {name}\nRuns: {runs}\nCounterexamples: {counterexamples}\n\n{url}\n\nRead-only view of .eplyx/ on 127.0.0.1. Nothing is uploaded. Press Ctrl+C to stop.");
+    if !no_open && std::io::stdout().is_terminal() && std::env::var_os("CI").is_none() {
+        open_browser(&url);
+    }
+    server.serve()
 }
 
 fn init(root: &Path, path: &Path, force: bool, minimal: bool) -> Result<()> {
@@ -867,7 +970,10 @@ fn execute(cli: Cli) -> Result<u8> {
     }
     let config = if matches!(
         &cli.command,
-        Action::Reproduce { .. } | Action::Runs { .. } | Action::Show { .. }
+        Action::Reproduce { .. }
+            | Action::Runs { .. }
+            | Action::Show { .. }
+            | Action::Dashboard { .. }
     ) {
         None
     } else {
@@ -941,6 +1047,10 @@ fn execute(cli: Cli) -> Result<u8> {
             let report: Value =
                 serde_json::from_slice(&fs::read(path.join("result/report.json"))?)?;
             println!("Run {}\nPackage {}\nProgram {}\nCommit {}\nBranch {}\nPopulation: {} observed accounts; {} positive balances\nConversion {}\nStress {}\nInvariant findings {}\nGate {}\nCounterexamples {}\nArtifacts {}", id, meta.transition_package_sha256, meta.candidate_program_sha256, meta.git_commit.as_deref().unwrap_or("unknown"), meta.git_branch.as_deref().unwrap_or("unknown"), report["population_summary"]["counts"]["token_accounts_observed"], report["population_summary"]["counts"]["positive_balance_accounts_observed"], report["conversion_result"]["status"], report["conversion_stress_readiness"]["status"], report["invariants"].as_array().map_or(0, Vec::len), meta.gate_outcome, counterexample_count(&base, &id)?, path.display());
+            Ok(0)
+        }
+        Action::Dashboard { port, no_open } => {
+            dashboard(&root, &path, port, no_open)?;
             Ok(0)
         }
         Action::Init { .. } | Action::FinishPackagePreflight { .. } => {
@@ -1187,6 +1297,20 @@ mod tests {
         tampered["counterexample"]["observed_amount_raw"] = json!("11");
         fs::write(&path, serde_json::to_vec(&tampered).unwrap()).unwrap();
         assert!(reproduce(&base, &id).is_err());
+        let records: Vec<_> = fs::read_dir(base.join("reproductions"))
+            .unwrap()
+            .map(|entry| entry.unwrap().path())
+            .collect();
+        assert_eq!(records.len(), 1, "failed attempts are recorded too");
+        let record: Reproduction = serde_json::from_slice(&fs::read(&records[0]).unwrap()).unwrap();
+        assert_eq!(record.outcome, ReproductionOutcome::Failed);
+        assert!(!record.failure_signature_matched);
+        assert!(record.no_rpc);
+        assert_eq!(record.parent_run.as_deref(), Some("run_parent"));
+        assert!(record.error.unwrap().contains("identity mismatch"));
+        assert!(eplyx_lifecycle_impact::local_store::is_safe_id(
+            &record.id, "repro_"
+        ));
         fs::remove_dir_all(root).unwrap();
     }
 
@@ -1209,6 +1333,8 @@ mod tests {
         assert!(meta.git_branch.is_some());
         let bytes = serde_json::to_string(&meta).unwrap();
         assert!(!bytes.contains("SOLANA_RPC_URL"));
+        assert_eq!(meta.schema_version, METADATA_VERSION);
+        assert!(meta.run_source.is_some());
         fs::remove_dir_all(root).unwrap();
     }
 

@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "id": "cx_e86b407c4df23503699e3a1c",
+  "parent_run": "run_20260924121509918_ce7b4d55310c",
+  "search_sha256": "997c7c4582ecaef5442fc533fde24145f5104cc62b6ad6b66251de734a2e89d6",
+  "counterexample": {
+    "kind": "Derived",
+    "id": "derived-reserve-case-00",
+    "parent_run": "pkg-0958e335110b-1790252109942",
+    "transition_package_sha256": "0958e335110b1185d77818ace1651cf8b8c24b7f7926397fd82a66441f8502e0",
+    "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+    "observed_source_account": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+    "observed_state_digest": "66df457ff4170193420640973b722dd0396cad0efe3a75f1de19d5d69cc12eb2",
+    "observed_amount_raw": "1495550809244",
+    "search_dimension": "ProposedReserve",
+    "original_value_raw": "0",
+    "derived_value_raw": "747775404621",
+    "execution_plan_sha256": "a5af741428e3aa86dc2dd75dfa1e0fecfd1cfeafd19d1c0fd358ed11ae3a1c1e",
+    "execution_fixture_sha256": "9571039aa2aac6e3331d7634c9f05f9de539e749081063e7810f1b8d6fdcca78",
+    "failure_signature": {
+      "stage": "ExecutedInstruction",
+      "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "instruction_error": "InstructionError(1, Custom(13))",
+      "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+      "rollback_verified": true
+    },
+    "original_failure_signature": {
+      "stage": "ExecutedInstruction",
+      "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "instruction_error": "InstructionError(1, Custom(13))",
+      "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+      "rollback_verified": true
+    },
+    "signature_preserved": true,
+    "minimized": true,
+    "last_passing_value_raw": null,
+    "first_passing_value_raw": "747775404622",
+    "minimization_trace": [
+      {
+        "dimension": "ProposedReserve",
+        "value_raw": "747775404621",
+        "method": "OrderedProbe",
+        "status": "Failed",
+        "execution_plan_sha256": "a5af741428e3aa86dc2dd75dfa1e0fecfd1cfeafd19d1c0fd358ed11ae3a1c1e",
+        "execution_fixture_sha256": "9571039aa2aac6e3331d7634c9f05f9de539e749081063e7810f1b8d6fdcca78",
+        "failure_signature": {
+          "stage": "ExecutedInstruction",
+          "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+          "instruction_error": "InstructionError(1, Custom(13))",
+          "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+          "rollback_verified": true
+        },
+        "origin": "DerivedForSearch from ProposedByOperator reserve, constructed through registered token fixture"
+      },
+      {
+        "dimension": "ProposedReserve",
+        "value_raw": "747775404622",
+        "method": "OrderedProbe",
+        "status": "Proven",
+        "execution_plan_sha256": "97e55c5d3228410c45642934323f9b792250d692b6c6bc93b1dce5ec9cf62672",
+        "execution_fixture_sha256": "161f4a543dc49a7cfcf36f96ab2cdee317b6535051b4e57449e90deef1b4ffe4",
+        "failure_signature": null,
+        "origin": "DerivedForSearch from ProposedByOperator reserve, constructed through registered token fixture"
+      }
+    ],
+    "provenance": "DerivedForSearch from ProposedByOperator reserve",
+    "limitations": "Locally proposed reserve variant; no derived reserve is represented as captured mainnet state."
+  }
+}

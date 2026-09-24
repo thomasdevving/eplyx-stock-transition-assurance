@@ -1,0 +1,107 @@
+{
+  "kind": "milestone16-local-dashboard-validation",
+  "schema_version": 1,
+  "boundary": "Read-only presentation of saved .eplyx/ artifacts on 127.0.0.1. No RPC, replay, execution, upload or artifact mutation.",
+  "checks": {
+    "make_test": "Passed (580 tests, 0 failed, including SBF program builds and tests)",
+    "make_fmt_check": "Passed",
+    "make_lint": "Passed (clippy -D warnings)",
+    "dashboard_integration_tests": "16 passed (engine/tests/local_dashboard.rs)",
+    "dashboard_unit_tests": "2 passed (target parsing, home abbreviation for both separators)",
+    "dashboard_browser_tests": "11 passed (npm run test:dashboard with local Chromium via EPLYX_CHROME)",
+    "node_service_tests": "47 passed",
+    "frontend_check_and_build": "Passed",
+    "git_diff_check": "Passed",
+    "existing_frontend_browser_suite": "Run with local Chromium through an out-of-repo config because Google Chrome is not installed: 12 passed, 7 skipped, 4 failed on first run. wallet.spec and execution.spec then passed on rerun. desktop sculpture (WebGL in headless shell) and conversion.spec also fail on the unmodified base commit b599c63. The suite rewrites tracked reports/milestone*-validation files; those side effects were reverted.",
+    "cli_unit_tests": "12 passed (includes a recorded Failed reproduction for a tampered counterexample and metadata schema 2 run_source)"
+  },
+  "acceptance": {
+    "source": "Milestone 15 local CLI project stores (healthy, underfunded, second asset), viewed unchanged. Healthy and underfunded run directories plus saved counterexamples were cloned into one scratch project for same-project comparison.",
+    "underfunded_latest": {
+      "run_id": "run_20260924123736483_ce7b4d55310c",
+      "gate": "Block",
+      "candidate_conversion": "Failed",
+      "stress": "0/10 proven, 10 failed",
+      "counterexamples": {
+        "observed": 35,
+        "derived": 2
+      },
+      "reserve_boundary": {
+        "counterexample_id": "cx_2ab4735232a3f228da1a29d1",
+        "failing_raw": "747775404621",
+        "first_passing_raw": "747775404622",
+        "minimized": true,
+        "rollback_verified": true
+      }
+    },
+    "healthy": {
+      "run_id": "run_20260924122823725_ce7b4d55310c",
+      "gate": "Warn",
+      "strict_policy_by_engine_gate": "Block",
+      "candidate_conversion": "Proven",
+      "stress": "10/10 proven",
+      "counterexamples": 0
+    },
+    "comparison_healthy_to_underfunded": {
+      "declared_input_changes": [
+        "Transition package hash",
+        "Execution config hash",
+        "Proposed replacement reserve (raw): 1000000000000 -> 0"
+      ],
+      "candidate_binary": "unchanged",
+      "gate": "Warn -> Block",
+      "invariants": "conversion_output_matches and no_selected_case_failed: Satisfied -> Violated",
+      "counterexample_search_equivalent": false,
+      "counterexample_statuses": {
+        "only_right": 37
+      },
+      "reverse_statuses": {
+        "not_reproduced": 10,
+        "only_left": 27
+      },
+      "resolved_claimed": false
+    },
+    "second_asset": {
+      "run_id": "run_20260924122418513_ce7b4d55310c",
+      "gate": "Warn",
+      "asset_display": "generic address and terms; no asset-specific frontend logic"
+    },
+    "security": {
+      "loopback_only": "127.0.0.1 listener verified",
+      "rejected": [
+        "../ traversal (400)",
+        "percent-encoded traversal (400)",
+        "unknown IDs (404)",
+        "unlisted artifacts including program bytes (404)",
+        "foreign Host header (403)",
+        "POST/DELETE (405)",
+        "symlinked run directory, member, counterexample and store root"
+      ],
+      "rpc_secret_in_responses": "absent (SOLANA_RPC_URL set to a marker value for the CLI and browser tests)"
+    },
+    "screenshots": "Captured locally for overview, runs, blocked run detail (overview and technical), counterexample detail, run comparison, counterexamples, production, gate, project, mobile and tablet; not committed.",
+    "reproductions": {
+      "records": [
+        {
+          "counterexample_id": "cx_2ab4735232a3f228da1a29d1",
+          "kind": "Derived",
+          "outcome": "Reproduced",
+          "failure_signature_matched": true,
+          "no_rpc": true,
+          "wall_seconds": 50.16
+        },
+        {
+          "counterexample_id": "cx_00344e6b0f86ea9c1fd9f235",
+          "kind": "Observed",
+          "outcome": "Reproduced",
+          "failure_signature_matched": true,
+          "no_rpc": true,
+          "wall_seconds": 49.82
+        }
+      ],
+      "rpc_secret_in_records": "absent (SOLANA_RPC_URL set to a marker value during reproduce)"
+    },
+    "run_source": "Schema 1 acceptance runs show Not recorded; new runs write metadata schema 2 with run_source local or ci.",
+    "equivalence_banner": "Compare page, run header badge and Overview change summary state: Search domains differ — counterexample disappearance does not prove resolution."
+  }
+}

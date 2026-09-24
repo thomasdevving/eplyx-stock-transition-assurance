@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 2,
+  "sourceMint": "PreANxuXjsy2pvisWWMNB6YaJNzr7681wJJr2rHsfTh",
+  "replacementMint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+  "adapter": "fixed_ratio_conversion_v1",
+  "candidateProgram": {
+    "programId": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+    "artifact": "program.so",
+    "sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d"
+  },
+  "terms": {
+    "numerator": "1",
+    "denominator": "2",
+    "rounding": "floor",
+    "feeBps": 0
+  },
+  "effectiveAt": "2026-10-01T00:00:00Z",
+  "config": "config.json",
+  "configSha256": "6947938cf082562ebd3777b91f6b9a92e6af4a0788fc84f0cd194b91d1973469",
+  "invariantSchemaVersion": 1,
+  "invariants": [
+    {
+      "type": "conversion_output_matches",
+      "severity": "blocking"
+    },
+    {
+      "type": "no_selected_case_failed",
+      "severity": "blocking"
+    }
+  ]
+}

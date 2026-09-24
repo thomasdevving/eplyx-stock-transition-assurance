@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "cx_d3f58d33edcc9367a59ba3ae",
+  "parent_run": "run_20260924121509918_ce7b4d55310c",
+  "search_sha256": "997c7c4582ecaef5442fc533fde24145f5104cc62b6ad6b66251de734a2e89d6",
+  "counterexample": {
+    "kind": "Observed",
+    "id": "observed-search-w1-03",
+    "parent_run": "pkg-0958e335110b-1790252109942",
+    "transition_package_sha256": "0958e335110b1185d77818ace1651cf8b8c24b7f7926397fd82a66441f8502e0",
+    "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+    "observed_source_account": "h37oNseho3dwcHD79XUpRZx89G5twfzH4KpH8dh4dRm",
+    "observed_state_digest": "4faf8210e0f87d065896f27352eef11f3fed43da807d51c2cbbfceb40d6a9b25",
+    "observed_amount_raw": "14591",
+    "execution_plan_sha256": "a4ab52cff255dfaf3d615d9ed3726ce29a16120006de6b37f496dc1f58be9802",
+    "execution_fixture_sha256": "d13208f962ee14c78e44e443b9d962ff4530cfa9b353497c8f8e5885a09753f8",
+    "failure_signature": {
+      "stage": "ExecutedInstruction",
+      "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "instruction_error": "InstructionError(2, Custom(13))",
+      "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+      "rollback_verified": true
+    },
+    "provenance": "ObservedOnChain final coherent account plus actual local VM failure",
+    "limitations": "Exact captured account and local assumed signer only; no peer, population or official transition proof."
+  }
+}

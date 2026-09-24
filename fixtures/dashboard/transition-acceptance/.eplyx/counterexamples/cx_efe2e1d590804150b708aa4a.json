@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "id": "cx_efe2e1d590804150b708aa4a",
+  "parent_run": "run_20260924123736483_ce7b4d55310c",
+  "search_sha256": "3c885c64273870504d0461320a0654ad9ce4cd0f525352f48c52f6bc84827101",
+  "replay_inputs": {
+    "package": "runs/run_20260924123736483_ce7b4d55310c/package",
+    "result": "runs/run_20260924123736483_ce7b4d55310c/result",
+    "search": "runs/run_20260924123736483_ce7b4d55310c/search"
+  },
+  "counterexample": {
+    "kind": "Observed",
+    "id": "observed-search-w2-00",
+    "parent_run": "pkg-0958e335110b-1790253456505",
+    "transition_package_sha256": "0958e335110b1185d77818ace1651cf8b8c24b7f7926397fd82a66441f8502e0",
+    "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+    "observed_source_account": "7SS3gsV8QM8ouQ5T8SfEkauAqi9RXzfJW4R9bpb1eho",
+    "observed_state_digest": "f9773f499e0d19348513743dd2889c0d8214be18c57656fd911abf3e281e07d1",
+    "observed_amount_raw": "14466",
+    "execution_plan_sha256": "1f17258f353276a34306275b75ff670b539a455b7630c9e89c6656e3ee236921",
+    "execution_fixture_sha256": "59fdbbef9b605634257fc3a22f8d23a67f12fd90712d5978755cfaa27e16da45",
+    "failure_signature": {
+      "stage": "ExecutedInstruction",
+      "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+      "instruction_error": "InstructionError(2, Custom(13))",
+      "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+      "rollback_verified": true
+    },
+    "provenance": "ObservedOnChain final coherent account plus actual local VM failure",
+    "limitations": "Exact captured account and local assumed signer only; no peer, population or official transition proof."
+  }
+}

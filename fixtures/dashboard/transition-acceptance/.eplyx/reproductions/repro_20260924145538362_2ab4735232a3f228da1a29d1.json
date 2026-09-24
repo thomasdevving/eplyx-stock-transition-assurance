@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "id": "repro_20260924145538362_2ab4735232a3f228da1a29d1",
+  "counterexample_id": "cx_2ab4735232a3f228da1a29d1",
+  "parent_run": "run_20260924123736483_ce7b4d55310c",
+  "search_sha256": "3c885c64273870504d0461320a0654ad9ce4cd0f525352f48c52f6bc84827101",
+  "timestamp": "2026-09-24T14:55:38.362Z",
+  "outcome": "Reproduced",
+  "failure_signature_matched": true,
+  "error": null,
+  "eplyx_version": "0.1.0",
+  "engine_binary_sha256": "310128cc6e0300e1b59038f1f69201892f0bfda006a0921282aa6ad00abc4810",
+  "no_rpc": true
+}

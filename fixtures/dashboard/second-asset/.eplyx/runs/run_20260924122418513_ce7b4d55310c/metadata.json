@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "run_id": "run_20260924122418513_ce7b4d55310c",
+  "timestamp": "2026-09-24T12:27:19.624Z",
+  "eplyx_version": "0.1.0",
+  "engine_binary_sha256": "9cdf2e5659371994f95ac9831b078835acf18386dfb07b9bfaa00eebad3fb920",
+  "git_commit": null,
+  "git_branch": null,
+  "git_dirty": null,
+  "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+  "transition_package_sha256": "0d5c60ceaabd4f0dcea3aeab29b58c49f0e9b5b08869c75914b77832c7f21d7a",
+  "gate_policy": "block-only",
+  "gate_outcome": "Warn"
+}

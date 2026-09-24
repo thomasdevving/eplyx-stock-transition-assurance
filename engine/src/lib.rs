@@ -15,6 +15,7 @@
 pub mod cluster;
 pub mod corpus;
 pub mod coverage;
+pub mod dashboard;
 pub mod diff;
 pub mod executor;
 pub mod expansion;
@@ -22,6 +23,7 @@ pub mod hexfmt;
 pub mod impact;
 pub mod interpret;
 pub mod lifecycle;
+pub mod local_store;
 pub mod money;
 pub mod numfmt;
 pub mod probe;
