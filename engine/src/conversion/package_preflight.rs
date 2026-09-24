@@ -603,12 +603,17 @@ pub fn run(
     )?;
     // The child receives exact saved evidence and no RPC URL or unrelated
     // environment secrets. A hung candidate VM cannot hang the capture process.
-    let mut child = Command::new(std::env::current_exe()?)
+    let mut worker = Command::new(std::env::current_exe()?);
+    worker
         .arg("finish-package-preflight")
         .arg(package_directory)
         .arg("--result")
         .arg(output_directory)
-        .env_clear()
+        .env_clear();
+    if std::env::var("EPLYX_CLI_QUIET").as_deref() == Ok("1") {
+        worker.env("EPLYX_CLI_QUIET", "1");
+    }
+    let mut child = worker
         .spawn()
         .context("could not start isolated offline VM worker")?;
     let start = Instant::now();

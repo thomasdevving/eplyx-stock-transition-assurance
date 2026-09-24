@@ -31,6 +31,35 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Command {
+    /// Search verified current package evidence for exact and typed derived failures.
+    SearchCounterexamples {
+        package: PathBuf,
+        #[arg(long)]
+        result: PathBuf,
+        #[arg(long)]
+        out: PathBuf,
+        /// Capture up to 25 additional exact accounts in serial frozen waves.
+        #[arg(long)]
+        live_observed: bool,
+    },
+    /// Re-execute and verify a saved counterexample search with no RPC.
+    ReplayCounterexample {
+        package: PathBuf,
+        #[arg(long)]
+        result: PathBuf,
+        #[arg(long)]
+        search: PathBuf,
+    },
+    /// Evaluate a deployment gate with a separately replayed counterexample finding.
+    GateCounterexamples {
+        package: PathBuf,
+        #[arg(long)]
+        result: PathBuf,
+        #[arg(long)]
+        search: PathBuf,
+        #[arg(long, value_enum, default_value = "block-only")]
+        gate: eplyx_lifecycle_impact::conversion::package_gate::Policy,
+    },
     /// Validate an operator transition package, then capture fresh state and run
     /// candidate conversion plus bounded production stress in the local VM.
     Preflight {
@@ -787,6 +816,61 @@ fn main() -> ExitCode {
 
 fn run() -> Result<ExitCode> {
     match Cli::parse().command {
+        Command::SearchCounterexamples {
+            package,
+            result,
+            out,
+            live_observed,
+        } => {
+            let search = eplyx_lifecycle_impact::conversion::search::run(
+                &package,
+                &result,
+                &out,
+                live_observed,
+            )?;
+            eprintln!(
+                "{}",
+                eplyx_lifecycle_impact::conversion::search::render_human(&search)
+            );
+            println!(
+                "{}",
+                serde_json::json!({
+                    "artifact":out.join("counterexamples.json"),
+                    "conclusion":search.conclusion,
+                    "counterexample_finding":eplyx_lifecycle_impact::conversion::search::gate_finding(&search),
+                    "budget":search.budget,
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::ReplayCounterexample {
+            package,
+            result,
+            search,
+        } => {
+            let verified =
+                eplyx_lifecycle_impact::conversion::search::replay(&package, &result, &search)?;
+            println!(
+                "{}",
+                serde_json::json!({
+                    "artifact":search.join("counterexamples.json"),
+                    "conclusion":verified.conclusion,
+                    "counterexample_finding":eplyx_lifecycle_impact::conversion::search::gate_finding(&verified),
+                })
+            );
+            Ok(ExitCode::SUCCESS)
+        }
+        Command::GateCounterexamples {
+            package,
+            result,
+            search,
+            gate,
+        } => {
+            let finding =
+                eplyx_lifecycle_impact::conversion::search::gate(&package, &result, &search, gate)?;
+            println!("{}", serde_json::to_string(&finding)?);
+            Ok(ExitCode::from(finding.outcome.exit_code()))
+        }
         Command::ValidateTransitionPackage { package } => {
             let p = eplyx_lifecycle_impact::conversion::package::load(&package)?;
             let plan = p.conversion_plan()?;

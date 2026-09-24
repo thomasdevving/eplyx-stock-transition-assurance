@@ -211,6 +211,16 @@ stale population execution, retrospective proof for older schemas, issuer
 authorization, wallet key possession or population-wide readiness is introduced.
 See docs/on-demand-milestone-13-rebinding.md.
 
+Milestone 14 searches verified coherent package runs for exact observed local
+failures, then tests bounded typed source-amount and proposed-reserve variants.
+Additional observed waves freeze exact accounts before read-only capture and
+never replace failed cases. Derived token and mint state is constructed through
+typed packers and remains distinct from captured chain state. A candidate failure
+blocks only through a separately replayed CounterexampleFinding; analytical
+readiness and OfficialTransition stay unchanged. No generic byte mutation,
+random fuzzing, issuer signing or broadcast is introduced. See
+docs/on-demand-milestone-14-search.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.

@@ -171,10 +171,10 @@ pub fn capture(
         decoder: DECODER_V2.into(),
         observations: vec![],
     };
-    eprintln!("CURRENT_STAGE:Validating mainnet identity");
+    crate::progress!("CURRENT_STAGE:Validating mainnet identity");
     let genesis = record(rpc, &mut c.observations, "getGenesisHash", json!([]));
     if genesis.as_ref().and_then(Value::as_str) == Some(MAINNET) {
-        eprintln!("CURRENT_STAGE:Fetching current mint state");
+        crate::progress!("CURRENT_STAGE:Fetching current mint state");
         let mint_response = record(
             rpc,
             &mut c.observations,
@@ -186,7 +186,7 @@ pub fn capture(
             .and_then(|m| decode::decode_mint(&m["value"]).ok().map(|d| (m, d)));
         if let Some((response, config)) = decoded {
             let mint_slot = context_slot(response)?;
-            eprintln!("CURRENT_STAGE:Enumerating current token accounts");
+            crate::progress!("CURRENT_STAGE:Enumerating current token accounts");
             let scan = record(
                 rpc,
                 &mut c.observations,
@@ -202,7 +202,7 @@ pub fn capture(
                             .chunks(c.budget.authority_batch_size)
                             .enumerate()
                         {
-                            eprintln!(
+                            crate::progress!(
                                 "CURRENT_STAGE:Resolving authority models {}/{batches}",
                                 index + 1
                             );

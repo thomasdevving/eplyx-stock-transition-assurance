@@ -1318,3 +1318,27 @@ VM failures with rollback. Population rollout remains Incomplete and
 OfficialTransition NotTested. See
 [Milestone 13 rebinding](on-demand-milestone-13-rebinding.md) and
 `reports/milestone13-validation.json`.
+
+## Milestone 14 — counterexample search
+
+The engine adds structurally separate observed and derived counterexamples, typed
+source-amount and proposed-reserve boundaries, serial frozen observed waves,
+failure-signature-preserving minimization, offline replay and a separate blocking
+deployment finding. Search consumes a verified coherent package run; it does not
+change historical package reports or analytical readiness. Fresh read-only
+acceptance on all three pinned schema 2 packages found 35 exact observed and two
+derived local failures in the underfunded run. The healthy SPACEX and second-asset
+runs each executed 25 more exact accounts with no counterexample within the
+recorded domain and budget. All three search artifacts replayed offline. See
+[Milestone 14 search](on-demand-milestone-14-search.md) and
+`reports/milestone14-validation.json`.
+
+## Milestone 15 — local developer CLI
+
+The `eplyx` binary wraps the canonical package validator, fresh preflight,
+bounded counterexample search and offline replay in a project-owned `.eplyx/`
+run store. A strict `eplyx.toml` describes the existing registered fixed-ratio
+package terms, execution scope, invariants and gate. `init`, `doctor`, `preflight`,
+`search`, `reproduce`, `runs` and `show` keep engine evidence and gate semantics
+unchanged. The CLI uses a read-only mainnet RPC environment variable for live
+checks and saves no credentials. See [developer quick start](developer-cli.md).

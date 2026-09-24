@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "kind": "milestone14-counterexample-mutations",
+  "results": [
+    {
+      "id": "derived_as_observed",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "derived_must_not_be_labeled_observed"
+    },
+    {
+      "id": "replace_frozen_case",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "failed_case_cannot_be_replaced_in_frozen_wave"
+    },
+    {
+      "id": "exceed_budget",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "boundary_budget_is_server_fixed"
+    },
+    {
+      "id": "binary_without_monotonicity",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "unproven_monotonicity_forces_ordered_probe"
+    },
+    {
+      "id": "claim_nonminimal",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "nonminimal_claim_must_fail"
+    },
+    {
+      "id": "ignore_signature_change",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "changed_failure_signature_must_be_reported"
+    },
+    {
+      "id": "trust_serialized_search",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "serialized_search_outcome_is_not_replay_evidence"
+    },
+    {
+      "id": "claim_absence",
+      "killed": true,
+      "exit_code": 101,
+      "compiler_error": false,
+      "named_assertion": "bounded_no_finding_wording_is_exact"
+    }
+  ],
+  "restored_sources": true
+}

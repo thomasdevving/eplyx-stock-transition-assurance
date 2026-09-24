@@ -32,6 +32,17 @@ pub mod shrink;
 pub mod transition;
 pub mod types;
 
+/// Existing engine progress remains visible unless the local developer CLI
+/// requests its concise terminal presentation.
+#[macro_export]
+macro_rules! progress {
+    ($($arg:tt)*) => {
+        if std::env::var("EPLYX_CLI_QUIET").as_deref() != Ok("1") {
+            eprintln!($($arg)*);
+        }
+    };
+}
+
 use std::path::{Path, PathBuf};
 
 use anyhow::Result;

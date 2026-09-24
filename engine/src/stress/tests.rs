@@ -817,6 +817,56 @@ fn case_result_for(case: &super::SelectedCase, status: PathStatus, executed: boo
         result_sha256: "d".repeat(64),
     }
 }
+
+#[test]
+fn counterexample_waves_are_deterministic_frozen_and_use_prior_outcomes_only() {
+    let mut world = World::standard();
+    world.budget.max_selected_cases = 1;
+    let (observation, base) = planned(&world);
+    let first = &base.selected[0];
+    let pass = case_result_for(first, PathStatus::Proven, true);
+    let frozen = crate::conversion::search::select_wave(
+        &base,
+        &observation,
+        std::slice::from_ref(&pass),
+        1,
+        FROZEN_AT,
+    )
+    .unwrap();
+    let repeated = crate::conversion::search::select_wave(
+        &base,
+        &observation,
+        std::slice::from_ref(&pass),
+        1,
+        FROZEN_AT,
+    )
+    .unwrap();
+    assert_eq!(frozen, repeated, "search_order_must_be_deterministic");
+    assert!(
+        !frozen
+            .selected
+            .iter()
+            .any(|case| case.token_account == first.token_account),
+        "frozen_wave_may_not_reselect_or_replace_a_previous_case"
+    );
+    assert!(frozen
+        .selected
+        .iter()
+        .all(|case| case.amount_policy == super::FULL_AT_FINAL_POLICY));
+    let mut fail = case_result_for(first, PathStatus::Failed, true);
+    fail.detail = json!({"revalidation":{"final_amount_raw":"1000"}});
+    let guided =
+        crate::conversion::search::select_wave(&base, &observation, &[fail], 1, FROZEN_AT).unwrap();
+    assert_ne!(
+        frozen.selected[0].token_account, guided.selected[0].token_account,
+        "prior_wave_failure_may_guide_only_the_next_frozen_wave"
+    );
+    assert_ne!(
+        frozen.sha256().unwrap(),
+        guided.sha256().unwrap(),
+        "earlier_wave_plan_digest_cannot_be_rewritten"
+    );
+}
 fn shape_coverage_for(plan: &select::StressTestPlan, results: &[CaseResult]) -> Vec<ShapeCoverage> {
     plan.state_shapes
         .iter()

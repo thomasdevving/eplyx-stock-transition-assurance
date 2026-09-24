@@ -174,6 +174,32 @@ pub fn evaluate(report: &Value, policy: Policy) -> Result<DeploymentGate> {
     })
 }
 
+/// A separately replayed search finding can only tighten the deployment gate.
+/// It never changes the package report's analytical readiness or invariant facts.
+pub(crate) fn evaluate_with_counterexamples(
+    report: &Value,
+    policy: Policy,
+    search: &super::search::SearchResult,
+) -> Result<DeploymentGate> {
+    ensure!(
+        report["transition_package_sha256"] == search.transition_package_sha256
+            && report["candidate_program_sha256"] == search.candidate_program_sha256
+            && report["run_id"] == search.parent_run
+            && search.official_transition == "NotTested"
+            && !search.funds_moved,
+        "counterexample finding is outside the exact package run scope"
+    );
+    let mut gate = evaluate(report, policy)?;
+    if !search.counterexamples.is_empty() {
+        gate.outcome = Outcome::Block;
+        gate.reasons.push(format!(
+            "CounterexampleFinding: {} exact observed or valid derived local failures in the declared search domain; search does not grant population or official-transition proof",
+            search.counterexamples.len()
+        ));
+    }
+    Ok(gate)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

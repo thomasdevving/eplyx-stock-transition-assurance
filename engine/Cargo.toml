@@ -4,10 +4,15 @@ version.workspace = true
 edition.workspace = true
 license.workspace = true
 description = "Change scenarios, state diffs and economic impact for Eplyx Lifecycle Impact."
+default-run = "eplyx-lifecycle"
 
 [[bin]]
 name = "eplyx-lifecycle"
 path = "src/main.rs"
+
+[[bin]]
+name = "eplyx"
+path = "src/bin/eplyx.rs"
 
 [dependencies]
 fixture-lending-interface = { workspace = true }
@@ -37,3 +42,4 @@ spl-token-2022-interface = { version = "3.1.1", features = ["serde"] }
 spl-token-group-interface = "0.7.2"
 spl-token-metadata-interface = "1.0"
 sha2 = "0.10.9"
+toml_edit = { version = "0.25.15", default-features = false, features = ["parse"] }

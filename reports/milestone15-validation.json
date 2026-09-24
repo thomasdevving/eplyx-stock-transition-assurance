@@ -1,0 +1,96 @@
+{
+  "boundary": "Read-only RPC capture and local VM only; no broadcast, issuer key, or official transition proof.",
+  "checks": {
+    "clean_project_init_and_config_compilation": "Passed for healthy, underfunded, second asset",
+    "cli_focused_tests": "12 passed",
+    "clippy_deny_warnings": "Passed",
+    "doctor_mainnet_genesis": "Passed for healthy and second asset",
+    "fmt_check": "Passed",
+    "frontend_build_and_check": "Passed",
+    "full_make_test": "Passed before final bounded-input edit; full workspace and program tests passed after that edit",
+    "git_diff_check": "Passed",
+    "node_service_tests": "47 passed",
+    "path_portability": "Canonical package members and counterexample replay references are relative forward-slash paths",
+    "program_tests": "Passed",
+    "rpc_secret_scan": "No exact URL in 123 underfunded, 39 healthy, or 25 second-asset local files",
+    "workspace_tests_after_final_edit": "Passed"
+  },
+  "historical_offline_replay": {
+    "milestone14": {
+      "healthy_report_and_search": "Passed",
+      "second_asset_report_and_search": "Passed",
+      "underfunded_report_and_search": "Passed"
+    },
+    "milestone8": {
+      "healthy_exit": 4,
+      "official_transition": "NotTested",
+      "second_asset_exit": 4,
+      "underfunded_exit": 3
+    },
+    "milestones9_to_13": "Raw saved replay directories are not retained locally; compatibility is exercised by workspace tests and prior pinned validation reports."
+  },
+  "kind": "milestone15-local-developer-cli-validation",
+  "live_cases": [
+    {
+      "additional_observed_executions": 25,
+      "candidate_conversion": "Proven",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "case": "healthy",
+      "derived_counterexamples": 0,
+      "gate_outcome": "Warn",
+      "gate_policy": "block-only",
+      "observed_counterexamples": 0,
+      "official_transition": "NotTested",
+      "population_readiness": "Incomplete",
+      "run_id": "run_20260924122823725_ce7b4d55310c",
+      "search_conclusion": "No counterexample found within this search domain and budget.",
+      "stress_proven": 10,
+      "stress_selected": 10,
+      "transition_package_sha256": "8b1e9639fbca1aea8a3ff5bd83c21f3cca6c55e8155a326f461cc677487fed46"
+    },
+    {
+      "additional_observed_executions": 25,
+      "candidate_conversion": "Failed",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "case": "underfunded",
+      "derived_counterexamples": 2,
+      "gate_outcome": "Block",
+      "gate_policy": "block-only",
+      "observed_counterexamples": 35,
+      "official_transition": "NotTested",
+      "population_readiness": "Incomplete",
+      "run_id": "run_20260924123736483_ce7b4d55310c",
+      "search_conclusion": "COUNTEREXAMPLE FOUND: 37 exact observed or derived local failures within the recorded search domain.",
+      "stress_proven": 0,
+      "stress_selected": 10,
+      "transition_package_sha256": "0958e335110b1185d77818ace1651cf8b8c24b7f7926397fd82a66441f8502e0"
+    },
+    {
+      "additional_observed_executions": 25,
+      "candidate_conversion": "Proven",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "case": "second_asset",
+      "derived_counterexamples": 0,
+      "gate_outcome": "Warn",
+      "gate_policy": "block-only",
+      "observed_counterexamples": 0,
+      "official_transition": "NotTested",
+      "population_readiness": "Incomplete",
+      "run_id": "run_20260924122418513_ce7b4d55310c",
+      "search_conclusion": "No counterexample found within this search domain and budget.",
+      "stress_proven": 10,
+      "stress_selected": 10,
+      "transition_package_sha256": "0d5c60ceaabd4f0dcea3aeab29b58c49f0e9b5b08869c75914b77832c7f21d7a"
+    }
+  ],
+  "schema_version": 1,
+  "underfunded_reserve_boundary": {
+    "counterexample_id": "cx_2ab4735232a3f228da1a29d1",
+    "dimension": "ProposedReserve",
+    "first_failing_raw": "747775404621",
+    "first_passing_raw": "747775404622",
+    "minimized": true,
+    "offline_reproduce_without_rpc_or_current_config": "Passed",
+    "rollback_verified": true
+  }
+}

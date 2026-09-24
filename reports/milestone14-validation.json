@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "kind": "milestone14-counterexample-search-validation",
+  "generated_at": "2026-09-24T11:49:33.746422Z",
+  "engine_binary_sha256": "dddf64d1b6c610fc7de714bb8b1a3c23b092ce5835e50512a5c153a9b9bc7714",
+  "source_sha256": {
+    "engine/src/conversion/search.rs": "d5c7ee14beb31a06e580424e8a20d0f47b39731bf4bd4d72a22ed1c9808d5491",
+    "engine/src/conversion/mod.rs": "0a38086d51562cd95466a6a6e2a89e393e3a89b2daf134cc6c6716468319e0f4",
+    "engine/src/conversion/package_gate.rs": "d5b18a9a37d91fd3719bbbc8db1384652eb19317956e5464d4d1e777c75d1ee4",
+    "engine/src/main.rs": "aabdc1f471c9f29ca1d7796525536acca50c285a9d4f4cfae96b6771afc436e9",
+    "engine/src/stress/execute.rs": "be5eebdeea842f144b4cdb35e0cbf75c25289216f46d86793a45ab39ecda0ce1",
+    "engine/src/stress/tests.rs": "c58e14f2b242c33561d7e057308a40ea9925fcc0cae8ba3760ae0d7890b39c4f",
+    "scripts/milestone14-mutations.mjs": "d6a1cd2fa244ada958a4b70798fc1846d0589829cc8c11afd3fa96a44803e2bb"
+  },
+  "live_acceptance": [
+    {
+      "name": "underfunded",
+      "package_directory": "target/milestone14-package-underfunded",
+      "parent_result_directory": "target/milestone14-parent-underfunded",
+      "search_directory": "target/milestone14-search-underfunded",
+      "run_id": "pkg-b48aae0c5641-1790249227046",
+      "transition_package_sha256": "b48aae0c5641caec784d475d6b4a5b10c2e59a011ae838ffa5687861b0cfd8b0",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "artifact_sha256": {
+        "parent": {
+          "population.capture.json": "f746f868af0fc35b5e07a214d2dceca4b7d9314fad85f2756f77a684b9740085",
+          "conversion.capture.json": "995fb7ba1f10a1a1283606ad78b2e0fd52aa45ced73aafa16d3c7b947c4b6c6e",
+          "authority.plan.json": "02a6d8dcceda5aaf399f1aa0a257d5fd6c0d9054f63efb31644fc43c5086d178",
+          "authority.report.json": "f221ba0891ea1d491678364459703b83daa83b52a2c19652dbdb8973b55d9b34",
+          "stress.plan.json": "cc2ca4dc03160ebd4721519019327b8d384f716a091036e3b5e9070645aa68d9",
+          "stress.cases.json": "8a39abde5013d1ecf947359be387ac6f140751e01c2db0d1800f92e1f0ecb12b",
+          "report.json": "d3082d13bdbf6ddd5be5d8df60ef1c0ec979601c2ccde03e2bb6504d46f0dc12"
+        },
+        "search": {
+          "counterexamples.json": "d0331a9d12f9fe9d3d13037d1e54d41c52a721ac1101d9dc1fc29e44480b9054",
+          "wave-1.plan.json": "37666156edbcb93be5a3842f5919d384d15501d2a058f89f8e98aa455d94eaef",
+          "wave-1.freeze.json": "671483041fe2cef4e168ec2205fdde5c6e4a7ed2d0bb5e14e05b09e8abe89e9f",
+          "wave-1.cases.json": "0a969b6a9250382c48a07a04f2e6777ceaf1ef3f27a5f9ed96a762827f16fe8c",
+          "wave-2.plan.json": "12d42455e5aa55daed8b2dd6c87a75f86c4ced51fe721014ac2cc1ef78d8e7ce",
+          "wave-2.freeze.json": "154c8a6158641e10d175b2d19dec6bac339fc2c8c2df40ed7f1c5b063916ec8d",
+          "wave-2.cases.json": "dcff0c116b0b842b443cbf995ed266da94c8f74401d8401733c33567451799e7",
+          "wave-3.plan.json": "adce78c073a4de377b40f079bdc94556a95b82becd4983aa8d985fef0868bb8e",
+          "wave-3.freeze.json": "7a434827bb869568bc56fc3a14fa7ba410730b185e8d16c8bdc438316da628a5",
+          "wave-3.cases.json": "cffa3a26b569229a4c2f154b9c7222c04dd2a3563403f237d5a6f60d3e1279e7"
+        }
+      },
+      "baseline_stress_statuses": {
+        "Failed": 10
+      },
+      "additional_wave_sizes": [
+        10,
+        10,
+        5
+      ],
+      "additional_observed_statuses": {
+        "Failed": 25
+      },
+      "search_budget": {
+        "max_observed_executions": 25,
+        "max_boundary_executions": 20,
+        "max_minimization_executions": 20,
+        "observed_cases_selected": 25,
+        "observed_executions": 25,
+        "boundary_executions": 3,
+        "minimization_executions": 1
+      },
+      "search_domain": {
+        "observed_source_account": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "seed_selection_reason": "Executed failure first; then highest final captured amount; then token-account address. Deterministic across all prior observed waves.",
+        "source_amount_min_raw": "84675242",
+        "source_amount_max_raw": "1495550809243",
+        "source_amount_mutation_available": true,
+        "proposed_reserve_min_raw": "0",
+        "proposed_reserve_max_raw": "747775404622",
+        "replacement_mint_captured_supply_raw": "8382659721465535"
+      },
+      "conclusion": "COUNTEREXAMPLE FOUND: 37 exact observed or derived local failures within the recorded search domain.",
+      "observed_counterexamples": 35,
+      "derived_counterexamples": [
+        {
+          "dimension": "SourceAmount",
+          "original_value_raw": "1495550809244",
+          "derived_value_raw": "84675242",
+          "minimized": true,
+          "last_passing_value_raw": null,
+          "first_passing_value_raw": null,
+          "signature_preserved": true,
+          "failure_signature": {
+            "stage": "ExecutedInstruction",
+            "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+            "instruction_error": "InstructionError(1, Custom(13))",
+            "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+            "rollback_verified": true
+          }
+        },
+        {
+          "dimension": "ProposedReserve",
+          "original_value_raw": "0",
+          "derived_value_raw": "747775404621",
+          "minimized": true,
+          "last_passing_value_raw": null,
+          "first_passing_value_raw": "747775404622",
+          "signature_preserved": true,
+          "failure_signature": {
+            "stage": "ExecutedInstruction",
+            "program": "He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf",
+            "instruction_error": "InstructionError(1, Custom(13))",
+            "relevant_log": "Program He4VZWmVgtbXVmHJ3tRmbLKuNDo9WG3tw5Gr36KupJUf failed: custom program error: 0xd",
+            "rollback_verified": true
+          }
+        }
+      ],
+      "offline_counterexample_replay_exit": 0,
+      "gate": {
+        "block_only": "Block",
+        "strict": "Block",
+        "exit_codes": {
+          "block_only": 3,
+          "strict": 3
+        }
+      },
+      "official_transition": "NotTested",
+      "funds_moved": false
+    },
+    {
+      "name": "healthy",
+      "package_directory": "target/milestone14-package-healthy",
+      "parent_result_directory": "target/milestone14-parent-healthy",
+      "search_directory": "target/milestone14-search-healthy",
+      "run_id": "pkg-8b63840c8d71-1790249516400",
+      "transition_package_sha256": "8b63840c8d71066822462c4dc610f22228f308f2d044ebb40909dc8cdac5ecfa",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "artifact_sha256": {
+        "parent": {
+          "population.capture.json": "c6002ec7abfc3e4ed0bb649264bfe0d7d3e82f288d7370974dfff35ec9835e19",
+          "conversion.capture.json": "c7a523ff63e88c2eb36ab5eea99804cba285405c67308bd373c8f78ee1138fb7",
+          "authority.plan.json": "48c2c300f00b163e045b9257d36f9644e49aad9d0a31ca1020314727635cf86f",
+          "authority.report.json": "ae6d4f68415d14fdb6d043ef907261d3bc1ac7e31144069c74db3edec4bf5f68",
+          "stress.plan.json": "8df6352eb78be598eaa44af85143bee3d4304ecc0edb3de53441e42cf43894cb",
+          "stress.cases.json": "79535147312c8d8007886c96fd741eac257e50e345c5f462afcada3d61f69c8e",
+          "report.json": "c6ed4b323c1f9f71b9aa8596d4656a019c48bd0904e57e845cf94ebabeecec36"
+        },
+        "search": {
+          "counterexamples.json": "b1e14cdc4fe4d4fceaeaa2ba2b3316d87d2e8e394a87d0524b06e4953a039f83",
+          "wave-1.plan.json": "de830b500fd32609c4cfee681f5f8d2e3d170c16ca814faf7e3e5882cfadac66",
+          "wave-1.freeze.json": "a538f32ea88478d0846e42b404cc34e4def2af84ed6e69d601fb25727ef3a489",
+          "wave-1.cases.json": "2b8a227da36021fe9cd9a91e75a26be27106cceaede342b3c57e42f6040ceaf1",
+          "wave-2.plan.json": "750fd0d5ced167bd79c0b199630d5147d259575b458c0539dd0fd476457d8c85",
+          "wave-2.freeze.json": "373f402d53f9a887090690343056f52c129dd9508ec5e1949038b2215d0a6a1f",
+          "wave-2.cases.json": "e642aa52342806d26466186cb463f8107ce27dea886db5fc66cd6b273243dfd1",
+          "wave-3.plan.json": "138afa042974d614ff978de17e7e562d316f2ec7a4b65217543dc7c3cdacfa9c",
+          "wave-3.freeze.json": "2c1405bf40edb0d1e644d6c1fe3ae15362eb9308e6d5fb12ef1a13d1df303829",
+          "wave-3.cases.json": "a0933aa7244039775db79a4f314af14fa006af7d5cdd888fd60c9d0454484acb"
+        }
+      },
+      "baseline_stress_statuses": {
+        "Proven": 10
+      },
+      "additional_wave_sizes": [
+        10,
+        10,
+        5
+      ],
+      "additional_observed_statuses": {
+        "Proven": 25
+      },
+      "search_budget": {
+        "max_observed_executions": 25,
+        "max_boundary_executions": 20,
+        "max_minimization_executions": 20,
+        "observed_cases_selected": 25,
+        "observed_executions": 25,
+        "boundary_executions": 0,
+        "minimization_executions": 0
+      },
+      "search_domain": {
+        "observed_source_account": "ENc8TdLutJ2ziFnz9x4uV8pEmdnk6iWYaBHaTAPCejpV",
+        "seed_selection_reason": "Executed failure first; then highest final captured amount; then token-account address. Deterministic across all prior observed waves.",
+        "source_amount_min_raw": "84675242",
+        "source_amount_max_raw": "1495550809243",
+        "source_amount_mutation_available": true,
+        "proposed_reserve_min_raw": "1000000000000",
+        "proposed_reserve_max_raw": "1000000000000",
+        "replacement_mint_captured_supply_raw": "8372652950328399"
+      },
+      "conclusion": "No counterexample found within this search domain and budget.",
+      "observed_counterexamples": 0,
+      "derived_counterexamples": [],
+      "offline_counterexample_replay_exit": 0,
+      "gate": {
+        "block_only": "Warn",
+        "strict": "Block",
+        "exit_codes": {
+          "block_only": 0,
+          "strict": 3
+        }
+      },
+      "official_transition": "NotTested",
+      "funds_moved": false
+    },
+    {
+      "name": "second",
+      "package_directory": "target/milestone14-package-second",
+      "parent_result_directory": "target/milestone14-parent-second",
+      "search_directory": "target/milestone14-search-second",
+      "run_id": "pkg-4a72bca33b2d-1790249777145",
+      "transition_package_sha256": "4a72bca33b2d71a1561e70df0568604523a0f440a4a12840c195e940ec4036dd",
+      "candidate_program_sha256": "ce7b4d55310ca188e652951dd3102eea1af9c2469dd389a12ef11d6319ccf36d",
+      "artifact_sha256": {
+        "parent": {
+          "population.capture.json": "21cee87a246f9efc3ee4065093d56abb1f2395ab61fb9d5acbb03c4cfbc0fb86",
+          "conversion.capture.json": "1e2662720c535d972a78f816a96b8748b0ecf510dc8a2373fe233452ea675f99",
+          "authority.plan.json": "a090f05d2cee74296641c7cfab1dff99cb3e09d57cc7b5238e3cc74918328e33",
+          "authority.report.json": "ca688ec9e7b50ea96c7612131c7e7e5d1e9c0a01c35a1e0bacf0c65e8cca0b6b",
+          "stress.plan.json": "8c1c627d70e52fdaa49d557fbafe6f6d9838e07751e0c2a97d2eb14cb35a8f29",
+          "stress.cases.json": "e6966b30b4726e7585d68f6ae29b2228046ccb555f97e15e7bc933b90d3d6f3c",
+          "report.json": "692af3615ad44fde3f372f282375800fef1b6dca0d71f5f692a4c405e40fc038"
+        },
+        "search": {
+          "counterexamples.json": "c89a5c31da4e26746c52b7f1b407fcce0561b413d70a2d3465637b0273807158",
+          "wave-1.plan.json": "5d26a22cbcf0f803861a00cfcacea10d81bac59a5295abfc9d6ba2f5d1ad5d8f",
+          "wave-1.freeze.json": "189d3c06d8318966ed7d860520ab3db023d043941ddfea2a96131cd4342e85a6",
+          "wave-1.cases.json": "ba5904d2a6331daf658a63e4d6a85b6e65957ed8bc620b0081922b29c3486d29",
+          "wave-2.plan.json": "237fd2e6924a0caeec3bfb289467aeea3a9c21215e2b612730b706258ce44439",
+          "wave-2.freeze.json": "d57ed62adec53b5717c876159df004bec8cd7008ed8e618a9a21888ad8c7cadb",
+          "wave-2.cases.json": "d183f2e34997f9129fcaf8c580fc98a65db78d9d85661bedbbd1cdc25abda581",
+          "wave-3.plan.json": "6d8f9021ff2441066ed30d5cbc54acc1276279b8002a5b4da53479fb619073c2",
+          "wave-3.freeze.json": "5723cbfee8e647d3dd3eebc969131c44223851b1ed8362d0f09deb6dcad7036e",
+          "wave-3.cases.json": "95b703bec06549864340db3bf426add761c9cdfb8cad4450c0ffe94922056bf9"
+        }
+      },
+      "baseline_stress_statuses": {
+        "Proven": 10
+      },
+      "additional_wave_sizes": [
+        10,
+        10,
+        5
+      ],
+      "additional_observed_statuses": {
+        "Proven": 25
+      },
+      "search_budget": {
+        "max_observed_executions": 25,
+        "max_boundary_executions": 20,
+        "max_minimization_executions": 20,
+        "observed_cases_selected": 25,
+        "observed_executions": 25,
+        "boundary_executions": 0,
+        "minimization_executions": 0
+      },
+      "search_domain": {
+        "observed_source_account": "5x3CsvSYkZSEJwsHc8sckK4QnVXVbEbQpQxPByS3uscS",
+        "seed_selection_reason": "Executed failure first; then highest final captured amount; then token-account address. Deterministic across all prior observed waves.",
+        "source_amount_min_raw": "1",
+        "source_amount_max_raw": "247169964713",
+        "source_amount_mutation_available": true,
+        "proposed_reserve_min_raw": "1000000000000",
+        "proposed_reserve_max_raw": "1000000000000",
+        "replacement_mint_captured_supply_raw": "8339324918004800"
+      },
+      "conclusion": "No counterexample found within this search domain and budget.",
+      "observed_counterexamples": 0,
+      "derived_counterexamples": [],
+      "offline_counterexample_replay_exit": 0,
+      "gate": {
+        "block_only": "Warn",
+        "strict": "Block",
+        "exit_codes": {
+          "block_only": 0,
+          "strict": 3
+        }
+      },
+      "official_transition": "NotTested",
+      "funds_moved": false
+    }
+  ],
+  "validation": {
+    "full_workspace_and_program_tests": "Passed: make test (fixture v1 7, v2 7, candidate 4; full workspace Rust tests and doc tests exit 0)",
+    "fmt_check": "Passed",
+    "clippy_deny_warnings": "Passed",
+    "node_service_tests": "47 passed",
+    "frontend_check_and_build": "Passed",
+    "mutations_killed": "8/8 named assertions; original source restored",
+    "historical_m8_replay_exit": {
+      "underfunded": 3,
+      "healthy": 4,
+      "second": 4
+    },
+    "historical_m8_replay_note": "Saved report bytes matched; 3 and 4 are unchanged analytical gate exit outcomes.",
+    "private_rpc_genesis_match": true,
+    "private_rpc_url_embedded_in_75_checked_files": false,
+    "temporary_rpc_files_removed": true,
+    "git_diff_check": "Passed"
+  },
+  "limitations": [
+    "These selected exact outcomes are local candidate execution evidence, not population readiness, issuer authorization, signer key possession or OfficialTransition.",
+    "Healthy and second-asset no-finding statements are limited to their recorded search domains and budgets.",
+    "Original ignored Milestone 9\u201313 acceptance directories are absent from this checkout; fresh schema 2 runs and checked-in Milestone 8 historical replay were verified.",
+    "No mainnet transaction was submitted and no funds moved."
+  ]
+}

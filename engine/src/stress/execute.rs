@@ -168,7 +168,7 @@ pub fn capture_cases(
     let mut cases = Vec::with_capacity(total);
     let started_at = now();
     for (index, case) in plan.selected.iter().enumerate() {
-        eprintln!(
+        crate::progress!(
             "CURRENT_STAGE:Revalidating current state for case {}/{total}",
             index + 1
         );
@@ -284,7 +284,7 @@ fn source_field_changes(
     Ok(changed)
 }
 
-fn case_result(
+pub(crate) fn case_result(
     case: &SelectedCase,
     capture: &CaseCapture,
     observation: &PopulationObservation,
@@ -850,7 +850,7 @@ pub fn replay(
         sha256(program) == program_sha256,
         "candidate program digest mismatch"
     );
-    eprintln!("CURRENT_STAGE:Verifying population capture");
+    crate::progress!("CURRENT_STAGE:Verifying population capture");
     let observation = super::population::evaluate_bytes(population_bytes, budget)?;
     let original_capture: super::population::Capture = serde_json::from_slice(population_bytes)?;
     ensure!(
@@ -870,7 +870,7 @@ pub fn replay(
             && plan.sha256()? == plan_sha256,
         "stress plan binding mismatch"
     );
-    eprintln!("CURRENT_STAGE:Verifying frozen selection plan");
+    crate::progress!("CURRENT_STAGE:Verifying frozen selection plan");
     // Recompute the entire pre-execution selection. Classifications, selected
     // cases, amounts and reasons cannot have been edited after the fact.
     plan.validate(&observation, &plan.candidate_plan, program_sha256)?;
@@ -926,7 +926,7 @@ pub fn replay(
             );
             previous = b;
         }
-        eprintln!(
+        crate::progress!(
             "CURRENT_STAGE:Running candidate conversion locally for case {}/{}",
             index + 1,
             plan.selected.len()
@@ -941,7 +941,7 @@ pub fn replay(
             program_sha256,
         )?);
     }
-    eprintln!("CURRENT_STAGE:Aggregating stress coverage");
+    crate::progress!("CURRENT_STAGE:Aggregating stress coverage");
     aggregate(
         observation,
         plan,

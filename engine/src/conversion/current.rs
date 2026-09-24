@@ -265,7 +265,7 @@ pub fn capture(
     };
     let started_at = now();
     if s.unsupported.is_none() {
-        eprintln!("CURRENT_STAGE:Revalidating current state");
+        crate::progress!("CURRENT_STAGE:Revalidating current state");
         // An incomplete acquisition stays a non-executed check; it never becomes Failed.
         let _ = acquire(&s, &plan, &recorder);
     }
@@ -659,7 +659,7 @@ pub fn replay(
     }))?
     .into();
     demo::assert_candidate_program_identity(&p.programs, program, program_hash)?;
-    eprintln!("CURRENT_STAGE:Running candidate conversion locally");
+    crate::progress!("CURRENT_STAGE:Running candidate conversion locally");
     let execution = executor::execute_probe_message(
         &p.accounts,
         &p.watch,
@@ -667,7 +667,7 @@ pub fn replay(
         &p.programs,
         p.message.clone(),
     )?;
-    eprintln!("CURRENT_STAGE:Reconciling conversion");
+    crate::progress!("CURRENT_STAGE:Reconciling conversion");
     result["execution_performed"] = true.into();
     result["local_execution_performed"] = true.into();
     result["signer_assumed_locally"] = true.into();
@@ -707,6 +707,6 @@ pub fn replay(
         "Holder signing is assumed locally; key possession and authorization remain unknown.",
         "No mainnet transaction is constructed, signed or submitted, and no funds moved.",
     ]);
-    eprintln!("CURRENT_STAGE:Preparing evidence");
+    crate::progress!("CURRENT_STAGE:Preparing evidence");
     Ok(VerifiedReplacementConversion::new(result))
 }

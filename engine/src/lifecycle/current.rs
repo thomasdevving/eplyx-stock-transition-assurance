@@ -91,10 +91,10 @@ fn capture_with_selection(
         observations: vec![],
         selection,
     };
-    eprintln!("CURRENT_STAGE:Validating mainnet identity");
+    crate::progress!("CURRENT_STAGE:Validating mainnet identity");
     let genesis = record(rpc, &mut c.observations, "getGenesisHash", json!([]));
     if genesis.as_ref().and_then(Value::as_str) == Some(MAINNET) {
-        eprintln!("CURRENT_STAGE:Fetching current mint state");
+        crate::progress!("CURRENT_STAGE:Fetching current mint state");
         let mint = record(
             rpc,
             &mut c.observations,
@@ -108,7 +108,7 @@ fn capture_with_selection(
             {
                 let mut cfg = config();
                 cfg["minContextSlot"] = json!(context_slot(response)?);
-                eprintln!("CURRENT_STAGE:Checking public owner address");
+                crate::progress!("CURRENT_STAGE:Checking public owner address");
                 if let Some(owner_response) = record(
                     rpc,
                     &mut c.observations,
@@ -119,7 +119,7 @@ fn capture_with_selection(
                         let mut cfg = config();
                         cfg["minContextSlot"] =
                             json!(context_slot(&owner_response)?.max(context_slot(response)?));
-                        eprintln!("CURRENT_STAGE:Looking up token accounts");
+                        crate::progress!("CURRENT_STAGE:Looking up token accounts");
                         record(
                             rpc,
                             &mut c.observations,
@@ -134,7 +134,7 @@ fn capture_with_selection(
                 .as_ref()
                 .is_some_and(|m| decode::decode_mint(&m["value"]).is_ok())
         {
-            eprintln!("CURRENT_STAGE:Fetching a bounded account sample");
+            crate::progress!("CURRENT_STAGE:Fetching a bounded account sample");
             if let Some(sample) = record(
                 rpc,
                 &mut c.observations,

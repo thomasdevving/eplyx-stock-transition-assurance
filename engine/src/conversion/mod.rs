@@ -12,6 +12,7 @@ pub mod invariants;
 pub mod package;
 pub mod package_gate;
 pub mod package_preflight;
+pub mod search;
 #[cfg(test)]
 mod tests;
 
@@ -282,6 +283,10 @@ pub fn expected_output(consumed: u64, terms: &ConversionTerms) -> Result<Convers
 pub enum AccountOrigin {
     Observed,
     Proposed,
+    /// A typed local mutation whose captured parent remains identified by its RPC pointer.
+    DerivedForSearch,
+    /// A local search mutation of a proposal; it never has an RPC parent account.
+    DerivedProposedForSearch,
 }
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -320,6 +325,20 @@ pub fn validate_origins(accounts: &[FixtureAccount]) -> Result<()> {
                     && a.slot.is_none()
                     && a.derivation.is_some(),
                 "a proposed account must have no captured RPC evidence and an explicit derivation"
+            ),
+            AccountOrigin::DerivedForSearch => ensure!(
+                a.rpc_record.is_some()
+                    && a.pointer.is_some()
+                    && a.slot.is_some()
+                    && a.derivation.is_some(),
+                "a derived search account must retain its observed parent and typed derivation"
+            ),
+            AccountOrigin::DerivedProposedForSearch => ensure!(
+                a.rpc_record.is_none()
+                    && a.pointer.is_none()
+                    && a.slot.is_none()
+                    && a.derivation.is_some(),
+                "a derived proposed account cannot claim RPC evidence"
             ),
         }
     }
