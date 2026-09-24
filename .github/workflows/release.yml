@@ -71,7 +71,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
+      # Release binaries are built from a clean target directory: no restored
+      # build cache, and no post-job cache save that can fail the job.
       - name: CLI, dashboard and release CLI tests on this platform
         run: cargo test --locked -p eplyx-lifecycle-impact --bin eplyx --test local_dashboard --test release_cli
       - name: Build the release binary
@@ -80,7 +81,10 @@ jobs:
         run: cargo build --release --locked -p eplyx-lifecycle-impact --bin eplyx
       - name: Archive
         id: archive
-        run: echo "path=$(scripts/release/package.sh target/release/eplyx${{ matrix.exe }} ${{ matrix.platform }} dist)" >> "$GITHUB_OUTPUT"
+        # A relative path reads the same in bash (MSYS on Windows) and pwsh.
+        run: |
+          archive=$(scripts/release/package.sh target/release/eplyx${{ matrix.exe }} ${{ matrix.platform }} dist)
+          echo "path=dist/$(basename "$archive")" >> "$GITHUB_OUTPUT"
       - name: Smoke-test the archived binary
         run: bash scripts/release/smoke.sh "${{ steps.archive.outputs.path }}"
       - name: Installer tests (sh)
