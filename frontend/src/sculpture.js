@@ -84,7 +84,11 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
       contextLost = false;
       if (disposed) return;
       // Render targets do not survive a lost context; relight the studio so
-      // the restored mark matches the one that was showing before.
+      // the restored mark matches the one that was showing before. The old
+      // target's GPU objects died with that context, so it is dropped rather
+      // than disposed: disposing would delete handles the new context never
+      // owned.
+      environment = null;
       buildEnvironment();
       draw?.(performance.now());
     });

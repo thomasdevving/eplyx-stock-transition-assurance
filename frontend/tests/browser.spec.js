@@ -159,7 +159,7 @@ test('CLI approval fades only after an approval action', async ({page}) => {
  await page.emulateMedia({reducedMotion:'reduce'});
  const assets={
   'cloud.js':'../cloud/cloud.js', 'cloud.css':'../cloud/cloud.css',
-  'dashboard.css':'../dashboard/dashboard.css', 'ui.js':'../dashboard/ui.js',
+  'dashboard.css':'../dashboard/dashboard.css', 'ui.js':'../dashboard/ui.js', 'env.js':'../dashboard/env.js',
   'mode.js':'../src/mode.js', 'brand.js':'../src/brand.js', 'format.js':'../src/format.js',
   'logo.svg':'../public/logo.svg',
  };
