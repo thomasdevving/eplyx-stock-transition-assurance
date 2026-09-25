@@ -2,7 +2,7 @@
 // presentation switch. Locally the data is read-only `.eplyx/` API output; in a
 // hosted workspace the same pages show synced results under a project path.
 import { initializeMode, presentationMode, setPresentationMode } from './mode.js';
-import { BASE, CLOUD, DEMO } from './env.js';
+import { BASE, CLOUD, DEMO, MAIN_SITE_URL } from './env.js';
 import { Mark } from './brand.js';
 import { esc, empty } from './ui.js';
 import * as pages from './pages.js';
@@ -54,7 +54,7 @@ function shell(project) {
  const home = `${BASE}/`;
  return `<div class="shell">
   <aside class="sidebar">
-   <a class="brand" href="${home}" data-link aria-label="Eplyx ${CLOUD ? 'cloud workspace' : 'local dashboard'}">${Mark({ className:'brand__mark' })}<span class="brand__lockup"><span class="brand__word">Eplyx</span><span class="brand__sub">${CLOUD ? 'Cloud workspace' : 'Local assurance'}</span></span></a>
+   <a class="brand" ${CLOUD ? `href="${MAIN_SITE_URL}/" aria-label="Eplyx home"` : `href="${home}" data-link aria-label="Eplyx local dashboard"`}>${Mark({ className:'brand__mark' })}<span class="brand__lockup"><span class="brand__word">Eplyx</span><span class="brand__sub">${CLOUD ? 'Cloud workspace' : 'Local assurance'}</span></span></a>
    ${CLOUD ? cloudSidebar(project) : `<div class="sidebar__project"><span class="eyebrow">Project</span><strong>${esc(project.project?.name ?? 'Unnamed project')}</strong></div>`}
    <nav class="nav" aria-label="Dashboard">${NAV.filter(([, , show]) => show(project)).map(([href, label]) => `<a href="${BASE}${href}" data-link ${section === href ? 'aria-current="page"' : ''}>${label}</a>`).join('')}</nav>
    <p class="sidebar__foot">${CLOUD ? 'Synced results from local and CI Eplyx CLI runs. This workspace never reruns RPC, execution or replay. Projects are private to their workspace.' : 'Read-only view of <code>.eplyx/</code> on this machine. Nothing is uploaded or sent.'}</p>

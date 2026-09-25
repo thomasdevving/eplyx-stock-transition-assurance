@@ -40,7 +40,8 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     environment?.dispose();
     // Release the GPU context now; waiting for GC lets old contexts pile up
     // across navigations until the browser starts dropping live ones.
-    renderer?.forceContextLoss();
+    // A context that is already lost has no lose-context extension left.
+    if (!contextLost) renderer?.forceContextLoss();
     renderer?.dispose();
     renderer?.domElement.remove();
     host.closest('.logo-core')?.classList.remove('logo-core--rendered');
@@ -63,13 +64,21 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = .9;
     renderer.domElement.setAttribute('aria-hidden', 'true');
+    // One restore is allowed. A second loss within 30 seconds means the
+    // browser cannot keep this context; restoring again only loops lost and
+    // restored frames, so the static mark stays and WebGL is released.
+    let lastLoss = -Infinity;
     renderer.domElement.addEventListener('webglcontextlost', event => {
-      event.preventDefault();
+      const now = performance.now();
+      const repeated = now - lastLoss < 30000;
+      lastLoss = now;
       contextLost = true;
       rendered = false;
       cancelAnimationFrame(frame);
       frame = 0;
       host.closest('.logo-core')?.classList.remove('logo-core--rendered');
+      if (repeated) dispose();
+      else event.preventDefault();
     });
     renderer.domElement.addEventListener('webglcontextrestored', () => {
       contextLost = false;

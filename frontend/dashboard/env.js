@@ -7,3 +7,6 @@ export const API = data.api || '/api';
 export const CLOUD = data.cloud === '1';
 export const DEMO = data.demo === '1';
 export const PROJECT = data.project || '';
+// The public Eplyx site. The hosted workspace logo returns there; the local
+// dashboard logo stays on this machine.
+export const MAIN_SITE_URL = 'https://eplyx-stock-production.up.railway.app';

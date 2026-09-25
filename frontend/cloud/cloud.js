@@ -3,6 +3,7 @@
 // dashboard modules. Nothing here runs analysis; it manages accounts only.
 import { initializeMode } from './mode.js';
 import { Mark } from './brand.js';
+import { MAIN_SITE_URL } from './env.js';
 import { esc, panel, kv, commandLine, gatePill, count, empty, ago } from './ui.js';
 
 initializeMode();
@@ -20,7 +21,7 @@ const nextPath = () => { const next = new URLSearchParams(location.search).get('
 function frame(body, user) {
  return `<div class="cloud">
   <header class="cloud__top">
-   <a class="brand" href="/" aria-label="Eplyx cloud">${Mark({ className:'brand__mark' })}<span class="brand__lockup"><span class="brand__word">Eplyx</span><span class="brand__sub">Cloud workspace</span></span></a>
+   <a class="brand" href="${MAIN_SITE_URL}/" aria-label="Eplyx home">${Mark({ className:'brand__mark' })}<span class="brand__lockup"><span class="brand__word">Eplyx</span><span class="brand__sub">Cloud workspace</span></span></a>
    <span class="spacer"></span>
    ${user ? `<span class="cloud__user">${esc(user.email)}</span><button type="button" class="button button--ghost" data-sign-out>Sign out</button>` : '<a class="button button--ghost" href="/login">Sign in</a>'}
   </header>

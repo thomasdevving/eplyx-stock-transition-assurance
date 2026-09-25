@@ -425,7 +425,6 @@ section[id] { scroll-margin-top: 35px; }
 .brand__lockup { display: flex; flex-direction: column; gap: 5px; }
 .brand__sub { font-size: 8px; font-weight: 500; letter-spacing: .17em; text-transform: uppercase; white-space: nowrap; color: #c0daf5; }
 .intro__name small { display: block; margin-top: 10px; font: 500 10px 'DM Sans', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #abcff4; }
-.hero__scope { max-width: 410px; margin: 26px 0 0; font: 10px/1.8 ui-monospace, monospace; color: #abc7e0; }
 .hero__lead { color: #d0dfef; }
 .orbit-caption { color: #daebfc; }
 .window-bar em { color: #b1d6ff; background: #205b9b40; }
@@ -497,7 +496,6 @@ summary:focus-visible { outline: 2px solid #7fbaff; outline-offset: 4px; }
  .brand__sub { font-size: 7px; }
  .hero__copy { padding-top: 125px; }
  .hero h1 { font-size: clamp(43px,10vw,65px); }
- .hero__scope { font-size: 9px; }
  .hero__visual { height: 425px !important; }
  .result-summary { grid-template-columns: 1fr 1fr; }
  .result-summary > div:first-child { grid-column: 1 / -1; }
