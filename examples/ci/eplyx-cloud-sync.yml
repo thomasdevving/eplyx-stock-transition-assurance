@@ -1,0 +1,60 @@
+# Optional: run the Eplyx preflight in CI and copy its result to an Eplyx cloud
+# project. Copy to .github/workflows/ in your Solana project.
+#
+# The gate is decided only by `eplyx preflight` on the runner. The sync step
+# runs afterwards, is skipped when EPLYX_TOKEN is not available, and can never
+# change the job's gate result: `continue-on-error` keeps a cloud outage from
+# failing the build, and the preflight exit code is re-raised at the end.
+#
+# Secrets and variables (Settings → Secrets and variables → Actions):
+#   SOLANA_RPC_URL    secret: bounded read-only mainnet RPC used by preflight
+#   EPLYX_TOKEN       secret: CI token from the cloud project's Settings page;
+#                     it can only sync runs to that one project
+#   EPLYX_PROJECT_ID  variable: prj_… of the cloud project
+#   EPLYX_CLOUD_URL   variable: https origin of the Eplyx cloud workspace
+name: Eplyx preflight (optional cloud sync)
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  preflight:
+    # Fork pull requests never receive secrets and must not run with them.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      # Only whether the secret exists; the token itself is passed to one step.
+      HAS_EPLYX_TOKEN: ${{ secrets.EPLYX_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install eplyx
+        run: |
+          curl -fsSL https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases/latest/download/install.sh | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Build the candidate program
+        run: cargo build-sbf   # your own toolchain; set [program].path in eplyx.toml
+      - name: Preflight (the gate)
+        id: gate
+        env:
+          SOLANA_RPC_URL: ${{ secrets.SOLANA_RPC_URL }}
+        run: |
+          set +e
+          eplyx preflight
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+      - name: Sync the result to Eplyx cloud (optional)
+        if: always() && steps.gate.outputs.exit_code != '' && env.HAS_EPLYX_TOKEN == 'true'
+        continue-on-error: true
+        env:
+          EPLYX_TOKEN: ${{ secrets.EPLYX_TOKEN }}
+          EPLYX_PROJECT_ID: ${{ vars.EPLYX_PROJECT_ID }}
+          EPLYX_CLOUD_URL: ${{ vars.EPLYX_CLOUD_URL }}
+        run: eplyx sync --latest
+      - name: Keep the preflight gate result
+        if: always()
+        run: exit "${{ steps.gate.outputs.exit_code || 2 }}"

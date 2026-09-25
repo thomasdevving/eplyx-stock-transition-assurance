@@ -13,6 +13,7 @@
 //! as a synthetic regression harness, not a lifecycle consequence model.
 
 pub mod build_info;
+pub mod cloud;
 pub mod cluster;
 pub mod corpus;
 pub mod coverage;

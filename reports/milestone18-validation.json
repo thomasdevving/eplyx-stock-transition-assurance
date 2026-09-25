@@ -1,0 +1,53 @@
+{
+  "kind": "milestone18-cloud-sync-validation",
+  "schema_version": 1,
+  "boundary": "Optional cloud sync and hosted team workspace. Analytical engine semantics unchanged; the cloud displays synced engine output and executes, replays and captures nothing.",
+  "local_checks_macos_arm64": {
+    "make_test": "Passed (601 tests, 0 failed, including SBF program builds and tests); 12 Postgres-backed cloud tests are ignored there and run by make test-cloud",
+    "make_fmt_check": "Passed",
+    "make_lint": "Passed (clippy -D warnings, workspace and program crates)",
+    "make_test_cloud": "Passed against PostgreSQL 18.6: 10 API tests, 2 CLI tests (real eplyx binary), 2 cloud unit tests",
+    "cloud_contract_tests": "7 passed (engine/tests/cloud_contract.rs)",
+    "cloud_unit_tests": "privacy scanner, server-origin rules, owner-only credentials, link round trip, offline VM worker receives no EPLYX_TOKEN or SOLANA_RPC_URL, Argon2id passwords, device codes",
+    "local_dashboard_integration_tests": "16 passed unchanged after the view refactor",
+    "dashboard_browser_tests": "11 passed (local dashboard, unchanged behaviour)",
+    "cloud_browser_tests": "7 passed (npm run test:cloud over a seeded eplyx-cloud server)",
+    "node_service_tests": "47 passed; one earlier run under heavy parallel build load had 1 transient failure, and two later reruns passed 47/47",
+    "release_assembler_tests": "4 passed",
+    "frontend_check_and_build": "Passed",
+    "hosted_compare_equals_local": "Hosted /view/compare equals dashboard::view::compare field for field for healthy -> underfunded and the reverse",
+    "secret_scan": "54 changed files: no real token, password, sign-up code, provider URL or database credential; only deliberate fake test values. 868 KB of hosted production payloads contain no RPC host, local path or token",
+    "git_diff_check": "Passed"
+  },
+  "hosting": {
+    "provider": "Railway",
+    "base_url": "https://eplyx-cloud-production.up.railway.app",
+    "health": "/healthz -> {\"ok\":true,\"database\":\"reachable\",\"executes\":false}",
+    "components": "eplyx-cloud service (cloud/Dockerfile via RAILWAY_DOCKERFILE_PATH) and Railway Postgres 18; private-network DATABASE_URL reference",
+    "variables": "DATABASE_URL, EPLYX_CLOUD_PUBLIC_URL, EPLYX_CLOUD_SIGNUP_CODE (sign-up restricted), EPLYX_BUILD_COMMIT; no Solana RPC credential",
+    "migrations": "Embedded cloud/migrations/0001_init.sql applied at startup under an advisory lock",
+    "smoke": "scripts/cloud-smoke.mjs: 21/21 checks passed against production",
+    "notes": "railway.json builder setting was ignored by Railway (Railpack was selected); RAILWAY_DOCKERFILE_PATH=cloud/Dockerfile selects the Dockerfile. Railway reports railway.json as deprecated after 2026-12-01."
+  },
+  "real_acceptance_production": {
+    "login": "eplyx login device flow approved by a browser session; token stored 0600; the CLI never prompted for a password",
+    "A_link": "Milestone 15/16 healthy + underfunded store (project_bccbf1104fb8e3094e85) linked to prj_c47658373f33ba83de58; local project ID unchanged",
+    "B_healthy": "Synced; hosted shows Warn, conversion Proven, 10/10 stress, 0 counterexamples",
+    "C_underfunded": "Synced; hosted shows Block, 37 counterexamples (35 observed, 2 derived), reserve boundary 747775404621 fails / 747775404622 passes, minimized, rollback verified",
+    "D_reproductions": "3 reproduction records synced; 3/3 matched failure signature",
+    "E_ci_run": "Real CI=true eplyx preflight (public mainnet RPC, 17830 accounts observed, conversion Proven, 10/10 stress, PASS WITH WARNINGS, run_source ci) synced with a project CI token from environment variables only; no credentials file written",
+    "history": "7 runs in one project: 1 ci, 2 local (schema 2), 4 not recorded (schema 1, never inferred); latest local #6 Warn, latest CI #7 Warn",
+    "F_compare": "Healthy -> underfunded: Warn -> Block, not equivalent, 37 only in B, banner 'Search domains differ — counterexample disappearance does not prove resolution.'",
+    "idempotency": "Second sync reported 'already synced, identical' for all 4 runs",
+    "offline_failure": "Unreachable cloud: exit 2 with retry guidance, sidecar status failed with last_synced_at kept, 163 canonical files byte-identical",
+    "local_dashboard": "Shows cloud linked to prj_c47658373f33ba83de58 and per-run synced state; still GET-only",
+    "default_server": "eplyx login with no flags targets https://eplyx-cloud-production.up.railway.app",
+    "hero_page": "Main frontend hero, header and footer link to the hosted workspace; click-through verified in Chromium"
+  },
+  "deferred": [
+    "--artifacts object storage",
+    "OS keychain token storage",
+    "labels and comments",
+    "real GitHub Actions sync run (example workflow provided; the CI-source acceptance run used CI=true locally)"
+  ]
+}

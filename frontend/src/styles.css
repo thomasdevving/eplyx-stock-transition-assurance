@@ -636,3 +636,17 @@ html:not([data-mode="technical"]) .core-scene :is(.orbit-body,.orbit-label)[data
 .preflight-views { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:1rem; }
 .preflight-views section { border:1px solid #748ead; border-radius:.4rem; padding:1rem; }
 .previous-preflights { margin-top:1rem; }
+/* Optional hosted team workspace link (Milestone 18). */
+.hero__workspace { max-width: 410px; margin: 14px 0 0; font-size: 12px; line-height: 1.5; color: #abc7e0; }
+@media (max-width: 720px) { .hero__actions { flex-wrap: wrap; } }
+/* Hosted analysis access code dialog. */
+.access-dialog { width: min(420px, calc(100vw - 32px)); padding: 0; border: 1px solid rgba(255,255,255,.14); border-radius: 8px; color: #eef4fb; background: #0b1828; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+.access-dialog::backdrop { background: rgba(3,8,14,.72); }
+.access-dialog__form { display: grid; gap: 14px; padding: 24px; }
+.access-dialog h2 { margin: 0; font-size: 20px; }
+.access-dialog p { margin: 0; font-size: 13.5px; line-height: 1.5; color: #b9c8da; }
+.access-dialog label { display: grid; gap: 6px; font-size: 12.5px; color: #b9c8da; }
+.access-dialog input { height: 40px; padding: 0 12px; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; color: #eef4fb; background: #06101d; font: inherit; }
+.access-dialog__error { min-height: 1.4em; color: #f0646b !important; }
+.access-dialog__actions { display: flex; justify-content: flex-end; gap: 16px; align-items: center; }
+.access-dialog .button--primary { height: 42px; padding: 0 16px; }

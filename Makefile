@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 CARGO := cargo
 
-.PHONY: all build compare report fixtures test test-engine test-programs fmt fmt-check lint
+.PHONY: all build compare report fixtures test test-engine test-programs test-cloud fmt fmt-check lint
 
 all: compare
 
@@ -24,6 +24,11 @@ test-engine: build fixtures
 
 test-programs:
 	./scripts/test-programs.sh
+
+# Optional cloud workspace tests need a Postgres server; they never skip silently.
+test-cloud:
+	@test -n "$$EPLYX_CLOUD_TEST_DATABASE_URL" || { echo "error: set EPLYX_CLOUD_TEST_DATABASE_URL to a Postgres URL whose user may create databases, e.g. postgres://postgres@127.0.0.1:5432/postgres" >&2; exit 2; }
+	$(CARGO) test --locked -p eplyx-cloud -- --include-ignored
 
 fmt:
 	$(CARGO) fmt --all

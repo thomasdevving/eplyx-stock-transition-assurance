@@ -1369,3 +1369,18 @@ the semantic version, embedded commit, target and engine schema versions.
 build. A tag-triggered workflow publishes only archives that were smoke-tested
 and installed on native runners. See
 [Milestone 17 release](on-demand-milestone-17-release.md).
+
+## Milestone 18 — optional cloud sync and team workspace
+
+`eplyx login` (browser-approved device flow), `link` and `sync` copy complete
+runs, saved counterexamples and reproduction records into an optional hosted
+workspace. They send exact artifact bytes with their SHA-256; captures, program
+bytes, config, paths and credentials stay local. The server re-checks every
+digest and binding, recomputes the package identity without program bytes, and
+stores results immutably: identical re-syncs are no-ops, and different content
+under a synced run ID is a conflict. Hosted pages reuse the local dashboard
+modules and the engine's own view and comparison code over synced bytes,
+including the Milestone 16 search-equivalence semantics. Workspaces are private
+to their members. CI syncs with a project-scoped token. The token never reaches
+analysis commands, the VM worker or any artifact. Every local workflow is
+unchanged and needs no account. See [Milestone 18 cloud](on-demand-milestone-18-cloud.md).

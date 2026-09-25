@@ -1,3 +1,4 @@
+import './access.js';
 import { LandingPage } from './landing.js';
 import { EvidencePage, attachEvidence } from './evidence-page.js';
 import { finishIntro } from './intro.js';

@@ -26,6 +26,11 @@ const ASSETS: &[(&str, &str, &str)] = &[
         frontend!("dashboard/pages.js"),
     ),
     (
+        "env.js",
+        "text/javascript; charset=utf-8",
+        frontend!("dashboard/env.js"),
+    ),
+    (
         "ui.js",
         "text/javascript; charset=utf-8",
         frontend!("dashboard/ui.js"),

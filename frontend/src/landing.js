@@ -1,6 +1,7 @@
 import { IntroAnimation } from './intro.js';
 import { EplyxCoreScene } from './core-scene.js';
 import { Header, Footer } from './shell.js';
+import { workspaceLink } from './workspace.js';
 import data from '/public/evidence/summary.js';
 import { number, badge } from './format.js';
 import { AnalysisSection } from './analysis.js';
@@ -24,7 +25,7 @@ export function LandingPage({ analysis = false } = {}) {
  return `${IntroAnimation()}<main id="main">
  <section class="hero">${Header()}
   <div class="hero__atmosphere" aria-hidden="true"><div class="hero__stars"></div><div class="hero__twinkle">${Array.from({length:16},(_,i)=>`<i style="left:${5+i*4.3}%;top:${12+(i*23)%67}%;--s:${1.4+(i%4)*.4}px;--t:${4+i%4}s;--d:${i*.3}s"></i>`).join('')}</div><div class="hero__mountains"></div></div><div class="hero__wash"></div>
-  <div class="hero__copy reveal"><p class="eyebrow"><span></span> Tokenized stock lifecycle intelligence</p><h1>Understand the<span class="visually-hidden"> transition. </span><em class="transition-roll" aria-hidden="true"><span class="transition-roll__track">${[...transitionTerms, transitionTerms[0]].map(term => `<span class="transition-roll__term">${term}.</span>`).join('')}</span></em>Know the impact.</h1><p class="hero__lead">Understand what changes for holders, which actions passed earlier local checks, and what still needs checking.</p><div class="hero__actions"><a href="/analysis#analysis" data-link class="button button--primary">Run analysis <span>↗</span></a><a href="#how" class="button button--text">How it works <span>↓</span></a></div><p class="hero__scope">Fresh token inspection · Saved example available · No funds moved</p></div>
+  <div class="hero__copy reveal"><p class="eyebrow"><span></span> Tokenized stock lifecycle intelligence</p><h1>Understand the<span class="visually-hidden"> transition. </span><em class="transition-roll" aria-hidden="true"><span class="transition-roll__track">${[...transitionTerms, transitionTerms[0]].map(term => `<span class="transition-roll__term">${term}.</span>`).join('')}</span></em>Know the impact.</h1><p class="hero__lead">Understand what changes for holders, which actions passed earlier local checks, and what still needs checking.</p><div class="hero__actions"><a href="/analysis#analysis" data-link class="button button--primary">Run analysis <span>↗</span></a><a href="#how" class="button button--text">How it works <span>↓</span></a>${workspaceLink('Team workspace <span>↗</span>', 'button button--text')}</div><p class="hero__workspace">Optional: open the team workspace for synced local and CI runs. Analysis always runs locally.</p><p class="hero__scope">Fresh token inspection · Saved example available · No funds moved</p></div>
   <div class="hero__visual reveal">${EplyxCoreScene()}</div><div class="scroll-cue"><span></span> Scroll to review the example</div>
  </section>
  ${analysis ? AnalysisSection() : `

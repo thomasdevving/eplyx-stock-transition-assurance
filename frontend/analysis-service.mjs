@@ -6,11 +6,12 @@ import { spawn } from 'node:child_process';
 import { randomUUID, createHash } from 'node:crypto';
 import { readFile, writeFile, mkdir, readdir, access, rename, unlink } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { AccessGate } from './access-gate.mjs';
 
 /** The built engine. Windows needs the .exe suffix; other platforms do not. */
-export const engineExecutable = process.platform === 'win32'
+export const engineExecutable = process.env.EPLYX_ENGINE || (process.platform === 'win32'
  ? 'target/debug/eplyx-lifecycle.exe'
- : 'target/debug/eplyx-lifecycle';
+ : 'target/debug/eplyx-lifecycle');
 export const stages = ['before_transition', 'after_transition', 'after_deadline'];
 export const checks = Object.freeze({
  'complete-exit': 'lp-complete-exit.json',
@@ -223,7 +224,9 @@ export class AnalysisService {
  get(id) {return validRunId(id)?this.jobs.get(id):undefined;}
  async artifact(id, capture=false) {const job=this.get(id);if(job?.status!=='Completed'||(capture&&!job.capture_sha256))return null;const bytes=await readFile(resolve(this.directory,capture?`${id}.capture.json`:`${id}.artifact`));if(hash(bytes)!==(capture?job.capture_sha256:job.canonical_sha256))throw new Error('EvidenceVerificationFailed');return bytes;}
 }
-export async function handleAnalysisAPI(service,request,response,origin) {
+// `access` is an optional AccessGate; without one (local use) every request
+// is allowed exactly as before. `secure` adds the Secure flag to cookies.
+export async function handleAnalysisAPI(service,request,response,origin,{access=new AccessGate(),secure=false}={}) {
  const pathname=new URL(request.url,origin).pathname;
  if(!pathname.startsWith('/api/'))return false;
  const json=(status,value)=>{response.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});response.end(JSON.stringify(value));};
@@ -239,7 +242,21 @@ export async function handleAnalysisAPI(service,request,response,origin) {
   return true;
  }
  let session=request.headers.cookie?.match(/(?:^|; )eplyx_session=([a-f0-9]{64})(?:;|$)/)?.[1];
- if(!session){session=hash(randomUUID()+randomUUID());response.setHeader('Set-Cookie',`eplyx_session=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=2592000`);}
+ if(!session){session=hash(randomUUID()+randomUUID());response.setHeader('Set-Cookie',`eplyx_session=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=2592000${secure?'; Secure':''}`);}
+ if(pathname==='/api/access'){
+  if(request.method==='GET'){json(200,{required:access.required,unlocked:access.unlocked(request,session)});return true;}
+  if(request.method==='POST'){
+   let code;
+   try{if(!String(request.headers['content-type']).startsWith('application/json'))throw new Error();let body='';for await(const chunk of request){body+=chunk;if(Buffer.byteLength(body)>1024)throw new Error();}code=JSON.parse(body).code;}catch{json(400,{error:{code:'InvalidAccessRequest'}});return true;}
+   const outcome=access.check(access.client(request),code);
+   if(outcome==='blocked'){json(429,{error:{code:'AccessRateLimited',message:'Too many incorrect access codes. Wait 15 minutes.'}});return true;}
+   if(outcome!=='ok'){json(401,{error:{code:'AccessCodeInvalid',message:'That access code is not correct.'}});return true;}
+   const existing=response.getHeader('Set-Cookie');
+   if(access.required)response.setHeader('Set-Cookie',[...(existing?[].concat(existing):[]),access.cookie(session)]);
+   json(200,{required:access.required,unlocked:true});return true;
+  }
+ }
+ if(!access.unlocked(request,session)){json(401,{error:{code:'AccessCodeRequired',message:'Enter the analysis access code to run analyses on this hosted demo. Saved results stay available without it.'}});return true;}
  const owner=hash(session);
  const capabilityMatch=pathname.match(/^\/api\/runs\/([a-f0-9-]+)\/capabilities$/);
  if(capabilityMatch&&request.method==='GET'){

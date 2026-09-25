@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["interface", "engine"]
+members = ["interface", "engine", "cloud"]
 # The synthetic test program has its own SBF toolchain and lockfile.
 exclude = ["programs/fixture-lending"]
 

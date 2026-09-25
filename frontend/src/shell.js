@@ -1,4 +1,5 @@
 import { Logo } from './brand.js';
+import { workspaceLink } from './workspace.js';
 
 export function Header({ light = false } = {}) {
   return `
@@ -7,6 +8,7 @@ export function Header({ light = false } = {}) {
       <nav id="primary-navigation" aria-label="Primary navigation">
         <a href="/#how" data-link>How it works</a>
         <a href="/#product" data-link>Capabilities</a>
+        ${workspaceLink('Team workspace')}
         <a href="/evidence" data-link class="nav-cta">Explore evidence <span>↗</span></a>
       </nav>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
@@ -18,7 +20,7 @@ export function Footer() {
     <footer class="footer">
       <div>${Logo()}</div>
       <p>Lifecycle impact intelligence for tokenized stocks.</p>
-      <div class="footer__links"><a href="/evidence" data-link>Saved findings</a><a href="/public/evidence/lifecycle-phase-15-production-report.md">Documentation</a></div>
+      <div class="footer__links"><a href="/evidence" data-link>Saved findings</a>${workspaceLink('Team workspace')}<a href="/public/evidence/lifecycle-phase-15-production-report.md">Documentation</a></div>
       <small>Stocklana · Read-only inspection · Scoped evidence · No funds moved</small>
     </footer>`;
 }

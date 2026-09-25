@@ -24,6 +24,19 @@ jobs:
     name: Validate workspace
     runs-on: ubuntu-22.04
     timeout-minutes: 120
+    # Postgres only for the optional cloud workspace tests; the released CLI
+    # never needs it.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: eplyx-ci
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      EPLYX_CLOUD_TEST_DATABASE_URL: postgres://postgres:eplyx-ci@127.0.0.1:5432/postgres
     steps:
       - uses: actions/checkout@v4
       - name: Tag matches the workspace version
@@ -52,6 +65,10 @@ jobs:
       - run: npm run test:release
       - name: Dashboard browser tests
         run: npm run test:dashboard
+      - name: Cloud workspace API, security and CLI tests
+        run: make test-cloud
+      - name: Cloud workspace browser tests
+        run: npm run build:cloud && npm run test:cloud
 
   build:
     name: Build ${{ matrix.platform }}

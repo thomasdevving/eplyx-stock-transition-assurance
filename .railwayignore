@@ -1,0 +1,28 @@
+# `railway up` uploads only what cloud/Dockerfile builds from: the workspace
+# crates and the embedded dashboard/cloud assets. No stores, evidence or keys.
+/*
+!/Cargo.toml
+!/Cargo.lock
+!/rust-toolchain.toml
+!/railway.json
+!/.dockerignore
+!/interface/
+!/engine/
+!/cloud/
+!/fixtures/
+/fixtures/*
+!/fixtures/program-id.txt
+!/frontend/
+/frontend/*
+!/frontend/dashboard/
+!/frontend/cloud/
+!/frontend/src/
+/frontend/src/*
+!/frontend/src/mode.js
+!/frontend/src/format.js
+!/frontend/src/brand.js
+!/frontend/public/
+/frontend/public/*
+!/frontend/public/logo.svg
+**/target
+**/.eplyx

@@ -63,11 +63,31 @@ candidate program uses your Solana toolchain. See the
 
 **What stays local.** Installing or running Eplyx creates no account, contacts
 no Eplyx service, sends no telemetry and uploads no run artifacts, source code or
-candidate binary. The only network use is the read-only Solana RPC you set in
+candidate binary, unless you opt in to the team sync below. The only network use is the read-only Solana RPC you set in
 `SOLANA_RPC_URL` for `doctor`, `preflight` and `search`; it never receives your
 candidate program, which executes only in the local VM. Runs, counterexamples and
 reproduction history stay in each project's `.eplyx/`. To uninstall, delete the
 installed binary.
+
+## Optional team sync
+
+Cloud sync is optional. Eplyx execution stays local.
+
+```sh
+eplyx login        # approve a code in your browser; the CLI never asks for a password
+eplyx link         # bind this project to one cloud project
+eplyx sync         # upload complete runs, counterexamples and reproduction records
+```
+
+A hosted Eplyx workspace then shows local and CI run history, counterexamples,
+reproduction history and run comparisons to your team. Each run's metadata,
+engine report, bindings, package manifest and config, and search result are sent
+as exact bytes with their SHA-256. Source code, the candidate `.so`, captures,
+`eplyx.toml`, RPC URLs, environment variables and local paths are never sent.
+`eplyx sync --dry-run --json` prints exactly what would go. Synced runs are
+immutable, re-syncing is idempotent, and viewing them never reruns anything.
+Preflight, search, reproduce, the dashboard and the CI gate never need the cloud.
+See [Milestone 18](docs/on-demand-milestone-18-cloud.md).
 
 **Build from source (contributors):**
 `cargo build --release --locked -p eplyx-lifecycle-impact --bin eplyx`.

@@ -44,6 +44,46 @@ Reduced-motion preferences disable orbital motion and reveal animations. Mobile
 navigation, keyboard focus, expandable path details and direct section links are
 supported.
 
+## Hosted deployment (Railway)
+
+The frontend and its analysis service can also run as a hosted demo:
+**https://eplyx-stock-production.up.railway.app**. Locally nothing changes: the
+server still listens on `127.0.0.1` with no access code.
+
+- **Build.** `node scripts/railway/stage-frontend.mjs <empty-dir>` stages only
+  tracked sources and evidence data, plus the three built `.so` programs in
+  `artifacts/`. It leaves out Milestone validation records and refuses keypairs,
+  `.env` and credential files. Deploy with
+  `npx @railway/cli up <dir> --path-as-root --service eplyx-stock`.
+  [frontend/Dockerfile](../frontend/Dockerfile) compiles `eplyx-lifecycle`, builds
+  `dist/` and runs `node frontend/serve.mjs --production` as the unprivileged
+  `node` user. The engine resolves evidence from `/src`, the build-time root.
+- **Access code.** With `EPLYX_ANALYSIS_ACCESS_CODE` set, every analysis API
+  request needs an unlocked browser session. That covers starting, polling and
+  reading runs, checks, preflights, conversions and stress tests. Health,
+  catalogue, stress budget and mechanism information stay public.
+  - The browser asks for the code once, in a dialog, and then retries.
+  - The unlock is an HttpOnly, SameSite=Strict, Secure cookie holding an HMAC of
+    the session. It is bound to both the session and the code, so changing the
+    code locks every browser out again.
+  - Wrong codes are limited to 10 per client per 15 minutes.
+  - The code only decides who may ask for an analysis. It never changes a
+    result.
+- **Variables.**
+
+  | Variable | Meaning |
+  |---|---|
+  | `SOLANA_RPC_URL` | read-only mainnet RPC for fresh analyses; only fresh engine children receive it, and results record scheme and host only |
+  | `EPLYX_ANALYSIS_ACCESS_CODE` | the access code; share it only with people who may spend RPC quota |
+  | `EPLYX_PUBLIC_ORIGIN` | public https origin; the same-origin check uses it |
+  | `RAILWAY_DOCKERFILE_PATH` | `frontend/Dockerfile` |
+  | `HOST`, `PORT`, `EPLYX_ENGINE`, `EPLYX_RUN_DIRECTORY` | set by the Dockerfile |
+
+  Without `SOLANA_RPC_URL`, the saved example and published evidence still
+  work, and fresh inspections report that the provider is unavailable.
+- **Storage.** Analysis runs live in `/data/analysis-runs` inside the container
+  and are lost on redeploy. They are session results, not evidence.
+
 ## Evidence boundary
 
 `frontend/evidence.mjs` reads five published reports and requires exact pinned

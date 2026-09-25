@@ -5,9 +5,12 @@ import {
  esc, pill, gatePill, tone, words, sentence, raw, count, short, addr, ident, copy, ago, when, exact,
  utc, kv, panel, empty, commandLine, tile, meter, invariantName, scopeText, GATE, GATE_SHORT, isRaw,
 } from './ui.js';
+import { BASE, API, CLOUD, DEMO } from './env.js';
 
+// Pages name local API paths; a hosted workspace maps them onto its view API.
 export async function api(path) {
- const response = await fetch(path, { headers: { Accept: 'application/json' } });
+ const response = await fetch(path.replace(/^\/api(?=\/)/, API), { headers: { Accept: 'application/json' }, credentials:'same-origin' });
+ if (response.status === 401 && CLOUD && !DEMO) { location.assign(`/login?next=${encodeURIComponent(location.pathname + location.search)}`); throw new Error('Sign in to view this workspace.'); }
  const body = await response.json().catch(() => ({}));
  if (!response.ok) throw new Error(body.error || `Request failed (${response.status})`);
  return body;
@@ -16,8 +19,22 @@ export async function api(path) {
 const SOURCES = { local:'Local CLI', ci:'CI', imported:'Imported' };
 const sourceTag = source => source ? `<span class="tag">${esc(SOURCES[source] ?? source)}</span>` : '<span class="tag tag--soft" title="Recorded before run_source existed">Not recorded</span>';
 const runLabel = run => run ? `Run #${run.number ?? '?'}` : 'Run';
-const runLink = run => `<a href="/runs/${esc(run.id)}" data-link class="runref"><strong>#${esc(run.number ?? '?')}</strong><code class="tech-only">${esc(run.id)}</code></a>`;
-const cxLink = id => `<a href="/counterexamples/${esc(id)}" data-link><code>${esc(id)}</code></a>`;
+const runLink = run => `<a href="${BASE}/runs/${esc(run.id)}" data-link class="runref"><strong>#${esc(run.number ?? '?')}</strong><code class="tech-only">${esc(run.id)}</code></a>`;
+const cxLink = id => `<a href="${BASE}/counterexamples/${esc(id)}" data-link><code>${esc(id)}</code></a>`;
+// Where a hosted result came from. Synced results are copies of local or CI
+// engine output; viewing them never reruns RPC, execution or replay.
+const SYNC_VIA = { cli:'the Eplyx CLI', ci:'a CI token' };
+function syncedLine(run) {
+ if (!CLOUD || !run?.synced) return '';
+ const source = run.run_source === 'ci' ? 'CI run' : run.run_source === 'local' ? 'Local run' : 'Run (source not recorded)';
+ return `<p class="synced-line"><span class="tag tag--synced">Synced result</span> ${esc(source)} · ${esc(when(run.timestamp))}${run.git?.commit ? ` · commit <code>${esc(run.git.commit.slice(0, 7))}</code>` : ''} · synced by ${esc(run.synced.by)} via ${esc(SYNC_VIA[run.synced.via] ?? run.synced.via)} ${esc(ago(run.synced.at))}</p>`;
+}
+// Local dashboard only: whether a run has been synced to a linked workspace.
+function localSyncTag(run) {
+ if (CLOUD || !run?.sync) return '';
+ if (run.sync.status === 'synced') return '<span class="tag" title="Copied to the linked Eplyx cloud project">synced</span>';
+ return `<span class="tag tag--soft" title="${esc(run.sync.error ?? 'Last sync attempt failed')}">${run.sync.last_synced_at ? 'synced · last retry failed' : 'sync failed'}</span>`;
+}
 const STRESS_ORDER = ['Proven', 'Failed', 'Indeterminate', 'Unsupported', 'NotTested', 'NotApplicable'];
 const stressParts = counts => STRESS_ORDER.map(status => [status, Number(counts?.[status] || 0)]);
 const proven = run => Number(run?.stress?.counts?.Proven || 0);
@@ -51,12 +68,12 @@ function statusTiles(run, detail) {
  const cx = counterexampleTileValue(run);
  const counts = run.population ?? {};
  return `<div class="tiles">
-  ${tile({ label:'Candidate', value:`<code>${short(run.candidate_program_sha256, 8)}</code>`, sub:`Package <code>${short(run.transition_package_sha256, 8)}</code>`, href:`/runs/${run.id}#release` })}
-  ${tile({ label:'Production', value:count(counts.token_accounts_observed), sub:`token accounts observed · ${count(counts.positive_balance_accounts_observed)} positive balances`, href:`/production?run=${run.id}` })}
-  ${tile({ label:'Candidate conversion', value:pill(run.conversion, run.conversion ?? 'Not recorded'), sub:detail?.execution?.result?.final_execution_amount_raw ? `${raw(detail.execution.result.final_execution_amount_raw)} raw units, exact capture` : '', status:run.conversion, href:`/runs/${run.id}#execution` })}
-  ${tile({ label:'Stress', value:`${count(proven(run))} / ${count(selected(run))}`, sub:'exact production states proven', status:selected(run) && proven(run) === selected(run) ? 'Proven' : Number(run.stress?.counts?.Failed) ? 'Failed' : 'Indeterminate', href:`/runs/${run.id}#stress` })}
-  ${tile({ label:'Counterexamples', value:cx.value, sub:cx.sub, status:cx.status, href:`/runs/${run.id}#search` })}
-  ${tile({ label:'Invariants', value:count(run.invariants?.total ?? 0), sub:esc(invariantCounts(run)), status:run.invariants?.counts?.Violated ? 'Violated' : run.invariants?.counts?.Indeterminate ? 'Indeterminate' : run.invariants?.total ? 'Satisfied' : '', href:`/invariants?run=${run.id}` })}
+  ${tile({ label:'Candidate', value:`<code>${short(run.candidate_program_sha256, 8)}</code>`, sub:`Package <code>${short(run.transition_package_sha256, 8)}</code>`, href:`${BASE}/runs/${run.id}#release` })}
+  ${tile({ label:'Production', value:count(counts.token_accounts_observed), sub:`token accounts observed · ${count(counts.positive_balance_accounts_observed)} positive balances`, href:`${BASE}/production?run=${run.id}` })}
+  ${tile({ label:'Candidate conversion', value:pill(run.conversion, run.conversion ?? 'Not recorded'), sub:detail?.execution?.result?.final_execution_amount_raw ? `${raw(detail.execution.result.final_execution_amount_raw)} raw units, exact capture` : '', status:run.conversion, href:`${BASE}/runs/${run.id}#execution` })}
+  ${tile({ label:'Stress', value:`${count(proven(run))} / ${count(selected(run))}`, sub:'exact production states proven', status:selected(run) && proven(run) === selected(run) ? 'Proven' : Number(run.stress?.counts?.Failed) ? 'Failed' : 'Indeterminate', href:`${BASE}/runs/${run.id}#stress` })}
+  ${tile({ label:'Counterexamples', value:cx.value, sub:cx.sub, status:cx.status, href:`${BASE}/runs/${run.id}#search` })}
+  ${tile({ label:'Invariants', value:count(run.invariants?.total ?? 0), sub:esc(invariantCounts(run)), status:run.invariants?.counts?.Violated ? 'Violated' : run.invariants?.counts?.Indeterminate ? 'Indeterminate' : run.invariants?.total ? 'Satisfied' : '', href:`${BASE}/invariants?run=${run.id}` })}
  </div>`;
 }
 
@@ -65,7 +82,7 @@ function runsTable(runs, { selectable = false, selectedIds = [] } = {}) {
  return `<div class="table-wrap"><table class="table runs-table"><thead><tr>${selectable ? '<th class="col-select"><span class="sr-only">Compare</span></th>' : ''}<th>Run</th><th>When</th><th>Commit</th><th class="hide-sm">Branch</th><th class="hide-md">Source</th><th>Result</th><th class="hide-sm">Conversion</th><th>Stress</th><th>Counter&shy;examples</th><th class="hide-md">Candidate</th><th class="tech-only">Package</th></tr></thead><tbody>
  ${runs.map(run => `<tr data-run="${esc(run.id)}" data-gate="${esc(run.gate?.outcome ?? '')}">
   ${selectable ? `<td class="col-select"><input type="checkbox" aria-label="Select run #${esc(run.number)} for comparison" data-compare="${esc(run.id)}" ${selectedIds.includes(run.id) ? 'checked' : ''}></td>` : ''}
-  <td>${runLink(run)}${run.state !== 'Complete' ? ` ${pill(run.state)}` : ''}</td>
+  <td>${runLink(run)}${run.state !== 'Complete' ? ` ${pill(run.state)}` : ''}${localSyncTag(run)}</td>
   <td><span title="${esc(run.timestamp ?? '')}">${esc(run.timestamp ? ago(run.timestamp) : '—')}</span></td>
   <td>${run.git?.commit ? `<code>${esc(run.git.commit.slice(0, 7))}</code>${run.git.dirty ? ' <span class="tag" title="Uncommitted changes when this run started">dirty</span>' : ''}` : '<span class="muted">—</span>'}</td>
   <td class="hide-sm">${esc(run.git?.branch ?? '—')}</td>
@@ -94,7 +111,7 @@ function boundaryText(cx) {
 
 function cxRows(list) {
  if (!list.length) return empty('No counterexamples have been found in recorded searches.');
- return `<div class="cx-list">${list.map(cx => `<a class="cx-row cx-row--${cx.kind === 'Derived' ? 'derived' : 'observed'}" href="/counterexamples/${esc(cx.id)}" data-link data-kind="${esc(cx.kind ?? '')}">
+ return `<div class="cx-list">${list.map(cx => `<a class="cx-row cx-row--${cx.kind === 'Derived' ? 'derived' : 'observed'}" href="${BASE}/counterexamples/${esc(cx.id)}" data-link data-kind="${esc(cx.kind ?? '')}">
   <span class="cx-row__kind">${esc(cx.kind ? cx.kind.toUpperCase() : 'UNREADABLE')}</span>
   <span class="cx-row__main"><strong>${cx.kind === 'Derived' ? esc(sentence(cx.dimension)) : 'Exact captured state'}</strong><span class="muted">account ${addr(cx.account)}${cx.parent ? ` · run #${esc(cx.parent.number)}` : ''}</span></span>
   <span class="cx-row__detail">${cx.kind === 'Derived' ? boundaryText(cx) : cx.observed_amount_raw ? `${raw(cx.observed_amount_raw)} raw units` : ''}</span>
@@ -107,6 +124,17 @@ function cxRows(list) {
 
 function firstRunGuide(project) {
  const config = project.context?.config ?? {};
+ if (CLOUD) return `<section class="welcome">
+  <span class="eyebrow">${esc(project.project?.name ?? 'This project')}</span>
+  <h1>No synced runs yet</h1>
+  <p>Eplyx analysis always runs on your machine or in your CI. Runs appear here after <code>eplyx sync</code> copies their results to this project.</p>
+  <ol class="steps">
+   <li>${commandLine('eplyx login', 'Sign in from the CLI (browser approval)')}</li>
+   <li>${commandLine(`eplyx link --project ${project.project?.id ?? 'prj_…'}`, 'Link your local project')}</li>
+   <li>${commandLine('eplyx preflight', 'Run the preflight locally, as always')}</li>
+   <li>${commandLine('eplyx sync', 'Upload run metadata and results')}</li>
+  </ol>
+ </section>`;
  return `<section class="welcome">
   <span class="eyebrow">${esc(project.project?.name ?? 'This project')}</span>
   <h1>No assurance runs yet</h1>
@@ -167,21 +195,36 @@ export async function overview({ project }) {
    <h1>${esc(GATE[latest.gate?.outcome] ?? 'No gate result')}</h1>
    <p>${gateSentence(latest.gate?.outcome, latest.gate?.policy)}</p>
    <p class="meta">${esc(ago(latest.timestamp))} · ${latest.git?.commit ? `commit <code>${esc(latest.git.commit.slice(0, 7))}</code>` : 'commit not recorded'}${latest.git?.branch ? ` · ${esc(latest.git.branch)}` : ''} ${exact(latest.timestamp)}</p>
+   ${syncedLine(latest)}
   </div>
   <div class="hero-status__actions">
-   <a class="button" href="/runs/${esc(latest.id)}" data-link>Open run #${esc(latest.number)}</a>
-   ${detail.previous_run ? `<a class="button button--ghost" href="/compare?left=${esc(detail.previous_run)}&right=${esc(latest.id)}" data-link>Compare with previous</a>` : ''}
+   <a class="button" href="${BASE}/runs/${esc(latest.id)}" data-link>Open run #${esc(latest.number)}</a>
+   ${detail.previous_run ? `<a class="button button--ghost" href="${BASE}/compare?left=${esc(detail.previous_run)}&right=${esc(latest.id)}" data-link>Compare with previous</a>` : ''}
   </div>
  </section>
  ${statusTiles(latest, detail)}
+ ${CLOUD ? releaseHealth(project) : ''}
  <div class="grid-2">
-  ${panel({ eyebrow:'Deployment gate', title:'Why this result', body:reasons.length ? `<ul class="reasons">${reasons.slice(0, 5).map(r => `<li>${esc(r)}</li>`).join('')}</ul>${reasons.length > 5 ? `<a href="/gate" data-link>All ${reasons.length} reasons</a>` : ''}` : '<p class="muted">The gate recorded no reasons.</p>' })}
-  ${panel({ eyebrow:comparison ? `Run #${esc(comparison.left.number)} → #${esc(comparison.right.number)}` : 'History', title:'What changed recently', body:comparison ? `${changeList(comparison)}<p><a href="/compare?left=${esc(detail.previous_run)}&right=${esc(latest.id)}" data-link>Open full comparison</a></p>` : '<p class="muted">This is the only readable run, so there is nothing to compare yet.</p>' })}
+  ${panel({ eyebrow:'Deployment gate', title:'Why this result', body:reasons.length ? `<ul class="reasons">${reasons.slice(0, 5).map(r => `<li>${esc(r)}</li>`).join('')}</ul>${reasons.length > 5 ? `<a href="${BASE}/gate" data-link>All ${reasons.length} reasons</a>` : ''}` : '<p class="muted">The gate recorded no reasons.</p>' })}
+  ${panel({ eyebrow:comparison ? `Run #${esc(comparison.left.number)} → #${esc(comparison.right.number)}` : 'History', title:'What changed recently', body:comparison ? `${changeList(comparison)}<p><a href="${BASE}/compare?left=${esc(detail.previous_run)}&right=${esc(latest.id)}" data-link>Open full comparison</a></p>` : '<p class="muted">This is the only readable run, so there is nothing to compare yet.</p>' })}
  </div>
- ${panel({ title:'Recent runs', body:runsTable(project.recent_runs.slice(0, 5)), actions:'<a href="/runs" data-link>All runs</a>' })}
- ${panel({ title:'Recent counterexamples', body:cxRows(project.recent_counterexamples.slice(0, 5)), actions:'<a href="/counterexamples" data-link>All counterexamples</a>' })}
+ ${panel({ title:'Recent runs', body:runsTable(project.recent_runs.slice(0, 5)), actions:`<a href="${BASE}/runs" data-link>All runs</a>` })}
+ ${panel({ title:'Recent counterexamples', body:cxRows(project.recent_counterexamples.slice(0, 5)), actions:`<a href="${BASE}/counterexamples" data-link>All counterexamples</a>` })}
  ${panel({ eyebrow:'Scope', title:'Current known limitations', body:`<ul class="limits">${limitations.map(l => `<li>${esc(l)}</li>`).join('')}</ul><p class="muted">No mainnet funds moved. Capture was read-only; candidate execution happened in a local VM.</p>` })}`;
  return { title:'Overview', html };
+}
+
+// Latest local and latest CI results side by side. Counts only; there is no
+// combined score.
+function releaseHealth(project) {
+ const c = project.cloud ?? {};
+ const cell = (label, r) => tile({ label, value:r ? gatePill(r.gate) : '<span class="muted">none synced</span>', sub:r ? `Run #${esc(r.number)} · ${esc(ago(r.timestamp))}${r.commit ? ` · <code>${esc(String(r.commit).slice(0, 7))}</code>` : ''}${r.branch ? ` · ${esc(r.branch)}` : ''}` : 'No run with this source has been synced', status:r?.gate, href:r ? `${BASE}/runs/${r.id}` : '' });
+ const s = project.stats ?? {};
+ return `<section class="release-health" aria-label="Release health"><h2 class="subhead">Release health</h2><div class="tiles tiles--3">
+  ${cell('Latest local run', c.latest_local)}
+  ${cell('Latest CI run', c.latest_ci)}
+  ${tile({ label:'Counterexamples', value:count(s.counterexamples_saved), sub:`${count(c.counterexamples_reproduced)} reproduced · ${count(s.reproductions_succeeded)} of ${count(s.offline_reproductions)} recorded reproductions matched`, href:`${BASE}/counterexamples` })}
+ </div><p class="note">${esc(c.synced_note ?? '')}</p></section>`;
 }
 
 // -------------------------------------------------------------------- Runs
@@ -191,7 +234,7 @@ export async function runs({ query }) {
  if (!all.length) return { title:'Runs', html:empty('Run `eplyx preflight` to create your first assurance run.', 'eplyx preflight') };
  const branches = [...new Set(all.map(r => r.git?.branch).filter(Boolean))].sort();
  const html = `
- <div class="page-head"><h1>Runs</h1><p class="muted">${count(all.length)} local runs from <code>.eplyx/runs</code>, newest first.</p></div>
+ <div class="page-head"><h1>Runs</h1><p class="muted">${CLOUD ? `${count(all.length)} synced runs from local and CI Eplyx CLIs, newest first. Each is a copy of what the engine concluded where it ran.` : `${count(all.length)} local runs from <code>.eplyx/runs</code>, newest first.`}</p></div>
  <div class="filters" role="group" aria-label="Filter runs">
   ${[['all', 'All'], ['Pass', 'PASS'], ['Warn', 'WARN'], ['Block', 'BLOCK'], ['cx', 'Has counterexamples']].map(([key, label]) => `<button type="button" class="chip" data-filter="${key}" aria-pressed="false">${label}</button>`).join('')}
   ${branches.length ? `<label class="select"><span>Branch</span><select data-branch><option value="">All branches</option>${branches.map(b => `<option>${esc(b)}</option>`).join('')}</select></label>` : ''}
@@ -209,7 +252,7 @@ export async function runs({ query }) {
    go.disabled = state.picked.length !== 2;
    go.textContent = state.picked.length === 2 ? 'Compare selected' : `Select two runs to compare (${state.picked.length}/2)`;
    const next = new URLSearchParams(); if (state.filter !== 'all') next.set('filter', state.filter); if (state.branch) next.set('branch', state.branch);
-   history.replaceState(history.state, '', `/runs${next.size ? `?${next}` : ''}`);
+   history.replaceState(history.state, '', `${BASE}/runs${next.size ? `?${next}` : ''}`);
   };
   root.addEventListener('click', event => { const b = event.target.closest('[data-filter]'); if (b) { state.filter = b.dataset.filter; render(); } });
   root.querySelector('[data-branch]')?.addEventListener('change', event => { state.branch = event.target.value; render(); });
@@ -221,7 +264,7 @@ export async function runs({ query }) {
   });
   root.querySelector('[data-compare-go]').addEventListener('click', () => {
    const [a, b] = [...state.picked].sort(); // Older run on the left.
-   window.dashboardNavigate(`/compare?left=${a}&right=${b}`);
+   window.dashboardNavigate(`${BASE}/compare?left=${a}&right=${b}`);
   });
   render();
  } };
@@ -306,7 +349,7 @@ function searchBlock(detail) {
  return `<div class="status-line">${pill(cxs.length ? 'Failed' : 'Proven', cxs.length ? `${cxs.length} counterexamples` : 'No counterexample found', 'lg')}</div>
  <p>${esc(s.conclusion)}</p>
  <div class="grid-2 grid-2--tight">
-  <div><h3 class="subhead">Observed (${count(observed.length)})</h3><p class="muted">Exact captured production states that failed.</p>${list(observed.slice(0, 8))}${observed.length > 8 ? `<p><a href="/counterexamples?run=${esc(detail.id)}" data-link>All ${observed.length} observed</a></p>` : ''}</div>
+  <div><h3 class="subhead">Observed (${count(observed.length)})</h3><p class="muted">Exact captured production states that failed.</p>${list(observed.slice(0, 8))}${observed.length > 8 ? `<p><a href="${BASE}/counterexamples?run=${esc(detail.id)}" data-link>All ${observed.length} observed</a></p>` : ''}</div>
   <div><h3 class="subhead">Derived (${count(derived.length)})</h3><p class="muted">Typed local variants of an observed state; not claimed to exist on mainnet.</p>${list(derived)}</div>
  </div>
  <h3 class="subhead">Bounded search budget</h3>
@@ -357,8 +400,9 @@ function evidenceBlock(detail) {
  const size = n => n == null ? 'absent' : n > 1048576 ? `${(n / 1048576).toFixed(1)} MB` : n > 1024 ? `${(n / 1024).toFixed(1)} KB` : `${n} B`;
  const primary = ['report.md', 'report.json', 'search.json', 'manifest.json'];
  return `<div class="commands">${(e.commands ?? []).map(c => commandLine(c.command, c.label)).join('')}</div>
+ ${CLOUD ? '<p class="note">Artifacts stay on the machine that ran Eplyx. This workspace holds only the synced metadata, report, bindings, package manifest and config, and search result, each with its SHA-256. Candidate bytes, captures and the RPC provider never leave that machine.</p>' : ''}
  <p class="note">Commands run from the project root. <code>eplyx-lifecycle</code> is the engine binary in this repository (<code>cargo build --release -p eplyx-lifecycle-impact --bin eplyx-lifecycle</code>). The dashboard never runs them.</p>
- <div class="table-wrap"><table class="table"><thead><tr><th>Artifact</th><th class="tech-only">Path</th><th>Size</th><th></th></tr></thead><tbody>${(e.artifacts ?? []).map(a => `<tr class="${primary.includes(a.name) ? '' : 'tech-only'}"><td>${esc(a.label)}</td><td class="tech-only"><code>${esc(a.path)}</code></td><td class="num">${size(a.size)}</td><td>${a.size == null ? '' : `<a href="/api/runs/${esc(detail.id)}/artifacts/${esc(a.name)}" target="_blank" rel="noopener">Open</a> · <a href="/api/runs/${esc(detail.id)}/artifacts/${esc(a.name)}?download=1">Download</a>`}</td></tr>`).join('')}</tbody></table></div>
+ <div class="table-wrap"><table class="table"><thead><tr><th>Artifact</th><th class="tech-only">Path</th><th>Size</th><th></th></tr></thead><tbody>${(e.artifacts ?? []).map(a => `<tr class="${primary.includes(a.name) ? '' : 'tech-only'}"><td>${esc(a.label)}</td><td class="tech-only"><code>${esc(a.path)}</code></td><td class="num">${size(a.size)}</td><td>${CLOUD ? (a.size == null ? '' : '<span class="muted">stays local</span>') : a.size == null ? '' : `<a href="${API}/runs/${esc(detail.id)}/artifacts/${esc(a.name)}" target="_blank" rel="noopener">Open</a> · <a href="${API}/runs/${esc(detail.id)}/artifacts/${esc(a.name)}?download=1">Download</a>`}</td></tr>`).join('')}</tbody></table></div>
  <div class="tech-only"><h3 class="subhead">Hashes</h3>${kv(Object.entries(e.hashes ?? {}).map(([k, v]) => [sentence(k.replace(/_sha256$/, '')), v ? `<code>${esc(v)}</code>` : '<span class="muted">not recorded</span>']))}</div>`;
 }
 
@@ -370,8 +414,8 @@ export async function runDetail({ params }) {
  <div class="page-head page-head--run">
   <div><span class="eyebrow">Run #${esc(detail.number)} · ${esc(when(detail.timestamp))}</span><h1>${esc(GATE[detail.gate?.outcome] ?? 'No gate result')}</h1>
   <p class="muted">${gateSentence(detail.gate?.outcome, detail.gate?.policy)}</p>
-  <p class="meta"><code>${esc(detail.id)}</code> ${copy(detail.id)}</p></div>
-  <div class="page-head__actions">${gatePill(detail.gate?.outcome, 'lg')}${detail.previous_run ? `<a class="button button--ghost" href="/compare?left=${esc(detail.previous_run)}&right=${esc(detail.id)}" data-link>Compare with previous run</a>` : ''}</div>
+  <p class="meta"><code>${esc(detail.id)}</code> ${copy(detail.id)}</p>${syncedLine(detail)}${!CLOUD && detail.sync ? `<p class="meta">Cloud: ${detail.sync.status === 'synced' ? `synced ${esc(ago(detail.sync.last_synced_at))}` : `${detail.sync.last_synced_at ? `synced ${esc(ago(detail.sync.last_synced_at))}; ` : ''}last sync attempt failed ${esc(ago(detail.sync.last_attempt_at))}`}</p>` : ''}</div>
+  <div class="page-head__actions">${gatePill(detail.gate?.outcome, 'lg')}${detail.previous_run ? `<a class="button button--ghost" href="${BASE}/compare?left=${esc(detail.previous_run)}&right=${esc(detail.id)}" data-link>Compare with previous run</a>` : ''}</div>
  </div>
  ${detail.problems?.length ? `<div class="alert"><strong>${esc(words(detail.state))} run.</strong><ul>${detail.problems.map(p => `<li>${esc(p)}</li>`).join('')}</ul></div>` : detail.state !== 'Complete' ? `<div class="alert"><strong>Unfinished run.</strong> The preflight did not write its metadata or report.</div>` : ''}
  <nav class="subnav" aria-label="Run sections">${sections.map(([id, label], n) => `<a href="#${id}"><span>${String.fromCharCode(65 + n)}</span>${label}</a>`).join('')}</nav>
@@ -410,8 +454,8 @@ export async function counterexamples({ query }) {
  const { counterexamples: all } = await api('/api/counterexamples');
  const runFilter = query.get('run');
  const html = `
- <div class="page-head"><h1>Counterexamples</h1><p class="muted">${count(all.length)} saved in <code>.eplyx/counterexamples</code>. Observed failures are exact captured states; derived failures are local variants of an observed state.</p></div>
- ${all.length ? `<div class="filters" role="group" aria-label="Filter counterexamples">${[['all', 'All'], ['Observed', 'Observed'], ['Derived', 'Derived']].map(([key, label]) => `<button type="button" class="chip" data-kind-filter="${key}" aria-pressed="${key === 'all'}">${label} <span class="muted">${key === 'all' ? all.length : all.filter(c => c.kind === key).length}</span></button>`).join('')}${runFilter ? `<span class="tag">run filter: <code>${esc(runFilter)}</code> <a href="/counterexamples" data-link>clear</a></span>` : ''}</div>` : ''}
+ <div class="page-head"><h1>Counterexamples</h1><p class="muted">${count(all.length)} ${CLOUD ? 'synced from local and CI searches' : 'saved in <code>.eplyx/counterexamples</code>'}. Observed failures are exact captured states; derived failures are local variants of an observed state.</p></div>
+ ${all.length ? `<div class="filters" role="group" aria-label="Filter counterexamples">${[['all', 'All'], ['Observed', 'Observed'], ['Derived', 'Derived']].map(([key, label]) => `<button type="button" class="chip" data-kind-filter="${key}" aria-pressed="${key === 'all'}">${label} <span class="muted">${key === 'all' ? all.length : all.filter(c => c.kind === key).length}</span></button>`).join('')}${runFilter ? `<span class="tag">run filter: <code>${esc(runFilter)}</code> <a href="${BASE}/counterexamples" data-link>clear</a></span>` : ''}</div>` : ''}
  <div data-cx-list></div>`;
  return { title:'Counterexamples', html, attach(root) {
   let kind = query.get('kind') || 'all';
@@ -461,7 +505,7 @@ export async function counterexampleDetail({ params }) {
   ${kindBanner(cx.kind)}
   <span class="eyebrow">Counterexample</span>
   <h1><code>${esc(cx.id)}</code> ${copy(cx.id)}</h1>
-  <p class="meta">${esc(cx.claim ?? '')} · from run ${parent ? runLink(parent) : `<code>${esc(cx.parent_run)}</code>`} · saved ${esc(cx.saved_at_ms ? ago(new Date(cx.saved_at_ms).toISOString()) : 'at an unrecorded time')}</p>
+  <p class="meta">${esc(cx.claim ?? '')} · from run ${parent ? runLink(parent) : `<code>${esc(cx.parent_run)}</code>`} · ${CLOUD ? `synced ${esc(ago(cx.synced_at))}` : `saved ${esc(cx.saved_at_ms ? ago(new Date(cx.saved_at_ms).toISOString()) : 'at an unrecorded time')}`}</p>
  </div>
  ${cx.state !== 'Valid' ? `<div class="alert"><strong>Identity check failed.</strong> The saved file's ID does not match its content, so <code>eplyx reproduce</code> will refuse it.</div>` : ''}
  <div class="grid-2">
@@ -481,7 +525,7 @@ export async function counterexampleDetail({ params }) {
   ]) })}
   ${panel({ title:'Why this matters', body:`<p class="why">${why(cx)}</p><p class="muted">${esc(cx.limitations ?? '')}</p>${cx.kind === 'Derived' ? `<h3 class="subhead">Boundary</h3>${ladder(cx)}` : ''}` })}
  </div>
- ${panel({ eyebrow:'Developer action', title:'Reproduce locally', body:`${commandLine(cx.reproduce)}<p class="muted">Re-executes the entire saved search in the local VM with the RPC environment removed, then checks this counterexample and its failure signature. It needs no RPC or current config. The dashboard does not run it.</p>${reproductionHistory(cx.reproductions)}` })}
+ ${panel({ eyebrow:'Developer action', title:'Reproduce locally', body:`${commandLine(cx.reproduce)}<p class="muted">Re-executes the entire saved search in the local VM with the RPC environment removed, then checks this counterexample and its failure signature. It needs no RPC or current config. ${CLOUD ? 'Run it in a checkout that holds this run’s <code>.eplyx/</code> store; the cloud never replays.' : 'The dashboard does not run it.'}</p>${reproductionHistory(cx.reproductions)}` })}
  ${panel({ cls:'tech-only', title:'Failure signature and provenance', body:`${kv([
   ['Stage', esc(cx.failure?.stage ?? '—')], ['Program', `<code>${esc(cx.failure?.program ?? '—')}</code>`], ['Log', `<code>${esc(cx.failure?.relevant_log ?? 'none retained')}</code>`],
   ['Provenance', esc(cx.provenance ?? '')], ['Engine ID', `<code>${esc(cx.engine_id ?? '')}</code>`], ['Package run', `<code>${esc(cx.package_run ?? '')}</code>`],
@@ -489,7 +533,7 @@ export async function counterexampleDetail({ params }) {
   ['Package', `<code>${esc(cx.transition_package_sha256 ?? '')}</code>`], ['Search SHA-256', `<code>${esc(cx.search_sha256 ?? '')}</code>`],
   ['Search artifact matches', cx.search_artifact_matches ? pill('Verified', 'Matches saved search') : pill('Failed', 'Does not match')],
   ['Replay inputs', cx.replay_inputs ? Object.values(cx.replay_inputs).map(p => `<code>${esc(p)}</code>`).join('<br>') : '—'],
- ])}${cx.search_context ? `<p class="note">${esc(cx.search_context.search_domain)}</p>` : ''}<p><a href="/api/counterexamples/${esc(cx.id)}/raw">Download saved JSON</a></p>` })}`;
+ ])}${cx.search_context ? `<p class="note">${esc(cx.search_context.search_domain)}</p>` : ''}<p><a href="${API}/counterexamples/${esc(cx.id)}/raw">Download saved JSON</a></p>` })}`;
  return { title:'Counterexample', crumbs:[['Counterexamples', '/counterexamples'], [short(cx.id, 14)]], html };
 }
 
@@ -553,7 +597,7 @@ export async function compare({ query }) {
  ${panel({ title:'Git and tooling', body:fieldTable(c.git) })}
  <p class="note">${esc(c.causality)}</p>`;
  return { title:'Compare', html, attach(root) {
-  const go = (l, r) => window.dashboardNavigate(`/compare?left=${l}&right=${r}`);
+  const go = (l, r) => window.dashboardNavigate(`${BASE}/compare?left=${l}&right=${r}`);
   root.querySelectorAll('[data-side]').forEach(s => s.addEventListener('change', () => go(root.querySelector('[data-side=left]').value, root.querySelector('[data-side=right]').value)));
   root.querySelector('[data-swap]').addEventListener('click', () => go(right, left));
  } };
@@ -571,7 +615,7 @@ function cxDiffTable(items) {
 function cxSide(side) {
  if (!side) return '<span class="muted">—</span>';
  const detail = side.kind === 'Derived' ? boundaryText(side) : `<code>${esc(side.failure?.instruction_error ?? '')}</code>`;
- return `${side.id ? `<a href="/counterexamples/${esc(side.id)}" data-link><code>${short(side.id, 10)}</code></a>` : ''} <span class="muted">${detail}</span>`;
+ return `${side.id ? `<a href="${BASE}/counterexamples/${esc(side.id)}" data-link><code>${short(side.id, 10)}</code></a>` : ''} <span class="muted">${detail}</span>`;
 }
 
 // ------------------------------------------------ Secondary summary pages
@@ -582,7 +626,7 @@ async function runForPage(query, project) {
  return api(`/api/runs/${id}`);
 }
 const runPicker = (runs, current, path) => `<label class="select"><span>Run</span><select data-run-picker="${esc(path)}">${runs.filter(r => r.state === 'Complete').map(r => `<option value="${esc(r.id)}" ${r.id === current ? 'selected' : ''}>#${esc(r.number)} · ${esc(GATE_SHORT[r.gate?.outcome] ?? '—')} · ${esc(when(r.timestamp))}</option>`).join('')}</select></label>`;
-const attachPicker = root => root.querySelector('[data-run-picker]')?.addEventListener('change', event => window.dashboardNavigate(`${event.target.dataset.runPicker}?run=${event.target.value}`));
+const attachPicker = root => root.querySelector('[data-run-picker]')?.addEventListener('change', event => window.dashboardNavigate(`${BASE}${event.target.dataset.runPicker}?run=${event.target.value}`));
 const noRuns = title => ({ title, html:empty('Run `eplyx preflight` to create your first assurance run.', 'eplyx preflight') });
 
 export async function production({ query, project }) {
@@ -593,21 +637,21 @@ export async function production({ query, project }) {
  const unsupported = p.unsupported_states ?? {};
  const rebinding = p.stress_rebinding ?? {};
  const html = `
- <div class="page-head"><div><h1>Production state</h1><p class="muted">What run #${esc(detail.number)} observed read-only on mainnet. Summary only; full captures stay on disk.</p></div>${runPicker(all, detail.id, '/production')}</div>
+ <div class="page-head"><div><h1>Production state</h1><p class="muted">What run #${esc(detail.number)} observed read-only on mainnet. Summary only; full captures stay on ${CLOUD ? 'the machine that ran it' : 'disk'}.</p></div>${runPicker(all, detail.id, '/production')}</div>
  <div class="tiles">
   ${tile({ label:'Token accounts observed', value:count(p.population_summary?.counts?.token_accounts_observed) })}
   ${tile({ label:'Positive balances', value:count(p.population_summary?.counts?.positive_balance_accounts_observed) })}
   ${tile({ label:'Authority resolution', value:pill(p.population_summary?.authority_resolution_completeness) })}
   ${tile({ label:'Unsupported state shapes', value:count(unsupported.shapes), sub:`${count(unsupported.positive_balance_accounts)} positive-balance accounts · technical boundary, not a failure`, status:'Unsupported' })}
   ${tile({ label:'Executable at final capture', value:`${count(rebinding.executable_current_state)} / ${count(rebinding.selected_identities)}`, sub:'selected identities' })}
-  ${tile({ label:'Captured', value:esc(ago(p.capture_timestamp)), sub:p.provider ? `<code>${esc(p.provider.origin)}</code>` : 'provider not recorded' })}
+  ${tile({ label:'Captured', value:esc(ago(p.capture_timestamp)), sub:p.provider ? `<code>${esc(p.provider.origin)}</code>` : CLOUD ? 'provider stays local' : 'provider not recorded' })}
  </div>
  ${panel({ title:'Population summary', body:productionBlock(detail) })}
  ${panel({ title:'Authority resolution', body:authorityBlock(p.authority_control, p.authority_cases) })}
  ${panel({ title:'Unsupported state shapes', body:`<p>${count(unsupported.shapes)} distinct state shapes were outside what the adapter can execute. <strong>Unsupported</strong> marks a checker boundary; it is not evidence that these accounts cannot convert.</p>
   <div class="tech-only table-wrap"><table class="table"><thead><tr><th>State shape</th><th>Positive balances</th><th>Reason</th></tr></thead><tbody>${(unsupported.rows ?? []).map(r => `<tr><td><code>${short(r.state_shape_sha256, 16)}</code></td><td class="num">${count(r.positive_balance_accounts)}</td><td class="muted">${esc(r.reason)}</td></tr>`).join('')}</tbody></table></div>
   <p class="ov-only muted">Switch to Technical to see each shape.</p>
-  <p><a href="/api/runs/${esc(detail.id)}/artifacts/population.capture.json?download=1">Download the full population capture</a> <span class="muted">(large; never loaded by this page)</span></p>` })}
+  ${CLOUD ? '<p class="muted">The full population capture stays on the machine that ran this preflight.</p>' : `<p><a href="${API}/runs/${esc(detail.id)}/artifacts/population.capture.json?download=1">Download the full population capture</a> <span class="muted">(large; never loaded by this page)</span></p>`}` })}
  ${panel({ cls:'tech-only', title:'Final-state rebinding', body:kv(Object.entries(rebinding).map(([k, v]) => [sentence(k), typeof v === 'number' ? count(v) : esc(v)])) })}`;
  return { title:'Production state', html, attach:attachPicker };
 }
@@ -647,7 +691,7 @@ export async function gate({ query, project }) {
   ${tile({ label:`Run #${detail.number}`, value:gatePill(detail.gate?.outcome, 'lg'), sub:`under <code>${esc(detail.gate?.policy ?? '—')}</code>`, status:detail.gate?.outcome })}
   ${tile({ label:'Runs blocked', value:`${count(project.stats?.blocked)} / ${count(project.stats?.runs)}`, sub:`${count(project.stats?.warned)} warned · ${count(project.stats?.passed)} passed` })}
  </div>
- ${panel({ title:'Gate history', body:history.length ? `<ol class="history" aria-label="Gate outcomes, oldest to newest">${history.map(h => `<li><a href="/gate?run=${esc(h.id)}" data-link class="history__cell history__cell--${tone(h.outcome)}${h.id === detail.id ? ' is-current' : ''}" title="${esc(`Run #${h.number}: ${GATE[h.outcome] ?? 'no result'} · ${when(h.timestamp)}`)}"><span>${esc(GATE_SHORT[h.outcome] ?? '—')}</span><small>#${esc(h.number)}</small></a></li>`).join('')}</ol><p class="muted">Oldest to newest, up to the last 30 runs.</p>` : '<p class="muted">No runs.</p>' })}
+ ${panel({ title:'Gate history', body:history.length ? `<ol class="history" aria-label="Gate outcomes, oldest to newest">${history.map(h => `<li><a href="${BASE}/gate?run=${esc(h.id)}" data-link class="history__cell history__cell--${tone(h.outcome)}${h.id === detail.id ? ' is-current' : ''}" title="${esc(`Run #${h.number}: ${GATE[h.outcome] ?? 'no result'} · ${when(h.timestamp)}`)}"><span>${esc(GATE_SHORT[h.outcome] ?? '—')}</span><small>#${esc(h.number)}</small></a></li>`).join('')}</ol><p class="muted">Oldest to newest, up to the last 30 runs.</p>` : '<p class="muted">No runs.</p>' })}
  ${panel({ title:'Reasons', body:gateBlock(detail) })}
  ${panel({ title:'CI usage', body:`${commandLine('eplyx preflight')}${commandLine('eplyx preflight --gate strict', 'Stricter policy for one run')}<p class="muted">Block-only permits Incomplete with warnings; strict blocks it. Neither policy changes the analytical findings.</p>` })}`;
  return { title:'CI / Gate', html, attach:attachPicker };
@@ -686,6 +730,7 @@ export async function projectPage({ project }) {
   ['Dashboard cache', `<code>${esc(project.store?.index ?? '')}</code> <span class="muted">(summaries only; rebuilt when missing or stale; not evidence)</span>`, 'tech-only'],
   ['CLI / engine version', esc(ctx.version ?? '—')],
   ['RPC', 'not used by the dashboard; no provider URL or credential is read or shown'],
+  ['Eplyx cloud', project.cloud?.linked ? `linked to <code>${esc(project.cloud.project_id)}</code> on <code>${esc(project.cloud.server)}</code> · ${count(project.cloud.synced_runs)} of ${count(s.preflights)} runs synced <span class="muted">(optional; change it with <code>eplyx link</code>)</span>` : 'not linked <span class="muted">(optional; everything here works without an account)</span>'],
  ]) })}
  ${panel({ title:'Where things live', body:`<ul class="limits"><li><code>eplyx.toml</code> is the only configuration surface. The dashboard is read-only and cannot edit terms, invariants, the gate policy or the candidate path.</li><li><code>.eplyx/runs/</code> holds immutable run inputs, reports and search output. <code>.eplyx/counterexamples/</code> holds saved counterexamples.</li><li>Replay and reproduction happen through the CLI.</li></ul>` })}`;
  return { title:'Project', html };

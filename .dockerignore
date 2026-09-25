@@ -1,0 +1,27 @@
+# Only what cloud/Dockerfile copies is needed; keep secrets, stores and build
+# output out of the build context.
+target
+**/target
+node_modules
+dist
+test-results
+playwright-report
+.git
+.eplyx
+**/.eplyx
+.analysis-runs
+artifacts
+evidence
+reports
+snapshots
+probes
+scenarios
+policies
+assets
+examples
+docs
+programs
+frontend/public/vendor
+frontend/public/evidence
+**/*.env
+.env*

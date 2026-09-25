@@ -54,7 +54,21 @@ eplyx dashboard            # opens http://127.0.0.1:4173 (or the next free port)
 eplyx dashboard --no-open  # print the URL only; --port <n> picks a port
 ```
 
-The dashboard is a read-only view of `.eplyx/`, which remains the local source of run history. It shows project status, PASS / WARN / BLOCK history, run details, counterexamples, run-to-run comparison, production-state, invariant and gate summaries, and local usage counts. Runs stay on this machine. It needs no account, sends nothing anywhere, reads no RPC URL and works without the current config once runs exist. It cannot change terms, invariants, policy or artifacts. Replay and reproduction still happen through the CLI; the dashboard only shows copyable commands. Its only write is the rebuildable summary cache `.eplyx/cache/dashboard-index.json`. See [Milestone 16](on-demand-milestone-16-dashboard.md).
+The dashboard is a read-only view of `.eplyx/`, which remains the local source of run history. It shows project status, PASS / WARN / BLOCK history, run details, counterexamples, run-to-run comparison, production-state, invariant and gate summaries, and local usage counts. Runs stay on this machine. It needs no account, sends nothing anywhere (it shows, but never changes, an optional cloud link and per-run sync state), reads no RPC URL and works without the current config once runs exist. It cannot change terms, invariants, policy or artifacts. Replay and reproduction still happen through the CLI; the dashboard only shows copyable commands. Its only write is the rebuildable summary cache `.eplyx/cache/dashboard-index.json`. See [Milestone 16](on-demand-milestone-16-dashboard.md).
+
+## Optional team sync
+
+Cloud sync is optional. Eplyx execution stays local.
+
+```sh
+eplyx login                    # prints a code; approve it in the browser
+eplyx link                     # choose or create a cloud project (or --project prj_… / --create <name>)
+eplyx sync                     # every complete run; or `eplyx sync <run-id>` / `--latest`
+eplyx sync --dry-run --json    # the exact documents, sent nowhere
+eplyx logout                   # revoke and remove the stored token
+```
+
+`link` writes only the cloud IDs into `.eplyx/project.json`, next to the unchanged local project ID. `sync` sends exact bytes and SHA-256 of `metadata.json`, `report.json`, `bindings.json`, the package manifest and config, and the search result. It also sends saved counterexamples and reproduction records. It never sends source, program bytes, captures, `eplyx.toml`, environment variables, RPC URLs, local paths or the token. Re-syncing identical runs is a no-op. A different run under the same ID is refused as a conflict and is never overwritten. An unreachable cloud leaves everything local unchanged, with a retry message. `.eplyx/sync/runs/` records each run's last attempt. In CI, set `EPLYX_TOKEN` (a project CI token), `EPLYX_PROJECT_ID` and `EPLYX_CLOUD_URL` instead of logging in; see [examples/ci/eplyx-cloud-sync.yml](../examples/ci/eplyx-cloud-sync.yml). Sync exits `0` on success and `2` on any failure. It never changes a preflight or gate exit code. See [Milestone 18](on-demand-milestone-18-cloud.md).
 
 Exit codes: preflight `0` for gate pass or warnings, `3` for gate block, `2` for invalid input or engine failure. Search returns `0` when completed even if it finds a counterexample, otherwise `2`. Reproduce returns `0` when verified, otherwise `2`.
 

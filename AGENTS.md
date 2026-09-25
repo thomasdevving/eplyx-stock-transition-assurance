@@ -241,6 +241,20 @@ are exactly the smoke-tested and install-tested archives. Do not claim platforms
 built and tested, and do not change analytical semantics for packaging.
 See docs/on-demand-milestone-17-release.md.
 
+Milestone 18 adds optional cloud sync: `eplyx login` (browser-approved device flow),
+`link` and `sync`, plus the hosted `eplyx-cloud` workspace. Local preflight, search,
+reproduce, replay, dashboard and CI gate never depend on it, and a cloud failure never
+changes an analytical result or exit code. Sync sends exact bytes plus SHA-256 of run
+metadata, report, bindings, package manifest/config and search, saved counterexamples and
+reproduction records. It never sends source, program bytes, captures, eplyx.toml, RPC URLs,
+paths, environment or tokens; leaky text is refused, never rewritten. Synced records are
+immutable: same content is idempotent, different content is a conflict, and search attaches
+once. Counterexample and reproduction parents are bound per project and local project.
+Hosted views reuse the engine's dashboard view and comparison code over synced bytes; the
+browser computes nothing analytical. Projects are private to workspace members; CI tokens
+only sync their project. Only cloud commands may read EPLYX_TOKEN. A synced result is never
+new evidence. See docs/on-demand-milestone-18-cloud.md.
+
 ## Architecture
 
 - engine/src/scenario.rs separates the change from state inputs.
@@ -317,6 +331,15 @@ See docs/on-demand-milestone-17-release.md.
 - dashboard/ is the Milestone 16 loopback server: guarded store reads, a fingerprinted summary
   cache, presentation views and semantic comparison. frontend/dashboard/ holds its embedded
   browser assets. Views select and compare engine fields; they never decide readiness.
+- cloud/ (engine) holds the Milestone 18 sync contract shared by CLI and server
+  (document types, exact-byte digests, verification and binding), the privacy scanner,
+  credentials, the `.eplyx/` link and sync sidecar, the HTTP client and the cloud CLI
+  commands. dashboard/view.rs builds views from bytes so the server reuses them.
+- cloud/ (crate `eplyx-cloud`) is the optional hosted workspace: axum server, Postgres
+  migrations with immutability triggers, auth (Argon2id, sessions, device flow, scoped
+  tokens), workspace/project API, sync endpoints and hosted views. frontend/cloud/ holds
+  its cloud-only pages; frontend/dashboard/env.js points shared pages at a project.
+  It executes, replays and captures nothing.
 - corpus.rs, interpret.rs, impact.rs, cluster.rs, shrink.rs and report.rs retain
   synthetic lending regression/demo behavior, not lifecycle domain semantics.
 - interface/ and programs/fixture-lending/ are the synthetic harness only.
@@ -329,4 +352,6 @@ is main. Phase-specific scope and evidence limits are documented in docs/.
 make test generates fixture states, builds synthetic SBF programs and runs the
 relevant unit and integration tests. Also run make fmt-check and make lint.
 Missing program artefacts remain failures; never silently skip execution tests.
+make test-cloud (EPLYX_CLOUD_TEST_DATABASE_URL required) and npm run test:cloud run the
+Postgres-backed cloud API, CLI and browser tests; they fail rather than skip without it.
 Report checks as pending until they have actually been executed.

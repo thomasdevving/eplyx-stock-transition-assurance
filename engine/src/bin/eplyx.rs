@@ -4,6 +4,7 @@ use chrono::{DateTime, SecondsFormat, Utc};
 use clap::{Parser, Subcommand};
 use eplyx_lifecycle_impact::{
     build_info,
+    cloud::{self, commands as cloud_commands},
     conversion::{
         demo, package,
         package_gate::{Outcome, Policy},
@@ -97,6 +98,54 @@ enum Action {
         /// Print the URL without opening a browser.
         #[arg(long)]
         no_open: bool,
+    },
+    /// Optional: sign in to an Eplyx cloud workspace through your browser.
+    Login {
+        /// Eplyx cloud origin, for example https://cloud.example.
+        #[arg(long)]
+        server: Option<String>,
+        /// Print the sign-in page without opening a browser.
+        #[arg(long)]
+        no_open: bool,
+    },
+    /// Optional: revoke and remove the stored Eplyx cloud token.
+    Logout {
+        #[arg(long)]
+        server: Option<String>,
+    },
+    /// Optional: link this local project to one cloud project.
+    Link {
+        /// Existing cloud project ID (prj_…); also read from EPLYX_PROJECT_ID.
+        #[arg(long)]
+        project: Option<String>,
+        /// Workspace for --create when you belong to several.
+        #[arg(long)]
+        workspace: Option<String>,
+        /// Create a cloud project with this name and link to it.
+        #[arg(long)]
+        create: Option<String>,
+        #[arg(long)]
+        server: Option<String>,
+        /// Remove the local link; nothing is deleted in the cloud.
+        #[arg(long)]
+        unlink: bool,
+        /// Replace an existing link to a different cloud project.
+        #[arg(long)]
+        force: bool,
+    },
+    /// Optional: upload run metadata and results to the linked cloud project.
+    Sync {
+        /// One run ID; defaults to every complete local run.
+        run: Option<String>,
+        /// Only the newest complete run.
+        #[arg(long, conflicts_with = "run")]
+        latest: bool,
+        /// Show what would be uploaded without sending anything.
+        #[arg(long)]
+        dry_run: bool,
+        /// With --dry-run, print the exact documents.
+        #[arg(long, requires = "dry_run")]
+        json: bool,
     },
     #[command(hide = true)]
     FinishPackagePreflight {
@@ -981,25 +1030,6 @@ fn dashboard_context(root: &Path, path: &Path) -> Value {
     })
 }
 
-fn open_browser(url: &str) {
-    #[cfg(target_os = "macos")]
-    let mut command = Command::new("open");
-    #[cfg(target_os = "windows")]
-    let mut command = {
-        let mut command = Command::new("cmd");
-        command.args(["/C", "start", ""]);
-        command
-    };
-    #[cfg(all(unix, not(target_os = "macos")))]
-    let mut command = Command::new("xdg-open");
-    let _ = command
-        .arg(url)
-        .stdin(std::process::Stdio::null())
-        .stdout(std::process::Stdio::null())
-        .stderr(std::process::Stdio::null())
-        .spawn();
-}
-
 fn dashboard(root: &Path, path: &Path, port: Option<u16>, no_open: bool) -> Result<()> {
     use std::io::IsTerminal;
     // The dashboard reads local artifacts only; it never needs a provider.
@@ -1013,7 +1043,7 @@ fn dashboard(root: &Path, path: &Path, port: Option<u16>, no_open: bool) -> Resu
     let url = server.url();
     println!("Eplyx dashboard\nProject: {name}\nRuns: {runs}\nCounterexamples: {counterexamples}\n\n{url}\n\nRead-only view of .eplyx/ on 127.0.0.1. Nothing is uploaded. Press Ctrl+C to stop.");
     if !no_open && std::io::stdout().is_terminal() && std::env::var_os("CI").is_none() {
-        open_browser(&url);
+        cloud_commands::open_browser(&url);
     }
     server.serve()
 }
@@ -1083,6 +1113,22 @@ fn init(root: &Path, path: &Path, force: bool, minimal: bool) -> Result<()> {
 }
 
 fn execute(cli: Cli) -> Result<u8> {
+    // Only the optional cloud commands may read the Eplyx token. Every other
+    // command drops it before doing anything, so it can never reach the
+    // offline VM worker, a replay, an engine artifact or the dashboard.
+    if !matches!(
+        cli.command,
+        Action::Login { .. } | Action::Logout { .. } | Action::Link { .. } | Action::Sync { .. }
+    ) {
+        std::env::remove_var(cloud::TOKEN_ENV);
+    }
+    match &cli.command {
+        Action::Login { server, no_open } => {
+            return cloud_commands::login(server.as_deref(), !no_open)
+        }
+        Action::Logout { server } => return cloud_commands::logout(server.as_deref()),
+        _ => {}
+    }
     // Version needs no project, config, store or network.
     if let Action::Version { json } = cli.command {
         if json {
@@ -1110,6 +1156,8 @@ fn execute(cli: Cli) -> Result<u8> {
             | Action::Runs { .. }
             | Action::Show { .. }
             | Action::Dashboard { .. }
+            | Action::Link { .. }
+            | Action::Sync { .. }
     ) {
         None
     } else {
@@ -1180,10 +1228,50 @@ fn execute(cli: Cli) -> Result<u8> {
             dashboard(&root, &path, port, no_open)?;
             Ok(0)
         }
+        Action::Link {
+            project,
+            workspace,
+            create,
+            server,
+            unlink,
+            force,
+        } => cloud_commands::link(
+            &base,
+            cloud_commands::LinkArgs {
+                server: server.as_deref(),
+                project: project.as_deref(),
+                workspace: workspace.as_deref(),
+                create: create.as_deref(),
+                unlink,
+                force,
+            },
+        ),
+        Action::Sync {
+            run,
+            latest,
+            dry_run,
+            json,
+        } => {
+            // Sync reads saved artifacts only and never calls a provider; the
+            // RPC URL stays in the environment solely so the upload can be
+            // checked to be free of it.
+            cloud_commands::sync(
+                &root,
+                &base,
+                cloud_commands::SyncArgs {
+                    run: run.as_deref(),
+                    latest,
+                    dry_run,
+                    json,
+                },
+            )
+        }
         Action::Init { .. }
         | Action::FinishPackagePreflight { .. }
         | Action::Doctor { .. }
-        | Action::Version { .. } => {
+        | Action::Version { .. }
+        | Action::Login { .. }
+        | Action::Logout { .. } => {
             bail!("internal command dispatch error")
         }
     }

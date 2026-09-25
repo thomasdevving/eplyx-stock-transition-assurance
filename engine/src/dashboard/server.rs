@@ -228,70 +228,37 @@ impl State {
         let (_, ignored_cx) = self.store.counterexample_ids()?;
         let (_, ignored_repro) = self.store.reproduction_ids()?;
         // Newest first: reproduction IDs start with their UTC timestamp.
-        let history: Vec<&Value> = index
+        let history: Vec<Value> = index
             .reproductions
             .values()
             .rev()
-            .map(|e| &e.summary)
-            .filter(|r| r["state"] == "Valid")
+            .map(|e| e.summary.clone())
             .collect();
-        let mut files: Vec<Value> = index
-            .counterexamples
-            .values()
-            .map(|e| {
-                let mut file = e.summary.clone();
-                let mine: Vec<&&Value> = history
-                    .iter()
-                    .filter(|r| r["counterexample_id"] == file["id"])
-                    .collect();
-                file["reproductions"] = json!({
-                    "count": mine.len(),
-                    "succeeded": mine.iter().filter(|r| r["outcome"] == "Reproduced").count(),
-                    "failed": mine.iter().filter(|r| r["outcome"] == "Failed").count(),
-                    "last_timestamp": mine.first().map(|r| r["timestamp"].clone()),
-                    "last_outcome": mine.first().map(|r| r["outcome"].clone()),
-                    "history": mine.iter().take(50).collect::<Vec<_>>(),
+        let (mut runs, files) = view::assemble(
+            index.runs.values().map(|e| e.summary.clone()).collect(),
+            index
+                .counterexamples
+                .values()
+                .map(|e| e.summary.clone())
+                .collect(),
+            &history,
+        );
+        // Operational sidecar from `eplyx sync`, read fresh; never evidence.
+        for run in &mut runs {
+            let id = run["id"].as_str().unwrap_or("").to_owned();
+            run["sync"] = crate::cloud::local::read_state(self.store.base(), &id)
+                .ok()
+                .flatten()
+                .map_or(Value::Null, |state| {
+                    json!({
+                        "status": state.status,
+                        "last_synced_at": state.last_synced_at,
+                        "last_attempt_at": state.last_attempt_at,
+                        "error": state.error,
+                        "cloud_project_id": state.cloud_project_id,
+                    })
                 });
-                file
-            })
-            .collect();
-        let mut runs: Vec<Value> = index
-            .runs
-            .values()
-            .enumerate()
-            .map(|(position, entry)| {
-                let mut run = entry.summary.clone();
-                let id = run["id"].as_str().unwrap_or("").to_owned();
-                let mine = files.iter().filter(|c| c["parent_run"] == id.as_str());
-                let (mut total, mut observed) = (0, 0);
-                for c in mine {
-                    total += 1;
-                    observed += usize::from(c["kind"] == "Observed");
-                }
-                run["number"] = json!(position + 1);
-                run["saved_counterexamples"] =
-                    json!({"total": total, "observed": observed, "derived": total - observed});
-                run
-            })
-            .collect();
-        runs.reverse();
-        for file in &mut files {
-            let parent = runs.iter().find(|r| r["id"] == file["parent_run"]);
-            file["parent"] = parent.map_or(Value::Null, |run| {
-                json!({
-                    "number": run["number"], "gate": run["gate"]["outcome"], "timestamp": run["timestamp"],
-                    "source_mint": run["transition"]["source_mint"], "replacement_mint": run["transition"]["replacement_mint"],
-                    "candidate_program_sha256": run["candidate_program_sha256"],
-                })
-            });
         }
-        let number = |c: &Value| c["parent"]["number"].as_u64().unwrap_or(0);
-        files.sort_by(|a, b| {
-            number(b)
-                .cmp(&number(a))
-                .then_with(|| a["kind"].as_str().cmp(&b["kind"].as_str()))
-                .then_with(|| a["id"].as_str().cmp(&b["id"].as_str()))
-        });
         Ok((runs, files, ignored_runs + ignored_cx + ignored_repro))
     }
 
@@ -319,24 +286,42 @@ impl State {
             .root()
             .file_name()
             .map(|n| n.to_string_lossy().into_owned());
-        let latest = runs.iter().find(|r| r["state"] == "Complete").cloned();
-        Ok(json!({
-            "project": {
+        let link = crate::cloud::local::project(self.store.base())
+            .ok()
+            .and_then(|local| local.link);
+        let synced_runs = runs
+            .iter()
+            .filter(|r| r["sync"]["status"] == "synced")
+            .count();
+        let mut payload = view::project_payload(
+            json!({
                 "name": project["name"].as_str().map(str::to_owned).or_else(|| self.context["config"]["name"].as_str().map(str::to_owned)).or(root_name),
                 "id": project["id"],
-            },
-            "context": self.context,
-            "store": {
+            }),
+            self.context.clone(),
+            json!({
                 "path": ".eplyx/",
                 "root_display": display_path(self.store.root()),
                 "index": ".eplyx/cache/dashboard-index.json",
-            },
-            "stats": view::stats(&runs, &files, &self.reproductions(), ignored),
-            "latest": latest,
-            "recent_runs": runs.iter().take(6).collect::<Vec<_>>(),
-            "recent_counterexamples": files.iter().take(6).collect::<Vec<_>>(),
-            "gate_history": runs.iter().take(30).map(|r| json!({"id": r["id"], "number": r["number"], "outcome": r["gate"]["outcome"], "timestamp": r["timestamp"]})).collect::<Vec<_>>(),
-        }))
+            }),
+            &runs,
+            &files,
+            &self.reproductions(),
+            ignored,
+        );
+        // Shown, never changed: linking and syncing happen only in the CLI.
+        payload["cloud"] = match link {
+            Some(link) => json!({
+                "linked": true,
+                "server": link.server,
+                "workspace_id": link.workspace_id,
+                "project_id": link.project_id,
+                "linked_at": link.linked_at,
+                "synced_runs": synced_runs,
+            }),
+            None => json!({"linked": false}),
+        };
+        Ok(payload)
     }
 
     fn known_run(&self, id: &str) -> Result<bool> {
@@ -384,6 +369,7 @@ impl State {
                 detail["previous_run"] = position
                     .and_then(|p| runs.get(p + 1))
                     .map_or(Value::Null, |r| r["id"].clone());
+                detail["sync"] = position.map_or(Value::Null, |p| runs[p]["sync"].clone());
                 Response::json(200, &detail)
             }
             ["api", "runs", id, "artifacts", name] => {

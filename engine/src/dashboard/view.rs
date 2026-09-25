@@ -111,7 +111,9 @@ pub fn artifact(name: &str) -> Option<(&'static str, &'static str)> {
         .map(|(_, path, kind, _)| (*path, *kind))
 }
 
-struct Run {
+/// One run's small artifacts, parsed. Built from the local store or from the
+/// exact bytes a cloud workspace received; both go through [`from_bytes`].
+pub struct Run {
     id: String,
     metadata: Option<Metadata>,
     report: Option<Value>,
@@ -120,6 +122,39 @@ struct Run {
     search: Option<SearchResult>,
     search_sha256: Option<String>,
     problems: Vec<String>,
+}
+
+/// Exact bytes of a run's small members. Captures and program bytes are never
+/// part of it; a missing member is `None`.
+#[derive(Clone, Copy, Default)]
+pub struct RunBytes<'a> {
+    pub metadata: Option<&'a [u8]>,
+    pub report: Option<&'a [u8]>,
+    pub manifest: Option<&'a [u8]>,
+    pub config: Option<&'a [u8]>,
+    pub search: Option<&'a [u8]>,
+}
+
+impl Run {
+    pub fn id(&self) -> &str {
+        &self.id
+    }
+
+    pub fn report(&self) -> Option<&Value> {
+        self.report.as_ref()
+    }
+
+    pub fn search(&self) -> Option<&SearchResult> {
+        self.search.as_ref()
+    }
+
+    pub fn search_sha256(&self) -> Option<&str> {
+        self.search_sha256.as_deref()
+    }
+
+    pub fn problems(&self) -> &[String] {
+        &self.problems
+    }
 }
 
 fn parts(id: &str, member: &str) -> Vec<String> {
@@ -147,32 +182,81 @@ fn read_json(
     }
 }
 
-fn load(store: &Store, id: &str) -> Run {
-    let mut problems = Vec::new();
-    let metadata =
-        read_json(store, id, "metadata.json", SMALL_LIMIT, &mut problems).and_then(|value| {
-            serde_json::from_value::<Metadata>(value)
-                .map_err(|error| problems.push(format!("metadata.json: {error}")))
-                .ok()
-        });
-    let report = read_json(store, id, "result/report.json", REPORT_LIMIT, &mut problems);
-    let manifest = read_json(store, id, "package/eplyx.json", SMALL_LIMIT, &mut problems);
-    let config = read_json(store, id, "package/config.json", SMALL_LIMIT, &mut problems);
-    let owned = parts(id, "search/counterexamples.json");
+fn read_member(
+    store: &Store,
+    id: &str,
+    member: &str,
+    limit: u64,
+    problems: &mut Vec<String>,
+) -> Option<Vec<u8>> {
+    let owned = parts(id, member);
     let borrowed: Vec<&str> = owned.iter().map(String::as_str).collect();
-    let (search, search_sha256) = match store.read(&borrowed, SEARCH_LIMIT) {
-        Ok(Some(bytes)) => match serde_json::from_slice::<SearchResult>(&bytes) {
-            Ok(result) => (Some(result), Some(sha256(&bytes))),
+    match store.read(&borrowed, limit) {
+        Ok(bytes) => bytes,
+        Err(error) => {
+            problems.push(format!("{member}: {error:#}"));
+            None
+        }
+    }
+}
+
+pub fn load(store: &Store, id: &str) -> Run {
+    let mut problems = Vec::new();
+    let metadata = read_member(store, id, "metadata.json", SMALL_LIMIT, &mut problems);
+    let report = read_member(store, id, "result/report.json", REPORT_LIMIT, &mut problems);
+    let manifest = read_member(store, id, "package/eplyx.json", SMALL_LIMIT, &mut problems);
+    let config = read_member(store, id, "package/config.json", SMALL_LIMIT, &mut problems);
+    let search = read_member(
+        store,
+        id,
+        "search/counterexamples.json",
+        SEARCH_LIMIT,
+        &mut problems,
+    );
+    let bytes = RunBytes {
+        metadata: metadata.as_deref(),
+        report: report.as_deref(),
+        manifest: manifest.as_deref(),
+        config: config.as_deref(),
+        search: search.as_deref(),
+    };
+    parse(id, bytes, problems)
+}
+
+/// Parse exact member bytes with the same identity checks as a local load.
+pub fn from_bytes(id: &str, bytes: RunBytes) -> Run {
+    parse(id, bytes, Vec::new())
+}
+
+fn parse(id: &str, bytes: RunBytes, mut problems: Vec<String>) -> Run {
+    let mut json = |member: &str, bytes: Option<&[u8]>| -> Option<Value> {
+        let bytes = bytes?;
+        match serde_json::from_slice::<Value>(bytes).context("invalid JSON") {
+            Ok(value) => Some(value),
+            Err(error) => {
+                problems.push(format!("{member}: {error:#}"));
+                None
+            }
+        }
+    };
+    let metadata = json("metadata.json", bytes.metadata);
+    let report = json("result/report.json", bytes.report);
+    let manifest = json("package/eplyx.json", bytes.manifest);
+    let config = json("package/config.json", bytes.config);
+    let metadata = metadata.and_then(|value| {
+        serde_json::from_value::<Metadata>(value)
+            .map_err(|error| problems.push(format!("metadata.json: {error}")))
+            .ok()
+    });
+    let (search, search_sha256) = match bytes.search {
+        Some(bytes) => match serde_json::from_slice::<SearchResult>(bytes) {
+            Ok(result) => (Some(result), Some(sha256(bytes))),
             Err(error) => {
                 problems.push(format!("search/counterexamples.json: {error}"));
-                (None, Some(sha256(&bytes)))
+                (None, Some(sha256(bytes)))
             }
         },
-        Ok(None) => (None, None),
-        Err(error) => {
-            problems.push(format!("search/counterexamples.json: {error:#}"));
-            (None, None)
-        }
+        None => (None, None),
     };
     if let Some(meta) = &metadata {
         if meta.run_id != id {
@@ -209,7 +293,7 @@ fn load(store: &Store, id: &str) -> Run {
     }
 }
 
-fn state(run: &Run) -> &'static str {
+pub fn state(run: &Run) -> &'static str {
     // The CLI writes metadata.json last, so its absence means the preflight
     // never finished; unreadable artifacts are reported, never guessed around.
     if !run.problems.is_empty() {
@@ -256,7 +340,7 @@ fn search_brief(run: &Run) -> Value {
     })
 }
 
-fn summary(run: &Run) -> Value {
+pub fn summary(run: &Run) -> Value {
     let report = run.report.as_ref().unwrap_or(&Value::Null);
     let meta = run.metadata.as_ref();
     let manifest = run.manifest.as_ref().unwrap_or(&Value::Null);
@@ -486,11 +570,17 @@ fn command(label: &str, text: String) -> Value {
     json!({"label": label, "command": text})
 }
 
+/// Facts about a run that live outside its report: the provider origin from
+/// the wallet capture, the evidence bindings and each artifact's size. A cloud
+/// workspace supplies these from the synced document, without the provider.
+pub struct DetailContext {
+    pub provider: Option<Value>,
+    pub bindings: Option<Value>,
+    pub artifacts: Vec<Value>,
+}
+
 pub fn run_detail(store: &Store, id: &str, counterexample_files: &[Value]) -> Result<Value> {
     let run = load(store, id);
-    let mut detail = summary(&run);
-    let report = run.report.clone().unwrap_or(Value::Null);
-    let manifest = run.manifest.clone().unwrap_or(Value::Null);
     let wallet = read_json(
         store,
         id,
@@ -505,6 +595,56 @@ pub fn run_detail(store: &Store, id: &str, counterexample_files: &[Value]) -> Re
         SMALL_LIMIT,
         &mut Vec::new(),
     );
+    let provider = wallet.as_ref().map(|w| {
+        json!({
+            "origin": sanitize_origin(w["rpc_origin"].as_str().unwrap_or("")),
+            "cluster": w["selection"]["cluster"],
+            "started_at": w["started_at"],
+            "completed_at": w["completed_at"],
+        })
+    });
+    let sizes = ARTIFACTS
+        .iter()
+        .map(|(_, path, ..)| {
+            let owned = parts(id, path);
+            let borrowed: Vec<&str> = owned.iter().map(String::as_str).collect();
+            store
+                .open_file(&borrowed, CAPTURE_LIMIT)
+                .ok()
+                .flatten()
+                .map(|(_, len)| len)
+        })
+        .collect::<Vec<_>>();
+    let context = DetailContext {
+        provider,
+        bindings,
+        artifacts: artifact_rows(id, &sizes),
+    };
+    Ok(run_detail_for(&run, context, counterexample_files))
+}
+
+/// The artifact table for a run, from each allowlisted member's size in
+/// [`ARTIFACTS`] order; `None` marks an absent member.
+pub fn artifact_rows(id: &str, sizes: &[Option<u64>]) -> Vec<Value> {
+    ARTIFACTS
+        .iter()
+        .zip(sizes.iter().chain(std::iter::repeat(&None)))
+        .map(|((name, path, _, label), size)| {
+            json!({"name": name, "label": label, "path": format!(".eplyx/runs/{id}/{path}"), "size": size})
+        })
+        .collect()
+}
+
+pub fn run_detail_for(run: &Run, context: DetailContext, counterexample_files: &[Value]) -> Value {
+    let id = run.id.as_str();
+    let mut detail = summary(run);
+    let report = run.report.clone().unwrap_or(Value::Null);
+    let manifest = run.manifest.clone().unwrap_or(Value::Null);
+    let DetailContext {
+        provider,
+        bindings,
+        artifacts,
+    } = context;
     let saved_ids: BTreeSet<&str> = counterexample_files
         .iter()
         .filter(|c| c["parent_run"] == id)
@@ -515,14 +655,6 @@ pub fn run_detail(store: &Store, id: &str, counterexample_files: &[Value]) -> Re
         "shapes": unsupported_rows.map(Vec::len),
         "positive_balance_accounts": unsupported_rows.map(|rows| rows.iter().filter_map(|r| r["positive_balance_accounts"].as_u64()).sum::<u64>()),
         "rows": unsupported_rows.map(|rows| rows.iter().take(100).cloned().collect::<Vec<_>>()),
-    });
-    let provider = wallet.as_ref().map(|w| {
-        json!({
-            "origin": sanitize_origin(w["rpc_origin"].as_str().unwrap_or("")),
-            "cluster": w["selection"]["cluster"],
-            "started_at": w["started_at"],
-            "completed_at": w["completed_at"],
-        })
     });
     let search_detail = run.search.as_ref().map(|search| {
         let search_counterexamples = search
@@ -551,15 +683,6 @@ pub fn run_detail(store: &Store, id: &str, counterexample_files: &[Value]) -> Re
             "sha256": run.search_sha256,
         })
     });
-    let artifacts = ARTIFACTS
-        .iter()
-        .map(|(name, path, _, label)| {
-            let owned = parts(id, path);
-            let borrowed: Vec<&str> = owned.iter().map(String::as_str).collect();
-            let size = store.open_file(&borrowed, CAPTURE_LIMIT).ok().flatten().map(|(_, len)| len);
-            json!({"name": name, "label": label, "path": format!(".eplyx/runs/{id}/{path}"), "size": size})
-        })
-        .collect::<Vec<_>>();
     let base = format!(".eplyx/runs/{id}");
     let mut commands = vec![
         command("Summarize this run", format!("eplyx show {id}")),
@@ -629,7 +752,7 @@ pub fn run_detail(store: &Store, id: &str, counterexample_files: &[Value]) -> Re
     if let (Some(target), Some(source)) = (detail.as_object_mut(), extra.as_object()) {
         target.extend(source.clone());
     }
-    Ok(detail)
+    detail
 }
 
 fn load_counterexample(store: &Store, id: &str) -> Result<SavedCounterexample> {
@@ -640,7 +763,7 @@ fn load_counterexample(store: &Store, id: &str) -> Result<SavedCounterexample> {
     serde_json::from_slice(&bytes).context("invalid saved counterexample")
 }
 
-fn counterexample_fields(saved: &SavedCounterexample, file_id: &str) -> Value {
+pub fn counterexample_fields(saved: &SavedCounterexample, file_id: &str) -> Value {
     let computed = counterexample_id(&saved.counterexample).ok();
     let identity_verified = computed.as_deref() == Some(file_id) && saved.id == file_id;
     let replay_matches = saved
@@ -738,6 +861,15 @@ pub fn reproduction_summary(store: &Store, id: &str) -> Value {
 
 pub fn counterexample_detail(store: &Store, id: &str, summary: &Value) -> Result<Value> {
     let saved = load_counterexample(store, id)?;
+    let parent = load(store, &saved.parent_run);
+    counterexample_detail_for(&saved, summary, &parent)
+}
+
+pub fn counterexample_detail_for(
+    saved: &SavedCounterexample,
+    summary: &Value,
+    parent: &Run,
+) -> Result<Value> {
     let mut view = summary.clone();
     if let Counterexample::Derived {
         minimization_trace,
@@ -753,7 +885,6 @@ pub fn counterexample_detail(store: &Store, id: &str, summary: &Value) -> Result
         "result": format!(".eplyx/{}", inputs.result),
         "search": format!(".eplyx/{}", inputs.search),
     })));
-    let parent = load(store, &saved.parent_run);
     view["search_artifact_matches"] =
         json!(parent.search_sha256.as_deref() == Some(saved.search_sha256.as_str()));
     view["search_context"] = json!(parent.search.as_ref().map(|search| json!({
@@ -763,7 +894,7 @@ pub fn counterexample_detail(store: &Store, id: &str, summary: &Value) -> Result
         "budget": search.budget,
         "total": search.counterexamples.len(),
     })));
-    view["raw"] = serde_json::to_value(&saved)?;
+    view["raw"] = serde_json::to_value(saved)?;
     Ok(view)
 }
 
@@ -978,7 +1109,12 @@ fn stress_count(report: &Value, status: &str) -> Value {
 }
 
 pub fn compare(store: &Store, left: &str, right: &str) -> Result<Value> {
-    let (a, b) = (load(store, left), load(store, right));
+    compare_runs(&load(store, left), &load(store, right))
+}
+
+/// Milestone 16 comparison semantics over two parsed runs, wherever their
+/// bytes came from. The cloud workspace calls this same function.
+pub fn compare_runs(a: &Run, b: &Run) -> Result<Value> {
     ensure!(
         a.report.is_some() && b.report.is_some(),
         "both runs need a readable report.json to compare"
@@ -988,7 +1124,7 @@ pub fn compare(store: &Store, left: &str, right: &str) -> Result<Value> {
         a.manifest.clone().unwrap_or(Value::Null),
         b.manifest.clone().unwrap_or(Value::Null),
     );
-    let (sa, sb) = (summary(&a), summary(&b));
+    let (sa, sb) = (summary(a), summary(b));
     let inputs = vec![
         field(
             "Candidate",
@@ -1218,38 +1354,38 @@ pub fn compare(store: &Store, left: &str, right: &str) -> Result<Value> {
         field(
             "Git",
             "Run source",
-            meta(&a, |m| json!(m.run_source)),
-            meta(&b, |m| json!(m.run_source)),
+            meta(a, |m| json!(m.run_source)),
+            meta(b, |m| json!(m.run_source)),
         ),
         field(
             "Git",
             "Commit",
-            meta(&a, |m| json!(m.git_commit)),
-            meta(&b, |m| json!(m.git_commit)),
+            meta(a, |m| json!(m.git_commit)),
+            meta(b, |m| json!(m.git_commit)),
         ),
         field(
             "Git",
             "Branch",
-            meta(&a, |m| json!(m.git_branch)),
-            meta(&b, |m| json!(m.git_branch)),
+            meta(a, |m| json!(m.git_branch)),
+            meta(b, |m| json!(m.git_branch)),
         ),
         field(
             "Git",
             "Uncommitted changes",
-            meta(&a, |m| json!(m.git_dirty)),
-            meta(&b, |m| json!(m.git_dirty)),
+            meta(a, |m| json!(m.git_dirty)),
+            meta(b, |m| json!(m.git_dirty)),
         ),
         field(
             "Tooling",
             "Eplyx version",
-            meta(&a, |m| json!(m.eplyx_version)),
-            meta(&b, |m| json!(m.eplyx_version)),
+            meta(a, |m| json!(m.eplyx_version)),
+            meta(b, |m| json!(m.eplyx_version)),
         ),
         field(
             "Tooling",
             "Engine binary hash",
-            meta(&a, |m| json!(m.engine_binary_sha256)),
-            meta(&b, |m| json!(m.engine_binary_sha256)),
+            meta(a, |m| json!(m.engine_binary_sha256)),
+            meta(b, |m| json!(m.engine_binary_sha256)),
         ),
     ];
     Ok(json!({
@@ -1267,9 +1403,101 @@ pub fn compare(store: &Store, left: &str, right: &str) -> Result<Value> {
             "reasons_kept": ga.intersection(&gb).count(),
         },
         "git": git,
-        "counterexamples": counterexample_diff(&a, &b),
+        "counterexamples": counterexample_diff(a, b),
         "causality": "Differences are listed side by side. Eplyx does not infer which input change caused which result change.",
     }))
+}
+
+/// Join run, counterexample and reproduction summaries into the dashboard's
+/// lists. Runs arrive oldest first (sorted by run ID, which starts with its
+/// UTC timestamp) and are numbered in that order; reproductions arrive newest
+/// first. Returns runs newest first and counterexamples by parent run.
+pub fn assemble(
+    run_summaries: Vec<Value>,
+    counterexample_summaries: Vec<Value>,
+    reproductions_newest_first: &[Value],
+) -> (Vec<Value>, Vec<Value>) {
+    let history: Vec<&Value> = reproductions_newest_first
+        .iter()
+        .filter(|r| r["state"] == "Valid")
+        .collect();
+    let mut files: Vec<Value> = counterexample_summaries
+        .into_iter()
+        .map(|mut file| {
+            let mine: Vec<&&Value> = history
+                .iter()
+                .filter(|r| r["counterexample_id"] == file["id"])
+                .collect();
+            file["reproductions"] = json!({
+                "count": mine.len(),
+                "succeeded": mine.iter().filter(|r| r["outcome"] == "Reproduced").count(),
+                "failed": mine.iter().filter(|r| r["outcome"] == "Failed").count(),
+                "last_timestamp": mine.first().map(|r| r["timestamp"].clone()),
+                "last_outcome": mine.first().map(|r| r["outcome"].clone()),
+                "history": mine.iter().take(50).collect::<Vec<_>>(),
+            });
+            file
+        })
+        .collect();
+    let mut runs: Vec<Value> = run_summaries
+        .into_iter()
+        .enumerate()
+        .map(|(position, mut run)| {
+            let id = run["id"].as_str().unwrap_or("").to_owned();
+            let mine = files.iter().filter(|c| c["parent_run"] == id.as_str());
+            let (mut total, mut observed) = (0, 0);
+            for c in mine {
+                total += 1;
+                observed += usize::from(c["kind"] == "Observed");
+            }
+            run["number"] = json!(position + 1);
+            run["saved_counterexamples"] =
+                json!({"total": total, "observed": observed, "derived": total - observed});
+            run
+        })
+        .collect();
+    runs.reverse();
+    for file in &mut files {
+        let parent = runs.iter().find(|r| r["id"] == file["parent_run"]);
+        file["parent"] = parent.map_or(Value::Null, |run| {
+            json!({
+                "number": run["number"], "gate": run["gate"]["outcome"], "timestamp": run["timestamp"],
+                "source_mint": run["transition"]["source_mint"], "replacement_mint": run["transition"]["replacement_mint"],
+                "candidate_program_sha256": run["candidate_program_sha256"],
+            })
+        });
+    }
+    let number = |c: &Value| c["parent"]["number"].as_u64().unwrap_or(0);
+    files.sort_by(|a, b| {
+        number(b)
+            .cmp(&number(a))
+            .then_with(|| a["kind"].as_str().cmp(&b["kind"].as_str()))
+            .then_with(|| a["id"].as_str().cmp(&b["id"].as_str()))
+    });
+    (runs, files)
+}
+
+/// The Overview/Project payload shared by the local and cloud dashboards.
+pub fn project_payload(
+    project: Value,
+    context: Value,
+    store: Value,
+    runs: &[Value],
+    files: &[Value],
+    reproductions: &[Value],
+    ignored: usize,
+) -> Value {
+    let latest = runs.iter().find(|r| r["state"] == "Complete").cloned();
+    json!({
+        "project": project,
+        "context": context,
+        "store": store,
+        "stats": stats(runs, files, reproductions, ignored),
+        "latest": latest,
+        "recent_runs": runs.iter().take(6).collect::<Vec<_>>(),
+        "recent_counterexamples": files.iter().take(6).collect::<Vec<_>>(),
+        "gate_history": runs.iter().take(30).map(|r| json!({"id": r["id"], "number": r["number"], "outcome": r["gate"]["outcome"], "timestamp": r["timestamp"]})).collect::<Vec<_>>(),
+    })
 }
 
 /// Local usage statistics from `.eplyx/` only; nothing is sent anywhere.

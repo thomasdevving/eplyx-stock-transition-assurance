@@ -248,6 +248,34 @@ pub fn load(directory: &Path) -> Result<ValidatedPackage> {
     let manifest_bytes = bounded_read(&member(&root, "eplyx.json")?, MAX_MANIFEST_BYTES)?;
     let mut manifest: Manifest =
         serde_json::from_slice(&manifest_bytes).context("invalid package manifest")?;
+    validate_manifest(&mut manifest)?;
+    let program = bounded_read(
+        &member(&root, &manifest.candidate_program.artifact)?,
+        MAX_PROGRAM_BYTES,
+    )?;
+    validate_sbf(&program)?;
+    let program_sha256 = sha256(&program);
+    ensure!(
+        program_sha256 == manifest.candidate_program.sha256,
+        "candidate program SHA-256 mismatch"
+    );
+    // The registry fixes the instruction/account ABI and program ID. The
+    // operator may supply a new candidate build; only actual VM execution and
+    // exact reconciliation can grant evidence for its hash.
+    let config_bytes = bounded_read(&member(&root, &manifest.config)?, MAX_CONFIG_BYTES)?;
+    let (config, config_sha256) = validate_config(&manifest, &config_bytes)?;
+    let transition_package_sha256 = identity(&manifest, &program_sha256, &config_sha256)?;
+    Ok(ValidatedPackage {
+        manifest,
+        config,
+        program,
+        program_sha256,
+        config_sha256,
+        transition_package_sha256,
+    })
+}
+
+fn validate_manifest(manifest: &mut Manifest) -> Result<()> {
     match manifest.schema_version {
         VERSION => ensure!(
             manifest.invariant_schema_version.is_none() && manifest.invariants.is_none(),
@@ -306,30 +334,20 @@ pub fn load(directory: &Path) -> Result<ValidatedPackage> {
         valid_digest(&manifest.candidate_program.sha256),
         "invalid program SHA-256"
     );
-    let program = bounded_read(
-        &member(&root, &manifest.candidate_program.artifact)?,
-        MAX_PROGRAM_BYTES,
-    )?;
-    validate_sbf(&program)?;
-    let program_sha256 = sha256(&program);
-    ensure!(
-        program_sha256 == manifest.candidate_program.sha256,
-        "candidate program SHA-256 mismatch"
-    );
-    // The registry fixes the instruction/account ABI and program ID. The
-    // operator may supply a new candidate build; only actual VM execution and
-    // exact reconciliation can grant evidence for its hash.
-    let config_bytes = bounded_read(&member(&root, &manifest.config)?, MAX_CONFIG_BYTES)?;
+    Ok(())
+}
+
+fn validate_config(manifest: &Manifest, config_bytes: &[u8]) -> Result<(Config, String)> {
     ensure!(
         valid_digest(&manifest.config_sha256),
         "invalid config SHA-256"
     );
-    let config_sha256 = sha256(&config_bytes);
+    let config_sha256 = sha256(config_bytes);
     ensure!(
         config_sha256 == manifest.config_sha256,
         "package config SHA-256 mismatch"
     );
-    let config: Config = serde_json::from_slice(&config_bytes).context("invalid package config")?;
+    let config: Config = serde_json::from_slice(config_bytes).context("invalid package config")?;
     let _: Address = config
         .public_owner
         .parse()
@@ -345,7 +363,14 @@ pub fn load(directory: &Path) -> Result<ValidatedPackage> {
             "invalid amount length"
         );
     }
-    let canonical = crate::expansion::canonical(&manifest)?;
+    Ok((config, config_sha256))
+}
+
+/// The transition package identity over a validated manifest and the program
+/// and config digests. `load` checks the program bytes against the declared
+/// digest before calling this.
+fn identity(manifest: &Manifest, program_sha256: &str, config_sha256: &str) -> Result<String> {
+    let canonical = crate::expansion::canonical(manifest)?;
     let identity = crate::expansion::canonical(&serde_json::json!({
         "schema_version": manifest.schema_version,
         "adapter": ADAPTER,
@@ -353,15 +378,25 @@ pub fn load(directory: &Path) -> Result<ValidatedPackage> {
         "program_sha256": program_sha256,
         "config_sha256": config_sha256,
     }))?;
-    let transition_package_sha256 = sha256(identity.as_bytes());
-    Ok(ValidatedPackage {
-        manifest,
-        config,
-        program,
-        program_sha256,
-        config_sha256,
-        transition_package_sha256,
-    })
+    Ok(sha256(identity.as_bytes()))
+}
+
+/// Recompute a package's identity from its manifest and config bytes alone,
+/// using the program digest the manifest declares. For a synced run whose
+/// program bytes stay local; it never proves those bytes exist.
+pub fn declared_identity(manifest_bytes: &[u8], config_bytes: &[u8]) -> Result<(Manifest, String)> {
+    ensure!(
+        manifest_bytes.len() as u64 <= MAX_MANIFEST_BYTES
+            && config_bytes.len() as u64 <= MAX_CONFIG_BYTES,
+        "package manifest or config exceeds its bound"
+    );
+    let mut manifest: Manifest =
+        serde_json::from_slice(manifest_bytes).context("invalid package manifest")?;
+    validate_manifest(&mut manifest)?;
+    let (_, config_sha256) = validate_config(&manifest, config_bytes)?;
+    let program_sha256 = manifest.candidate_program.sha256.clone();
+    let transition = identity(&manifest, &program_sha256, &config_sha256)?;
+    Ok((manifest, transition))
 }
 
 impl ValidatedPackage {

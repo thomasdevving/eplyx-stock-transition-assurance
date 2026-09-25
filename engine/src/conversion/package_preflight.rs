@@ -601,18 +601,12 @@ pub fn run(
         "bindings.json",
         crate::expansion::canonical(&b)?.as_bytes(),
     )?;
-    // The child receives exact saved evidence and no RPC URL or unrelated
-    // environment secrets. A hung candidate VM cannot hang the capture process.
-    let mut worker = Command::new(std::env::current_exe()?);
-    worker
-        .arg("finish-package-preflight")
-        .arg(package_directory)
-        .arg("--result")
-        .arg(output_directory)
-        .env_clear();
-    if std::env::var("EPLYX_CLI_QUIET").as_deref() == Ok("1") {
-        worker.env("EPLYX_CLI_QUIET", "1");
-    }
+    // A hung candidate VM cannot hang the capture process.
+    let mut worker = offline_worker(
+        &std::env::current_exe()?,
+        package_directory,
+        output_directory,
+    );
     let mut child = worker
         .spawn()
         .context("could not start isolated offline VM worker")?;
@@ -638,6 +632,26 @@ pub fn run(
         "worker package identity mismatch"
     );
     Ok(report)
+}
+
+/// The isolated offline VM worker. It receives exact saved evidence and an
+/// empty environment: no RPC URL, no Eplyx cloud token and no other secret.
+pub fn offline_worker(
+    program: &Path,
+    package_directory: &Path,
+    output_directory: &Path,
+) -> Command {
+    let mut worker = Command::new(program);
+    worker
+        .arg("finish-package-preflight")
+        .arg(package_directory)
+        .arg("--result")
+        .arg(output_directory)
+        .env_clear();
+    if std::env::var("EPLYX_CLI_QUIET").as_deref() == Ok("1") {
+        worker.env("EPLYX_CLI_QUIET", "1");
+    }
+    worker
 }
 
 /// Internal, offline-only child entry point. It never reads RPC environment or
@@ -700,6 +714,27 @@ pub fn replay_with_policy(
 #[cfg(test)]
 mod gate_tests {
     use super::*;
+
+    /// Milestone 18 boundary: neither the Eplyx cloud token nor the RPC URL
+    /// can reach the offline VM worker, whatever the parent environment holds.
+    #[cfg(unix)]
+    #[test]
+    fn offline_worker_receives_no_cloud_token_or_rpc_url() {
+        std::env::set_var("EPLYX_TOKEN", "eplyx_u_worker-boundary-test-token");
+        std::env::set_var("SOLANA_RPC_URL", "https://rpc.example/worker-boundary-key");
+        let output = offline_worker(
+            Path::new("/usr/bin/env"),
+            Path::new("pkg"),
+            Path::new("out"),
+        )
+        .output()
+        .unwrap();
+        std::env::remove_var("EPLYX_TOKEN");
+        let environment = String::from_utf8_lossy(&output.stdout);
+        assert!(!environment.contains("EPLYX_TOKEN"), "{environment}");
+        assert!(!environment.contains("worker-boundary"), "{environment}");
+        assert!(!environment.contains("SOLANA_RPC_URL"), "{environment}");
+    }
 
     #[test]
     fn gate_policy_preserves_analytical_evidence_and_official_boundary() {
