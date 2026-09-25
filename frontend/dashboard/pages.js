@@ -71,7 +71,7 @@ function statusTiles(run, detail) {
   ${tile({ label:'Candidate', value:`<code>${short(run.candidate_program_sha256, 8)}</code>`, sub:`Package <code>${short(run.transition_package_sha256, 8)}</code>`, href:`${BASE}/runs/${run.id}#release` })}
   ${tile({ label:'Production', value:count(counts.token_accounts_observed), sub:`token accounts observed · ${count(counts.positive_balance_accounts_observed)} positive balances`, href:`${BASE}/production?run=${run.id}` })}
   ${tile({ label:'Candidate conversion', value:pill(run.conversion, run.conversion ?? 'Not recorded'), sub:detail?.execution?.result?.final_execution_amount_raw ? `${raw(detail.execution.result.final_execution_amount_raw)} raw units, exact capture` : '', status:run.conversion, href:`${BASE}/runs/${run.id}#execution` })}
-  ${tile({ label:'Stress', value:`${count(proven(run))} / ${count(selected(run))}`, sub:'exact production states proven', status:selected(run) && proven(run) === selected(run) ? 'Proven' : Number(run.stress?.counts?.Failed) ? 'Failed' : 'Indeterminate', href:`${BASE}/runs/${run.id}#stress` })}
+  ${tile({ label:'Stress checks passed', value:`${count(proven(run))} / ${count(selected(run))}`, sub:'exact production states', status:selected(run) && proven(run) === selected(run) ? 'Proven' : Number(run.stress?.counts?.Failed) ? 'Failed' : 'Indeterminate', href:`${BASE}/runs/${run.id}#stress` })}
   ${tile({ label:'Counterexamples', value:cx.value, sub:cx.sub, status:cx.status, href:`${BASE}/runs/${run.id}#search` })}
   ${tile({ label:'Invariants', value:count(run.invariants?.total ?? 0), sub:esc(invariantCounts(run)), status:run.invariants?.counts?.Violated ? 'Violated' : run.invariants?.counts?.Indeterminate ? 'Indeterminate' : run.invariants?.total ? 'Satisfied' : '', href:`${BASE}/invariants?run=${run.id}` })}
  </div>`;
@@ -220,10 +220,10 @@ function releaseHealth(project) {
  const c = project.cloud ?? {};
  const cell = (label, r) => tile({ label, value:r ? gatePill(r.gate) : '<span class="muted">none synced</span>', sub:r ? `Run #${esc(r.number)} · ${esc(ago(r.timestamp))}${r.commit ? ` · <code>${esc(String(r.commit).slice(0, 7))}</code>` : ''}${r.branch ? ` · ${esc(r.branch)}` : ''}` : 'No run with this source has been synced', status:r?.gate, href:r ? `${BASE}/runs/${r.id}` : '' });
  const s = project.stats ?? {};
- return `<section class="release-health" aria-label="Release health"><h2 class="subhead">Release health</h2><div class="tiles tiles--3">
+ return `<section class="release-health" aria-label="Latest synced results"><h2 class="subhead">Latest synced results</h2><div class="tiles tiles--3">
   ${cell('Latest local run', c.latest_local)}
   ${cell('Latest CI run', c.latest_ci)}
-  ${tile({ label:'Counterexamples', value:count(s.counterexamples_saved), sub:`${count(c.counterexamples_reproduced)} reproduced · ${count(s.reproductions_succeeded)} of ${count(s.offline_reproductions)} recorded reproductions matched`, href:`${BASE}/counterexamples` })}
+  ${tile({ label:'Counterexamples', value:count(s.counterexamples_saved), sub:`${count(c.counterexamples_reproduced)} reproduced · ${count(s.reproductions_succeeded)} of ${count(s.offline_reproductions)} offline replays matched`, href:`${BASE}/counterexamples` })}
  </div><p class="note">${esc(c.synced_note ?? '')}</p></section>`;
 }
 
@@ -234,7 +234,7 @@ export async function runs({ query }) {
  if (!all.length) return { title:'Runs', html:empty('Run `eplyx preflight` to create your first assurance run.', 'eplyx preflight') };
  const branches = [...new Set(all.map(r => r.git?.branch).filter(Boolean))].sort();
  const html = `
- <div class="page-head"><h1>Runs</h1><p class="muted">${CLOUD ? `${count(all.length)} synced runs from local and CI Eplyx CLIs, newest first. Each is a copy of what the engine concluded where it ran.` : `${count(all.length)} local runs from <code>.eplyx/runs</code>, newest first.`}</p></div>
+ <div class="page-head"><h1>Runs</h1><p class="muted">${CLOUD ? `${count(all.length)} synced runs from local and CI Eplyx CLIs, newest first. Each shows the result the engine produced on that machine.` : `${count(all.length)} local runs from <code>.eplyx/runs</code>, newest first.`}</p></div>
  <div class="filters" role="group" aria-label="Filter runs">
   ${[['all', 'All'], ['Pass', 'PASS'], ['Warn', 'WARN'], ['Block', 'BLOCK'], ['cx', 'Has counterexamples']].map(([key, label]) => `<button type="button" class="chip" data-filter="${key}" aria-pressed="false">${label}</button>`).join('')}
   ${branches.length ? `<label class="select"><span>Branch</span><select data-branch><option value="">All branches</option>${branches.map(b => `<option>${esc(b)}</option>`).join('')}</select></label>` : ''}
@@ -330,7 +330,7 @@ function stressBlock(detail) {
  const cases = detail.stress_detail?.cases ?? [];
  const counts = detail.stress?.counts ?? {};
  return `${meter(stressParts(counts), detail.stress?.selected)}
- <p>${count(proven(detail))} of ${count(detail.stress?.selected)} exact production states proven. Stress readiness: ${pill(detail.readiness?.conversion_stress)}.</p>
+ <p>${count(proven(detail))} of ${count(detail.stress?.selected)} exact production states passed. Stress readiness: ${pill(detail.readiness?.conversion_stress)}.</p>
  ${cases.length ? `<div class="table-wrap"><table class="table"><thead><tr><th>Case</th><th>Token account</th><th>Selected because</th><th>Amount (raw)</th><th>Result</th><th class="tech-only">Final state</th><th class="tech-only">Slot</th><th class="tech-only">Result SHA-256</th></tr></thead><tbody>${cases.map(c => `<tr><td><code>${esc(c.case_id)}</code></td><td>${ident(c.token_account, 'addr')}</td><td>${esc(words(c.selection_reason))}</td><td class="num">${raw(c.final_amount_raw ?? c.discovery_amount_raw)}</td><td>${pill(c.status)}</td><td class="tech-only">${esc(words(c.classification ?? ''))}${c.changed_fields?.length ? ` <span class="tag">${esc(c.changed_fields.join(', '))}</span>` : ''}</td><td class="tech-only"><code>${esc(c.final_context_slot ?? '')}</code></td><td class="tech-only"><code>${short(c.result_sha256, 12)}</code></td></tr>`).join('')}</tbody></table></div>` : ''}
  <ul class="limits">${(detail.stress_detail?.limitations ?? []).filter(l => /stress|exact/i.test(l)).map(l => `<li>${esc(l)}</li>`).join('')}</ul>`;
 }
@@ -367,7 +367,7 @@ function searchBlock(detail) {
  <details class="tech-only"><summary>Search trace and observed waves</summary>
   ${s.trace?.length ? `<div class="table-wrap"><table class="table"><thead><tr><th>Dimension</th><th>Value (raw)</th><th>Method</th><th>Status</th><th>Failure</th></tr></thead><tbody>${s.trace.map(p => `<tr><td>${esc(words(p.dimension))}</td><td class="num">${raw(p.value_raw)}</td><td>${esc(words(p.method))}</td><td>${pill(p.status)}</td><td><code>${esc(p.failure_signature?.instruction_error ?? '')}</code></td></tr>`).join('')}</tbody></table></div>` : '<p class="muted">No boundary probes recorded.</p>'}
   <p>Wave 0: ${count(s.observed_wave?.length)} exact selected states.</p>
-  ${(s.additional_waves ?? []).map(w => `<p>Wave ${esc(w.wave)}: ${count(w.selected_exact_accounts.length)} frozen accounts — ${esc(Object.entries(w.outcomes.reduce((m, o) => (m[o] = (m[o] || 0) + 1, m), {})).map(([k, v]) => `${v} ${k}`).join(', '))}. <span class="muted">${esc(w.next_search_decision)}</span></p>`).join('')}
+  ${(s.additional_waves ?? []).map(w => `<p>Wave ${esc(w.wave)} captured ${count(w.selected_exact_accounts.length)} frozen accounts. Outcomes: ${esc(Object.entries(w.outcomes.reduce((m, o) => (m[o] = (m[o] || 0) + 1, m), {})).map(([k, v]) => `${v} ${k}`).join(', '))}. <span class="muted">${esc(w.next_search_decision)}</span></p>`).join('')}
   <p>Search SHA-256 ${ident(s.sha256)}</p>
  </details>`;
 }
@@ -541,7 +541,7 @@ export async function counterexampleDetail({ params }) {
 
 function equivalenceBanner(x) {
  if (x.comparable) return '<div class="equivalence equivalence--ok" role="status"><strong>Equivalent search conditions.</strong> Same search version, budget and derived domain. A counterexample absent from run B after exact re-execution is reported as resolved.</div>';
- return `<div class="equivalence equivalence--warn" role="status"><strong>Search domains differ — counterexample disappearance does not prove resolution.</strong><span>${x.differences.map(esc).join(' ')}</span></div>`;
+ return `<div class="equivalence equivalence--warn" role="status"><strong>Search domains differ. A missing counterexample does not prove resolution.</strong><span>${x.differences.map(esc).join(' ')}</span></div>`;
 }
 
 const STATUS_LABELS = { new:'New', only_right:'Only in B', persistent:'Persistent', changed:'Persistent · changed', resolved:'Resolved (equivalent search)', not_reproduced:'Re-executed without failure', only_left:'Only in A' };
@@ -566,7 +566,7 @@ export async function compare({ query }) {
  const cxCount = run => run.search?.state === 'Recorded' ? count(run.search.total) : '<span class="muted">no search</span>';
  const violated = run => count(run.invariants?.counts?.Violated ?? 0);
  const html = `
- <div class="page-head"><h1>Compare runs</h1><p class="muted">Run A → Run B. Semantic differences from saved engine artifacts; no causality is inferred.</p></div>
+ <div class="page-head"><h1>Compare runs</h1><p class="muted">Run A → Run B. Compare the saved engine results; differences do not explain what caused them.</p></div>
  <div class="filters">${picker('left', left)}<span class="arrow">→</span>${picker('right', right)}<button type="button" class="button button--ghost" data-swap>Swap</button></div>
  ${equivalenceBanner(x)}
  <section class="story" aria-label="Summary">
@@ -702,9 +702,9 @@ export async function projectPage({ project }) {
  const config = ctx.config ?? {};
  const s = project.stats ?? {};
  const latest = project.latest;
- const candidateMatch = ctx.candidate?.sha256 && latest ? (ctx.candidate.sha256 === latest.candidate_program_sha256 ? 'matches the latest run' : '<span class="text-warn">differs from the latest run — run a new preflight</span>') : '';
+ const candidateMatch = ctx.candidate?.sha256 && latest ? (ctx.candidate.sha256 === latest.candidate_program_sha256 ? 'matches the latest run' : '<span class="text-warn">differs from the latest run. Run a new preflight.</span>') : '';
  const html = `
- <div class="page-head"><h1>Project</h1><p class="muted">Local project and usage history, computed from <code>.eplyx/</code> on this machine. Nothing is uploaded; there is no telemetry.</p></div>
+ <div class="page-head"><h1>Project</h1><p class="muted">Local project and usage history from <code>.eplyx/</code> on this machine. The dashboard reads this data locally.</p></div>
  <div class="tiles">
   ${tile({ label:'Runs', value:count(s.runs), sub:`${count(s.preflights)} completed preflights${s.unfinished_or_unreadable ? ` · ${count(s.unfinished_or_unreadable)} unfinished or unreadable` : ''}` })}
   ${tile({ label:'Searches', value:count(s.searches) })}

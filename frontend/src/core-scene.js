@@ -21,14 +21,20 @@ const rings = {
     bodies: [
       ['Preflight CLI', 'live', 'Package the candidate and capture production state. The CLI executes in LiteSVM, checks exact reconciliation, stresses selected accounts, searches for counterexamples and evaluates typed invariants.'],
       ['Browser VM checks', 'live', 'For one focused wallet account, capture fresh state and run a transfer, one supported DLMM exit or the registered demo conversion in the analysis service’s VM. No transaction is submitted.'],
-      ['Evidence & workspace', 'live', 'Content-addressed artifacts support offline replay. The local dashboard reads them; optional sync shares results with a team workspace that runs no analysis. OfficialTransition remains NotTested. An operator plan does not establish an issuer mechanism.', 'SPACEX demo population readiness', 'Incomplete'],
+      ['Evidence & workspace', 'live', 'Saved artifacts can be hash-checked and replayed offline. The local dashboard reads them; optional sync copies results to a team workspace. The workspace does not run analysis. OfficialTransition remains NotTested, and an operator plan does not establish an issuer mechanism.', 'SPACEX demo population readiness', 'Incomplete'],
     ],
   },
 };
 
+// Each stone is drawn twice: one copy always sits under the mark and one above
+// it, faded in with depth. Swapping a single element's z-index made a stone
+// jump in front of the mark in one frame wherever it overlapped the edge.
+const orbitRock = (ring, index, layer) =>
+  `<span class="orbit-rock orbit-rock--${layer}" data-ring="${ring}" data-index="${index}" aria-hidden="true"><span class="orbit-body__rock orbit-body__rock--${index}"></span></span>`;
+
 const orbitBody = (ring, [name, status, detail, metric, value], index) =>
-  `<button type="button" class="orbit-body orbit-body--${status}" data-ring="${ring}" data-index="${index}" data-name="${name}" data-status="${status === 'live' ? 'Available' : 'Planned'}" data-detail="${detail}"${metric ? ` data-metric="${metric}" data-value="${value}"` : ''}>
-    <span class="orbit-body__rock orbit-body__rock--${index}" aria-hidden="true"></span>
+  `${orbitRock(ring, index, 'back')}${orbitRock(ring, index, 'front')}
+  <button type="button" class="orbit-body orbit-body--${status}" data-ring="${ring}" data-index="${index}" data-name="${name}" data-status="${status === 'live' ? 'Available' : 'Planned'}" data-detail="${detail}"${metric ? ` data-metric="${metric}" data-value="${value}"` : ''}>
     <span class="visually-hidden">${name}. ${status === 'live' ? 'Available capability' : 'Planned layer'}. ${detail}</span>
   </button>
   <div class="orbit-label orbit-label--${status}" data-ring="${ring}" data-index="${index}" aria-hidden="true">
@@ -52,7 +58,7 @@ const orbitPlane = side => `<svg class="orbit-plane orbit-plane--${side}" aria-h
 
 export function EplyxCoreScene() {
   const planes = Object.entries(rings);
-  return `<div class="core-scene" data-ring="changes" role="group" aria-label="Stock transition inputs and capabilities orbiting the Eplyx mark. Explore each stone for its evidence scope.">
+  return `<div class="core-scene" data-ring="changes" role="group" aria-label="Eplyx production-state capture, candidate execution and measured-result capabilities. Explore each item for its evidence scope.">
     <div class="core-stage">
       ${orbitPlane('back')}
       <div class="core-glow" aria-hidden="true"></div>
@@ -91,6 +97,7 @@ export function attachCoreParallax() {
   const labels = new Map(bodies.map(body => [body, {
     element: scene.querySelector(`.orbit-label[data-ring="${body.dataset.ring}"][data-index="${body.dataset.index}"]`),
     hole: scene.querySelector(`.orbit-cut__hole[data-ring="${body.dataset.ring}"][data-index="${body.dataset.index}"]`),
+    rocks: [...scene.querySelectorAll(`.orbit-rock[data-ring="${body.dataset.ring}"][data-index="${body.dataset.index}"]`)],
     width: 0,
     height: 0,
   }]));
@@ -157,7 +164,7 @@ export function attachCoreParallax() {
     const turn = elapsed / ring.duration * Math.PI * 2 * ring.direction;
     const shiftX = drift.x * 13, shiftY = drift.y * 9;
     for (const plane of orbitPlanes) plane.style.transform = `translate(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px)`;
-    if (fallback) fallback.style.transform = `perspective(900px) rotateY(${(drift.x * 22).toFixed(2)}deg) rotateX(${(-drift.y * 14).toFixed(2)}deg) rotate(-2deg)`;
+    if (fallback) fallback.style.transform = `perspective(900px) rotateY(${(drift.x * 9).toFixed(2)}deg) rotateX(${(-drift.y * 6).toFixed(2)}deg) rotate(-2deg)`;
     for (const body of bodies) {
       const { hole } = labels.get(body);
       if (body.dataset.ring !== active) { hole.setAttribute('r', 0); continue; }
@@ -172,11 +179,20 @@ export function attachCoreParallax() {
       hole.setAttribute('cy', orbit.y.toFixed(1));
       hole.setAttribute('r', (bodyWidth * scale * .56).toFixed(1));
       const x = orbit.x + shiftX, y = orbit.y + shiftY;
-      body.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
+      const transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
+      body.style.transform = transform;
+      // The hit target still switches sides at once; only the visuals blend.
       body.style.zIndex = depth > 0 ? 6 : 2;
-      body.style.setProperty('--near', near.toFixed(3));
-      body.style.setProperty('--rock-turn', `${(Math.sin(elapsed * .12 + index * 1.7) * 9).toFixed(2)}deg`);
       const label = labels.get(body);
+      const rise = Math.min(1, Math.max(0, (depth + .2) / .4));
+      const front = rise * rise * (3 - 2 * rise);
+      const spin = `${(Math.sin(elapsed * .12 + index * 1.7) * 9).toFixed(2)}deg`;
+      for (const rock of label.rocks) {
+        rock.style.transform = transform;
+        rock.style.setProperty('--near', near.toFixed(3));
+        rock.style.setProperty('--rock-turn', spin);
+        if (rock.classList.contains('orbit-rock--front')) rock.style.setProperty('--front', front.toFixed(3));
+      }
       const outwardX = (x - width / 2) / spanX;
       const outwardY = (y - height / 2) / spanY;
       const radius = bodyWidth * scale * .4;
@@ -266,11 +282,13 @@ export function attachCoreParallax() {
     detail.dataset.status = body.dataset.status;
     detail.classList.add('is-visible');
     body.classList.add('orbit-body--held');
+    labels.get(body).rocks.forEach(rock => rock.classList.add('orbit-rock--held'));
     place();
   };
 
   const hide = () => {
     held?.classList.remove('orbit-body--held');
+    if (held) labels.get(held).rocks.forEach(rock => rock.classList.remove('orbit-rock--held'));
     held = null;
     detail.classList.remove('is-visible');
   };
@@ -313,24 +331,25 @@ export function attachCoreParallax() {
   bind(document, 'eplyx-mode', event=>{select(event.detail==='technical'?'consequences':'changes');measure();});
   select(presentationMode()==='technical'?'consequences':'changes');
 
-  // The whole hero steers the mark, so it turns toward the copy as well.
-  const field = scene.closest('.hero') || scene;
-  const clamp = value => Math.max(-.6, Math.min(.6, value));
-  const move = ({ clientX, clientY, pointerType }) => {
-    if (motion.matches || pointerType === 'touch') return;
-    const rect = scene.getBoundingClientRect();
-    if (!rect.width || !rect.height) return;
-    pointer.x = clamp((clientX - rect.left) / rect.width - .5);
-    pointer.y = clamp((clientY - rect.top) / rect.height - .5);
-    start();
-  };
+  // Only a pointer over the mark steers it; anywhere else it eases back.
+  const mark = scene.querySelector('.logo-core');
   const leave = () => {
     pointer.x = 0;
     pointer.y = 0;
     if (motion.matches) { drift.x = 0; drift.y = 0; place(); }
   };
-  bind(field, 'pointermove', move);
-  bind(field, 'pointerleave', leave);
+  const move = ({ clientX, clientY, pointerType }) => {
+    if (motion.matches || pointerType === 'touch') return;
+    const rect = mark.getBoundingClientRect();
+    const x = (clientX - rect.left) / rect.width - .5;
+    const y = (clientY - rect.top) / rect.height - .5;
+    if (!rect.width || Math.abs(x) > .5 || Math.abs(y) > .5) return leave();
+    pointer.x = x;
+    pointer.y = y;
+    start();
+  };
+  bind(scene, 'pointermove', move);
+  bind(scene, 'pointerleave', leave);
 
   const onMotion = () => {
     stop();

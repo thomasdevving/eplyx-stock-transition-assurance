@@ -88,7 +88,7 @@ export const invariantName = type => INVARIANT_NAMES[type] || sentence(type);
 export const SCOPES = {
  ExactCandidateConversion:'The configured source account and amount, executed once against the coherent final capture.',
  ExactOfficialTransition:'An issuer-defined official transition for the exact configured scope. Eplyx never tests this path.',
- SelectedStressCases:'The exact production accounts frozen for stress testing in this run — not the whole population.',
+ SelectedStressCases:'The exact production accounts frozen for stress testing in this run. Other accounts were not tested.',
  SelectedAuthorityCases:'The bounded set of non-wallet accounts whose recorded authority was inspected in this run.',
  ObservedPositiveBalancePopulation:'Every positive-balance token account observed in this run’s population capture.',
 };

@@ -110,20 +110,23 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .core-mark--face path { stroke: #f5fbff; stroke-width: 1.5; }
 .logo-core--rendered .sculpture-fallback { opacity: 0; visibility: hidden; transition: opacity 320ms var(--ease-out), visibility 0s linear 320ms; }
 
-.orbit-body { position: absolute; left: 0; top: 0; z-index: 3; width: var(--orbit-body); height: var(--orbit-body); padding: 0; border: 0; border-radius: 50%; background: transparent; color: white; cursor: pointer; opacity: calc(.74 + var(--near, 1) * .26); filter: blur(calc((1 - var(--near, 1)) * .6px)); transition: opacity .3s, visibility .3s; }
+.orbit-body { position: absolute; left: 0; top: 0; z-index: 3; width: var(--orbit-body); height: var(--orbit-body); padding: 0; border: 0; border-radius: 50%; background: transparent; color: white; cursor: pointer; transition: opacity .3s, visibility .3s; }
+/* The stone under the mark stays opaque; the copy above fades in with depth. */
+.orbit-rock { position: absolute; left: 0; top: 0; z-index: 2; width: var(--orbit-body); height: var(--orbit-body); pointer-events: none; opacity: calc(.74 + var(--near, 1) * .26); filter: blur(calc((1 - var(--near, 1)) * .6px)); transition: opacity .3s, visibility .3s; }
+.orbit-rock--front { z-index: 6; opacity: calc((.74 + var(--near, 1) * .26) * var(--front, 0)); transition: visibility .3s; }
 /* Four transparent stone silhouettes share one atlas; the labels never rotate. */
 .orbit-body__rock { position: absolute; inset: 0; background: url(/public/orbit-rocks.png) 0 0 / 200% 200% no-repeat; transform: rotate(var(--rock-turn, 0deg)) scale(1.18); filter: hue-rotate(-65deg) drop-shadow(0 10px 12px #081c3245); transition: filter .25s; pointer-events: none; }
 .orbit-body__rock--1 { background-position: 100% 0; }
 .orbit-body__rock--2 { background-position: 0 100%; }
 .orbit-body__rock--3 { background-position: 100% 100%; }
-.orbit-body:hover .orbit-body__rock, .orbit-body:focus-visible .orbit-body__rock, .orbit-body--held .orbit-body__rock { filter: hue-rotate(-65deg) brightness(1.12) drop-shadow(0 0 12px #bbdcff66); }
+.orbit-rock--held .orbit-body__rock { filter: hue-rotate(-65deg) brightness(1.12) drop-shadow(0 0 12px #bbdcff66); }
 .orbit-body:focus-visible { outline: 1px solid #e8f3ff; outline-offset: -4px; }
 .orbit-label { position: absolute; left: 0; top: 0; z-index: 7; display: flex; flex-direction: column; align-items: center; gap: 6px; width: var(--orbit-label); color: #f8fbff; text-align: center; text-shadow: 0 1px 3px #112d4bcc, 0 0 10px #112d4b80; opacity: calc(.8 + var(--near, 1) * .2); pointer-events: none; transition: opacity .3s, visibility .3s; }
 .orbit-label__leader { position: absolute; left: 50%; top: 50%; width: 1px; height: 1px; overflow: visible; fill: #f4f9ff; }
 .orbit-label__leader path { fill: none; stroke: #e2f0ff; stroke-width: 1; opacity: .8; }
 .orbit-body__name { position: relative; font: 500 12.5px/1.25 'Manrope', sans-serif; letter-spacing: -.02em; }
 .orbit-body__status { position: relative; color: #d7eaff; font: 8px/1 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .2em; }
-.core-scene:not(.is-placed) :is(.orbit-body, .orbit-label), .core-scene[data-ring="changes"] :is(.orbit-body, .orbit-label)[data-ring="consequences"], .core-scene[data-ring="consequences"] :is(.orbit-body, .orbit-label)[data-ring="changes"] { opacity: 0; visibility: hidden; pointer-events: none; }
+.core-scene:not(.is-placed) :is(.orbit-body, .orbit-rock, .orbit-label), .core-scene[data-ring="changes"] :is(.orbit-body, .orbit-rock, .orbit-label)[data-ring="consequences"], .core-scene[data-ring="consequences"] :is(.orbit-body, .orbit-rock, .orbit-label)[data-ring="changes"] { opacity: 0; visibility: hidden; pointer-events: none; }
 
 .orbit-detail { position: absolute; left: 0; top: 0; z-index: 9; width: 228px; padding: 15px 16px 16px; border: 1px solid #fdfeffd1; border-radius: 8px; background: linear-gradient(155deg, #fdfefffa 0%, #ecf5fff7 52%, #d6e8fcf5 100%); box-shadow: 0 0 40px #94c8ff66, 0 26px 54px #04101c59, inset 0 1px 0 #ffffff; color: #102c49; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s, visibility .2s; }
 .orbit-detail.is-visible { opacity: 1; visibility: visible; }
@@ -519,7 +522,7 @@ summary:focus-visible { outline: 2px solid #7fbaff; outline-offset: 4px; }
 .hero { overflow: clip; }
 @media (prefers-reduced-motion: reduce) {
  .reveal { opacity: 1; transform: none; transition: none; }
- .orbit-body, .orbit-label { transition: none; }
+ .orbit-body, .orbit-rock, .orbit-label { transition: none; }
  .orbit-detail { transition: opacity 120ms var(--ease-out), visibility 120ms; }
  .orbit-switch__thumb { transition: none; }
  .orbit-switch__option { transition: color 120ms var(--ease-out); }
@@ -588,7 +591,7 @@ html[data-mode="technical"] .consumer-only { display:none !important; }
 .inner-page.consumer-only section { margin-bottom:50px; }
 .inner-page.consumer-only .analysis-help,.inner-page.consumer-only .analysis-limits { color:#b4c8db; }
 @media(max-width:760px) { .analysis-fields {grid-template-columns:1fr;} .analysis-output {padding:20px;} .analysis-output h3 {font-size:27px;} .analysis button.button {width:100%;white-space:normal;line-height:1.6;} }
-html:not([data-mode="technical"]) .core-scene :is(.orbit-body,.orbit-label)[data-ring="consequences"] {display:none !important;}
+html:not([data-mode="technical"]) .core-scene :is(.orbit-body,.orbit-rock,.orbit-label)[data-ring="consequences"] {display:none !important;}
 
 /* Analysis uses the site's blue, translucent surfaces and typography. Native
    selects retain keyboard and mobile platform accessibility. */

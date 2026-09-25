@@ -156,7 +156,7 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     host.append(renderer.domElement);
     const started = performance.now();
     // Eased toward the pointer each frame, so the mark turns with the cursor
-    // without snapping and settles back when the pointer leaves the hero.
+    // without snapping and settles back when the pointer leaves it.
     const tilt = { x: 0, y: 0 };
     let last = 0;
     draw = now => {
@@ -171,7 +171,7 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
         tilt.x += (pointer.x - tilt.x) * follow;
         tilt.y += (pointer.y - tilt.y) * follow;
       }
-      sculpture.rotation.set(.2 + tilt.y * .3, -.38 + tilt.x * .55, -.035 + (motion.matches ? 0 : Math.sin(time * .65) * .018));
+      sculpture.rotation.set(.2 + tilt.y * .12, -.38 + tilt.x * .22, -.035 + (motion.matches ? 0 : Math.sin(time * .65) * .018));
       sculpture.position.y = motion.matches ? 0 : Math.sin(time * .8) * 4;
       renderer.render(scene, camera);
       if (!rendered) {

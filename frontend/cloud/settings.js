@@ -12,8 +12,8 @@ async function call(method, path, body) {
 }
 
 const WHAT = `<ul class="limits">
- <li><strong>Synced:</strong> for each run, <code>metadata.json</code>, <code>report.json</code>, <code>bindings.json</code>, the package manifest and config, and the search result as exact bytes with their SHA-256; saved counterexamples; reproduction records; and the sizes of artifacts that stay local.</li>
- <li><strong>Never synced:</strong> source code, the candidate <code>.so</code>, captures, <code>eplyx.toml</code>, environment variables, RPC URLs or credentials, local absolute paths, Solana keys and your Eplyx token.</li>
+ <li><strong>Sync includes:</strong> for each run, the exact bytes of <code>metadata.json</code>, <code>report.json</code>, <code>bindings.json</code>, the package manifest and config, and the search result, each with its SHA-256. It also includes saved counterexamples, reproduction records and the sizes of artifacts kept local.</li>
+ <li><strong>Sync excludes:</strong> source code, candidate <code>.so</code> files, captures, <code>eplyx.toml</code>, environment variables, RPC URLs and credentials, local absolute paths, Solana keys and your Eplyx token.</li>
  <li>A synced run is immutable. Re-syncing identical content is a no-op; different content under the same run ID is rejected as a conflict. A search result can be attached once.</li>
  <li>The workspace displays synced engine results. It never reruns RPC, execution, replay or reproduction.</li>
 </ul>`;
@@ -24,7 +24,7 @@ export async function projectPage({ project }) {
  const sources = s.run_sources ?? {};
  const links = cloud.links ?? [];
  const html = `
- <div class="page-head"><h1>Project</h1><p class="muted">Private to the <strong>${esc(cloud.workspace?.name ?? 'workspace')}</strong> workspace${cloud.demo ? ' · also published read-only as this server’s public demo' : ''}. Counts come from synced runs.</p></div>
+ <div class="page-head"><h1>Project</h1><p class="muted">Private to the <strong>${esc(cloud.workspace?.name ?? 'workspace')}</strong> workspace${cloud.demo ? ' · also published read-only as this server’s public demo' : ''}. Counts use synced runs.</p></div>
  <div class="tiles">
   ${tile({ label:'Synced runs', value:count(s.runs), sub:`${count(sources.local)} local · ${count(sources.ci)} CI${sources.not_recorded ? ` · ${count(sources.not_recorded)} source not recorded` : ''}` })}
   ${tile({ label:'Searches', value:count(s.searches) })}
@@ -53,8 +53,8 @@ export async function settingsPage({ project }) {
  const owner = cloud.role === 'owner';
  const tokens = owner ? (await call('GET', `/api/v1/projects/${id}/ci-tokens`)).tokens : [];
  const html = `
- <div class="page-head"><h1>Settings</h1><p class="muted">Cloud settings for this project. Analysis configuration stays in <code>eplyx.toml</code>; linking stays in the CLI.</p></div>
- ${panel({ title:'Developer machines', body:`${commandLine('eplyx login', 'Sign in (browser approval)')}${commandLine(`eplyx link --project ${id}`, 'Link a local project')}${commandLine('eplyx sync', 'Upload complete runs')}${commandLine('eplyx sync --dry-run', 'Show exactly what would be uploaded')}` })}
+ <div class="page-head"><h1>Settings</h1><p class="muted">Set analysis options in <code>eplyx.toml</code> and link projects from the CLI.</p></div>
+ ${panel({ title:'Local projects', body:`${commandLine('eplyx login', 'Sign in (browser approval)')}${commandLine(`eplyx link --project ${id}`, 'Link a local project')}${commandLine('eplyx sync', 'Sync completed runs')}${commandLine('eplyx sync --dry-run', 'Show exactly what would be synced')}` })}
  ${panel({ title:'CI tokens', body:owner ? `
   <p>A CI token can only sync runs to this project. Store it as the <code>EPLYX_TOKEN</code> secret of trusted workflows, next to <code>EPLYX_PROJECT_ID=${esc(id)}</code>. Fork pull requests must not receive it.</p>
   <form class="form-row" data-new-token><label class="field"><span>Label</span><input name="label" required maxlength="80" placeholder="github-actions main"></label><button class="button" type="submit">Create CI token</button></form>
