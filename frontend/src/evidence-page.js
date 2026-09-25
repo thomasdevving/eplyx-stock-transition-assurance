@@ -1,8 +1,9 @@
 import { Header, Footer } from './shell.js';
 import data from '/public/evidence/summary.js';
 import { esc, number, label, badge } from './format.js';
-import { readableStatus, limitations, plainPaths } from './presentation.js';
+import { readableStatus, limitations, pathLabels } from './presentation.js';
 import { ledger } from './analysis.js';
+import { setPresentationMode } from './mode.js';
 const title = (n, text) => `<div class="report-section-title"><span>${n}</span><h2>${text}</h2></div>`;
 const rows = values => `<dl class="scope-table">${values.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>`;
 const matrix = paths => `<div class="path-matrix">${paths.map(p=>`<details><summary><strong>${esc(label(p.path || p.path_type))}</strong>${badge(p.status)}<span class="expand-sign" aria-hidden="true">+</span></summary><p>${esc(p.reason)}</p>${(p.attempts||[]).map(a=>rows([
@@ -22,7 +23,8 @@ export function EvidencePage() {
  const p=data.population, pos=data.position, n=data.notice;
  const mint=n.sourceIdentity.observed_mint, usdc='EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v';
  return `${ConsumerEvidence()}<div class="inner-page technical-only">${Header({light:true})}<main class="report-shell" id="technical-main"><div class="report-top"><div><p class="eyebrow"><span></span> Published SPACEX demonstration</p><h1>Stock transition.<br>Evidence in context.</h1><p>Published findings from frozen evidence. Viewing this report does not run a new evaluation.</p></div><div class="report-verdict is-unknown"><i></i><span>${esc(data.status)}</span><em>Population rollout readiness</em></div></div>
- <div class="evidence-context"><span>Frozen evidence</span><p>All execution proofs are conditional on exact captured state and assumed local signing. OfficialTransition remains NotTested. Readiness follows the demonstration policy and is not an asset safety judgment.</p></div>
+ <div class="evidence-context"><span>Frozen evidence</span><p>All execution proofs are conditional on exact captured state and assumed local signing. OfficialTransition remains NotTested. Readiness follows the demonstration policy and is not an asset safety judgment.</p>${viewSwitch('overview')}</div>
+ ${technicalGlance()}
  <div class="report-grid"><nav class="report-nav" aria-label="Evidence sections"><span>Inspect the report</span><a href="#readiness">Readiness</a><a href="#direct">Action paths</a><a href="#population">Coverage</a><a href="#notice">Notice</a><a href="#rollout">Rollout assumptions</a><a href="#artifacts">Sources</a></nav><div class="report-content">
  <section id="readiness">${title('01','The assurance findings')}<p class="report-description">Policy: <code>${esc(data.policy)}</code>. Required gaps produce Incomplete; Blocked requires an exact explicit policy violation.</p><div class="requirement-list">${data.findings.map(f=>`<article><div><h3>${esc(f.label)}</h3><small>${f.required?'Required by demo policy':'Optional historical observation'}</small></div>${badge(f.effect)}</article>`).join('')}</div></section>
  <section id="direct">${title('02','One direct holder. Five separate paths.')}<p class="report-description">The selected holder has full-input transfer and market-exit evidence in independent captured banks. Expand a path to inspect its boundary and exact measurement.</p>${rows([['Token-account entity',data.direct.entity],['Original authority',data.direct.authority],['Captured public balance',`${number(data.direct.amount)} raw SPACEX`]])}${matrix(data.direct.paths)}<p class="report-note">Unsupported describes the executor/evidence boundary. NotApplicable describes this entity context. Neither establishes that a path does not exist elsewhere.</p></section>
@@ -34,7 +36,28 @@ export function EvidencePage() {
  <details id="reproduce" class="reproduction-details"><summary>Reproduce with the local engine</summary><p class="report-description">From this repository, run the offline notice pre-flight. The published result is Incomplete, with exit code 4. This frontend does not run the command.</p><div class="command-block"><pre><code id="replay-command">cargo run --locked -q -p eplyx-lifecycle-impact -- preflight-from-notice --workflow probes/spacex-notice-workflow.json</code></pre><button type="button" class="copy-command">Copy command</button><span class="copy-feedback" role="status"></span></div></details>
  </div></div></main>${Footer()}</div>`;
 }
+const viewSwitch = mode => `<button type="button" class="view-switch" data-view="${mode}">${mode === 'technical' ? 'Show technical detail' : 'Show plain overview'} <span aria-hidden="true">⇄</span></button>`;
+function technicalGlance() {
+ const required = data.findings.filter(f => f.required), satisfied = required.filter(f => f.effect === 'Satisfied').length;
+ const direct = data.direct.paths.filter(path => path.status === 'Proven').length;
+ const p = data.population;
+ return `<div class="evidence-glance" aria-label="Report at a glance">${[
+  ['Required findings satisfied', `${satisfied} / ${required.length}`, 'Demo policy'],
+  ['Direct holder paths proven', `${direct} / ${data.direct.paths.length}`, 'Exact entity and amount'],
+  ['OfficialTransition', data.direct.paths.find(path => (path.path_type || path.path) === 'OfficialTransition')?.status || 'NotTested', 'No mechanism evidence'],
+  ['Positive accounts without evidence', number(p.positive_balance_entities - p.entities_with_measured_amount), `of ${number(p.positive_balance_entities)}`],
+ ].map(([k, v, note]) => `<article><span>${k}</span><strong>${esc(v)}</strong><small>${note}</small></article>`).join('')}</div>`;
+}
 export function attachEvidence() {
+ document.querySelectorAll('.view-switch').forEach(button => button.addEventListener('click', () => {
+  const mode = button.dataset.view;
+  setPresentationMode(mode);
+  const main = document.querySelector(mode === 'technical' ? '#technical-main' : '#main');
+  document.querySelector('.skip-link').href = `#${main.id}`;
+  window.scrollTo(0, 0);
+  main.tabIndex = -1;
+  main.focus({ preventScroll: true });
+ }));
  document.querySelector('.copy-command')?.addEventListener('click', async () => {
   const feedback = document.querySelector('.copy-feedback');
   try { await navigator.clipboard.writeText(document.querySelector('#replay-command').textContent); feedback.textContent='Copied'; }
@@ -42,6 +65,33 @@ export function attachEvidence() {
  });
 }
 
+// Plain-language view: what passed, what is untested, and what lies outside the
+// checker, before any detail. Statuses come from the published artifacts only.
+const plainTone = status => ({ Proven: 'pass', NotTested: 'open', Unsupported: 'limit', NotApplicable: 'limit' })[status] || 'open';
+const plainMeaning = Object.freeze({
+ Proven: 'Ran in an isolated local VM against saved mainnet state, and every balance change reconciled.',
+ NotTested: 'No check has been run for this action yet.',
+ Unsupported: 'This checker cannot test this action. That does not mean the action is impossible.',
+ NotApplicable: 'Does not apply to this kind of holding.',
+});
+const pathName = path => pathLabels[path.path_type || path.path] || 'Selected action';
+const pill = status => `<span class="plain-pill plain-pill--${plainTone(status)}">${esc(readableStatus(status))}</span>`;
+const plainRows = rows => `<ul class="plain-checks">${rows.map(([name, status, meaning]) => `<li><div><h3>${esc(name)}</h3><p>${esc(meaning ?? plainMeaning[status] ?? '')}</p></div>${pill(status)}</li>`).join('')}</ul>`;
 function ConsumerEvidence() {
- return `<div class="inner-page consumer-only">${Header({light:true})}<main class="report-shell" id="main"><div class="report-top"><div><p class="eyebrow">Saved published result · Not newly computed</p><h1>What the saved example<br>has shown so far.</h1><p>${readableStatus(data.status)} under the broader demonstration requirements.</p></div></div><div class="evidence-context"><p>Earlier token movements and principal withdrawal passed local checks. Official conversion, full position exit and most accounts still need independent verification.</p></div><section><h2>Example token holding</h2>${plainPaths(data.direct.paths)}<p>These checks cover one saved example account. Official conversion has not been tested; sending tokens does not prove conversion.</p></section><section><h2>Liquidity was removed, but fees remain.</h2><p>The earlier principal withdrawal passed. Protocol fees and the position account remained; fee collection and closure need separate checks.</p>${ledger(data.position,data.position.scope.asset_mint)}</section><section><h2>What information is still needed?</h2><p>An identifiable official conversion procedure and its test inputs; independent fee collection and position closure; evidence for untested accounts. Correcting a statement or selecting narrower requirements does not repair a position.</p><a href="${esc(data.notice.source)}" target="_blank" rel="noreferrer">Saved issuer announcement ↗</a></section>${limitations}<a class="button button--primary" href="/analysis#analysis" data-link>Start a fresh analysis ↗</a><p>For precise evidence details, use the existing toggle under the logo on the <a href="/" data-link>home page</a>.</p></main>${Footer()}</div>`;
+ const p = data.population, pos = data.position, paths = data.direct.paths;
+ const gap = p.positive_balance_entities - p.entities_with_measured_amount;
+ const passed = [...paths.filter(path => path.status === 'Proven').map(pathName), 'Withdraw the principal from one liquidity position'];
+ const open = [...paths.filter(path => path.status === 'NotTested').map(pathName), 'Collect fees and close the liquidity position', `${number(gap)} of ${number(p.positive_balance_entities)} accounts with a balance`];
+ const outside = [...paths.filter(path => path.status === 'Unsupported').map(pathName), 'Your own wallet: these are saved example holdings', 'Whether the holder can actually sign'];
+ const column = (tone, heading, items) => `<article class="plain-glance__col plain-glance__col--${tone}"><h2><i aria-hidden="true"></i>${heading}</h2><ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul></article>`;
+ return `<div class="inner-page consumer-only">${Header({light:true})}<main class="report-shell plain-evidence" id="main">
+ <div class="report-top"><div><p class="eyebrow"><span></span> Saved published result · Not newly computed</p><h1>What the saved example<br>has shown so far.</h1><p>One published test of SpaceX PreStocks (SPACEX) on Solana. Opening this page runs nothing new: every result comes from saved mainnet data and earlier local VM simulations.</p></div><div class="plain-verdict"><span>Overall result</span><strong>${esc(readableStatus(data.status))}</strong><p>Some actions passed, but official conversion and most accounts are still untested.</p></div></div>
+ <div class="plain-glance">${column('pass', 'Passed in local tests', passed)}${column('open', 'Not tested yet', open)}${column('limit', 'Outside this check', outside)}</div>
+ <div class="plain-stats">${[['Token accounts captured', p.token_account_entities], ['Hold a balance', p.positive_balance_entities], ['Have full-amount evidence', p.entities_with_measured_amount], ['Still without evidence', gap]].map(([k, v]) => `<div><strong>${number(v)}</strong><span>${k}</span></div>`).join('')}</div>
+ <section class="plain-section"><div class="plain-section__head"><span>01</span><div><h2>One example token holding</h2><p>Five things a holder might need to do during a transition, checked for one saved account holding ${number(data.direct.amount)} raw SPACEX units.</p></div></div>${plainRows(paths.map(path => [pathName(path), path.status]))}<p class="plain-note">Sending or selling tokens does not complete an official conversion. Each action is checked on its own.</p></section>
+ <section class="plain-section"><div class="plain-section__head"><span>02</span><div><h2>One liquidity position</h2><p>A separate Meteora liquidity position. Its principal was withdrawn in a local test; the protocol fees and the position account stayed behind.</p></div></div>${plainRows([['Withdraw the principal', 'Proven'], ['Collect the remaining fees', pos.fee_collection, 'Needs its own check; withdrawing principal does not prove it.'], ['Close the position account', pos.position_closure, 'Needs its own check; withdrawing principal does not prove it.']])}${ledger(pos, pos.scope.asset_mint)}</section>
+ <section class="plain-section"><div class="plain-section__head"><span>03</span><div><h2>What would complete the picture</h2><p>The result stays “${esc(readableStatus(data.status)).toLowerCase()}” until these exist. Rewording a claim or narrowing the requirements does not change the evidence.</p></div></div><ol class="plain-needs"><li><h3>An identifiable official conversion procedure</h3><p>The issuer notice gives no exact mechanism or ratio, so conversion cannot be tested yet.</p></li><li><h3>Fee collection and position closure</h3><p>Separate checks for the liquidity position, beyond the principal withdrawal.</p></li><li><h3>Evidence for the other accounts</h3><p>${number(gap)} accounts with a balance have no matching test. One example never stands in for its peers.</p></li></ol><a class="text-link" href="${esc(data.notice.source)}" target="_blank" rel="noreferrer">Read the saved issuer announcement ↗</a></section>
+ <details class="plain-limits"><summary>What this example does not show</summary>${limitations}</details>
+ <div class="plain-actions"><a class="button button--primary" href="/analysis#analysis" data-link>Start a fresh analysis <span>↗</span></a>${viewSwitch('technical')}</div>
+ </main>${Footer()}</div>`;
 }

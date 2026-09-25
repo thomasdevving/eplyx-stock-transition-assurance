@@ -12,6 +12,7 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
   let frame = 0;
   let visible = true;
   let contextLost = false;
+  let rendered = false;
   let draw;
   const geometries = [];
   const materials = [];
@@ -37,6 +38,9 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     materials.forEach(material => material.dispose());
     texture?.dispose();
     environment?.dispose();
+    // Release the GPU context now; waiting for GC lets old contexts pile up
+    // across navigations until the browser starts dropping live ones.
+    renderer?.forceContextLoss();
     renderer?.dispose();
     renderer?.domElement.remove();
     host.closest('.logo-core')?.classList.remove('logo-core--rendered');
@@ -62,28 +66,37 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     renderer.domElement.addEventListener('webglcontextlost', event => {
       event.preventDefault();
       contextLost = true;
+      rendered = false;
       cancelAnimationFrame(frame);
       frame = 0;
       host.closest('.logo-core')?.classList.remove('logo-core--rendered');
     });
     renderer.domElement.addEventListener('webglcontextrestored', () => {
       contextLost = false;
-      if (!disposed) draw?.(performance.now());
+      if (disposed) return;
+      // Render targets do not survive a lost context; relight the studio so
+      // the restored mark matches the one that was showing before.
+      buildEnvironment();
+      draw?.(performance.now());
     });
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-255, 255, 255, -255, 1, 2000);
     camera.position.set(0, 0, 900);
-    const studio = new RoomEnvironment();
-    studio.background = new THREE.Color('#a9cbef');
-    studio.traverse(object => {
-      if (object.material?.isMeshStandardMaterial) object.material.color.set('#b9d7f8');
-    });
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    environment = pmrem.fromScene(studio, .06);
-    scene.environment = environment.texture;
-    pmrem.dispose();
-    studio.dispose();
+    const buildEnvironment = () => {
+      const studio = new RoomEnvironment();
+      studio.background = new THREE.Color('#a9cbef');
+      studio.traverse(object => {
+        if (object.material?.isMeshStandardMaterial) object.material.color.set('#b9d7f8');
+      });
+      const pmrem = new THREE.PMREMGenerator(renderer);
+      environment?.dispose();
+      environment = pmrem.fromScene(studio, .06);
+      scene.environment = environment.texture;
+      pmrem.dispose();
+      studio.dispose();
+    };
+    buildEnvironment();
 
     const key = new THREE.DirectionalLight('#fafcff', 1.65);
     key.position.set(-180, 350, 450);
@@ -142,16 +155,29 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     scene.add(sculpture);
     host.append(renderer.domElement);
     const started = performance.now();
+    // Eased toward the pointer each frame, so the mark turns with the cursor
+    // without snapping and settles back when the pointer leaves the hero.
+    const tilt = { x: 0, y: 0 };
+    let last = 0;
     draw = now => {
       if (disposed || contextLost) return;
       frame = 0;
       const time = (now - started) / 1000;
-      const px = motion.matches ? 0 : pointer.x;
-      const py = motion.matches ? 0 : pointer.y;
-      sculpture.rotation.set(.2 + py * .06, -.38 + px * .1, -.035 + (motion.matches ? 0 : Math.sin(time * .65) * .018));
+      const delta = last ? Math.min((now - last) / 1000, .05) : 0;
+      last = now;
+      if (motion.matches) { tilt.x = 0; tilt.y = 0; }
+      else {
+        const follow = 1 - Math.exp(-delta * 5);
+        tilt.x += (pointer.x - tilt.x) * follow;
+        tilt.y += (pointer.y - tilt.y) * follow;
+      }
+      sculpture.rotation.set(.2 + tilt.y * .3, -.38 + tilt.x * .55, -.035 + (motion.matches ? 0 : Math.sin(time * .65) * .018));
       sculpture.position.y = motion.matches ? 0 : Math.sin(time * .8) * 4;
       renderer.render(scene, camera);
-      host.closest('.logo-core').classList.add('logo-core--rendered');
+      if (!rendered) {
+        rendered = true;
+        host.closest('.logo-core').classList.add('logo-core--rendered');
+      }
       if (!motion.matches && visible && !document.hidden) frame = requestAnimationFrame(draw);
     };
     resizeObserver = new ResizeObserver(() => {

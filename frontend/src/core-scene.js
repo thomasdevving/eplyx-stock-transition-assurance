@@ -37,15 +37,17 @@ const orbitBody = (ring, [name, status, detail, metric, value], index) =>
     <small class="orbit-body__status">${status === 'live' ? 'Available' : 'Planned'}</small>
   </div>`;
 
+// The front half of the ring is cut around every stone, so the line reads as
+// passing into the stone rather than being painted over it.
 const orbitPlane = side => `<svg class="orbit-plane orbit-plane--${side}" aria-hidden="true">
   ${side === 'front' ? `<defs>
     <linearGradient id="orbit-main"><stop offset="0" stop-color="#8cbcf0"/><stop offset=".38" stop-color="#f6faff"/><stop offset=".72" stop-color="#b0d4fb"/><stop offset="1" stop-color="#468fdd"/></linearGradient>
     <linearGradient id="orbit-sheen"><stop offset="0" stop-color="#fafcff" stop-opacity=".1"/><stop offset=".45" stop-color="#fafcff" stop-opacity=".9"/><stop offset="1" stop-color="#dfeeff" stop-opacity=".15"/></linearGradient>
     <filter id="orbit-bloom" x="-25%" y="-70%" width="150%" height="240%"><feGaussianBlur stdDeviation="5"/></filter>
-  </defs>` : ''}
-  ${side === 'front' ? '<path class="orbit-line orbit-line--bloom"/>' : ''}
-  <path class="orbit-line orbit-line--main"/>
-  ${side === 'front' ? '<path class="orbit-line orbit-line--sheen"/><path class="orbit-pulse" pathLength="1"/>' : ''}
+    <radialGradient id="orbit-cut-fade"><stop offset=".78" stop-color="#000"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+    <mask id="orbit-cut" class="orbit-cut" maskUnits="userSpaceOnUse"><rect class="orbit-cut__field" fill="#fff"/>${Object.entries(rings).map(([ring, { bodies }]) => bodies.map((_, index) => `<circle class="orbit-cut__hole" data-ring="${ring}" data-index="${index}" r="0" fill="url(#orbit-cut-fade)"/>`).join('')).join('')}</mask>
+  </defs>
+  <g mask="url(#orbit-cut)"><path class="orbit-line orbit-line--bloom"/><path class="orbit-line orbit-line--main"/><path class="orbit-line orbit-line--sheen"/><path class="orbit-pulse" pathLength="1"/></g>` : '<path class="orbit-line orbit-line--main"/>'}
 </svg>`;
 
 export function EplyxCoreScene() {
@@ -78,11 +80,17 @@ export function attachCoreParallax() {
   const detail = scene.querySelector('.orbit-detail');
   const caption = scene.querySelector('.orbit-caption');
   const orbitPlanes = [...scene.querySelectorAll('.orbit-plane')];
+  const fallback = scene.querySelector('.sculpture-fallback');
+  const cut = scene.querySelector('.orbit-cut');
+  // `pointer` is the raw target shared with the sculpture; `drift` eases toward
+  // it each frame so ring, stones, labels and mark move as one layer.
   const pointer = { x: 0, y: 0 };
+  const drift = { x: 0, y: 0 };
   const bodies = [...scene.querySelectorAll('.orbit-body')];
   // Labels stay above the mark even when their rock travels behind it.
   const labels = new Map(bodies.map(body => [body, {
     element: scene.querySelector(`.orbit-label[data-ring="${body.dataset.ring}"][data-index="${body.dataset.index}"]`),
+    hole: scene.querySelector(`.orbit-cut__hole[data-ring="${body.dataset.ring}"][data-index="${body.dataset.index}"]`),
     width: 0,
     height: 0,
   }]));
@@ -122,6 +130,12 @@ export function attachCoreParallax() {
       const main = arc(from, to, 1);
       plane.querySelectorAll('.orbit-line--main, .orbit-line--sheen, .orbit-line--bloom, .orbit-pulse').forEach(path => path.setAttribute('d', main));
     }
+    for (const element of [cut, cut.querySelector('rect')]) {
+      element.setAttribute('x', -80);
+      element.setAttribute('y', -80);
+      element.setAttribute('width', width + 160);
+      element.setAttribute('height', height + 160);
+    }
   };
 
   // The panel aligns with the body's outward edge so it opens away from the
@@ -141,13 +155,23 @@ export function attachCoreParallax() {
     if (!width || !height) return;
     const ring = rings[active];
     const turn = elapsed / ring.duration * Math.PI * 2 * ring.direction;
+    const shiftX = drift.x * 13, shiftY = drift.y * 9;
+    for (const plane of orbitPlanes) plane.style.transform = `translate(${shiftX.toFixed(1)}px, ${shiftY.toFixed(1)}px)`;
+    if (fallback) fallback.style.transform = `perspective(900px) rotateY(${(drift.x * 22).toFixed(2)}deg) rotateX(${(-drift.y * 14).toFixed(2)}deg) rotate(-2deg)`;
     for (const body of bodies) {
-      if (body.dataset.ring !== active) continue;
+      const { hole } = labels.get(body);
+      if (body.dataset.ring !== active) { hole.setAttribute('r', 0); continue; }
       const index = Number(body.dataset.index);
       const angle = turn - 2.25 + index / ring.bodies.length * Math.PI * 2;
-      const { x, y, depth } = point(angle);
+      const orbit = point(angle);
+      const { depth } = orbit;
       const near = (depth + 1) / 2;
       const scale = .78 + near * .22;
+      // The cut lives inside the shifted plane, so it uses the unshifted point.
+      hole.setAttribute('cx', orbit.x.toFixed(1));
+      hole.setAttribute('cy', orbit.y.toFixed(1));
+      hole.setAttribute('r', (bodyWidth * scale * .56).toFixed(1));
+      const x = orbit.x + shiftX, y = orbit.y + shiftY;
       body.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
       body.style.zIndex = depth > 0 ? 6 : 2;
       body.style.setProperty('--near', near.toFixed(3));
@@ -195,6 +219,9 @@ export function attachCoreParallax() {
       drawPlanes();
     }
     if (!held) elapsed += delta;
+    const follow = 1 - Math.exp(-delta * 6);
+    drift.x += (pointer.x - drift.x) * follow;
+    drift.y += (pointer.y - drift.y) * follow;
     place();
     if (onscreen && !document.hidden && !motion.matches) frame = requestAnimationFrame(step);
   };
@@ -286,22 +313,24 @@ export function attachCoreParallax() {
   bind(document, 'eplyx-mode', event=>{select(event.detail==='technical'?'consequences':'changes');measure();});
   select(presentationMode()==='technical'?'consequences':'changes');
 
-  let pointerFrame = 0;
-  const applyPointer = () => {
-    pointerFrame = 0;
-    for (const plane of orbitPlanes) plane.style.transform = `translate(${(pointer.x * 13).toFixed(1)}px, ${(pointer.y * 9).toFixed(1)}px)`;
-  };
-  const queuePointer = () => { if (!pointerFrame) pointerFrame = requestAnimationFrame(applyPointer); };
-  const move = ({ clientX, clientY }) => {
-    if (motion.matches) return;
+  // The whole hero steers the mark, so it turns toward the copy as well.
+  const field = scene.closest('.hero') || scene;
+  const clamp = value => Math.max(-.6, Math.min(.6, value));
+  const move = ({ clientX, clientY, pointerType }) => {
+    if (motion.matches || pointerType === 'touch') return;
     const rect = scene.getBoundingClientRect();
-    pointer.x = (clientX - rect.left) / rect.width - .5;
-    pointer.y = (clientY - rect.top) / rect.height - .5;
-    queuePointer();
+    if (!rect.width || !rect.height) return;
+    pointer.x = clamp((clientX - rect.left) / rect.width - .5);
+    pointer.y = clamp((clientY - rect.top) / rect.height - .5);
+    start();
   };
-  const leave = () => { pointer.x = 0; pointer.y = 0; queuePointer(); };
-  bind(scene, 'pointermove', move);
-  bind(scene, 'pointerleave', leave);
+  const leave = () => {
+    pointer.x = 0;
+    pointer.y = 0;
+    if (motion.matches) { drift.x = 0; drift.y = 0; place(); }
+  };
+  bind(field, 'pointermove', move);
+  bind(field, 'pointerleave', leave);
 
   const onMotion = () => {
     stop();
@@ -338,7 +367,6 @@ export function attachCoreParallax() {
   return () => {
     disposed = true;
     stop();
-    cancelAnimationFrame(pointerFrame);
     sizeObserver.disconnect();
     screenObserver.disconnect();
     motion.removeEventListener('change', onMotion);

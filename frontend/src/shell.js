@@ -9,8 +9,8 @@ export function Header({ light = false } = {}) {
         <a href="/#how" data-link>How it works</a>
         <a href="/#product" data-link>Capabilities</a>
         <a href="/#run" data-link>Example run</a>
-        ${workspaceLink('Team workspace')}
-        <a href="/evidence" data-link class="nav-cta">Explore evidence <span>↗</span></a>
+        <a href="/evidence" data-link>Explore evidence</a>
+        ${workspaceLink('Team workspace <span>↗</span>', 'nav-cta')}
       </nav>
       <button class="menu-button" type="button" aria-label="Open navigation" aria-controls="primary-navigation" aria-expanded="false"><span></span><span></span></button>
     </header>`;

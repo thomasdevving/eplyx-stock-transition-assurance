@@ -1,4 +1,7 @@
-// Measure each term at the inherited headline size so multiline terms stay visible.
+// Every term sits on the same single line of the headline: the slot is exactly
+// one line tall and never wraps, so only one term is ever visible and the lines
+// around it never move. If the widest term cannot fit, all terms shrink by the
+// same factor rather than wrapping onto a second line.
 export function attachHeadlineRoll() {
  const slot = document.querySelector('.transition-roll');
  if (!slot) return () => {};
@@ -16,20 +19,20 @@ export function attachHeadlineRoll() {
   const time = animation?.currentTime || 0;
   animation?.cancel();
   animation = null;
+  slot.style.removeProperty('--roll-fit');
   width = slot.getBoundingClientRect().width;
-  if (motion.matches) { slot.style.height = `${terms[0].getBoundingClientRect().height}px`; return; }
-  const heights = terms.map(term => term.getBoundingClientRect().height);
-  // Reserve the tallest wrapped term once, rather than changing layout per word.
-  slot.style.height = `${Math.max(...heights)}px`;
+  const widest = Math.max(...terms.map(term => term.scrollWidth));
+  if (widest > width) slot.style.setProperty('--roll-fit', (width / widest).toFixed(4));
+  const line = terms[0].getBoundingClientRect().height;
+  slot.style.height = `${line}px`;
+  if (motion.matches) return;
   const count = terms.length - 1;
   const positionFrames = [];
-  let top = 0;
   terms.forEach((term, index) => {
    const offsets = index === count ? [1] : [index / count, (index + .8) / count];
    offsets.forEach(offset => {
-    positionFrames.push({ transform: `translateY(-${top}px)`, offset, easing: 'cubic-bezier(.65, 0, .35, 1)' });
+    positionFrames.push({ transform: `translateY(-${(index * line).toFixed(2)}px)`, offset, easing: 'cubic-bezier(.65, 0, .35, 1)' });
    });
-   top += heights[index];
   });
   const timing = { duration: count * 3500, iterations: Infinity };
   animation = track.animate(positionFrames, timing);
