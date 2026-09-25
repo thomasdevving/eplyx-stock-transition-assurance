@@ -11,6 +11,7 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
   let renderer, environment, texture, resizeObserver, visibilityObserver;
   let frame = 0;
   let visible = true;
+  let contextLost = false;
   let draw;
   const geometries = [];
   const materials = [];
@@ -60,11 +61,13 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     renderer.domElement.setAttribute('aria-hidden', 'true');
     renderer.domElement.addEventListener('webglcontextlost', event => {
       event.preventDefault();
+      contextLost = true;
       cancelAnimationFrame(frame);
       frame = 0;
       host.closest('.logo-core')?.classList.remove('logo-core--rendered');
     });
     renderer.domElement.addEventListener('webglcontextrestored', () => {
+      contextLost = false;
       if (!disposed) draw?.(performance.now());
     });
 
@@ -140,7 +143,7 @@ export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
     host.append(renderer.domElement);
     const started = performance.now();
     draw = now => {
-      if (disposed) return;
+      if (disposed || contextLost) return;
       frame = 0;
       const time = (now - started) / 1000;
       const px = motion.matches ? 0 : pointer.x;

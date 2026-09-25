@@ -54,7 +54,7 @@ export function EplyxCoreScene() {
     <div class="core-stage">
       ${orbitPlane('back')}
       <div class="core-glow" aria-hidden="true"></div>
-      <div class="logo-core" aria-hidden="true"><div class="sculpture-fallback">${Mark({ className: 'core-mark core-mark--face' })}</div><div class="sculpture-mount"></div></div>
+      <div class="logo-core" aria-hidden="true"><div class="sculpture-fallback">${Mark({ className: 'core-mark core-mark--depth' })}${Mark({ className: 'core-mark core-mark--bevel' })}${Mark({ className: 'core-mark core-mark--face' })}</div><div class="sculpture-mount"></div></div>
       ${orbitPlane('front')}
       ${planes.map(([name, ring]) => ring.bodies.map((body, index) => orbitBody(name, body, index)).join('')).join('')}
       <div class="orbit-detail" aria-hidden="true">

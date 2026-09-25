@@ -10,6 +10,19 @@ test('desktop renders the sculpture, scoped stones, navigation and exact evidenc
  await page.goto('/');
  await expect(page.getByRole('heading',{level:1})).toContainText('Rehearse the');
  await expect(page.locator('.logo-core')).toHaveClass(/logo-core--rendered/);
+ const canvas=page.locator('.sculpture-mount canvas');
+ const canLoseContext=await canvas.evaluate(element=>{
+  const extension=element.getContext('webgl2')?.getExtension('WEBGL_lose_context');
+  element.testLossExtension=extension;
+  extension?.loseContext();
+  return Boolean(extension);
+ });
+ expect(canLoseContext).toBe(true);
+ await expect(page.locator('.logo-core')).not.toHaveClass(/logo-core--rendered/);
+ await expect(page.locator('.sculpture-mount')).toHaveCSS('visibility','hidden');
+ await expect(page.locator('.sculpture-fallback')).toBeVisible();
+ await canvas.evaluate(element=>element.testLossExtension.restoreContext());
+ await expect(page.locator('.logo-core')).toHaveClass(/logo-core--rendered/);
  await expect(page.locator('.orbit-body:visible')).toHaveCount(3);
  await page.getByRole('button',{name:'Technical',exact:true}).click();
  await expect(page.locator('.orbit-caption')).toContainText('Browser VM checks');
@@ -198,6 +211,9 @@ test('WebGL failure retains the original vector mark', async ({page}) => {
  });
  await page.goto('/');
  await expect(page.locator('.sculpture-fallback')).toBeVisible();
+ await expect(page.locator('.sculpture-fallback .core-mark')).toHaveCount(3);
+ await expect(page.locator('.sculpture-fallback')).toHaveCSS('mask-image','none');
+ await expect(page.locator('.sculpture-mount')).toHaveCSS('visibility','hidden');
  await expect(page.locator('.orbit-body:visible')).toHaveCount(3);
  await page.getByRole('button',{name:'Technical',exact:true}).click();
  await page.getByRole('link',{name:'Explore evidence'}).first().click();
