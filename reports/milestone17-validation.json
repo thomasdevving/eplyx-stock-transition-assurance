@@ -24,10 +24,30 @@
     "fresh_project": "--version, init, runs, doctor --offline (exit 2 with candidate guidance), dashboard API responded on loopback",
     "existing_store": "Milestone 15/16 acceptance store: runs, show, and eplyx reproduce cx_2ab4735232a3f228da1a29d1 verified offline in 2.96 s with a new reproduction record and no RPC secret recorded"
   },
-  "pending": {
-    "linux_x86_64": "Not yet built or tested; runs on the native ubuntu-22.04 jobs in .github/workflows/release.yml",
-    "windows_x86_64": "Not yet built or tested; runs on the native windows-2022 jobs, including the PowerShell install success path",
-    "published_release": "No GitHub Release has been created",
+  "ci_dry_run": {
+    "run": "https://github.com/thomasdevving/eplyx-stock-transition-assurance/actions/runs/36077569286",
+    "commit": "2f1b2f3425007b1723425480d504e4a166e44191",
+    "published": false,
+    "validate_ubuntu_22_04": "Passed: fmt-check, clippy, make test with cargo-build-sbf 4.4.0, frontend check, service, release and dashboard browser tests",
+    "native_builds": {
+      "darwin-arm64": "Passed on macos-14: CLI/dashboard/release-CLI tests, release build, exact-archive smoke, 24 installer tests",
+      "linux-x86_64": "Passed on ubuntu-22.04: CLI/dashboard/release-CLI tests, release build, exact-archive smoke, 24 installer tests",
+      "windows-x86_64": "Passed on windows-2022: CLI/dashboard/release-CLI tests, release build, exact-archive smoke, PowerShell rejection and real install tests"
+    },
+    "assemble": "Passed: SHA256SUMS and eplyx-release.json from the uploaded archives; sha256sum -c",
+    "install_acceptance_without_checkout": {
+      "macos-14": "install.sh from the bundle, --version, version --json, init, runs, doctor --offline, dashboard on loopback, tampered archive rejected, uninstall",
+      "ubuntu-22.04": "install.sh from the bundle, --version, version --json, init, runs, doctor --offline, dashboard on loopback, tampered archive rejected, uninstall",
+      "windows-2022": "install.ps1 from the bundle, --version, version --json, init, runs, doctor --offline, dashboard on loopback, tampered archive rejected, uninstall"
+    },
+    "earlier_dry_runs_fixed": [
+      "36024136544: MSYS archive path unreadable by pwsh; rust-cache post-job save cancelled the Linux build",
+      "36071485744: Select-Object -First 1 cleared $LASTEXITCODE in install.ps1, so Windows installs were rejected",
+      "36074390128: Windows acceptance step removed eplyx.exe before the stopped dashboard released it"
+    ]
+  },
+  "not_yet_done": {
+    "published_release": "No GitHub Release has been created; the curl/irm install URLs go live once a v0.1.0 tag passes the same workflow",
     "live_preflight_with_release_binary": "Not run; requires a mainnet RPC provider"
   }
 }
