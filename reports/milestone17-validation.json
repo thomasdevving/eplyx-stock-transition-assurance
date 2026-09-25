@@ -46,8 +46,21 @@
       "36074390128: Windows acceptance step removed eplyx.exe before the stopped dashboard released it"
     ]
   },
-  "not_yet_done": {
-    "published_release": "No GitHub Release has been created; the curl/irm install URLs go live once a v0.1.0 tag passes the same workflow",
-    "live_preflight_with_release_binary": "Not run; requires a mainnet RPC provider"
+  "published_release": {
+    "tag": "v0.1.0",
+    "url": "https://github.com/thomasdevving/eplyx-stock-transition-assurance/releases/tag/v0.1.0",
+    "commit": "b89727a39a65",
+    "workflow_run": "https://github.com/thomasdevving/eplyx-stock-transition-assurance/actions/runs/36104767125",
+    "workflow": "All jobs passed: validate, three native builds with exact-archive smoke and installer tests, assemble, install acceptance without checkout on macos-14, ubuntu-22.04 and windows-2022, publish",
+    "assets_verified": "SHA256SUMS downloaded from releases/latest verifies all three archives and both installers"
+  },
+  "live_acceptance_macos_arm64": {
+    "install": "Public one-liner `curl -fsSL .../releases/latest/download/install.sh | sh` into an empty HOME: checksum verified, only ~/.local/bin/eplyx written, version reports commit b89727a39a65",
+    "environment": "No cargo, rustc or node on PATH; no Eplyx checkout in the project",
+    "doctor": "All checks passed against a private mainnet RPC provider: installed binary, config, local store, RPC, candidate program, transition package",
+    "preflight": "Healthy fixed-ratio project: 17832 token accounts observed, 10023 positive balances, candidate conversion Proven, 10/10 exact stress states passed, both invariants satisfied, gate PASS WITH WARNINGS, population readiness Incomplete, OfficialTransition NotTested",
+    "search": "25 additional observed executions, 0 observed and 0 derived failures; No counterexample found within this search domain and budget",
+    "dashboard": "Listed both runs with run_source local (metadata schema 2) and the search conclusion",
+    "rpc_secret_scan": "Provider URL absent from the 123 MB project store, logs and install directory"
   }
 }
