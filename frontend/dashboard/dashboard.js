@@ -69,7 +69,7 @@ function shell(project) {
      <button type="button" data-mode-option="technical" aria-pressed="${mode === 'technical'}">Technical</button>
     </div>
    </header>
-   ${CLOUD ? '<div class="synced-banner" role="note"><strong>Synced results</strong> — copies of what the Eplyx engine concluded on a developer machine or in CI. Nothing on this page reruns RPC, execution or replay.</div>' : ''}
+   ${CLOUD ? '<div class="synced-banner" role="note"><strong>Synced results.</strong> This page shows engine results from a developer machine or CI. Viewing them does not run RPC, execution or replay.</div>' : ''}
    <main id="main" tabindex="-1"><div class="loading" role="status">Loading ${CLOUD ? 'synced' : 'local'} runs…</div></main>
   </div>
  </div>`;

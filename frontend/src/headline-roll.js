@@ -5,41 +5,56 @@ export function attachHeadlineRoll() {
  const track = slot.querySelector('.transition-roll__track');
  const terms = [...track.children];
  const motion = matchMedia('(prefers-reduced-motion: reduce)');
- let animations = [], width = 0, disposed = false;
+ let animation, width = 0, disposed = false, onscreen = false;
+ const visibility = () => {
+  if (!animation) return;
+  if (onscreen && !document.hidden) animation.play();
+  else animation.pause();
+ };
  const measure = () => {
   if (disposed) return;
-  const time = animations[0]?.currentTime || 0;
-  animations.forEach(animation => animation.cancel());
-  animations = [];
+  const time = animation?.currentTime || 0;
+  animation?.cancel();
+  animation = null;
   width = slot.getBoundingClientRect().width;
   if (motion.matches) { slot.style.height = `${terms[0].getBoundingClientRect().height}px`; return; }
   const heights = terms.map(term => term.getBoundingClientRect().height);
+  // Reserve the tallest wrapped term once, rather than changing layout per word.
+  slot.style.height = `${Math.max(...heights)}px`;
   const count = terms.length - 1;
-  const positionFrames = [], heightFrames = [];
+  const positionFrames = [];
   let top = 0;
   terms.forEach((term, index) => {
    const offsets = index === count ? [1] : [index / count, (index + .8) / count];
    offsets.forEach(offset => {
     positionFrames.push({ transform: `translateY(-${top}px)`, offset, easing: 'cubic-bezier(.65, 0, .35, 1)' });
-    heightFrames.push({ height: `${heights[index]}px`, offset, easing: 'cubic-bezier(.65, 0, .35, 1)' });
    });
    top += heights[index];
   });
   const timing = { duration: count * 3500, iterations: Infinity };
-  animations = [track.animate(positionFrames, timing), slot.animate(heightFrames, timing)];
-  animations.forEach(animation => { animation.currentTime = time; });
+  animation = track.animate(positionFrames, timing);
+  animation.currentTime = time;
+  visibility();
  };
  const observer = new ResizeObserver(() => {
   if (Math.abs(slot.getBoundingClientRect().width - width) > .5) measure();
  });
  observer.observe(slot);
+ const screenObserver = new IntersectionObserver(([entry]) => {
+  onscreen = entry.isIntersecting;
+  visibility();
+ });
+ screenObserver.observe(slot);
+ document.addEventListener('visibilitychange', visibility);
  motion.addEventListener('change', measure);
  measure();
  document.fonts?.ready.then(measure);
  return () => {
   disposed = true;
   observer.disconnect();
+  screenObserver.disconnect();
+  document.removeEventListener('visibilitychange', visibility);
   motion.removeEventListener('change', measure);
-  animations.forEach(animation => animation.cancel());
+  animation?.cancel();
  };
 }

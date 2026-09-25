@@ -7,21 +7,21 @@ import { Mark } from './brand.js';
 // labels. Depth is the ring angle alone — the far half passes behind the mark.
 const rings = {
   changes: {
-    label: 'Overview', caption: 'Real production state · Your program · An exact answer',
+    label: 'Overview', caption: 'Production state · Candidate execution · Measured result',
     tilt: -17, direction: -1, duration: 38,
     bodies: [
-      ['Real production state', 'live', 'Eplyx reads today’s token accounts from Solana mainnet, read-only. It never sends a transaction.'],
-      ['Your program', 'live', 'Your exact transition program runs in an isolated local VM against that state — never on mainnet.'],
-      ['An exact answer', 'live', 'Every balance must reconcile to the last unit. Failures are narrowed down to their exact boundary and can be replayed offline.'],
+      ['Production state', 'live', 'Eplyx reads current token accounts on Solana mainnet. Capture is read-only.'],
+      ['Candidate execution', 'live', 'The packaged candidate program runs locally in an isolated VM against captured accounts. No mainnet transaction is sent.'],
+      ['Measured result', 'live', 'Eplyx reconciles every required token balance change to the last unit. It records any failure boundary found by bounded search, and saved reports replay offline.'],
     ],
   },
   consequences: {
     label: 'Technical', caption: 'Preflight CLI · Browser VM checks · Evidence & workspace',
     tilt: 19, direction: 1, duration: 34,
     bodies: [
-      ['Preflight CLI', 'live', 'Package the candidate, capture production read-only, execute in LiteSVM with exact reconciliation, stress real accounts, search and minimize counterexamples, then gate with typed invariants.'],
+      ['Preflight CLI', 'live', 'Package the candidate and capture production state. The CLI executes in LiteSVM, checks exact reconciliation, stresses selected accounts, searches for counterexamples and evaluates typed invariants.'],
       ['Browser VM checks', 'live', 'For one focused wallet account, capture fresh state and run a transfer, one supported DLMM exit or the registered demo conversion in the analysis service’s VM. No transaction is submitted.'],
-      ['Evidence & workspace', 'live', 'Every run replays offline from content-addressed artifacts. The local dashboard reads them; optional sync shares them with a team workspace that executes nothing. OfficialTransition remains NotTested until an issuer mechanism is proven.', 'SPACEX demo population readiness', 'Incomplete'],
+      ['Evidence & workspace', 'live', 'Content-addressed artifacts support offline replay. The local dashboard reads them; optional sync shares results with a team workspace that runs no analysis. OfficialTransition remains NotTested. An operator plan does not establish an issuer mechanism.', 'SPACEX demo population readiness', 'Incomplete'],
     ],
   },
 };
@@ -77,6 +77,8 @@ export function attachCoreParallax() {
   const stage = scene.querySelector('.core-stage');
   const detail = scene.querySelector('.orbit-detail');
   const caption = scene.querySelector('.orbit-caption');
+  const orbitPlanes = [...scene.querySelectorAll('.orbit-plane')];
+  const pointer = { x: 0, y: 0 };
   const bodies = [...scene.querySelectorAll('.orbit-body')];
   // Labels stay above the mark even when their rock travels behind it.
   const labels = new Map(bodies.map(body => [body, {
@@ -187,7 +189,7 @@ export function attachCoreParallax() {
     const delta = last ? Math.min((now - last) / 1000, .05) : 0;
     last = now;
     if (view.swing < 1) {
-      view.swing = Math.min(1, view.swing + delta / .8);
+      view.swing = Math.min(1, view.swing + delta / .28);
       const eased = 1 - (1 - view.swing) ** 3;
       view.tilt = view.from + (view.to - view.from) * eased;
       drawPlanes();
@@ -284,22 +286,28 @@ export function attachCoreParallax() {
   bind(document, 'eplyx-mode', event=>{select(event.detail==='technical'?'consequences':'changes');measure();});
   select(presentationMode()==='technical'?'consequences':'changes');
 
+  let pointerFrame = 0;
+  const applyPointer = () => {
+    pointerFrame = 0;
+    for (const plane of orbitPlanes) plane.style.transform = `translate(${(pointer.x * 13).toFixed(1)}px, ${(pointer.y * 9).toFixed(1)}px)`;
+  };
+  const queuePointer = () => { if (!pointerFrame) pointerFrame = requestAnimationFrame(applyPointer); };
   const move = ({ clientX, clientY }) => {
     if (motion.matches) return;
     const rect = scene.getBoundingClientRect();
-    scene.style.setProperty('--px', ((clientX - rect.left) / rect.width - .5).toFixed(3));
-    scene.style.setProperty('--py', ((clientY - rect.top) / rect.height - .5).toFixed(3));
+    pointer.x = (clientX - rect.left) / rect.width - .5;
+    pointer.y = (clientY - rect.top) / rect.height - .5;
+    queuePointer();
   };
-  const leave = () => {
-    scene.style.setProperty('--px', 0);
-    scene.style.setProperty('--py', 0);
-  };
+  const leave = () => { pointer.x = 0; pointer.y = 0; queuePointer(); };
   bind(scene, 'pointermove', move);
   bind(scene, 'pointerleave', leave);
 
   const onMotion = () => {
     stop();
     if (motion.matches) {
+      leave();
+      view.swing = 1;
       view.tilt = view.to;
       drawPlanes();
       place();
@@ -324,12 +332,13 @@ export function attachCoreParallax() {
   let disposed = false;
   let disposeSculpture;
   import('./sculpture.js').then(module => {
-    if (!disposed) disposeSculpture = module.mountSculpture(scene.querySelector('.sculpture-mount'));
+    if (!disposed) disposeSculpture = module.mountSculpture(scene.querySelector('.sculpture-mount'), pointer);
   }).catch(() => { /* The original vector remains visible when WebGL is unavailable. */ });
 
   return () => {
     disposed = true;
     stop();
+    cancelAnimationFrame(pointerFrame);
     sizeObserver.disconnect();
     screenObserver.disconnect();
     motion.removeEventListener('change', onMotion);

@@ -20,6 +20,8 @@
   --neutral: #8ea3bd;
   --unknown: #7d8da2;
   --radius: 8px;
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
   --display: 'Manrope', 'DM Sans', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --body: 'DM Sans', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
@@ -77,9 +79,9 @@ main:focus { outline: none; }
 
 /* The hero Overview / Technical switch, at workspace scale. */
 .mode-switch { position: relative; display: flex; flex-shrink: 0; padding: 3px; border: 1px solid rgba(255, 255, 255, .17); border-radius: 100px; background: rgba(255, 255, 255, .07); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12); }
-.mode-switch button { position: relative; z-index: 2; width: 104px; height: 30px; border: 0; border-radius: 100px; background: transparent; color: rgba(255, 255, 255, .68); font: 600 11px var(--display); cursor: pointer; transition: color .3s; }
+.mode-switch button { position: relative; z-index: 2; width: 104px; height: 30px; border: 0; border-radius: 100px; background: transparent; color: rgba(255, 255, 255, .68); font: 600 11px var(--display); cursor: pointer; transition: color 150ms var(--ease-out); }
 .mode-switch button[aria-pressed="true"] { color: #0e2640; }
-.mode-switch__thumb { position: absolute; z-index: 1; top: 3px; left: 3px; width: 104px; height: 30px; border-radius: 100px; background: linear-gradient(140deg, #fdfeff, #c7e2ff); box-shadow: 0 6px 16px rgba(4, 17, 31, .3); transition: transform .35s cubic-bezier(.4, 0, .2, 1); }
+.mode-switch__thumb { position: absolute; z-index: 1; top: 3px; left: 3px; width: 104px; height: 30px; border-radius: 100px; background: linear-gradient(140deg, #fdfeff, #c7e2ff); box-shadow: 0 6px 16px rgba(4, 17, 31, .3); transition: transform 200ms var(--ease-out); }
 html[data-mode="technical"] .mode-switch__thumb { transform: translateX(104px); }
 
 /* Type */
@@ -357,5 +359,6 @@ details summary { cursor: pointer; color: var(--text-2); margin: 12px 0 6px; }
   .ladder__row { grid-template-columns: minmax(0, 1fr) auto; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mode-switch__thumb, .mode-switch button { transition: none; }
+  .mode-switch__thumb { transition: none; }
+  .mode-switch button { transition: color 120ms var(--ease-out); }
 }

@@ -74,6 +74,108 @@ test('mobile navigation, page width and keyboard path details work', async ({pag
  await page.screenshot({path:'test-results/mobile-evidence.png',fullPage:true});
 });
 
+test('headline and controls respect visibility and motion preference', async ({page}) => {
+ await page.addInitScript(() => sessionStorage.setItem('eplyx-stock-intro-seen', '1'));
+ await page.emulateMedia({ reducedMotion:'no-preference' });
+ await page.goto('/');
+ const headline=page.locator('.transition-roll');
+ await expect.poll(() => headline.evaluate(slot => slot.querySelector('.transition-roll__track').getAnimations()[0]?.playState)).toBe('running');
+ const measurements=await headline.evaluate(slot => ({
+  height:slot.getBoundingClientRect().height,
+  tallest:Math.max(...[...slot.querySelectorAll('.transition-roll__term')].map(term => term.getBoundingClientRect().height)),
+  slotAnimations:slot.getAnimations({subtree:false}).length,
+  properties:slot.querySelector('.transition-roll__track').getAnimations()[0].effect.getKeyframes().flatMap(frame => Object.keys(frame)),
+ }));
+ expect(measurements.height).toBeCloseTo(measurements.tallest, 0);
+ expect(measurements.slotAnimations).toBe(0);
+ expect(measurements.properties).not.toContain('height');
+ await expect(page.locator('.orbit-switch__thumb')).toHaveCSS('transition-duration','0.2s');
+ await expect(page.locator('.hero__copy')).toHaveCSS('opacity','1');
+ await page.screenshot({path:'test-results/motion-hero-desktop.png'});
+ const scene=page.locator('.core-scene');
+ const bounds=await scene.boundingBox();
+ await page.mouse.move(bounds.x+bounds.width*.75,bounds.y+bounds.height*.65);
+ await expect.poll(() => page.locator('.orbit-plane--front').evaluate(el => el.style.transform)).toMatch(/^translate\([1-9-]/);
+ expect(await scene.evaluate(el => el.style.getPropertyValue('--px'))).toBe('');
+ await page.locator('#how').scrollIntoViewIfNeeded();
+ await expect.poll(() => headline.evaluate(slot => slot.querySelector('.transition-roll__track').getAnimations()[0]?.playState)).toBe('paused');
+ await page.emulateMedia({ reducedMotion:'reduce' });
+ await expect.poll(() => headline.evaluate(slot => slot.querySelector('.transition-roll__track').getAnimations().length)).toBe(0);
+ await expect.poll(() => page.locator('.orbit-plane--front').evaluate(el => el.style.transform)).toBe('translate(0px, 0px)');
+ await page.goto('/evidence');
+ const sign=page.locator('#direct .expand-sign').first();
+ await expect(sign).toHaveCSS('transition-property','color');
+});
+
+test('a fresh completed analysis fades once while restored results stay still', async ({page}) => {
+ const id='11111111-1111-4111-8111-111111111111';
+ const mint='So11111111111111111111111111111111111111112';
+ let selection;
+ await page.addInitScript(() => {
+  window.resultRevealStarts=0;
+  document.addEventListener('animationstart', event => {
+   if(event.animationName==='analysisResultReveal')window.resultRevealStarts++;
+  });
+ });
+ await page.route('**/api/catalogue', route => route.fulfill({json:{entries:[]}}));
+ await page.route('**/api/runs', route => {
+  selection=route.request().postDataJSON().selection;
+  return route.fulfill({json:{id,status:'Queued',selection}});
+ });
+ await page.route(`**/api/runs/${id}`, route => route.fulfill({json:{
+  id,status:'Completed',selection,
+  result:{kind:'current-inspection',asset:{name:'Test token'},inspection:{message:'Current token information retrieved'},
+   mint:{is_initialized:true,decimal_supply:'1',decimals:9},accounts:[],
+   acquisition:{completed_at:'2026-09-19T00:00:00Z'},discovery:{status:'NotRequested',gaps:[]}},
+ }}));
+ await page.goto('/analysis#analysis');
+ await page.locator('[name="source"]').selectOption('custom');
+ await page.locator('[name="mint"]').fill(mint);
+ await page.locator('#run-analysis').click();
+ const output=page.locator(`.analysis-output[data-run="${id}"]`);
+ await expect(output).toBeVisible();
+ await expect.poll(() => page.evaluate(() => window.resultRevealStarts)).toBe(1);
+ await page.locator('[name="mint"]').dispatchEvent('input');
+ expect(await page.evaluate(() => window.resultRevealStarts)).toBe(1);
+ await page.reload();
+ await expect(output).toContainText('Saved run');
+ expect(await page.evaluate(() => window.resultRevealStarts)).toBe(0);
+});
+
+test('CLI approval fades only after an approval action', async ({page}) => {
+ await page.emulateMedia({reducedMotion:'reduce'});
+ const assets={
+  'cloud.js':'../cloud/cloud.js', 'cloud.css':'../cloud/cloud.css',
+  'dashboard.css':'../dashboard/dashboard.css', 'ui.js':'../dashboard/ui.js',
+  'mode.js':'../src/mode.js', 'brand.js':'../src/brand.js', 'format.js':'../src/format.js',
+  'logo.svg':'../public/logo.svg',
+ };
+ await page.route('**/device?code=ABCD', async route => route.fulfill({
+  body:await readFile(new URL('../cloud/index.html',import.meta.url)),contentType:'text/html',
+ }));
+ await page.route('**/assets/*', async route => {
+  const name=new URL(route.request().url()).pathname.split('/').at(-1);
+  const file=assets[name];
+  if(!file)return route.abort();
+  await route.fulfill({body:await readFile(new URL(file,import.meta.url)),contentType:name.endsWith('.css')?'text/css':name.endsWith('.svg')?'image/svg+xml':'text/javascript'});
+ });
+ let state='pending';
+ await page.route('**/api/v1/me', route => route.fulfill({json:{user:{email:'reviewer@example.com'}}}));
+ await page.route('**/api/v1/auth/device/lookup?code=ABCD', route => route.fulfill({json:{state,client:'test CLI',user_code:'ABCD',created_at:'2026-09-25T00:00:00Z'}}));
+ await page.route('**/api/v1/auth/device/approve', route => {
+  state=route.request().postDataJSON().approve?'approved':'denied';
+  return route.fulfill({json:{state}});
+ });
+ await page.goto('/device?code=ABCD');
+ await expect(page.locator('.device-code')).toHaveText('ABCD');
+ await expect(page.locator('.device-outcome--approved')).toHaveCount(0);
+ await page.getByRole('button',{name:'Approve',exact:true}).click();
+ await expect(page.locator('.device-outcome--approved')).toHaveCSS('animation-duration','0.12s');
+ await page.reload();
+ await expect(page.locator('.device-outcome')).toContainText('approved');
+ await expect(page.locator('.device-outcome--approved')).toHaveCount(0);
+});
+
 test('downloads are the exact pinned source bytes and missing assets fail clearly', async ({request}) => {
  for (const [file,hash] of Object.values(pinnedReports)) {
   const response=await request.get(`/public/evidence/${file.split('/').at(-1)}`);

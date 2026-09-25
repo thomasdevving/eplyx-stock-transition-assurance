@@ -25,6 +25,11 @@
 .form-row .field { flex: 1; min-width: 180px; }
 .form-error { min-height: 1.4em; margin: 0; color: var(--crit); font-size: 12.5px; }
 .device-code { display: inline-block; margin: 8px 0; padding: 8px 14px; border: 1px dashed var(--line-2); border-radius: 8px; font: 600 26px/1 var(--mono); letter-spacing: .12em; color: var(--ice); }
+.device-outcome--approved { animation: deviceApprovalReveal 160ms var(--ease-out) both; }
+@keyframes deviceApprovalReveal { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .device-outcome--approved { animation-duration: 120ms; }
+}
 .workspace { margin-bottom: 20px; }
 .project-list { display: grid; gap: 8px; }
 .project-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: rgba(0, 0, 0, .18); color: var(--text); }

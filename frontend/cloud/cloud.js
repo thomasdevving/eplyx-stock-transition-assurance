@@ -39,10 +39,10 @@ async function landing() {
  app.innerHTML = frame(`<section class="welcome">
   <span class="eyebrow">Optional team sync</span>
   <h1>Cloud sync is optional. Eplyx execution stays local.</h1>
-  <p class="lead">Every preflight, search, reproduction and gate runs on your machine or in your CI, with or without an account. This workspace shows what those runs concluded — local and CI history, counterexamples, reproduction history and comparisons — for your team.</p>
+  <p class="lead">Preflight, search, reproduction and gate evaluation run on your machine or in CI without an account. This workspace shows your team synced local and CI results, counterexamples, reproduction history and run comparisons.</p>
   <p><a class="button" href="/signup">Create an account</a> <a class="button button--ghost" href="/login">Sign in</a>${demo ? ' <a class="button button--ghost" href="/demo">View the public demo project</a>' : ''}</p>
  </section>
- ${panel({ title:'Two independent workflows', body:`<div class="grid-2 grid-2--tight"><div><h3 class="subhead">Local only</h3>${commandLine('eplyx preflight')}${commandLine('eplyx search')}${commandLine('eplyx dashboard')}</div><div><h3 class="subhead">Optional team sync</h3>${commandLine('eplyx login')}${commandLine('eplyx link')}${commandLine('eplyx sync')}</div></div>` })}
+ ${panel({ title:'Local work and optional sync', body:`<div class="grid-2 grid-2--tight"><div><h3 class="subhead">Local only</h3>${commandLine('eplyx preflight')}${commandLine('eplyx search')}${commandLine('eplyx dashboard')}</div><div><h3 class="subhead">Optional team sync</h3>${commandLine('eplyx login')}${commandLine('eplyx link')}${commandLine('eplyx sync')}</div></div>` })}
  ${panel({ title:'What is synced?', body:WHAT })}`, null);
 }
 
@@ -78,7 +78,7 @@ function signup() {
 async function device(user) {
  if (!user) { location.assign(`/login?next=${encodeURIComponent(location.pathname + location.search)}`); return; }
  const initial = new URLSearchParams(location.search).get('code') ?? '';
- const render = async code => {
+ const render = async (code, revealApproval=false) => {
   let info = null, problem = '';
   if (code) info = await call('GET', `/api/v1/auth/device/lookup?code=${encodeURIComponent(code)}`).catch(error => { problem = error.message; return null; });
   const body = info
@@ -86,13 +86,17 @@ async function device(user) {
     ? `<p>A CLI is asking to sign in as <strong>${esc(user.email)}</strong>:</p><p><code>${esc(info.client)}</code> · requested ${esc(ago(info.created_at))}</p><div class="device-code">${esc(info.user_code)}</div>
        <p class="muted">Approve only if this code matches the one shown in your terminal. The CLI receives a scoped Eplyx token that can link projects and sync run results; it never sees your password.</p>
        <p><button class="button" data-decide="true">Approve</button> <button class="button button--ghost" data-decide="false">Deny</button></p>`
-    : `<p>This code is <strong>${esc(info.state)}</strong>.</p>${info.state === 'approved' ? '<p class="muted">Return to your terminal; <code>eplyx login</code> finishes on its own.</p>' : ''}`
+    : `<div class="device-outcome${revealApproval&&info.state==='approved'?' device-outcome--approved':''}"><p>This code is <strong>${esc(info.state)}</strong>.</p>${info.state === 'approved' ? '<p class="muted">Return to your terminal; <code>eplyx login</code> finishes on its own.</p>' : ''}</div>`
    : `<form class="form" data-code-form><label class="field"><span>Code shown by <code>eplyx login</code></span><input name="code" value="${esc(code)}" autocomplete="off" required></label><p class="form-error" role="alert">${esc(problem)}</p><button class="button" type="submit">Continue</button></form>`;
   app.innerHTML = frame(`<section class="auth-card"><h1>Approve CLI sign-in</h1>${body}</section>`, user);
   app.querySelector('[data-code-form]')?.addEventListener('submit', event => { event.preventDefault(); render(new FormData(event.target).get('code')); });
   app.querySelectorAll('[data-decide]').forEach(button => button.addEventListener('click', async () => {
-   await call('POST', '/api/v1/auth/device/approve', { user_code:info.user_code, approve:button.dataset.decide === 'true' }).catch(error => alert(error.message));
-   render(info.user_code);
+   const approve=button.dataset.decide==='true';
+   button.disabled=true;
+   try {
+    await call('POST', '/api/v1/auth/device/approve', { user_code:info.user_code, approve });
+    await render(info.user_code, approve);
+   } catch(error) { alert(error.message); button.disabled=false; }
   }));
  };
  await render(initial);

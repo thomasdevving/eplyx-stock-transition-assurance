@@ -36,7 +36,7 @@ test('signed-out visitors see that sync is optional and cannot read projects', a
 test('workspace lists the synced project and the overview says it shows synced results', async ({ page }) => {
  await signIn(page);
  await page.locator('.project-row').first().click();
- await expect(page.locator('.synced-banner')).toContainText('Nothing on this page reruns RPC, execution or replay');
+ await expect(page.locator('.synced-banner')).toContainText('Viewing them does not run RPC, execution or replay');
  const hero = page.locator('.hero-status');
  await expect(hero.locator('h1')).toHaveText('BLOCKED');
  await expect(hero).toContainText('Synced result');
@@ -77,12 +77,14 @@ test('run evidence stays local and settings mint a CI token once', async ({ page
 });
 
 test('device approval requires the browser session and the matching code', async ({ page, request }) => {
+ await page.emulateMedia({ reducedMotion:'reduce' });
  const started = await (await request.post('/api/v1/auth/device', { data:{ client:'browser spec CLI' } })).json();
  await signIn(page);
  await page.goto(`/device?code=${started.user_code}`);
  await expect(page.locator('.device-code')).toHaveText(started.user_code);
  await page.click('button[data-decide=true]');
  await expect(page.locator('.auth-card')).toContainText('approved');
+ await expect(page.locator('.device-outcome--approved')).toHaveCSS('animation-duration','0.12s');
  const token = await request.post('/api/v1/auth/device/token', { data:{ device_code:started.device_code } });
  expect(token.ok()).toBeTruthy();
 });

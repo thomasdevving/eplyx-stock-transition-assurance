@@ -3,7 +3,7 @@ import { SVGLoader } from '/public/vendor/SVGLoader.js';
 import { RoomEnvironment } from '/public/vendor/RoomEnvironment.js';
 
 // Extrude the supplied mark itself. No substitute geometry or sphere is used.
-export function mountSculpture(host) {
+export function mountSculpture(host, pointer = { x: 0, y: 0 }) {
   if (!host) return () => {};
   const controller = new AbortController();
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -138,14 +138,13 @@ export function mountSculpture(host) {
     }
     scene.add(sculpture);
     host.append(renderer.domElement);
-    const sceneElement = host.closest('.core-scene');
     const started = performance.now();
     draw = now => {
       if (disposed) return;
       frame = 0;
       const time = (now - started) / 1000;
-      const px = motion.matches ? 0 : Number(sceneElement.style.getPropertyValue('--px')) || 0;
-      const py = motion.matches ? 0 : Number(sceneElement.style.getPropertyValue('--py')) || 0;
+      const px = motion.matches ? 0 : pointer.x;
+      const py = motion.matches ? 0 : pointer.y;
       sculpture.rotation.set(.2 + py * .06, -.38 + px * .1, -.035 + (motion.matches ? 0 : Math.sin(time * .65) * .018));
       sculpture.position.y = motion.matches ? 0 : Math.sin(time * .8) * 4;
       renderer.render(scene, camera);
