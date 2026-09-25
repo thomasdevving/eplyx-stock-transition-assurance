@@ -20,8 +20,8 @@ export function Footer() {
     <footer class="footer">
       <div>${Logo()}</div>
       <p>Lifecycle impact intelligence for tokenized stocks.</p>
-      <div class="footer__links"><a href="/evidence" data-link>Saved findings</a>${workspaceLink('Team workspace')}<a href="/public/evidence/lifecycle-phase-15-production-report.md">Documentation</a></div>
-      <small>Stocklana · Read-only inspection · Scoped evidence · No funds moved</small>
+      <div class="footer__links"><a href="/evidence" data-link>Saved findings</a>${workspaceLink('Team workspace')}<a href="https://github.com/thomasdevving/eplyx-stock-transition-assurance/blob/main/docs/on-demand-progress.md" target="_blank" rel="noopener noreferrer">Product & milestone guide</a></div>
+      <small>Stocklana · Read-only chain capture · VM checks · No on-chain transaction submitted</small>
     </footer>`;
 }
 

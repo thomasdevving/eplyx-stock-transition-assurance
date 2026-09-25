@@ -127,7 +127,7 @@ test('operator-supplied candidate conversion through browser, service and VM',as
   expect(proven.result.reconciliation.replacement_released_raw).toBe('500');
   expect(proven.result.funds_moved).toBe(false);
   const rendered=page.locator(`[data-conversion="${proven.id}"]`);
-  await expect(rendered).toContainText('Passed in local simulation');
+  await expect(rendered).toContainText('Passed in VM simulation');
   await expect(rendered.locator('[data-conversion-input]')).toContainText('0.000001');
   await expect(rendered.locator('[data-official-conversion]')).toContainText('not independently verified');
   // Program identities and account metas stay out of the Overview reading.
@@ -172,7 +172,7 @@ test('operator-supplied candidate conversion through browser, service and VM',as
   expect(failed.result.execution.success).toBe(false);
   expect(failed.result.funds_moved).toBe(false);
   expect(failed.result.reconciliation.replacement_released_raw).toBe('0');
-  await expect(page.locator(`[data-conversion="${failed.id}"]`)).toContainText('Failed in local simulation');
+  await expect(page.locator(`[data-conversion="${failed.id}"]`)).toContainText('Failed in VM simulation');
   await expect(page.locator(`[data-conversion="${failed.id}"]`)).not.toContainText('the real issuer transition will fail');
   await writeFile(`${dir}/case-c-failed.job.json`,JSON.stringify(failed,null,2));
 

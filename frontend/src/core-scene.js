@@ -7,21 +7,21 @@ import { Mark } from './brand.js';
 // labels. Depth is the ring angle alone — the far half passes behind the mark.
 const rings = {
   changes: {
-    label: 'Overview', caption: 'An announcement, saved holdings and transition details',
+    label: 'Overview', caption: 'Current observations · Saved SPACEX evidence · Proposed scenarios',
     tilt: -17, direction: -1, duration: 38,
     bodies: [
-      ['Issuer announcement', 'live', 'Read the saved issuer announcement. The official conversion procedure still needs checking.'],
-      ['Observed holdings', 'live', 'Review saved example token holdings and a liquidity position. A balance does not prove access to its signing key.'],
-      ['Transition details', 'live', 'Compare the same saved holdings before, during and after the example transition. Scenario dates do not predict future balances.'],
+      ['Current observations', 'live', 'Fetch current mint information or query one public owner for one selected mint. This is a bounded read, not a complete holder or protocol-position scan.'],
+      ['Saved SPACEX case', 'live', 'Review the separately pinned issuer notice, example holdings, prior local checks and one LP-principal withdrawal. These findings are historical, not a fresh capture.'],
+      ['Proposed scenario', 'live', 'Evaluate a user-proposed lifecycle time against the same captured account bytes. The date changes relevance, not balances or execution evidence.'],
     ],
   },
   consequences: {
-    label: 'Technical', caption: 'Three capabilities · bounded evidence',
+    label: 'Technical', caption: 'Bounded browser checks · Operator CLI · Optional team history',
     tilt: 19, direction: 1, duration: 34,
     bodies: [
-      ['Impact mapping', 'live', 'Compare before and after policy views across frozen token accounts, keeping protocol exposure separate.'],
-      ['Local path probes', 'live', 'Replay selected market exits, transfers and one native LP principal withdrawal in a local VM with assumed signing.'],
-      ['Readiness gates', 'live', 'Evaluate a demonstration assurance policy against pinned evidence. OfficialTransition remains NotTested.', 'Population readiness', 'Incomplete'],
+      ['Browser VM checks', 'live', 'For a focused wallet account, capture fresh state and run a token transfer, one supported DLMM route, or the registered demo conversion plan in the analysis service’s VM. No transaction is submitted.'],
+      ['Operator CLI', 'live', 'Test a registered transition package, run bounded stress and counterexample searches, apply typed invariants and a CI gate, then reproduce results offline.'],
+      ['Evidence & workspace', 'live', 'The read-only local dashboard reads saved runs. Optional cloud sync stores explicitly selected CLI artifacts for team viewing; the hosted workspace executes nothing. The saved SPACEX demo remains Incomplete and OfficialTransition remains NotTested.', 'SPACEX demo population readiness', 'Incomplete'],
     ],
   },
 };

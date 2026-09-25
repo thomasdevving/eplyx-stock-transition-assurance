@@ -12,7 +12,7 @@ function prompt() {
   dialog.className = 'access-dialog';
   dialog.innerHTML = `<form method="dialog" class="access-dialog__form">
    <h2>Analysis access code</h2>
-   <p>Fresh analyses on this hosted demo read live Solana state, so they need an access code. Saved results stay available without one. Eplyx never moves funds.</p>
+   <p>Fresh analyses on this hosted demo read live Solana state, so they need an access code. Saved results stay available without one. Checks run in an isolated VM; no mainnet transaction is submitted.</p>
    <label><span>Access code</span><input name="code" type="password" autocomplete="off" required maxlength="256"></label>
    <p class="access-dialog__error" role="alert"></p>
    <div class="access-dialog__actions"><button type="button" class="button button--text" data-cancel>Cancel</button><button type="submit" class="button button--primary">Unlock analysis</button></div>

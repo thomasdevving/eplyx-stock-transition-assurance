@@ -12,10 +12,10 @@ test('desktop renders the sculpture, scoped stones, navigation and exact evidenc
  await expect(page.locator('.logo-core')).toHaveClass(/logo-core--rendered/);
  await expect(page.locator('.orbit-body:visible')).toHaveCount(3);
  await page.getByRole('button',{name:'Technical',exact:true}).click();
- await expect(page.locator('.orbit-caption')).toContainText('Three capabilities');
+ await expect(page.locator('.orbit-caption')).toContainText('Bounded browser checks');
  await expect(page.locator('.orbit-body:visible')).toHaveCount(3);
  await page.keyboard.press('Tab');
- await page.locator('.orbit-body:visible').filter({hasText:'Readiness gates'}).focus();
+ await page.locator('.orbit-body:visible').filter({hasText:'Evidence & workspace'}).focus();
  await expect(page.locator('.orbit-detail')).toHaveClass(/is-visible/);
  await expect(page.locator('.orbit-detail')).toContainText('OfficialTransition remains NotTested');
  await page.keyboard.press('Escape');

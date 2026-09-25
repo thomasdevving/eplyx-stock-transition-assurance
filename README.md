@@ -1,8 +1,8 @@
 # Eplyx
 
-Eplyx tests a Solana token-transition program against current production state
-before you ship it. It runs on your machine: read-only capture, local execution,
-local results.
+Eplyx evaluates a proposed Solana token transition against freshly captured
+production state. The operator CLI runs on an operator or CI machine:
+read-only mainnet capture, bounded local VM execution and local results.
 
 ## Install
 
@@ -61,17 +61,18 @@ Eplyx itself needs no Rust, Node or Eplyx checkout; only building your own
 candidate program uses your Solana toolchain. See the
 [developer quick start](docs/developer-cli.md).
 
-**What stays local.** Installing or running Eplyx creates no account, contacts
-no Eplyx service, sends no telemetry and uploads no run artifacts, source code or
-candidate binary, unless you opt in to the team sync below. The only network use is the read-only Solana RPC you set in
-`SOLANA_RPC_URL` for `doctor`, `preflight` and `search`; it never receives your
-candidate program, which executes only in the local VM. Runs, counterexamples and
-reproduction history stay in each project's `.eplyx/`. To uninstall, delete the
-installed binary.
+**Operator CLI privacy.** Without the cloud commands, installing or running the
+CLI creates no account, sends no telemetry and uploads no artifacts. It contacts
+only the read-only Solana RPC in `SOLANA_RPC_URL` for checks that need it;
+candidate execution happens in the local VM. Runs, counterexamples and
+reproduction history stay in each project’s `.eplyx/`. The separate `login`,
+`link` and `sync` commands opt into the hosted workspace. Browser analysis is a
+different service workflow. To uninstall, delete the installed binary.
 
 ## Optional team sync
 
-Cloud sync is optional. Eplyx execution stays local.
+Cloud sync is optional for the operator CLI. Its VM runs on the operator or CI
+machine; the hosted workspace displays synced results and never executes them.
 
 ```sh
 eplyx login        # approve a code in your browser; the CLI never asks for a password
@@ -81,8 +82,9 @@ eplyx sync         # upload complete runs, counterexamples and reproduction reco
 
 A hosted Eplyx workspace then shows local and CI run history, counterexamples,
 reproduction history and run comparisons to your team. Each run's metadata,
-engine report, bindings, package manifest and config, and search result are sent
-as exact bytes with their SHA-256. Source code, the candidate `.so`, captures,
+engine report, bindings, package manifest and config, search result, saved
+counterexamples and reproduction records are sent as exact bytes with their
+SHA-256. Source code, the candidate `.so`, captures,
 `eplyx.toml`, RPC URLs, environment variables and local paths are never sent.
 `eplyx sync --dry-run --json` prints exactly what would go. Synced runs are
 immutable, re-syncing is idempotent, and viewing them never reruns anything.
@@ -96,14 +98,18 @@ see [Milestone 17](docs/on-demand-milestone-17-release.md).
 
 ---
 
-> **Prospective on-demand pre-flight:** Open `/analysis#analysis`, select a catalogue
-> asset or custom mint, and fetch a public wallet. Focus an account, optionally run
-> fresh local Transfer / supported market-exit checks, then prepare a hypothetical
-> replacement-token transition with normal form controls. Compare unchanged current
-> bytes before and after the proposed effective time. Mobility assurance covers exact
-> tested paths; full transition readiness separately requires conversion proof.
-> No funds move or wallet signing occurs. The saved historical example stays separate.
-> See [milestone 5 progress, evidence and start instructions](docs/on-demand-progress.md).
+> **On-demand browser analysis:** Open `/analysis#analysis` to inspect a catalogue
+> asset or custom mint, or query all returned token accounts for one public owner
+> and mint. On one focused wallet account, request a Transfer or supported DLMM
+> market-exit check, prepare a hypothetical lifecycle scenario, or test proposed
+> terms with the registered Eplyx demo conversion program. If that conversion
+> passes, stress-test the plan against a frozen bounded account sample. The analysis
+> service runs checks in its VM; no network
+> transaction or wallet signature is created. Local signer privilege is assumed
+> and key possession remains unknown.
+> This workflow does not prove issuer conversion. The published SPACEX case is
+> historical evidence; the operator package, CI, replay and cloud workflows are
+> separate CLI features. See the [current milestone guide](docs/on-demand-progress.md).
 
 # Eplyx Lifecycle Impact
 
@@ -121,13 +127,16 @@ and [example packages](examples/transitions/demo-fixed-ratio).
 ## Stock Transition frontend
 
 The frontend adapts the original Eplyx visual style with a blue theme, the original
-extruded logo, and three orbiting stones per input/capability view. Its landing
-page and read-only evidence viewer describe this project's frozen SPACEX
-demonstration. Published readiness remains **Incomplete** and OfficialTransition
-remains **NotTested**.
+extruded logo, and three orbiting stones in each view. The landing page separates
+fresh token and public-wallet inspection, the saved SPACEX demonstration and the
+operator CLI. `/analysis` talks to the bounded Node job API for read-only capture
+and selected VM checks. `/evidence` only displays pinned reports; it does not
+run an evaluation. The saved SPACEX readiness remains **Incomplete** and its
+OfficialTransition remains **NotTested**.
 
 ```sh
 npm ci
+npm run build:engine
 npm run dev
 # Open http://localhost:4173
 ```
@@ -136,8 +145,9 @@ npm run dev
 `npm run check:frontend` checks JavaScript and the pinned report digests.
 `npm run test:frontend` runs desktop/mobile browser checks using installed Google
 Chrome. See [frontend scope and maintenance](docs/stock-transition-frontend.md).
-The viewer reads published reports; it does not execute the engine or connect to
-an RPC service. Existing engine workflows and historical evidence stay separate.
+In local development, the Node job API calls the built engine and uses the
+server-configured read-only RPC only for fresh captures. Local VM checks never
+submit transactions. The evidence viewer remains pinned and read-only.
 
 Phase 10 proves **native liquidity-principal Withdrawal** for one real SPACEX
 Meteora DLMM PositionV2 under its explicitly assumed original owner signer.
@@ -440,7 +450,7 @@ See [scope, trust, commands and exit contract](docs/lifecycle-phase-14-rollout.m
 the [production report](docs/lifecycle-phase-14-production-report.md), and the
 [precomputed UI artifact](reports/spacex-rollout-assumptions.json).
 
-## Consumer analysis workflow (Phase 15)
+## On-demand browser analysis
 
 ```sh
 npm ci
@@ -448,8 +458,13 @@ npm run build:engine
 npm run dev
 ```
 
-Open http://127.0.0.1:4173/analysis#analysis to choose a catalogue asset or enter a Solana mint. The saved SPACEX demonstration remains a separate review choice.
-The existing switch below the logo controls Overview / Technical detail across the
-application. The same local server hosts the bounded job API and invokes the built
-engine; static hosting alone supports only saved reports. No wallet or blockchain
-transaction is involved. See [supported inputs, architecture and validation](docs/lifecycle-phase-15-production-report.md).
+Open http://127.0.0.1:4173/analysis#analysis to choose a catalogue asset or enter
+a Solana mint. The browser can inspect current mint state or a public owner’s
+matching accounts, then run bounded checks on one focused account. Transfer,
+supported market-exit, candidate-conversion and stress checks execute in the local
+VM after fresh capture; no network transaction or wallet signature is created.
+The saved SPACEX report remains a separate pinned result. The Overview / Technical
+switch changes presentation only. Static hosting serves saved reports; fresh
+analysis requires the Node job API and built engine. See
+[the current milestone guide](docs/on-demand-progress.md) and
+[frontend behavior and validation](docs/stock-transition-frontend.md).

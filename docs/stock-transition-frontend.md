@@ -8,18 +8,22 @@ there are no filesystem dependencies on the reference checkout.
 
 The theme recolors section backgrounds, type accents, orbit lines, stone lighting,
 logo materials and studio lighting to blue. The brand places **Stock Transition**
-below **Eplyx**. The original two orbit planes keep three stones each; the existing switch now controls application presentation:
+below **Eplyx**. The original two orbit planes keep three stones each; the switch
+controls application presentation:
 
-- Overview: issuer announcement, observed holdings, transition details.
-- Technical: impact mapping, local path probes, readiness gates.
+- Overview: current observations, the saved SPACEX case and proposed scenarios.
+- Technical: browser VM checks, the operator CLI, and local/optional cloud history.
 
 The landing page preserves the hero, method, capabilities and saved result, with a guided analysis form below the hero.
 Primary navigation has three links: How it works, Capabilities and Explore evidence.
 Detailed path scope, population coverage and provenance live in the evidence viewer;
 local reproduction instructions are collapsed by default. Audience, vision and
 repeated evidence sections are omitted to reflect the smaller project scope.
-Content describes the supported lifecycle project rather than the original
-program-upgrade product. No old hosted API, projects console or upgrade-analysis workflow is included. The Phase 15 local API wraps only the existing lifecycle commands.
+Content describes the lifecycle project rather than the original program-upgrade
+product. The legacy hosted upgrade API and projects console are not included. The
+Stock Transition Node API serves fresh bounded reads, selected current-wallet
+checks, proposed-transition evaluations and candidate-conversion stress runs;
+these are separate from the `eplyx` operator CLI and its package workflow.
 
 ## Run and build
 
@@ -35,7 +39,8 @@ The development server listens on `127.0.0.1:4173`. Set `PORT` to choose another
 port. `npm run build` creates a static `dist/`, and `npm start` serves that build.
 A static host must serve `index.html` for `/` and `/evidence` (including its trailing
 slash variant), and serve `/src/` and `/public/` as files. Unknown assets must
-return 404. No deployment has been configured or performed.
+return 404. This describes the static build only; the hosted demo uses the
+separate Node service and Docker deployment described below.
 
 Three.js is pinned in the lockfile and copied locally at build time. The original
 Google Fonts stylesheet supplies Manrope and DM Sans, with system-font fallbacks.
@@ -119,7 +124,38 @@ The UI preserves these distinctions:
   entities. Independent amounts/routes are not summed into simultaneous capacity.
 - Incomplete is the finding under the demo assurance policy, not an asset verdict.
 
-The Phase 15 local API performs fresh offline evaluations through the existing built engine; the browser polls actual job state. This adds no HTTP/RPC capture, notice discovery, signing, transaction submission or new execution replay. The published report remains a separately labeled saved result. See [the Phase 15 report](lifecycle-phase-15-production-report.md) for requests, limits, results and startup.
+## On-demand analysis and execution boundary
+
+The `/analysis` page calls the same-origin Node job API. The server uses its
+configured read-only mainnet RPC provider for bounded current token and public
+owner captures. It can inspect a catalogue asset or validated custom mint; a
+token overview can request at most 20 largest accounts, while wallet scope queries
+the supplied owner + mint. These scopes do not discover protocol positions or
+establish a complete holder population.
+
+For one account discovered in that exact wallet run, the browser can request a
+freshly captured Transfer or supported Meteora DLMM market-exit check in the
+analysis service’s VM. It can also evaluate a prospective user-proposed lifecycle
+time and test bounded conversion terms with the registered **Eplyx Demo Candidate
+Conversion** program. Only after that conversion passes does the browser offer a
+stress test of the same plan against a frozen bounded sample of current accounts.
+Fresh state uses the configured read-only RPC; LiteSVM receives no RPC credential,
+and no network transaction is constructed or submitted. Local signer privilege
+is assumed; possession of the key remains unknown.
+
+The browser candidate-conversion plan does not execute uploaded or operator-built
+program bytes, and it is not an issuer conversion. `OfficialTransition` remains
+NotTested. The LP-principal withdrawal shown in `/evidence` is pinned earlier
+evidence; the browser does not expose a fresh withdrawal action. Every current
+check starts untested in a new run and remains bound to its exact account, amount,
+route or terms, capture and program identity. See the
+[on-demand milestone record](on-demand-progress.md) for the full history and
+[developer CLI quick start](developer-cli.md) for package, gate, replay, dashboard
+and cloud commands. Milestones 8–14 add the operator package, stress, search and
+gate workflow; Milestone 15 adds the presentation switch and job API; Milestones
+16–18 add the CLI dashboard, verified releases and optional cloud sync. The
+browser does not expose the package workflow, deployment gate, replay/search
+commands or cloud sync.
 
 ## Validation
 
@@ -134,10 +170,11 @@ make lint
 ```
 
 Browser tests use Playwright with installed Google Chrome. They check desktop and
-mobile navigation, real WebGL rendering plus its fallback, three active stones,
-keyboard interaction, direct report links, exact evidence quantities, original
-artifact downloads and missing-asset responses. Screenshots are written to ignored
-`test-results/` for visual inspection. They do not query a chain. The Phase 15 browser smoke test additionally runs four real offline engine analyses through the local API.
+mobile navigation, real WebGL rendering plus its fallback, the three stones in
+each view, keyboard interaction, exact evidence quantities, artifact downloads,
+API boundaries and analysis flows. Deterministic tests use fixtures; explicitly
+opt-in live cases can query the configured RPC. Screenshots are written to ignored
+`test-results/` for visual inspection.
 
 ## Phase 14 published case panel
 

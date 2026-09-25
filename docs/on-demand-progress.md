@@ -1,4 +1,42 @@
-# On-demand analysis — milestone 6 operator-supplied conversion pre-flight
+# Eplyx Stock Transition — capability and milestone guide
+
+This guide records the project through Milestone 18. Eplyx has three related,
+separate surfaces:
+
+- **Browser analysis:** the saved SPACEX evidence viewer is pinned and read-only.
+  The analysis page can fetch current token data or query the returned token
+  accounts for one public owner + mint. On one focused wallet account it can run
+  a fresh Transfer check, one bounded supported DLMM market-exit check, a
+  prospective lifecycle evaluation, or an operator-proposed conversion plan
+  using the registered Eplyx Demo Candidate Conversion program. After that demo
+  conversion passes for the focused account, the user can stress-test the same
+  plan against a frozen bounded sample of freshly observed accounts. Fresh state
+  comes from the configured read-only RPC; the VM gets no RPC credential, submits
+  no transaction and receives no wallet key.
+- **Operator CLI:** `eplyx` validates and executes a registered transition
+  package against fresh read-only production capture, then runs bounded stress,
+  authority and invariant evaluation, counterexample search, offline replay and
+  a deployment gate. Its loopback dashboard is read-only.
+- **Optional team workspace:** `eplyx login`, `link` and `sync` send selected
+  CLI run artifacts to the hosted workspace. The workspace displays synced
+  results; it captures no Solana data and executes nothing. Browser-analysis
+  runs are not synced through this workflow.
+
+The browser conversion plan uses Eplyx's registered demo mechanism; it does not
+run user-supplied candidate bytes or an issuer program. The CLI package workflow
+is separate and can run the exact packaged candidate bytes. Neither workflow
+proves issuer-defined conversion: the saved SPACEX `OfficialTransition` status
+remains **NotTested**, and its demonstration population readiness remains
+**Incomplete**. The saved LP-principal withdrawal is historical evidence; the
+browser does not expose a fresh withdrawal action. Every proof stays tied to its
+entity, amount, path, capture and program scope.
+
+The milestone notes below preserve the status recorded when each checkpoint was
+written. Earlier passages that say a later feature is planned or not implemented
+are historical snapshots; use the capability summary above and the completed
+Milestone 8–18 entries below for the current scope.
+
+## Milestone 6 on-demand conversion-plan pre-flight
 
 Milestone 6 is delivered: an operator supplies the conversion plan they intend to
 deploy, and Eplyx executes that candidate plan against freshly captured current
