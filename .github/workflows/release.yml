@@ -173,18 +173,22 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $bundle = Join-Path $env:RUNNER_TEMP 'bundle'
           $bin = Join-Path $env:RUNNER_TEMP 'bin'
+          Write-Host '== install'
           $env:EPLYX_DOWNLOAD_BASE = 'file:///' + ($bundle -replace '\\', '/')
           $env:EPLYX_INSTALL_DIR = $bin
           & (Join-Path $bundle 'install.ps1')
           $eplyx = Join-Path $bin 'eplyx.exe'
+          Write-Host '== version'
           & $eplyx --version; if ($LASTEXITCODE) { throw 'version failed' }
           & $eplyx version --json; if ($LASTEXITCODE) { throw 'version --json failed' }
+          Write-Host '== clean project'
           $project = Join-Path $env:RUNNER_TEMP 'project'
           New-Item -ItemType Directory -Path $project | Out-Null
           Set-Location $project
           & $eplyx init; if ($LASTEXITCODE) { throw 'init failed' }
           if (((& $eplyx runs --json) -join '').Trim() -ne '[]') { throw 'runs not empty' }
           & $eplyx doctor --offline; if ($LASTEXITCODE -ne 2) { throw "doctor exit $LASTEXITCODE" }
+          Write-Host '== dashboard'
           $log = Join-Path $project 'dashboard.log'
           $server = Start-Process -FilePath $eplyx -ArgumentList 'dashboard', '--no-open', '--port', '0' -RedirectStandardOutput $log -PassThru -NoNewWindow
           $url = $null
@@ -192,7 +196,10 @@ jobs:
           if (-not $url) { throw 'dashboard did not start' }
           if ((Invoke-WebRequest -UseBasicParsing "$url/api/project").Content -notmatch '"runs":0') { throw 'dashboard API mismatch' }
           if ((Invoke-WebRequest -UseBasicParsing "$url/").Content -notmatch '/assets/dashboard.js') { throw 'dashboard page mismatch' }
+          Write-Host "dashboard answered on $url"
           Stop-Process -Id $server.Id
+          $server.WaitForExit()
+          Write-Host '== tampered archive'
           $tampered = Join-Path $env:RUNNER_TEMP 'tampered'
           Copy-Item -Recurse $bundle $tampered
           $zip = Get-ChildItem $tampered -Filter 'eplyx-v*-windows-x86_64.zip' | Select-Object -First 1
@@ -200,9 +207,14 @@ jobs:
           $env:EPLYX_DOWNLOAD_BASE = 'file:///' + ($tampered -replace '\\', '/')
           $env:EPLYX_INSTALL_DIR = Join-Path $env:RUNNER_TEMP 'bin2'
           $rejected = $false
-          try { & (Join-Path $tampered 'install.ps1') } catch { $rejected = $_.Exception.Message -match 'checksum mismatch' }
+          try { & (Join-Path $tampered 'install.ps1') } catch { Write-Host "rejected: $($_.Exception.Message)"; $rejected = $_.Exception.Message -match 'checksum mismatch' }
           if (-not $rejected -or (Test-Path (Join-Path $env:RUNNER_TEMP 'bin2\eplyx.exe'))) { throw 'tampered archive was not rejected' }
-          Remove-Item $eplyx; if (Test-Path $eplyx) { throw 'uninstall failed' }
+          Write-Host '== uninstall'
+          # Windows keeps an executable locked briefly after its process exits.
+          for ($i = 0; $i -lt 20 -and (Test-Path $eplyx); $i++) { try { Remove-Item -LiteralPath $eplyx } catch { Start-Sleep -Milliseconds 500 } }
+          if (Test-Path $eplyx) { throw 'uninstall failed' }
+          Write-Host 'Windows install acceptance passed'
+          exit 0
 
   publish:
     name: Publish GitHub Release

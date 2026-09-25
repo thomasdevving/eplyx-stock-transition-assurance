@@ -404,6 +404,11 @@ fn validate_ephemeral(
     result
 }
 
+/// Plain display form of a canonical path (no Windows `\\?\` prefix).
+fn plain(path: impl AsRef<Path>) -> PathBuf {
+    eplyx_lifecycle_impact::plain_path(path.as_ref())
+}
+
 fn rpc_url() -> Result<String> {
     let url = std::env::var("SOLANA_RPC_URL")
         .context("set SOLANA_RPC_URL to a Solana mainnet RPC provider")?;
@@ -626,7 +631,7 @@ fn print_report(
         report["population_rollout_readiness"]["status"].as_str().unwrap_or("Unknown"),
         report["conversion_result"]["status"].as_str().unwrap_or("Unknown"),
         report["official_transition"].as_str().unwrap_or("Unknown"),
-        outcome.label(), path.display());
+        outcome.label(), plain(path).display());
     if verbose {
         println!("\n{}", fs::read_to_string(path.join("result/report.md"))?);
     }
@@ -812,8 +817,8 @@ fn search_run(
     }
     println!(
         "\nSaved {count} counterexamples under {}\nRun {}\n\nNo mainnet funds moved.",
-        base.join("counterexamples").display(),
-        path.display()
+        plain(base.join("counterexamples")).display(),
+        plain(path).display()
     );
     Ok(())
 }
@@ -1071,8 +1076,8 @@ fn init(root: &Path, path: &Path, force: bool, minimal: bool) -> Result<()> {
     }
     println!(
         "Created {} and {}. Edit the mint, account, and reserve fields, then run `eplyx doctor`.",
-        path.display(),
-        base.display()
+        plain(path).display(),
+        plain(base).display()
     );
     Ok(())
 }
@@ -1168,7 +1173,7 @@ fn execute(cli: Cli) -> Result<u8> {
             let meta: Metadata = serde_json::from_slice(&fs::read(path.join("metadata.json"))?)?;
             let report: Value =
                 serde_json::from_slice(&fs::read(path.join("result/report.json"))?)?;
-            println!("Run {}\nPackage {}\nProgram {}\nCommit {}\nBranch {}\nPopulation: {} observed accounts; {} positive balances\nConversion {}\nStress {}\nInvariant findings {}\nGate {}\nCounterexamples {}\nArtifacts {}", id, meta.transition_package_sha256, meta.candidate_program_sha256, meta.git_commit.as_deref().unwrap_or("unknown"), meta.git_branch.as_deref().unwrap_or("unknown"), report["population_summary"]["counts"]["token_accounts_observed"], report["population_summary"]["counts"]["positive_balance_accounts_observed"], report["conversion_result"]["status"], report["conversion_stress_readiness"]["status"], report["invariants"].as_array().map_or(0, Vec::len), meta.gate_outcome, counterexample_count(&base, &id)?, path.display());
+            println!("Run {}\nPackage {}\nProgram {}\nCommit {}\nBranch {}\nPopulation: {} observed accounts; {} positive balances\nConversion {}\nStress {}\nInvariant findings {}\nGate {}\nCounterexamples {}\nArtifacts {}", id, meta.transition_package_sha256, meta.candidate_program_sha256, meta.git_commit.as_deref().unwrap_or("unknown"), meta.git_branch.as_deref().unwrap_or("unknown"), report["population_summary"]["counts"]["token_accounts_observed"], report["population_summary"]["counts"]["positive_balance_accounts_observed"], report["conversion_result"]["status"], report["conversion_stress_readiness"]["status"], report["invariants"].as_array().map_or(0, Vec::len), meta.gate_outcome, counterexample_count(&base, &id)?, plain(path).display());
             Ok(0)
         }
         Action::Dashboard { port, no_open } => {
