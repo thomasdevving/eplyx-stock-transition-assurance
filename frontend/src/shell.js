@@ -8,6 +8,7 @@ export function Header({ light = false } = {}) {
       <nav id="primary-navigation" aria-label="Primary navigation">
         <a href="/#how" data-link>How it works</a>
         <a href="/#product" data-link>Capabilities</a>
+        <a href="/#run" data-link>Example run</a>
         ${workspaceLink('Team workspace')}
         <a href="/evidence" data-link class="nav-cta">Explore evidence <span>↗</span></a>
       </nav>
@@ -19,9 +20,9 @@ export function Footer() {
   return `
     <footer class="footer">
       <div>${Logo()}</div>
-      <p>Lifecycle impact intelligence for tokenized stocks.</p>
+      <p>Transition assurance for tokenized stocks on Solana.</p>
       <div class="footer__links"><a href="/evidence" data-link>Saved findings</a>${workspaceLink('Team workspace')}<a href="https://github.com/thomasdevving/eplyx-stock-transition-assurance/blob/main/docs/on-demand-progress.md" target="_blank" rel="noopener noreferrer">Product & milestone guide</a></div>
-      <small>Stocklana · Read-only chain capture · VM checks · No on-chain transaction submitted</small>
+      <small>Stocklana · Read-only mainnet capture · Isolated VM execution · No transaction ever submitted</small>
     </footer>`;
 }
 

@@ -7,21 +7,21 @@ import { Mark } from './brand.js';
 // labels. Depth is the ring angle alone — the far half passes behind the mark.
 const rings = {
   changes: {
-    label: 'Overview', caption: 'Current observations · Saved SPACEX evidence · Proposed scenarios',
+    label: 'Overview', caption: 'Real production state · Your program · An exact answer',
     tilt: -17, direction: -1, duration: 38,
     bodies: [
-      ['Current observations', 'live', 'Fetch current mint information or query one public owner for one selected mint. This is a bounded read, not a complete holder or protocol-position scan.'],
-      ['Saved SPACEX case', 'live', 'Review the separately pinned issuer notice, example holdings, prior local checks and one LP-principal withdrawal. These findings are historical, not a fresh capture.'],
-      ['Proposed scenario', 'live', 'Evaluate a user-proposed lifecycle time against the same captured account bytes. The date changes relevance, not balances or execution evidence.'],
+      ['Real production state', 'live', 'Eplyx reads today’s token accounts from Solana mainnet, read-only. It never sends a transaction.'],
+      ['Your program', 'live', 'Your exact transition program runs in an isolated local VM against that state — never on mainnet.'],
+      ['An exact answer', 'live', 'Every balance must reconcile to the last unit. Failures are narrowed down to their exact boundary and can be replayed offline.'],
     ],
   },
   consequences: {
-    label: 'Technical', caption: 'Bounded browser checks · Operator CLI · Optional team history',
+    label: 'Technical', caption: 'Preflight CLI · Browser VM checks · Evidence & workspace',
     tilt: 19, direction: 1, duration: 34,
     bodies: [
-      ['Browser VM checks', 'live', 'For a focused wallet account, capture fresh state and run a token transfer, one supported DLMM route, or the registered demo conversion plan in the analysis service’s VM. No transaction is submitted.'],
-      ['Operator CLI', 'live', 'Test a registered transition package, run bounded stress and counterexample searches, apply typed invariants and a CI gate, then reproduce results offline.'],
-      ['Evidence & workspace', 'live', 'The read-only local dashboard reads saved runs. Optional cloud sync stores explicitly selected CLI artifacts for team viewing; the hosted workspace executes nothing. The saved SPACEX demo remains Incomplete and OfficialTransition remains NotTested.', 'SPACEX demo population readiness', 'Incomplete'],
+      ['Preflight CLI', 'live', 'Package the candidate, capture production read-only, execute in LiteSVM with exact reconciliation, stress real accounts, search and minimize counterexamples, then gate with typed invariants.'],
+      ['Browser VM checks', 'live', 'For one focused wallet account, capture fresh state and run a transfer, one supported DLMM exit or the registered demo conversion in the analysis service’s VM. No transaction is submitted.'],
+      ['Evidence & workspace', 'live', 'Every run replays offline from content-addressed artifacts. The local dashboard reads them; optional sync shares them with a team workspace that executes nothing. OfficialTransition remains NotTested until an issuer mechanism is proven.', 'SPACEX demo population readiness', 'Incomplete'],
     ],
   },
 };

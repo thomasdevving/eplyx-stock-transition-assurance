@@ -8,11 +8,11 @@ test('desktop renders the sculpture, scoped stones, navigation and exact evidenc
  page.on('pageerror', e=>errors.push(e.message));
  await page.setViewportSize({width:1440,height:1000});
  await page.goto('/');
- await expect(page.getByRole('heading',{level:1})).toContainText('Understand the');
+ await expect(page.getByRole('heading',{level:1})).toContainText('Rehearse the');
  await expect(page.locator('.logo-core')).toHaveClass(/logo-core--rendered/);
  await expect(page.locator('.orbit-body:visible')).toHaveCount(3);
  await page.getByRole('button',{name:'Technical',exact:true}).click();
- await expect(page.locator('.orbit-caption')).toContainText('Bounded browser checks');
+ await expect(page.locator('.orbit-caption')).toContainText('Browser VM checks');
  await expect(page.locator('.orbit-body:visible')).toHaveCount(3);
  await page.keyboard.press('Tab');
  await page.locator('.orbit-body:visible').filter({hasText:'Evidence & workspace'}).focus();

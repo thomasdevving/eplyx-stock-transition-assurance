@@ -11,11 +11,20 @@ logo materials and studio lighting to blue. The brand places **Stock Transition*
 below **Eplyx**. The original two orbit planes keep three stones each; the switch
 controls application presentation:
 
-- Overview: current observations, the saved SPACEX case and proposed scenarios.
-- Technical: browser VM checks, the operator CLI, and local/optional cloud history.
+- Overview: real production state, your program and an exact answer, in plain language.
+- Technical: the preflight CLI, browser VM checks, and evidence with optional team history.
 
-The landing page preserves the hero, method, capabilities and saved result, with a guided analysis form below the hero.
-Primary navigation has three links: How it works, Capabilities and Explore evidence.
+The landing page tells one story, in this order:
+1. **Hero:** Eplyx rehearses a transition against real Solana accounts before it goes live.
+2. **How it works:** five steps, in plain words (Overview) and exact terms (Technical).
+3. **What you get:** six capabilities, plus the dashboard and team workspace.
+4. **A real run:** the same demo program with a funded and an empty reserve, PASS WITH WARNINGS against BLOCKED. Every figure comes from `frontend/src/showcase.js` and is checked against the saved runs in `fixtures/dashboard/` by `npm run check:frontend`.
+5. **Holder impact:** the saved SPACEX example.
+6. **Trust:** what Eplyx does and does not prove.
+7. **Getting started:** install and first commands.
+
+The analysis page opens with a three-step explanation above the form.
+Primary navigation links to How it works, Capabilities, Example run, Team workspace and Explore evidence.
 Detailed path scope, population coverage and provenance live in the evidence viewer;
 local reproduction instructions are collapsed by default. Audience, vision and
 repeated evidence sections are omitted to reflect the smaller project scope.

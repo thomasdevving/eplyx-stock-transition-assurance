@@ -22,7 +22,9 @@ const analysis = new AnalysisService({root:fileURLToPath(new URL('../',import.me
 await analysis.initialize();
 createServer(async (request, response) => {
   try {
-    if(await handleAnalysisAPI(analysis,request,response,origin,{access,secure}))return;
+    // Locally both loopback names work; any other Host is still refused.
+    const requestOrigin = process.env.EPLYX_PUBLIC_ORIGIN || request.headers.host !== `localhost:${port}` ? origin : `http://localhost:${port}`;
+    if(await handleAnalysisAPI(analysis,request,response,requestOrigin,{access,secure}))return;
     if (!['GET', 'HEAD'].includes(request.method)) { response.writeHead(405); response.end(); return; }
     const path = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
     const file = resolve(root, path === '/' || path === '/evidence' || path === '/evidence/' || path === '/analysis' || path === '/analysis/' ? 'index.html' : `.${path}`);
