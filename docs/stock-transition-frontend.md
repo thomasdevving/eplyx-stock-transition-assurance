@@ -64,14 +64,24 @@ The frontend and its analysis service can also run as a hosted demo:
 **https://eplyx-stock-production.up.railway.app**. Locally nothing changes: the
 server still listens on `127.0.0.1` with no access code.
 
-- **Build.** `node scripts/railway/stage-frontend.mjs <empty-dir>` stages only
-  tracked sources and evidence data, plus the three built `.so` programs in
-  `artifacts/`. It leaves out Milestone validation records and refuses keypairs,
-  `.env` and credential files. Deploy with
+- **Build.** [frontend/Dockerfile](../frontend/Dockerfile) builds entirely from
+  tracked sources in three stages:
+  1. It compiles `eplyx-lifecycle`.
+  2. It builds the registered demo conversion program with the pinned
+     `cargo-build-sbf` 4.4.0, the same tool the release workflow uses.
+  3. It builds `dist/` and runs `node frontend/serve.mjs --production` as the
+     unprivileged `node` user.
+
+  The engine resolves evidence from `/src`, the build-time root. The shared root
+  `.dockerignore` keeps local `artifacts/`, keypairs, run stores, build output and
+  Milestone validation records out of the context.
+- **Deploy from GitHub.** Connect the `eplyx-stock` service to this repository's
+  `main` branch and set its config file to `frontend/railway.json`. That file sets
+  the Dockerfile, the watch paths and the `/` health check, so only relevant pushes
+  rebuild.
+- **Manual deploy.** `node scripts/railway/stage-frontend.mjs <empty-dir>` stages
+  exactly the tracked files. Then run
   `npx @railway/cli up <dir> --path-as-root --service eplyx-stock`.
-  [frontend/Dockerfile](../frontend/Dockerfile) compiles `eplyx-lifecycle`, builds
-  `dist/` and runs `node frontend/serve.mjs --production` as the unprivileged
-  `node` user. The engine resolves evidence from `/src`, the build-time root.
 - **Access code.** With `EPLYX_ANALYSIS_ACCESS_CODE` set, every analysis API
   request needs an unlocked browser session. That covers starting, polling and
   reading runs, checks, preflights, conversions and stress tests. Health,

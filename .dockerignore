@@ -1,27 +1,22 @@
-# Only what cloud/Dockerfile copies is needed; keep secrets, stores and build
-# output out of the build context.
+# Shared build context for cloud/Dockerfile and frontend/Dockerfile (Railway
+# builds both from the repository root). Keep build output, local stores,
+# secrets and large validation records out; each Dockerfile copies only what
+# it needs. Built programs come from their Dockerfile stage, never artifacts/.
+.git
 target
 **/target
 node_modules
 dist
 test-results
 playwright-report
-.git
+.analysis-runs
 .eplyx
 **/.eplyx
-.analysis-runs
 artifacts
-evidence
-reports
-snapshots
-probes
-scenarios
-policies
-assets
-examples
-docs
-programs
+reports/milestone*
 frontend/public/vendor
 frontend/public/evidence
+**/*keypair*.json
+**/credentials.json
 **/*.env
 .env*

@@ -213,7 +213,7 @@ There is no arbitrary query or file API.
 ## Hosting (Railway)
 
 **Components:**
-- one `eplyx-cloud` service, built from [cloud/Dockerfile](../cloud/Dockerfile) through [railway.json](../railway.json) with health check `/healthz`;
+- one `eplyx-cloud` service, built from [cloud/Dockerfile](../cloud/Dockerfile) through [cloud/railway.json](../cloud/railway.json). That file sets the health check `/healthz` and watch paths, so a GitHub-connected service on `main` only rebuilds for server, engine or dashboard changes;
 - one Railway Postgres database.
 
 There are no workers, no object storage, no RPC and no VM.

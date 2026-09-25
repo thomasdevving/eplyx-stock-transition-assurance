@@ -1,0 +1,29 @@
+{
+  "$schema": "https://railway.com/railway.schema.json",
+  "build": {
+    "builder": "DOCKERFILE",
+    "dockerfilePath": "cloud/Dockerfile",
+    "watchPatterns": [
+      "/cloud/**",
+      "/engine/**",
+      "/interface/**",
+      "/frontend/dashboard/**",
+      "/frontend/cloud/**",
+      "/frontend/src/mode.js",
+      "/frontend/src/format.js",
+      "/frontend/src/brand.js",
+      "/frontend/public/logo.svg",
+      "/fixtures/program-id.txt",
+      "/Cargo.toml",
+      "/Cargo.lock",
+      "/rust-toolchain.toml",
+      "/.dockerignore"
+    ]
+  },
+  "deploy": {
+    "healthcheckPath": "/healthz",
+    "healthcheckTimeout": 60,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 5
+  }
+}

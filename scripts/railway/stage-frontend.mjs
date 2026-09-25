@@ -1,13 +1,13 @@
-// Stage the build context for the hosted Stock Transition frontend and
-// analysis service (frontend/Dockerfile):
+// Stage the build context for a manual deploy of the hosted Stock Transition
+// frontend and analysis service (frontend/Dockerfile). A GitHub-connected
+// Railway service builds the same thing from the repository itself.
 //   node scripts/railway/stage-frontend.mjs <empty-output-dir>
-//   npx @railway/cli up <output-dir> --service eplyx-stock --detach
-// Only tracked (or new, not ignored) sources and evidence data are copied, plus the three built
-// .so programs the analysis engine loads. Keypairs, local run stores,
-// analysis runs, build output, Milestone validation records and anything
-// ignored by Git never enter the context.
+//   npx @railway/cli up <output-dir> --path-as-root --service eplyx-stock --detach
+// Only tracked (or new, not ignored) files are copied. The Dockerfile builds
+// the candidate program itself, so local artifacts/, keypairs, run stores,
+// build output and Milestone validation records never enter the context.
 import { execFileSync } from 'node:child_process';
-import { cp, mkdir, readdir, stat, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readdir, stat } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -18,26 +18,21 @@ await mkdir(out, { recursive: true });
 if ((await readdir(out)).length) { console.error(`${out} must be empty`); process.exit(2); }
 
 const include = ['Cargo.toml', 'Cargo.lock', 'rust-toolchain.toml', 'package.json', 'package-lock.json',
- 'interface', 'engine', 'cloud', 'frontend', 'docs', 'reports', 'snapshots', 'evidence', 'probes',
- 'scenarios', 'policies', 'fixtures', 'examples'];
+ '.dockerignore', 'interface', 'engine', 'cloud', 'frontend', 'programs/eplyx-demo-conversion', 'docs',
+ 'reports', 'snapshots', 'evidence', 'probes', 'scenarios', 'policies', 'fixtures', 'examples'];
 const tracked = execFileSync('git', ['-C', root, 'ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', ...include], { encoding: 'utf8' })
  .split('\0').filter(Boolean)
  .filter(file => !file.startsWith('reports/milestone'));
-const programs = ['artifacts/eplyx_demo_conversion.so', 'artifacts/fixture_lending_v1.so', 'artifacts/fixture_lending_v2.so'];
 let bytes = 0;
-for (const file of [...tracked, ...programs]) {
+for (const file of tracked) {
  if (/keypair[^/]*\.json$|(^|\/)\.env|(^|\/)credentials\.json$/i.test(file)) throw new Error(`refusing to stage ${file}`);
  const source = join(root, file);
  const info = await stat(source).catch(() => null);
- if (!info?.isFile()) { if (programs.includes(file)) throw new Error(`missing ${file}; run ./scripts/build-programs.sh`); continue; }
+ if (!info?.isFile()) continue;
  await mkdir(dirname(join(out, file)), { recursive: true });
  await cp(source, join(out, file));
  bytes += info.size;
 }
-await writeFile(join(out, 'railway.json'), JSON.stringify({
- $schema: 'https://railway.com/railway.schema.json',
- build: { builder: 'DOCKERFILE', dockerfilePath: 'frontend/Dockerfile' },
- deploy: { healthcheckPath: '/', healthcheckTimeout: 120, restartPolicyType: 'ON_FAILURE' },
-}, null, 2));
-await writeFile(join(out, '.dockerignore'), 'target\nnode_modules\ndist\n.analysis-runs\n');
-console.log(`staged ${tracked.length + programs.length} files (${(bytes / 1048576).toFixed(0)} MB) in ${out}`);
+// The same service configuration a GitHub-connected deploy reads.
+await cp(join(root, 'frontend/railway.json'), join(out, 'railway.json'));
+console.log(`staged ${tracked.length} files (${(bytes / 1048576).toFixed(0)} MB) in ${out}`);
