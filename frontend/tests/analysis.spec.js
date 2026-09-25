@@ -9,7 +9,7 @@ test('new visitor uses overview, existing hero toggle preserves selections witho
  let submissions=0;page.on('request',r=>{if(r.method()==='POST'&&r.url().endsWith('/api/runs'))submissions++;});
  await page.goto('/');await expect(page.locator('html')).toHaveAttribute('data-mode','overview');
  await expect(page.getByRole('button',{name:'Overview',exact:true})).toHaveAttribute('aria-pressed','true');
- await page.getByRole('link',{name:/^Run analysis/}).click();await expect(page.locator('#analysis')).toBeInViewport();await expect(page).toHaveURL(/\/analysis#analysis$/);
+ await page.getByRole('link',{name:/^Use Eplyx/}).click();await expect(page.locator('#start')).toBeInViewport();await page.getByRole('link',{name:/^Try it in the browser/}).click();await expect(page.locator('#analysis')).toBeInViewport();await expect(page).toHaveURL(/\/analysis#analysis$/);
  await choose(page,'assumption','complete-exit');await page.locator('[name="stage"]').selectOption('after_deadline');
  await page.getByRole('button',{name:'Technical',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-mode','technical');
  await page.getByRole('button',{name:'Overview',exact:true}).click();await expect(page.locator('[name="stage"]')).toHaveValue('after_deadline');await expect(page.locator('[name="check"]')).toHaveValue('complete-exit');expect(submissions).toBe(0);
